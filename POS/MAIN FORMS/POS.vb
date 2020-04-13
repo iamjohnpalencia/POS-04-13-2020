@@ -508,7 +508,11 @@ Public Class POS
                 da = New MySqlDataAdapter(sql, localconn)
                 dt = New DataTable
                 da.Fill(dt)
-                SINumber = dt(0)(0)
+                If dt.Rows.Count > 0 Then
+                    SINumber = dt(0)(0)
+                Else
+                    SINumber = 0
+                End If
                 If SINumber = 0 Then
                     SINumber = 1
                     SiNumberToString = SINumber.ToString(S_SIFormat)
