@@ -26,7 +26,6 @@ Module serverlocalconn
         Catch ex As MySqlException
             My.Settings.ValidCloudConn = 0
             My.Settings.Save()
-            MsgBox(ex.ToString)
         End Try
     End Sub
     Private Function LoadConn(Path As String)
