@@ -1,0 +1,1679 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class POS
+    Inherits System.Windows.Forms.Form
+
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()>
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
+
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()>
+    Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(POS))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.Panel23 = New System.Windows.Forms.Panel()
+        Me.Panel24 = New System.Windows.Forms.Panel()
+        Me.Panel25 = New System.Windows.Forms.Panel()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.DataGridViewInv = New System.Windows.Forms.DataGridView()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Panel32 = New System.Windows.Forms.Panel()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.LabelStorename = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.TextBoxPressTotal = New System.Windows.Forms.TextBox()
+        Me.Panel22 = New System.Windows.Forms.Panel()
+        Me.ButtonExpense = New System.Windows.Forms.Button()
+        Me.ButtonSettings = New System.Windows.Forms.Button()
+        Me.ButtonLogout = New System.Windows.Forms.Button()
+        Me.ButtonPromo = New System.Windows.Forms.Button()
+        Me.ButtonMenu = New System.Windows.Forms.Button()
+        Me.TextBoxFormulaID = New System.Windows.Forms.TextBox()
+        Me.TextBoxPRICE = New System.Windows.Forms.TextBox()
+        Me.TextBoxTOTAL = New System.Windows.Forms.TextBox()
+        Me.TextBoxNAME = New System.Windows.Forms.TextBox()
+        Me.TextBoxINC = New System.Windows.Forms.TextBox()
+        Me.TextBoxMAXID = New System.Windows.Forms.TextBox()
+        Me.TextBoxPressQTY = New System.Windows.Forms.TextBox()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.Panel14 = New System.Windows.Forms.Panel()
+        Me.Panel21 = New System.Windows.Forms.Panel()
+        Me.Panel20 = New System.Windows.Forms.Panel()
+        Me.Label73 = New System.Windows.Forms.Label()
+        Me.TextBoxGRANDTOTAL = New System.Windows.Forms.Label()
+        Me.TextBoxDISCOUNT = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label71 = New System.Windows.Forms.Label()
+        Me.TextBoxSUBTOTAL = New System.Windows.Forms.Label()
+        Me.ButtonPay = New System.Windows.Forms.Button()
+        Me.ButtonTransactionMode = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Buttonholdoder = New System.Windows.Forms.Button()
+        Me.ButtonPendingOrders = New System.Windows.Forms.Button()
+        Me.ButtonApplyCoupon = New System.Windows.Forms.Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.DataGridViewOrders = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Panel27 = New System.Windows.Forms.Panel()
+        Me.Panel30 = New System.Windows.Forms.Panel()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label76 = New System.Windows.Forms.Label()
+        Me.Panel28 = New System.Windows.Forms.Panel()
+        Me.ButtonCP = New System.Windows.Forms.Button()
+        Me.ButtonCDISC = New System.Windows.Forms.Button()
+        Me.Panel31 = New System.Windows.Forms.Panel()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.Panel33 = New System.Windows.Forms.Panel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.Panel29 = New System.Windows.Forms.Panel()
+        Me.ButtonCancel = New System.Windows.Forms.Button()
+        Me.ButtonClear = New System.Windows.Forms.Button()
+        Me.Buttondot = New System.Windows.Forms.Button()
+        Me.ButtonEnter = New System.Windows.Forms.Button()
+        Me.ButtonNo00 = New System.Windows.Forms.Button()
+        Me.ButtonNo0 = New System.Windows.Forms.Button()
+        Me.ButtonNo2 = New System.Windows.Forms.Button()
+        Me.ButtonNo1 = New System.Windows.Forms.Button()
+        Me.ButtonNo5 = New System.Windows.Forms.Button()
+        Me.ButtonNo4 = New System.Windows.Forms.Button()
+        Me.ButtonNo8 = New System.Windows.Forms.Button()
+        Me.ButtonNo7 = New System.Windows.Forms.Button()
+        Me.TextBoxQTY = New System.Windows.Forms.TextBox()
+        Me.ButtonNo3 = New System.Windows.Forms.Button()
+        Me.ButtonNo9 = New System.Windows.Forms.Button()
+        Me.ButtonNo6 = New System.Windows.Forms.Button()
+        Me.Panel26 = New System.Windows.Forms.Panel()
+        Me.Panel19 = New System.Windows.Forms.Panel()
+        Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.Panel15 = New System.Windows.Forms.Panel()
+        Me.Panel18 = New System.Windows.Forms.Panel()
+        Me.Panel17 = New System.Windows.Forms.Panel()
+        Me.PanelProducts = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.Panel8.SuspendLayout()
+        Me.Panel24.SuspendLayout()
+        Me.Panel25.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        CType(Me.DataGridViewInv, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel32.SuspendLayout()
+        Me.Panel22.SuspendLayout()
+        Me.Panel14.SuspendLayout()
+        Me.Panel21.SuspendLayout()
+        Me.Panel20.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.Panel11.SuspendLayout()
+        CType(Me.DataGridViewOrders, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel27.SuspendLayout()
+        Me.Panel30.SuspendLayout()
+        Me.Panel28.SuspendLayout()
+        Me.Panel31.SuspendLayout()
+        Me.Panel9.SuspendLayout()
+        Me.Panel33.SuspendLayout()
+        Me.Panel10.SuspendLayout()
+        Me.Panel13.SuspendLayout()
+        Me.SuspendLayout()
+        '
+        'Panel7
+        '
+        Me.Panel7.BackColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.Panel7.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel7.Location = New System.Drawing.Point(665, 46)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(10, 633)
+        Me.Panel7.TabIndex = 47
+        '
+        'Panel6
+        '
+        Me.Panel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.Panel6.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel6.Location = New System.Drawing.Point(1034, 46)
+        Me.Panel6.Name = "Panel6"
+        Me.Panel6.Size = New System.Drawing.Size(10, 633)
+        Me.Panel6.TabIndex = 46
+        '
+        'Panel5
+        '
+        Me.Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel5.Location = New System.Drawing.Point(10, 36)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(1034, 10)
+        Me.Panel5.TabIndex = 45
+        '
+        'Panel4
+        '
+        Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel4.Location = New System.Drawing.Point(0, 36)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(10, 643)
+        Me.Panel4.TabIndex = 44
+        '
+        'Panel8
+        '
+        Me.Panel8.BackColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.Panel8.Controls.Add(Me.Panel23)
+        Me.Panel8.Controls.Add(Me.Panel24)
+        Me.Panel8.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel8.Location = New System.Drawing.Point(0, 679)
+        Me.Panel8.Name = "Panel8"
+        Me.Panel8.Size = New System.Drawing.Size(1044, 35)
+        Me.Panel8.TabIndex = 51
+        '
+        'Panel23
+        '
+        Me.Panel23.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel23.Location = New System.Drawing.Point(0, 1)
+        Me.Panel23.Name = "Panel23"
+        Me.Panel23.Size = New System.Drawing.Size(1044, 10)
+        Me.Panel23.TabIndex = 18
+        '
+        'Panel24
+        '
+        Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Panel24.Controls.Add(Me.Panel25)
+        Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel24.Location = New System.Drawing.Point(0, 11)
+        Me.Panel24.Name = "Panel24"
+        Me.Panel24.Size = New System.Drawing.Size(1044, 24)
+        Me.Panel24.TabIndex = 17
+        '
+        'Panel25
+        '
+        Me.Panel25.Controls.Add(Me.Label12)
+        Me.Panel25.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel25.Location = New System.Drawing.Point(713, 0)
+        Me.Panel25.Name = "Panel25"
+        Me.Panel25.Size = New System.Drawing.Size(331, 24)
+        Me.Panel25.TabIndex = 1
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Kelson Sans", 8.999999!, System.Drawing.FontStyle.Bold)
+        Me.Label12.ForeColor = System.Drawing.Color.White
+        Me.Label12.Location = New System.Drawing.Point(79, 4)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(248, 14)
+        Me.Label12.TabIndex = 16
+        Me.Label12.Text = "© 2019 - Innovention Food Asia Corporation"
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.DataGridViewInv)
+        Me.Panel1.Controls.Add(Me.Panel32)
+        Me.Panel1.Controls.Add(Me.LabelStorename)
+        Me.Panel1.Controls.Add(Me.Label11)
+        Me.Panel1.Controls.Add(Me.TextBoxPressTotal)
+        Me.Panel1.Controls.Add(Me.Panel22)
+        Me.Panel1.Controls.Add(Me.TextBoxFormulaID)
+        Me.Panel1.Controls.Add(Me.TextBoxPRICE)
+        Me.Panel1.Controls.Add(Me.TextBoxTOTAL)
+        Me.Panel1.Controls.Add(Me.TextBoxNAME)
+        Me.Panel1.Controls.Add(Me.TextBoxINC)
+        Me.Panel1.Controls.Add(Me.TextBoxMAXID)
+        Me.Panel1.Controls.Add(Me.TextBoxPressQTY)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1044, 36)
+        Me.Panel1.TabIndex = 0
+        '
+        'DataGridViewInv
+        '
+        Me.DataGridViewInv.AllowUserToAddRows = False
+        Me.DataGridViewInv.AllowUserToDeleteRows = False
+        Me.DataGridViewInv.AllowUserToResizeColumns = False
+        Me.DataGridViewInv.AllowUserToResizeRows = False
+        Me.DataGridViewInv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewInv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewInv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column10, Me.Column11, Me.Column14, Me.Column15, Me.Column18})
+        Me.DataGridViewInv.Location = New System.Drawing.Point(6, 3)
+        Me.DataGridViewInv.Name = "DataGridViewInv"
+        Me.DataGridViewInv.ReadOnly = True
+        Me.DataGridViewInv.RowHeadersVisible = False
+        Me.DataGridViewInv.Size = New System.Drawing.Size(206, 30)
+        Me.DataGridViewInv.TabIndex = 65
+        Me.DataGridViewInv.Visible = False
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Srv.T"
+        Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "F.ID"
+        Me.Column6.Name = "Column6"
+        Me.Column6.ReadOnly = True
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "Qty"
+        Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "ID"
+        Me.Column8.Name = "Column8"
+        Me.Column8.ReadOnly = True
+        '
+        'Column10
+        '
+        Me.Column10.HeaderText = "NM"
+        Me.Column10.Name = "Column10"
+        Me.Column10.ReadOnly = True
+        '
+        'Column11
+        '
+        Me.Column11.HeaderText = "Srv"
+        Me.Column11.Name = "Column11"
+        Me.Column11.ReadOnly = True
+        '
+        'Column14
+        '
+        Me.Column14.HeaderText = "COG"
+        Me.Column14.Name = "Column14"
+        Me.Column14.ReadOnly = True
+        '
+        'Column15
+        '
+        Me.Column15.HeaderText = "OCOG"
+        Me.Column15.Name = "Column15"
+        Me.Column15.ReadOnly = True
+        '
+        'Column18
+        '
+        Me.Column18.HeaderText = "Prd.AddID"
+        Me.Column18.Name = "Column18"
+        Me.Column18.ReadOnly = True
+        '
+        'Panel32
+        '
+        Me.Panel32.Controls.Add(Me.Label13)
+        Me.Panel32.Controls.Add(Me.Label5)
+        Me.Panel32.Controls.Add(Me.Label9)
+        Me.Panel32.Controls.Add(Me.Label14)
+        Me.Panel32.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel32.Location = New System.Drawing.Point(211, 0)
+        Me.Panel32.Name = "Panel32"
+        Me.Panel32.Size = New System.Drawing.Size(200, 34)
+        Me.Panel32.TabIndex = 156
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Kelson Sans", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.Label13.ForeColor = System.Drawing.Color.Black
+        Me.Label13.Location = New System.Drawing.Point(146, 16)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(16, 18)
+        Me.Label13.TabIndex = 159
+        Me.Label13.Text = "0"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Kelson Sans", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Black
+        Me.Label5.Location = New System.Drawing.Point(3, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(108, 18)
+        Me.Label5.TabIndex = 156
+        Me.Label5.Text = "Previous Cash:"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Kelson Sans", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.Label9.ForeColor = System.Drawing.Color.Black
+        Me.Label9.Location = New System.Drawing.Point(146, 0)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(16, 18)
+        Me.Label9.TabIndex = 157
+        Me.Label9.Text = "0"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Kelson Sans", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.Label14.ForeColor = System.Drawing.Color.Black
+        Me.Label14.Location = New System.Drawing.Point(3, 16)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(125, 18)
+        Me.Label14.TabIndex = 158
+        Me.Label14.Text = "Previous Change:"
+        '
+        'LabelStorename
+        '
+        Me.LabelStorename.AutoSize = True
+        Me.LabelStorename.Dock = System.Windows.Forms.DockStyle.Left
+        Me.LabelStorename.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelStorename.ForeColor = System.Drawing.Color.Black
+        Me.LabelStorename.Location = New System.Drawing.Point(0, 0)
+        Me.LabelStorename.Name = "LabelStorename"
+        Me.LabelStorename.Size = New System.Drawing.Size(211, 31)
+        Me.LabelStorename.TabIndex = 154
+        Me.LabelStorename.Text = "STORE  NAME"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Label11.Font = New System.Drawing.Font("Kelson Sans", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.Black
+        Me.Label11.Location = New System.Drawing.Point(465, 0)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(70, 33)
+        Me.Label11.TabIndex = 155
+        Me.Label11.Text = "TIME"
+        '
+        'TextBoxPressTotal
+        '
+        Me.TextBoxPressTotal.Location = New System.Drawing.Point(41, 11)
+        Me.TextBoxPressTotal.Name = "TextBoxPressTotal"
+        Me.TextBoxPressTotal.ReadOnly = True
+        Me.TextBoxPressTotal.Size = New System.Drawing.Size(90, 20)
+        Me.TextBoxPressTotal.TabIndex = 67
+        Me.TextBoxPressTotal.Visible = False
+        '
+        'Panel22
+        '
+        Me.Panel22.Controls.Add(Me.ButtonExpense)
+        Me.Panel22.Controls.Add(Me.ButtonSettings)
+        Me.Panel22.Controls.Add(Me.ButtonLogout)
+        Me.Panel22.Controls.Add(Me.ButtonPromo)
+        Me.Panel22.Controls.Add(Me.ButtonMenu)
+        Me.Panel22.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel22.Location = New System.Drawing.Point(535, 0)
+        Me.Panel22.Name = "Panel22"
+        Me.Panel22.Size = New System.Drawing.Size(507, 34)
+        Me.Panel22.TabIndex = 10
+        '
+        'ButtonExpense
+        '
+        Me.ButtonExpense.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonExpense.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ButtonExpense.FlatAppearance.BorderSize = 0
+        Me.ButtonExpense.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonExpense.Font = New System.Drawing.Font("Kelson Sans Normal", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonExpense.ForeColor = System.Drawing.Color.White
+        Me.ButtonExpense.Location = New System.Drawing.Point(204, 0)
+        Me.ButtonExpense.Name = "ButtonExpense"
+        Me.ButtonExpense.Size = New System.Drawing.Size(100, 33)
+        Me.ButtonExpense.TabIndex = 16
+        Me.ButtonExpense.Text = "Expenses"
+        Me.ButtonExpense.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonExpense.UseVisualStyleBackColor = False
+        '
+        'ButtonSettings
+        '
+        Me.ButtonSettings.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonSettings.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ButtonSettings.FlatAppearance.BorderSize = 0
+        Me.ButtonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSettings.Font = New System.Drawing.Font("Kelson Sans Normal", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonSettings.ForeColor = System.Drawing.Color.White
+        Me.ButtonSettings.Location = New System.Drawing.Point(305, 0)
+        Me.ButtonSettings.Name = "ButtonSettings"
+        Me.ButtonSettings.Size = New System.Drawing.Size(100, 33)
+        Me.ButtonSettings.TabIndex = 15
+        Me.ButtonSettings.Text = "Settings"
+        Me.ButtonSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonSettings.UseVisualStyleBackColor = False
+        '
+        'ButtonLogout
+        '
+        Me.ButtonLogout.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonLogout.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ButtonLogout.FlatAppearance.BorderSize = 0
+        Me.ButtonLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonLogout.Font = New System.Drawing.Font("Kelson Sans Normal", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonLogout.ForeColor = System.Drawing.Color.White
+        Me.ButtonLogout.Location = New System.Drawing.Point(406, 0)
+        Me.ButtonLogout.Name = "ButtonLogout"
+        Me.ButtonLogout.Size = New System.Drawing.Size(100, 33)
+        Me.ButtonLogout.TabIndex = 14
+        Me.ButtonLogout.Text = "Logout"
+        Me.ButtonLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
+        Me.ButtonLogout.UseVisualStyleBackColor = False
+        '
+        'ButtonPromo
+        '
+        Me.ButtonPromo.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonPromo.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ButtonPromo.FlatAppearance.BorderSize = 0
+        Me.ButtonPromo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonPromo.Font = New System.Drawing.Font("Kelson Sans Normal", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonPromo.ForeColor = System.Drawing.Color.White
+        Me.ButtonPromo.Location = New System.Drawing.Point(103, 0)
+        Me.ButtonPromo.Name = "ButtonPromo"
+        Me.ButtonPromo.Size = New System.Drawing.Size(100, 33)
+        Me.ButtonPromo.TabIndex = 13
+        Me.ButtonPromo.Text = "Coupon"
+        Me.ButtonPromo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonPromo.UseVisualStyleBackColor = False
+        '
+        'ButtonMenu
+        '
+        Me.ButtonMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonMenu.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ButtonMenu.FlatAppearance.BorderSize = 0
+        Me.ButtonMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonMenu.Font = New System.Drawing.Font("Kelson Sans Normal", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonMenu.ForeColor = System.Drawing.Color.White
+        Me.ButtonMenu.Location = New System.Drawing.Point(2, 0)
+        Me.ButtonMenu.Name = "ButtonMenu"
+        Me.ButtonMenu.Size = New System.Drawing.Size(100, 33)
+        Me.ButtonMenu.TabIndex = 12
+        Me.ButtonMenu.Text = "Menu"
+        Me.ButtonMenu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonMenu.UseVisualStyleBackColor = False
+        '
+        'TextBoxFormulaID
+        '
+        Me.TextBoxFormulaID.Location = New System.Drawing.Point(41, 9)
+        Me.TextBoxFormulaID.Name = "TextBoxFormulaID"
+        Me.TextBoxFormulaID.ReadOnly = True
+        Me.TextBoxFormulaID.Size = New System.Drawing.Size(90, 20)
+        Me.TextBoxFormulaID.TabIndex = 57
+        Me.TextBoxFormulaID.Visible = False
+        '
+        'TextBoxPRICE
+        '
+        Me.TextBoxPRICE.Location = New System.Drawing.Point(41, 11)
+        Me.TextBoxPRICE.Name = "TextBoxPRICE"
+        Me.TextBoxPRICE.ReadOnly = True
+        Me.TextBoxPRICE.Size = New System.Drawing.Size(90, 20)
+        Me.TextBoxPRICE.TabIndex = 12
+        Me.TextBoxPRICE.Visible = False
+        '
+        'TextBoxTOTAL
+        '
+        Me.TextBoxTOTAL.Location = New System.Drawing.Point(41, 11)
+        Me.TextBoxTOTAL.Name = "TextBoxTOTAL"
+        Me.TextBoxTOTAL.ReadOnly = True
+        Me.TextBoxTOTAL.Size = New System.Drawing.Size(90, 20)
+        Me.TextBoxTOTAL.TabIndex = 14
+        Me.TextBoxTOTAL.Visible = False
+        '
+        'TextBoxNAME
+        '
+        Me.TextBoxNAME.Location = New System.Drawing.Point(31, 9)
+        Me.TextBoxNAME.Name = "TextBoxNAME"
+        Me.TextBoxNAME.ReadOnly = True
+        Me.TextBoxNAME.Size = New System.Drawing.Size(90, 20)
+        Me.TextBoxNAME.TabIndex = 13
+        Me.TextBoxNAME.Visible = False
+        '
+        'TextBoxINC
+        '
+        Me.TextBoxINC.Location = New System.Drawing.Point(41, 11)
+        Me.TextBoxINC.Name = "TextBoxINC"
+        Me.TextBoxINC.ReadOnly = True
+        Me.TextBoxINC.Size = New System.Drawing.Size(90, 20)
+        Me.TextBoxINC.TabIndex = 67
+        Me.TextBoxINC.Visible = False
+        '
+        'TextBoxMAXID
+        '
+        Me.TextBoxMAXID.Location = New System.Drawing.Point(24, 9)
+        Me.TextBoxMAXID.Name = "TextBoxMAXID"
+        Me.TextBoxMAXID.ReadOnly = True
+        Me.TextBoxMAXID.Size = New System.Drawing.Size(90, 20)
+        Me.TextBoxMAXID.TabIndex = 17
+        Me.TextBoxMAXID.Visible = False
+        '
+        'TextBoxPressQTY
+        '
+        Me.TextBoxPressQTY.Location = New System.Drawing.Point(14, 11)
+        Me.TextBoxPressQTY.Name = "TextBoxPressQTY"
+        Me.TextBoxPressQTY.ReadOnly = True
+        Me.TextBoxPressQTY.Size = New System.Drawing.Size(200, 20)
+        Me.TextBoxPressQTY.TabIndex = 66
+        Me.TextBoxPressQTY.Visible = False
+        '
+        'BackgroundWorker1
+        '
+        '
+        'Panel3
+        '
+        Me.Panel3.AutoScroll = True
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel3.Location = New System.Drawing.Point(10, 46)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(655, 70)
+        Me.Panel3.TabIndex = 39
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "Blueberry-FBW-Images-150x150.jpg")
+        Me.ImageList1.Images.SetKeyName(1, "Caramel-FBW-Images-150x150.jpg")
+        Me.ImageList1.Images.SetKeyName(2, "Cheddar-Cheese-FBW-Images-150x150.jpg")
+        Me.ImageList1.Images.SetKeyName(3, "Chocolate-FBW-Images-300x300.jpg")
+        Me.ImageList1.Images.SetKeyName(4, "Cream-Cheese-FBW-Images-150x150.jpg")
+        Me.ImageList1.Images.SetKeyName(5, "Custard-FBW-Images-150x150.jpg")
+        Me.ImageList1.Images.SetKeyName(6, "Hazelnut-FBW-Images-150x150.jpg")
+        Me.ImageList1.Images.SetKeyName(7, "Mango-Peach-FBW-Images-150x150.jpg")
+        Me.ImageList1.Images.SetKeyName(8, "Peanut-Butter-FBW-Images-300x300.jpg")
+        Me.ImageList1.Images.SetKeyName(9, "Plain waffle.jpg")
+        Me.ImageList1.Images.SetKeyName(10, "Strawberry-FBW-Images-300x300.jpg")
+        '
+        'Panel14
+        '
+        Me.Panel14.BackColor = System.Drawing.Color.White
+        Me.Panel14.Controls.Add(Me.Panel21)
+        Me.Panel14.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel14.Font = New System.Drawing.Font("Century Gothic", 9.75!)
+        Me.Panel14.Location = New System.Drawing.Point(10, 609)
+        Me.Panel14.Name = "Panel14"
+        Me.Panel14.Size = New System.Drawing.Size(655, 70)
+        Me.Panel14.TabIndex = 55
+        '
+        'Panel21
+        '
+        Me.Panel21.Controls.Add(Me.Panel20)
+        Me.Panel21.Controls.Add(Me.ButtonPay)
+        Me.Panel21.Controls.Add(Me.ButtonTransactionMode)
+        Me.Panel21.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel21.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Panel21.Location = New System.Drawing.Point(0, 0)
+        Me.Panel21.Name = "Panel21"
+        Me.Panel21.Size = New System.Drawing.Size(655, 70)
+        Me.Panel21.TabIndex = 60
+        '
+        'Panel20
+        '
+        Me.Panel20.Controls.Add(Me.Label73)
+        Me.Panel20.Controls.Add(Me.TextBoxGRANDTOTAL)
+        Me.Panel20.Controls.Add(Me.TextBoxDISCOUNT)
+        Me.Panel20.Controls.Add(Me.Label10)
+        Me.Panel20.Controls.Add(Me.Label6)
+        Me.Panel20.Controls.Add(Me.Label71)
+        Me.Panel20.Controls.Add(Me.TextBoxSUBTOTAL)
+        Me.Panel20.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel20.Location = New System.Drawing.Point(355, 0)
+        Me.Panel20.Name = "Panel20"
+        Me.Panel20.Size = New System.Drawing.Size(300, 70)
+        Me.Panel20.TabIndex = 65
+        '
+        'Label73
+        '
+        Me.Label73.AutoSize = True
+        Me.Label73.Font = New System.Drawing.Font("Kelson Sans", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label73.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(146, Byte), Integer), CType(CType(143, Byte), Integer))
+        Me.Label73.Location = New System.Drawing.Point(18, 6)
+        Me.Label73.Name = "Label73"
+        Me.Label73.Size = New System.Drawing.Size(81, 19)
+        Me.Label73.TabIndex = 67
+        Me.Label73.Text = "DISCOUNT"
+        '
+        'TextBoxGRANDTOTAL
+        '
+        Me.TextBoxGRANDTOTAL.AutoSize = True
+        Me.TextBoxGRANDTOTAL.Font = New System.Drawing.Font("Kelson Sans", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxGRANDTOTAL.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.TextBoxGRANDTOTAL.Location = New System.Drawing.Point(220, 41)
+        Me.TextBoxGRANDTOTAL.Name = "TextBoxGRANDTOTAL"
+        Me.TextBoxGRANDTOTAL.Size = New System.Drawing.Size(24, 25)
+        Me.TextBoxGRANDTOTAL.TabIndex = 79
+        Me.TextBoxGRANDTOTAL.Text = "0"
+        '
+        'TextBoxDISCOUNT
+        '
+        Me.TextBoxDISCOUNT.AutoSize = True
+        Me.TextBoxDISCOUNT.Font = New System.Drawing.Font("Kelson Sans", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxDISCOUNT.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(146, Byte), Integer), CType(CType(143, Byte), Integer))
+        Me.TextBoxDISCOUNT.Location = New System.Drawing.Point(222, 5)
+        Me.TextBoxDISCOUNT.Name = "TextBoxDISCOUNT"
+        Me.TextBoxDISCOUNT.Size = New System.Drawing.Size(18, 19)
+        Me.TextBoxDISCOUNT.TabIndex = 59
+        Me.TextBoxDISCOUNT.Text = "0"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Kelson Sans", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.Label10.Location = New System.Drawing.Point(197, 41)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(27, 25)
+        Me.Label10.TabIndex = 77
+        Me.Label10.Text = "₱"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Kelson Sans", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(146, Byte), Integer), CType(CType(143, Byte), Integer))
+        Me.Label6.Location = New System.Drawing.Point(18, 24)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(85, 19)
+        Me.Label6.TabIndex = 72
+        Me.Label6.Text = "SUB TOTAL"
+        '
+        'Label71
+        '
+        Me.Label71.AutoSize = True
+        Me.Label71.Font = New System.Drawing.Font("Kelson Sans", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label71.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.Label71.Location = New System.Drawing.Point(16, 41)
+        Me.Label71.Name = "Label71"
+        Me.Label71.Size = New System.Drawing.Size(132, 25)
+        Me.Label71.TabIndex = 66
+        Me.Label71.Text = "GRAND TOTAL"
+        '
+        'TextBoxSUBTOTAL
+        '
+        Me.TextBoxSUBTOTAL.AutoSize = True
+        Me.TextBoxSUBTOTAL.Font = New System.Drawing.Font("Kelson Sans", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxSUBTOTAL.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(146, Byte), Integer), CType(CType(143, Byte), Integer))
+        Me.TextBoxSUBTOTAL.Location = New System.Drawing.Point(222, 24)
+        Me.TextBoxSUBTOTAL.Name = "TextBoxSUBTOTAL"
+        Me.TextBoxSUBTOTAL.Size = New System.Drawing.Size(18, 19)
+        Me.TextBoxSUBTOTAL.TabIndex = 58
+        Me.TextBoxSUBTOTAL.Text = "0"
+        '
+        'ButtonPay
+        '
+        Me.ButtonPay.AutoSize = True
+        Me.ButtonPay.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonPay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonPay.Enabled = False
+        Me.ButtonPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonPay.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonPay.ForeColor = System.Drawing.Color.White
+        Me.ButtonPay.Location = New System.Drawing.Point(8, 11)
+        Me.ButtonPay.Name = "ButtonPay"
+        Me.ButtonPay.Size = New System.Drawing.Size(104, 48)
+        Me.ButtonPay.TabIndex = 59
+        Me.ButtonPay.Text = "Pay"
+        Me.ButtonPay.UseVisualStyleBackColor = False
+        '
+        'ButtonTransactionMode
+        '
+        Me.ButtonTransactionMode.AutoSize = True
+        Me.ButtonTransactionMode.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonTransactionMode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonTransactionMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonTransactionMode.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonTransactionMode.ForeColor = System.Drawing.Color.White
+        Me.ButtonTransactionMode.Location = New System.Drawing.Point(113, 11)
+        Me.ButtonTransactionMode.Name = "ButtonTransactionMode"
+        Me.ButtonTransactionMode.Size = New System.Drawing.Size(136, 48)
+        Me.ButtonTransactionMode.TabIndex = 59
+        Me.ButtonTransactionMode.Text = "Transaction Type"
+        Me.ButtonTransactionMode.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Me.Button1.AutoSize = True
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Kelson Sans Normal", 14.25!)
+        Me.Button1.ForeColor = System.Drawing.Color.White
+        Me.Button1.Location = New System.Drawing.Point(226, -1)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(113, 33)
+        Me.Button1.TabIndex = 63
+        Me.Button1.Text = "Take Out"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'Buttonholdoder
+        '
+        Me.Buttonholdoder.AutoSize = True
+        Me.Buttonholdoder.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Buttonholdoder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Buttonholdoder.Enabled = False
+        Me.Buttonholdoder.FlatAppearance.BorderSize = 0
+        Me.Buttonholdoder.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Buttonholdoder.Font = New System.Drawing.Font("Kelson Sans Normal", 14.25!)
+        Me.Buttonholdoder.ForeColor = System.Drawing.Color.White
+        Me.Buttonholdoder.Location = New System.Drawing.Point(113, -1)
+        Me.Buttonholdoder.Name = "Buttonholdoder"
+        Me.Buttonholdoder.Size = New System.Drawing.Size(113, 33)
+        Me.Buttonholdoder.TabIndex = 60
+        Me.Buttonholdoder.Text = "Hold"
+        Me.Buttonholdoder.UseVisualStyleBackColor = False
+        '
+        'ButtonPendingOrders
+        '
+        Me.ButtonPendingOrders.AutoSize = True
+        Me.ButtonPendingOrders.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonPendingOrders.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonPendingOrders.FlatAppearance.BorderSize = 0
+        Me.ButtonPendingOrders.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonPendingOrders.Font = New System.Drawing.Font("Kelson Sans Normal", 14.25!)
+        Me.ButtonPendingOrders.ForeColor = System.Drawing.Color.White
+        Me.ButtonPendingOrders.Location = New System.Drawing.Point(0, 0)
+        Me.ButtonPendingOrders.Name = "ButtonPendingOrders"
+        Me.ButtonPendingOrders.Size = New System.Drawing.Size(113, 33)
+        Me.ButtonPendingOrders.TabIndex = 61
+        Me.ButtonPendingOrders.Text = "Pending"
+        Me.ButtonPendingOrders.UseVisualStyleBackColor = False
+        '
+        'ButtonApplyCoupon
+        '
+        Me.ButtonApplyCoupon.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonApplyCoupon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonApplyCoupon.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ButtonApplyCoupon.Enabled = False
+        Me.ButtonApplyCoupon.FlatAppearance.BorderSize = 0
+        Me.ButtonApplyCoupon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonApplyCoupon.Font = New System.Drawing.Font("Kelson Sans Normal", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonApplyCoupon.ForeColor = System.Drawing.Color.White
+        Me.ButtonApplyCoupon.Location = New System.Drawing.Point(0, 21)
+        Me.ButtonApplyCoupon.Name = "ButtonApplyCoupon"
+        Me.ButtonApplyCoupon.Size = New System.Drawing.Size(230, 29)
+        Me.ButtonApplyCoupon.TabIndex = 61
+        Me.ButtonApplyCoupon.Text = "APPLY"
+        Me.ButtonApplyCoupon.UseVisualStyleBackColor = False
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Panel2.Controls.Add(Me.Panel11)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel2.Location = New System.Drawing.Point(675, 46)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(359, 633)
+        Me.Panel2.TabIndex = 41
+        '
+        'Panel11
+        '
+        Me.Panel11.Controls.Add(Me.DataGridViewOrders)
+        Me.Panel11.Controls.Add(Me.Panel27)
+        Me.Panel11.Controls.Add(Me.Panel28)
+        Me.Panel11.Controls.Add(Me.Panel9)
+        Me.Panel11.Controls.Add(Me.Panel10)
+        Me.Panel11.Controls.Add(Me.Panel26)
+        Me.Panel11.Controls.Add(Me.Panel19)
+        Me.Panel11.Controls.Add(Me.Panel12)
+        Me.Panel11.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel11.Location = New System.Drawing.Point(0, 0)
+        Me.Panel11.Name = "Panel11"
+        Me.Panel11.Size = New System.Drawing.Size(359, 633)
+        Me.Panel11.TabIndex = 60
+        '
+        'DataGridViewOrders
+        '
+        Me.DataGridViewOrders.AllowUserToAddRows = False
+        Me.DataGridViewOrders.AllowUserToDeleteRows = False
+        Me.DataGridViewOrders.AllowUserToResizeColumns = False
+        Me.DataGridViewOrders.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridViewOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewOrders.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewOrders.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DataGridViewOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewOrders.ColumnHeadersVisible = False
+        Me.DataGridViewOrders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column9, Me.Column12, Me.Column13, Me.Column16, Me.Column17, Me.Column19, Me.Column20})
+        Me.DataGridViewOrders.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewOrders.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridViewOrders.Location = New System.Drawing.Point(10, 64)
+        Me.DataGridViewOrders.Name = "DataGridViewOrders"
+        Me.DataGridViewOrders.RowHeadersVisible = False
+        Me.DataGridViewOrders.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.DataGridViewOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridViewOrders.Size = New System.Drawing.Size(339, 238)
+        Me.DataGridViewOrders.TabIndex = 61
+        '
+        'Column1
+        '
+        Me.Column1.FillWeight = 160.0!
+        Me.Column1.HeaderText = "Column1"
+        Me.Column1.Name = "Column1"
+        '
+        'Column2
+        '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Column2.FillWeight = 65.65144!
+        Me.Column2.HeaderText = "Column2"
+        Me.Column2.Name = "Column2"
+        '
+        'Column3
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column3.DefaultCellStyle = DataGridViewCellStyle3
+        Me.Column3.FillWeight = 65.65144!
+        Me.Column3.HeaderText = "Column3"
+        Me.Column3.Name = "Column3"
+        '
+        'Column4
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Column4.FillWeight = 65.65144!
+        Me.Column4.HeaderText = "Column4"
+        Me.Column4.Name = "Column4"
+        '
+        'Column9
+        '
+        Me.Column9.HeaderText = "Column9"
+        Me.Column9.Name = "Column9"
+        Me.Column9.Visible = False
+        '
+        'Column12
+        '
+        Me.Column12.HeaderText = "ColumnPRID"
+        Me.Column12.Name = "Column12"
+        Me.Column12.Visible = False
+        '
+        'Column13
+        '
+        Me.Column13.HeaderText = "ColumnSKU"
+        Me.Column13.Name = "Column13"
+        Me.Column13.Visible = False
+        '
+        'Column16
+        '
+        Me.Column16.HeaderText = "ColumnCAT"
+        Me.Column16.Name = "Column16"
+        Me.Column16.Visible = False
+        '
+        'Column17
+        '
+        Me.Column17.HeaderText = "ColumnCATOF"
+        Me.Column17.Name = "Column17"
+        Me.Column17.Visible = False
+        '
+        'Column19
+        '
+        Me.Column19.HeaderText = "ColumnSumID"
+        Me.Column19.Name = "Column19"
+        Me.Column19.Visible = False
+        '
+        'Column20
+        '
+        Me.Column20.HeaderText = "ColumnTYPE"
+        Me.Column20.Name = "Column20"
+        Me.Column20.Visible = False
+        '
+        'Panel27
+        '
+        Me.Panel27.BackColor = System.Drawing.Color.SlateGray
+        Me.Panel27.Controls.Add(Me.Panel30)
+        Me.Panel27.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel27.Location = New System.Drawing.Point(10, 302)
+        Me.Panel27.Name = "Panel27"
+        Me.Panel27.Size = New System.Drawing.Size(339, 20)
+        Me.Panel27.TabIndex = 64
+        '
+        'Panel30
+        '
+        Me.Panel30.Controls.Add(Me.Label8)
+        Me.Panel30.Controls.Add(Me.Label76)
+        Me.Panel30.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel30.Location = New System.Drawing.Point(171, 0)
+        Me.Panel30.Name = "Panel30"
+        Me.Panel30.Size = New System.Drawing.Size(168, 20)
+        Me.Panel30.TabIndex = 71
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Label8.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.White
+        Me.Label8.Location = New System.Drawing.Point(134, 0)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(17, 19)
+        Me.Label8.TabIndex = 72
+        Me.Label8.Text = "₱"
+        '
+        'Label76
+        '
+        Me.Label76.AutoSize = True
+        Me.Label76.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Label76.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.Label76.ForeColor = System.Drawing.Color.White
+        Me.Label76.Location = New System.Drawing.Point(151, 0)
+        Me.Label76.Name = "Label76"
+        Me.Label76.Size = New System.Drawing.Size(17, 19)
+        Me.Label76.TabIndex = 58
+        Me.Label76.Text = "0"
+        '
+        'Panel28
+        '
+        Me.Panel28.BackColor = System.Drawing.Color.White
+        Me.Panel28.Controls.Add(Me.ButtonApplyCoupon)
+        Me.Panel28.Controls.Add(Me.ButtonCP)
+        Me.Panel28.Controls.Add(Me.ButtonCDISC)
+        Me.Panel28.Controls.Add(Me.Panel31)
+        Me.Panel28.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel28.Font = New System.Drawing.Font("Century Gothic", 9.75!)
+        Me.Panel28.Location = New System.Drawing.Point(10, 322)
+        Me.Panel28.Name = "Panel28"
+        Me.Panel28.Size = New System.Drawing.Size(339, 50)
+        Me.Panel28.TabIndex = 63
+        '
+        'ButtonCP
+        '
+        Me.ButtonCP.Location = New System.Drawing.Point(107, 27)
+        Me.ButtonCP.Name = "ButtonCP"
+        Me.ButtonCP.Size = New System.Drawing.Size(80, 23)
+        Me.ButtonCP.TabIndex = 56
+        Me.ButtonCP.Text = "Button1"
+        Me.ButtonCP.UseVisualStyleBackColor = True
+        '
+        'ButtonCDISC
+        '
+        Me.ButtonCDISC.BackColor = System.Drawing.Color.Brown
+        Me.ButtonCDISC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonCDISC.Dock = System.Windows.Forms.DockStyle.Right
+        Me.ButtonCDISC.FlatAppearance.BorderSize = 0
+        Me.ButtonCDISC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonCDISC.Font = New System.Drawing.Font("Kelson Sans Normal", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonCDISC.ForeColor = System.Drawing.Color.White
+        Me.ButtonCDISC.Location = New System.Drawing.Point(230, 21)
+        Me.ButtonCDISC.Name = "ButtonCDISC"
+        Me.ButtonCDISC.Size = New System.Drawing.Size(109, 29)
+        Me.ButtonCDISC.TabIndex = 72
+        Me.ButtonCDISC.Text = "REMOVE"
+        Me.ButtonCDISC.UseVisualStyleBackColor = False
+        '
+        'Panel31
+        '
+        Me.Panel31.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Panel31.Controls.Add(Me.Label7)
+        Me.Panel31.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel31.Location = New System.Drawing.Point(0, 0)
+        Me.Panel31.Name = "Panel31"
+        Me.Panel31.Size = New System.Drawing.Size(339, 21)
+        Me.Panel31.TabIndex = 0
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.Label7.ForeColor = System.Drawing.Color.White
+        Me.Label7.Location = New System.Drawing.Point(3, 0)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(128, 19)
+        Me.Label7.TabIndex = 74
+        Me.Label7.Text = "PROMO / COUPON"
+        '
+        'Panel9
+        '
+        Me.Panel9.BackColor = System.Drawing.Color.SlateGray
+        Me.Panel9.Controls.Add(Me.Panel33)
+        Me.Panel9.Controls.Add(Me.Label4)
+        Me.Panel9.Controls.Add(Me.Label3)
+        Me.Panel9.Controls.Add(Me.Label2)
+        Me.Panel9.Controls.Add(Me.Label1)
+        Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel9.Location = New System.Drawing.Point(10, 10)
+        Me.Panel9.Name = "Panel9"
+        Me.Panel9.Size = New System.Drawing.Size(339, 54)
+        Me.Panel9.TabIndex = 62
+        '
+        'Panel33
+        '
+        Me.Panel33.Controls.Add(Me.Button1)
+        Me.Panel33.Controls.Add(Me.ButtonPendingOrders)
+        Me.Panel33.Controls.Add(Me.Buttonholdoder)
+        Me.Panel33.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel33.Location = New System.Drawing.Point(0, 0)
+        Me.Panel33.Name = "Panel33"
+        Me.Panel33.Size = New System.Drawing.Size(339, 30)
+        Me.Panel33.TabIndex = 65
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Kelson Sans", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label4.ForeColor = System.Drawing.Color.White
+        Me.Label4.Location = New System.Drawing.Point(274, 32)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(43, 19)
+        Me.Label4.TabIndex = 71
+        Me.Label4.Text = "Total"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Kelson Sans", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(213, 32)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(46, 19)
+        Me.Label3.TabIndex = 70
+        Me.Label3.Text = "Price"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Kelson Sans", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label2.ForeColor = System.Drawing.Color.White
+        Me.Label2.Location = New System.Drawing.Point(148, 32)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(32, 19)
+        Me.Label2.TabIndex = 69
+        Me.Label2.Text = "Qty"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Kelson Sans", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Location = New System.Drawing.Point(2, 32)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(52, 19)
+        Me.Label1.TabIndex = 68
+        Me.Label1.Text = "Name"
+        '
+        'Panel10
+        '
+        Me.Panel10.BackColor = System.Drawing.Color.DarkGray
+        Me.Panel10.Controls.Add(Me.Panel29)
+        Me.Panel10.Controls.Add(Me.ButtonCancel)
+        Me.Panel10.Controls.Add(Me.ButtonClear)
+        Me.Panel10.Controls.Add(Me.Buttondot)
+        Me.Panel10.Controls.Add(Me.ButtonEnter)
+        Me.Panel10.Controls.Add(Me.ButtonNo00)
+        Me.Panel10.Controls.Add(Me.ButtonNo0)
+        Me.Panel10.Controls.Add(Me.ButtonNo2)
+        Me.Panel10.Controls.Add(Me.ButtonNo1)
+        Me.Panel10.Controls.Add(Me.ButtonNo5)
+        Me.Panel10.Controls.Add(Me.ButtonNo4)
+        Me.Panel10.Controls.Add(Me.ButtonNo8)
+        Me.Panel10.Controls.Add(Me.ButtonNo7)
+        Me.Panel10.Controls.Add(Me.TextBoxQTY)
+        Me.Panel10.Controls.Add(Me.ButtonNo3)
+        Me.Panel10.Controls.Add(Me.ButtonNo9)
+        Me.Panel10.Controls.Add(Me.ButtonNo6)
+        Me.Panel10.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel10.Location = New System.Drawing.Point(10, 372)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.Size = New System.Drawing.Size(339, 261)
+        Me.Panel10.TabIndex = 60
+        '
+        'Panel29
+        '
+        Me.Panel29.BackColor = System.Drawing.Color.White
+        Me.Panel29.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel29.Location = New System.Drawing.Point(0, 256)
+        Me.Panel29.Name = "Panel29"
+        Me.Panel29.Size = New System.Drawing.Size(339, 5)
+        Me.Panel29.TabIndex = 72
+        '
+        'ButtonCancel
+        '
+        Me.ButtonCancel.BackColor = System.Drawing.Color.Brown
+        Me.ButtonCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonCancel.FlatAppearance.BorderSize = 0
+        Me.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonCancel.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonCancel.ForeColor = System.Drawing.Color.White
+        Me.ButtonCancel.Location = New System.Drawing.Point(5, 203)
+        Me.ButtonCancel.Name = "ButtonCancel"
+        Me.ButtonCancel.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonCancel.TabIndex = 71
+        Me.ButtonCancel.Text = "(Del) Cancel"
+        Me.ButtonCancel.UseVisualStyleBackColor = False
+        '
+        'ButtonClear
+        '
+        Me.ButtonClear.BackColor = System.Drawing.Color.White
+        Me.ButtonClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonClear.FlatAppearance.BorderSize = 0
+        Me.ButtonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonClear.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonClear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonClear.Location = New System.Drawing.Point(254, 41)
+        Me.ButtonClear.Name = "ButtonClear"
+        Me.ButtonClear.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonClear.TabIndex = 69
+        Me.ButtonClear.Text = "Clear"
+        Me.ButtonClear.UseVisualStyleBackColor = False
+        '
+        'Buttondot
+        '
+        Me.Buttondot.BackColor = System.Drawing.Color.White
+        Me.Buttondot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Buttondot.FlatAppearance.BorderSize = 0
+        Me.Buttondot.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Buttondot.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.Buttondot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.Buttondot.Location = New System.Drawing.Point(254, 95)
+        Me.Buttondot.Name = "Buttondot"
+        Me.Buttondot.Size = New System.Drawing.Size(80, 51)
+        Me.Buttondot.TabIndex = 68
+        Me.Buttondot.Text = "."
+        Me.Buttondot.UseVisualStyleBackColor = False
+        '
+        'ButtonEnter
+        '
+        Me.ButtonEnter.BackColor = System.Drawing.Color.SlateGray
+        Me.ButtonEnter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonEnter.FlatAppearance.BorderSize = 0
+        Me.ButtonEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonEnter.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonEnter.ForeColor = System.Drawing.Color.White
+        Me.ButtonEnter.Location = New System.Drawing.Point(254, 149)
+        Me.ButtonEnter.Name = "ButtonEnter"
+        Me.ButtonEnter.Size = New System.Drawing.Size(80, 105)
+        Me.ButtonEnter.TabIndex = 66
+        Me.ButtonEnter.Text = "Enter"
+        Me.ButtonEnter.UseVisualStyleBackColor = False
+        '
+        'ButtonNo00
+        '
+        Me.ButtonNo00.BackColor = System.Drawing.Color.White
+        Me.ButtonNo00.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonNo00.FlatAppearance.BorderSize = 0
+        Me.ButtonNo00.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonNo00.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonNo00.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonNo00.Location = New System.Drawing.Point(171, 203)
+        Me.ButtonNo00.Name = "ButtonNo00"
+        Me.ButtonNo00.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonNo00.TabIndex = 63
+        Me.ButtonNo00.Text = "00"
+        Me.ButtonNo00.UseVisualStyleBackColor = False
+        '
+        'ButtonNo0
+        '
+        Me.ButtonNo0.BackColor = System.Drawing.Color.White
+        Me.ButtonNo0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonNo0.FlatAppearance.BorderSize = 0
+        Me.ButtonNo0.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonNo0.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonNo0.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonNo0.Location = New System.Drawing.Point(88, 203)
+        Me.ButtonNo0.Name = "ButtonNo0"
+        Me.ButtonNo0.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonNo0.TabIndex = 62
+        Me.ButtonNo0.Text = "0"
+        Me.ButtonNo0.UseVisualStyleBackColor = False
+        '
+        'ButtonNo2
+        '
+        Me.ButtonNo2.BackColor = System.Drawing.Color.White
+        Me.ButtonNo2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonNo2.FlatAppearance.BorderSize = 0
+        Me.ButtonNo2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonNo2.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonNo2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonNo2.Location = New System.Drawing.Point(88, 149)
+        Me.ButtonNo2.Name = "ButtonNo2"
+        Me.ButtonNo2.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonNo2.TabIndex = 59
+        Me.ButtonNo2.Text = "2"
+        Me.ButtonNo2.UseVisualStyleBackColor = False
+        '
+        'ButtonNo1
+        '
+        Me.ButtonNo1.BackColor = System.Drawing.Color.White
+        Me.ButtonNo1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonNo1.FlatAppearance.BorderSize = 0
+        Me.ButtonNo1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonNo1.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonNo1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonNo1.Location = New System.Drawing.Point(5, 149)
+        Me.ButtonNo1.Name = "ButtonNo1"
+        Me.ButtonNo1.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonNo1.TabIndex = 58
+        Me.ButtonNo1.Text = "1"
+        Me.ButtonNo1.UseVisualStyleBackColor = False
+        '
+        'ButtonNo5
+        '
+        Me.ButtonNo5.BackColor = System.Drawing.Color.White
+        Me.ButtonNo5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonNo5.FlatAppearance.BorderSize = 0
+        Me.ButtonNo5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonNo5.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonNo5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonNo5.Location = New System.Drawing.Point(88, 95)
+        Me.ButtonNo5.Name = "ButtonNo5"
+        Me.ButtonNo5.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonNo5.TabIndex = 56
+        Me.ButtonNo5.Text = "5"
+        Me.ButtonNo5.UseVisualStyleBackColor = False
+        '
+        'ButtonNo4
+        '
+        Me.ButtonNo4.BackColor = System.Drawing.Color.White
+        Me.ButtonNo4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonNo4.FlatAppearance.BorderSize = 0
+        Me.ButtonNo4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonNo4.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonNo4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonNo4.Location = New System.Drawing.Point(5, 95)
+        Me.ButtonNo4.Name = "ButtonNo4"
+        Me.ButtonNo4.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonNo4.TabIndex = 55
+        Me.ButtonNo4.Text = "4"
+        Me.ButtonNo4.UseVisualStyleBackColor = False
+        '
+        'ButtonNo8
+        '
+        Me.ButtonNo8.BackColor = System.Drawing.Color.White
+        Me.ButtonNo8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonNo8.FlatAppearance.BorderSize = 0
+        Me.ButtonNo8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonNo8.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonNo8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonNo8.Location = New System.Drawing.Point(88, 41)
+        Me.ButtonNo8.Name = "ButtonNo8"
+        Me.ButtonNo8.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonNo8.TabIndex = 53
+        Me.ButtonNo8.Text = "8"
+        Me.ButtonNo8.UseVisualStyleBackColor = False
+        '
+        'ButtonNo7
+        '
+        Me.ButtonNo7.BackColor = System.Drawing.Color.White
+        Me.ButtonNo7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonNo7.FlatAppearance.BorderSize = 0
+        Me.ButtonNo7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonNo7.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonNo7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonNo7.Location = New System.Drawing.Point(5, 41)
+        Me.ButtonNo7.Name = "ButtonNo7"
+        Me.ButtonNo7.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonNo7.TabIndex = 52
+        Me.ButtonNo7.Text = "7"
+        Me.ButtonNo7.UseVisualStyleBackColor = False
+        '
+        'TextBoxQTY
+        '
+        Me.TextBoxQTY.BackColor = System.Drawing.Color.White
+        Me.TextBoxQTY.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBoxQTY.Enabled = False
+        Me.TextBoxQTY.Font = New System.Drawing.Font("Kelson Sans", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxQTY.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.TextBoxQTY.Location = New System.Drawing.Point(5, 4)
+        Me.TextBoxQTY.MaxLength = 7
+        Me.TextBoxQTY.Name = "TextBoxQTY"
+        Me.TextBoxQTY.ReadOnly = True
+        Me.TextBoxQTY.Size = New System.Drawing.Size(329, 33)
+        Me.TextBoxQTY.TabIndex = 65
+        Me.TextBoxQTY.Text = "0"
+        Me.TextBoxQTY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'ButtonNo3
+        '
+        Me.ButtonNo3.BackColor = System.Drawing.Color.White
+        Me.ButtonNo3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonNo3.FlatAppearance.BorderSize = 0
+        Me.ButtonNo3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonNo3.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonNo3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonNo3.Location = New System.Drawing.Point(171, 149)
+        Me.ButtonNo3.Name = "ButtonNo3"
+        Me.ButtonNo3.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonNo3.TabIndex = 60
+        Me.ButtonNo3.Text = "3"
+        Me.ButtonNo3.UseVisualStyleBackColor = False
+        '
+        'ButtonNo9
+        '
+        Me.ButtonNo9.BackColor = System.Drawing.Color.White
+        Me.ButtonNo9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonNo9.FlatAppearance.BorderSize = 0
+        Me.ButtonNo9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonNo9.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonNo9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonNo9.Location = New System.Drawing.Point(171, 41)
+        Me.ButtonNo9.Name = "ButtonNo9"
+        Me.ButtonNo9.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonNo9.TabIndex = 57
+        Me.ButtonNo9.Text = "9"
+        Me.ButtonNo9.UseVisualStyleBackColor = False
+        '
+        'ButtonNo6
+        '
+        Me.ButtonNo6.BackColor = System.Drawing.Color.White
+        Me.ButtonNo6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonNo6.FlatAppearance.BorderSize = 0
+        Me.ButtonNo6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonNo6.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonNo6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonNo6.Location = New System.Drawing.Point(171, 95)
+        Me.ButtonNo6.Name = "ButtonNo6"
+        Me.ButtonNo6.Size = New System.Drawing.Size(80, 51)
+        Me.ButtonNo6.TabIndex = 54
+        Me.ButtonNo6.Text = "6"
+        Me.ButtonNo6.UseVisualStyleBackColor = False
+        '
+        'Panel26
+        '
+        Me.Panel26.BackColor = System.Drawing.Color.White
+        Me.Panel26.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel26.Location = New System.Drawing.Point(10, 0)
+        Me.Panel26.Name = "Panel26"
+        Me.Panel26.Size = New System.Drawing.Size(339, 10)
+        Me.Panel26.TabIndex = 58
+        '
+        'Panel19
+        '
+        Me.Panel19.BackColor = System.Drawing.Color.White
+        Me.Panel19.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel19.Location = New System.Drawing.Point(0, 0)
+        Me.Panel19.Name = "Panel19"
+        Me.Panel19.Size = New System.Drawing.Size(10, 633)
+        Me.Panel19.TabIndex = 57
+        '
+        'Panel12
+        '
+        Me.Panel12.BackColor = System.Drawing.Color.White
+        Me.Panel12.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel12.Location = New System.Drawing.Point(349, 0)
+        Me.Panel12.Name = "Panel12"
+        Me.Panel12.Size = New System.Drawing.Size(10, 633)
+        Me.Panel12.TabIndex = 56
+        '
+        'Timer1
+        '
+        '
+        'Panel16
+        '
+        Me.Panel16.BackColor = System.Drawing.Color.DarkGray
+        Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel16.Location = New System.Drawing.Point(0, 0)
+        Me.Panel16.Name = "Panel16"
+        Me.Panel16.Size = New System.Drawing.Size(655, 8)
+        Me.Panel16.TabIndex = 57
+        '
+        'Panel15
+        '
+        Me.Panel15.BackColor = System.Drawing.Color.DarkGray
+        Me.Panel15.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel15.Location = New System.Drawing.Point(0, 485)
+        Me.Panel15.Name = "Panel15"
+        Me.Panel15.Size = New System.Drawing.Size(655, 8)
+        Me.Panel15.TabIndex = 51
+        '
+        'Panel18
+        '
+        Me.Panel18.BackColor = System.Drawing.Color.DarkGray
+        Me.Panel18.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel18.Location = New System.Drawing.Point(647, 8)
+        Me.Panel18.Name = "Panel18"
+        Me.Panel18.Size = New System.Drawing.Size(8, 477)
+        Me.Panel18.TabIndex = 54
+        '
+        'Panel17
+        '
+        Me.Panel17.BackColor = System.Drawing.Color.DarkGray
+        Me.Panel17.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel17.Location = New System.Drawing.Point(0, 8)
+        Me.Panel17.Name = "Panel17"
+        Me.Panel17.Size = New System.Drawing.Size(8, 477)
+        Me.Panel17.TabIndex = 53
+        '
+        'PanelProducts
+        '
+        Me.PanelProducts.AutoScroll = True
+        Me.PanelProducts.BackColor = System.Drawing.SystemColors.Window
+        Me.PanelProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanelProducts.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelProducts.Location = New System.Drawing.Point(8, 8)
+        Me.PanelProducts.Name = "PanelProducts"
+        Me.PanelProducts.Size = New System.Drawing.Size(639, 477)
+        Me.PanelProducts.TabIndex = 0
+        '
+        'Panel13
+        '
+        Me.Panel13.BackColor = System.Drawing.Color.White
+        Me.Panel13.Controls.Add(Me.PanelProducts)
+        Me.Panel13.Controls.Add(Me.Panel17)
+        Me.Panel13.Controls.Add(Me.Panel18)
+        Me.Panel13.Controls.Add(Me.Panel15)
+        Me.Panel13.Controls.Add(Me.Panel16)
+        Me.Panel13.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel13.Font = New System.Drawing.Font("Century Gothic", 9.75!)
+        Me.Panel13.Location = New System.Drawing.Point(10, 116)
+        Me.Panel13.Name = "Panel13"
+        Me.Panel13.Size = New System.Drawing.Size(655, 493)
+        Me.Panel13.TabIndex = 51
+        '
+        'POS
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.White
+        Me.ClientSize = New System.Drawing.Size(1044, 714)
+        Me.Controls.Add(Me.Panel13)
+        Me.Controls.Add(Me.Panel14)
+        Me.Controls.Add(Me.Panel3)
+        Me.Controls.Add(Me.Panel7)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel6)
+        Me.Controls.Add(Me.Panel5)
+        Me.Controls.Add(Me.Panel4)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Panel8)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.KeyPreview = True
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
+        Me.Name = "POS"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.Panel8.ResumeLayout(False)
+        Me.Panel24.ResumeLayout(False)
+        Me.Panel25.ResumeLayout(False)
+        Me.Panel25.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        CType(Me.DataGridViewInv, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel32.ResumeLayout(False)
+        Me.Panel32.PerformLayout()
+        Me.Panel22.ResumeLayout(False)
+        Me.Panel14.ResumeLayout(False)
+        Me.Panel21.ResumeLayout(False)
+        Me.Panel21.PerformLayout()
+        Me.Panel20.ResumeLayout(False)
+        Me.Panel20.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel11.ResumeLayout(False)
+        CType(Me.DataGridViewOrders, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel27.ResumeLayout(False)
+        Me.Panel30.ResumeLayout(False)
+        Me.Panel30.PerformLayout()
+        Me.Panel28.ResumeLayout(False)
+        Me.Panel31.ResumeLayout(False)
+        Me.Panel31.PerformLayout()
+        Me.Panel9.ResumeLayout(False)
+        Me.Panel9.PerformLayout()
+        Me.Panel33.ResumeLayout(False)
+        Me.Panel33.PerformLayout()
+        Me.Panel10.ResumeLayout(False)
+        Me.Panel10.PerformLayout()
+        Me.Panel13.ResumeLayout(False)
+        Me.ResumeLayout(False)
+
+    End Sub
+    Friend WithEvents Panel7 As Panel
+    Friend WithEvents Panel6 As Panel
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Panel8 As Panel
+    Friend WithEvents Panel14 As Panel
+    Friend WithEvents ButtonPay As Button
+    Friend WithEvents Panel22 As Panel
+    Private WithEvents ButtonMenu As Button
+    Friend WithEvents Panel23 As Panel
+    Private WithEvents ButtonPromo As Button
+    Private WithEvents ButtonLogout As Button
+    Friend WithEvents ImageList1 As ImageList
+    Private WithEvents ButtonSettings As Button
+    Private WithEvents ButtonExpense As Button
+    Public WithEvents Panel3 As Panel
+    Friend WithEvents Buttonholdoder As Button
+    Friend WithEvents Panel11 As Panel
+    Friend WithEvents Panel10 As Panel
+    Friend WithEvents Panel26 As Panel
+    Friend WithEvents Panel9 As Panel
+    Friend WithEvents Label73 As Label
+    Friend WithEvents Label71 As Label
+    Friend WithEvents ButtonApplyCoupon As Button
+    Friend WithEvents ButtonCancel As Button
+    Friend WithEvents ButtonClear As Button
+    Friend WithEvents Buttondot As Button
+    Friend WithEvents ButtonEnter As Button
+    Friend WithEvents ButtonNo00 As Button
+    Friend WithEvents ButtonNo0 As Button
+    Friend WithEvents ButtonNo2 As Button
+    Friend WithEvents ButtonNo1 As Button
+    Friend WithEvents ButtonNo5 As Button
+    Friend WithEvents ButtonNo4 As Button
+    Friend WithEvents ButtonNo8 As Button
+    Friend WithEvents ButtonNo7 As Button
+    Friend WithEvents TextBoxQTY As TextBox
+    Friend WithEvents ButtonNo3 As Button
+    Friend WithEvents ButtonNo9 As Button
+    Friend WithEvents ButtonNo6 As Button
+    Friend WithEvents TextBoxPRICE As TextBox
+    Friend WithEvents Panel28 As Panel
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents TextBoxNAME As TextBox
+    Friend WithEvents TextBoxTOTAL As TextBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Panel27 As Panel
+    Friend WithEvents ButtonCP As Button
+    Friend WithEvents ButtonPendingOrders As Button
+    Friend WithEvents TextBoxMAXID As TextBox
+    Friend WithEvents TextBoxFormulaID As TextBox
+    Friend WithEvents DataGridViewInv As DataGridView
+    Friend WithEvents TextBoxINC As TextBox
+    Friend WithEvents TextBoxPressQTY As TextBox
+    Friend WithEvents TextBoxPressTotal As TextBox
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents LabelStorename As Label
+    Friend WithEvents Panel19 As Panel
+    Friend WithEvents Panel12 As Panel
+    Friend WithEvents Panel29 As Panel
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents DataGridViewOrders As DataGridView
+    Friend WithEvents Label11 As Label
+    Friend WithEvents ButtonCDISC As Button
+    Friend WithEvents Panel16 As Panel
+    Friend WithEvents Panel15 As Panel
+    Friend WithEvents Panel18 As Panel
+    Friend WithEvents Panel17 As Panel
+    Friend WithEvents PanelProducts As FlowLayoutPanel
+    Friend WithEvents Panel13 As Panel
+    Friend WithEvents TextBoxGRANDTOTAL As Label
+    Friend WithEvents Panel30 As Panel
+    Friend WithEvents Label76 As Label
+    Friend WithEvents TextBoxSUBTOTAL As Label
+    Friend WithEvents TextBoxDISCOUNT As Label
+    Friend WithEvents ButtonTransactionMode As Button
+    Friend WithEvents Panel31 As Panel
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Panel21 As Panel
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents Column10 As DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents Column14 As DataGridViewTextBoxColumn
+    Friend WithEvents Column15 As DataGridViewTextBoxColumn
+    Friend WithEvents Column18 As DataGridViewTextBoxColumn
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Panel32 As Panel
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column9 As DataGridViewTextBoxColumn
+    Friend WithEvents Column12 As DataGridViewTextBoxColumn
+    Friend WithEvents Column13 As DataGridViewTextBoxColumn
+    Friend WithEvents Column16 As DataGridViewTextBoxColumn
+    Friend WithEvents Column17 As DataGridViewTextBoxColumn
+    Friend WithEvents Column19 As DataGridViewTextBoxColumn
+    Friend WithEvents Column20 As DataGridViewTextBoxColumn
+    Friend WithEvents Panel24 As Panel
+    Friend WithEvents Panel25 As Panel
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Panel33 As Panel
+    Friend WithEvents Panel20 As Panel
+End Class
