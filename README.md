@@ -69,6 +69,32 @@ April 13 2020 6 pm to 10 PM
 * Load Form
 	* New function added for local database connection
 		
+April 14 10:30 AM to 4:29 PM / 5:00 PM to 10:00 PM
+
+* Search for web template
+* Integration of bootstrap template to php
+
+April 15 10:00 am to 5:00 PM 
+
+* Modifying login form
+	* Added a function for less reload login page
+	* Sessioning Variables to be called on main pages
+	
+April 16 1:00 PM to 8:30 PM / 9:00 PM to 2:00 PM
+
+* Login form finalization
+* removal of unnecessary div's
+* Admin page dashboard
+* Outlet page modification
+	* Responsive Table
+	* Modal Popup
+
+April 17 9:00 PM to 10:32
+
+* Sidebar class, if click then set as active
+
+
+
 	
 		
 
