@@ -89,9 +89,23 @@ April 16 1:00 PM to 8:30 PM / 9:00 PM to 2:00 PM
 	* Responsive Table
 	* Modal Popup
 
-April 17 9:00 PM to 10:32
+April 17 9:00 PM to 2:30 AM
 
 * Sidebar class, if click then set as active
+
+April 20 11:11 To 3:30
+
+April 23 10:00 pm to 1:00 am
+
+* User Page
+	
+Aprim 24 1:00 pm TO 5:00 PM
+
+* Outlets Page
+	
+April 27 10 AM to 5:00 PM / 8:13 PM to 11:47 PM
+
+* Update product form
 
 
 
