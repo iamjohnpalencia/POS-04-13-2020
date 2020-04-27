@@ -93,13 +93,15 @@ April 17 9:00 PM to 2:30 AM
 
 * Sidebar class, if click then set as active
 
-April 20 11:11 To 3:30
+April 20 11:11 AM to 3:30 PM
+
+* General Settings Page
 
 April 23 10:00 pm to 1:00 am
 
 * User Page
 	
-Aprim 24 1:00 pm TO 5:00 PM
+Aprim 24 1:00 pm to 5:00 PM
 
 * Outlets Page
 	
