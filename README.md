@@ -109,8 +109,13 @@ April 27 10 AM to 5:00 PM / 8:13 PM to 11:47 PM
 
 * Update product form
 
+April 28 1:00 pm to 2:00 pm / 11:36 to 3:00 AM
 
+* Product And Category page
 
+April 29 4:30 PM to 8:30 PM / 9:54 PM to 12:30 AM
+
+* All pages needed for POS 
 	
 		
 
