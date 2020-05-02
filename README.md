@@ -116,6 +116,11 @@ April 28 1:00 pm to 2:00 pm / 11:36 to 3:00 AM
 April 29 4:30 PM to 8:30 PM / 9:54 PM to 12:30 AM
 
 * All pages needed for POS 
+
+May 1 12:00 PM to 3:00 PM
+
+* Local POS Updates
+* Create functions for getting updates from the server
 	
 		
 
