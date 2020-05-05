@@ -62,16 +62,26 @@ Public Class Load
                         thread = New Thread(AddressOf LoadMasterList)
                         thread.Start()
                         threadList.Add(thread)
+                        thread = New Thread(AddressOf Function1)
+                        thread.Start()
+                        threadList.Add(thread)
+                        thread = New Thread(AddressOf Function2)
+                        thread.Start()
+                        threadList.Add(thread)
+                        thread = New Thread(AddressOf Function3)
+                        thread.Start()
+                        threadList.Add(thread)
+                        thread = New Thread(AddressOf Function4)
+                        thread.Start()
+                        threadList.Add(thread)
                     Else
                         IfConnectionIsConfigured = False
                         Label1.Text = "Please Setup Connection in Configuration Manager..."
                     End If
                 End If
-                If i = 30 Then
+                If i = 25 Then
                     If localconn.State = ConnectionState.Open Then
-                        thread = New Thread(AddressOf LoadSettings)
-                        thread.Start()
-                        threadList.Add(thread)
+                        Label1.Text = "Checking for updates..."
                     End If
                 End If
                 If i = 50 Then
@@ -86,7 +96,7 @@ Public Class Load
                         Label1.Text = "No Internet Connection..."
                     End If
                 End If
-                If i = 70 Then
+                If i = 65 Then
                     If IfConnectionIsConfigured = True Then
                         If CheckIfNeedToReset() = True Then
                             IfNeedsToReset = True
@@ -95,7 +105,14 @@ Public Class Load
                         End If
                     End If
                 End If
-                If i = 90 Then
+                If i = 80 Then
+                    If localconn.State = ConnectionState.Open Then
+                        thread = New Thread(AddressOf LoadSettings)
+                        thread.Start()
+                        threadList.Add(thread)
+                    End If
+                End If
+                If i = 95 Then
                     Label1.Text = "Loading..."
                 End If
             Next
@@ -381,4 +398,163 @@ Public Class Load
             'MsgBox(ex.ToString)
         End Try
     End Sub
+#Region "Updates"
+    Private Function LoadCategoryLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT updated_at FROM loc_admin_category"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
+    Private Function LoadFormulaLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT date_modified FROM loc_product_formula"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
+    Private Function LoadProductLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT date_modified FROM loc_admin_products"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
+    Private Function LoadInventoryLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT server_date_modified , inventory_id FROM loc_pos_inventory"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
+    Private Sub Function1()
+        Try
+            LoadCategoryLocal()
+            Dim DateS = ""
+            For i As Integer = 0 To LoadCategoryLocal.Rows.Count - 1 Step +1
+                If DateS = "" Then
+                    DateS = "'" & returndateformatfulldate(LoadCategoryLocal(i)(0)) & "'"
+                Else
+                    DateS += ",'" & returndateformatfulldate(LoadCategoryLocal(i)(0)) & "'"
+                End If
+            Next
+            Dim cmdserver As MySqlCommand
+            Dim daserver As MySqlDataAdapter
+            Dim dtserver As DataTable
+            Dim sql = "SELECT category_id, category_name, brand_name, updated_at, status FROM admin_category WHERE updated_at NOT IN (" & DateS & ")"
+            cmdserver = New MySqlCommand(sql, ServerCloudCon())
+            daserver = New MySqlDataAdapter(cmdserver)
+            dtserver = New DataTable
+            daserver.Fill(dtserver)
+            daserver.Fill(CategoryDTUpdate)
+            DataGridView1.DataSource = dtserver
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Function2()
+        Try
+            LoadProductLocal()
+            Dim DateS As String = ""
+            For i As Integer = 0 To LoadProductLocal.Rows.Count - 1 Step +1
+                If DateS = "" Then
+                    DateS = "'" & returndateformatfulldate(LoadProductLocal(i)(0)) & "'"
+                Else
+                    DateS += ",'" & returndateformatfulldate(LoadProductLocal(i)(0)) & "'"
+                End If
+            Next
+            Dim cmdserver As MySqlCommand
+            Dim daserver As MySqlDataAdapter
+            Dim dtserver As DataTable
+            Dim sql = "SELECT `formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost` FROM admin_product_formula_org WHERE date_modified NOT IN (" & DateS & ")"
+            cmdserver = New MySqlCommand(sql, ServerCloudCon())
+            daserver = New MySqlDataAdapter(cmdserver)
+            dtserver = New DataTable
+            daserver.Fill(dtserver)
+            daserver.Fill(FormulaDTUpdate)
+            DataGridView2.DataSource = dtserver
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Function3()
+        Try
+            LoadCategoryLocal()
+            Dim DateS As String = ""
+            For i As Integer = 0 To LoadCategoryLocal.Rows.Count - 1 Step +1
+                If DateS = "" Then
+                    DateS = "'" & returndateformatfulldate(LoadCategoryLocal(i)(0)) & "'"
+                Else
+                    DateS += ",'" & returndateformatfulldate(LoadCategoryLocal(i)(0)) & "'"
+                End If
+            Next
+            Dim cmdserver As MySqlCommand
+            Dim daserver As MySqlDataAdapter
+            Dim dtserver As DataTable
+
+            Dim sql = "SELECT `product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified` FROM admin_products_org WHERE date_modified NOT IN (" & DateS & ") "
+            cmdserver = New MySqlCommand(sql, ServerCloudCon())
+            daserver = New MySqlDataAdapter(cmdserver)
+            dtserver = New DataTable
+            daserver.Fill(dtserver)
+            daserver.Fill(ProductDTUpdate)
+            DataGridView3.DataSource = dtserver
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Function4()
+        Try
+            LoadInventoryLocal()
+            Dim DateS As String = ""
+            For i As Integer = 0 To LoadInventoryLocal.Rows.Count - 1 Step +1
+                If DateS = "" Then
+                    DateS = "'" & returndateformatfulldate(LoadInventoryLocal(i)(0)) & "'"
+                Else
+                    DateS += ",'" & returndateformatfulldate(LoadInventoryLocal(i)(0)) & "'"
+                End If
+            Next
+            Dim cmdserver As MySqlCommand
+            Dim daserver As MySqlDataAdapter
+            Dim dtserver As DataTable
+            Dim sql = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified` FROM admin_pos_inventory_org WHERE date_modified NOT IN (" & DateS & ")"
+            cmdserver = New MySqlCommand(sql, ServerCloudCon())
+            daserver = New MySqlDataAdapter(cmdserver)
+            dtserver = New DataTable
+            daserver.Fill(dtserver)
+            daserver.Fill(InventoryDTUpdate)
+            DataGridView4.DataSource = dtserver
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+#End Region
 End Class

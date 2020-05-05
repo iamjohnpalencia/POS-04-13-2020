@@ -25,7 +25,12 @@ Public Class POS
     Public VATEXEMPTSALES As Double
     Public LESSVAT As Double
     Public GRANDTOTALDISCOUNT As Double
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DataGridViewPRODUCTUPDATE.DataSource = ProductDTUpdate
+        DataGridViewFORMULAUPDATE.DataSource = FormulaDTUpdate
+        DataGridViewCATEGORYUPDATE.DataSource = CategoryDTUpdate
+        DataGridViewINVENTORYUPDATE.DataSource = InventoryDTUpdate
         If Application.OpenForms().OfType(Of SynctoCloud).Any Then
             SynctoCloud.BringToFront()
         End If

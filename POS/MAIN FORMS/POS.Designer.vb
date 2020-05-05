@@ -24,10 +24,10 @@ Partial Class POS
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(POS))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
@@ -146,6 +146,11 @@ Partial Class POS
         Me.Panel17 = New System.Windows.Forms.Panel()
         Me.PanelProducts = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.DataGridViewINVENTORYUPDATE = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewCATEGORYUPDATE = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewFORMULAUPDATE = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewPRODUCTUPDATE = New System.Windows.Forms.DataGridView()
+        Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.Panel8.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel25.SuspendLayout()
@@ -167,6 +172,10 @@ Partial Class POS
         Me.Panel33.SuspendLayout()
         Me.Panel10.SuspendLayout()
         Me.Panel13.SuspendLayout()
+        CType(Me.DataGridViewINVENTORYUPDATE, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewCATEGORYUPDATE, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewFORMULAUPDATE, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewPRODUCTUPDATE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel7
@@ -869,8 +878,8 @@ Partial Class POS
         Me.DataGridViewOrders.AllowUserToDeleteRows = False
         Me.DataGridViewOrders.AllowUserToResizeColumns = False
         Me.DataGridViewOrders.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
+        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridViewOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewOrders.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewOrders.BorderStyle = System.Windows.Forms.BorderStyle.None
@@ -895,24 +904,24 @@ Partial Class POS
         '
         'Column2
         '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle6
         Me.Column2.FillWeight = 65.65144!
         Me.Column2.HeaderText = "Column2"
         Me.Column2.Name = "Column2"
         '
         'Column3
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column3.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column3.DefaultCellStyle = DataGridViewCellStyle7
         Me.Column3.FillWeight = 65.65144!
         Me.Column3.HeaderText = "Column3"
         Me.Column3.Name = "Column3"
         '
         'Column4
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle8
         Me.Column4.FillWeight = 65.65144!
         Me.Column4.HeaderText = "Column4"
         Me.Column4.Name = "Column4"
@@ -1479,15 +1488,18 @@ Partial Class POS
         Me.PanelProducts.AutoScroll = True
         Me.PanelProducts.BackColor = System.Drawing.SystemColors.Window
         Me.PanelProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PanelProducts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelProducts.Location = New System.Drawing.Point(8, 8)
         Me.PanelProducts.Name = "PanelProducts"
-        Me.PanelProducts.Size = New System.Drawing.Size(639, 477)
+        Me.PanelProducts.Size = New System.Drawing.Size(518, 274)
         Me.PanelProducts.TabIndex = 0
         '
         'Panel13
         '
         Me.Panel13.BackColor = System.Drawing.Color.White
+        Me.Panel13.Controls.Add(Me.DataGridViewINVENTORYUPDATE)
+        Me.Panel13.Controls.Add(Me.DataGridViewCATEGORYUPDATE)
+        Me.Panel13.Controls.Add(Me.DataGridViewFORMULAUPDATE)
+        Me.Panel13.Controls.Add(Me.DataGridViewPRODUCTUPDATE)
         Me.Panel13.Controls.Add(Me.PanelProducts)
         Me.Panel13.Controls.Add(Me.Panel17)
         Me.Panel13.Controls.Add(Me.Panel18)
@@ -1499,6 +1511,58 @@ Partial Class POS
         Me.Panel13.Name = "Panel13"
         Me.Panel13.Size = New System.Drawing.Size(655, 493)
         Me.Panel13.TabIndex = 51
+        '
+        'DataGridViewINVENTORYUPDATE
+        '
+        Me.DataGridViewINVENTORYUPDATE.AllowUserToAddRows = False
+        Me.DataGridViewINVENTORYUPDATE.AllowUserToDeleteRows = False
+        Me.DataGridViewINVENTORYUPDATE.AllowUserToResizeColumns = False
+        Me.DataGridViewINVENTORYUPDATE.AllowUserToResizeRows = False
+        Me.DataGridViewINVENTORYUPDATE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewINVENTORYUPDATE.Location = New System.Drawing.Point(268, 365)
+        Me.DataGridViewINVENTORYUPDATE.Name = "DataGridViewINVENTORYUPDATE"
+        Me.DataGridViewINVENTORYUPDATE.ReadOnly = True
+        Me.DataGridViewINVENTORYUPDATE.Size = New System.Drawing.Size(240, 71)
+        Me.DataGridViewINVENTORYUPDATE.TabIndex = 61
+        '
+        'DataGridViewCATEGORYUPDATE
+        '
+        Me.DataGridViewCATEGORYUPDATE.AllowUserToAddRows = False
+        Me.DataGridViewCATEGORYUPDATE.AllowUserToDeleteRows = False
+        Me.DataGridViewCATEGORYUPDATE.AllowUserToResizeColumns = False
+        Me.DataGridViewCATEGORYUPDATE.AllowUserToResizeRows = False
+        Me.DataGridViewCATEGORYUPDATE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewCATEGORYUPDATE.Location = New System.Drawing.Point(268, 288)
+        Me.DataGridViewCATEGORYUPDATE.Name = "DataGridViewCATEGORYUPDATE"
+        Me.DataGridViewCATEGORYUPDATE.ReadOnly = True
+        Me.DataGridViewCATEGORYUPDATE.Size = New System.Drawing.Size(240, 71)
+        Me.DataGridViewCATEGORYUPDATE.TabIndex = 60
+        '
+        'DataGridViewFORMULAUPDATE
+        '
+        Me.DataGridViewFORMULAUPDATE.AllowUserToAddRows = False
+        Me.DataGridViewFORMULAUPDATE.AllowUserToDeleteRows = False
+        Me.DataGridViewFORMULAUPDATE.AllowUserToResizeColumns = False
+        Me.DataGridViewFORMULAUPDATE.AllowUserToResizeRows = False
+        Me.DataGridViewFORMULAUPDATE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewFORMULAUPDATE.Location = New System.Drawing.Point(22, 365)
+        Me.DataGridViewFORMULAUPDATE.Name = "DataGridViewFORMULAUPDATE"
+        Me.DataGridViewFORMULAUPDATE.ReadOnly = True
+        Me.DataGridViewFORMULAUPDATE.Size = New System.Drawing.Size(240, 71)
+        Me.DataGridViewFORMULAUPDATE.TabIndex = 59
+        '
+        'DataGridViewPRODUCTUPDATE
+        '
+        Me.DataGridViewPRODUCTUPDATE.AllowUserToAddRows = False
+        Me.DataGridViewPRODUCTUPDATE.AllowUserToDeleteRows = False
+        Me.DataGridViewPRODUCTUPDATE.AllowUserToResizeColumns = False
+        Me.DataGridViewPRODUCTUPDATE.AllowUserToResizeRows = False
+        Me.DataGridViewPRODUCTUPDATE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewPRODUCTUPDATE.Location = New System.Drawing.Point(22, 288)
+        Me.DataGridViewPRODUCTUPDATE.Name = "DataGridViewPRODUCTUPDATE"
+        Me.DataGridViewPRODUCTUPDATE.ReadOnly = True
+        Me.DataGridViewPRODUCTUPDATE.Size = New System.Drawing.Size(240, 71)
+        Me.DataGridViewPRODUCTUPDATE.TabIndex = 58
         '
         'POS
         '
@@ -1555,6 +1619,10 @@ Partial Class POS
         Me.Panel10.ResumeLayout(False)
         Me.Panel10.PerformLayout()
         Me.Panel13.ResumeLayout(False)
+        CType(Me.DataGridViewINVENTORYUPDATE, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewCATEGORYUPDATE, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewFORMULAUPDATE, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewPRODUCTUPDATE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1676,4 +1744,9 @@ Partial Class POS
     Friend WithEvents Label12 As Label
     Friend WithEvents Panel33 As Panel
     Friend WithEvents Panel20 As Panel
+    Friend WithEvents DataGridViewINVENTORYUPDATE As DataGridView
+    Friend WithEvents DataGridViewCATEGORYUPDATE As DataGridView
+    Friend WithEvents DataGridViewFORMULAUPDATE As DataGridView
+    Friend WithEvents DataGridViewPRODUCTUPDATE As DataGridView
+    Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
 End Class

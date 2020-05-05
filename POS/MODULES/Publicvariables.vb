@@ -15,6 +15,12 @@ Module publicVariables
     Public sql As String
     Public param As MySqlParameter
     Public ds As DataSet
+
+    Public ProductDTUpdate As DataTable = New DataTable
+    Public InventoryDTUpdate As DataTable = New DataTable
+    Public FormulaDTUpdate As DataTable = New DataTable
+    Public CategoryDTUpdate As DataTable = New DataTable
+
     '=============================================================================================================
     'POS
     Public SINumber As Integer

@@ -340,6 +340,17 @@ Module publicfunctions
         Dim iMonth As Integer = Month(dat)
         GetMonthName = MonthName(iMonth)
     End Function
+    Public Function returndateformatfulldate(ByVal datetoformat)
+        Try
+            Dim dateTime = datetoformat
+            Dim dt As DateTime = Convert.ToDateTime(dateTime)
+            Dim format As String = "yyyy-MM-dd HH:mm:ss"
+            dateformat = dt.ToString(format)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dateformat
+    End Function
     Public Function returndateformat(ByVal datetoformat)
         Try
             Dim dateTime As String = datetoformat

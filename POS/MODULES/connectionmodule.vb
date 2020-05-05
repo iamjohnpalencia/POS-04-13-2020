@@ -24,6 +24,18 @@ Module connectionModule
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Public Function LocalhostConn()
+        Dim localconnection As MySqlConnection
+        localconnection = New MySqlConnection
+        Try
+            localconnection.ConnectionString = LocalConnectionString
+            localconnection.Open()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return localconnection
+    End Function
+
     Private Function LoadConn(Path As String)
         Try
             If My.Settings.LocalConnectionPath <> "" Then
