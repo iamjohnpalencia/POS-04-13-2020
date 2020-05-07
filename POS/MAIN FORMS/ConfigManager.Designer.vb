@@ -22,9 +22,9 @@ Partial Class ConfigManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.ButtonExit = New System.Windows.Forms.Button()
@@ -197,6 +197,8 @@ Partial Class ConfigManager
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.Button7 = New System.Windows.Forms.Button()
         Me.DataGridViewCATEGORIES = New System.Windows.Forms.DataGridView()
         Me.DataGridViewFORMULA = New System.Windows.Forms.DataGridView()
         Me.DataGridViewPRODUCTS = New System.Windows.Forms.DataGridView()
@@ -2142,6 +2144,7 @@ Partial Class ConfigManager
         Me.TextBoxFrancPass.Name = "TextBoxFrancPass"
         Me.TextBoxFrancPass.Size = New System.Drawing.Size(311, 23)
         Me.TextBoxFrancPass.TabIndex = 1
+        Me.TextBoxFrancPass.UseSystemPasswordChar = True
         '
         'TextBoxFrancUser
         '
@@ -2179,27 +2182,27 @@ Partial Class ConfigManager
         Me.DataGridViewOutlets.AllowUserToDeleteRows = False
         Me.DataGridViewOutlets.AllowUserToResizeColumns = False
         Me.DataGridViewOutlets.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        Me.DataGridViewOutlets.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
+        Me.DataGridViewOutlets.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
         Me.DataGridViewOutlets.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewOutlets.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewOutlets.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewOutlets.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewOutlets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewOutlets.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewOutlets.DefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridViewOutlets.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewOutlets.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewOutlets.EnableHeadersVisualStyles = False
@@ -2267,6 +2270,8 @@ Partial Class ConfigManager
         '
         'GroupBox14
         '
+        Me.GroupBox14.Controls.Add(Me.Button8)
+        Me.GroupBox14.Controls.Add(Me.Button7)
         Me.GroupBox14.Controls.Add(Me.DataGridViewCATEGORIES)
         Me.GroupBox14.Controls.Add(Me.DataGridViewFORMULA)
         Me.GroupBox14.Controls.Add(Me.DataGridViewPRODUCTS)
@@ -2278,6 +2283,24 @@ Partial Class ConfigManager
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "GroupBox14"
         '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(413, 47)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(138, 25)
+        Me.Button8.TabIndex = 70
+        Me.Button8.Text = "Activate"
+        Me.Button8.UseVisualStyleBackColor = True
+        '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(35, 47)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(372, 25)
+        Me.Button7.TabIndex = 69
+        Me.Button7.Text = "Activate"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
         'DataGridViewCATEGORIES
         '
         Me.DataGridViewCATEGORIES.AllowUserToAddRows = False
@@ -2285,9 +2308,9 @@ Partial Class ConfigManager
         Me.DataGridViewCATEGORIES.AllowUserToResizeColumns = False
         Me.DataGridViewCATEGORIES.AllowUserToResizeRows = False
         Me.DataGridViewCATEGORIES.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewCATEGORIES.Location = New System.Drawing.Point(35, 351)
+        Me.DataGridViewCATEGORIES.Location = New System.Drawing.Point(35, 375)
         Me.DataGridViewCATEGORIES.Name = "DataGridViewCATEGORIES"
-        Me.DataGridViewCATEGORIES.Size = New System.Drawing.Size(523, 66)
+        Me.DataGridViewCATEGORIES.Size = New System.Drawing.Size(432, 66)
         Me.DataGridViewCATEGORIES.TabIndex = 65
         '
         'DataGridViewFORMULA
@@ -2297,9 +2320,9 @@ Partial Class ConfigManager
         Me.DataGridViewFORMULA.AllowUserToResizeColumns = False
         Me.DataGridViewFORMULA.AllowUserToResizeRows = False
         Me.DataGridViewFORMULA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewFORMULA.Location = New System.Drawing.Point(32, 235)
+        Me.DataGridViewFORMULA.Location = New System.Drawing.Point(35, 276)
         Me.DataGridViewFORMULA.Name = "DataGridViewFORMULA"
-        Me.DataGridViewFORMULA.Size = New System.Drawing.Size(526, 93)
+        Me.DataGridViewFORMULA.Size = New System.Drawing.Size(435, 93)
         Me.DataGridViewFORMULA.TabIndex = 68
         '
         'DataGridViewPRODUCTS
@@ -2309,9 +2332,9 @@ Partial Class ConfigManager
         Me.DataGridViewPRODUCTS.AllowUserToResizeColumns = False
         Me.DataGridViewPRODUCTS.AllowUserToResizeRows = False
         Me.DataGridViewPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewPRODUCTS.Location = New System.Drawing.Point(32, 133)
+        Me.DataGridViewPRODUCTS.Location = New System.Drawing.Point(35, 183)
         Me.DataGridViewPRODUCTS.Name = "DataGridViewPRODUCTS"
-        Me.DataGridViewPRODUCTS.Size = New System.Drawing.Size(526, 87)
+        Me.DataGridViewPRODUCTS.Size = New System.Drawing.Size(435, 87)
         Me.DataGridViewPRODUCTS.TabIndex = 66
         '
         'DataGridViewINVENTORY
@@ -2321,9 +2344,9 @@ Partial Class ConfigManager
         Me.DataGridViewINVENTORY.AllowUserToResizeColumns = False
         Me.DataGridViewINVENTORY.AllowUserToResizeRows = False
         Me.DataGridViewINVENTORY.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewINVENTORY.Location = New System.Drawing.Point(32, 23)
+        Me.DataGridViewINVENTORY.Location = New System.Drawing.Point(32, 84)
         Me.DataGridViewINVENTORY.Name = "DataGridViewINVENTORY"
-        Me.DataGridViewINVENTORY.Size = New System.Drawing.Size(526, 93)
+        Me.DataGridViewINVENTORY.Size = New System.Drawing.Size(435, 93)
         Me.DataGridViewINVENTORY.TabIndex = 67
         '
         'GroupBox13
@@ -2445,7 +2468,7 @@ Partial Class ConfigManager
         Me.DataGridViewOutletDetails.AllowUserToResizeRows = False
         Me.DataGridViewOutletDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewOutletDetails.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column12, Me.Column13, Me.Column14, Me.Column15, Me.Column16, Me.Column17})
-        Me.DataGridViewOutletDetails.Location = New System.Drawing.Point(18, 271)
+        Me.DataGridViewOutletDetails.Location = New System.Drawing.Point(12, 114)
         Me.DataGridViewOutletDetails.Name = "DataGridViewOutletDetails"
         Me.DataGridViewOutletDetails.ReadOnly = True
         Me.DataGridViewOutletDetails.Size = New System.Drawing.Size(95, 65)
@@ -2900,4 +2923,6 @@ Partial Class ConfigManager
     Friend WithEvents BackgroundWorker5 As System.ComponentModel.BackgroundWorker
     Friend WithEvents ButtonSaveLocConn As Button
     Friend WithEvents BackgroundWorkerABTDB As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Button7 As Button
+    Friend WithEvents Button8 As Button
 End Class

@@ -35,7 +35,6 @@ Module connectionModule
         End Try
         Return localconnection
     End Function
-
     Private Function LoadConn(Path As String)
         Try
             If My.Settings.LocalConnectionPath <> "" Then

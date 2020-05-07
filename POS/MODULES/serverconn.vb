@@ -24,7 +24,7 @@ Module serverlocalconn
                 End If
             End If
         Catch ex As MySqlException
-            My.Settings.ValidCloudConn = 0
+            My.Settings.ValidCloudConn = False
             My.Settings.Save()
         End Try
     End Sub
@@ -51,7 +51,8 @@ Module serverlocalconn
                 End If
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            My.Settings.ValidCloudConn = False
+            My.Settings.Save()
         End Try
         Return servercloudconn
     End Function

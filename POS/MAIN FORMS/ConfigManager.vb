@@ -29,16 +29,16 @@ Public Class ConfigManager
             My.Settings.Save()
         End If
     End Sub
-    Private Sub TestLocalConnection()
+    Private Function TestLocalConnection()
+        Dim Conn As MySqlConnection = New MySqlConnection
         Try
-            localconn = New MySqlConnection
-            localconn.ConnectionString = "server=" & Trim(TextBoxLocalServer.Text) &
+            Conn.ConnectionString = "server=" & Trim(TextBoxLocalServer.Text) &
             ";user id= " & Trim(TextBoxLocalUsername.Text) &
             ";password=" & Trim(TextBoxLocalPassword.Text) &
             ";database=" & Trim(TextBoxLocalDatabase.Text) &
             ";port=" & Trim(TextBoxLocalPort.Text)
-            localconn.Open()
-            If localconn.State = ConnectionState.Open Then
+            Conn.Open()
+            If Conn.State = ConnectionState.Open Then
                 My.Settings.ValidLocalConn = True
                 My.Settings.Save()
             End If
@@ -46,7 +46,8 @@ Public Class ConfigManager
             My.Settings.ValidLocalConn = False
             My.Settings.Save()
         End Try
-    End Sub
+        Return Conn
+    End Function
     Private Sub TestCloudConnection()
         Try
             cloudconn = New MySqlConnection
@@ -178,7 +179,6 @@ Public Class ConfigManager
     Private Sub BackgroundWorker2_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker2.ProgressChanged
         ProgressBar2.Value = e.ProgressPercentage
     End Sub
-
     Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
         If My.Settings.ValidCloudConn = False Then
             ChangeProgBarColor(ProgressBar2, ProgressBarColor.Yellow)
@@ -186,40 +186,39 @@ Public Class ConfigManager
         Else
             ChangeProgBarColor(ProgressBar2, ProgressBarColor.Green)
             LabelCloud.Text = "Connected successfully!"
+            ButtonSaveCloudConn.PerformClick()
         End If
         TextboxEnableability(Panel9, True)
         ButtonEnableability(Panel9, True)
     End Sub
-
     Private Sub ButtonSaveCloudConn_Click(sender As Object, e As EventArgs) Handles ButtonSaveCloudConn.Click
         Try
             table = "loc_settings"
             where = "settings_id = 1"
-            TestLocalConnection()
             If My.Settings.ValidLocalConn = True Then
                 If My.Settings.ValidCloudConn = True Then
                     fields = "C_Server, C_Username, C_Password, C_Database, C_Port"
                     sql = "Select " & fields & " FROM " & table & " WHERE " & where
-                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(sql, localconn)
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
                     da.Fill(dt)
                     If dt.Rows.Count > 0 Then
                         fields = "C_Server = '" & ConvertToBase64(Trim(TextBoxCloudServer.Text)) & "', C_Username = '" & ConvertToBase64(Trim(TextBoxCloudUsername.Text)) & "', C_Password = '" & ConvertToBase64(Trim(TextBoxCloudPassword.Text)) & "', C_Database = '" & ConvertToBase64(Trim(TextBoxCloudDatabase.Text)) & "', C_Port = '" & ConvertToBase64(Trim(TextBoxCloudPort.Text)) & "'"
-                        TestLocalConnection()
                         sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
-                        cmd = New MySqlCommand(sql, localconn)
+                        cmd = New MySqlCommand(sql, TestLocalConnection())
                         cmd.ExecuteNonQuery()
                         MsgBox("Saved!")
                     Else
-                        fields = "(C_Server, C_Username, C_Password, C_Database, C_Port)"
+                        fields = "(C_Server, C_Username, C_Password, C_Database, C_Port, S_Zreading)"
                         value = "('" & ConvertToBase64(Trim(TextBoxCloudServer.Text)) & "'
                      ,'" & ConvertToBase64(Trim(TextBoxCloudUsername.Text)) & "'
                      ,'" & ConvertToBase64(Trim(TextBoxCloudPassword.Text)) & "'
                      ,'" & ConvertToBase64(Trim(TextBoxCloudDatabase.Text)) & "'
-                     ,'" & ConvertToBase64(Trim(TextBoxCloudPort.Text)) & "')"
-                        TestLocalConnection()
+                     ,'" & ConvertToBase64(Trim(TextBoxCloudPort.Text)) & "'
+                     ,'" & returndateformat(Now) & "')"
                         sql = "INSERT INTO " & table & " " & fields & " VALUES " & value
-                        cmd = New MySqlCommand(sql, localconn)
+                        cmd = New MySqlCommand(sql, TestLocalConnection)
                         cmd.ExecuteNonQuery()
                         MsgBox("Saved!")
                     End If
@@ -271,10 +270,10 @@ Public Class ConfigManager
     End Sub
     Public Sub LoadCloudConn()
         Try
-            TestLocalConnection()
             If My.Settings.ValidLocalConn = True Then
                 sql = "SELECT C_Server, C_Username, C_Password, C_Database, C_Port FROM loc_settings WHERE settings_id = 1"
-                Dim da As MySqlDataAdapter = New MySqlDataAdapter(sql, localconn)
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
                 If dt.Rows.Count > 0 Then
@@ -297,28 +296,55 @@ Public Class ConfigManager
     End Sub
     Private Sub LoadAdditionalSettings()
         Try
-            TestLocalConnection()
             If My.Settings.ValidLocalConn = True Then
                 sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated FROM loc_settings WHERE settings_id = 1"
-                Dim da As MySqlDataAdapter = New MySqlDataAdapter(sql, localconn)
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
                 If dt.Rows.Count > 0 Then
-                    TextBoxExportPath.Text = ConvertB64ToString(dt(0)(0))
-                    TextBoxTax.Text = dt(0)(1) * 100
-                    TextBoxSINumber.Text = dt(0)(2)
-                    TextBoxTerminalNo.Text = dt(0)(3)
-                    If dt(0)(4) = 0 Then
-                        RadioButtonNO.Checked = True
-                    ElseIf dt(0)(4) = 1 Then
-                        RadioButtonYES.Checked = True
+                    If dt(0)(0) <> Nothing Then
+                        TextBoxExportPath.Text = ConvertB64ToString(dt(0)(0))
                     End If
-                    My.Settings.ValidAddtionalSettings = True
-                    My.Settings.Save()
-                Else
-                    My.Settings.ValidAddtionalSettings = False
-                    My.Settings.Save()
+                    If dt(0)(1) <> Nothing Then
+                        TextBoxTax.Text = dt(0)(1) * 100
+                    End If
+                    If dt(0)(2) <> Nothing Then
+                        TextBoxSINumber.Text = dt(0)(2)
+                    End If
+                    If dt(0)(3) <> Nothing Then
+                        TextBoxTerminalNo.Text = dt(0)(3)
+                    End If
+                    If dt(0)(4) <> Nothing Then
+                        If dt(0)(4) = 0 Then
+                            RadioButtonNO.Checked = True
+                        ElseIf dt(0)(4) = 1 Then
+                            RadioButtonYES.Checked = True
+                        End If
+                    End If
                 End If
+                For i As Integer = 0 To dt.Rows.Count - 1 Step +1
+                    If dt(i)(0) = "" Then
+                        My.Settings.ValidAddtionalSettings = False
+                        Exit For
+                    ElseIf dt(i)(1) = "" Then
+                        My.Settings.ValidAddtionalSettings = False
+                        Exit For
+                    ElseIf dt(i)(2) = "" Then
+                        My.Settings.ValidAddtionalSettings = False
+                        Exit For
+                    ElseIf dt(i)(3) = "" Then
+                        My.Settings.ValidAddtionalSettings = False
+                        Exit For
+                    ElseIf dt(i)(4) = "" Then
+                        My.Settings.ValidAddtionalSettings = False
+                        Exit For
+                    Else
+                        My.Settings.ValidAddtionalSettings = True
+                        Exit For
+                    End If
+                Next
+                My.Settings.Save()
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -326,28 +352,83 @@ Public Class ConfigManager
     End Sub
     Private Sub LoadDevInfo()
         Try
-            TestLocalConnection()
             If My.Settings.ValidLocalConn = True Then
                 sql = "SELECT Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until FROM loc_settings WHERE settings_id = 1"
-                Dim da As MySqlDataAdapter = New MySqlDataAdapter(sql, localconn)
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt = New DataTable
                 da.Fill(dt)
                 If dt.Rows.Count > 0 Then
-                    TextBoxDevname.Text = dt(0)(0)
-                    TextBoxDevAdd.Text = dt(0)(1)
-                    TextBoxDevTIN.Text = dt(0)(2)
-                    TextBoxDevAccr.Text = dt(0)(3)
-                    DateTimePicker1ACCRDI.Value = dt(0)(4)
-                    DateTimePicker2ACCRVU.Value = dt(0)(5)
-                    TextBoxDEVPTU.Text = dt(0)(6)
-                    DateTimePicker4PTUDI.Value = dt(0)(7)
-                    DateTimePickerPTUVU.Value = dt(0)(8)
-                    My.Settings.ValidDevSettings = True
-                    My.Settings.Save()
-                Else
-                    My.Settings.ValidDevSettings = False
-                    My.Settings.Save()
+                    If dt(0)(0) <> Nothing Then
+                        TextBoxDevname.Text = dt(0)(0)
+                    End If
+                    If dt(0)(1) <> Nothing Then
+                        TextBoxDevAdd.Text = dt(0)(1)
+                    End If
+                    If dt(0)(2) <> Nothing Then
+                        TextBoxDevTIN.Text = dt(0)(2)
+                    End If
+                    If dt(0)(3) <> Nothing Then
+                        TextBoxDevAccr.Text = dt(0)(3)
+                    End If
+                    If dt(0)(4) <> Nothing Then
+                        DateTimePicker1ACCRDI.Value = dt(0)(4)
+                    End If
+                    If dt(0)(5) <> Nothing Then
+                        DateTimePicker2ACCRVU.Value = dt(0)(5)
+                    End If
+                    If dt(0)(6) <> Nothing Then
+                        TextBoxDEVPTU.Text = dt(0)(6)
+                    End If
+                    If dt(0)(7) <> Nothing Then
+                        DateTimePicker4PTUDI.Value = dt(0)(7)
+                    End If
+                    If dt(0)(8) <> Nothing Then
+                        DateTimePickerPTUVU.Value = dt(0)(8)
+                    End If
                 End If
+                For i As Integer = 0 To dt.Rows.Count - 1 Step +1
+                    If dt(i)(0) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(1) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(2) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(3) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(4) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(5) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(6) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(7) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(8) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    Else
+                        My.Settings.ValidDevSettings = True
+                        My.Settings.Save()
+                    End If
+                Next
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -560,14 +641,15 @@ Public Class ConfigManager
         Try
             Dim RButton As Integer
             Dim Tax = Val(TextBoxTax.Text) / 100
-            TestLocalConnection()
+
             If TextboxIsEmpty(GroupBox10) = True Then
                 If My.Settings.ValidLocalConn = True Then
                     Dim table = "loc_settings"
                     Dim fields = "A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated"
                     Dim where = "settings_id = 1"
                     Dim sql = "Select " & fields & " FROM " & table & " WHERE " & where
-                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(sql, localconn)
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
                     da.Fill(dt)
                     If dt.Rows.Count > 0 Then
@@ -577,9 +659,8 @@ Public Class ConfigManager
                             RButton = 0
                         End If
                         Dim fields1 = "A_Export_Path = '" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "', A_Tax = '" & Tax & "' , A_SIFormat = '" & Trim(TextBoxSINumber.Text) & "' , A_Terminal_No = '" & Trim(TextBoxTerminalNo.Text) & "' , A_ZeroRated = '" & RButton & "', S_Zreading = CURRENT_DATE()"
-                        TestLocalConnection()
                         sql = "UPDATE " & table & " SET " & fields1 & " WHERE " & where
-                        cmd = New MySqlCommand(sql, localconn)
+                        cmd = New MySqlCommand(sql, TestLocalConnection)
                         cmd.ExecuteNonQuery()
                         MsgBox("Saved!")
                         My.Settings.ValidAddtionalSettings = True
@@ -592,9 +673,8 @@ Public Class ConfigManager
                      ,'" & Trim(TextBoxTerminalNo.Text) & "'
                      ,'" & RButton & "'
                      ,'" & returndateformat(Now()) & "')"
-                        TestLocalConnection()
                         sql = "INSERT INTO " & table & " " & fields2 & " VALUES " & value
-                        cmd = New MySqlCommand(sql, localconn)
+                        cmd = New MySqlCommand(sql, TestLocalConnection)
                         cmd.ExecuteNonQuery()
                         MsgBox("Saved!")
                         My.Settings.ValidAddtionalSettings = True
@@ -651,7 +731,7 @@ Public Class ConfigManager
         ProgressBar4.Value = e.ProgressPercentage
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        TestLocalConnection()
+
         Dim table = "loc_settings"
         Dim where = "settings_id = 1"
 
@@ -659,7 +739,8 @@ Public Class ConfigManager
             If My.Settings.ValidLocalConn = True Then
                 Dim fields = "Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until"
                 Dim sql = "Select " & fields & " FROM " & table & " WHERE " & where
-                Dim da As MySqlDataAdapter = New MySqlDataAdapter(sql, localconn)
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
                 If dt.Rows.Count > 0 Then
@@ -673,7 +754,7 @@ Public Class ConfigManager
 `Dev_PTU_Date_Issued`= '" & returndateformat(DateTimePickerPTUVU.Value) & "',
 `Dev_PTU_Valid_Until`= '" & returndateformat(DateTimePicker4PTUDI.Value) & "'"
                     sql = "UPDATE " & table & " SET " & fields1 & " WHERE " & where
-                    cmd = New MySqlCommand(sql, localconn)
+                    cmd = New MySqlCommand(sql, TestLocalConnection)
                     cmd.ExecuteNonQuery()
                     My.Settings.ValidDevSettings = True
                     My.Settings.Save()
@@ -690,7 +771,7 @@ Public Class ConfigManager
 ,'" & returndateformat(DateTimePickerPTUVU.Value) & "'
 ,'" & returndateformat(DateTimePicker4PTUDI.Value) & "')"
                     sql = "INSERT INTO " & table & " " & fields2 & " VALUES " & value
-                    cmd = New MySqlCommand(sql, localconn)
+                    cmd = New MySqlCommand(sql, TestLocalConnection)
                     cmd.ExecuteNonQuery()
                     MsgBox("Saved!")
                     My.Settings.ValidAddtionalSettings = True
@@ -996,42 +1077,7 @@ Public Class ConfigManager
             da.Dispose()
         End Try
     End Sub
-    Public Sub GetCategories()
-        Try
-            table = "admin_category"
-            fields = "`category_name`, `brand_name`, `updated_at`, `origin`, `status`"
-            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewCATEGORIES)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-    Public Sub GetProducts()
-        Try
-            table = "admin_products_org"
-            fields = "`product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`"
-            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewPRODUCTS)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-    Public Sub GetInventory()
-        Try
-            table = "admin_pos_inventory_org"
-            fields = "`formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified`"
-            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewINVENTORY)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-    Public Sub GetFormula()
-        Try
-            table = "admin_product_formula_org"
-            fields = "`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`"
-            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewFORMULA)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
+
     Dim threadLISTINSERPROD As List(Of Thread) = New List(Of Thread)
     Private Sub BackgroundWorker5_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker5.DoWork
         Try
@@ -1135,60 +1181,85 @@ Public Class ConfigManager
         TextboxEnableability(GroupBox12, True)
         ButtonEnableability(GroupBox12, True)
     End Sub
+    Public Sub GetCategories()
+        Try
+            table = "admin_category"
+            fields = "`category_name`, `brand_name`, `updated_at`, `origin`, `status`"
+            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewCATEGORIES)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Public Sub GetProducts()
+        Try
+            table = "admin_products_org"
+            fields = "`product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`"
+            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewPRODUCTS)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Private Sub InsertToProducts()
         Try
-            TestLocalConnection()
             With DataGridViewPRODUCTS
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmdlocal = New MySqlCommand("INSERT INTO loc_admin_products( `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `store_id`, `crew_id`, `synced`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @13, @14, @15)", localconn)
-                    cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
+                    cmdlocal = New MySqlCommand("INSERT INTO loc_admin_products(`server_product_id`,`product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `store_id`, `synced`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14)", TestLocalConnection())
+                    cmdlocal.Parameters.Add("@0", MySqlDbType.Int32).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
                     cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
                     cmdlocal.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
-                    cmdlocal.Parameters.Add("@5", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
-                    cmdlocal.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
-                    cmdlocal.Parameters.Add("@7", MySqlDbType.LongText).Value = .Rows(i).Cells(7).Value.ToString()
+                    cmdlocal.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
+                    cmdlocal.Parameters.Add("@6", MySqlDbType.Int32).Value = .Rows(i).Cells(6).Value.ToString()
+                    cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                     cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
-                    cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(10).Value.ToString())
-                    cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = UserGUID
-                    cmdlocal.Parameters.Add("@13", MySqlDbType.Int64).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
-                    cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "0"
-                    cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "Synced"
+                    cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                    cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(11).Value.ToString())
+                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = UserGUID
+                    cmdlocal.Parameters.Add("@13", MySqlDbType.Int32).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
+                    cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
                     cmdlocal.ExecuteNonQuery()
                 Next
-                localconn.Close()
+
             End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Public Sub GetInventory()
+        Try
+            table = "admin_pos_inventory_org"
+            fields = "`inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified`"
+            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewINVENTORY)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub InsertToInventory()
         Try
-            TestLocalConnection()
             With DataGridViewINVENTORY
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmdlocal = New MySqlCommand("INSERT INTO loc_pos_inventory(`formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified`, `guid`, `store_id`, `synced`, `crew_id`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11)", localconn)
+                    cmdlocal = New MySqlCommand("INSERT INTO loc_pos_inventory(`server_inventory_id`,`formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified`, `guid`, `store_id`, `synced`, `server_date_modified`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12)", TestLocalConnection())
                     cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
-                    cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                    cmdlocal.Parameters.Add("@3", MySqlDbType.Int64).Value = .Rows(i).Cells(3).Value.ToString()
+                    cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
                     cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmdlocal.Parameters.Add("@5", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
                     cmdlocal.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(6).Value.ToString()
-                    cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(7).Value.ToString())
-                    cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = UserGUID
-                    cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
-                    cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = "Synced"
-                    cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = "0"
+                    cmdlocal.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
+                    cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(8).Value.ToString())
+                    cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = UserGUID
+                    cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
+                    cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = "Synced"
+                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(8).Value.ToString())
                     cmdlocal.ExecuteNonQuery()
                 Next
-                localconn.Close()
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1196,12 +1267,11 @@ Public Class ConfigManager
     End Sub
     Private Sub InsertToCategories()
         Try
-            TestLocalConnection()
             With DataGridViewCATEGORIES
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmdlocal = New MySqlCommand("INSERT INTO loc_admin_category( `category_name`, `brand_name`, `updated_at`, `origin`, `status`)
-                                             VALUES (@0, @1, @2, @3, @4)", localconn)
+                                             VALUES (@0, @1, @2, @3, @4)", TestLocalConnection())
                     cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(2).Value.ToString())
@@ -1209,21 +1279,28 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmdlocal.ExecuteNonQuery()
                 Next
-                localconn.Close()
             End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Public Sub GetFormula()
+        Try
+            table = "admin_product_formula_org"
+            fields = "`formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`"
+            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewFORMULA)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub InsertToFormula()
         Try
-            TestLocalConnection()
             With DataGridViewFORMULA
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmdlocal = New MySqlCommand("INSERT INTO loc_product_formula(`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `store_id`, `guid`, `crew_id`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13)", localconn)
-                    cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
+                    cmdlocal = New MySqlCommand("INSERT INTO loc_product_formula(`server_formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`, `server_date_modified`, `store_id`, `guid`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15)", TestLocalConnection())
+                    cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
                     cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
@@ -1231,19 +1308,36 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmdlocal.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                     cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
-                    cmdlocal.Parameters.Add("@8", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString()
-                    cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(9).Value.ToString())
-                    cmdlocal.Parameters.Add("@10", MySqlDbType.Decimal).Value = .Rows(i).Cells(10).Value.ToString()
-                    cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
-                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = UserGUID
-                    cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = "0"
+                    cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
+
+                    cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
+                    cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(10).Value.ToString())
+                    cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
+
+                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
+                    cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(10).Value.ToString())
+                    cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
+                    cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = UserGUID
+
                     cmdlocal.ExecuteNonQuery()
                 Next
-                localconn.Close()
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
 
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        GetCategories()
+        GetProducts()
+        GetInventory()
+        GetFormula()
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        InsertToCategories()
+        InsertToFormula()
+        InsertToInventory()
+        InsertToProducts()
+    End Sub
 End Class
