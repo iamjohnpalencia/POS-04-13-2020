@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2020 at 08:34 PM
+-- Generation Time: May 08, 2020 at 07:37 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -125,10 +125,10 @@ CREATE TABLE `loc_admin_products` (
   `origin` varchar(50) NOT NULL,
   `date_modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `guid` varchar(255) NOT NULL,
-  `ip_address` varchar(20) NOT NULL,
   `store_id` int(11) NOT NULL,
   `crew_id` varchar(50) NOT NULL,
-  `synced` varchar(50) NOT NULL
+  `synced` varchar(50) NOT NULL,
+  `server_product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -354,6 +354,40 @@ CREATE TABLE `loc_inv_temp_data` (
   `date_created` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_inv_temp_data`
+--
+
+INSERT INTO `loc_inv_temp_data` (`inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `guid`, `date_modified`, `date_created`) VALUES
+(1, '15', 1, 'Famous Mix', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(2, '15', 2, 'Famous Batter', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(3, '15', 3, 'Chocolate', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(4, '15', 4, 'Peanut Butter', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(5, '15', 5, 'Hazelnut', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(6, '15', 6, 'Custard', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(7, '15', 7, 'Caramel', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(8, '15', 8, 'Maple Syrup', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(9, '15', 9, 'Blueberry', '', 0, 0, 1, 21, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:42:58', '2020-05-01'),
+(10, '15', 10, 'Strawberry', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(11, '15', 11, 'Mango Peach', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(12, '15', 12, 'Cream Cheese', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(13, '15', 13, 'Cheddar Cheese', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(14, '15', 14, 'Regular Ham', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(15, '15', 15, 'Chicken Ham', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(16, '15', 16, 'Garlic Dip Mix', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(17, '15', 17, 'Vegetable Oil (Health Plus)', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(18, '15', 18, 'Famous Blends Coffee', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(19, '15', 19, 'Chekhup Choco Drink Mix', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(20, '15', 20, 'Famous Sugar Syrup', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(21, '15', 21, 'French Butter', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(22, '15', 22, 'Famous Iced Mix (200g)', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(23, '15', 23, 'Famous Iced Mix (100g)', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(24, '15', 24, 'Famous Iced Mix (50g)', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(25, '15', 25, 'Famous Iced Tea (200g) ', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(26, '15', 26, 'Famous Iced Tea (100g) ', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(27, '15', 27, 'Famous Iced Tea (50g) ', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
+(28, '15', 28, 'Coffee Beans (80g)', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01');
+
 -- --------------------------------------------------------
 
 --
@@ -426,7 +460,9 @@ CREATE TABLE `loc_pos_inventory` (
   `guid` varchar(255) NOT NULL,
   `date_modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `crew_id` varchar(50) NOT NULL,
-  `synced` varchar(255) NOT NULL
+  `synced` varchar(255) NOT NULL,
+  `server_date_modified` text NOT NULL,
+  `server_inventory_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -450,7 +486,10 @@ CREATE TABLE `loc_product_formula` (
   `unit_cost` decimal(11,2) NOT NULL,
   `store_id` varchar(50) NOT NULL,
   `guid` varchar(255) NOT NULL,
-  `crew_id` varchar(50) NOT NULL
+  `crew_id` varchar(50) NOT NULL,
+  `origin` varchar(255) NOT NULL,
+  `server_formula_id` int(11) NOT NULL,
+  `server_date_modified` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -529,6 +568,13 @@ CREATE TABLE `loc_settings` (
   `S_Zreading` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_settings`
+--
+
+INSERT INTO `loc_settings` (`settings_id`, `C_Server`, `C_Username`, `C_Password`, `C_Database`, `C_Port`, `A_Export_Path`, `A_Tax`, `A_SIFormat`, `A_Terminal_No`, `A_ZeroRated`, `Dev_Company_Name`, `Dev_Address`, `Dev_Tin`, `Dev_Accr_No`, `Dev_Accr_Date_Issued`, `Dev_Accr_Valid_Until`, `Dev_PTU_No`, `Dev_PTU_Date_Issued`, `Dev_PTU_Valid_Until`, `S_Zreading`) VALUES
+(1, 'Z2F0b3IzMjE4Lmhvc3RnYXRvci5jb20=', 'am9obnBhbGVfdGVzdHVzZQ==', 'cGFzc3dvcmQyMDE5', 'am9obnBhbGVfcG9zdGVzdA==', 'MzMwNg==', 'QzpcVXNlcnNcSmF5IFJleWVzXERvY3VtZW50c1xJbm5vdmVudGlvbg==', '0.12', '0000000000', '1', '0', 'aiolosinnovativesolutions', 'Magnitude', '0000-0000-0000-0000', '0000-0000-0000-0000', '2020-05-07', '2020-05-07', '0000-0000-0000-0000', '2020-05-07', '2020-05-07', '2020-05-07');
+
 -- --------------------------------------------------------
 
 --
@@ -547,6 +593,77 @@ CREATE TABLE `loc_system_logs` (
   `zreading` date NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_system_logs`
+--
+
+INSERT INTO `loc_system_logs` (`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `ip_address`, `loc_systemlog_id`, `zreading`, `synced`) VALUES
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 10:29:06', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200507-182906', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 10:29:09', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200507-182909', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:07:11', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-010711', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:09:57', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-010957', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:12:55', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011255', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 17:13:01', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011301', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:16:44', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011644', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:17:12', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011712', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 17:17:16', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011716', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:18:04', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011804', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 17:18:06', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011806', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:44:37', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-014437', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 17:44:40', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-014440', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:48:33', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-014833', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 17:48:37', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-014837', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:58:36', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-015836', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 17:58:41', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-015841', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:59:39', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-015939', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 17:59:42', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-015942', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOG OUT', 'User Logout: Jay Reyes', '2020-05-07 17:59:56', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-015956', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'END-1', '0', '2020-05-07 17:59:56', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-015956', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:00:10', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-020010', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'MENU FORM', 'Accessed by :Jay Reyes : Head Crew', '2020-05-07 18:00:21', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-020021', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:04:29', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-020429', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:04:33', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-020433', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:15:50', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-021550', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:15:53', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-021553', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:16:38', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-021638', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:16:48', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-021648', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:17:32', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-021732', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:20:02', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022002', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:20:07', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022007', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:22:06', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022206', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:22:09', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022209', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:28:31', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022831', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:28:35', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022835', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:29:32', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022932', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:29:36', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022936', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:30:49', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-023049', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:30:56', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-023056', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:34:51', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-023451', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:34:55', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-023455', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOG OUT', 'User Logout: Jay Reyes', '2020-05-07 18:34:59', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-023459', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'END-1', '0', '2020-05-07 18:34:59', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-023459', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:40:29', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-024029', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:42:59', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-024259', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:43:02', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-024302', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:53:39', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025339', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:53:44', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025344', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:54:25', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025425', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:54:28', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025428', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:56:04', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025604', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:56:07', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025607', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'MENU FORM', 'Accessed by :Jay Reyes : Head Crew', '2020-05-07 18:56:32', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025632', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:58:15', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025815', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 18:58:17', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025817', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 19:00:04', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030004', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 19:00:09', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030009', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 19:01:21', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030121', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 19:01:24', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030124', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 19:02:20', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030220', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'BG-1', '0', '2020-05-07 19:02:22', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030222', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'MENU FORM', 'Accessed by :Jay Reyes : Head Crew', '2020-05-07 19:02:25', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030225', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'LOG OUT', 'User Logout: Jay Reyes', '2020-05-07 19:02:33', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030233', '0000-00-00', 'Unsynced'),
+('FBW15-4163', 'END-1', '0', '2020-05-07 19:02:33', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030233', '0000-00-00', 'Unsynced');
 
 -- --------------------------------------------------------
 
@@ -579,13 +696,6 @@ CREATE TABLE `loc_updates` (
   `up_version` varchar(255) NOT NULL,
   `up_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `loc_updates`
---
-
-INSERT INTO `loc_updates` (`up_id`, `up_version`, `up_timestamp`) VALUES
-(1, 'V1.0.202003.23', '2020-03-23 02:13:24');
 
 -- --------------------------------------------------------
 
@@ -723,13 +833,6 @@ CREATE TABLE `triggers_loc_users` (
   `uniq_id` varchar(50) NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `triggers_loc_users`
---
-
-INSERT INTO `triggers_loc_users` (`user_id`, `user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `created_at`, `updated_at`, `active`, `guid`, `store_id`, `uniq_id`, `synced`) VALUES
-(1, 'Head Crew', 'Mark Daniel Reyes', 'dd', '296506902c693b458707ad6f7e24a544', '09541225478', 'dd@gmail.com', 'Head Crew', 'Male', '2020-03-16 09:47:43', '2020-03-16 09:47:43', '1', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '5', 'FBW5-6967', 'Unsynced');
 
 --
 -- Triggers `triggers_loc_users`
@@ -1014,7 +1117,7 @@ ALTER TABLE `loc_inbox_messages`
 -- AUTO_INCREMENT for table `loc_inv_temp_data`
 --
 ALTER TABLE `loc_inv_temp_data`
-  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `loc_partners_transaction`
@@ -1056,7 +1159,7 @@ ALTER TABLE `loc_refund_return_details`
 -- AUTO_INCREMENT for table `loc_settings`
 --
 ALTER TABLE `loc_settings`
-  MODIFY `settings_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `settings_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `loc_transaction_mode_details`
@@ -1068,7 +1171,7 @@ ALTER TABLE `loc_transaction_mode_details`
 -- AUTO_INCREMENT for table `loc_updates`
 --
 ALTER TABLE `loc_updates`
-  MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `loc_users`
@@ -1098,7 +1201,7 @@ ALTER TABLE `triggers_loc_admin_products`
 -- AUTO_INCREMENT for table `triggers_loc_users`
 --
 ALTER TABLE `triggers_loc_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
