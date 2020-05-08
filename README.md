@@ -121,6 +121,18 @@ May 1 12:00 PM to 3:00 PM
 
 * Local POS Updates
 * Create functions for getting updates from the server
+
+May 2 5:54 PM to 10:00 PM
+
+* Function for getting updates and updating tables 
+
+May 5 9:05 PM To 1:00 AM
+
+* Function for getting updates and updating tables 
+
+May 8 7:00 PM to 3:04 AM
+
+* Function for getting updates and updating tables 
 	
 		
 
