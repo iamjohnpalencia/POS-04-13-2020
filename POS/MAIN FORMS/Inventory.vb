@@ -177,7 +177,7 @@ Public Class Inventory
     End Sub
     Sub loadstockadjustmentreport(searchdate As Boolean)
         Try
-            fields = "`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `ip_address`, `loc_systemlog_id`, `synced`"
+            fields = "`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `synced`"
             table = "loc_system_logs"
             If searchdate = False Then
                 where = " date(log_date_time) = CURRENT_DATE() AND log_type IN('NEW STOCK ADDED','STOCK REMOVAL','STOCK TRANSFER')"
@@ -195,7 +195,6 @@ Public Class Inventory
                 .Columns(5).Visible = False
                 .Columns(6).Visible = False
                 .Columns(7).Visible = False
-                .Columns(8).Visible = False
                 For Each row As DataRow In dt.Rows
                     row("crew_id") = GLOBAL_SELECT_FUNCTION_RETURN(table:="loc_users", fields:="full_name", returnvalrow:="full_name", values:="uniq_id ='" & row("crew_id") & "'")
                 Next

@@ -41,27 +41,31 @@ Public Class Reports
         reportexpensedet(False)
         reportsreturnsandrefunds(False)
         viewdeposit(False)
-        If S_Zreading = returndateformat(Now) Then
+        If returndateformat(S_Zreading.ToString) = returndateformat(Now) Then
             ButtonZread.Enabled = False
         Else
             ButtonZread.Enabled = True
         End If
     End Sub
     Public Sub reportssystemlogs(ByVal searchdate As Boolean)
-        table = "`loc_system_logs`"
-        fields = "`log_type`, `log_description`, `log_date_time`"
-        If searchdate = False Then
-            where = " date(zreading) = CURRENT_DATE() AND log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewSysLog, errormessage:="", fields:=fields, successmessage:="", where:=where)
-        Else
-            where = " log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND date(zreading) >= '" & returndateformat(DateTimePicker9.Text) & "' AND date(zreading) <= '" & returndateformat(DateTimePicker10.Text) & "'"
-            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewSysLog, errormessage:="", fields:=fields, successmessage:="", where:=where)
-        End If
-        With DataGridViewSysLog
-            .Columns(0).HeaderText = "Type"
-            .Columns(1).HeaderText = "Description"
-            .Columns(2).HeaderText = "Date and Time"
-        End With
+        Try
+            table = "`loc_system_logs`"
+            fields = "`log_type`, `log_description`, `log_date_time`"
+            If searchdate = False Then
+                where = " date(log_date_time) = CURRENT_DATE() AND log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewSysLog, errormessage:="", fields:=fields, successmessage:="", where:=where)
+            Else
+                where = " log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND date(log_date_time) >= '" & returndateformat(DateTimePicker9.Text) & "' AND date(log_date_time) <= '" & returndateformat(DateTimePicker10.Text) & "'"
+                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewSysLog, errormessage:="", fields:=fields, successmessage:="", where:=where)
+            End If
+            With DataGridViewSysLog
+                .Columns(0).HeaderText = "Type"
+                .Columns(1).HeaderText = "Description"
+                .Columns(2).HeaderText = "Date and Time"
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Public Sub reportsreturnsandrefunds(ByVal searchdate As Boolean)
         table = "`loc_refund_return_details`"
@@ -87,10 +91,10 @@ Public Class Reports
         table = "`loc_system_logs`"
         fields = "`log_type`, `log_description`, `log_date_time`"
         If searchdate = False Then
-            where = " log_type = 'TRANSACTION' AND date(zreading) = CURRENT_DATE() AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' "
+            where = " log_type = 'TRANSACTION' AND date(log_date_time) = CURRENT_DATE() AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' "
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewTRANSACTIONLOGS, errormessage:="", fields:=fields, successmessage:="", where:=where)
         Else
-            where = " log_type = 'TRANSACTION' AND date(zreading) >= '" & returndateformat(DateTimePicker11.Text) & "' AND date(zreading) <= '" & returndateformat(DateTimePicker12.Text) & "' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' "
+            where = " log_type = 'TRANSACTION' AND date(log_date_time) >= '" & returndateformat(DateTimePicker11.Text) & "' AND date(log_date_time) <= '" & returndateformat(DateTimePicker12.Text) & "' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' "
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewTRANSACTIONLOGS, errormessage:="", fields:=fields, successmessage:="", where:=where)
         End If
         With DataGridViewTRANSACTIONLOGS

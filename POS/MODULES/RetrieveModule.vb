@@ -460,16 +460,11 @@ Module RetrieveModule
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION(ByVal table As String, ByVal fields As String, ByVal successmessage As String, ByVal errormessage As String, ByRef datagrid As DataGridView)
         Try
-            dbconnection()
             sql = "SELECT " + fields + " FROM " + table
-            da = New MySqlDataAdapter(sql, localconn)
+            cmd = New MySqlCommand(sql, LocalhostConn)
+            da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
-            With cmd
-                .Connection = localconn
-                .CommandText = sql
-                .ExecuteNonQuery()
-            End With
             With datagrid
                 If DatasourceOrAdd = False Then
                     .DataSource = Nothing
@@ -481,7 +476,7 @@ Module RetrieveModule
                 .AllowUserToOrderColumns = False
                 .AllowUserToResizeColumns = False
                 .AllowUserToResizeRows = False
-                .Font = New Font("Kelson Sans Normal", 9)
+                .Font = New Font("Kelson Sans Normal", 10)
                 '.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 '.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
@@ -497,16 +492,11 @@ Module RetrieveModule
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION_WHERE(ByVal table As String, ByVal fields As String, ByVal where As String, ByVal successmessage As String, ByVal errormessage As String, ByRef datagrid As DataGridView)
         Try
-            dbconnection()
             sql = "SELECT " + fields + " FROM " + table + " WHERE " + where
-            da = New MySqlDataAdapter(sql, localconn)
+            cmd = New MySqlCommand(sql, LocalhostConn)
+            da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
-            With cmd
-                .Connection = localconn
-                .CommandText = sql
-                .ExecuteNonQuery()
-            End With
             With datagrid
                 .DataSource = Nothing
                 .DataSource = dt
@@ -516,7 +506,7 @@ Module RetrieveModule
                 .AllowUserToOrderColumns = False
                 .AllowUserToResizeColumns = False
                 .AllowUserToResizeRows = False
-                .Font = New Font("Kelson Sans Normal", 9)
+                .Font = New Font("Kelson Sans Normal", 10)
                 .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
                 .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
                 .SelectionMode = DataGridViewSelectionMode.FullRowSelect
@@ -530,16 +520,11 @@ Module RetrieveModule
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX(ByVal table As String, ByVal fields As String, ByVal successmessage As String, ByVal errormessage As String, ByRef combobox As ComboBox)
         Try
-            dbconnection()
             sql = "SELECT " + fields + " FROM " + table
-            da = New MySqlDataAdapter(sql, localconn)
+            cmd = New MySqlCommand(sql, LocalhostConn)
+            da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
-            With cmd
-                .Connection = localconn
-                .CommandText = sql
-                .ExecuteNonQuery()
-            End With
             With combobox
                 .DataSource = Nothing
                 .DataSource = dt
@@ -576,18 +561,13 @@ Module RetrieveModule
     'End Function
     Public Function GLOBAL_SELECT_FUNCTION_RETURN(ByVal table As String, ByVal fields As String, ByVal values As String, ByVal returnvalrow As String)
         Try
-            dbconnection()
             sql = "SELECT " + fields + " FROM " + table + " WHERE " + values
-            cmd = New MySqlCommand
-            With cmd
-                .CommandText = sql
-                .connection = localconn
-                Using readerObj As MySqlDataReader = cmd.ExecuteReader
-                    While readerObj.Read
-                        returnval = readerObj(returnvalrow).ToString
-                    End While
-                End Using
-            End With
+            cmd = New MySqlCommand(sql, LocalhostConn)
+            Using readerObj As MySqlDataReader = cmd.ExecuteReader
+                While readerObj.Read
+                    returnval = readerObj(returnvalrow).ToString
+                End While
+            End Using
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
@@ -599,9 +579,9 @@ Module RetrieveModule
     Dim returncount As String
     Public Function count(ByVal tocount As String, ByVal table As String)
         Try
-            dbconnection()
             sql = "SELECT COUNT(" & tocount & ") FROM " & table
-            da = New MySqlDataAdapter(sql, localconn)
+            cmd = New MySqlCommand(sql, LocalhostConn)
+            da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
             For Each row As DataRow In dt.Rows
@@ -615,9 +595,9 @@ Module RetrieveModule
     Dim returnsum
     Public Function sum(ByVal tototal As String, ByVal table As String)
         Try
-            dbconnection()
             sql = "SELECT SUM(" & tototal & ") FROM " & table
-            da = New MySqlDataAdapter(sql, localconn)
+            cmd = New MySqlCommand(sql, LocalhostConn)
+            da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
             If IsDBNull(dt.Rows(0)(0)) Then

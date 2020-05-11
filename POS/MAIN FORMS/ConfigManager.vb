@@ -232,7 +232,7 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Public Sub LoadConn()
+    Private Sub LoadConn()
         Try
             If My.Settings.LocalConnectionPath <> "" Then
                 If System.IO.File.Exists(My.Settings.LocalConnectionPath) Then
@@ -927,7 +927,9 @@ Public Class ConfigManager
     End Sub
     Private Sub BackgroundWorkerACTIVATION_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerACTIVATION.RunWorkerCompleted
         If ValidProductKey = True Then
-            MsgBox("Activated")
+            Dim message As Integer = MessageBox.Show("Successfully Registered. Your system will automatically reboot after pressing OK button.", "Activated", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Close()
+            Loading.Show()
         Else
             MsgBox("Invalid Product key")
         End If
@@ -1327,17 +1329,7 @@ Public Class ConfigManager
         End Try
     End Sub
 
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        GetCategories()
-        GetProducts()
-        GetInventory()
-        GetFormula()
-    End Sub
 
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        InsertToCategories()
-        InsertToFormula()
-        InsertToInventory()
-        InsertToProducts()
-    End Sub
+
+
 End Class

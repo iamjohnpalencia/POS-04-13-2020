@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Load
+Partial Class Loading
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class Load
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Load))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Loading))
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -123,7 +123,7 @@ Partial Class Load
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(385, 95)
+        Me.Panel1.Size = New System.Drawing.Size(660, 480)
         Me.Panel1.TabIndex = 21
         '
         'DataGridView4
@@ -460,9 +460,9 @@ Partial Class Load
         '
         Me.Panel23.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel23.Location = New System.Drawing.Point(0, 63)
+        Me.Panel23.Location = New System.Drawing.Point(0, 448)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(383, 10)
+        Me.Panel23.Size = New System.Drawing.Size(658, 10)
         Me.Panel23.TabIndex = 22
         '
         'Panel24
@@ -471,9 +471,9 @@ Partial Class Load
         Me.Panel24.Controls.Add(Me.Label4)
         Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel24.Location = New System.Drawing.Point(0, 73)
+        Me.Panel24.Location = New System.Drawing.Point(0, 458)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(383, 20)
+        Me.Panel24.Size = New System.Drawing.Size(658, 20)
         Me.Panel24.TabIndex = 21
         '
         'Label4
@@ -492,7 +492,7 @@ Partial Class Load
         '
         Me.Panel25.Controls.Add(Me.Label147)
         Me.Panel25.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel25.Location = New System.Drawing.Point(127, 0)
+        Me.Panel25.Location = New System.Drawing.Point(402, 0)
         Me.Panel25.Name = "Panel25"
         Me.Panel25.Size = New System.Drawing.Size(256, 20)
         Me.Panel25.TabIndex = 0
@@ -538,15 +538,15 @@ Partial Class Load
         Me.BackgroundWorker2.WorkerReportsProgress = True
         Me.BackgroundWorker2.WorkerSupportsCancellation = True
         '
-        'Load
+        'Loading
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(385, 95)
+        Me.ClientSize = New System.Drawing.Size(660, 480)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "Load"
+        Me.Name = "Loading"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Load"
         Me.Panel1.ResumeLayout(False)

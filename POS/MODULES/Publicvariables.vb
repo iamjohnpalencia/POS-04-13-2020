@@ -75,7 +75,7 @@ Module publicVariables
     Public S_SIFormat As String
     Public S_Terminal_No As String
     Public S_ZeroRated As String
-    Public S_Zreading As String
+    Public S_Zreading
     '=============================================================================================================
     'btn click refresh
     Public btnperformclick As Boolean = False

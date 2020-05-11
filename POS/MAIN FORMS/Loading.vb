@@ -1,7 +1,7 @@
 ﻿Imports System.Net
 Imports System.Threading
 Imports MySql.Data.MySqlClient
-Public Class Load
+Public Class Loading
     Inherits Form
     Dim strHostName As String
     Dim strIPAddress As String
@@ -139,7 +139,7 @@ Public Class Load
                     S_SIFormat = dt(0)(2)
                     S_Terminal_No = dt(0)(3)
                     S_ZeroRated = dt(0)(4)
-                    S_Zreading = dt(0)(4)
+                    S_Zreading = dt(0)(5)
                 End If
             End If
         Catch ex As Exception
@@ -480,6 +480,24 @@ Public Class Load
                         CategoryDTUpdate.Rows.Add(Category)
                     End If
                 Next
+                Dim sql2 = "SELECT `category_id`, `category_name`, `brand_name`, `updated_at`, `origin`, `status` FROM admin_category WHERE category_id NOT IN (" & Ids & ")"
+                cmdserver = New MySqlCommand(sql2, ServerCloudCon())
+                daserver = New MySqlDataAdapter(cmdserver)
+                dtserver = New DataTable
+                daserver.Fill(dtserver)
+                For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                    If returndateformatfulldate(LoadCategoryLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(3)) Then
+                        DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5))
+                        Dim Category As DataRow = CategoryDTUpdate.NewRow
+                        Category("category_id") = dtserver(i)(0)
+                        Category("category_name") = dtserver(i)(1)
+                        Category("brand_name") = dtserver(i)(2)
+                        Category("updated_at") = dtserver(i)(3)
+                        Category("origin") = dtserver(i)(4)
+                        Category("status") = dtserver(i)(5)
+                        CategoryDTUpdate.Rows.Add(Category)
+                    End If
+                Next
             End If
         Catch ex As Exception
             'If table doesnt have data
@@ -550,6 +568,30 @@ Public Class Load
                         ProductDTUpdate.Rows.Add(Product)
                     End If
                 Next
+                Dim sql2 = "SELECT `product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified` FROM admin_products_org WHERE product_id NOT IN (" & Ids & ")"
+                cmdserver = New MySqlCommand(sql2, ServerCloudCon())
+                daserver = New MySqlDataAdapter(cmdserver)
+                dtserver = New DataTable
+                daserver.Fill(dtserver)
+                For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                    If returndateformatfulldate(LoadProductLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(11)) Then
+                        DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11))
+                        Dim Product As DataRow = ProductDTUpdate.NewRow
+                        Product("product_id") = dtserver(i)(0)
+                        Product("product_sku") = dtserver(i)(1)
+                        Product("product_name") = dtserver(i)(2)
+                        Product("formula_id") = dtserver(i)(3)
+                        Product("product_barcode") = dtserver(i)(4)
+                        Product("product_category") = dtserver(i)(5)
+                        Product("product_price") = dtserver(i)(6)
+                        Product("product_desc") = dtserver(i)(7)
+                        Product("product_image") = dtserver(i)(8)
+                        Product("product_status") = dtserver(i)(9)
+                        Product("origin") = dtserver(i)(10)
+                        Product("date_modified") = dtserver(i)(11)
+                        ProductDTUpdate.Rows.Add(Product)
+                    End If
+                Next
             End If
         Catch ex As Exception
             'If table doesnt have data
@@ -586,8 +628,32 @@ Public Class Load
                 Dim daserver As MySqlDataAdapter
                 Dim dtserver As DataTable
                 Dim sql = "SELECT `formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE formula_id  IN (" & Ids & ") "
-
                 cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                daserver = New MySqlDataAdapter(cmdserver)
+                dtserver = New DataTable
+                daserver.Fill(dtserver)
+                For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                    If returndateformatfulldate(LoadFormulaLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(10)) Then
+                        DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11), dtserver(i)(12))
+                        Dim Formula As DataRow = FormulaDTUpdate.NewRow
+                        Formula("formula_id") = dtserver(i)(0)
+                        Formula("product_ingredients") = dtserver(i)(1)
+                        Formula("primary_unit") = dtserver(i)(2)
+                        Formula("primary_value") = dtserver(i)(3)
+                        Formula("secondary_unit") = dtserver(i)(4)
+                        Formula("secondary_value") = dtserver(i)(5)
+                        Formula("serving_unit") = dtserver(i)(6)
+                        Formula("serving_value") = dtserver(i)(7)
+                        Formula("no_servings") = dtserver(i)(8)
+                        Formula("status") = dtserver(i)(9)
+                        Formula("date_modified") = dtserver(i)(10)
+                        Formula("unit_cost") = dtserver(i)(11)
+                        Formula("origin") = dtserver(i)(12)
+                        FormulaDTUpdate.Rows.Add(Formula)
+                    End If
+                Next
+                Dim sql2 = "SELECT `formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE formula_id NOT IN (" & Ids & ") "
+                cmdserver = New MySqlCommand(sql2, ServerCloudCon())
                 daserver = New MySqlDataAdapter(cmdserver)
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
@@ -642,6 +708,27 @@ Public Class Load
                 Dim dtserver As DataTable
                 Dim sql = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified` FROM admin_pos_inventory_org WHERE inventory_id IN (" & Ids & ")"
                 cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                daserver = New MySqlDataAdapter(cmdserver)
+                dtserver = New DataTable
+                daserver.Fill(dtserver)
+                For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                    If returndateformatfulldate(LoadInventoryLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(8)) Then
+                        DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8))
+                        Dim Inventory As DataRow = InventoryDTUpdate.NewRow
+                        Inventory("inventory_id") = dtserver(i)(0)
+                        Inventory("formula_id") = dtserver(i)(1)
+                        Inventory("product_ingredients") = dtserver(i)(2)
+                        Inventory("sku") = dtserver(i)(3)
+                        Inventory("stock_quantity") = dtserver(i)(4)
+                        Inventory("stock_total") = dtserver(i)(5)
+                        Inventory("stock_status") = dtserver(i)(6)
+                        Inventory("critical_limit") = dtserver(i)(7)
+                        Inventory("date_modified") = dtserver(i)(8)
+                        InventoryDTUpdate.Rows.Add(Inventory)
+                    End If
+                Next
+                Dim sql2 = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified` FROM admin_pos_inventory_org WHERE inventory_id NOT IN (" & Ids & ")"
+                cmdserver = New MySqlCommand(sql2, ServerCloudCon())
                 daserver = New MySqlDataAdapter(cmdserver)
                 dtserver = New DataTable
                 daserver.Fill(dtserver)

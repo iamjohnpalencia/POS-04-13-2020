@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2020 at 07:37 AM
+-- Generation Time: May 10, 2020 at 08:27 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `pos`
 --
+CREATE DATABASE IF NOT EXISTS `pos` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `pos`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin_coupon`
 --
 
+DROP TABLE IF EXISTS `admin_coupon`;
 CREATE TABLE `admin_coupon` (
   `coupon_id` int(11) NOT NULL,
   `coupon_code` varchar(10) NOT NULL,
@@ -42,12 +45,18 @@ CREATE TABLE `admin_coupon` (
   `active` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `admin_coupon`
+--
+
+TRUNCATE TABLE `admin_coupon`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `admin_masterlist`
 --
 
+DROP TABLE IF EXISTS `admin_masterlist`;
 CREATE TABLE `admin_masterlist` (
   `masterlist_id` int(11) NOT NULL,
   `masterlist_username` varchar(255) NOT NULL,
@@ -61,12 +70,23 @@ CREATE TABLE `admin_masterlist` (
   `client_store_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `admin_masterlist`
+--
+
+TRUNCATE TABLE `admin_masterlist`;
+--
+-- Dumping data for table `admin_masterlist`
+--
+
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `admin_outlets`
 --
 
+DROP TABLE IF EXISTS `admin_outlets`;
 CREATE TABLE `admin_outlets` (
   `loc_store_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
@@ -90,12 +110,22 @@ CREATE TABLE `admin_outlets` (
   `PTUN` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `admin_outlets`
+--
+
+TRUNCATE TABLE `admin_outlets`;
+--
+-- Dumping data for table `admin_outlets`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_admin_category`
 --
 
+DROP TABLE IF EXISTS `loc_admin_category`;
 CREATE TABLE `loc_admin_category` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(50) NOT NULL,
@@ -105,12 +135,23 @@ CREATE TABLE `loc_admin_category` (
   `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_admin_category`
+--
+
+TRUNCATE TABLE `loc_admin_category`;
+--
+-- Dumping data for table `loc_admin_category`
+--
+
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_admin_products`
 --
 
+DROP TABLE IF EXISTS `loc_admin_products`;
 CREATE TABLE `loc_admin_products` (
   `product_id` int(11) NOT NULL,
   `product_sku` varchar(50) NOT NULL,
@@ -131,12 +172,22 @@ CREATE TABLE `loc_admin_products` (
   `server_product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_admin_products`
+--
+
+TRUNCATE TABLE `loc_admin_products`;
+--
+-- Dumping data for table `loc_admin_products`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_daily_transaction`
 --
 
+DROP TABLE IF EXISTS `loc_daily_transaction`;
 CREATE TABLE `loc_daily_transaction` (
   `transaction_id` int(11) NOT NULL,
   `transaction_number` varchar(255) NOT NULL,
@@ -162,12 +213,22 @@ CREATE TABLE `loc_daily_transaction` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_daily_transaction`
+--
+
+TRUNCATE TABLE `loc_daily_transaction`;
+--
+-- Dumping data for table `loc_daily_transaction`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_daily_transaction_details`
 --
 
+DROP TABLE IF EXISTS `loc_daily_transaction_details`;
 CREATE TABLE `loc_daily_transaction_details` (
   `details_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -189,12 +250,22 @@ CREATE TABLE `loc_daily_transaction_details` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_daily_transaction_details`
+--
+
+TRUNCATE TABLE `loc_daily_transaction_details`;
+--
+-- Dumping data for table `loc_daily_transaction_details`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_deposit`
 --
 
+DROP TABLE IF EXISTS `loc_deposit`;
 CREATE TABLE `loc_deposit` (
   `dep_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -209,12 +280,18 @@ CREATE TABLE `loc_deposit` (
   `synced` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_deposit`
+--
+
+TRUNCATE TABLE `loc_deposit`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_expenses_hold`
 --
 
+DROP TABLE IF EXISTS `loc_expenses_hold`;
 CREATE TABLE `loc_expenses_hold` (
   `expense_id` int(11) NOT NULL,
   `expense_type` varchar(50) NOT NULL,
@@ -231,12 +308,18 @@ CREATE TABLE `loc_expenses_hold` (
   `active` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_expenses_hold`
+--
+
+TRUNCATE TABLE `loc_expenses_hold`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_expense_details`
 --
 
+DROP TABLE IF EXISTS `loc_expense_details`;
 CREATE TABLE `loc_expense_details` (
   `expense_id` int(11) NOT NULL,
   `expense_number` varchar(255) NOT NULL,
@@ -256,12 +339,18 @@ CREATE TABLE `loc_expense_details` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_expense_details`
+--
+
+TRUNCATE TABLE `loc_expense_details`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_expense_list`
 --
 
+DROP TABLE IF EXISTS `loc_expense_list`;
 CREATE TABLE `loc_expense_list` (
   `expense_id` int(11) NOT NULL,
   `crew_id` varchar(50) NOT NULL,
@@ -278,12 +367,18 @@ CREATE TABLE `loc_expense_list` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_expense_list`
+--
+
+TRUNCATE TABLE `loc_expense_list`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_fm_stock`
 --
 
+DROP TABLE IF EXISTS `loc_fm_stock`;
 CREATE TABLE `loc_fm_stock` (
   `fm_id` int(11) NOT NULL,
   `formula_id` varchar(255) NOT NULL,
@@ -297,12 +392,22 @@ CREATE TABLE `loc_fm_stock` (
   `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_fm_stock`
+--
+
+TRUNCATE TABLE `loc_fm_stock`;
+--
+-- Dumping data for table `loc_fm_stock`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_hold_inventory`
 --
 
+DROP TABLE IF EXISTS `loc_hold_inventory`;
 CREATE TABLE `loc_hold_inventory` (
   `hold_id` int(255) NOT NULL,
   `sr_total` int(255) NOT NULL,
@@ -317,12 +422,18 @@ CREATE TABLE `loc_hold_inventory` (
   `prd.addid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_hold_inventory`
+--
+
+TRUNCATE TABLE `loc_hold_inventory`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_inbox_messages`
 --
 
+DROP TABLE IF EXISTS `loc_inbox_messages`;
 CREATE TABLE `loc_inbox_messages` (
   `inbox_id` int(11) NOT NULL,
   `crew_id` int(11) NOT NULL,
@@ -333,12 +444,18 @@ CREATE TABLE `loc_inbox_messages` (
   `active` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_inbox_messages`
+--
+
+TRUNCATE TABLE `loc_inbox_messages`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_inv_temp_data`
 --
 
+DROP TABLE IF EXISTS `loc_inv_temp_data`;
 CREATE TABLE `loc_inv_temp_data` (
   `inventory_id` int(11) NOT NULL,
   `store_id` varchar(11) NOT NULL,
@@ -355,38 +472,13 @@ CREATE TABLE `loc_inv_temp_data` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_inv_temp_data`
+-- Truncate table before insert `loc_inv_temp_data`
 --
 
-INSERT INTO `loc_inv_temp_data` (`inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `guid`, `date_modified`, `date_created`) VALUES
-(1, '15', 1, 'Famous Mix', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(2, '15', 2, 'Famous Batter', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(3, '15', 3, 'Chocolate', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(4, '15', 4, 'Peanut Butter', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(5, '15', 5, 'Hazelnut', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(6, '15', 6, 'Custard', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(7, '15', 7, 'Caramel', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(8, '15', 8, 'Maple Syrup', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(9, '15', 9, 'Blueberry', '', 0, 0, 1, 21, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:42:58', '2020-05-01'),
-(10, '15', 10, 'Strawberry', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(11, '15', 11, 'Mango Peach', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(12, '15', 12, 'Cream Cheese', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(13, '15', 13, 'Cheddar Cheese', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(14, '15', 14, 'Regular Ham', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(15, '15', 15, 'Chicken Ham', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(16, '15', 16, 'Garlic Dip Mix', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(17, '15', 17, 'Vegetable Oil (Health Plus)', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(18, '15', 18, 'Famous Blends Coffee', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(19, '15', 19, 'Chekhup Choco Drink Mix', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(20, '15', 20, 'Famous Sugar Syrup', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(21, '15', 21, 'French Butter', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(22, '15', 22, 'Famous Iced Mix (200g)', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(23, '15', 23, 'Famous Iced Mix (100g)', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(24, '15', 24, 'Famous Iced Mix (50g)', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(25, '15', 25, 'Famous Iced Tea (200g) ', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(26, '15', 26, 'Famous Iced Tea (100g) ', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(27, '15', 27, 'Famous Iced Tea (50g) ', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01'),
-(28, '15', 28, 'Coffee Beans (80g)', '', 0, 0, 1, 20, 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '2020-04-29 02:16:42', '2020-05-01');
+TRUNCATE TABLE `loc_inv_temp_data`;
+--
+-- Dumping data for table `loc_inv_temp_data`
+--
 
 -- --------------------------------------------------------
 
@@ -394,6 +486,7 @@ INSERT INTO `loc_inv_temp_data` (`inventory_id`, `store_id`, `formula_id`, `prod
 -- Table structure for table `loc_partners_transaction`
 --
 
+DROP TABLE IF EXISTS `loc_partners_transaction`;
 CREATE TABLE `loc_partners_transaction` (
   `id` int(11) NOT NULL,
   `arrid` int(11) NOT NULL,
@@ -406,6 +499,11 @@ CREATE TABLE `loc_partners_transaction` (
   `synced` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_partners_transaction`
+--
+
+TRUNCATE TABLE `loc_partners_transaction`;
 --
 -- Dumping data for table `loc_partners_transaction`
 --
@@ -423,6 +521,7 @@ INSERT INTO `loc_partners_transaction` (`id`, `arrid`, `bankname`, `date_modifie
 -- Table structure for table `loc_pending_orders`
 --
 
+DROP TABLE IF EXISTS `loc_pending_orders`;
 CREATE TABLE `loc_pending_orders` (
   `order_id` int(11) NOT NULL,
   `crew_id` varchar(50) NOT NULL,
@@ -441,12 +540,18 @@ CREATE TABLE `loc_pending_orders` (
   `increment` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_pending_orders`
+--
+
+TRUNCATE TABLE `loc_pending_orders`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_pos_inventory`
 --
 
+DROP TABLE IF EXISTS `loc_pos_inventory`;
 CREATE TABLE `loc_pos_inventory` (
   `inventory_id` int(11) NOT NULL,
   `store_id` varchar(11) NOT NULL,
@@ -465,12 +570,22 @@ CREATE TABLE `loc_pos_inventory` (
   `server_inventory_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_pos_inventory`
+--
+
+TRUNCATE TABLE `loc_pos_inventory`;
+--
+-- Dumping data for table `loc_pos_inventory`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_product_formula`
 --
 
+DROP TABLE IF EXISTS `loc_product_formula`;
 CREATE TABLE `loc_product_formula` (
   `formula_id` int(11) NOT NULL,
   `product_ingredients` varchar(255) NOT NULL,
@@ -492,12 +607,22 @@ CREATE TABLE `loc_product_formula` (
   `server_date_modified` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_product_formula`
+--
+
+TRUNCATE TABLE `loc_product_formula`;
+--
+-- Dumping data for table `loc_product_formula`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_promo_coupon_list`
 --
 
+DROP TABLE IF EXISTS `loc_promo_coupon_list`;
 CREATE TABLE `loc_promo_coupon_list` (
   `coupon_id` int(11) NOT NULL,
   `coupon_code` varchar(10) NOT NULL,
@@ -518,12 +643,18 @@ CREATE TABLE `loc_promo_coupon_list` (
   `created_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_promo_coupon_list`
+--
+
+TRUNCATE TABLE `loc_promo_coupon_list`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_refund_return_details`
 --
 
+DROP TABLE IF EXISTS `loc_refund_return_details`;
 CREATE TABLE `loc_refund_return_details` (
   `refret_id` int(11) NOT NULL,
   `transaction_number` varchar(255) NOT NULL,
@@ -538,12 +669,18 @@ CREATE TABLE `loc_refund_return_details` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_refund_return_details`
+--
+
+TRUNCATE TABLE `loc_refund_return_details`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_settings`
 --
 
+DROP TABLE IF EXISTS `loc_settings`;
 CREATE TABLE `loc_settings` (
   `settings_id` int(11) NOT NULL,
   `C_Server` varchar(255) NOT NULL,
@@ -569,11 +706,13 @@ CREATE TABLE `loc_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_settings`
+-- Truncate table before insert `loc_settings`
 --
 
-INSERT INTO `loc_settings` (`settings_id`, `C_Server`, `C_Username`, `C_Password`, `C_Database`, `C_Port`, `A_Export_Path`, `A_Tax`, `A_SIFormat`, `A_Terminal_No`, `A_ZeroRated`, `Dev_Company_Name`, `Dev_Address`, `Dev_Tin`, `Dev_Accr_No`, `Dev_Accr_Date_Issued`, `Dev_Accr_Valid_Until`, `Dev_PTU_No`, `Dev_PTU_Date_Issued`, `Dev_PTU_Valid_Until`, `S_Zreading`) VALUES
-(1, 'Z2F0b3IzMjE4Lmhvc3RnYXRvci5jb20=', 'am9obnBhbGVfdGVzdHVzZQ==', 'cGFzc3dvcmQyMDE5', 'am9obnBhbGVfcG9zdGVzdA==', 'MzMwNg==', 'QzpcVXNlcnNcSmF5IFJleWVzXERvY3VtZW50c1xJbm5vdmVudGlvbg==', '0.12', '0000000000', '1', '0', 'aiolosinnovativesolutions', 'Magnitude', '0000-0000-0000-0000', '0000-0000-0000-0000', '2020-05-07', '2020-05-07', '0000-0000-0000-0000', '2020-05-07', '2020-05-07', '2020-05-07');
+TRUNCATE TABLE `loc_settings`;
+--
+-- Dumping data for table `loc_settings`
+--
 
 -- --------------------------------------------------------
 
@@ -581,6 +720,7 @@ INSERT INTO `loc_settings` (`settings_id`, `C_Server`, `C_Username`, `C_Password
 -- Table structure for table `loc_system_logs`
 --
 
+DROP TABLE IF EXISTS `loc_system_logs`;
 CREATE TABLE `loc_system_logs` (
   `crew_id` varchar(50) NOT NULL,
   `log_type` varchar(255) NOT NULL,
@@ -588,82 +728,18 @@ CREATE TABLE `loc_system_logs` (
   `log_date_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `log_store` varchar(20) NOT NULL,
   `guid` varchar(255) NOT NULL,
-  `ip_address` varchar(255) NOT NULL,
   `loc_systemlog_id` varchar(255) NOT NULL,
-  `zreading` date NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_system_logs`
+-- Truncate table before insert `loc_system_logs`
 --
 
-INSERT INTO `loc_system_logs` (`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `ip_address`, `loc_systemlog_id`, `zreading`, `synced`) VALUES
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 10:29:06', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200507-182906', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 10:29:09', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200507-182909', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:07:11', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-010711', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:09:57', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-010957', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:12:55', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011255', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 17:13:01', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011301', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:16:44', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011644', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:17:12', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011712', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 17:17:16', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011716', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:18:04', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011804', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 17:18:06', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-011806', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:44:37', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-014437', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 17:44:40', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-014440', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:48:33', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-014833', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 17:48:37', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-014837', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:58:36', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-015836', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 17:58:41', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-015841', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 17:59:39', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-015939', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 17:59:42', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-015942', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOG OUT', 'User Logout: Jay Reyes', '2020-05-07 17:59:56', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-015956', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'END-1', '0', '2020-05-07 17:59:56', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-015956', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:00:10', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-020010', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'MENU FORM', 'Accessed by :Jay Reyes : Head Crew', '2020-05-07 18:00:21', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-020021', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:04:29', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-020429', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:04:33', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-020433', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:15:50', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-021550', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:15:53', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-021553', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:16:38', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-021638', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:16:48', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-021648', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:17:32', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-021732', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:20:02', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022002', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:20:07', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022007', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:22:06', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022206', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:22:09', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022209', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:28:31', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022831', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:28:35', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022835', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:29:32', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022932', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:29:36', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-022936', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:30:49', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-023049', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:30:56', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-023056', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:34:51', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-023451', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:34:55', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-023455', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOG OUT', 'User Logout: Jay Reyes', '2020-05-07 18:34:59', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-023459', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'END-1', '0', '2020-05-07 18:34:59', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-023459', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:40:29', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-024029', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:42:59', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-024259', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:43:02', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-024302', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:53:39', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025339', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:53:44', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025344', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:54:25', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025425', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:54:28', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025428', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:56:04', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025604', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:56:07', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025607', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'MENU FORM', 'Accessed by :Jay Reyes : Head Crew', '2020-05-07 18:56:32', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025632', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 18:58:15', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025815', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 18:58:17', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-025817', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 19:00:04', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030004', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 19:00:09', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030009', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 19:01:21', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030121', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 19:01:24', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030124', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOGIN', 'User Login: jj : Head Crew', '2020-05-07 19:02:20', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030220', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'BG-1', '0', '2020-05-07 19:02:22', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030222', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'MENU FORM', 'Accessed by :Jay Reyes : Head Crew', '2020-05-07 19:02:25', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030225', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'LOG OUT', 'User Logout: Jay Reyes', '2020-05-07 19:02:33', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030233', '0000-00-00', 'Unsynced'),
-('FBW15-4163', 'END-1', '0', '2020-05-07 19:02:33', '15', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '', '20200508-030233', '0000-00-00', 'Unsynced');
+TRUNCATE TABLE `loc_system_logs`;
+--
+-- Dumping data for table `loc_system_logs`
+--
 
 -- --------------------------------------------------------
 
@@ -671,6 +747,7 @@ INSERT INTO `loc_system_logs` (`crew_id`, `log_type`, `log_description`, `log_da
 -- Table structure for table `loc_transaction_mode_details`
 --
 
+DROP TABLE IF EXISTS `loc_transaction_mode_details`;
 CREATE TABLE `loc_transaction_mode_details` (
   `mode_id` int(11) NOT NULL,
   `transaction_type` varchar(255) NOT NULL,
@@ -685,24 +762,36 @@ CREATE TABLE `loc_transaction_mode_details` (
   `synced` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_transaction_mode_details`
+--
+
+TRUNCATE TABLE `loc_transaction_mode_details`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_updates`
 --
 
+DROP TABLE IF EXISTS `loc_updates`;
 CREATE TABLE `loc_updates` (
   `up_id` int(11) NOT NULL,
   `up_version` varchar(255) NOT NULL,
   `up_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Truncate table before insert `loc_updates`
+--
+
+TRUNCATE TABLE `loc_updates`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loc_users`
 --
 
+DROP TABLE IF EXISTS `loc_users`;
 CREATE TABLE `loc_users` (
   `user_id` int(11) NOT NULL,
   `user_level` varchar(100) NOT NULL,
@@ -722,12 +811,22 @@ CREATE TABLE `loc_users` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_users`
+--
+
+TRUNCATE TABLE `loc_users`;
+--
+-- Dumping data for table `loc_users`
+--
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `tbcoupon`
 --
 
+DROP TABLE IF EXISTS `tbcoupon`;
 CREATE TABLE `tbcoupon` (
   `ID` int(11) NOT NULL,
   `Couponname_` text NOT NULL,
@@ -743,6 +842,11 @@ CREATE TABLE `tbcoupon` (
   `Expirydate` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Truncate table before insert `tbcoupon`
+--
+
+TRUNCATE TABLE `tbcoupon`;
 --
 -- Dumping data for table `tbcoupon`
 --
@@ -762,6 +866,7 @@ INSERT INTO `tbcoupon` (`ID`, `Couponname_`, `Desc_`, `Discountvalue_`, `Referen
 -- Table structure for table `testcoupon`
 --
 
+DROP TABLE IF EXISTS `testcoupon`;
 CREATE TABLE `testcoupon` (
   `coupon_id` int(11) NOT NULL,
   `coupon_type` varchar(255) NOT NULL,
@@ -770,12 +875,18 @@ CREATE TABLE `testcoupon` (
   `coupon_disc_val` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Truncate table before insert `testcoupon`
+--
+
+TRUNCATE TABLE `testcoupon`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `triggers_loc_admin_products`
 --
 
+DROP TABLE IF EXISTS `triggers_loc_admin_products`;
 CREATE TABLE `triggers_loc_admin_products` (
   `product_id` int(11) NOT NULL,
   `product_sku` varchar(50) NOT NULL,
@@ -797,8 +908,14 @@ CREATE TABLE `triggers_loc_admin_products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `triggers_loc_admin_products`
+--
+
+TRUNCATE TABLE `triggers_loc_admin_products`;
+--
 -- Triggers `triggers_loc_admin_products`
 --
+DROP TRIGGER IF EXISTS `Copy_To_Loc_admin_products`;
 DELIMITER $$
 CREATE TRIGGER `Copy_To_Loc_admin_products` AFTER INSERT ON `triggers_loc_admin_products` FOR EACH ROW INSERT INTO loc_admin_products(`product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `ip_address`, `store_id`, `crew_id`, `synced`)
 SELECT `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `ip_address`, `store_id`, `crew_id`, `synced`
@@ -815,6 +932,7 @@ DELIMITER ;
 -- Table structure for table `triggers_loc_users`
 --
 
+DROP TABLE IF EXISTS `triggers_loc_users`;
 CREATE TABLE `triggers_loc_users` (
   `user_id` int(11) NOT NULL,
   `user_level` varchar(100) NOT NULL,
@@ -835,8 +953,18 @@ CREATE TABLE `triggers_loc_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `triggers_loc_users`
+--
+
+TRUNCATE TABLE `triggers_loc_users`;
+--
+-- Dumping data for table `triggers_loc_users`
+--
+
+--
 -- Triggers `triggers_loc_users`
 --
+DROP TRIGGER IF EXISTS `Copy_To_Loc_Users`;
 DELIMITER $$
 CREATE TRIGGER `Copy_To_Loc_Users` AFTER INSERT ON `triggers_loc_users` FOR EACH ROW INSERT INTO loc_users(`user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `created_at`, `updated_at`, `active`, `guid`, `store_id`, `uniq_id`)
 SELECT `user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `created_at`, `updated_at`, `active`, `guid`, `store_id`, `uniq_id`
@@ -1039,37 +1167,37 @@ ALTER TABLE `admin_coupon`
 -- AUTO_INCREMENT for table `admin_masterlist`
 --
 ALTER TABLE `admin_masterlist`
-  MODIFY `masterlist_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `masterlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `admin_outlets`
 --
 ALTER TABLE `admin_outlets`
-  MODIFY `loc_store_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `loc_store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `loc_admin_category`
 --
 ALTER TABLE `loc_admin_category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `loc_admin_products`
 --
 ALTER TABLE `loc_admin_products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `loc_daily_transaction`
 --
 ALTER TABLE `loc_daily_transaction`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `loc_daily_transaction_details`
 --
 ALTER TABLE `loc_daily_transaction_details`
-  MODIFY `details_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `loc_deposit`
@@ -1099,7 +1227,7 @@ ALTER TABLE `loc_expense_list`
 -- AUTO_INCREMENT for table `loc_fm_stock`
 --
 ALTER TABLE `loc_fm_stock`
-  MODIFY `fm_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `fm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `loc_hold_inventory`
@@ -1117,7 +1245,7 @@ ALTER TABLE `loc_inbox_messages`
 -- AUTO_INCREMENT for table `loc_inv_temp_data`
 --
 ALTER TABLE `loc_inv_temp_data`
-  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `loc_partners_transaction`
@@ -1135,13 +1263,13 @@ ALTER TABLE `loc_pending_orders`
 -- AUTO_INCREMENT for table `loc_pos_inventory`
 --
 ALTER TABLE `loc_pos_inventory`
-  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `loc_product_formula`
 --
 ALTER TABLE `loc_product_formula`
-  MODIFY `formula_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `formula_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `loc_promo_coupon_list`
@@ -1177,7 +1305,7 @@ ALTER TABLE `loc_updates`
 -- AUTO_INCREMENT for table `loc_users`
 --
 ALTER TABLE `loc_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbcoupon`
@@ -1201,7 +1329,7 @@ ALTER TABLE `triggers_loc_admin_products`
 -- AUTO_INCREMENT for table `triggers_loc_users`
 --
 ALTER TABLE `triggers_loc_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

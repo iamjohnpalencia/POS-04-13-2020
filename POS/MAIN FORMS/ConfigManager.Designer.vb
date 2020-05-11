@@ -197,8 +197,6 @@ Partial Class ConfigManager
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
         Me.DataGridViewCATEGORIES = New System.Windows.Forms.DataGridView()
         Me.DataGridViewFORMULA = New System.Windows.Forms.DataGridView()
         Me.DataGridViewPRODUCTS = New System.Windows.Forms.DataGridView()
@@ -2270,36 +2268,16 @@ Partial Class ConfigManager
         '
         'GroupBox14
         '
-        Me.GroupBox14.Controls.Add(Me.Button8)
-        Me.GroupBox14.Controls.Add(Me.Button7)
         Me.GroupBox14.Controls.Add(Me.DataGridViewCATEGORIES)
         Me.GroupBox14.Controls.Add(Me.DataGridViewFORMULA)
         Me.GroupBox14.Controls.Add(Me.DataGridViewPRODUCTS)
         Me.GroupBox14.Controls.Add(Me.DataGridViewINVENTORY)
-        Me.GroupBox14.Location = New System.Drawing.Point(429, 79)
+        Me.GroupBox14.Location = New System.Drawing.Point(429, 67)
         Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Size = New System.Drawing.Size(590, 455)
+        Me.GroupBox14.Size = New System.Drawing.Size(590, 467)
         Me.GroupBox14.TabIndex = 40
         Me.GroupBox14.TabStop = False
-        Me.GroupBox14.Text = "GroupBox14"
-        '
-        'Button8
-        '
-        Me.Button8.Location = New System.Drawing.Point(413, 47)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(138, 25)
-        Me.Button8.TabIndex = 70
-        Me.Button8.Text = "Activate"
-        Me.Button8.UseVisualStyleBackColor = True
-        '
-        'Button7
-        '
-        Me.Button7.Location = New System.Drawing.Point(35, 47)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(372, 25)
-        Me.Button7.TabIndex = 69
-        Me.Button7.Text = "Activate"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.GroupBox14.Text = "Data"
         '
         'DataGridViewCATEGORIES
         '
@@ -2308,9 +2286,9 @@ Partial Class ConfigManager
         Me.DataGridViewCATEGORIES.AllowUserToResizeColumns = False
         Me.DataGridViewCATEGORIES.AllowUserToResizeRows = False
         Me.DataGridViewCATEGORIES.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewCATEGORIES.Location = New System.Drawing.Point(35, 375)
+        Me.DataGridViewCATEGORIES.Location = New System.Drawing.Point(6, 317)
         Me.DataGridViewCATEGORIES.Name = "DataGridViewCATEGORIES"
-        Me.DataGridViewCATEGORIES.Size = New System.Drawing.Size(432, 66)
+        Me.DataGridViewCATEGORIES.Size = New System.Drawing.Size(578, 66)
         Me.DataGridViewCATEGORIES.TabIndex = 65
         '
         'DataGridViewFORMULA
@@ -2320,9 +2298,9 @@ Partial Class ConfigManager
         Me.DataGridViewFORMULA.AllowUserToResizeColumns = False
         Me.DataGridViewFORMULA.AllowUserToResizeRows = False
         Me.DataGridViewFORMULA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewFORMULA.Location = New System.Drawing.Point(35, 276)
+        Me.DataGridViewFORMULA.Location = New System.Drawing.Point(6, 218)
         Me.DataGridViewFORMULA.Name = "DataGridViewFORMULA"
-        Me.DataGridViewFORMULA.Size = New System.Drawing.Size(435, 93)
+        Me.DataGridViewFORMULA.Size = New System.Drawing.Size(578, 93)
         Me.DataGridViewFORMULA.TabIndex = 68
         '
         'DataGridViewPRODUCTS
@@ -2332,9 +2310,9 @@ Partial Class ConfigManager
         Me.DataGridViewPRODUCTS.AllowUserToResizeColumns = False
         Me.DataGridViewPRODUCTS.AllowUserToResizeRows = False
         Me.DataGridViewPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewPRODUCTS.Location = New System.Drawing.Point(35, 183)
+        Me.DataGridViewPRODUCTS.Location = New System.Drawing.Point(6, 125)
         Me.DataGridViewPRODUCTS.Name = "DataGridViewPRODUCTS"
-        Me.DataGridViewPRODUCTS.Size = New System.Drawing.Size(435, 87)
+        Me.DataGridViewPRODUCTS.Size = New System.Drawing.Size(578, 87)
         Me.DataGridViewPRODUCTS.TabIndex = 66
         '
         'DataGridViewINVENTORY
@@ -2344,9 +2322,9 @@ Partial Class ConfigManager
         Me.DataGridViewINVENTORY.AllowUserToResizeColumns = False
         Me.DataGridViewINVENTORY.AllowUserToResizeRows = False
         Me.DataGridViewINVENTORY.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewINVENTORY.Location = New System.Drawing.Point(32, 84)
+        Me.DataGridViewINVENTORY.Location = New System.Drawing.Point(6, 26)
         Me.DataGridViewINVENTORY.Name = "DataGridViewINVENTORY"
-        Me.DataGridViewINVENTORY.Size = New System.Drawing.Size(435, 93)
+        Me.DataGridViewINVENTORY.Size = New System.Drawing.Size(578, 93)
         Me.DataGridViewINVENTORY.TabIndex = 67
         '
         'GroupBox13
@@ -2923,6 +2901,4 @@ Partial Class ConfigManager
     Friend WithEvents BackgroundWorker5 As System.ComponentModel.BackgroundWorker
     Friend WithEvents ButtonSaveLocConn As Button
     Friend WithEvents BackgroundWorkerABTDB As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button8 As Button
 End Class

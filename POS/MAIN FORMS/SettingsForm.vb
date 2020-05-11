@@ -11,10 +11,12 @@ Public Class SettingsForm
         TabControl1.TabPages(3).Text = "Item Refund"
         TabControl1.TabPages(4).Text = "Coupon Settings"
         TabControl1.TabPages(5).Text = "Updates"
-
         TabControl2.TabPages(0).Text = "Connection Settings"
         TabControl2.TabPages(1).Text = "Additional Settings"
-
+        LoadConn()
+        LoadCloudConn()
+        LoadAdditionalSettings()
+        LoadDevInfo()
         'TextBoxLocalSchema.Text = My.Settings.localname
         'TextBoxLocalPort.Text = My.Settings.localport
         'TextBoxLocalUsername.Text = My.Settings.localuser
@@ -380,9 +382,210 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Private Sub LoadConn()
+        Try
+            If My.Settings.LocalConnectionPath <> "" Then
+                If System.IO.File.Exists(My.Settings.LocalConnectionPath) Then
+                    'The File exists 
+                    Dim CreateConnString As String = ""
+                    Dim filename As String = String.Empty
+                    Dim TextLine As String = ""
+                    Dim objReader As New System.IO.StreamReader(My.Settings.LocalConnectionPath)
+                    Dim lineCount As Integer
+                    Do While objReader.Peek() <> -1
+                        TextLine = objReader.ReadLine()
+                        If lineCount = 0 Then
+                            TextBoxLocalServer.Text = ConvertB64ToString(RemoveCharacter(TextLine, "server="))
+                        End If
+                        If lineCount = 1 Then
+                            TextBoxLocalUsername.Text = ConvertB64ToString(RemoveCharacter(TextLine, "user id="))
+                        End If
+                        If lineCount = 2 Then
+                            TextBoxLocalPassword.Text = ConvertB64ToString(RemoveCharacter(TextLine, "password="))
+                        End If
+                        If lineCount = 3 Then
+                            TextBoxLocalDatabase.Text = ConvertB64ToString(RemoveCharacter(TextLine, "database="))
+                        End If
+                        If lineCount = 4 Then
+                            TextBoxLocalPort.Text = ConvertB64ToString(RemoveCharacter(TextLine, "port="))
+                        End If
+                        lineCount = lineCount + 1
+                    Loop
+                    objReader.Close()
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub LoadCloudConn()
+        Try
+            If My.Settings.ValidLocalConn = True Then
+                sql = "SELECT C_Server, C_Username, C_Password, C_Database, C_Port FROM loc_settings WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    TextBoxCloudServer.Text = ConvertB64ToString(dt(0)(0))
+                    TextBoxCloudUsername.Text = ConvertB64ToString(dt(0)(1))
+                    TextBoxCloudPassword.Text = ConvertB64ToString(dt(0)(2))
+                    TextBoxCloudDatabase.Text = ConvertB64ToString(dt(0)(3))
+                    TextBoxCloudPort.Text = ConvertB64ToString(dt(0)(4))
+                    My.Settings.ValidCloudConn = True
+                    My.Settings.Save()
+                Else
+                    My.Settings.ValidCloudConn = False
+                    My.Settings.Save()
+                End If
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub LoadAdditionalSettings()
+        Try
+            If My.Settings.ValidLocalConn = True Then
+                sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated FROM loc_settings WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    If dt(0)(0) <> Nothing Then
+                        TextBoxExportPath.Text = ConvertB64ToString(dt(0)(0))
+                    End If
+                    If dt(0)(1) <> Nothing Then
+                        TextBoxTax.Text = dt(0)(1) * 100
+                    End If
+                    If dt(0)(2) <> Nothing Then
+                        TextBoxSINumber.Text = dt(0)(2)
+                    End If
+                    If dt(0)(3) <> Nothing Then
+                        TextBoxTerminalNo.Text = dt(0)(3)
+                    End If
+                    If dt(0)(4) <> Nothing Then
+                        If dt(0)(4) = 0 Then
+                            RadioButtonNO.Checked = True
+                        ElseIf dt(0)(4) = 1 Then
+                            RadioButtonYES.Checked = True
+                        End If
+                    End If
+                End If
+                For i As Integer = 0 To dt.Rows.Count - 1 Step +1
+                    If dt(i)(0) = "" Then
+                        My.Settings.ValidAddtionalSettings = False
+                        Exit For
+                    ElseIf dt(i)(1) = "" Then
+                        My.Settings.ValidAddtionalSettings = False
+                        Exit For
+                    ElseIf dt(i)(2) = "" Then
+                        My.Settings.ValidAddtionalSettings = False
+                        Exit For
+                    ElseIf dt(i)(3) = "" Then
+                        My.Settings.ValidAddtionalSettings = False
+                        Exit For
+                    ElseIf dt(i)(4) = "" Then
+                        My.Settings.ValidAddtionalSettings = False
+                        Exit For
+                    Else
+                        My.Settings.ValidAddtionalSettings = True
+                        Exit For
+                    End If
+                Next
+                My.Settings.Save()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub LoadDevInfo()
+        Try
+            If My.Settings.ValidLocalConn = True Then
+                sql = "SELECT Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until FROM loc_settings WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt = New DataTable
+                da.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    If dt(0)(0) <> Nothing Then
+                        TextBoxDevname.Text = dt(0)(0)
+                    End If
+                    If dt(0)(1) <> Nothing Then
+                        TextBoxDevAdd.Text = dt(0)(1)
+                    End If
+                    If dt(0)(2) <> Nothing Then
+                        TextBoxDevTIN.Text = dt(0)(2)
+                    End If
+                    If dt(0)(3) <> Nothing Then
+                        TextBoxDevAccr.Text = dt(0)(3)
+                    End If
+                    If dt(0)(4) <> Nothing Then
+                        DateTimePicker1ACCRDI.Value = dt(0)(4)
+                    End If
+                    If dt(0)(5) <> Nothing Then
+                        DateTimePicker2ACCRVU.Value = dt(0)(5)
+                    End If
+                    If dt(0)(6) <> Nothing Then
+                        TextBoxDEVPTU.Text = dt(0)(6)
+                    End If
+                    If dt(0)(7) <> Nothing Then
+                        DateTimePicker4PTUDI.Value = dt(0)(7)
+                    End If
+                    If dt(0)(8) <> Nothing Then
+                        DateTimePickerPTUVU.Value = dt(0)(8)
+                    End If
+                End If
+                For i As Integer = 0 To dt.Rows.Count - 1 Step +1
+                    If dt(i)(0) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(1) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(2) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(3) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(4) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(5) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(6) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(7) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    ElseIf dt(i)(8) = "" Then
+                        My.Settings.ValidDevSettings = False
+                        My.Settings.Save()
+                        Exit For
+                    Else
+                        My.Settings.ValidDevSettings = True
+                        My.Settings.Save()
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     '======================================== RETURN
     Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
-
         If TabControl1.SelectedIndex = 1 Then
             TabControl3.TabPages(0).Text = "Available Partners"
             TabControl3.TabPages(1).Text = "Deactivated Parners"
@@ -393,6 +596,7 @@ Public Class SettingsForm
         ElseIf TabControl1.SelectedIndex = 3 Then
             loaditemreturn(True)
             loadindexdgv()
+
         End If
     End Sub
 End Class

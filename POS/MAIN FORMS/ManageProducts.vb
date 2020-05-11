@@ -37,14 +37,16 @@ Public Class ManageProducts
         PanelAddCustomProducts.Visible = True
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        DataGridViewClientProducts.Enabled = False
-        Label11.Text = "EDIT PRODUCT"
-        ButtonCustomProducts.Text = "Update"
-        ButtonCustomProducts.BackColor = Color.FromArgb(221, 114, 46)
-        PanelAddCustomProducts.Top = (Me.Height - PanelAddCustomProducts.Height) / 4
-        PanelAddCustomProducts.Left = (Me.Width - PanelAddCustomProducts.Width) / 3
-        PanelAddCustomProducts.Visible = True
-        fillcustomproducts(True)
+        If DataGridViewClientProducts.SelectedRows.Count = 1 Then
+            DataGridViewClientProducts.Enabled = False
+            Label11.Text = "EDIT PRODUCT"
+            ButtonCustomProducts.Text = "Update"
+            ButtonCustomProducts.BackColor = Color.FromArgb(221, 114, 46)
+            PanelAddCustomProducts.Top = (Me.Height - PanelAddCustomProducts.Height) / 4
+            PanelAddCustomProducts.Left = (Me.Width - PanelAddCustomProducts.Width) / 3
+            PanelAddCustomProducts.Visible = True
+            fillcustomproducts(True)
+        End If
     End Sub
     Private Sub OfdImage_FileOk(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
         ImagePath = OpenFileDialog1.FileName
@@ -156,7 +158,7 @@ Public Class ManageProducts
         Try
             table = "loc_admin_products"
             fields = "product_id, product_sku, product_name  , product_barcode, product_category, product_price, product_status, origin"
-            where = "product_category <> 'Others'"
+            where = "product_category <> 'Others' AND product_status = 1"
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewServerProducts, errormessage:="", successmessage:="", fields:=fields, where:=where)
             For Each row In dt.Rows
                 If row("product_status") = "1" Then
@@ -695,13 +697,16 @@ Public Class ManageProducts
         DataGridViewServerProducts.Enabled = True
     End Sub
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Label18.Text = "EDIT PRODUCT"
-        Button10.Text = "Update"
-        Button10.BackColor = Color.FromArgb(221, 114, 46)
-        Panel10.Top = (Me.Height - Panel10.Height) / 4
-        Panel10.Left = (Me.Width - Panel10.Width) / 3
-        Panel10.Visible = True
-        fillcustomproducts(False)
+        If DataGridViewUNAPPROVED.SelectedRows.Count = 1 Then
+            Label18.Text = "EDIT PRODUCT"
+            Button10.Text = "Update"
+            Button10.BackColor = Color.FromArgb(221, 114, 46)
+            Panel10.Top = (Me.Height - Panel10.Height) / 4
+            Panel10.Left = (Me.Width - Panel10.Width) / 3
+            Panel10.Visible = True
+            fillcustomproducts(False)
+        End If
+
     End Sub
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
         Panel10.Visible = False

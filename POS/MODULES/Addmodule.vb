@@ -8,16 +8,16 @@ Module Addmodule
             End If
             messageboxappearance = False
             table = "loc_system_logs"
-            fields = "(`log_type`,`crew_id`,`log_description`, `log_store`, `guid`, `loc_systemlog_id`, `synced`, `zreading`)"
+            fields = "(`log_type`,`crew_id`,`log_description`, `log_store`, `guid`, `loc_systemlog_id`, `synced`)"
             value = "('" & logtype & "'
                 , '" & ClientCrewID & "'
                 , '" & logdesc & "'
                 , '" & ClientStoreID & "'
                 , '" & ClientGuid & "'
                 , '" & Format(Now, ("yyyyMMdd-HHmmss")) & "'
-                , 'Unsynced'
-                , '" & S_Zreading & "')"
+                , 'Unsynced')"
             GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:="", errormessage:="System Logs")
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

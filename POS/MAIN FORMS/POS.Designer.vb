@@ -1525,7 +1525,6 @@ Partial Class POS
         Me.DataGridViewINVENTORYUPDATE.ReadOnly = True
         Me.DataGridViewINVENTORYUPDATE.Size = New System.Drawing.Size(240, 71)
         Me.DataGridViewINVENTORYUPDATE.TabIndex = 61
-        Me.DataGridViewINVENTORYUPDATE.Visible = False
         '
         'DataGridViewCATEGORYUPDATE
         '
@@ -1539,7 +1538,6 @@ Partial Class POS
         Me.DataGridViewCATEGORYUPDATE.ReadOnly = True
         Me.DataGridViewCATEGORYUPDATE.Size = New System.Drawing.Size(240, 71)
         Me.DataGridViewCATEGORYUPDATE.TabIndex = 60
-        Me.DataGridViewCATEGORYUPDATE.Visible = False
         '
         'DataGridViewFORMULAUPDATE
         '
@@ -1553,7 +1551,6 @@ Partial Class POS
         Me.DataGridViewFORMULAUPDATE.ReadOnly = True
         Me.DataGridViewFORMULAUPDATE.Size = New System.Drawing.Size(240, 71)
         Me.DataGridViewFORMULAUPDATE.TabIndex = 59
-        Me.DataGridViewFORMULAUPDATE.Visible = False
         '
         'DataGridViewPRODUCTUPDATE
         '
@@ -1567,7 +1564,6 @@ Partial Class POS
         Me.DataGridViewPRODUCTUPDATE.ReadOnly = True
         Me.DataGridViewPRODUCTUPDATE.Size = New System.Drawing.Size(240, 71)
         Me.DataGridViewPRODUCTUPDATE.TabIndex = 58
-        Me.DataGridViewPRODUCTUPDATE.Visible = False
         '
         'POS
         '

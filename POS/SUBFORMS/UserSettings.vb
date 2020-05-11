@@ -23,7 +23,6 @@ Public Class UserSettings
             GLOBAL_SELECT_ALL_FUNCTION("loc_users WHERE store_id= " & ClientStoreID & " AND guid='" & ClientGuid & "' AND active = 1 ", "*", "", "", DataGridViewUserSettings)
             With DataGridViewUserSettings
                 .AllowUserToAddRows = False
-                .Font = New Font("Century Gothic", 10)
                 .DataSource = dt
                 .RowHeadersVisible = False
                 .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal

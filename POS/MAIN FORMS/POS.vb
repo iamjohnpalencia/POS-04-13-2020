@@ -378,9 +378,8 @@ Public Class POS
         If Shift = "" Then
             MessageBox.Show("Input cashier balance first", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
-
-            If S_Zreading <> Format(Now(), "yyyy-MM-dd") Then
-                MessageBox.Show("Mag Z-Read ka po", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            If returndateformat(S_Zreading.ToString) <> Format(Now(), "yyyy-MM-dd") Then
+                MessageBox.Show("Z-read", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 Enabled = False
                 PaymentForm.TextBoxTOTALPAY.Text = TextBoxGRANDTOTAL.Text
@@ -689,7 +688,7 @@ Public Class POS
                             , '" & Shift & "'
                             , " & VATEXEMPTSALES & "
                             , " & SINumber & "
-                            , '" & S_Zreading & "')"
+                            , '" & returndateformat(S_Zreading.ToString) & "')"
             successmessage = "Success"
             errormessage = "Error holdorder(loc_daily_transaction)"
             GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
@@ -724,7 +723,7 @@ Public Class POS
                             , 'Unsynced'
                             , " & totalcostofgoods & "
                             , '" & DataGridViewOrders.Rows(i).Cells(7).Value & "'
-                            , '" & S_Zreading & "')"
+                            , '" & returndateformat(S_Zreading.ToString) & "')"
                 successmessage = "Success"
                 errormessage = "error holdorder(loc_daily_transaction_details)"
                 GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
@@ -927,6 +926,7 @@ Public Class POS
         Try
             Dim max As Integer
             Dim maxDrinks As Integer
+
             Dim GroupSales = New DataTable
             GroupSales.Columns.Add("Sameval", GetType(Integer))
             GroupSales.Columns.Add("Total", GetType(Decimal))
@@ -942,9 +942,9 @@ Public Class POS
             With DataGridViewOrders
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If .Rows(i).Cells(9).Value.ToString = "DRINKS" Then
-                        Drinks.Rows.Add(.Rows(i).Cells(8).Value, .Rows(i).Cells(3).Value)
+                        Drinks.Rows.Add(.Rows(i).Cells(8).Value, .Rows(i).Cells(3).Value / .Rows(i).Cells(1).Value)
                     Else
-                        GroupSales.Rows.Add(.Rows(i).Cells(8).Value, .Rows(i).Cells(3).Value)
+                        GroupSales.Rows.Add(.Rows(i).Cells(8).Value, .Rows(i).Cells(3).Value / .Rows(i).Cells(1).Value)
                     End If
                 Next
             End With
