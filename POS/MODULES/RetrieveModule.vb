@@ -612,6 +612,7 @@ Module RetrieveModule
         End Try
         Return returnsum
     End Function
+
     Dim ReturnTrue As Boolean
     Public Function GLOBAL_FUNCTION_RETRIEVE_SELECT(flds As String, tbl As String, where As String) As Boolean
         Try
@@ -636,5 +637,21 @@ Module RetrieveModule
         Else
             Return False
         End If
+    End Function
+    Dim RetunSel
+    Public Function returnselect(toreturn As String, table As String)
+        Try
+            sql = "SELECT " & toreturn & " FROM " & table
+            cmd = New MySqlCommand(sql, LocalhostConn)
+            da = New MySqlDataAdapter(cmd)
+            dt = New DataTable
+            da.Fill(dt)
+            For Each row As DataRow In dt.Rows
+                RetunSel = row(toreturn)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return RetunSel
     End Function
 End Module

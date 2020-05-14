@@ -25,6 +25,7 @@ Public Class POS
     Public VATEXEMPTSALES As Double
     Public LESSVAT As Double
     Public GRANDTOTALDISCOUNT As Double
+    Public discounttype As String = "N/A"
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DataGridViewPRODUCTUPDATE.DataSource = ProductDTUpdate
@@ -604,6 +605,7 @@ Public Class POS
             Label76.Text = 0
             TextBoxDISCOUNT.Text = 0
             transactionmode = "Walk-In"
+            discounttype = "N/A"
             '=================================================================================================
         Else
             MsgBox("Select Transaction First!")
@@ -665,10 +667,10 @@ Public Class POS
                 VATABLE = 0.00
             Else
                 VATABLE = Math.Round(total / 1.12, 2)
-                LESSVAT = Math.Round(VATABLE - total, 2)
+                LESSVAT = Math.Round(total - VATABLE, 2)
             End If
             table = "loc_daily_transaction"
-            fields = "(`transaction_number`,`crew_id`,`guid`,`active`,`amounttendered`,`moneychange`,`amountdue`,`store_id`,`vatable`,`vat`,`date`,`time`,`discount`,`synced`,`transaction_type`,`shift`,`vat_exempt`,`si_number`,`zreading`)"
+            fields = "(`transaction_number`,`crew_id`,`guid`,`active`,`amounttendered`,`moneychange`,`amountdue`,`store_id`,`vatable`,`vat`,`date`,`time`,`discount`,`synced`,`transaction_type`,`shift`,`vat_exempt`,`si_number`,`zreading`,`discount_type`)"
             TIMETOINSERT = insertcurrenttime
             value = "('" & TextBoxMAXID.Text & "'                         
                             ,'" & ClientCrewID & "'
@@ -688,7 +690,8 @@ Public Class POS
                             , '" & Shift & "'
                             , " & VATEXEMPTSALES & "
                             , " & SINumber & "
-                            , '" & returndateformat(S_Zreading.ToString) & "')"
+                            , '" & returndateformat(S_Zreading.ToString) & "'
+                            , '" & discounttype & "')"
             successmessage = "Success"
             errormessage = "Error holdorder(loc_daily_transaction)"
             GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
@@ -751,6 +754,7 @@ Public Class POS
                 GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
             End If
             ButtonClickCount = 0
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

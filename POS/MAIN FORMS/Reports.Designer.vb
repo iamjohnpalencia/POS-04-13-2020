@@ -162,6 +162,7 @@ Partial Class Reports
         Me.pdoc = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -1444,6 +1445,7 @@ Partial Class Reports
         'Panel12
         '
         Me.Panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel12.Controls.Add(Me.Button6)
         Me.Panel12.Controls.Add(Me.ButtonZread)
         Me.Panel12.Controls.Add(Me.Button5)
         Me.Panel12.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1571,6 +1573,15 @@ Partial Class Reports
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(3, 3)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(303, 81)
+        Me.Button6.TabIndex = 2
+        Me.Button6.Text = "Z Reading"
+        Me.Button6.UseVisualStyleBackColor = True
         '
         'Reports
         '
@@ -1753,4 +1764,5 @@ Partial Class Reports
     Friend WithEvents Panel12 As Panel
     Friend WithEvents Button5 As Button
     Friend WithEvents ButtonZread As Button
+    Friend WithEvents Button6 As Button
 End Class

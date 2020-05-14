@@ -33,36 +33,43 @@ Public Class CouponCode
             If Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Percentage" Then
                 'MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
                 couponpercentage()
-                Exit Sub
-                ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Fix-1" Then
-                    MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
-                    couponfix1()
-                    Exit Sub
-                ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Fix-2" Then
-                    MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
-                    couponfix2()
-                    Exit Sub
-                ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Bundle-1(Fix)" Then
-                    MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
-                    'couponbundle1()
-                    Exit Sub
-                ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Bundle-2(Fix)" Then
-                    MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
-                    'couponbundle2()
-                    Exit Sub
-                ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Bundle-3(%)" Then
-                    MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
-                'couponbundle3()
-                Exit Sub
+            ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Fix-1" Then
+                MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
+                couponfix1()
+            ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Fix-2" Then
+                MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
+                couponfix2()
+            ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Bundle-1(Fix)" Then
+                MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
+                'couponbundle1()
+            ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Bundle-2(Fix)" Then
+                MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
+                'couponbundle2()
+            ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Bundle-3(%)" Then
+                MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
+                'couponbundle3()        
             End If
+            With POS
+                If TextBoxCODE.Text = "1" Then
+                    .discounttype = "Percentage"
+                ElseIf TextBoxCODE.Text = "2" Then
+                    .discounttype = "Fix-1"
+                ElseIf TextBoxCODE.Text = "3" Then
+                    .discounttype = "Fix-2"
+                ElseIf TextBoxCODE.Text = "4" Then
+                    .discounttype = "Bundle-1(Fix)"
+                ElseIf TextBoxCODE.Text = "5" Then
+                    .discounttype = "Bundle-2(Fix)"
+                ElseIf TextBoxCODE.Text = "6" Then
+                    .discounttype = "Bundle-3(%)"
+                End If
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
-
     Private Sub couponpercentage()
         Try
-
             If S_ZeroRated = "0" Then
                 '45 Waffle
                 Dim GrossSale = SeniorPWd
@@ -79,7 +86,6 @@ Public Class CouponCode
                 '==============================================================
                 POS.VATEXEMPTSALES = vatexemptsales + vatexemptsales1
                 POS.LESSVAT = lessvat + lessvat1
-                MsgBox(TotalDiscount & " " & TotalDiscount1 & " ")
                 POS.TextBoxGRANDTOTAL.Text = TotalDiscount + TotalDiscount1 + POS.Label76.Text - SeniorPWd - SeniorPWdDrinks
                 POS.TextBoxDISCOUNT.Text = Discount + Discount1
             Else

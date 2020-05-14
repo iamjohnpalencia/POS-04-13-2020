@@ -731,10 +731,8 @@ Public Class ConfigManager
         ProgressBar4.Value = e.ProgressPercentage
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-
         Dim table = "loc_settings"
         Dim where = "settings_id = 1"
-
         If TextboxIsEmpty(GroupBox11) = True Then
             If My.Settings.ValidLocalConn = True Then
                 Dim fields = "Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until"
@@ -1329,7 +1327,27 @@ Public Class ConfigManager
         End Try
     End Sub
 
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        If My.Settings.ValidLocalConn = True Then
+            If My.Settings.ValidCloudConn = True Then
+                If My.Settings.ValidAddtionalSettings = True Then
+                    If My.Settings.ValidDevSettings = True Then
+                        If AccountExist = True Then
+                            If FranchiseeStoreValidation = True Then
 
-
-
+                            End If
+                        End If
+                    Else
+                        MsgBox("ValidDevSettings = false")
+                    End If
+                Else
+                    MsgBox("ValidAddtionalSettings = false  ")
+                End If
+            Else
+                MsgBox("ValidCloudConn = false")
+            End If
+        Else
+            MsgBox("Validlocalconn false")
+        End If
+    End Sub
 End Class

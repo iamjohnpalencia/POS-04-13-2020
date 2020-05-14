@@ -241,6 +241,7 @@ Partial Class ConfigManager
         Me.BackgroundWorkerACTIVATION = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker5 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorkerABTDB = New System.ComponentModel.BackgroundWorker()
+        Me.Button7 = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -2348,6 +2349,7 @@ Partial Class ConfigManager
         '
         'GroupBox12
         '
+        Me.GroupBox12.Controls.Add(Me.Button7)
         Me.GroupBox12.Controls.Add(Me.ProgressBar5)
         Me.GroupBox12.Controls.Add(Me.TextBoxProdKey)
         Me.GroupBox12.Controls.Add(Me.Button5)
@@ -2377,7 +2379,7 @@ Partial Class ConfigManager
         '
         Me.Button5.Location = New System.Drawing.Point(19, 59)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(372, 25)
+        Me.Button5.Size = New System.Drawing.Size(204, 25)
         Me.Button5.TabIndex = 36
         Me.Button5.Text = "Activate"
         Me.Button5.UseVisualStyleBackColor = True
@@ -2578,6 +2580,15 @@ Partial Class ConfigManager
         '
         'BackgroundWorkerABTDB
         '
+        '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(229, 59)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(162, 25)
+        Me.Button7.TabIndex = 40
+        Me.Button7.Text = "Check"
+        Me.Button7.UseVisualStyleBackColor = True
         '
         'ConfigManager
         '
@@ -2901,4 +2912,5 @@ Partial Class ConfigManager
     Friend WithEvents BackgroundWorker5 As System.ComponentModel.BackgroundWorker
     Friend WithEvents ButtonSaveLocConn As Button
     Friend WithEvents BackgroundWorkerABTDB As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Button7 As Button
 End Class
