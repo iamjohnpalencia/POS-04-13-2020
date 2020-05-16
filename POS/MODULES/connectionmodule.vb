@@ -3,9 +3,9 @@ Module connectionModule
     Public LocalConnectionIsOnOrValid As Boolean
     Dim ConnStr As String
     Dim ConnStr2 As String
-    Public Sub LoadLocalConnection()
+    Public Function LoadLocalConnection()
+        localconn = New MySqlConnection
         Try
-            localconn = New MySqlConnection
             localconn.ConnectionString = LoadConn(My.Settings.LocalConnectionPath)
             localconn.Open()
             If localconn.State = ConnectionState.Open Then
@@ -14,7 +14,8 @@ Module connectionModule
         Catch ex As Exception
             LocalConnectionIsOnOrValid = False
         End Try
-    End Sub
+        Return localconn
+    End Function
     Public Sub dbconnection()
         Try
             localconn = New MySqlConnection

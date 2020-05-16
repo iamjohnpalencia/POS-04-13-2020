@@ -22,9 +22,9 @@ Partial Class ConfigManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.ButtonExit = New System.Windows.Forms.Button()
@@ -58,7 +58,6 @@ Partial Class ConfigManager
         Me.TextBoxCloudServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.ButtonSaveLocConn = New System.Windows.Forms.Button()
         Me.ButtonTestLocConn = New System.Windows.Forms.Button()
         Me.ButtonClearLocal = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -241,7 +240,7 @@ Partial Class ConfigManager
         Me.BackgroundWorkerACTIVATION = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker5 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorkerABTDB = New System.ComponentModel.BackgroundWorker()
-        Me.Button7 = New System.Windows.Forms.Button()
+        Me.ButtonSaveLocalCon = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -673,7 +672,7 @@ Partial Class ConfigManager
         'Panel5
         '
         Me.Panel5.AutoScroll = True
-        Me.Panel5.Controls.Add(Me.ButtonSaveLocConn)
+        Me.Panel5.Controls.Add(Me.ButtonSaveLocalCon)
         Me.Panel5.Controls.Add(Me.ButtonTestLocConn)
         Me.Panel5.Controls.Add(Me.ButtonClearLocal)
         Me.Panel5.Controls.Add(Me.Label7)
@@ -694,19 +693,6 @@ Partial Class ConfigManager
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(502, 206)
         Me.Panel5.TabIndex = 0
-        '
-        'ButtonSaveLocConn
-        '
-        Me.ButtonSaveLocConn.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.ButtonSaveLocConn.FlatAppearance.BorderSize = 0
-        Me.ButtonSaveLocConn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonSaveLocConn.ForeColor = System.Drawing.Color.White
-        Me.ButtonSaveLocConn.Location = New System.Drawing.Point(321, 110)
-        Me.ButtonSaveLocConn.Name = "ButtonSaveLocConn"
-        Me.ButtonSaveLocConn.Size = New System.Drawing.Size(136, 23)
-        Me.ButtonSaveLocConn.TabIndex = 263
-        Me.ButtonSaveLocConn.Text = "Save"
-        Me.ButtonSaveLocConn.UseVisualStyleBackColor = False
         '
         'ButtonTestLocConn
         '
@@ -2181,27 +2167,27 @@ Partial Class ConfigManager
         Me.DataGridViewOutlets.AllowUserToDeleteRows = False
         Me.DataGridViewOutlets.AllowUserToResizeColumns = False
         Me.DataGridViewOutlets.AllowUserToResizeRows = False
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
-        Me.DataGridViewOutlets.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle19.BackColor = System.Drawing.Color.White
+        Me.DataGridViewOutlets.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle19
         Me.DataGridViewOutlets.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewOutlets.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewOutlets.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle20.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        DataGridViewCellStyle20.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewOutlets.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle20
         Me.DataGridViewOutlets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewOutlets.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle21.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle21.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        DataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewOutlets.DefaultCellStyle = DataGridViewCellStyle21
         Me.DataGridViewOutlets.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewOutlets.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewOutlets.EnableHeadersVisualStyles = False
@@ -2349,7 +2335,6 @@ Partial Class ConfigManager
         '
         'GroupBox12
         '
-        Me.GroupBox12.Controls.Add(Me.Button7)
         Me.GroupBox12.Controls.Add(Me.ProgressBar5)
         Me.GroupBox12.Controls.Add(Me.TextBoxProdKey)
         Me.GroupBox12.Controls.Add(Me.Button5)
@@ -2379,7 +2364,7 @@ Partial Class ConfigManager
         '
         Me.Button5.Location = New System.Drawing.Point(19, 59)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(204, 25)
+        Me.Button5.Size = New System.Drawing.Size(372, 25)
         Me.Button5.TabIndex = 36
         Me.Button5.Text = "Activate"
         Me.Button5.UseVisualStyleBackColor = True
@@ -2581,14 +2566,17 @@ Partial Class ConfigManager
         'BackgroundWorkerABTDB
         '
         '
-        'Button7
+        'ButtonSaveLocalCon
         '
-        Me.Button7.Location = New System.Drawing.Point(229, 59)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(162, 25)
-        Me.Button7.TabIndex = 40
-        Me.Button7.Text = "Check"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.ButtonSaveLocalCon.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonSaveLocalCon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSaveLocalCon.ForeColor = System.Drawing.Color.White
+        Me.ButtonSaveLocalCon.Location = New System.Drawing.Point(321, 111)
+        Me.ButtonSaveLocalCon.Name = "ButtonSaveLocalCon"
+        Me.ButtonSaveLocalCon.Size = New System.Drawing.Size(136, 23)
+        Me.ButtonSaveLocalCon.TabIndex = 217
+        Me.ButtonSaveLocalCon.Text = "Save"
+        Me.ButtonSaveLocalCon.UseVisualStyleBackColor = False
         '
         'ConfigManager
         '
@@ -2910,7 +2898,6 @@ Partial Class ConfigManager
     Friend WithEvents DataGridViewPRODUCTS As DataGridView
     Friend WithEvents DataGridViewINVENTORY As DataGridView
     Friend WithEvents BackgroundWorker5 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents ButtonSaveLocConn As Button
     Friend WithEvents BackgroundWorkerABTDB As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Button7 As Button
+    Friend WithEvents ButtonSaveLocalCon As Button
 End Class

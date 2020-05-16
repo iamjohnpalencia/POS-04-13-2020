@@ -38,7 +38,6 @@ Public Class Loading
     Dim threadList As List(Of Thread) = New List(Of Thread)
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
-
             For i = 0 To 10
                 BackgroundWorker1.ReportProgress(i)
                 Thread.Sleep(50)
@@ -56,7 +55,7 @@ Public Class Loading
                 BackgroundWorker1.ReportProgress(i)
                 Thread.Sleep(50)
                 If i = 10 Then
-                    If localconn.State = ConnectionState.Open Then
+                    If LoadLocalConnection.State = ConnectionState.Open Then
                         Label1.Text = "Getting information..."
                         IfConnectionIsConfigured = True
                         thread = New Thread(AddressOf LoadMasterList)
@@ -148,12 +147,11 @@ Public Class Loading
     End Sub
     Private Sub LoadMasterList()
         Try
-            dbconnection()
-
             If LocalConnectionIsOnOrValid = True Then
                 sql = "SELECT * FROM admin_masterlist WHERE masterlist_id = 1"
-                da = New MySqlDataAdapter(sql, localconn)
-                dt = New DataTable
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LoadLocalConnection)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
                 da.Fill(dt)
                 If dt.Rows.Count > 0 Then
                     RowsReturned = 1
@@ -275,15 +273,9 @@ Public Class Loading
     End Sub
     Private Sub GetLocalPosData()
         Try
-            dbconnection()
-            sql = "SELECT * FROM admin_outlets WHERE user_guid = '" & ClientGuid & "' AND store_id = " & ClientStoreID & ";"
-            cmd = New MySqlCommand
-            With cmd
-                .Connection = localconn
-                .CommandText = sql
-                RowsReturned = .ExecuteScalar
-                dr = .ExecuteReader()
-            End With
+            Dim sql = "SELECT * FROM admin_outlets WHERE user_guid = '" & ClientGuid & "' AND store_id = " & ClientStoreID & ";"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LoadLocalConnection)
+            Dim dr As MySqlDataReader = cmd.ExecuteReader()
             While dr.Read()
                 ClientBrand = dr("brand_name")
                 ClientLocation = dr("location_name")

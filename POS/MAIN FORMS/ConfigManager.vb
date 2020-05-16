@@ -10,7 +10,8 @@ Public Class ConfigManager
     Dim thread1 As Thread
     Dim FranchiseeStoreValidation As Boolean
     Dim UserID
-
+    Dim BTNSaveLocalConn As Boolean = False
+    Dim BTNSaveCloudConn As Boolean = False
     Private Sub ConfigManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CheckForIllegalCrossThreadCalls = False
         TabControl1.TabPages(0).Text = "General Settings"
@@ -48,9 +49,9 @@ Public Class ConfigManager
         End Try
         Return Conn
     End Function
-    Private Sub TestCloudConnection()
+    Private Function TestCloudConnection()
+        Dim cloudconn As MySqlConnection = New MySqlConnection
         Try
-            cloudconn = New MySqlConnection
             cloudconn.ConnectionString = "server=" & Trim(TextBoxCloudServer.Text) &
             ";user id= " & Trim(TextBoxCloudUsername.Text) &
             ";password=" & Trim(TextBoxCloudPassword.Text) &
@@ -65,21 +66,9 @@ Public Class ConfigManager
             My.Settings.ValidCloudConn = False
             My.Settings.Save()
         End Try
+        Return cloudconn
+    End Function
 
-    End Sub
-    Private Sub ButtonSaveLocConn_Click(sender As Object, e As EventArgs) Handles ButtonSaveLocConn.Click
-        Try
-            If My.Settings.ValidLocalConn = True Then
-                Dim FolderName As String = "Innovention"
-                Dim path = My.Computer.FileSystem.SpecialDirectories.MyDocuments
-                CreateFolder(path, FolderName)
-            Else
-                MsgBox("Connection must be valid")
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
 
     Private Sub CreateFolder(Path As String, FolderName As String, Optional ByVal Attributes As System.IO.FileAttributes = IO.FileAttributes.Normal)
         My.Computer.FileSystem.CreateDirectory(Path & "\" & FolderName)
@@ -105,6 +94,8 @@ Public Class ConfigManager
         CreateConn(CompletePath)
         My.Settings.LocalConnectionPath = CompletePath
         My.Settings.Save()
+        MsgBox("Saved")
+
         'MsgBox(My.Settings.LocalConnectionPath)
         'MsgBox(My.Settings.LocalConnectionString)
     End Sub
@@ -147,7 +138,8 @@ Public Class ConfigManager
         Else
             ChangeProgBarColor(ProgressBar1, ProgressBarColor.Green)
             LabelLocal.Text = "Connected successfully!"
-            ButtonSaveLocConn.PerformClick()
+
+            ButtonSaveLocalCon.PerformClick()
         End If
         TextboxEnableability(Panel5, True)
         ButtonEnableability(Panel5, True)
@@ -160,7 +152,6 @@ Public Class ConfigManager
         BackgroundWorker2.WorkerReportsProgress = True
         BackgroundWorker2.RunWorkerAsync()
     End Sub
-
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
         Try
             For i = 0 To 100
@@ -186,7 +177,6 @@ Public Class ConfigManager
         Else
             ChangeProgBarColor(ProgressBar2, ProgressBarColor.Green)
             LabelCloud.Text = "Connected successfully!"
-            ButtonSaveCloudConn.PerformClick()
         End If
         TextboxEnableability(Panel9, True)
         ButtonEnableability(Panel9, True)
@@ -222,6 +212,7 @@ Public Class ConfigManager
                         cmd.ExecuteNonQuery()
                         MsgBox("Saved!")
                     End If
+                    BTNSaveCloudConn = True
                 Else
                     MsgBox("Connection must be valid")
                 End If
@@ -297,55 +288,54 @@ Public Class ConfigManager
     Private Sub LoadAdditionalSettings()
         Try
             If My.Settings.ValidLocalConn = True Then
-                sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated FROM loc_settings WHERE settings_id = 1"
+                Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    If dt(0)(0) <> Nothing Then
-                        TextBoxExportPath.Text = ConvertB64ToString(dt(0)(0))
-                    End If
-                    If dt(0)(1) <> Nothing Then
-                        TextBoxTax.Text = dt(0)(1) * 100
-                    End If
-                    If dt(0)(2) <> Nothing Then
-                        TextBoxSINumber.Text = dt(0)(2)
-                    End If
-                    If dt(0)(3) <> Nothing Then
-                        TextBoxTerminalNo.Text = dt(0)(3)
-                    End If
-                    If dt(0)(4) <> Nothing Then
-                        If dt(0)(4) = 0 Then
-                            RadioButtonNO.Checked = True
-                        ElseIf dt(0)(4) = 1 Then
-                            RadioButtonYES.Checked = True
+                For Each row As DataRow In dt.Rows
+                    If row("A_Export_Path") <> "" Then
+                        If row("A_Tax") <> "" Then
+                            If row("A_SIFormat") <> "" Then
+                                If row("A_Terminal_No") <> "" Then
+                                    If row("A_ZeroRated") <> "" Then
+                                        TextBoxExportPath.Text = ConvertB64ToString(row("A_Export_Path"))
+                                        TextBoxTax.Text = Val(row("A_Tax")) * 100
+                                        TextBoxSINumber.Text = row("A_SIFormat")
+                                        TextBoxTerminalNo.Text = row("A_Terminal_No")
+                                        If Val(row("A_ZeroRated")) = 0 Then
+                                            RadioButtonNO.Checked = True
+                                        ElseIf dt(0)(4) = 1 Then
+                                            RadioButtonYES.Checked = True
+                                        End If
+                                        My.Settings.ValidAddtionalSettings = True
+                                    Else
+                                        My.Settings.ValidAddtionalSettings = False
+                                        Exit For
+                                    End If
+                                Else
+                                    My.Settings.ValidAddtionalSettings = False
+                                    Exit For
+                                End If
+                            Else
+                                My.Settings.ValidAddtionalSettings = False
+                                Exit For
+                            End If
+                        Else
+                            My.Settings.ValidAddtionalSettings = False
+                            Exit For
                         End If
-                    End If
-                End If
-                For i As Integer = 0 To dt.Rows.Count - 1 Step +1
-                    If dt(i)(0) = "" Then
-                        My.Settings.ValidAddtionalSettings = False
-                        Exit For
-                    ElseIf dt(i)(1) = "" Then
-                        My.Settings.ValidAddtionalSettings = False
-                        Exit For
-                    ElseIf dt(i)(2) = "" Then
-                        My.Settings.ValidAddtionalSettings = False
-                        Exit For
-                    ElseIf dt(i)(3) = "" Then
-                        My.Settings.ValidAddtionalSettings = False
-                        Exit For
-                    ElseIf dt(i)(4) = "" Then
-                        My.Settings.ValidAddtionalSettings = False
-                        Exit For
                     Else
-                        My.Settings.ValidAddtionalSettings = True
+                        My.Settings.ValidAddtionalSettings = False
                         Exit For
                     End If
                 Next
                 My.Settings.Save()
+            Else
+                My.Settings.ValidAddtionalSettings = False
+                My.Settings.Save()
             End If
+            MsgBox(My.Settings.ValidAddtionalSettings)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -358,77 +348,68 @@ Public Class ConfigManager
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt = New DataTable
                 da.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    If dt(0)(0) <> Nothing Then
-                        TextBoxDevname.Text = dt(0)(0)
-                    End If
-                    If dt(0)(1) <> Nothing Then
-                        TextBoxDevAdd.Text = dt(0)(1)
-                    End If
-                    If dt(0)(2) <> Nothing Then
-                        TextBoxDevTIN.Text = dt(0)(2)
-                    End If
-                    If dt(0)(3) <> Nothing Then
-                        TextBoxDevAccr.Text = dt(0)(3)
-                    End If
-                    If dt(0)(4) <> Nothing Then
-                        DateTimePicker1ACCRDI.Value = dt(0)(4)
-                    End If
-                    If dt(0)(5) <> Nothing Then
-                        DateTimePicker2ACCRVU.Value = dt(0)(5)
-                    End If
-                    If dt(0)(6) <> Nothing Then
-                        TextBoxDEVPTU.Text = dt(0)(6)
-                    End If
-                    If dt(0)(7) <> Nothing Then
-                        DateTimePicker4PTUDI.Value = dt(0)(7)
-                    End If
-                    If dt(0)(8) <> Nothing Then
-                        DateTimePickerPTUVU.Value = dt(0)(8)
-                    End If
-                End If
-                For i As Integer = 0 To dt.Rows.Count - 1 Step +1
-                    If dt(i)(0) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(1) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(2) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(3) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(4) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(5) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(6) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(7) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(8) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
+                For Each row As DataRow In dt.Rows
+                    If row("Dev_Company_Name") <> "" Then
+                        If row("Dev_Address") <> "" Then
+                            If row("Dev_Tin") <> "" Then
+                                If row("Dev_Accr_No") <> "" Then
+                                    If row("Dev_Accr_Date_Issued") <> "" Then
+                                        If row("Dev_Accr_Valid_Until") <> "" Then
+                                            If row("Dev_PTU_No") <> "" Then
+                                                If row("Dev_PTU_Date_Issued") <> "" Then
+                                                    If row("Dev_PTU_Valid_Until") <> "" Then
+                                                        TextBoxDevname.Text = row("Dev_Company_Name")
+                                                        TextBoxDevAdd.Text = row("Dev_Address")
+                                                        TextBoxDevTIN.Text = row("Dev_Tin")
+                                                        TextBoxDevAccr.Text = row("Dev_Accr_No")
+                                                        DateTimePicker1ACCRDI.Value = row("Dev_Accr_Date_Issued")
+                                                        DateTimePicker2ACCRVU.Value = row("Dev_Accr_Valid_Until")
+                                                        TextBoxDEVPTU.Text = row("Dev_PTU_No")
+                                                        DateTimePicker4PTUDI.Value = row("Dev_PTU_Date_Issued")
+                                                        DateTimePickerPTUVU.Value = row("Dev_PTU_Valid_Until")
+                                                        My.Settings.ValidDevSettings = True
+                                                        My.Settings.Save()
+                                                    Else
+                                                        My.Settings.ValidDevSettings = False
+                                                        Exit For
+                                                    End If
+                                                Else
+                                                    My.Settings.ValidDevSettings = False
+                                                    Exit For
+                                                End If
+                                            Else
+                                                My.Settings.ValidDevSettings = False
+                                                Exit For
+                                            End If
+                                        Else
+                                            My.Settings.ValidDevSettings = False
+                                            Exit For
+                                        End If
+                                    Else
+                                        My.Settings.ValidDevSettings = False
+                                        Exit For
+                                    End If
+                                Else
+                                    My.Settings.ValidDevSettings = False
+                                    Exit For
+                                End If
+                            Else
+                                My.Settings.ValidDevSettings = False
+                                Exit For
+                            End If
+                        Else
+                            My.Settings.ValidDevSettings = False
+                            Exit For
+                        End If
                     Else
-                        My.Settings.ValidDevSettings = True
-                        My.Settings.Save()
+                        My.Settings.ValidDevSettings = False
+                        Exit For
                     End If
                 Next
+                My.Settings.Save()
+            Else
+                My.Settings.ValidDevSettings = False
+                My.Settings.Save()
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -641,7 +622,6 @@ Public Class ConfigManager
         Try
             Dim RButton As Integer
             Dim Tax = Val(TextBoxTax.Text) / 100
-
             If TextboxIsEmpty(GroupBox10) = True Then
                 If My.Settings.ValidLocalConn = True Then
                     Dim table = "loc_settings"
@@ -680,7 +660,13 @@ Public Class ConfigManager
                         My.Settings.ValidAddtionalSettings = True
                         My.Settings.Save()
                     End If
+                Else
+                    My.Settings.ValidAddtionalSettings = False
+                    My.Settings.Save()
+                    MsgBox("Invalid Local Connection.")
                 End If
+            Else
+                MsgBox("All fields are required.")
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -706,22 +692,16 @@ Public Class ConfigManager
                     thread1 = New Thread(AddressOf LoadCloudConn)
                     thread1.Start()
                     threadList.Add(thread1)
-                    For Each t In threadList
-                        t.Join()
-                    Next
                     thread1 = New Thread(AddressOf LoadAdditionalSettings)
                     thread1.Start()
                     threadList.Add(thread1)
-                    For Each t In threadList
-                        t.Join()
-                    Next
                     thread1 = New Thread(AddressOf LoadDevInfo)
                     thread1.Start()
                     threadList.Add(thread1)
-                    For Each t In threadList
-                        t.Join()
-                    Next
                 End If
+            Next
+            For Each t In threadList
+                t.Join()
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -776,6 +756,7 @@ Public Class ConfigManager
                     My.Settings.Save()
                 End If
             Else
+                MsgBox("Invalid local connection")
                 My.Settings.ValidDevSettings = False
                 My.Settings.Save()
             End If
@@ -785,34 +766,42 @@ Public Class ConfigManager
     End Sub
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         If My.Settings.ValidLocalConn = True Then
-            If My.Settings.ValidCloudConn = True Then
-                If My.Settings.ValidAddtionalSettings = True Then
-                    If My.Settings.ValidDevSettings = True Then
-                        If AccountExist = True Then
-                            If FranchiseeStoreValidation = True Then
-                                If Not String.IsNullOrWhiteSpace(TextBoxProdKey.Text) Then
-                                    TextboxEnableability(GroupBox12, False)
-                                    ButtonEnableability(GroupBox12, False)
-                                    BackgroundWorkerACTIVATION.WorkerReportsProgress = True
-                                    BackgroundWorkerACTIVATION.WorkerReportsProgress = True
-                                    BackgroundWorkerACTIVATION.RunWorkerAsync()
+            If BTNSaveLocalConn = True Then
+                If My.Settings.ValidCloudConn = True Then
+                    If BTNSaveCloudConn = True Then
+                        If My.Settings.ValidAddtionalSettings = True Then
+                            If My.Settings.ValidDevSettings = True Then
+                                If AccountExist = True Then
+                                    If FranchiseeStoreValidation = True Then
+                                        If Not String.IsNullOrWhiteSpace(TextBoxProdKey.Text) Then
+                                            TextboxEnableability(GroupBox12, False)
+                                            ButtonEnableability(GroupBox12, False)
+                                            BackgroundWorkerACTIVATION.WorkerReportsProgress = True
+                                            BackgroundWorkerACTIVATION.WorkerReportsProgress = True
+                                            BackgroundWorkerACTIVATION.RunWorkerAsync()
+                                        Else
+                                            MsgBox("Please input serial key")
+                                        End If
+                                    Else
+                                        MsgBox("Please select store in Account and Store settings tab")
+                                    End If
                                 Else
-                                    MsgBox("Please input serial key")
+                                    MsgBox("Franchisee's Account must be valid first")
                                 End If
                             Else
-                                MsgBox("Please select store in Account and Store settings tab")
+                                MsgBox("Please fill up all fields in Developer Information Settings")
                             End If
                         Else
-                            MsgBox("Franchisee's Account must be valid first")
+                            MsgBox("Please fill up all fields in Additional Settings")
                         End If
                     Else
-                        MsgBox("Please fill up all fields in Developer Information Settings")
+                        MsgBox("Save Cloud connection first")
                     End If
                 Else
-                    MsgBox("Please fill up all fields in Additional Settings")
+                    MsgBox("Invalid Cloud Connection")
                 End If
             Else
-                MsgBox("Invalid Cloud Connection")
+                MsgBox("Save local connection first")
             End If
         Else
             MsgBox("Invalid Local Connection")
@@ -821,9 +810,9 @@ Public Class ConfigManager
     Dim ValidProductKey As Boolean
     Private Sub SerialKey()
         Try
-            TestCloudConnection()
-            sql = "SELECT serial_key FROM admin_serialkeys WHERE active = 0 AND serial_key = '" & Trim(TextBoxProdKey.Text) & "'"
-            Dim da As MySqlDataAdapter = New MySqlDataAdapter(sql, cloudconn)
+            Dim sql = "SELECT serial_key FROM admin_serialkeys WHERE active = 0 AND serial_key = '" & Trim(TextBoxProdKey.Text) & "'"
+            Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cloudcmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
             If dt.Rows.Count > 0 Then
@@ -858,63 +847,60 @@ Public Class ConfigManager
                         ThreadActivation = New System.Threading.Thread(AddressOf adminserialkey)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        For Each t In threadListActivation
-                            t.Join()
-                        Next
+                        'For Each t In threadListActivation
+                        '    t.Join()
+                        'Next
                         ThreadActivation = New System.Threading.Thread(AddressOf adminoutlets)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        For Each t In threadListActivation
-                            t.Join()
-                        Next
+                        'For Each t In threadListActivation
+                        '    t.Join()
+                        'Next
                         ThreadActivation = New System.Threading.Thread(AddressOf insertintocloud)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        For Each t In threadListActivation
-                            t.Join()
-                        Next
+                        'For Each t In threadListActivation
+                        '    t.Join()
+                        'Next
                         ThreadActivation = New System.Threading.Thread(AddressOf insertintolocaloutlets)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        For Each t In threadListActivation
-                            t.Join()
-                        Next
+                        'For Each t In threadListActivation
+                        '    t.Join()
+                        'Next
                         ThreadActivation = New System.Threading.Thread(AddressOf InsertLocalMasterList)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        For Each t In threadListActivation
-                            t.Join()
-                        Next
+                        'For Each t In threadListActivation
+                        '    t.Join()
+                        'Next
                         '===
                         ThreadActivation = New System.Threading.Thread(AddressOf GetCategories)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        For Each t In threadListActivation
-                            t.Join()
-                        Next
+                        'For Each t In threadListActivation
+                        '    t.Join()
+                        'Next
                         ThreadActivation = New System.Threading.Thread(AddressOf GetProducts)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        For Each t In threadListActivation
-                            t.Join()
-                        Next
+                        'For Each t In threadListActivation
+                        '    t.Join()
+                        'Next
                         ThreadActivation = New System.Threading.Thread(AddressOf GetInventory)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        For Each t In threadListActivation
-                            t.Join()
-                        Next
+                        'For Each t In threadListActivation
+                        '    t.Join()
+                        'Next
                         ThreadActivation = New System.Threading.Thread(AddressOf GetFormula)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        For Each t In threadListActivation
-                            t.Join()
-                        Next
-                        BackgroundWorker5.WorkerReportsProgress = True
-                        BackgroundWorker5.WorkerSupportsCancellation = True
-                        BackgroundWorker5.RunWorkerAsync()
                     End If
                 End If
+            Next
+            For Each t In threadListActivation
+                t.Join()
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -925,9 +911,10 @@ Public Class ConfigManager
     End Sub
     Private Sub BackgroundWorkerACTIVATION_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerACTIVATION.RunWorkerCompleted
         If ValidProductKey = True Then
-            Dim message As Integer = MessageBox.Show("Successfully Registered. Your system will automatically reboot after pressing OK button.", "Activated", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Close()
-            Loading.Show()
+            BackgroundWorker5.WorkerReportsProgress = True
+            BackgroundWorker5.WorkerSupportsCancellation = True
+            BackgroundWorker5.RunWorkerAsync()
+
         Else
             MsgBox("Invalid Product key")
         End If
@@ -939,13 +926,9 @@ Public Class ConfigManager
             Dim table = "admin_serialkeys"
             Dim fields = " active = 1 "
             Dim where = " serial_key = '" & TextBoxProdKey.Text & "'"
-            If cloudconn.State <> ConnectionState.Open Then
-                TestCloudConnection()
-            End If
-            sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
-            cmd = New MySqlCommand(sql, cloudconn)
-            cmd.ExecuteNonQuery()
-            cloudconn.Close()
+            Dim sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
+            Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+            cloudcmd.ExecuteNonQuery()
             RichTextBox1.Text = RichTextBox1.Text & "Admin Serial Key = SUCCESS...." & vbNewLine
         Catch ex As Exception
             RichTextBox1.Text = RichTextBox1.Text & "Admin Serial Key = ERROR...." & vbNewLine
@@ -957,14 +940,10 @@ Public Class ConfigManager
             Dim table = "admin_outlets"
             Dim fields = " active = 2 "
             Dim where = " store_id = " & DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString
-            If cloudconn.State <> ConnectionState.Open Then
-                TestCloudConnection()
-            End If
-            sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
-            cmd = New MySqlCommand(sql, cloudconn)
-            cmd.ExecuteNonQuery()
+            Dim sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
+            Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+            cloudcmd.ExecuteNonQuery()
             RichTextBox1.Text = RichTextBox1.Text & "Admin Outlets = SUCCESS!" & vbNewLine
-            cloudconn.Close()
         Catch ex As Exception
             RichTextBox1.Text = RichTextBox1.Text & "Admin Outlets = ERROR!" & vbNewLine
             MsgBox(ex.ToString)
@@ -972,9 +951,6 @@ Public Class ConfigManager
     End Sub
     Public Sub insertintocloud()
         Try
-            If cloudconn.State <> ConnectionState.Open Then
-                TestCloudConnection()
-            End If
             Dim table1 = "admin_masterlist"
             Dim fields1 = " (`masterlist_username`,`masterlist_password`,`client_guid`,`client_product_key`,`user_id`,`active`,`client_store_id`)"
             Dim value1 = "('" & TextBoxFrancUser.Text & "'
@@ -984,9 +960,9 @@ Public Class ConfigManager
                      ,'" & UserID & "'
                      ," & 1 & "
                      ,'" & DataGridViewOutlets.SelectedRows(0).Cells(0).Value & "')"
-            sql = "INSERT INTO " + table1 + fields1 + " VALUES " + value1
-            cmd = New MySqlCommand(sql, cloudconn)
-            cmd.ExecuteNonQuery()
+            Dim sql = "INSERT INTO " + table1 + fields1 + " VALUES " + value1
+            Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+            cloudcmd.ExecuteNonQuery()
             RichTextBox1.Text = RichTextBox1.Text & "Admin Master List = SUCCESS!" & vbNewLine
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -998,20 +974,19 @@ Public Class ConfigManager
             Dim Municipalityname
             Dim ProvinceName
             With DataGridViewOutletDetails
-                TestCloudConnection()
                 Dim sql1 As String = "SELECT mn_name FROM admin_municipality WHERE mn_id = " & .Rows(0).Cells(8).Value.ToString
+                Dim cloudcmd1 As MySqlCommand = New MySqlCommand(sql1, TestCloudConnection)
+                Dim da1 As MySqlDataAdapter = New MySqlDataAdapter(cloudcmd1)
+                Dim dt1 As DataTable = New DataTable
+                da1.Fill(dt1)
+                Municipalityname = dt1(0)(0)
+                '=======================================================
                 Dim sql2 As String = "SELECT province FROM admin_province WHERE add_id = " & .Rows(0).Cells(9).Value.ToString
-                Dim da As MySqlDataAdapter = New MySqlDataAdapter(sql1, cloudconn)
-                Dim dt As DataTable = New DataTable
-                da.Fill(dt)
-                Municipalityname = dt(0)(0)
-                da = New MySqlDataAdapter(sql2, cloudconn)
-                dt = New DataTable
-                da.Fill(dt)
-                ProvinceName = dt(0)(0)
-
-
-
+                Dim cloudcmd2 As MySqlCommand = New MySqlCommand(sql2, TestCloudConnection)
+                Dim da2 As MySqlDataAdapter = New MySqlDataAdapter(cloudcmd2)
+                Dim dt2 As DataTable = New DataTable
+                da2.Fill(dt2)
+                ProvinceName = dt2(0)(0)
                 'Municipalityname = GLOBAL_RETURN_FUNCTION("admin_municipality WHERE mn_id = " & .Rows(0).Cells(8).Value.ToString, "mn_name", "mn_name", False)
                 'ProvinceName = GLOBAL_RETURN_FUNCTION("admin_province WHERE add_id = " & .Rows(0).Cells(9).Value.ToString, "province", "province", False)
                 messageboxappearance = False
@@ -1054,9 +1029,12 @@ Public Class ConfigManager
                      ,'" & UserID & "'
                      ," & 1 & "
                      ,'" & DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString & "')"
-            successmessage = "Success"
-            errormessage = "Error POS ACTIVATION addmodule(admin_masterlist) FUNCTION!"
-            GLOBAL_INSERT_FUNCTION(table:=table1, fields:=fields1, values:=value1, successmessage:=successmessage, errormessage:=errormessage)
+            'successmessage = "Success"
+            'errormessage = "Error POS ACTIVATION addmodule(admin_masterlist) FUNCTION!"
+            'GLOBAL_INSERT_FUNCTION(table:=table1, fields:=fields1, values:=value1, successmessage:=successmessage, errormessage:=errormessage)
+            Dim sql = "INSERT INTO " & table1 & fields1 & " VALUES " & value1
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+            cmd.ExecuteNonQuery()
             RichTextBox1.Text = RichTextBox1.Text & "Local Master List...." & vbNewLine
         Catch ex As Exception
             MsgBox("Contact Administrator Error Code: 3.0")
@@ -1064,10 +1042,10 @@ Public Class ConfigManager
     End Sub
     Private Sub GLOBAL_SELECT_ALL_FUNCTION_CLOUD(tbl As String, flds As String, datagrid As DataGridView)
         Try
-            TestCloudConnection()
-            sql = "SELECT " & flds & " FROM " & table
-            da = New MySqlDataAdapter(sql, cloudconn)
-            dt = New DataTable
+            Dim sql = "SELECT " & flds & " FROM " & table
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection())
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim dt As DataTable = New DataTable
             da.Fill(dt)
             datagrid.DataSource = dt
         Catch ex As Exception
@@ -1077,7 +1055,6 @@ Public Class ConfigManager
             da.Dispose()
         End Try
     End Sub
-
     Dim threadLISTINSERPROD As List(Of Thread) = New List(Of Thread)
     Private Sub BackgroundWorker5_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker5.DoWork
         Try
@@ -1177,9 +1154,12 @@ Public Class ConfigManager
         End Try
     End Sub
     Private Sub BackgroundWorker5_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker5.RunWorkerCompleted
+        Dim message As Integer = MessageBox.Show("Successfully Registered. Your system will automatically reboot after pressing OK button.", "Activated", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ValidProductKey = False
         TextboxEnableability(GroupBox12, True)
         ButtonEnableability(GroupBox12, True)
+        Close()
+        Loading.Show()
     End Sub
     Public Sub GetCategories()
         Try
@@ -1309,16 +1289,13 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                     cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
-
                     cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
                     cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(10).Value.ToString())
                     cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
-
                     cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
                     cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(10).Value.ToString())
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
                     cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = UserGUID
-
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With
@@ -1326,28 +1303,22 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Private Sub BackgroundWorkerLOAD_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerLOAD.RunWorkerCompleted
 
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        If My.Settings.ValidLocalConn = True Then
-            If My.Settings.ValidCloudConn = True Then
-                If My.Settings.ValidAddtionalSettings = True Then
-                    If My.Settings.ValidDevSettings = True Then
-                        If AccountExist = True Then
-                            If FranchiseeStoreValidation = True Then
-
-                            End If
-                        End If
-                    Else
-                        MsgBox("ValidDevSettings = false")
-                    End If
-                Else
-                    MsgBox("ValidAddtionalSettings = false  ")
-                End If
+    End Sub
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonSaveLocalCon.Click
+        Try
+            If My.Settings.ValidLocalConn = True Then
+                Dim FolderName As String = "Innovention"
+                Dim path = My.Computer.FileSystem.SpecialDirectories.MyDocuments
+                CreateFolder(path, FolderName)
+                BTNSaveLocalConn = True
+                MsgBox(BTNSaveLocalConn)
             Else
-                MsgBox("ValidCloudConn = false")
+                MsgBox("Connection must be valid")
             End If
-        Else
-            MsgBox("Validlocalconn false")
-        End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 End Class
