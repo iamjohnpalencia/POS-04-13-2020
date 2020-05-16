@@ -1059,6 +1059,7 @@ Public Class ConfigManager
     Private Sub BackgroundWorker5_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker5.DoWork
         Try
             For i = 0 To 100
+                Label22.Text = "Please Wait " & i & " %"
                 BackgroundWorker5.ReportProgress(i)
                 Thread.Sleep(20)
                 If i = 0 Then
@@ -1320,5 +1321,9 @@ Public Class ConfigManager
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
+    End Sub
+
+    Private Sub BackgroundWorker5_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker5.ProgressChanged
+        ProgressBar6.Value = e.ProgressPercentage
     End Sub
 End Class
