@@ -134,8 +134,26 @@ May 8 7:00 PM to 3:04 AM
 
 * Function for getting updates and updating tables 
 	
-		
+May 10 11:00 PM to 3:00 AM
 
+* Debugging
 
+May 11 12:00 PM to 2:00 PM
+
+* Debugging
+* Optimization of connection
+
+May 16 12:00 pm to 4:00 pm
+
+* Debugging
+
+May 17 4:00 pm to 8:00 pm
+
+* Debugging
+
+May 18 6:00 Pm to 2:00 am
+
+* Polish local connection
+* Fix Z reading date format bug
 
 
