@@ -914,7 +914,6 @@ Public Class ConfigManager
             BackgroundWorker5.WorkerReportsProgress = True
             BackgroundWorker5.WorkerSupportsCancellation = True
             BackgroundWorker5.RunWorkerAsync()
-
         Else
             MsgBox("Invalid Product key")
         End If
@@ -923,34 +922,37 @@ Public Class ConfigManager
     End Sub
     Private Sub adminserialkey()
         Try
+            RichTextBox1.Text = RichTextBox1.Text & "Updating server(serial key)...." & vbNewLine
             Dim table = "admin_serialkeys"
             Dim fields = " active = 1 "
             Dim where = " serial_key = '" & TextBoxProdKey.Text & "'"
             Dim sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
             Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
             cloudcmd.ExecuteNonQuery()
-            RichTextBox1.Text = RichTextBox1.Text & "Admin Serial Key = SUCCESS...." & vbNewLine
+            RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
         Catch ex As Exception
-            RichTextBox1.Text = RichTextBox1.Text & "Admin Serial Key = ERROR...." & vbNewLine
+            RichTextBox1.Text = RichTextBox1.Text & "Failed to Update serial key...." & vbNewLine
             MsgBox(ex.ToString)
         End Try
     End Sub
     Public Sub adminoutlets()
         Try
+            RichTextBox1.Text = RichTextBox1.Text & "Updating server(outlet)...." & vbNewLine
             Dim table = "admin_outlets"
             Dim fields = " active = 2 "
             Dim where = " store_id = " & DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString
             Dim sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
             Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
             cloudcmd.ExecuteNonQuery()
-            RichTextBox1.Text = RichTextBox1.Text & "Admin Outlets = SUCCESS!" & vbNewLine
+            RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
         Catch ex As Exception
-            RichTextBox1.Text = RichTextBox1.Text & "Admin Outlets = ERROR!" & vbNewLine
+            RichTextBox1.Text = RichTextBox1.Text & "Failed to update outlets...." & vbNewLine
             MsgBox(ex.ToString)
         End Try
     End Sub
     Public Sub insertintocloud()
         Try
+            RichTextBox1.Text = RichTextBox1.Text & "Inserting server masterlist data...." & vbNewLine
             Dim table1 = "admin_masterlist"
             Dim fields1 = " (`masterlist_username`,`masterlist_password`,`client_guid`,`client_product_key`,`user_id`,`active`,`client_store_id`)"
             Dim value1 = "('" & TextBoxFrancUser.Text & "'
@@ -963,14 +965,15 @@ Public Class ConfigManager
             Dim sql = "INSERT INTO " + table1 + fields1 + " VALUES " + value1
             Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
             cloudcmd.ExecuteNonQuery()
-            RichTextBox1.Text = RichTextBox1.Text & "Admin Master List = SUCCESS!" & vbNewLine
+            RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
         Catch ex As Exception
             MsgBox(ex.ToString)
-            RichTextBox1.Text = RichTextBox1.Text & "Admin Master List = ERROR!" & vbNewLine
+            RichTextBox1.Text = RichTextBox1.Text & "Failed to insert masterlist...." & vbNewLine
         End Try
     End Sub
     Private Sub insertintolocaloutlets()
         Try
+            RichTextBox1.Text = RichTextBox1.Text & "Getting server's outlet data...." & vbNewLine
             Dim Municipalityname
             Dim ProvinceName
             With DataGridViewOutletDetails
@@ -987,6 +990,7 @@ Public Class ConfigManager
                 Dim dt2 As DataTable = New DataTable
                 da2.Fill(dt2)
                 ProvinceName = dt2(0)(0)
+                RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
                 Dim table = "admin_outlets"
                 Dim fields = "(`store_id`, `brand_name`, `store_name`, `user_guid`, `location_name`, `postal_code`, `address`, `Barangay`, `municipality`, `municipality_name`, `province`, `province_name`, `tin_no`, `tel_no`, `active`, `created_at`, `MIN`, `MSN`, `PTUN`)"
                 Dim value = "(" & .Rows(0).Cells(0).Value.ToString & "                       
@@ -1008,9 +1012,11 @@ Public Class ConfigManager
                         ,'" & .Rows(0).Cells(12).Value.ToString & "'
                         ,'" & .Rows(0).Cells(13).Value.ToString & "'
                         ,'" & .Rows(0).Cells(14).Value.ToString & "')"
+                RichTextBox1.Text = RichTextBox1.Text & "Inserting outlet data...." & vbNewLine
                 Dim sql = "INSERT INTO " & table & fields & " VALUES " & value
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
                 cmd.ExecuteNonQuery()
+                RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1018,6 +1024,7 @@ Public Class ConfigManager
     End Sub
     Private Sub InsertLocalMasterList()
         Try
+            RichTextBox1.Text = RichTextBox1.Text & "Inserting master List data...." & vbNewLine
             messageboxappearance = False
             Dim table1 = "admin_masterlist"
             Dim fields1 = " (`masterlist_username`,`masterlist_password`,`client_guid`,`client_product_key`,`user_id`,`active`,`client_store_id`)"
@@ -1031,7 +1038,7 @@ Public Class ConfigManager
             Dim sql = "INSERT INTO " & table1 & fields1 & " VALUES " & value1
             Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
             cmd.ExecuteNonQuery()
-            RichTextBox1.Text = RichTextBox1.Text & "Local Master List...." & vbNewLine
+            RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
         Catch ex As Exception
             MsgBox("Contact Administrator Error Code: 3.0")
         End Try
@@ -1157,6 +1164,7 @@ Public Class ConfigManager
     End Sub
     Public Sub GetCategories()
         Try
+            RichTextBox1.Text = RichTextBox1.Text & "Getting Categories...." & vbNewLine
             table = "admin_category"
             fields = "`category_name`, `brand_name`, `updated_at`, `origin`, `status`"
             GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewCATEGORIES)
@@ -1166,6 +1174,7 @@ Public Class ConfigManager
     End Sub
     Public Sub GetProducts()
         Try
+            RichTextBox1.Text = RichTextBox1.Text & "Getting Products...." & vbNewLine
             table = "admin_products_org"
             fields = "`product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`"
             GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewPRODUCTS)
@@ -1173,8 +1182,29 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Public Sub GetInventory()
+        Try
+            RichTextBox1.Text = RichTextBox1.Text & "Getting Inventory...." & vbNewLine
+            table = "admin_pos_inventory_org"
+            fields = "`inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified`"
+            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewINVENTORY)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Public Sub GetFormula()
+        Try
+            RichTextBox1.Text = RichTextBox1.Text & "Getting Formula's...." & vbNewLine
+            table = "admin_product_formula_org"
+            fields = "`formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`"
+            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewFORMULA)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Private Sub InsertToProducts()
         Try
+            RichTextBox1.Text = RichTextBox1.Text & "Inserting Productlist data...." & vbNewLine
             With DataGridViewPRODUCTS
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1197,22 +1227,15 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
                     cmdlocal.ExecuteNonQuery()
                 Next
+                RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
             End With
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-    Public Sub GetInventory()
-        Try
-            table = "admin_pos_inventory_org"
-            fields = "`inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified`"
-            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewINVENTORY)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub InsertToInventory()
         Try
+            RichTextBox1.Text = RichTextBox1.Text & "Inserting Inventory list...." & vbNewLine
             With DataGridViewINVENTORY
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1234,12 +1257,14 @@ Public Class ConfigManager
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With
+            RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub InsertToCategories()
         Try
+            RichTextBox1.Text = RichTextBox1.Text & "Inserting Category list...." & vbNewLine
             With DataGridViewCATEGORIES
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1253,21 +1278,14 @@ Public Class ConfigManager
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-    Public Sub GetFormula()
-        Try
-            table = "admin_product_formula_org"
-            fields = "`formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`"
-            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewFORMULA)
+            RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub InsertToFormula()
         Try
+            RichTextBox1.Text = RichTextBox1.Text & "Inserting Formula List...." & vbNewLine
             With DataGridViewFORMULA
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1291,6 +1309,7 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.ExecuteNonQuery()
                 Next
+                RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1316,17 +1335,17 @@ Public Class ConfigManager
         ProgressBar6.Value = e.ProgressPercentage
     End Sub
 
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        InsertToProducts()
-        InsertToInventory()
-        InsertToCategories()
-        InsertToFormula()
-    End Sub
+    'Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+    '    InsertToProducts()
+    '    InsertToInventory()
+    '    InsertToCategories()
+    '    InsertToFormula()
+    'End Sub
 
-    Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles Button8.Click
-        GetCategories()
-        GetProducts()
-        GetInventory()
-        GetFormula()
-    End Sub
+    'Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles Button8.Click
+    '    GetCategories()
+    '    GetProducts()
+    '    GetInventory()
+    '    GetFormula()
+    'End Sub
 End Class

@@ -3,6 +3,7 @@ Public Class Login
     Private Sub Login_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
         txtusername.Focus()
         Timer1.Enabled = True
+        ButttonLogin.Text = "LOGIN (" & ClientStorename & ")"
     End Sub
     'Private Sub buttonFB_Click(sender As Object, e As EventArgs) Handles buttonFB.Click
     '    System.Diagnostics.Process.Start("https://www.facebook.com/FamousBelgianWafflesOFFICIAL/")

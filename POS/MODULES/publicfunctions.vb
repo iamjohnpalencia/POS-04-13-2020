@@ -414,17 +414,21 @@ Module publicfunctions
     Public Function FirstDayOfMonth(ByVal sourceDate As DateTime) As DateTime
         Return New DateTime(sourceDate.Year, sourceDate.Month, 1)
     End Function
-    Public Function CheckIfNeedToReset() As Boolean
+    Dim dtRESET As DataTable
+    Public Function CheckIfNeedToReset(conn As MySqlConnection) As Boolean
+        Dim cmd As MySqlCommand
+        Dim da As MySqlDataAdapter
+        Dim firstday = Format(FirstDayOfMonth(Date.Now), "yyyy-MM-dd")
         Try
-            Dim firstday = Format(FirstDayOfMonth(Date.Now), "yyyy-MM-dd")
-            sql = "SELECT * FROM loc_inv_temp_data WHERE date_created = '" & firstday & "'"
-            da = New MySqlDataAdapter(sql, localconn)
-            dt = New DataTable
-            da.Fill(dt)
+            Dim sql = "SELECT * FROM loc_inv_temp_data WHERE date_created = '" & firstday & "'"
+            cmd = New MySqlCommand(sql, conn)
+            da = New MySqlDataAdapter(cmd)
+            dtRESET = New DataTable
+            da.Fill(dtRESET)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-        If dt.Rows.Count = 0 Then
+        If dtRESET.Rows.Count = 0 Then
             Return True
         Else
             Return False

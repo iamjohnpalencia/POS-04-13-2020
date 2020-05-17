@@ -79,7 +79,7 @@ Public Class Loading
                     End If
                 End If
                 If i = 25 Then
-                    If localconn.State = ConnectionState.Open Then
+                    If LoadLocalConnection.State = ConnectionState.Open Then
                         Label1.Text = "Checking for updates..."
                     End If
                 End If
@@ -97,7 +97,7 @@ Public Class Loading
                 End If
                 If i = 65 Then
                     If IfConnectionIsConfigured = True Then
-                        If CheckIfNeedToReset() = True Then
+                        If CheckIfNeedToReset(LoadLocalConnection) = True Then
                             IfNeedsToReset = True
                         Else
                             IfNeedsToReset = False
@@ -105,7 +105,7 @@ Public Class Loading
                     End If
                 End If
                 If i = 80 Then
-                    If localconn.State = ConnectionState.Open Then
+                    If LoadLocalConnection.State = ConnectionState.Open Then
                         thread = New Thread(AddressOf LoadSettings)
                         thread.Start()
                         threadList.Add(thread)
