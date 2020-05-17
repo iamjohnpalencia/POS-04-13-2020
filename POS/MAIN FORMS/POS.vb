@@ -511,7 +511,7 @@ Public Class POS
             With WaitFrm
                 sql = "SELECT si_number FROM loc_daily_transaction ORDER BY transaction_id DESC limit 1"
                 cmd = New MySqlCommand(sql, LocalhostConn)
-                da = New MySqlDataAdapter(sql, localconn)
+                da = New MySqlDataAdapter(cmd)
                 dt = New DataTable
                 da.Fill(dt)
                 If dt.Rows.Count > 0 Then

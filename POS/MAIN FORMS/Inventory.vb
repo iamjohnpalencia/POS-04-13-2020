@@ -122,7 +122,7 @@ Public Class Inventory
             cmd = New MySqlCommand
             With cmd
                 .CommandText = sql
-                .Connection = localconn
+                .Connection = LocalhostConn()
                 Using readerObj As MySqlDataReader = cmd.ExecuteReader
                     While readerObj.Read
                         Dim stock = readerObj("stock_quantity").ToString

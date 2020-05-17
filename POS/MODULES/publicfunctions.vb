@@ -398,7 +398,7 @@ Module publicfunctions
     End Function
     Public Function returndatetimeformat(ByVal datetoformat)
         Try
-            Dim iDate As String = datetoformat
+            Dim iDate As String = datetoformat.ToString
             Dim oDate As DateTime = Convert.ToDateTime(iDate)
             dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00") & " " & oDate.Hour & ":" & oDate.Minute & ":" & oDate.Second
         Catch ex As Exception

@@ -33,7 +33,7 @@ Module serverlocalconn
         servercloudconn = New MySqlConnection
         Try
             sql = "SELECT `C_Server`, `C_Username`, `C_Password`, `C_Database`, `C_Port` FROM  loc_settings WHERE settings_id = 1"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, localconn)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)

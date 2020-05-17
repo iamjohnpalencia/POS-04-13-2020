@@ -350,15 +350,15 @@ Public Class Loading
         Login.Show()
         Login.txtusername.Focus()
     End Sub
-    Dim DataTableServer As New DataTable
-    Dim DataTableLocal As New DataTable
+
     Private Sub SyncToLocalUsers()
         Try
+
             With DataGridViewRESULT
                 sql = "SELECT `user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `active`, `guid`, `store_id`, `uniq_id` , `created_at`, `updated_at` FROM `loc_users` WHERE guid = '" & ClientGuid & "' AND store_id = '" & ClientStoreID & "' AND synced = 'Unsynced' AND active = 1"
-                cmd = New MySqlCommand(sql, ServerCloudCon())
-                da = New MySqlDataAdapter(cmd)
-                DataTableServer = New DataTable
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ServerCloudCon())
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim DataTableServer As DataTable = New DataTable
                 da.Fill(DataTableServer)
                 .DataSource = DataTableServer
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -383,7 +383,7 @@ Public Class Loading
                                 )"
                     GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
                     sql = "UPDATE loc_users SET synced = 'Synced' WHERE uniq_id = '" & .Rows(i).Cells(11).Value.ToString & "'"
-                    cmd = New MySqlCommand(sql, cloudconn)
+                    cmd = New MySqlCommand(sql, ServerCloudCon())
                     cmd.ExecuteNonQuery()
                     sql = "UPDATE loc_users SET `full_name` = '" & .Rows(i).Cells(1).Value.ToString & "'  , `username` = '" & .Rows(i).Cells(2).Value.ToString & "' , `password` = '" & .Rows(i).Cells(3).Value.ToString & "'  , `contact_number` = '" & .Rows(i).Cells(4).Value.ToString & "'  WHERE uniq_id = '" & .Rows(i).Cells(11).Value.ToString & "' "
                     cmd = New MySqlCommand(sql, LocalhostConn())
@@ -391,6 +391,7 @@ Public Class Loading
                 Next
             End With
         Catch ex As Exception
+            MsgBox(ex.ToString)
             Label1.Text = "Invalid connection..."
             'MsgBox(ex.ToString)
         End Try

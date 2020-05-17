@@ -142,9 +142,9 @@ Partial Class SynctoCloud
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Kelson Sans", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(0, 235)
+        Me.Button2.Location = New System.Drawing.Point(0, 648)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(471, 41)
+        Me.Button2.Size = New System.Drawing.Size(752, 41)
         Me.Button2.TabIndex = 25
         Me.Button2.Text = "SYNC"
         Me.Button2.UseVisualStyleBackColor = False
@@ -224,9 +224,9 @@ Partial Class SynctoCloud
         Me.Panel7.Controls.Add(Me.Label4)
         Me.Panel7.Controls.Add(Me.ProgressBar1)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel7.Location = New System.Drawing.Point(0, 276)
+        Me.Panel7.Location = New System.Drawing.Point(0, 689)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(471, 36)
+        Me.Panel7.Size = New System.Drawing.Size(752, 36)
         Me.Panel7.TabIndex = 24
         '
         'Label5
@@ -235,7 +235,7 @@ Partial Class SynctoCloud
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label5.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(471, 0)
+        Me.Label5.Location = New System.Drawing.Point(752, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(0, 18)
         Me.Label5.TabIndex = 28
@@ -291,7 +291,7 @@ Partial Class SynctoCloud
         Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ProgressBar1.Location = New System.Drawing.Point(0, 25)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(471, 11)
+        Me.ProgressBar1.Size = New System.Drawing.Size(752, 11)
         Me.ProgressBar1.TabIndex = 11
         '
         'DataGridViewINV
@@ -352,11 +352,15 @@ Partial Class SynctoCloud
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Panel7)
         Me.Panel1.Controls.Add(Me.Panel16)
+        Me.Panel1.Controls.Add(Me.DataGridViewSYSLOG3)
         Me.Panel1.Controls.Add(Me.GroupBox1)
+        Me.Panel1.Controls.Add(Me.DataGridViewSYSLOG1)
+        Me.Panel1.Controls.Add(Me.DataGridViewSYSLOG2)
+        Me.Panel1.Controls.Add(Me.DataGridViewSYSLOG4)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(473, 314)
+        Me.Panel1.Size = New System.Drawing.Size(754, 727)
         Me.Panel1.TabIndex = 26
         '
         'Panel16
@@ -406,7 +410,7 @@ Partial Class SynctoCloud
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel16.Location = New System.Drawing.Point(0, 0)
         Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(471, 246)
+        Me.Panel16.Size = New System.Drawing.Size(752, 246)
         Me.Panel16.TabIndex = 41
         '
         'Label49
@@ -834,7 +838,6 @@ Partial Class SynctoCloud
         Me.GroupBox1.Controls.Add(Me.DataGridViewDepositSlip)
         Me.GroupBox1.Controls.Add(Me.DataGridViewCUSTOMPRODUCTS)
         Me.GroupBox1.Controls.Add(Me.DataGridViewMODEOFTRANSACTION)
-        Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG3)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.Button1)
@@ -845,13 +848,10 @@ Partial Class SynctoCloud
         Me.GroupBox1.Controls.Add(Me.DataGridViewLocusers)
         Me.GroupBox1.Controls.Add(Me.DataGridViewEXPDET)
         Me.GroupBox1.Controls.Add(Me.DataGridViewRetrefdetails)
-        Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG1)
         Me.GroupBox1.Controls.Add(Me.DataGridViewEXP)
-        Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG4)
-        Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG2)
         Me.GroupBox1.Controls.Add(Me.DataGridViewINV)
         Me.GroupBox1.Controls.Add(Me.DataGridViewTRANDET)
-        Me.GroupBox1.Location = New System.Drawing.Point(11, 252)
+        Me.GroupBox1.Location = New System.Drawing.Point(6, 251)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(392, 148)
         Me.GroupBox1.TabIndex = 28
@@ -904,10 +904,10 @@ Partial Class SynctoCloud
         Me.DataGridViewSYSLOG3.AllowUserToResizeColumns = False
         Me.DataGridViewSYSLOG3.AllowUserToResizeRows = False
         Me.DataGridViewSYSLOG3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewSYSLOG3.Location = New System.Drawing.Point(6, 19)
+        Me.DataGridViewSYSLOG3.Location = New System.Drawing.Point(477, 403)
         Me.DataGridViewSYSLOG3.Name = "DataGridViewSYSLOG3"
         Me.DataGridViewSYSLOG3.ReadOnly = True
-        Me.DataGridViewSYSLOG3.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewSYSLOG3.Size = New System.Drawing.Size(250, 90)
         Me.DataGridViewSYSLOG3.TabIndex = 28
         '
         'Label6
@@ -976,10 +976,10 @@ Partial Class SynctoCloud
         Me.DataGridViewSYSLOG1.AllowUserToResizeColumns = False
         Me.DataGridViewSYSLOG1.AllowUserToResizeRows = False
         Me.DataGridViewSYSLOG1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewSYSLOG1.Location = New System.Drawing.Point(6, 19)
+        Me.DataGridViewSYSLOG1.Location = New System.Drawing.Point(17, 403)
         Me.DataGridViewSYSLOG1.Name = "DataGridViewSYSLOG1"
         Me.DataGridViewSYSLOG1.ReadOnly = True
-        Me.DataGridViewSYSLOG1.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewSYSLOG1.Size = New System.Drawing.Size(454, 90)
         Me.DataGridViewSYSLOG1.TabIndex = 28
         '
         'DataGridViewSYSLOG4
@@ -989,10 +989,10 @@ Partial Class SynctoCloud
         Me.DataGridViewSYSLOG4.AllowUserToResizeColumns = False
         Me.DataGridViewSYSLOG4.AllowUserToResizeRows = False
         Me.DataGridViewSYSLOG4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewSYSLOG4.Location = New System.Drawing.Point(6, 19)
+        Me.DataGridViewSYSLOG4.Location = New System.Drawing.Point(477, 499)
         Me.DataGridViewSYSLOG4.Name = "DataGridViewSYSLOG4"
         Me.DataGridViewSYSLOG4.ReadOnly = True
-        Me.DataGridViewSYSLOG4.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewSYSLOG4.Size = New System.Drawing.Size(250, 90)
         Me.DataGridViewSYSLOG4.TabIndex = 28
         '
         'DataGridViewSYSLOG2
@@ -1002,10 +1002,10 @@ Partial Class SynctoCloud
         Me.DataGridViewSYSLOG2.AllowUserToResizeColumns = False
         Me.DataGridViewSYSLOG2.AllowUserToResizeRows = False
         Me.DataGridViewSYSLOG2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewSYSLOG2.Location = New System.Drawing.Point(6, 19)
+        Me.DataGridViewSYSLOG2.Location = New System.Drawing.Point(17, 499)
         Me.DataGridViewSYSLOG2.Name = "DataGridViewSYSLOG2"
         Me.DataGridViewSYSLOG2.ReadOnly = True
-        Me.DataGridViewSYSLOG2.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewSYSLOG2.Size = New System.Drawing.Size(454, 90)
         Me.DataGridViewSYSLOG2.TabIndex = 28
         '
         'DataGridViewTRANDET
@@ -1025,7 +1025,7 @@ Partial Class SynctoCloud
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(473, 314)
+        Me.ClientSize = New System.Drawing.Size(754, 727)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SynctoCloud"
