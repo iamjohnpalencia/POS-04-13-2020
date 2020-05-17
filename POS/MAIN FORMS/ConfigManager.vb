@@ -987,12 +987,9 @@ Public Class ConfigManager
                 Dim dt2 As DataTable = New DataTable
                 da2.Fill(dt2)
                 ProvinceName = dt2(0)(0)
-                'Municipalityname = GLOBAL_RETURN_FUNCTION("admin_municipality WHERE mn_id = " & .Rows(0).Cells(8).Value.ToString, "mn_name", "mn_name", False)
-                'ProvinceName = GLOBAL_RETURN_FUNCTION("admin_province WHERE add_id = " & .Rows(0).Cells(9).Value.ToString, "province", "province", False)
-                messageboxappearance = False
-                table = "admin_outlets"
-                fields = "(`store_id`, `brand_name`, `store_name`, `user_guid`, `location_name`, `postal_code`, `address`, `Barangay`, `municipality`, `municipality_name`, `province`, `province_name`, `tin_no`, `tel_no`, `active`, `created_at`, `MIN`, `MSN`, `PTUN`)"
-                value = "(" & .Rows(0).Cells(0).Value.ToString & "                       
+                Dim table = "admin_outlets"
+                Dim fields = "(`store_id`, `brand_name`, `store_name`, `user_guid`, `location_name`, `postal_code`, `address`, `Barangay`, `municipality`, `municipality_name`, `province`, `province_name`, `tin_no`, `tel_no`, `active`, `created_at`, `MIN`, `MSN`, `PTUN`)"
+                Dim value = "(" & .Rows(0).Cells(0).Value.ToString & "                       
                         ,'" & .Rows(0).Cells(1).Value.ToString & "'
                         ,'" & .Rows(0).Cells(2).Value.ToString & "'
                         ,'" & .Rows(0).Cells(3).Value.ToString & "'                    
@@ -1011,7 +1008,9 @@ Public Class ConfigManager
                         ,'" & .Rows(0).Cells(12).Value.ToString & "'
                         ,'" & .Rows(0).Cells(13).Value.ToString & "'
                         ,'" & .Rows(0).Cells(14).Value.ToString & "')"
-                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
+                Dim sql = "INSERT INTO " & table & fields & " VALUES " & value
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+                cmd.ExecuteNonQuery()
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1029,9 +1028,6 @@ Public Class ConfigManager
                      ,'" & UserID & "'
                      ," & 1 & "
                      ,'" & DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString & "')"
-            'successmessage = "Success"
-            'errormessage = "Error POS ACTIVATION addmodule(admin_masterlist) FUNCTION!"
-            'GLOBAL_INSERT_FUNCTION(table:=table1, fields:=fields1, values:=value1, successmessage:=successmessage, errormessage:=errormessage)
             Dim sql = "INSERT INTO " & table1 & fields1 & " VALUES " & value1
             Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
             cmd.ExecuteNonQuery()
@@ -1201,7 +1197,6 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
                     cmdlocal.ExecuteNonQuery()
                 Next
-
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
