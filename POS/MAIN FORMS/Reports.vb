@@ -716,22 +716,26 @@ Public Class Reports
         CenterTextDisplay(sender, e, Format(Now, "MM/dd/yyyy hh:mm:ss tt"), font, 595)
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonZread.Click
-        Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If result = DialogResult.Yes Then
-            XreadOrZread = "Z-READ"
-            printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
-            PrintPreviewDialogXread.Document = printdocXread
-            PrintPreviewDialogXread.ShowDialog()
-            dbconnection()
-            sql = "UPDATE loc_settings SET S_Zreading = '" & returndateformat(Now()) & "'"
-            cmd = New MySqlCommand(sql, localconn)
-            cmd.ExecuteNonQuery()
-            localconn.Close()
-            cmd.Dispose()
-            S_Zreading = returndateformat(Now())
-        Else
-            MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
+        Try
+            Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = DialogResult.Yes Then
+                XreadOrZread = "Z-READ"
+                printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
+                PrintPreviewDialogXread.Document = printdocXread
+                PrintPreviewDialogXread.ShowDialog()
+                dbconnection()
+                sql = "UPDATE loc_settings SET S_Zreading = '" & returndateformat(Now().ToString) & "'"
+                cmd = New MySqlCommand(sql, localconn)
+                cmd.ExecuteNonQuery()
+                localconn.Close()
+                cmd.Dispose()
+                S_Zreading = returndateformat(Now().ToString)
+            Else
+                MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
     Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles Button6.Click
