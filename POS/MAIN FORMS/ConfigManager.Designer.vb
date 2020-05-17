@@ -22,9 +22,9 @@ Partial Class ConfigManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.ButtonExit = New System.Windows.Forms.Button()
@@ -58,6 +58,7 @@ Partial Class ConfigManager
         Me.TextBoxCloudServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.ButtonSaveLocalCon = New System.Windows.Forms.Button()
         Me.ButtonTestLocConn = New System.Windows.Forms.Button()
         Me.ButtonClearLocal = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -196,6 +197,11 @@ Partial Class ConfigManager
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.Panel20 = New System.Windows.Forms.Panel()
+        Me.Panel21 = New System.Windows.Forms.Panel()
+        Me.ProgressBar6 = New System.Windows.Forms.ProgressBar()
+        Me.Label22 = New System.Windows.Forms.Label()
         Me.DataGridViewCATEGORIES = New System.Windows.Forms.DataGridView()
         Me.DataGridViewFORMULA = New System.Windows.Forms.DataGridView()
         Me.DataGridViewPRODUCTS = New System.Windows.Forms.DataGridView()
@@ -240,11 +246,7 @@ Partial Class ConfigManager
         Me.BackgroundWorkerACTIVATION = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker5 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorkerABTDB = New System.ComponentModel.BackgroundWorker()
-        Me.ButtonSaveLocalCon = New System.Windows.Forms.Button()
-        Me.Panel20 = New System.Windows.Forms.Panel()
-        Me.Panel21 = New System.Windows.Forms.Panel()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.ProgressBar6 = New System.Windows.Forms.ProgressBar()
+        Me.Button8 = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -301,6 +303,7 @@ Partial Class ConfigManager
         Me.Panel13.SuspendLayout()
         Me.TabPage6.SuspendLayout()
         Me.GroupBox14.SuspendLayout()
+        Me.Panel21.SuspendLayout()
         CType(Me.DataGridViewCATEGORIES, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewFORMULA, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewPRODUCTS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -311,7 +314,6 @@ Partial Class ConfigManager
         Me.Panel1.SuspendLayout()
         Me.Panel4.SuspendLayout()
         CType(Me.DataGridViewOutletDetails, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel21.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
@@ -698,6 +700,18 @@ Partial Class ConfigManager
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(502, 206)
         Me.Panel5.TabIndex = 0
+        '
+        'ButtonSaveLocalCon
+        '
+        Me.ButtonSaveLocalCon.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonSaveLocalCon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSaveLocalCon.ForeColor = System.Drawing.Color.White
+        Me.ButtonSaveLocalCon.Location = New System.Drawing.Point(321, 111)
+        Me.ButtonSaveLocalCon.Name = "ButtonSaveLocalCon"
+        Me.ButtonSaveLocalCon.Size = New System.Drawing.Size(136, 23)
+        Me.ButtonSaveLocalCon.TabIndex = 217
+        Me.ButtonSaveLocalCon.Text = "Save"
+        Me.ButtonSaveLocalCon.UseVisualStyleBackColor = False
         '
         'ButtonTestLocConn
         '
@@ -2172,27 +2186,27 @@ Partial Class ConfigManager
         Me.DataGridViewOutlets.AllowUserToDeleteRows = False
         Me.DataGridViewOutlets.AllowUserToResizeColumns = False
         Me.DataGridViewOutlets.AllowUserToResizeRows = False
-        DataGridViewCellStyle28.BackColor = System.Drawing.Color.White
-        Me.DataGridViewOutlets.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
+        Me.DataGridViewOutlets.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
         Me.DataGridViewOutlets.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewOutlets.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle29.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewOutlets.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewOutlets.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewOutlets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle30.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle30.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewOutlets.DefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewOutlets.DefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridViewOutlets.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewOutlets.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewOutlets.EnableHeadersVisualStyles = False
@@ -2260,6 +2274,8 @@ Partial Class ConfigManager
         '
         'GroupBox14
         '
+        Me.GroupBox14.Controls.Add(Me.Button8)
+        Me.GroupBox14.Controls.Add(Me.Button7)
         Me.GroupBox14.Controls.Add(Me.Panel20)
         Me.GroupBox14.Controls.Add(Me.Panel21)
         Me.GroupBox14.Controls.Add(Me.DataGridViewCATEGORIES)
@@ -2272,6 +2288,54 @@ Partial Class ConfigManager
         Me.GroupBox14.TabIndex = 40
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "Data"
+        '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(6, 387)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(218, 19)
+        Me.Button7.TabIndex = 253
+        Me.Button7.Text = "Button7"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
+        'Panel20
+        '
+        Me.Panel20.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Panel20.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel20.Location = New System.Drawing.Point(3, 412)
+        Me.Panel20.Name = "Panel20"
+        Me.Panel20.Size = New System.Drawing.Size(584, 8)
+        Me.Panel20.TabIndex = 252
+        '
+        'Panel21
+        '
+        Me.Panel21.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Panel21.Controls.Add(Me.ProgressBar6)
+        Me.Panel21.Controls.Add(Me.Label22)
+        Me.Panel21.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel21.Location = New System.Drawing.Point(3, 420)
+        Me.Panel21.Name = "Panel21"
+        Me.Panel21.Size = New System.Drawing.Size(584, 44)
+        Me.Panel21.TabIndex = 251
+        '
+        'ProgressBar6
+        '
+        Me.ProgressBar6.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ProgressBar6.Location = New System.Drawing.Point(0, 21)
+        Me.ProgressBar6.Name = "ProgressBar6"
+        Me.ProgressBar6.Size = New System.Drawing.Size(584, 23)
+        Me.ProgressBar6.TabIndex = 225
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.ForeColor = System.Drawing.Color.White
+        Me.Label22.Location = New System.Drawing.Point(0, 2)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(42, 15)
+        Me.Label22.TabIndex = 224
+        Me.Label22.Text = "Status"
         '
         'DataGridViewCATEGORIES
         '
@@ -2573,56 +2637,14 @@ Partial Class ConfigManager
         'BackgroundWorkerABTDB
         '
         '
-        'ButtonSaveLocalCon
+        'Button8
         '
-        Me.ButtonSaveLocalCon.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.ButtonSaveLocalCon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonSaveLocalCon.ForeColor = System.Drawing.Color.White
-        Me.ButtonSaveLocalCon.Location = New System.Drawing.Point(321, 111)
-        Me.ButtonSaveLocalCon.Name = "ButtonSaveLocalCon"
-        Me.ButtonSaveLocalCon.Size = New System.Drawing.Size(136, 23)
-        Me.ButtonSaveLocalCon.TabIndex = 217
-        Me.ButtonSaveLocalCon.Text = "Save"
-        Me.ButtonSaveLocalCon.UseVisualStyleBackColor = False
-        '
-        'Panel20
-        '
-        Me.Panel20.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel20.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel20.Location = New System.Drawing.Point(3, 412)
-        Me.Panel20.Name = "Panel20"
-        Me.Panel20.Size = New System.Drawing.Size(584, 8)
-        Me.Panel20.TabIndex = 252
-        '
-        'Panel21
-        '
-        Me.Panel21.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Panel21.Controls.Add(Me.ProgressBar6)
-        Me.Panel21.Controls.Add(Me.Label22)
-        Me.Panel21.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel21.Location = New System.Drawing.Point(3, 420)
-        Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(584, 44)
-        Me.Panel21.TabIndex = 251
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.ForeColor = System.Drawing.Color.White
-        Me.Label22.Location = New System.Drawing.Point(0, 2)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(42, 15)
-        Me.Label22.TabIndex = 224
-        Me.Label22.Text = "Status"
-        '
-        'ProgressBar6
-        '
-        Me.ProgressBar6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.ProgressBar6.Location = New System.Drawing.Point(0, 21)
-        Me.ProgressBar6.Name = "ProgressBar6"
-        Me.ProgressBar6.Size = New System.Drawing.Size(584, 23)
-        Me.ProgressBar6.TabIndex = 225
+        Me.Button8.Location = New System.Drawing.Point(230, 387)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(218, 19)
+        Me.Button8.TabIndex = 254
+        Me.Button8.Text = "Button8"
+        Me.Button8.UseVisualStyleBackColor = True
         '
         'ConfigManager
         '
@@ -2714,6 +2736,8 @@ Partial Class ConfigManager
         Me.Panel13.PerformLayout()
         Me.TabPage6.ResumeLayout(False)
         Me.GroupBox14.ResumeLayout(False)
+        Me.Panel21.ResumeLayout(False)
+        Me.Panel21.PerformLayout()
         CType(Me.DataGridViewCATEGORIES, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewFORMULA, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewPRODUCTS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2726,8 +2750,6 @@ Partial Class ConfigManager
         Me.Panel1.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         CType(Me.DataGridViewOutletDetails, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel21.ResumeLayout(False)
-        Me.Panel21.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2952,4 +2974,6 @@ Partial Class ConfigManager
     Friend WithEvents Panel21 As Panel
     Friend WithEvents ProgressBar6 As ProgressBar
     Friend WithEvents Label22 As Label
+    Friend WithEvents Button7 As Button
+    Friend WithEvents Button8 As Button
 End Class

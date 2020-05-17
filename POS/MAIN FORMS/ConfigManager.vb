@@ -1050,9 +1050,6 @@ Public Class ConfigManager
             datagrid.DataSource = dt
         Catch ex As Exception
             MsgBox(ex.ToString)
-        Finally
-            cloudconn.Close()
-            da.Dispose()
         End Try
     End Sub
     Dim threadLISTINSERPROD As List(Of Thread) = New List(Of Thread)
@@ -1304,9 +1301,6 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub BackgroundWorkerLOAD_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerLOAD.RunWorkerCompleted
-
-    End Sub
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonSaveLocalCon.Click
         Try
             If My.Settings.ValidLocalConn = True Then
@@ -1325,5 +1319,19 @@ Public Class ConfigManager
 
     Private Sub BackgroundWorker5_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker5.ProgressChanged
         ProgressBar6.Value = e.ProgressPercentage
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        InsertToProducts()
+        InsertToInventory()
+        InsertToCategories()
+        InsertToFormula()
+    End Sub
+
+    Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles Button8.Click
+        GetCategories()
+        GetProducts()
+        GetInventory()
+        GetFormula()
     End Sub
 End Class
