@@ -555,7 +555,7 @@ CREATE TABLE `loc_settings` (
   `Dev_PTU_No` text NOT NULL,
   `Dev_PTU_Date_Issued` text NOT NULL,
   `Dev_PTU_Valid_Until` text NOT NULL,
-  `S_Zreading` date NOT NULL
+  `S_Zreading` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
