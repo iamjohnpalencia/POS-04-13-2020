@@ -95,7 +95,6 @@ Public Class ConfigManager
         My.Settings.LocalConnectionPath = CompletePath
         My.Settings.Save()
         MsgBox("Saved")
-
         'MsgBox(My.Settings.LocalConnectionPath)
         'MsgBox(My.Settings.LocalConnectionString)
     End Sub

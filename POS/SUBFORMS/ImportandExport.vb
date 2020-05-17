@@ -46,13 +46,12 @@ Public Class ImportandExport
     End Sub
     Private Sub loaddata()
         Try
-            dbconnection()
             sql = "SELECT `details_id`, `product_id`, `product_sku`, `product_name`, `quantity`, `price`, `total`, `crew_id`, `transaction_number`, `active`, `created_at`, `timenow`, `guid`, `store_id` FROM loc_daily_transaction_details WHERE synced = 'Unsynced'"
-            da = New MySqlDataAdapter(sql, localconn)
+            cmd = New MySqlCommand(sql, LocalhostConn())
+            da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
             DataGridView1.DataSource = dt
-            localconn.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

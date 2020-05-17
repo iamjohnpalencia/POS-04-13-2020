@@ -55,7 +55,7 @@ Public Class Loading
                 BackgroundWorker1.ReportProgress(i)
                 Thread.Sleep(50)
                 If i = 10 Then
-                    If LoadLocalConnection.State = ConnectionState.Open Then
+                    If LocalhostConn.State = ConnectionState.Open Then
                         Label1.Text = "Getting information..."
                         IfConnectionIsConfigured = True
                         thread = New Thread(AddressOf LoadMasterList)
@@ -79,7 +79,7 @@ Public Class Loading
                     End If
                 End If
                 If i = 25 Then
-                    If LoadLocalConnection.State = ConnectionState.Open Then
+                    If LocalhostConn.State = ConnectionState.Open Then
                         Label1.Text = "Checking for updates..."
                     End If
                 End If
@@ -97,7 +97,7 @@ Public Class Loading
                 End If
                 If i = 65 Then
                     If IfConnectionIsConfigured = True Then
-                        If CheckIfNeedToReset(LoadLocalConnection) = True Then
+                        If CheckIfNeedToReset(LocalhostConn) = True Then
                             IfNeedsToReset = True
                         Else
                             IfNeedsToReset = False
@@ -105,7 +105,7 @@ Public Class Loading
                     End If
                 End If
                 If i = 80 Then
-                    If LoadLocalConnection.State = ConnectionState.Open Then
+                    If LocalhostConn.State = ConnectionState.Open Then
                         thread = New Thread(AddressOf LoadSettings)
                         thread.Start()
                         threadList.Add(thread)
@@ -128,18 +128,31 @@ Public Class Loading
     Private Sub LoadSettings()
         Try
             If LocalConnectionIsOnOrValid = True Then
-                sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading FROM loc_settings WHERE settings_id = 1"
-                da = New MySqlDataAdapter(sql, localconn)
-                dt = New DataTable
+                Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading FROM loc_settings WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
                 da.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    S_ExportPath = dt(0)(0)
-                    S_Tax = dt(0)(1)
-                    S_SIFormat = dt(0)(2)
-                    S_Terminal_No = dt(0)(3)
-                    S_ZeroRated = dt(0)(4)
-                    S_Zreading = returndateformat(dt(0)(5).ToString)
-                End If
+                For Each row As DataRow In dt.Rows
+                    If row("A_Export_Path") <> "" Then
+                        If row("A_Tax") <> "" Then
+                            If row("A_SIFormat") <> "" Then
+                                If row("A_Terminal_No") <> "" Then
+                                    If row("A_ZeroRated") <> "" Then
+                                        If row("S_Zreading") <> "" Then
+                                            S_ExportPath = ConvertB64ToString(row("A_Export_Path"))
+                                            S_Tax = row("A_Tax")
+                                            S_SIFormat = row("A_SIFormat")
+                                            S_Terminal_No = row("A_Terminal_No")
+                                            S_ZeroRated = row("A_ZeroRated")
+                                            S_Zreading = row("S_Zreading")
+                                        End If
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+                Next
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -149,7 +162,7 @@ Public Class Loading
         Try
             If LocalConnectionIsOnOrValid = True Then
                 sql = "SELECT * FROM admin_masterlist WHERE masterlist_id = 1"
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, LoadLocalConnection)
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
@@ -274,7 +287,7 @@ Public Class Loading
     Private Sub GetLocalPosData()
         Try
             Dim sql = "SELECT * FROM admin_outlets WHERE user_guid = '" & ClientGuid & "' AND store_id = " & ClientStoreID & ";"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LoadLocalConnection)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             Dim dr As MySqlDataReader = cmd.ExecuteReader()
             While dr.Read()
                 ClientBrand = dr("brand_name")
@@ -293,7 +306,6 @@ Public Class Loading
                 getmunicipality = dr("municipality_name")
                 getprovince = dr("province_name")
             End While
-            localconn.Close()
             cmd.Dispose()
             Dispose()
             Login.Show()
@@ -304,15 +316,11 @@ Public Class Loading
     End Sub
     Private Sub Temptinventory()
         Try
-            If localconn.State = ConnectionState.Closed Then
-                dbconnection()
-            Else
-            End If
             sql = "INSERT INTO loc_inv_temp_data (`store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `guid`, `date_modified`, `date_created`)  SELECT `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `guid`, `date_modified` ,(SELECT date_add(date_add(LAST_DAY(NOW()),interval 1 DAY),interval -1 MONTH) AS first_day) FROM loc_pos_inventory"
             cmd = New MySqlCommand
             With cmd
                 .CommandText = sql
-                .Connection = localconn
+                .Connection = LocalhostConn()
                 .ExecuteNonQuery()
             End With
         Catch ex As Exception
@@ -321,12 +329,11 @@ Public Class Loading
     End Sub
     Private Sub ResetStocks()
         Try
-            dbconnection()
             sql = "UPDATE `loc_pos_inventory` SET `stock_quantity`= 0,`stock_total`= 0"
             cmd = New MySqlCommand
             With cmd
                 .CommandText = sql
-                .Connection = localconn
+                .Connection = LocalhostConn()
                 .ExecuteNonQuery()
             End With
         Catch ex As Exception
@@ -348,9 +355,9 @@ Public Class Loading
     Private Sub SyncToLocalUsers()
         Try
             With DataGridViewRESULT
-                serverconn()
                 sql = "SELECT `user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `active`, `guid`, `store_id`, `uniq_id` , `created_at`, `updated_at` FROM `loc_users` WHERE guid = '" & ClientGuid & "' AND store_id = '" & ClientStoreID & "' AND synced = 'Unsynced' AND active = 1"
-                da = New MySqlDataAdapter(sql, cloudconn)
+                cmd = New MySqlCommand(sql, ServerCloudCon())
+                da = New MySqlDataAdapter(cmd)
                 DataTableServer = New DataTable
                 da.Fill(DataTableServer)
                 .DataSource = DataTableServer
@@ -378,12 +385,10 @@ Public Class Loading
                     sql = "UPDATE loc_users SET synced = 'Synced' WHERE uniq_id = '" & .Rows(i).Cells(11).Value.ToString & "'"
                     cmd = New MySqlCommand(sql, cloudconn)
                     cmd.ExecuteNonQuery()
-                    dbconnection()
                     sql = "UPDATE loc_users SET `full_name` = '" & .Rows(i).Cells(1).Value.ToString & "'  , `username` = '" & .Rows(i).Cells(2).Value.ToString & "' , `password` = '" & .Rows(i).Cells(3).Value.ToString & "'  , `contact_number` = '" & .Rows(i).Cells(4).Value.ToString & "'  WHERE uniq_id = '" & .Rows(i).Cells(11).Value.ToString & "' "
-                    cmd = New MySqlCommand(sql, localconn)
+                    cmd = New MySqlCommand(sql, LocalhostConn())
                     cmd.ExecuteNonQuery()
                 Next
-                localconn.Close()
             End With
         Catch ex As Exception
             Label1.Text = "Invalid connection..."

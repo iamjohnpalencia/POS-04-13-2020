@@ -35,12 +35,9 @@ Module RetrieveModule
         Else
             Try
                 cipherText = ConvertPassword(SourceString:=Login.txtpassword.Text)
-                dbconnection()
                 sql = "SELECT * FROM loc_users WHERE username = @Username AND password = @Password AND guid = '" & ClientGuid & "' AND store_id = @StoreID AND active = 1;"
-                cmd = New MySqlCommand(sql, localconn)
+                cmd = New MySqlCommand(sql, LocalhostConn())
                 With cmd
-                    .Connection = localconn
-                    .CommandText = sql
                     .Parameters.Clear()
                     .Parameters.AddWithValue("@Username", Login.txtusername.Text)
                     .Parameters.AddWithValue("@UserID", Login.txtusername.Text)
@@ -60,7 +57,6 @@ Module RetrieveModule
             Catch ex As MySqlException
                 MsgBox(ex.ToString)
             Finally
-                localconn.Close()
                 da.Dispose()
                 If dt.Rows.Count > 0 Then
                     Dim crew_id, username, password, fullname, userlevel, active, storeid, franguid, role As String
@@ -118,11 +114,10 @@ Module RetrieveModule
     'FUNCTION LOADING EXPENCES / POS ==================================================================================== 
     Public Sub listviewproductsshow(ByVal where As String)
         Try
-            dbconnection()
             If where = "Others" Then
-                cmd = New MySqlCommand("SELECT product_id, product_name, product_image, product_price, formula_id FROM loc_admin_products WHERE product_category ='" & where & "' AND product_status = 1 AND store_id = " & ClientStoreID, localconn)
+                cmd = New MySqlCommand("SELECT product_id, product_name, product_image, product_price, formula_id FROM loc_admin_products WHERE product_category ='" & where & "' AND product_status = 1 AND store_id = " & ClientStoreID, LocalhostConn())
             Else
-                cmd = New MySqlCommand("SELECT product_id, product_name, product_image, product_price, formula_id FROM loc_admin_products WHERE product_category ='" & where & "' AND product_status = 1 ", localconn)
+                cmd = New MySqlCommand("SELECT product_id, product_name, product_image, product_price, formula_id FROM loc_admin_products WHERE product_category ='" & where & "' AND product_status = 1 ", LocalhostConn())
             End If
             With POS
                 .PanelProducts.Controls.Clear()
@@ -174,7 +169,6 @@ Module RetrieveModule
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
-            localconn.Close()
             cmd.Dispose()
         End Try
     End Sub
@@ -189,15 +183,13 @@ Module RetrieveModule
         ElseIf whatform = 3 Then
             Registration.TextBoxMAXID.Text = Format(Now, "yydd-MMHH-mmssyy")
         End If
-        localconn.Close()
         cmd.Dispose()
     End Sub
     Dim formulaid
     Public Function selectmaxformula(ByVal whatid As String, ByVal fromtable As String, ByVal flds As String)
         Try
-            dbconnection()
             sql = "Select " & flds & " FROM " & fromtable & " ORDER BY " & whatid & " DESC LIMIT 1"
-            cmd = New MySqlCommand(sql, localconn)
+            cmd = New MySqlCommand(sql, LocalhostConn())
             formulaid = cmd.ExecuteScalar()
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -209,8 +201,7 @@ Module RetrieveModule
 
     Public Function returnfullname(ByVal where As String)
         Try
-            dbconnection()
-            cmd = New MySqlCommand("SELECT full_name FROM loc_users WHERE uniq_id = '" + where + "' ", localconn)
+            cmd = New MySqlCommand("SELECT full_name FROM loc_users WHERE uniq_id = '" + where + "' ", LocalhostConn())
             da = New MySqlDataAdapter(cmd)
             dr = cmd.ExecuteReader
             If dr.HasRows Then
@@ -221,7 +212,6 @@ Module RetrieveModule
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
-            localconn.Close()
             da.Dispose()
         End Try
         Return full_name
@@ -263,12 +253,11 @@ Module RetrieveModule
     End Function
     Public Function returnuserid(ByVal full_name As String) As String
         Try
-            dbconnection()
             sql = "Select uniq_id FROM loc_users WHERE full_name = '" & full_name & "'"
             cmd = New MySqlCommand
             With cmd
                 .CommandText = sql
-                .connection = localconn
+                .Connection = LocalhostConn()
                 'This will loop through all returned records 
                 Using readerObj As MySqlDataReader = cmd.ExecuteReader
                     While readerObj.Read
@@ -279,18 +268,16 @@ Module RetrieveModule
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
-            localconn.Close()
         End Try
         Return fullname
     End Function
     Public Sub retrieveformulaids()
         Try
-            dbconnection()
             sql = "SELECT product_id, product_sku, formula_id, product_category FROM `loc_admin_products` WHERE product_name = '" & POS.TextBoxNAME.Text & "'"
             cmd = New MySqlCommand
             With cmd
                 .CommandText = sql
-                .Connection = localconn
+                .Connection = LocalhostConn()
                 Using readerObj As MySqlDataReader = cmd.ExecuteReader
                     While readerObj.Read
                         Dim formula_id = readerObj("formula_id")
@@ -304,21 +291,20 @@ Module RetrieveModule
                     End While
                 End Using
             End With
-            localconn.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
-            localconn.Close()
         End Try
     End Sub
     Dim DataTableCriticalLimit As New DataTable
     Dim DataAdapterCriticalLimit As MySqlDataAdapter
+    Dim CmdCriticalLimit As MySqlCommand
     Dim ListOfIngredients As String
     Public Sub checkcriticallimit(ByVal formula_id, ByVal ID, ByVal SKU, ByVal CAT)
         Try
             ListOfIngredients = ""
-            dbconnection()
             sql = "SELECT product_ingredients, critical_limit, stock_quantity, stock_total FROM `loc_pos_inventory` WHERE stock_quantity <= critical_limit AND inventory_id IN (" & Trim(formula_id) & ");"
-            DataAdapterCriticalLimit = New MySqlDataAdapter(sql, localconn)
+            CmdCriticalLimit = New MySqlCommand(sql, LocalhostConn())
+            DataAdapterCriticalLimit = New MySqlDataAdapter(CmdCriticalLimit)
             DataTableCriticalLimit = New DataTable
             DataAdapterCriticalLimit.Fill(DataTableCriticalLimit)
             If DataTableCriticalLimit.Rows.Count > 0 Then
@@ -337,14 +323,12 @@ Module RetrieveModule
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
-            localconn.Close()
         End Try
     End Sub
     Public Sub retrieveanddeduct(ByVal formulaID, ByVal Cat)
         Try
-            dbconnection()
             sql = "SELECT serving_value, formula_id, unit_cost FROM `loc_product_formula` WHERE formula_id IN (" & formulaID & ")"
-            cmd = New MySqlCommand(sql, localconn)
+            cmd = New MySqlCommand(sql, LocalhostConn())
             da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
@@ -436,18 +420,16 @@ Module RetrieveModule
                 End If
             End With
         Catch ex As Exception
-            localconn.Close()
             MsgBox(ex.ToString)
         Finally
-            localconn.Close()
             cmd.Dispose()
         End Try
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION_CLOUD(tbl As String, flds As String, datagrid As DataGridView)
         Try
-            serverconn()
             sql = "SELECT " & flds & " FROM " & table
-            da = New MySqlDataAdapter(sql, cloudconn)
+            cmd = New MySqlCommand(sql, ServerCloudCon())
+            da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
             datagrid.DataSource = dt
@@ -486,7 +468,6 @@ Module RetrieveModule
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
-            localconn.Close()
             da.Dispose()
         End Try
     End Sub
@@ -514,7 +495,6 @@ Module RetrieveModule
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
-            localconn.Close()
             da.Dispose()
         End Try
     End Sub
@@ -534,31 +514,9 @@ Module RetrieveModule
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
-            localconn.Close()
             da.Dispose()
         End Try
     End Sub
-    'Public Function GLOBAL_SELECT_FUNCTION_RETURN_NOWHERE(ByVal table As String, ByVal fields As String, ByVal returnvalrow As String)
-    '    Try
-    '        dbconnection()
-    '        sql = "SELECT " + fields + " FROM " + table
-    '        cmd = New MySqlCommand
-    '        With cmd
-    '            .CommandText = sql
-    '            .Connection = localconn
-    '            Using readerObj As MySqlDataReader = cmd.ExecuteReader
-    '                While readerObj.Read
-    '                    returnval = readerObj(returnvalrow).ToString
-    '                End While
-    '            End Using
-    '        End With
-    '    Catch ex As Exception
-    '        MsgBox(ex.ToString)
-    '    Finally
-    '        localconn.Close()
-    '    End Try
-    '    Return returnval
-    'End Function
     Public Function GLOBAL_SELECT_FUNCTION_RETURN(ByVal table As String, ByVal fields As String, ByVal values As String, ByVal returnvalrow As String)
         Try
             sql = "SELECT " + fields + " FROM " + table + " WHERE " + values
@@ -570,8 +528,6 @@ Module RetrieveModule
             End Using
         Catch ex As Exception
             MsgBox(ex.ToString)
-        Finally
-            localconn.Close()
         End Try
         Return returnval
     End Function
@@ -611,32 +567,6 @@ Module RetrieveModule
             MsgBox(ex.ToString)
         End Try
         Return returnsum
-    End Function
-
-    Dim ReturnTrue As Boolean
-    Public Function GLOBAL_FUNCTION_RETRIEVE_SELECT(flds As String, tbl As String, where As String) As Boolean
-        Try
-            If cloudconn.State = ConnectionState.Closed Then
-                serverconn()
-            End If
-            sql = "SELECT " & flds & " FROM " & tbl & " WHERE " & where
-            cloudcmd = New MySqlCommand(sql, cloudconn)
-            cloudcmd.ExecuteScalar()
-            If cloudcmd.ExecuteScalar Then
-                ReturnTrue = True
-            Else
-                ReturnTrue = False
-            End If
-            cloudcmd.Dispose()
-            cloudconn.Close()
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        If ReturnTrue = True Then
-            Return True
-        Else
-            Return False
-        End If
     End Function
     Dim RetunSel
     Public Function returnselect(toreturn As String, table As String)

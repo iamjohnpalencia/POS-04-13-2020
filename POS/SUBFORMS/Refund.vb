@@ -63,13 +63,12 @@ Public Class Refund
         Try
             Dim countrow As Integer = 0
             FlowLayoutPanel1.Controls.Clear()
-            dbconnection()
             sql = "SELECT product_id, product_name, quantity, price, total, product_sku FROM loc_daily_transaction_details WHERE transaction_number = '" & DataGridView1.SelectedRows(0).Cells(0).Value.ToString & "' AND active = 1"
             Dim query As String = "SELECT SUM(TOTAL) FROM loc_daily_transaction_details WHERE transaction_number = '" & DataGridView1.SelectedRows(0).Cells(0).Value.ToString & "'"
             Dim cmdquery As MySqlCommand
             Dim queryda As MySqlDataAdapter
             Dim dt1 As DataTable
-            cmdquery = New MySqlCommand(query, localconn)
+            cmdquery = New MySqlCommand(query, LocalhostConn)
             queryda = New MySqlDataAdapter(cmd)
             dt1 = New DataTable
             queryda.Fill(dt1)
@@ -83,17 +82,16 @@ Public Class Refund
             dt = New DataTable()
             With cmd
                 .CommandText = sql
-                .Connection = localconn
+                .Connection = LocalhostConn()
                 da.Fill(dt)
                 For Each row As DataRow In dt.Rows
                     countrow += 1
-
                     Dim buttonname As String = row("product_name")
                     sql = "SELECT product_image FROM loc_admin_products WHERE product_id = " & row("product_id")
                     cmd = New MySqlCommand
                     With cmd
                         .CommandText = sql
-                        .Connection = localconn
+                        .Connection = LocalhostConn()
                         Using readerObj As MySqlDataReader = cmd.ExecuteReader
                             While readerObj.Read
                                 productimage = readerObj("product_image")
@@ -193,9 +191,9 @@ Public Class Refund
             If String.IsNullOrWhiteSpace(TextBox2.Text) Then
                 MessageBox.Show("Reason for refund is required!", "Refund", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
-                dbconnection()
                 sql = "SELECT * FROM loc_daily_transaction WHERE date = CURDATE() AND time >= Now() - INTERVAL 10 MINUTE AND transaction_number = '" & transaction_number & "'"
-                da = New MySqlDataAdapter(sql, localconn)
+                cmd = New MySqlCommand(sql, LocalhostConn)
+                da = New MySqlDataAdapter(cmd)
                 dt = New DataTable
                 da.Fill(dt)
                 If dt.Rows.Count > 0 Then

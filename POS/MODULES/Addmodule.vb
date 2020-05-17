@@ -25,11 +25,10 @@ Module Addmodule
     Dim result As Integer
     Public Sub GLOBAL_INSERT_FUNCTION(ByVal table As String, ByVal fields As String, ByVal values As String, ByVal successmessage As String, ByVal errormessage As String)
         Try
-            dbconnection()
             sql = "INSERT INTO " + table + fields + " VALUES " + values
             cmd = New MySqlCommand
             With cmd
-                .Connection = localconn
+                .Connection = LocalhostConn()
                 .CommandText = sql
                 result = .ExecuteNonQuery
             End With
@@ -43,19 +42,15 @@ Module Addmodule
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
-            localconn.Close()
             cmd.Dispose()
         End Try
     End Sub
     Public Sub GLOBAL_INSERT_FUNCTION_CLOUD(ByVal table As String, ByVal fields As String, ByVal values As String, ByVal successmessage As String, ByVal errormessage As String)
         Try
-            If cloudconn.State = ConnectionState.Closed Then
-                serverconn()
-            End If
             sql = "INSERT INTO " + table + fields + " VALUES " + values
             cloudcmd = New MySqlCommand
             With cloudcmd
-                .Connection = cloudconn
+                .Connection = ServerCloudCon()
                 .CommandText = sql
                 result = .ExecuteNonQuery
             End With

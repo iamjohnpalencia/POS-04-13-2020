@@ -14,8 +14,7 @@ Public Class PendingOrders
     End Sub
     Public Sub AMPpopulatecategory()
         Try
-            dbconnection()
-            Dim command As New MySqlCommand("SELECT DISTINCT customer_name FROM loc_pending_orders WHERE guid = '" & ClientGuid & "'", localconn)
+            Dim command As New MySqlCommand("SELECT DISTINCT customer_name FROM loc_pending_orders WHERE guid = '" & ClientGuid & "'", LocalhostConn())
             Dim adapter As New MySqlDataAdapter(command)
             Dim table As New DataTable()
             adapter.Fill(table)
@@ -25,19 +24,16 @@ Public Class PendingOrders
             Me.ComboBoxCustomerName.ValueMember = "customer_name"
         Catch ex As Exception
             MsgBox(ex.ToString)
-            localconn.Close()
         End Try
     End Sub
     Public Sub pendingloadorders()
         Try
-            dbconnection()
-            Dim command As New MySqlCommand("SELECT `product_name`, `product_quantity`, `product_price`, `product_total`, `datetime`, `guid`, `active`, `increment`  FROM `loc_pending_orders` WHERE customer_name = '" & ComboBoxCustomerName.Text & "' AND guid = '" & ClientGuid & "'", localconn)
+            Dim command As New MySqlCommand("SELECT `product_name`, `product_quantity`, `product_price`, `product_total`, `datetime`, `guid`, `active`, `increment`  FROM `loc_pending_orders` WHERE customer_name = '" & ComboBoxCustomerName.Text & "' AND guid = '" & ClientGuid & "'", LocalhostConn())
             Dim adapter As New MySqlDataAdapter(command)
             Dim table As New DataTable()
             adapter.Fill(table)
             With DataGridView1
                 .Rows.Clear()
-
                 For Each row As DataRow In table.Rows
                     .Rows.Add(row("product_name"), row("product_quantity"), row("product_price"), row("product_total"), row("datetime"), row("guid"), row("active"), row("increment"))
                 Next
@@ -69,13 +65,11 @@ Public Class PendingOrders
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
-            localconn.Close()
         End Try
     End Sub
     Public Sub populatedatagridvieworders()
         Try
-            dbconnection()
-            Dim command As New MySqlCommand("SELECT product_name, product_quantity, product_price, product_total, increment, product_id, product_sku, product_category, product_addon_id FROM `loc_pending_orders` WHERE customer_name = '" & ComboBoxCustomerName.Text & "' AND guid = '" & ClientGuid & "'", localconn)
+            Dim command As New MySqlCommand("SELECT product_name, product_quantity, product_price, product_total, increment, product_id, product_sku, product_category, product_addon_id FROM `loc_pending_orders` WHERE customer_name = '" & ComboBoxCustomerName.Text & "' AND guid = '" & ClientGuid & "'", LocalhostConn())
             Dim adapter As New MySqlDataAdapter(command)
             Dim table As New DataTable()
             adapter.Fill(table)
@@ -84,12 +78,9 @@ Public Class PendingOrders
             Next row
         Catch ex As Exception
             MsgBox(ex.ToString)
-            localconn.Close()
         End Try
-
         Try
-            dbconnection()
-            Dim command As New MySqlCommand("SELECT `hold_id`, `sr_total`, `f_id`, `qty`, `id`, `nm`, `org_serve`, `cog`, `ocog`, `prd.addid` FROM loc_hold_inventory WHERE name = '" & ComboBoxCustomerName.Text & "'", localconn)
+            Dim command As New MySqlCommand("SELECT `hold_id`, `sr_total`, `f_id`, `qty`, `id`, `nm`, `org_serve`, `cog`, `ocog`, `prd.addid` FROM loc_hold_inventory WHERE name = '" & ComboBoxCustomerName.Text & "'", LocalhostConn())
             Dim adapter As New MySqlDataAdapter(command)
             Dim table As New DataTable()
             adapter.Fill(table)
@@ -98,7 +89,6 @@ Public Class PendingOrders
             Next row
         Catch ex As Exception
             MsgBox(ex.ToString)
-            localconn.Close()
         End Try
     End Sub
     Private Sub ButtonSelectCustomer_Click(sender As Object, e As EventArgs) Handles ButtonSelectCustomer.Click

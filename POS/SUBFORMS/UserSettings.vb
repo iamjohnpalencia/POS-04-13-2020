@@ -174,9 +174,9 @@ Public Class UserSettings
         userid = DataGridViewUserSettings.SelectedRows(0).Cells(14).Value.ToString()
         TextBoxCONPASS.Enabled = False
         Try
-            dbconnection()
-            sql = "SELECT * FROM loc_users WHERE uniq_id = '" & userid & "' " 
-            da = New MySqlDataAdapter(sql, localconn)
+            sql = "SELECT * FROM loc_users WHERE uniq_id = '" & userid & "' "
+            cmd = New MySqlCommand(sql, LocalhostConn)
+            da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
             For Each row As DataRow In dt.Rows
@@ -206,14 +206,9 @@ Public Class UserSettings
         Dim deactivation = MessageBox.Show("Are you sure you want to deactivate ( " & fullname & " ) account?", "Deactivation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
         If deactivation = DialogResult.Yes Then
             Try
-                dbconnection()
                 sql = "UPDATE loc_users SET active = 0 WHERE user_id =" & userid
-                cmd = New MySqlCommand
-                With cmd
-                    .CommandText = sql
-                    .Connection = localconn
-                    result = .ExecuteNonQuery()
-                End With
+                cmd = New MySqlCommand(sql, LocalhostConn)
+                result = cmd.ExecuteNonQuery()
                 If result = 1 Then
                     MsgBox("Account Deactivated")
                     Usersloadusers()

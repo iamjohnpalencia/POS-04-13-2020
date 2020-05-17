@@ -18,9 +18,9 @@ Public Class AdminConfirmation
     Private Sub retrieveadmincredentials()
         Try
             cipherText = ConvertPassword(SourceString:=TextBoxADMINPASSWORD.Text)
-            serverconn()
             sql = "SELECT user_name, user_pass FROM admin_user WHERE user_name = '" & TextBoxADMINUSERNAME.Text & "' AND user_pass = '" & cipherText & "' AND user_role = 'Admin'"
-            da = New MySqlDataAdapter(sql, cloudconn)
+            cmd = New MySqlCommand(sql, ServerCloudCon)
+            da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
         Catch ex As Exception

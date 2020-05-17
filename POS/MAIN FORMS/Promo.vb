@@ -11,10 +11,8 @@ Public Class Promo
         Dim dt As New DataTable
         Dim sda As New MySqlDataAdapter
         Dim bsource As New BindingSource
-
         Try
-            dbconnection()
-            cmd = New MySqlCommand("SELECT * FROM loc_admin_products", localconn)
+            cmd = New MySqlCommand("SELECT * FROM loc_admin_products", LocalhostConn)
             da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
@@ -58,14 +56,10 @@ Public Class Promo
         Dim dt As New DataTable
         Dim sda As New MySqlDataAdapter
         Dim bsource As New BindingSource
-
         Try
-            dbconnection()
-            cmd = New MySqlCommand("SELECT * FROM tbcoupon", localconn)
-
+            cmd = New MySqlCommand("SELECT * FROM tbcoupon", LocalhostConn())
             DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
             DataGridView2.AutoGenerateColumns = False
-
             Dim index As Integer
             index = DataGridView2.Columns.Add("ID", "ID")
             DataGridView2.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
@@ -181,9 +175,8 @@ Public Class Promo
                 TextBox3.Focus()
                 Exit Sub
             Else
-                dbconnection()
                 Dim command As New MySqlCommand
-                command.Connection = localconn
+                command.Connection = LocalhostConn()
                 command.CommandText = "INSERT INTO tbcoupon (Couponname_,Desc_,Discountvalue_,Type,Effectivedate,Expirydate) Values
                                     ('" & Trim(TextBox1.Text) & "',
                                      '" & Trim(TextBox2.Text) & "',
@@ -193,7 +186,6 @@ Public Class Promo
                                      '" & CDate(DateTimePicker2.Text).ToShortDateString & "')"
 
                 command.ExecuteReader()
-                localconn.Close()
                 loaddatagrid2()
             End If
 
@@ -208,9 +200,8 @@ Public Class Promo
                 TextBox3.Focus()
                 Exit Sub
             Else
-                dbconnection()
                 Dim command As New MySqlCommand
-                command.Connection = localconn
+                command.Connection = LocalhostConn()
                 command.CommandText = "INSERT INTO tbcoupon (Couponname_,Desc_,Discountvalue_,Type,Effectivedate,Expirydate) Values
                                     ('" & Trim(TextBox1.Text) & "',
                                      '" & Trim(TextBox2.Text) & "',
@@ -220,7 +211,6 @@ Public Class Promo
                                      '" & CDate(DateTimePicker2.Text).ToShortDateString & "')"
 
                 command.ExecuteReader()
-                localconn.Close()
                 loaddatagrid2()
             End If
         ElseIf ComboBox1.Text = "Fix-2" Then
@@ -237,9 +227,8 @@ Public Class Promo
                 TextBox4.Focus()
                 Exit Sub
             Else
-                dbconnection()
                 Dim command As New MySqlCommand
-                command.Connection = localconn
+                command.Connection = LocalhostConn()
                 command.CommandText = "INSERT INTO tbcoupon (Couponname_,Desc_,Discountvalue_,Referencevalue_,Type,Effectivedate,Expirydate) Values
                                     ('" & Trim(TextBox1.Text) & "',
                                      '" & Trim(TextBox2.Text) & "',
@@ -249,7 +238,6 @@ Public Class Promo
                                      '" & CDate(DateTimePicker1.Text).ToShortDateString & "',
                                      '" & CDate(DateTimePicker2.Text).ToShortDateString & "')"
                 command.ExecuteReader()
-                localconn.Close()
                 loaddatagrid2()
             End If
         ElseIf ComboBox1.Text = "Bundle-1(Fix)" Then
@@ -272,9 +260,8 @@ Public Class Promo
                 TextBox8.Focus()
                 Exit Sub
             Else
-                dbconnection()
                 Dim command As New MySqlCommand
-                command.Connection = localconn
+                command.Connection = LocalhostConn()
                 command.CommandText = "INSERT INTO tbcoupon (Couponname_,Desc_,Bundlebase_,BBValue_,Bundlepromo_,BPValue_,Type,Effectivedate,Expirydate) Values
                                     ('" & Trim(TextBox1.Text) & "',
                                      '" & Trim(TextBox2.Text) & "',
@@ -286,7 +273,6 @@ Public Class Promo
                                      '" & CDate(DateTimePicker1.Text).ToShortDateString & "',
                                      '" & CDate(DateTimePicker2.Text).ToShortDateString & "')"
                 command.ExecuteReader()
-                localconn.Close()
                 loaddatagrid2()
             End If
         ElseIf ComboBox1.Text = "Bundle-2(Fix)" Then
@@ -312,9 +298,8 @@ Public Class Promo
                 TextBox8.Focus()
                 Exit Sub
             Else
-                dbconnection()
                 Dim command As New MySqlCommand
-                command.Connection = localconn
+                command.Connection = LocalhostConn()
                 command.CommandText = "INSERT INTO tbcoupon (Couponname_,Desc_,Discountvalue_,Bundlebase_,BBValue_,Bundlepromo_,BPValue_,Type,Effectivedate,Expirydate) Values
                                     ('" & Trim(TextBox1.Text) & "',
                                      '" & Trim(TextBox2.Text) & "',
@@ -327,7 +312,6 @@ Public Class Promo
                                      '" & CDate(DateTimePicker1.Text).ToShortDateString & "',
                                      '" & CDate(DateTimePicker2.Text).ToShortDateString & "')"
                 command.ExecuteReader()
-                localconn.Close()
                 loaddatagrid2()
             End If
         ElseIf ComboBox1.Text = "Bundle-3(%)" Then
@@ -353,9 +337,8 @@ Public Class Promo
                 TextBox8.Focus()
                 Exit Sub
             Else
-                dbconnection()
                 Dim command As New MySqlCommand
-                command.Connection = localconn
+                command.Connection = LocalhostConn()
                 command.CommandText = "INSERT INTO tbcoupon (Couponname_,Desc_,Discountvalue_,Bundlebase_,BBValue_,Bundlepromo_,BPValue_,Type,Effectivedate,Expirydate) Values
                                     ('" & Trim(TextBox1.Text) & "',
                                      '" & Trim(TextBox2.Text) & "',
@@ -368,7 +351,6 @@ Public Class Promo
                                      '" & CDate(DateTimePicker1.Text).ToShortDateString & "',
                                      '" & CDate(DateTimePicker2.Text).ToShortDateString & "')"
                 command.ExecuteReader()
-                localconn.Close()
                 loaddatagrid2()
             End If
         Else

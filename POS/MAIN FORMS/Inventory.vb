@@ -99,12 +99,11 @@ Public Class Inventory
     Dim inv
     Public Sub selectingredients()
         Try
-            dbconnection()
             sql = "SELECT formula_id, serving_unit, serving_value FROM loc_product_formula WHERE product_ingredients ='" & ComboBoxDESC.Text & "'"
             cmd = New MySqlCommand
             With cmd
                 .CommandText = sql
-                .Connection = localconn
+                .Connection = LocalhostConn()
                 Using readerObj As MySqlDataReader = cmd.ExecuteReader
                     While readerObj.Read
                         Dim serving_unit = readerObj("serving_unit").ToString
@@ -158,12 +157,11 @@ Public Class Inventory
                 TextBoxName.Text = .SelectedRows(0).Cells(3).Value.ToString
                 TextBoxStockOnhand.Text = .SelectedRows(0).Cells(4).Value.ToString
                 TextBoxStockTotal.Text = .SelectedRows(0).Cells(5).Value.ToString
-                dbconnection()
                 sql = "SELECT serving_value FROM loc_product_formula WHERE formula_id = " & .SelectedRows(0).Cells(2).Value.ToString
                 cmd = New MySqlCommand
                 With cmd
                     .CommandText = sql
-                    .Connection = localconn
+                    .Connection = LocalhostConn()
                     Using readerObj As MySqlDataReader = cmd.ExecuteReader
                         While readerObj.Read
                             TextBox1.Text = readerObj("serving_value")

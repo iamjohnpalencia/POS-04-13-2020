@@ -261,7 +261,6 @@ Public Class Reports
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
-            localconn.Close()
             da.Dispose()
         End Try
     End Sub
@@ -723,11 +722,9 @@ Public Class Reports
                 printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
                 PrintPreviewDialogXread.Document = printdocXread
                 PrintPreviewDialogXread.ShowDialog()
-                dbconnection()
                 sql = "UPDATE loc_settings SET S_Zreading = '" & returndateformat(Now().ToString) & "'"
-                cmd = New MySqlCommand(sql, localconn)
+                cmd = New MySqlCommand(sql, LocalhostConn())
                 cmd.ExecuteNonQuery()
-                localconn.Close()
                 cmd.Dispose()
                 S_Zreading = returndateformat(Now().ToString)
             Else
@@ -736,9 +733,5 @@ Public Class Reports
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-    End Sub
-
-    Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles Button6.Click
-        MsgBox(S_Zreading)
     End Sub
 End Class

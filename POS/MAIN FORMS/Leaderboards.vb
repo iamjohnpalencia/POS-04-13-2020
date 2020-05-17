@@ -7,6 +7,7 @@ Public Class Leaderboards
     Dim StopThread As Boolean = False
     Dim BestsellerDataTable As DataTable
     Dim BestsellerDataAdapter As MySqlDataAdapter
+    Dim BestSellerCmd As MySqlCommand
     Declare Auto Function SendMessage Lib "user32.dll" (ByVal hWnd As IntPtr, ByVal msg As Integer, ByVal wParam As Integer, ByVal lParam As Integer) As Integer
     Enum ProgressBarColor
         Green = &H1
@@ -99,11 +100,9 @@ Public Class Leaderboards
     End Sub
     Private Sub bestseller()
         Try
-            If cloudconn.State = ConnectionState.Closed Then
-                serverconn()
-            End If
             sql = "SELECT product_name, product_sku , SUM(quantity) FROM admin_daily_transaction_details WHERE store_id = " & ClientStoreID & " GROUP by product_name ORDER BY `SUM(quantity)` DESC"
-            BestsellerDataAdapter = New MySqlDataAdapter(sql, cloudconn)
+            BestSellerCmd = New MySqlCommand(sql, ServerCloudCon())
+            BestsellerDataAdapter = New MySqlDataAdapter(BestSellerCmd)
             BestsellerDataTable = New DataTable
             BestsellerDataAdapter.Fill(BestsellerDataTable)
             cloudconn.Close()

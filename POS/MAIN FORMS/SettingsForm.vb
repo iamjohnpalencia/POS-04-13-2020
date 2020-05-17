@@ -202,15 +202,11 @@ Public Class SettingsForm
         Try
             Dim countrow As Integer = 0
             FlowLayoutPanel1.Controls.Clear()
-            dbconnection()
             sql = "SELECT product_id, product_name, quantity, price, total, product_sku FROM loc_daily_transaction_details WHERE transaction_number = '" & DataGridViewITEMRETURN1.SelectedRows(0).Cells(0).Value.ToString & "' AND active = 1"
             Dim query As String = "SELECT SUM(TOTAL) FROM loc_daily_transaction_details WHERE transaction_number = '" & DataGridViewITEMRETURN1.SelectedRows(0).Cells(0).Value.ToString & "'"
-            Dim cmdquery As MySqlCommand
-            Dim queryda As MySqlDataAdapter
-            Dim dt1 As DataTable
-            cmdquery = New MySqlCommand(query, localconn)
-            queryda = New MySqlDataAdapter(cmd)
-            dt1 = New DataTable
+            Dim cmdquery As MySqlCommand = New MySqlCommand(query, LocalhostConn())
+            Dim queryda As MySqlDataAdapter = New MySqlDataAdapter(cmdquery)
+            Dim dt1 As DataTable = New DataTable
             queryda.Fill(dt1)
             Using readerObj As MySqlDataReader = cmdquery.ExecuteReader
                 While readerObj.Read
@@ -222,7 +218,7 @@ Public Class SettingsForm
             dt = New DataTable()
             With cmd
                 .CommandText = sql
-                .Connection = localconn
+                .Connection = LocalhostConn()
                 da.Fill(dt)
                 For Each row As DataRow In dt.Rows
                     countrow += 1
@@ -341,9 +337,9 @@ Public Class SettingsForm
             If String.IsNullOrWhiteSpace(TextBoxIRREASON.Text) Then
                 MessageBox.Show("Reason for refund is required!", "Refund", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
-                dbconnection()
                 sql = "SELECT * FROM loc_daily_transaction WHERE date = CURDATE() AND time >= Now() - INTERVAL 10 MINUTE AND transaction_number = '" & transaction_num & "'"
-                da = New MySqlDataAdapter(sql, localconn)
+                cmd = New MySqlCommand(sql, LocalhostConn())
+                da = New MySqlDataAdapter(cmd)
                 dt = New DataTable
                 da.Fill(dt)
                 If dt.Rows.Count > 0 Then

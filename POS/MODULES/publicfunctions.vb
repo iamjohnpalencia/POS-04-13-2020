@@ -461,12 +461,10 @@ Module publicfunctions
     Public Sub checkif1stdayofthemonth()
         Try
             If LocalConnectionIsOnOrValid = True Then
-                If localconn.State = ConnectionState.Closed Then
-                    dbconnection()
-                End If
                 Dim firstday = Format(FirstDayOfMonth(Date.Now), "yyyy-MM-dd")
                 sql = "SELECT * FROM loc_inv_temp_data WHERE date_created = '" & firstday & "'"
-                da = New MySqlDataAdapter(sql, localconn)
+                cmd = New MySqlCommand(sql, LocalhostConn())
+                da = New MySqlDataAdapter(cmd)
                 dt = New DataTable
                 da.Fill(dt)
                 If dt.Rows.Count = 0 Then
@@ -563,9 +561,10 @@ Module publicfunctions
     End Sub
     Public Sub ReceiptFooter(sender As Object, e As PrintPageEventArgs, a As Integer)
         Try
-            dbconnection()
+
             Dim sql As String = "SELECT `Dev_Company_Name`, `Dev_Address`, `Dev_Tin`, `Dev_Accr_No`, `Dev_Accr_Date_Issued`, `Dev_Accr_Valid_Until`, `Dev_PTU_No`, `Dev_PTU_Date_Issued`, `Dev_PTU_Valid_Until` FROM loc_settings WHERE settings_id = 1"
-            Dim da As MySqlDataAdapter = New MySqlDataAdapter(sql, localconn)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
             Dim brandfont As New Font("Kelson Sans Normal", 8, FontStyle.Bold)

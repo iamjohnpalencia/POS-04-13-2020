@@ -109,9 +109,10 @@ Public Class ManageProducts
             If DataGridViewClientProducts.Rows.Count > 0 Then
                 productid = DataGridViewClientProducts.SelectedRows(0).Cells(0).Value.ToString()
                 Try
-                    dbconnection()
+
                     sql = "SELECT * FROM loc_admin_products WHERE product_id =" & productid
-                    da = New MySqlDataAdapter(sql, localconn)
+                    cmd = New MySqlCommand(sql, LocalhostConn())
+                    da = New MySqlDataAdapter(cmd)
                     dt = New DataTable
                     da.Fill(dt)
                     For Each row As DataRow In dt.Rows
@@ -132,9 +133,9 @@ Public Class ManageProducts
             If DataGridViewUNAPPROVED.Rows.Count > 0 Then
                 productid = DataGridViewUNAPPROVED.SelectedRows(0).Cells(0).Value.ToString()
                 Try
-                    dbconnection()
                     sql = "SELECT * FROM loc_admin_products WHERE product_id =" & productid
-                    da = New MySqlDataAdapter(sql, localconn)
+                    cmd = New MySqlCommand(sql, LocalhostConn)
+                    da = New MySqlDataAdapter(cmd)
                     dt = New DataTable
                     da.Fill(dt)
                     For Each row As DataRow In dt.Rows
@@ -591,30 +592,16 @@ Public Class ManageProducts
                     Dim deactivation = MessageBox.Show("Are you sure you want to deactivate ( " & customproductname & " ) product?", "Deactivation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
                     If deactivation = DialogResult.Yes Then
                         Try
-                            dbconnection()
-                            sql = "DELETE FROM `loc_admin_products` WHERE product_id =" & productid
-                            cmd = New MySqlCommand
-                            With cmd
-                                .CommandText = sql
-                                .Connection = localconn
-                                result = .ExecuteNonQuery()
-                            End With
-                            sql = "DELETE FROM `loc_pos_inventory` WHERE formula_id = " & formula_id
-                            cmd = New MySqlCommand
-                            With cmd
-                                .CommandText = sql
-                                .Connection = localconn
-                                result = .ExecuteNonQuery()
-                            End With
-                            sql = "DELETE FROM `loc_product_formula` WHERE formula_id = " & formula_id
-                            cmd = New MySqlCommand
-                            With cmd
-                                .CommandText = sql
-                                .Connection = localconn
-                                result = .ExecuteNonQuery()
-                            End With
-                            localconn.Close()
 
+                            sql = "DELETE FROM `loc_admin_products` WHERE product_id =" & productid
+                            cmd = New MySqlCommand(sql, LocalhostConn)
+                            result = cmd.ExecuteNonQuery()
+                            sql = "DELETE FROM `loc_pos_inventory` WHERE formula_id = " & formula_id
+                            cmd = New MySqlCommand(sql, LocalhostConn)
+                            result = cmd.ExecuteNonQuery()
+                            sql = "DELETE FROM `loc_product_formula` WHERE formula_id = " & formula_id
+                            cmd = New MySqlCommand(sql, LocalhostConn)
+                            result = cmd.ExecuteNonQuery()
                             If result = 1 Then
                                 MsgBox("Product Deactivated")
                                 messageboxappearance = False
@@ -641,29 +628,16 @@ Public Class ManageProducts
                     Dim deactivation = MessageBox.Show("Are you sure you want to deactivate ( " & customproductname & " ) product?", "Deactivation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
                     If deactivation = DialogResult.Yes Then
                         Try
-                            dbconnection()
                             sql = "DELETE FROM `loc_admin_products`WHERE product_id =" & productid
-                            cmd = New MySqlCommand
-                            With cmd
-                                .CommandText = sql
-                                .Connection = localconn
-                                result = .ExecuteNonQuery()
-                            End With
+                            cmd = New MySqlCommand(sql, LocalhostConn)
+                            result = cmd.ExecuteNonQuery()
                             sql = "DELETE FROM `loc_pos_inventory` WHERE formula_id = " & formula_id
                             cmd = New MySqlCommand
-                            With cmd
-                                .CommandText = sql
-                                .Connection = localconn
-                                result = .ExecuteNonQuery()
-                            End With
+                            cmd = New MySqlCommand(sql, LocalhostConn)
+                            result = cmd.ExecuteNonQuery()
                             sql = "DELETE FROM `loc_product_formula` WHERE formula_id = " & formula_id
-                            cmd = New MySqlCommand
-                            With cmd
-                                .CommandText = sql
-                                .Connection = localconn
-                                result = .ExecuteNonQuery()
-                            End With
-                            localconn.Close()
+                            cmd = New MySqlCommand(sql, LocalhostConn)
+                            result = cmd.ExecuteNonQuery()
                             If result = 1 Then
                                 MsgBox("Product Deactivated")
                                 messageboxappearance = False

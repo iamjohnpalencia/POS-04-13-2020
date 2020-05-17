@@ -43,9 +43,8 @@ Public Class POS
         selectmax(whatform:=1)
         DataGridViewOrders.Font = New Font("Kelson Sans Normal", 11.25)
         Try
-            dbconnection()
             sql = "SELECT category_name FROM loc_admin_category WHERE status = 1"
-            cmd = New MySqlCommand(sql, localconn)
+            cmd = New MySqlCommand(sql, LocalhostConn())
             da = New MySqlDataAdapter(cmd)
             dt = New DataTable()
             da.Fill(dt)
@@ -510,8 +509,8 @@ Public Class POS
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
             With WaitFrm
-                dbconnection()
                 sql = "SELECT si_number FROM loc_daily_transaction ORDER BY transaction_id DESC limit 1"
+                cmd = New MySqlCommand(sql, LocalhostConn)
                 da = New MySqlDataAdapter(sql, localconn)
                 dt = New DataTable
                 da.Fill(dt)
@@ -634,12 +633,11 @@ Public Class POS
                 GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
                 '=================================================================================================
                 Try
-                    dbconnection()
                     sql = "SELECT stock_quantity, stock_total FROM loc_pos_inventory WHERE formula_id = " & DataGridViewInv.Rows(i).Cells(1).Value
                     cmd = New MySqlCommand
                     With cmd
                         .CommandText = sql
-                        .Connection = localconn
+                        .Connection = LocalhostConn()
                         Using readerObj As MySqlDataReader = cmd.ExecuteReader
                             While readerObj.Read
                                 stockqty = readerObj("stock_quantity").ToString
@@ -654,7 +652,6 @@ Public Class POS
                 Catch ex As Exception
                     MsgBox(ex.Message)
                 End Try
-                localconn.Close()
                 cmd.Dispose()
             Next
         Catch ex As Exception

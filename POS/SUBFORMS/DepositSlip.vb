@@ -35,12 +35,11 @@ Public Class DepositSlip
     Private Sub TextBoxAMT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxAMT.KeyPress
         Numeric(sender:=sender, e:=e)
     End Sub
-
     Private Sub DepositSlip_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            dbconnection()
             sql = "SELECT bankname FROM loc_partners_transaction WHERE active = 1 ORDER BY arrid ASC"
-            da = New MySqlDataAdapter(sql, localconn)
+            cmd = New MySqlCommand(sql, LocalhostConn())
+            da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
             For Each row As DataRow In dt.Rows
