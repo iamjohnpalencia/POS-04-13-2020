@@ -379,6 +379,8 @@ Public Class POS
         If Shift = "" Then
             MessageBox.Show("Input cashier balance first", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
+            MsgBox(returndateformat(S_Zreading.ToString))
+            MsgBox(Format(Now(), "yyyy-MM-dd"))
             If returndateformat(S_Zreading.ToString) <> Format(Now(), "yyyy-MM-dd") Then
                 MessageBox.Show("Z-read", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else

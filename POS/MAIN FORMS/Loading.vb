@@ -138,7 +138,7 @@ Public Class Loading
                     S_SIFormat = dt(0)(2)
                     S_Terminal_No = dt(0)(3)
                     S_ZeroRated = dt(0)(4)
-                    S_Zreading = dt(0)(5)
+                    S_Zreading = returndateformat(dt(0)(5).ToString)
                 End If
             End If
         Catch ex As Exception

@@ -340,62 +340,75 @@ Module publicfunctions
         Dim iMonth As Integer = Month(dat)
         GetMonthName = MonthName(iMonth)
     End Function
-    Public Function returndateformatfulldate(ByVal datetoformat)
+    Public Function returndateformatfulldate(datetoformat As String)
         Try
-            Dim dateTime = datetoformat
-            Dim dt As DateTime = Convert.ToDateTime(dateTime)
-            Dim format As String = "yyyy-MM-dd HH:mm:ss"
-            dateformat = dt.ToString(format)
+            Dim iDate As String = datetoformat
+            Dim oDate As DateTime = Convert.ToDateTime(iDate)
+            dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00") & " " & oDate.Hour & ":" & oDate.Minute & ":" & oDate.Second
+            'Dim dateTime = datetoformat
+            'Dim dt As DateTime = Convert.ToDateTime(dateTime)
+            'Dim format As String = "yyyy-MM-dd HH:mm:ss"
+            'dateformat = dt.ToString(format)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
         Return dateformat
     End Function
-    Public Function returndateformat(ByVal datetoformat)
+    Public Function returndateformat(datetoformat As String)
         Try
-            Dim dateTime As String = datetoformat
-            Dim dt As DateTime = Convert.ToDateTime(dateTime)
-            Dim format As String = "yyyy-MM-dd"
-            dateformat = dt.ToString(format)
+            Dim iDate As String = datetoformat
+            Dim oDate As DateTime = Convert.ToDateTime(iDate)
+            dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00")
+            'Dim dateTime As String = datetoformat
+            'Dim dt As DateTime = Convert.ToDateTime(dateTime)
+            'Dim format As String = "yyyy-MM-dd"
+            'dateformat = dt.ToString(format)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
         Return dateformat
     End Function
-    Public Function returndateformat2(ByVal datetoformat)
+    Public Function returndateformat2(datetoformat As String)
         Try
-            Dim dateTime As String = datetoformat
-            Dim dt As DateTime = Convert.ToDateTime(dateTime)
-            Dim format As String = "dd/MM/yyyy"
-            dateformat = dt.ToString(format)
+            Dim iDate As String = datetoformat
+            Dim oDate As DateTime = Convert.ToDateTime(iDate)
+            dateformat = oDate.Day.ToString("#00") & "/" & oDate.Month.ToString("#00") & "/" & oDate.Year
+            'Dim dateTime As String = datetoformat
+            'Dim dt As DateTime = Convert.ToDateTime(dateTime)
+            'Dim format As String = "dd/MM/yyyy"
+            'dateformat = dt.ToString(format)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
         Return dateformat
     End Function
-    Public Function returndateformatDGV(ByVal datetoformat)
+    Public Function returndateformatDGV(datetoformat As String)
         Try
-            Dim dateTime As String = datetoformat
-            Dim dt As DateTime = Convert.ToDateTime(dateTime)
-            Dim format As String = "yyyy/MM/dd"
-            dateformat = dt.ToString(format)
+            Dim iDate As String = datetoformat
+            Dim oDate As DateTime = Convert.ToDateTime(iDate)
+            dateformat = oDate.Year & "/" & oDate.Month.ToString("#00") & "/" & oDate.Day.ToString("#00")
+            'Dim dateTime As String = datetoformat
+            'Dim dt As DateTime = Convert.ToDateTime(dateTime)
+            'Dim format As String = "yyyy/MM/dd"
+            'dateformat = dt.ToString(format)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
         Return dateformat
     End Function
     Public Function returndatetimeformat(ByVal datetoformat)
-        Dim dateTime As String = datetoformat
-        Dim dt As DateTime = Convert.ToDateTime(dateTime)
-        Dim format As String = "yyyy-MM-dd hh:mm:ss"
-        dateformat = dt.ToString(format)
+        Try
+            Dim iDate As String = datetoformat
+            Dim oDate As DateTime = Convert.ToDateTime(iDate)
+            dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00") & " " & oDate.Hour & ":" & oDate.Minute & ":" & oDate.Second
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        'Dim dateTime As String = datetoformat
+        'Dim dt As DateTime = Convert.ToDateTime(dateTime)
+        'Dim format As String = "yyyy-MM-dd hh:mm:ss"
+        'dateformat = dt.ToString(format)
         Return dateformat
-    End Function
-    Public Function returntimeformat(ByVal dgvtimeformat)
-        Dim strTime As String = dgvtimeformat
-        Dim dtTime As DateTime = Convert.ToDateTime(strTime)
-        timeformat = dtTime.ToString("HH:mm:ss")
-        Return timeformat
     End Function
     Public resetinventory As Boolean
     Public Function FirstDayOfMonth(ByVal sourceDate As DateTime) As DateTime
