@@ -55,7 +55,7 @@ Public Class Reports
                 where = " date(log_date_time) = CURRENT_DATE() AND log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewSysLog, errormessage:="", fields:=fields, successmessage:="", where:=where)
             Else
-                where = " log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND date(log_date_time) >= '" & returndateformat(DateTimePicker9.Text) & "' AND date(log_date_time) <= '" & returndateformat(DateTimePicker10.Text) & "'"
+                where = " log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND date(log_date_time) >= '" & Format(DateTimePicker9.Value, "yyyy-MM-dd") & "' AND date(log_date_time) <= '" & Format(DateTimePicker10.Value, "yyyy-MM-dd") & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewSysLog, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
             With DataGridViewSysLog
@@ -74,7 +74,7 @@ Public Class Reports
             where = " date(zreading) = CURRENT_DATE() AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewReturns, errormessage:="", fields:=fields, successmessage:="", where:=where)
         Else
-            where = " date(zreading) >= '" & returndateformat(DateTimePicker14.Text) & "' AND date(zreading) <= '" & returndateformat(DateTimePicker13.Text) & "' AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+            where = " date(zreading) >= '" & Format(DateTimePicker14.Value, "yyyy-MM-dd") & "' AND date(zreading) <= '" & Format(DateTimePicker13.Value, "yyyy-MM-dd") & "' AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewReturns, errormessage:="", fields:=fields, successmessage:="", where:=where)
         End If
         With DataGridViewReturns
@@ -94,7 +94,7 @@ Public Class Reports
             where = " log_type = 'TRANSACTION' AND date(log_date_time) = CURRENT_DATE() AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' "
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewTRANSACTIONLOGS, errormessage:="", fields:=fields, successmessage:="", where:=where)
         Else
-            where = " log_type = 'TRANSACTION' AND date(log_date_time) >= '" & returndateformat(DateTimePicker11.Text) & "' AND date(log_date_time) <= '" & returndateformat(DateTimePicker12.Text) & "' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' "
+            where = " log_type = 'TRANSACTION' AND date(log_date_time) >= '" & Format(DateTimePicker11.Value, "yyyy-MM-dd") & "' AND date(log_date_time) <= '" & Format(DateTimePicker12.Value, "yyyy-MM-dd") & "' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' "
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewTRANSACTIONLOGS, errormessage:="", fields:=fields, successmessage:="", where:=where)
         End If
         With DataGridViewTRANSACTIONLOGS
@@ -111,13 +111,12 @@ Public Class Reports
                 where = " zreading = CURRENT_DATE() AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDaily, errormessage:="", fields:=fields, successmessage:="", where:=where)
             Else
-                where = " zreading >= '" & returndateformat(DateTimePicker1.Text) & "' and zreading <= '" & returndateformat(DateTimePicker2.Text) & "' AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                where = " zreading >= '" & Format(DateTimePicker1.Value, "yyyy-MM-dd") & "' and zreading <= '" & Format(DateTimePicker2.Value, "yyyy-MM-dd") & "' AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDaily, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
             With DataGridViewDaily
                 .Columns(0).Visible = False
                 .Columns(1).HeaderCell.Value = "TRN. Date"
-
                 .Columns(2).HeaderCell.Value = "TRN. Time"
                 .Columns(3).HeaderCell.Value = "TRN. Number"
                 .Columns(4).HeaderCell.Value = "Service Crew"
@@ -150,7 +149,7 @@ Public Class Reports
                 where = " zreading = CURRENT_DATE()  AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewSales, errormessage:="", fields:=fields, successmessage:="", where:=where)
             Else
-                where = " zreading >= '" & returndateformat(DateTimePicker3.Text) & "' AND zreading <= '" & returndateformat(DateTimePicker4.Text) & "' AND active = 1  AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                where = " zreading >= '" & Format(DateTimePicker3.Value, "yyyy-MM-dd") & "' AND zreading <= '" & Format(DateTimePicker4.Value, "yyyy-MM-dd") & "' AND active = 1  AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewSales, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
             With DataGridViewSales
@@ -172,10 +171,10 @@ Public Class Reports
             table = "`loc_expense_details`"
             fields = "`expense_type`, `item_info`, `quantity`, `price`, `amount`, `attachment`, `created_at`, `time`"
             If searchdate = False Then
-                where = " zreading = CURRENT_DATE() AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                where = " zreading = date(CURRENT_DATE()) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewExpenseDetails, errormessage:="", fields:=fields, successmessage:="", where:=where)
             Else
-                where = " zreading >= '" & returndateformat(DateTimePicker5.Text) & "' AND zreading <= '" & returndateformat(DateTimePicker6.Text) & "' AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                where = " zreading >= '" & Format(DateTimePicker5.Value, "yyyy-MM-dd") & "' AND zreading <= '" & Format(DateTimePicker6.Value, "yyyy-MM-dd") & "' AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewExpenseDetails, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
 
@@ -200,10 +199,10 @@ Public Class Reports
             table = "`loc_expense_list`"
             fields = "`expense_id`, `crew_id`, `expense_number`, `total_amount`, `paid_amount`, `unpaid_amount`, `date`, `time`"
             If searchdate = False Then
-                where = " zreading = CURRENT_DATE() AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                where = " zreading = date(CURRENT_DATE()) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewEXPENSES, errormessage:="", fields:=fields, successmessage:="", where:=where)
             Else
-                where = " zreading >= '" & returndateformat(DateTimePicker7.Text) & "' and zreading <= '" & returndateformat(DateTimePicker8.Text) & "' AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                where = " zreading >= '" & Format(DateTimePicker7.Value, "yyyy-MM-dd") & "' and zreading <= '" & Format(DateTimePicker8.Value, "yyyy-MM-dd") & "' AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewEXPENSES, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
             With DataGridViewEXPENSES
@@ -269,10 +268,10 @@ Public Class Reports
             table = "`loc_deposit`"
             fields = "`dep_id`, `name`, `crew_id`, `transaction_number`, `amount`, `bank`, `transaction_date`, `store_id`, `guid`, `date_created`"
             If searchdate = False Then
-                where = " transaction_date = CURRENT_DATE() AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                where = " date(transaction_date) = date(CURRENT_DATE()) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDeposits, errormessage:="", fields:=fields, successmessage:="", where:=where)
             Else
-                where = " transaction_date >= '" & returndateformat(DateTimePicker16.Text) & "' and transaction_date <= '" & returndateformat(DateTimePicker15.Text) & "' AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                where = " date(transaction_date) >= '" & Format(DateTimePicker16.Value, "yyyy-MM-dd") & "' and date(transaction_date) <= '" & Format(DateTimePicker15.Value, "yyyy-MM-dd") & "' AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDeposits, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
             With DataGridViewDeposits
@@ -606,7 +605,7 @@ Public Class Reports
         PrintPreviewDialogXread.ShowDialog()
     End Sub
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdocXread.PrintPage
-        Dim ZreadDateFormat = returndateformat(S_Zreading.ToString)
+        Dim ZreadDateFormat = S_Zreading
         Dim font As New Font("Bahnschrift Light SemiCondensed", 7)
         Dim brandfont As New Font("Bahnschrift Condensed", 9)
         Dim GrossSale = sum("total", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' ")
@@ -712,7 +711,7 @@ Public Class Reports
         '============================================================================================================================
         SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 590)
         '============================================================================================================================
-        CenterTextDisplay(sender, e, Format(Now, "MM/dd/yyyy hh:mm:ss tt"), font, 595)
+        CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "hh:mm:ss tt"), font, 595)
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonZread.Click
         Try
@@ -722,11 +721,11 @@ Public Class Reports
                 printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
                 PrintPreviewDialogXread.Document = printdocXread
                 PrintPreviewDialogXread.ShowDialog()
-                sql = "UPDATE loc_settings SET S_Zreading = '" & returndateformat(Now().ToString) & "'"
+                sql = "UPDATE loc_settings SET S_Zreading = '" & Format(Now(), "yyyy-MM-dd") & "'"
                 cmd = New MySqlCommand(sql, LocalhostConn())
                 cmd.ExecuteNonQuery()
                 cmd.Dispose()
-                S_Zreading = returndateformat(Now().ToString)
+                S_Zreading = Format(Now(), "yyyy-MM-dd")
             Else
                 MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
