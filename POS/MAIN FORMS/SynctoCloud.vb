@@ -291,18 +291,18 @@ Public Class SynctoCloud
                 Button1.PerformClick()
                 ProgressBar1.Maximum = Val(Label3.Text)
                 'POS.ProgressBar1.Maximum = Val(Label7.Text)
-                '============================================================================Transaction
+                '   ============================================================================Transaction
                 thread1 = New Thread(AddressOf insertlocaldailytransaction)
                 thread1.Start()
                 threadListLOCTRAN.Add(thread1)
                 thread1 = New Thread(AddressOf inserttransactiondetails1)
                 thread1.Start()
                 threadListLOCTD1.Add(thread1)
-                '============================================================================Inventory
+                '  ============================================================================Inventory
                 thread1 = New Thread(AddressOf insertinventory)
                 thread1.Start()
                 threadListLOCINV.Add(thread1)
-                '============================================================================Expenses
+                '   ============================================================================Expenses
                 thread1 = New Thread(AddressOf insertexpenses)
                 thread1.Start()
                 threadListLOCEXP.Add(thread1)
@@ -438,8 +438,8 @@ Public Class SynctoCloud
                 Label8.Text = "Syncing Daily Transaction"
                 messageboxappearance = False
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_daily_transaction( `loc_transaction_id`, `transaction_number`, `amounttendered`, `discount`, `moneychange`, `amountdue`, `vatable`, `vat_exempt`, `zero_rated`, `vat`, `si_number`, `crew_id`, `guid`, `ip_address`, `active`, `store_id`, `date`, `time`, `transaction_type`, `shift`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19)", ServerCloudCon())
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_daily_transaction( `loc_transaction_id`, `transaction_number`, `amounttendered`, `discount`, `moneychange`, `amountdue`, `vatable`, `vat_exempt`, `zero_rated`, `vat`, `si_number`, `crew_id`, `guid`, `active`, `store_id`, `date`, `time`, `transaction_type`, `shift`, `zreading`, `discount_type`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20)", ServerCloudCon())
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.Decimal).Value = .Rows(i).Cells(2).Value.ToString()
@@ -455,11 +455,12 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
                     cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(13).Value.ToString()
                     cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = .Rows(i).Cells(14).Value.ToString()
-                    cmd.Parameters.Add("@15", MySqlDbType.VarChar).Value = .Rows(i).Cells(15).Value.ToString()
-                    cmd.Parameters.Add("@16", MySqlDbType.VarChar).Value = returndateformat(.Rows(i).Cells(16).Value.ToString())
+                    cmd.Parameters.Add("@15", MySqlDbType.VarChar).Value = returndateformat(.Rows(i).Cells(15).Value.ToString())
+                    cmd.Parameters.Add("@16", MySqlDbType.VarChar).Value = .Rows(i).Cells(16).Value.ToString()
                     cmd.Parameters.Add("@17", MySqlDbType.VarChar).Value = .Rows(i).Cells(17).Value.ToString()
                     cmd.Parameters.Add("@18", MySqlDbType.VarChar).Value = .Rows(i).Cells(18).Value.ToString()
-                    cmd.Parameters.Add("@19", MySqlDbType.VarChar).Value = .Rows(i).Cells(19).Value.ToString()
+                    cmd.Parameters.Add("@19", MySqlDbType.Text).Value = Dateandtimeformat(.Rows(i).Cells(19).Value.ToString(), "MM/dd/yyyy", "yyyy-MM-dd")
+                    cmd.Parameters.Add("@20", MySqlDbType.Text).Value = .Rows(i).Cells(21).Value.ToString()
                     Label7.Text = Val(Label7.Text + 1)
                     Label30.Text = Val(Label30.Text) + 1
                     ProgressBar1.Value = Val(Label7.Text)
@@ -494,8 +495,8 @@ Public Class SynctoCloud
             With DataGridViewTRANDET
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_daily_transaction_details(`loc_details_id`, `product_id`, `product_sku`, `product_name`, `quantity`, `price`, `total`, `crew_id`
-                                            , `transaction_number`, `active`, `created_at`, `timenow`, `guid`, `store_id`, `total_cost_of_goods`, `product_category`) 
-                    VALUES (@a0, @a1, @a2, @a3, @a4, @a5, @a6, @a7, @a8, @a9, @a10, @a11, @a12, @a13, @a14, @a15)", ServerCloudCon())
+                                            , `transaction_number`, `active`, `created_at`, `timenow`, `guid`, `store_id`, `total_cost_of_goods`, `product_category` , `zreading`) 
+                    VALUES (@a0, @a1, @a2, @a3, @a4, @a5, @a6, @a7, @a8, @a9, @a10, @a11, @a12, @a13, @a14, @a15, @a16)", ServerCloudCon())
                     cmd.Parameters.Add("@a0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@a1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@a2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -506,12 +507,13 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@a7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     cmd.Parameters.Add("@a8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                     cmd.Parameters.Add("@a9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
-                    cmd.Parameters.Add("@a10", MySqlDbType.VarChar).Value = returndateformat(.Rows(i).Cells(10).Value.ToString())
+                    cmd.Parameters.Add("@a10", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(10).Value.ToString(), "MM/dd/yyyy", "yyyy-MM-dd")
                     cmd.Parameters.Add("@a11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
                     cmd.Parameters.Add("@a12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
                     cmd.Parameters.Add("@a13", MySqlDbType.VarChar).Value = .Rows(i).Cells(13).Value.ToString()
                     cmd.Parameters.Add("@a14", MySqlDbType.Decimal).Value = .Rows(i).Cells(14).Value.ToString()
                     cmd.Parameters.Add("@a15", MySqlDbType.VarChar).Value = .Rows(i).Cells(15).Value.ToString()
+                    cmd.Parameters.Add("@a16", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(16).Value.ToString(), "MM/dd/yyyy", "yyyy-MM-dd")
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label31.Text = Val(Label31.Text) + 1
@@ -558,7 +560,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
                     cmd.Parameters.Add("@8", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString()
                     cmd.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
-                    cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(10).Value.ToString())
+                    cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(10).Value.ToString(), "MM/dd/yyyy HH:mm:ss", "yyyy-MM-dd HH:mm:ss")
                     With cmd
                         Label7.Text = Val(Label7.Text + 1)
                         Label32.Text = Val(Label32.Text) + 1
@@ -611,7 +613,9 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@unpaid_amount", MySqlDbType.Decimal).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@store_id", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@guid", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
-                    cmd.Parameters.Add("@date", MySqlDbType.VarChar).Value = returndateformat(.Rows(i).Cells(8).Value.ToString())
+                    'MsgBox(.Rows(i).Cells(8).Value.ToString())
+                    'MsgBox(Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "MM/dd/yyyy", "yyyy-MM-dd"))
+                    cmd.Parameters.Add("@date", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "MM/dd/yyyy", "yyyy-MM-dd")
                     cmd.Parameters.Add("@time", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                     cmd.Parameters.Add("@active", MySqlDbType.Int64).Value = .Rows(i).Cells(10).Value.ToString()
                     '====================================================================
@@ -672,7 +676,9 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@price", MySqlDbType.Decimal).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@amount", MySqlDbType.Decimal).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@attachment", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
-                    cmd.Parameters.Add("@created_at", MySqlDbType.VarChar).Value = returndateformat(.Rows(i).Cells(8).Value.ToString)
+                    MsgBox(.Rows(i).Cells(8).Value.ToString())
+                    MsgBox(Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "MM/dd/yyyy", "yyyy-MM-dd"))
+                    cmd.Parameters.Add("@created_at", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "MM/dd/yyyy", "yyyy-MM-dd")
                     cmd.Parameters.Add("@time", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                     cmd.Parameters.Add("@crew_id", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                     cmd.Parameters.Add("@guid", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
@@ -725,8 +731,8 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     cmd.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
-                    cmd.Parameters.Add("@9", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(9).Value.ToString())
-                    cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(10).Value.ToString())
+                    cmd.Parameters.Add("@9", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(9).Value.ToString(), "MM/dd/yyyy HH:mm:ss", "yyyy-MM-dd hh:mm:ss")
+                    cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(10).Value.ToString(), "MM/dd/yyyy HH:mm:ss", "yyyy-MM-dd hh:mm:ss")
                     cmd.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
                     cmd.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
                     cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(13).Value.ToString()
@@ -775,7 +781,9 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(3).Value.ToString())
+                    '= "MM/dd/yyyy hh:mm:ss"
+                    '"yyyy-MM-dd hh:mm:ss"
+                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(3).Value.ToString(), "MM/dd/yyyy HH:mm:ss", "yyyy-MM-dd hh:mm:ss")
                     cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
@@ -800,6 +808,7 @@ Public Class SynctoCloud
                 Label26.Text = Label6.Text & " Seconds"
             End With
         Catch ex As Exception
+            MsgBox(ServerCloudCon.state)
             MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
@@ -824,7 +833,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(3).Value.ToString())
+                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(3).Value.ToString(), "MM/dd/yyyy HH:mm:ss", "yyyy-MM-dd hh:mm:ss")
                     cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
@@ -849,6 +858,7 @@ Public Class SynctoCloud
                 Label27.Text = Label6.Text & " Seconds"
             End With
         Catch ex As Exception
+            MsgBox(ServerCloudCon.state)
             MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
@@ -861,6 +871,9 @@ Public Class SynctoCloud
             Label24.Text = "Syncing Systemlogs 3"
             With DataGridViewSYSLOG3
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If ServerCloudCon() <> ConnectionState.Open Then
+                        ServerCloudCon.open
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`
                                                                         , `log_type`
                                                                         , `log_description`
@@ -873,7 +886,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(3).Value.ToString())
+                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(3).Value.ToString(), "MM/dd/yyyy HH:mm:ss", "yyyy-MM-dd hh:mm:ss")
                     cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
@@ -898,6 +911,7 @@ Public Class SynctoCloud
                 Label28.Text = Label6.Text & " Seconds"
             End With
         Catch ex As Exception
+            MsgBox(ServerCloudCon.state)
             Unsuccessful = True
             MsgBox(ex.ToString)
             BackgroundWorker1.CancelAsync()
@@ -922,7 +936,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(3).Value.ToString())
+                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(3).Value.ToString(), "MM/dd/yyyy HH:mm:ss", "yyyy-MM-dd hh:mm:ss")
                     cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
@@ -947,6 +961,7 @@ Public Class SynctoCloud
                 Label29.Text = Label6.Text & " Seconds"
             End With
         Catch ex As Exception
+            MsgBox(ServerCloudCon.state)
             MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
@@ -969,7 +984,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
-                    cmd.Parameters.Add("@8", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(8).Value.ToString())
+                    cmd.Parameters.Add("@8", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "MM/dd/yyyy HH:mm:ss", "yyyy-MM-dd hh:mm:ss")
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label14.Text = Val(Label14.Text) + 1
@@ -1004,8 +1019,8 @@ Public Class SynctoCloud
             Label43.Text = "Syncing Local Products"
             With DataGridViewCUSTOMPRODUCTS
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_products( `loc_product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `ip_address`, `store_id`, `crew_id`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15)", ServerCloudCon())
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_products( `loc_product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `store_id`, `crew_id`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14)", ServerCloudCon())
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1017,11 +1032,10 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@8", MySqlDbType.LongText).Value = .Rows(i).Cells(8).Value.ToString()
                     cmd.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                     cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
-                    cmd.Parameters.Add("@11", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(11).Value.ToString())
+                    cmd.Parameters.Add("@11", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(11).Value.ToString(), "MM/dd/yyyy HH:mm:ss", "yyyy-MM-dd hh:mm:ss")
                     cmd.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
-                    cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(13).Value.ToString()
-                    cmd.Parameters.Add("@14", MySqlDbType.Int64).Value = .Rows(i).Cells(14).Value.ToString()
-                    cmd.Parameters.Add("@15", MySqlDbType.VarChar).Value = .Rows(i).Cells(15).Value.ToString()
+                    cmd.Parameters.Add("@13", MySqlDbType.Int64).Value = .Rows(i).Cells(13).Value.ToString()
+                    cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = .Rows(i).Cells(14).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label41.Text = Val(Label41.Text) + 1
@@ -1055,7 +1069,7 @@ Public Class SynctoCloud
             Label44.Text = "Syncing Mode of Transaction"
             With DataGridViewMODEOFTRANSACTION
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_transaction_mode_details(  `loc_mode_id`, `transaction_type`, `transaction_number`, `full_name`, `reference`, `markup`, `date_time_created`, `status`, `store_id`, `guid`)
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_transaction_mode_details(`loc_mode_id`, `transaction_type`, `transaction_number`, `full_name`, `reference`, `markup`, `date_time_created`, `status`, `store_id`, `guid`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9)", ServerCloudCon())
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
@@ -1063,7 +1077,8 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
                     cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
-                    cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(6).Value.ToString())
+                    MsgBox(.Rows(i).Cells(6).Value.ToString())
+                    cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(6).Value.ToString(), "MM/dd/yyyy HH:mm:ss", "yyyy-MM-dd hh:mm:ss")
                     cmd.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
                     cmd.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                     cmd.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
@@ -1111,7 +1126,8 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     cmd.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
-                    cmd.Parameters.Add("@9", MySqlDbType.Timestamp).Value = returndatetimeformat(.Rows(i).Cells(9).Value.ToString())
+                    MsgBox(.Rows(i).Cells(9).Value.ToString())
+                    cmd.Parameters.Add("@9", MySqlDbType.Timestamp).Value = Dateandtimeformat(.Rows(i).Cells(9).Value.ToString(), "MM/dd/yyyy HH:mm:ss", "yyyy-MM-dd hh:mm:ss")
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label49.Text = Val(Label49.Text) + 1

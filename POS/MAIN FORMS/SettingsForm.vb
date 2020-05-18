@@ -202,7 +202,7 @@ Public Class SettingsForm
         Try
             Dim countrow As Integer = 0
             FlowLayoutPanel1.Controls.Clear()
-            sql = "SELECT product_id, product_name, quantity, price, total, product_sku FROM loc_daily_transaction_details WHERE transaction_number = '" & DataGridViewITEMRETURN1.SelectedRows(0).Cells(0).Value.ToString & "' AND active = 1"
+            Dim sql = "SELECT product_id, product_name, quantity, price, total, product_sku FROM loc_daily_transaction_details WHERE transaction_number = '" & DataGridViewITEMRETURN1.SelectedRows(0).Cells(0).Value.ToString & "' AND active = 1"
             Dim query As String = "SELECT SUM(TOTAL) FROM loc_daily_transaction_details WHERE transaction_number = '" & DataGridViewITEMRETURN1.SelectedRows(0).Cells(0).Value.ToString & "'"
             Dim cmdquery As MySqlCommand = New MySqlCommand(query, LocalhostConn())
             Dim queryda As MySqlDataAdapter = New MySqlDataAdapter(cmdquery)
@@ -228,7 +228,7 @@ Public Class SettingsForm
                     cmd = New MySqlCommand
                     With cmd
                         .CommandText = sql
-                        .Connection = localconn
+                        .Connection = LocalhostConn()
                         Using readerObj As MySqlDataReader = cmd.ExecuteReader
                             While readerObj.Read
                                 productimage = readerObj("product_image")

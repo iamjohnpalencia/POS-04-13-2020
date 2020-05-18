@@ -362,64 +362,30 @@ Module publicfunctions
         Return dateformat
     End Function
     Public Function returndateformat(datetoformat As String)
+        Dim dateString, format As String
+        Dim result As DateTime
+        Dim provider As CultureInfo = CultureInfo.InvariantCulture
+        dateString = datetoformat
+        format = "MM/dd/yyyy"
         Try
-            Dim iDate As String = datetoformat
-            Dim oDate As DateTime = Convert.ToDateTime(iDate)
-            dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00")
-            'Dim dateTime As String = datetoformat
-            'Dim dt As DateTime = Convert.ToDateTime(dateTime)
-            'Dim format As String = "yyyy-MM-dd"
-            'dateformat = dt.ToString(format)
+            result = DateTime.ParseExact(dateString, format, provider)
+            dateformat = result.ToString("yyyy-MM-dd")
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
         Return dateformat
     End Function
-    Public Function returndateformat2(datetoformat As String)
+    Public Function Dateandtimeformat(getstring As String, format As String, returnthisformat As String)
+        Dim dateString
+        Dim result As DateTime
+        Dim provider As CultureInfo = CultureInfo.InvariantCulture
+        dateString = getstring
         Try
-            Dim iDate As String = datetoformat
-            Dim oDate As DateTime = Convert.ToDateTime(iDate)
-            dateformat = oDate.Day.ToString("#00") & "/" & oDate.Month.ToString("#00") & "/" & oDate.Year
-            'Dim dateTime As String = datetoformat
-            'Dim dt As DateTime = Convert.ToDateTime(dateTime)
-            'Dim format As String = "dd/MM/yyyy"
-            'dateformat = dt.ToString(format)
+            result = DateTime.ParseExact(dateString, format, provider)
+            dateformat = result.ToString(returnthisformat)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-        Return dateformat
-    End Function
-    Public Function returndateformatDGV(datetoformat As String)
-        Try
-            Dim iDate As String = datetoformat
-            Dim oDate As DateTime = Convert.ToDateTime(iDate)
-            dateformat = oDate.Year & "/" & oDate.Month.ToString("#00") & "/" & oDate.Day.ToString("#00")
-            'Dim dateTime As String = datetoformat
-            'Dim dt As DateTime = Convert.ToDateTime(dateTime)
-            'Dim format As String = "yyyy/MM/dd"
-            'dateformat = dt.ToString(format)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        Return dateformat
-    End Function
-    Public Function returndatetimeformat(ByVal datetoformat)
-        Try
-            Dim dt As DateTime
-            Dim result = DateTime.TryParseExact(datetoformat, "yyyy-MM-dd hh:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, dt)
-
-            datetoformat = result
-
-            'Dim iDate As String = datetoformat.ToString
-            'Dim oDate As DateTime = Convert.ToDateTime(iDate)
-            'dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00") & " " & oDate.Hour & ":" & oDate.Minute & ":" & oDate.Second
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        'Dim dateTime As String = datetoformat
-        'Dim dt As DateTime = Convert.ToDateTime(dateTime)
-        'Dim format As String = "yyyy-MM-dd hh:mm:ss"
-        'dateformat = dt.ToString(format)
         Return dateformat
     End Function
     Public resetinventory As Boolean
@@ -585,12 +551,13 @@ Module publicfunctions
             CenterTextDisplay(sender, e, "VAT REG TIN : " & dt(0)(2).ToString, font, a + 205)
             CenterTextDisplay(sender, e, dt(0)(1).ToString, font, a + 215)
             CenterTextDisplay(sender, e, "ACCR # : " & dt(0)(3).ToString, font, a + 225)
-            CenterTextDisplay(sender, e, "DATE ISSUED : " & returndateformat2(dt(0)(4).ToString), font, a + 235)
-            CenterTextDisplay(sender, e, "VALID UNTIL : " & returndateformat2(dt(0)(5).ToString), font, a + 245)
+            CenterTextDisplay(sender, e, "DATE ISSUED : " & Dateandtimeformat(dt(0)(4).ToString, "yyyy-MM-dd", "dd/MM/yyyy"), font, a + 235)
+            CenterTextDisplay(sender, e, "VALID UNTIL : " & Dateandtimeformat(dt(0)(5).ToString, "yyyy-MM-dd", "dd/MM/yyyy"), font, a + 245)
             'CenterTextDisplay(sender, e, "SERIAL NUMBER : " & My.Settings.SerialNumber, font, a + 255)
             CenterTextDisplay(sender, e, "PERMIT TO OPERATE : " & dt(0)(6).ToString, font, a + 255)
-            CenterTextDisplay(sender, e, "DATE ISSUED : " & returndateformat2(dt(0)(7).ToString), font, a + 265)
-            CenterTextDisplay(sender, e, "VALID UNTIL : " & returndateformat2(dt(0)(8).ToString), font, a + 275)
+            CenterTextDisplay(sender, e, "DATE ISSUED : " & Dateandtimeformat(dt(0)(7).ToString, "yyyy-MM-dd", "dd/MM/yyyy"), font, a + 265)
+            CenterTextDisplay(sender, e, "VALID UNTIL : " & Dateandtimeformat(dt(0)(8).ToString, "yyyy-MM-dd", "dd/MM/yyyy"), font, a + 275)
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

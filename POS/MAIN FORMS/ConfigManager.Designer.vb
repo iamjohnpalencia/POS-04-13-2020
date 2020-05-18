@@ -22,9 +22,9 @@ Partial Class ConfigManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.ButtonExit = New System.Windows.Forms.Button()
@@ -196,21 +196,27 @@ Partial Class ConfigManager
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.TableLayoutPanel10 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox18 = New System.Windows.Forms.GroupBox()
+        Me.DataGridViewCATEGORIES = New System.Windows.Forms.DataGridView()
+        Me.GroupBox17 = New System.Windows.Forms.GroupBox()
+        Me.DataGridViewFORMULA = New System.Windows.Forms.DataGridView()
+        Me.GroupBox16 = New System.Windows.Forms.GroupBox()
+        Me.DataGridViewPRODUCTS = New System.Windows.Forms.DataGridView()
+        Me.GroupBox15 = New System.Windows.Forms.GroupBox()
+        Me.DataGridViewINVENTORY = New System.Windows.Forms.DataGridView()
         Me.Panel20 = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.ProgressBar6 = New System.Windows.Forms.ProgressBar()
         Me.Label22 = New System.Windows.Forms.Label()
-        Me.DataGridViewCATEGORIES = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewFORMULA = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewPRODUCTS = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewINVENTORY = New System.Windows.Forms.DataGridView()
-        Me.GroupBox13 = New System.Windows.Forms.GroupBox()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.TableLayoutPanel11 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox12 = New System.Windows.Forms.GroupBox()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.ProgressBar5 = New System.Windows.Forms.ProgressBar()
         Me.TextBoxProdKey = New System.Windows.Forms.TextBox()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.GroupBox13 = New System.Windows.Forms.GroupBox()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Panel19 = New System.Windows.Forms.Panel()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -245,12 +251,6 @@ Partial Class ConfigManager
         Me.BackgroundWorkerACTIVATION = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker5 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorkerABTDB = New System.ComponentModel.BackgroundWorker()
-        Me.GroupBox15 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox16 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox17 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox18 = New System.Windows.Forms.GroupBox()
-        Me.TableLayoutPanel10 = New System.Windows.Forms.TableLayoutPanel()
-        Me.TableLayoutPanel11 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel2.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -306,24 +306,24 @@ Partial Class ConfigManager
         Me.Panel17.SuspendLayout()
         Me.Panel13.SuspendLayout()
         Me.TabPage6.SuspendLayout()
+        Me.TableLayoutPanel10.SuspendLayout()
         Me.GroupBox14.SuspendLayout()
-        Me.Panel21.SuspendLayout()
+        Me.GroupBox18.SuspendLayout()
         CType(Me.DataGridViewCATEGORIES, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox17.SuspendLayout()
         CType(Me.DataGridViewFORMULA, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox16.SuspendLayout()
         CType(Me.DataGridViewPRODUCTS, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox15.SuspendLayout()
         CType(Me.DataGridViewINVENTORY, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox13.SuspendLayout()
+        Me.Panel21.SuspendLayout()
+        Me.TableLayoutPanel11.SuspendLayout()
         Me.GroupBox12.SuspendLayout()
+        Me.GroupBox13.SuspendLayout()
         Me.Panel19.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel4.SuspendLayout()
         CType(Me.DataGridViewOutletDetails, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox15.SuspendLayout()
-        Me.GroupBox16.SuspendLayout()
-        Me.GroupBox17.SuspendLayout()
-        Me.GroupBox18.SuspendLayout()
-        Me.TableLayoutPanel10.SuspendLayout()
-        Me.TableLayoutPanel11.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
@@ -1287,7 +1287,7 @@ Partial Class ConfigManager
         Me.TabPage4.Location = New System.Drawing.Point(4, 28)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(1046, 537)
+        Me.TabPage4.Size = New System.Drawing.Size(1046, 543)
         Me.TabPage4.TabIndex = 1
         Me.TabPage4.Text = "TabPage4"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -1305,8 +1305,8 @@ Partial Class ConfigManager
         Me.TableLayoutPanel8.Name = "TableLayoutPanel8"
         Me.TableLayoutPanel8.RowCount = 1
         Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 482.0!))
-        Me.TableLayoutPanel8.Size = New System.Drawing.Size(1040, 482)
+        Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 488.0!))
+        Me.TableLayoutPanel8.Size = New System.Drawing.Size(1040, 488)
         Me.TableLayoutPanel8.TabIndex = 295
         '
         'GroupBox11
@@ -1333,7 +1333,7 @@ Partial Class ConfigManager
         Me.GroupBox11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox11.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(340, 476)
+        Me.GroupBox11.Size = New System.Drawing.Size(340, 482)
         Me.GroupBox11.TabIndex = 294
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "Developer Information"
@@ -1526,7 +1526,7 @@ Partial Class ConfigManager
         Me.TableLayoutPanel9.RowCount = 2
         Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel9.Size = New System.Drawing.Size(340, 476)
+        Me.TableLayoutPanel9.Size = New System.Drawing.Size(340, 482)
         Me.TableLayoutPanel9.TabIndex = 295
         '
         'GroupBox10
@@ -1547,7 +1547,7 @@ Partial Class ConfigManager
         Me.GroupBox10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox10.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(334, 232)
+        Me.GroupBox10.Size = New System.Drawing.Size(334, 235)
         Me.GroupBox10.TabIndex = 293
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "Additional Settings"
@@ -1731,7 +1731,7 @@ Partial Class ConfigManager
         Me.TabPage5.Location = New System.Drawing.Point(4, 28)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(1046, 537)
+        Me.TabPage5.Size = New System.Drawing.Size(1046, 543)
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "TabPage5"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -1748,8 +1748,8 @@ Partial Class ConfigManager
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
         Me.TableLayoutPanel4.RowCount = 1
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 482.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(1040, 482)
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 488.0!))
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(1040, 488)
         Me.TableLayoutPanel4.TabIndex = 0
         '
         'TableLayoutPanel7
@@ -1764,7 +1764,7 @@ Partial Class ConfigManager
         Me.TableLayoutPanel7.RowCount = 2
         Me.TableLayoutPanel7.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.TableLayoutPanel7.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel7.Size = New System.Drawing.Size(514, 476)
+        Me.TableLayoutPanel7.Size = New System.Drawing.Size(514, 482)
         Me.TableLayoutPanel7.TabIndex = 35
         '
         'GroupBox8
@@ -1773,7 +1773,7 @@ Partial Class ConfigManager
         Me.GroupBox8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox8.Location = New System.Drawing.Point(3, 153)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(508, 320)
+        Me.GroupBox8.Size = New System.Drawing.Size(508, 326)
         Me.GroupBox8.TabIndex = 1
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "Outlet Details"
@@ -1809,7 +1809,7 @@ Partial Class ConfigManager
         Me.Panel15.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.Panel15.Location = New System.Drawing.Point(3, 23)
         Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(502, 294)
+        Me.Panel15.Size = New System.Drawing.Size(502, 300)
         Me.Panel15.TabIndex = 1
         '
         'TextBoxBrandname
@@ -2063,7 +2063,7 @@ Partial Class ConfigManager
         '
         Me.Panel38.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel38.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel38.Location = New System.Drawing.Point(0, 256)
+        Me.Panel38.Location = New System.Drawing.Point(0, 262)
         Me.Panel38.Name = "Panel38"
         Me.Panel38.Size = New System.Drawing.Size(502, 8)
         Me.Panel38.TabIndex = 241
@@ -2074,7 +2074,7 @@ Partial Class ConfigManager
         Me.Panel39.Controls.Add(Me.LabelAccCheck)
         Me.Panel39.Controls.Add(Me.ProgressBar3)
         Me.Panel39.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel39.Location = New System.Drawing.Point(0, 264)
+        Me.Panel39.Location = New System.Drawing.Point(0, 270)
         Me.Panel39.Name = "Panel39"
         Me.Panel39.Size = New System.Drawing.Size(502, 30)
         Me.Panel39.TabIndex = 240
@@ -2173,7 +2173,7 @@ Partial Class ConfigManager
         Me.GroupBox9.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox9.Location = New System.Drawing.Point(523, 3)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(514, 476)
+        Me.GroupBox9.Size = New System.Drawing.Size(514, 482)
         Me.GroupBox9.TabIndex = 36
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "Select Outlet"
@@ -2187,7 +2187,7 @@ Partial Class ConfigManager
         Me.Panel16.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.Panel16.Location = New System.Drawing.Point(3, 23)
         Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(508, 450)
+        Me.Panel16.Size = New System.Drawing.Size(508, 456)
         Me.Panel16.TabIndex = 1
         '
         'DataGridViewOutlets
@@ -2196,27 +2196,27 @@ Partial Class ConfigManager
         Me.DataGridViewOutlets.AllowUserToDeleteRows = False
         Me.DataGridViewOutlets.AllowUserToResizeColumns = False
         Me.DataGridViewOutlets.AllowUserToResizeRows = False
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
-        Me.DataGridViewOutlets.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
+        Me.DataGridViewOutlets.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridViewOutlets.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewOutlets.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewOutlets.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewOutlets.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridViewOutlets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewOutlets.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewOutlets.DefaultCellStyle = DataGridViewCellStyle6
         Me.DataGridViewOutlets.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewOutlets.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewOutlets.EnableHeadersVisualStyles = False
@@ -2224,7 +2224,7 @@ Partial Class ConfigManager
         Me.DataGridViewOutlets.Name = "DataGridViewOutlets"
         Me.DataGridViewOutlets.RowHeadersVisible = False
         Me.DataGridViewOutlets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewOutlets.Size = New System.Drawing.Size(508, 420)
+        Me.DataGridViewOutlets.Size = New System.Drawing.Size(508, 426)
         Me.DataGridViewOutlets.TabIndex = 211
         '
         'Panel17
@@ -2232,7 +2232,7 @@ Partial Class ConfigManager
         Me.Panel17.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Panel17.Controls.Add(Me.Button2)
         Me.Panel17.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel17.Location = New System.Drawing.Point(0, 420)
+        Me.Panel17.Location = New System.Drawing.Point(0, 426)
         Me.Panel17.Name = "Panel17"
         Me.Panel17.Size = New System.Drawing.Size(508, 30)
         Me.Panel17.TabIndex = 241
@@ -2284,6 +2284,21 @@ Partial Class ConfigManager
         Me.TabPage6.Text = "TabPage6"
         Me.TabPage6.UseVisualStyleBackColor = True
         '
+        'TableLayoutPanel10
+        '
+        Me.TableLayoutPanel10.ColumnCount = 2
+        Me.TableLayoutPanel10.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel10.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel10.Controls.Add(Me.GroupBox14, 1, 0)
+        Me.TableLayoutPanel10.Controls.Add(Me.TableLayoutPanel11, 0, 0)
+        Me.TableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel10.Location = New System.Drawing.Point(3, 52)
+        Me.TableLayoutPanel10.Name = "TableLayoutPanel10"
+        Me.TableLayoutPanel10.RowCount = 1
+        Me.TableLayoutPanel10.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel10.Size = New System.Drawing.Size(1040, 488)
+        Me.TableLayoutPanel10.TabIndex = 40
+        '
         'GroupBox14
         '
         Me.GroupBox14.Controls.Add(Me.GroupBox18)
@@ -2299,6 +2314,106 @@ Partial Class ConfigManager
         Me.GroupBox14.TabIndex = 40
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "Data"
+        '
+        'GroupBox18
+        '
+        Me.GroupBox18.Controls.Add(Me.DataGridViewCATEGORIES)
+        Me.GroupBox18.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox18.Location = New System.Drawing.Point(3, 311)
+        Me.GroupBox18.Name = "GroupBox18"
+        Me.GroupBox18.Size = New System.Drawing.Size(508, 96)
+        Me.GroupBox18.TabIndex = 256
+        Me.GroupBox18.TabStop = False
+        Me.GroupBox18.Text = "Category"
+        '
+        'DataGridViewCATEGORIES
+        '
+        Me.DataGridViewCATEGORIES.AllowUserToAddRows = False
+        Me.DataGridViewCATEGORIES.AllowUserToDeleteRows = False
+        Me.DataGridViewCATEGORIES.AllowUserToResizeColumns = False
+        Me.DataGridViewCATEGORIES.AllowUserToResizeRows = False
+        Me.DataGridViewCATEGORIES.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewCATEGORIES.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewCATEGORIES.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewCATEGORIES.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewCATEGORIES.Name = "DataGridViewCATEGORIES"
+        Me.DataGridViewCATEGORIES.Size = New System.Drawing.Size(502, 70)
+        Me.DataGridViewCATEGORIES.TabIndex = 65
+        '
+        'GroupBox17
+        '
+        Me.GroupBox17.Controls.Add(Me.DataGridViewFORMULA)
+        Me.GroupBox17.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox17.Location = New System.Drawing.Point(3, 215)
+        Me.GroupBox17.Name = "GroupBox17"
+        Me.GroupBox17.Size = New System.Drawing.Size(508, 96)
+        Me.GroupBox17.TabIndex = 255
+        Me.GroupBox17.TabStop = False
+        Me.GroupBox17.Text = "Formula's"
+        '
+        'DataGridViewFORMULA
+        '
+        Me.DataGridViewFORMULA.AllowUserToAddRows = False
+        Me.DataGridViewFORMULA.AllowUserToDeleteRows = False
+        Me.DataGridViewFORMULA.AllowUserToResizeColumns = False
+        Me.DataGridViewFORMULA.AllowUserToResizeRows = False
+        Me.DataGridViewFORMULA.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewFORMULA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewFORMULA.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewFORMULA.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewFORMULA.Name = "DataGridViewFORMULA"
+        Me.DataGridViewFORMULA.Size = New System.Drawing.Size(502, 70)
+        Me.DataGridViewFORMULA.TabIndex = 68
+        '
+        'GroupBox16
+        '
+        Me.GroupBox16.Controls.Add(Me.DataGridViewPRODUCTS)
+        Me.GroupBox16.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox16.Location = New System.Drawing.Point(3, 119)
+        Me.GroupBox16.Name = "GroupBox16"
+        Me.GroupBox16.Size = New System.Drawing.Size(508, 96)
+        Me.GroupBox16.TabIndex = 254
+        Me.GroupBox16.TabStop = False
+        Me.GroupBox16.Text = "Products"
+        '
+        'DataGridViewPRODUCTS
+        '
+        Me.DataGridViewPRODUCTS.AllowUserToAddRows = False
+        Me.DataGridViewPRODUCTS.AllowUserToDeleteRows = False
+        Me.DataGridViewPRODUCTS.AllowUserToResizeColumns = False
+        Me.DataGridViewPRODUCTS.AllowUserToResizeRows = False
+        Me.DataGridViewPRODUCTS.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewPRODUCTS.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewPRODUCTS.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewPRODUCTS.Name = "DataGridViewPRODUCTS"
+        Me.DataGridViewPRODUCTS.Size = New System.Drawing.Size(502, 70)
+        Me.DataGridViewPRODUCTS.TabIndex = 66
+        '
+        'GroupBox15
+        '
+        Me.GroupBox15.Controls.Add(Me.DataGridViewINVENTORY)
+        Me.GroupBox15.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox15.Location = New System.Drawing.Point(3, 23)
+        Me.GroupBox15.Name = "GroupBox15"
+        Me.GroupBox15.Size = New System.Drawing.Size(508, 96)
+        Me.GroupBox15.TabIndex = 253
+        Me.GroupBox15.TabStop = False
+        Me.GroupBox15.Text = "Inventory"
+        '
+        'DataGridViewINVENTORY
+        '
+        Me.DataGridViewINVENTORY.AllowUserToAddRows = False
+        Me.DataGridViewINVENTORY.AllowUserToDeleteRows = False
+        Me.DataGridViewINVENTORY.AllowUserToResizeColumns = False
+        Me.DataGridViewINVENTORY.AllowUserToResizeRows = False
+        Me.DataGridViewINVENTORY.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewINVENTORY.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewINVENTORY.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewINVENTORY.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewINVENTORY.Name = "DataGridViewINVENTORY"
+        Me.DataGridViewINVENTORY.Size = New System.Drawing.Size(502, 70)
+        Me.DataGridViewINVENTORY.TabIndex = 67
         '
         'Panel20
         '
@@ -2339,61 +2454,64 @@ Partial Class ConfigManager
         Me.Label22.TabIndex = 224
         Me.Label22.Text = "Status"
         '
-        'DataGridViewCATEGORIES
+        'TableLayoutPanel11
         '
-        Me.DataGridViewCATEGORIES.AllowUserToAddRows = False
-        Me.DataGridViewCATEGORIES.AllowUserToDeleteRows = False
-        Me.DataGridViewCATEGORIES.AllowUserToResizeColumns = False
-        Me.DataGridViewCATEGORIES.AllowUserToResizeRows = False
-        Me.DataGridViewCATEGORIES.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridViewCATEGORIES.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewCATEGORIES.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewCATEGORIES.Location = New System.Drawing.Point(3, 23)
-        Me.DataGridViewCATEGORIES.Name = "DataGridViewCATEGORIES"
-        Me.DataGridViewCATEGORIES.Size = New System.Drawing.Size(502, 70)
-        Me.DataGridViewCATEGORIES.TabIndex = 65
+        Me.TableLayoutPanel11.ColumnCount = 1
+        Me.TableLayoutPanel11.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel11.Controls.Add(Me.GroupBox12, 0, 0)
+        Me.TableLayoutPanel11.Controls.Add(Me.GroupBox13, 0, 1)
+        Me.TableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel11.Location = New System.Drawing.Point(3, 3)
+        Me.TableLayoutPanel11.Name = "TableLayoutPanel11"
+        Me.TableLayoutPanel11.RowCount = 2
+        Me.TableLayoutPanel11.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
+        Me.TableLayoutPanel11.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel11.Size = New System.Drawing.Size(514, 482)
+        Me.TableLayoutPanel11.TabIndex = 41
         '
-        'DataGridViewFORMULA
+        'GroupBox12
         '
-        Me.DataGridViewFORMULA.AllowUserToAddRows = False
-        Me.DataGridViewFORMULA.AllowUserToDeleteRows = False
-        Me.DataGridViewFORMULA.AllowUserToResizeColumns = False
-        Me.DataGridViewFORMULA.AllowUserToResizeRows = False
-        Me.DataGridViewFORMULA.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridViewFORMULA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewFORMULA.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewFORMULA.Location = New System.Drawing.Point(3, 23)
-        Me.DataGridViewFORMULA.Name = "DataGridViewFORMULA"
-        Me.DataGridViewFORMULA.Size = New System.Drawing.Size(502, 70)
-        Me.DataGridViewFORMULA.TabIndex = 68
+        Me.GroupBox12.Controls.Add(Me.Button5)
+        Me.GroupBox12.Controls.Add(Me.ProgressBar5)
+        Me.GroupBox12.Controls.Add(Me.TextBoxProdKey)
+        Me.GroupBox12.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox12.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox12.Name = "GroupBox12"
+        Me.GroupBox12.Size = New System.Drawing.Size(508, 114)
+        Me.GroupBox12.TabIndex = 38
+        Me.GroupBox12.TabStop = False
+        Me.GroupBox12.Text = "Serial Key"
         '
-        'DataGridViewPRODUCTS
+        'Button5
         '
-        Me.DataGridViewPRODUCTS.AllowUserToAddRows = False
-        Me.DataGridViewPRODUCTS.AllowUserToDeleteRows = False
-        Me.DataGridViewPRODUCTS.AllowUserToResizeColumns = False
-        Me.DataGridViewPRODUCTS.AllowUserToResizeRows = False
-        Me.DataGridViewPRODUCTS.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridViewPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewPRODUCTS.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewPRODUCTS.Location = New System.Drawing.Point(3, 23)
-        Me.DataGridViewPRODUCTS.Name = "DataGridViewPRODUCTS"
-        Me.DataGridViewPRODUCTS.Size = New System.Drawing.Size(502, 70)
-        Me.DataGridViewPRODUCTS.TabIndex = 66
+        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Button5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Button5.FlatAppearance.BorderSize = 0
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.ForeColor = System.Drawing.Color.Black
+        Me.Button5.Location = New System.Drawing.Point(3, 56)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(502, 32)
+        Me.Button5.TabIndex = 36
+        Me.Button5.Text = "Activate"
+        Me.Button5.UseVisualStyleBackColor = False
         '
-        'DataGridViewINVENTORY
+        'ProgressBar5
         '
-        Me.DataGridViewINVENTORY.AllowUserToAddRows = False
-        Me.DataGridViewINVENTORY.AllowUserToDeleteRows = False
-        Me.DataGridViewINVENTORY.AllowUserToResizeColumns = False
-        Me.DataGridViewINVENTORY.AllowUserToResizeRows = False
-        Me.DataGridViewINVENTORY.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridViewINVENTORY.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewINVENTORY.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewINVENTORY.Location = New System.Drawing.Point(3, 23)
-        Me.DataGridViewINVENTORY.Name = "DataGridViewINVENTORY"
-        Me.DataGridViewINVENTORY.Size = New System.Drawing.Size(502, 70)
-        Me.DataGridViewINVENTORY.TabIndex = 67
+        Me.ProgressBar5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ProgressBar5.Location = New System.Drawing.Point(3, 88)
+        Me.ProgressBar5.Name = "ProgressBar5"
+        Me.ProgressBar5.Size = New System.Drawing.Size(502, 23)
+        Me.ProgressBar5.TabIndex = 39
+        '
+        'TextBoxProdKey
+        '
+        Me.TextBoxProdKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxProdKey.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBoxProdKey.Location = New System.Drawing.Point(3, 23)
+        Me.TextBoxProdKey.Name = "TextBoxProdKey"
+        Me.TextBoxProdKey.Size = New System.Drawing.Size(502, 27)
+        Me.TextBoxProdKey.TabIndex = 37
         '
         'GroupBox13
         '
@@ -2414,50 +2532,6 @@ Partial Class ConfigManager
         Me.RichTextBox1.Size = New System.Drawing.Size(502, 330)
         Me.RichTextBox1.TabIndex = 0
         Me.RichTextBox1.Text = ""
-        '
-        'GroupBox12
-        '
-        Me.GroupBox12.Controls.Add(Me.Button5)
-        Me.GroupBox12.Controls.Add(Me.ProgressBar5)
-        Me.GroupBox12.Controls.Add(Me.TextBoxProdKey)
-        Me.GroupBox12.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox12.Location = New System.Drawing.Point(3, 3)
-        Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(508, 114)
-        Me.GroupBox12.TabIndex = 38
-        Me.GroupBox12.TabStop = False
-        Me.GroupBox12.Text = "Serial Key"
-        '
-        'ProgressBar5
-        '
-        Me.ProgressBar5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.ProgressBar5.Location = New System.Drawing.Point(3, 88)
-        Me.ProgressBar5.Name = "ProgressBar5"
-        Me.ProgressBar5.Size = New System.Drawing.Size(502, 23)
-        Me.ProgressBar5.TabIndex = 39
-        '
-        'TextBoxProdKey
-        '
-        Me.TextBoxProdKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxProdKey.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBoxProdKey.Location = New System.Drawing.Point(3, 23)
-        Me.TextBoxProdKey.Name = "TextBoxProdKey"
-        Me.TextBoxProdKey.Size = New System.Drawing.Size(502, 27)
-        Me.TextBoxProdKey.TabIndex = 37
-        '
-        'Button5
-        '
-        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Button5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.ForeColor = System.Drawing.Color.Black
-        Me.Button5.Location = New System.Drawing.Point(3, 56)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(502, 32)
-        Me.Button5.TabIndex = 36
-        Me.Button5.Text = "Activate"
-        Me.Button5.UseVisualStyleBackColor = False
         '
         'Panel19
         '
@@ -2656,80 +2730,6 @@ Partial Class ConfigManager
         'BackgroundWorkerABTDB
         '
         '
-        'GroupBox15
-        '
-        Me.GroupBox15.Controls.Add(Me.DataGridViewINVENTORY)
-        Me.GroupBox15.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox15.Location = New System.Drawing.Point(3, 23)
-        Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(508, 96)
-        Me.GroupBox15.TabIndex = 253
-        Me.GroupBox15.TabStop = False
-        Me.GroupBox15.Text = "Inventory"
-        '
-        'GroupBox16
-        '
-        Me.GroupBox16.Controls.Add(Me.DataGridViewPRODUCTS)
-        Me.GroupBox16.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox16.Location = New System.Drawing.Point(3, 119)
-        Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(508, 96)
-        Me.GroupBox16.TabIndex = 254
-        Me.GroupBox16.TabStop = False
-        Me.GroupBox16.Text = "Products"
-        '
-        'GroupBox17
-        '
-        Me.GroupBox17.Controls.Add(Me.DataGridViewFORMULA)
-        Me.GroupBox17.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox17.Location = New System.Drawing.Point(3, 215)
-        Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(508, 96)
-        Me.GroupBox17.TabIndex = 255
-        Me.GroupBox17.TabStop = False
-        Me.GroupBox17.Text = "Formula's"
-        '
-        'GroupBox18
-        '
-        Me.GroupBox18.Controls.Add(Me.DataGridViewCATEGORIES)
-        Me.GroupBox18.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox18.Location = New System.Drawing.Point(3, 311)
-        Me.GroupBox18.Name = "GroupBox18"
-        Me.GroupBox18.Size = New System.Drawing.Size(508, 96)
-        Me.GroupBox18.TabIndex = 256
-        Me.GroupBox18.TabStop = False
-        Me.GroupBox18.Text = "Category"
-        '
-        'TableLayoutPanel10
-        '
-        Me.TableLayoutPanel10.ColumnCount = 2
-        Me.TableLayoutPanel10.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel10.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel10.Controls.Add(Me.GroupBox14, 1, 0)
-        Me.TableLayoutPanel10.Controls.Add(Me.TableLayoutPanel11, 0, 0)
-        Me.TableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel10.Location = New System.Drawing.Point(3, 52)
-        Me.TableLayoutPanel10.Name = "TableLayoutPanel10"
-        Me.TableLayoutPanel10.RowCount = 1
-        Me.TableLayoutPanel10.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel10.Size = New System.Drawing.Size(1040, 488)
-        Me.TableLayoutPanel10.TabIndex = 40
-        '
-        'TableLayoutPanel11
-        '
-        Me.TableLayoutPanel11.ColumnCount = 1
-        Me.TableLayoutPanel11.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel11.Controls.Add(Me.GroupBox12, 0, 0)
-        Me.TableLayoutPanel11.Controls.Add(Me.GroupBox13, 0, 1)
-        Me.TableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel11.Location = New System.Drawing.Point(3, 3)
-        Me.TableLayoutPanel11.Name = "TableLayoutPanel11"
-        Me.TableLayoutPanel11.RowCount = 2
-        Me.TableLayoutPanel11.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
-        Me.TableLayoutPanel11.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel11.Size = New System.Drawing.Size(514, 482)
-        Me.TableLayoutPanel11.TabIndex = 41
-        '
         'ConfigManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2819,27 +2819,27 @@ Partial Class ConfigManager
         Me.Panel13.ResumeLayout(False)
         Me.Panel13.PerformLayout()
         Me.TabPage6.ResumeLayout(False)
+        Me.TableLayoutPanel10.ResumeLayout(False)
         Me.GroupBox14.ResumeLayout(False)
+        Me.GroupBox18.ResumeLayout(False)
+        CType(Me.DataGridViewCATEGORIES, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox17.ResumeLayout(False)
+        CType(Me.DataGridViewFORMULA, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox16.ResumeLayout(False)
+        CType(Me.DataGridViewPRODUCTS, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox15.ResumeLayout(False)
+        CType(Me.DataGridViewINVENTORY, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel21.ResumeLayout(False)
         Me.Panel21.PerformLayout()
-        CType(Me.DataGridViewCATEGORIES, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewFORMULA, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewPRODUCTS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewINVENTORY, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox13.ResumeLayout(False)
+        Me.TableLayoutPanel11.ResumeLayout(False)
         Me.GroupBox12.ResumeLayout(False)
         Me.GroupBox12.PerformLayout()
+        Me.GroupBox13.ResumeLayout(False)
         Me.Panel19.ResumeLayout(False)
         Me.Panel19.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         CType(Me.DataGridViewOutletDetails, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox15.ResumeLayout(False)
-        Me.GroupBox16.ResumeLayout(False)
-        Me.GroupBox17.ResumeLayout(False)
-        Me.GroupBox18.ResumeLayout(False)
-        Me.TableLayoutPanel10.ResumeLayout(False)
-        Me.TableLayoutPanel11.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

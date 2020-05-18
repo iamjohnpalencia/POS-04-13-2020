@@ -478,7 +478,7 @@ Public Class Reports
             '=========================================================================================================================================================
             e.Graphics.DrawString("Cashier: " & returnuserid(full_name:=data2) & " " & data2, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 110))
             '=========================================================================================================================================================
-            e.Graphics.DrawString("Date & Time: " & returndateformatDGV(DataGridViewDaily.SelectedRows(0).Cells(1).Value.ToString) & " " & DataGridViewDaily.SelectedRows(0).Cells(2).Value.ToString, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 120))
+            e.Graphics.DrawString("Date & Time: " & DataGridViewDaily.SelectedRows(0).Cells(1).Value.ToString & " " & DataGridViewDaily.SelectedRows(0).Cells(2).Value.ToString, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 120))
             e.Graphics.DrawString("Terminal No: ", font, Brushes.Black, New PointF(shopnameX + 110, shopnameY + a + 130))
             e.Graphics.DrawString("Trans ID: " & DataGridViewDaily.SelectedRows(0).Cells(3).Value, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 130))
             e.Graphics.DrawString("This serves as your Sales Invoice", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 140))

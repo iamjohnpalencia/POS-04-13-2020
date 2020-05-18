@@ -364,12 +364,6 @@
     <Compile Include="MAIN FORMS\Registration.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SUBFORMS\Test.Designer.vb">
-      <DependentUpon>Test.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SUBFORMS\Test.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="SUBFORMS\TransactionType.Designer.vb">
       <DependentUpon>TransactionType.vb</DependentUpon>
     </Compile>
@@ -506,9 +500,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MAIN FORMS\Registration.resx">
       <DependentUpon>Registration.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SUBFORMS\Test.resx">
-      <DependentUpon>Test.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\TransactionType.resx">
       <DependentUpon>TransactionType.vb</DependentUpon>

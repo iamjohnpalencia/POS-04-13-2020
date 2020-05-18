@@ -378,9 +378,7 @@ Public Class POS
         If Shift = "" Then
             MessageBox.Show("Input cashier balance first", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
-            MsgBox(returndateformat(S_Zreading.ToString))
-            MsgBox(Format(Now(), "yyyy-MM-dd"))
-            If returndateformat(S_Zreading.ToString) <> Format(Now(), "yyyy-MM-dd") Then
+            If S_Zreading <> Format(Now(), "yyyy-MM-dd") Then
                 MessageBox.Show("Z-read", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 Enabled = False
@@ -627,8 +625,8 @@ Public Class POS
                                 ,'" & ClientCrewID & "'
                                 ,'" & ClientStoreID & "'
                                 ,'" & ClientGuid & "'
-                                ,'" & returndateformat(Format(Now, ("yyyy-MM-dd"))) & "'                    
-                                ,'" & returndatetimeformat(Format(Now, ("hh:mm:ss"))) & "'
+                                ,'" & Format(Now, ("yyyy-MM-dd")) & "'                    
+                                ,'" & Format(Now, ("hh:mm:ss")) & "'
                                 , " & 1 & ")"
                 GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
                 '=================================================================================================
@@ -689,7 +687,7 @@ Public Class POS
                             , '" & Shift & "'
                             , " & VATEXEMPTSALES & "
                             , " & SINumber & "
-                            , '" & returndateformat(S_Zreading.ToString) & "'
+                            , '" & S_Zreading & "'
                             , '" & discounttype & "')"
             successmessage = "Success"
             errormessage = "Error holdorder(loc_daily_transaction)"
@@ -725,7 +723,7 @@ Public Class POS
                             , 'Unsynced'
                             , " & totalcostofgoods & "
                             , '" & DataGridViewOrders.Rows(i).Cells(7).Value & "'
-                            , '" & returndateformat(S_Zreading.ToString) & "')"
+                            , '" & S_Zreading & "')"
                 successmessage = "Success"
                 errormessage = "error holdorder(loc_daily_transaction_details)"
                 GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)

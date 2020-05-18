@@ -267,7 +267,7 @@ Public Class ManageProducts
         Try
             messageboxappearance = False
             table = "loc_product_formula"
-            fields = "(`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `created_at`, `store_id`, `guid`)"
+            fields = "(`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `store_id`, `guid`)"
             value = "('" & TextBoxNAME.Text & "'
                 , 'piece(s)'
                 , " & 1 & "
@@ -277,7 +277,6 @@ Public Class ManageProducts
                 , " & 1 & "
                 , " & 1 & "
                 , " & 0 & "
-                , '" & Format(Now, ("yyyy-MM-dd HH:mm:ss")) & "'
                 , '" & ClientStoreID & "'
                 , '" & ClientGuid & "')"
             GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, errormessage:="", successmessage:="")

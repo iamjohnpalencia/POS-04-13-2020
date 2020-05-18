@@ -12,13 +12,14 @@ Public Class DepositSlip
             ElseIf String.IsNullOrWhiteSpace(ComboBoxBankName.Text) Then
                 MsgBox("Bank name is required")
             Else
+                MsgBox((DateTimePickerDATE.Value))
                 table = "loc_deposit"
                 fields = "(`name`, `transaction_number`, `amount`, `bank`, `transaction_date`, `store_id`, `guid`, `synced`, `crew_id`)"
                 value = "('" & TextBoxNAME.Text & "'  
                                 ,'" & TextBoxTRANNUM.Text & "'   
                                 ," & TextBoxAMT.Text & "                
                                 ,'" & ComboBoxBankName.Text & "'
-                                ,'" & returndateformat(DateTimePickerDATE.Text) & "'
+                                ,'" & Dateandtimeformat(DateTimePickerDATE.Value, "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd HH:mm:ss") & "'
                                 ,'" & ClientStoreID & "'
                                 ,'" & ClientGuid & "'                    
                                 ,'Unsynced'

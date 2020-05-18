@@ -350,10 +350,8 @@ Public Class Loading
         Login.Show()
         Login.txtusername.Focus()
     End Sub
-
     Private Sub SyncToLocalUsers()
         Try
-
             With DataGridViewRESULT
                 sql = "SELECT `user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `active`, `guid`, `store_id`, `uniq_id` , `created_at`, `updated_at` FROM `loc_users` WHERE guid = '" & ClientGuid & "' AND store_id = '" & ClientStoreID & "' AND synced = 'Unsynced' AND active = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, ServerCloudCon())
@@ -364,6 +362,7 @@ Public Class Loading
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     table = "triggers_loc_users"
                     fields = "(`user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `active`, `guid`, `store_id`, `uniq_id`, `synced`, `created_at`, `updated_at`)"
+                    MsgBox(.Rows(i).Cells(12).Value.ToString)
                     value = "(
                          '" & .Rows(i).Cells(0).Value.ToString & "'   
                          ,'" & .Rows(i).Cells(1).Value.ToString & "'    
@@ -377,9 +376,9 @@ Public Class Loading
                          ,'" & .Rows(i).Cells(9).Value.ToString & "'    
                          ,'" & .Rows(i).Cells(10).Value.ToString & "'   
                          ,'" & .Rows(i).Cells(11).Value.ToString & "'       
-                         ,'Unsynced'
-                         ,'" & returndatetimeformat(.Rows(i).Cells(12).Value.ToString) & "'   
-                         ,'" & returndatetimeformat(.Rows(i).Cells(13).Value.ToString) & "'   
+                         ,'Unsynced'                        
+                         ,'" & Dateandtimeformat(.Rows(i).Cells(12).Value.ToString, "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss") & "'   
+                         ,'" & Dateandtimeformat(.Rows(i).Cells(13).Value.ToString, "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss") & "'   
                                 )"
                     GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
                     sql = "UPDATE loc_users SET synced = 'Synced' WHERE uniq_id = '" & .Rows(i).Cells(11).Value.ToString & "'"

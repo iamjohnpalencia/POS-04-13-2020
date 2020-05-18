@@ -334,7 +334,6 @@ Public Class ConfigManager
                 My.Settings.ValidAddtionalSettings = False
                 My.Settings.Save()
             End If
-            MsgBox(My.Settings.ValidAddtionalSettings)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -991,7 +990,7 @@ Public Class ConfigManager
                 ProvinceName = dt2(0)(0)
                 RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
                 Dim table = "admin_outlets"
-                Dim fields = "(`store_id`, `brand_name`, `store_name`, `user_guid`, `location_name`, `postal_code`, `address`, `Barangay`, `municipality`, `municipality_name`, `province`, `province_name`, `tin_no`, `tel_no`, `active`, `created_at`, `MIN`, `MSN`, `PTUN`)"
+                Dim fields = "(`store_id`, `brand_name`, `store_name`, `user_guid`, `location_name`, `postal_code`, `address`, `Barangay`, `municipality`, `municipality_name`, `province`, `province_name`, `tin_no`, `tel_no`, `active`, `MIN`, `MSN`, `PTUN`)"
                 Dim value = "(" & .Rows(0).Cells(0).Value.ToString & "                       
                         ,'" & .Rows(0).Cells(1).Value.ToString & "'
                         ,'" & .Rows(0).Cells(2).Value.ToString & "'
@@ -1007,7 +1006,6 @@ Public Class ConfigManager
                         ,'" & .Rows(0).Cells(10).Value.ToString & "'
                         ,'" & .Rows(0).Cells(11).Value.ToString & "'
                         ," & 1 & "
-                        ,'" & returndatetimeformat(Now) & "'
                         ,'" & .Rows(0).Cells(12).Value.ToString & "'
                         ,'" & .Rows(0).Cells(13).Value.ToString & "'
                         ,'" & .Rows(0).Cells(14).Value.ToString & "')"
@@ -1220,7 +1218,7 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                     cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                     cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
-                    cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(11).Value.ToString())
+                    cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(11).Value.ToString(), "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.Parameters.Add("@13", MySqlDbType.Int32).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
@@ -1248,11 +1246,11 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@5", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
                     cmdlocal.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(6).Value.ToString()
                     cmdlocal.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
-                    cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(8).Value.ToString())
+                    cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
                     cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = "Synced"
-                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(8).Value.ToString())
+                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With
@@ -1271,7 +1269,7 @@ Public Class ConfigManager
                                              VALUES (@0, @1, @2, @3, @4)", TestLocalConnection())
                     cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-                    cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(2).Value.ToString())
+                    cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(2).Value.ToString(), "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
                     cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmdlocal.ExecuteNonQuery()
@@ -1300,10 +1298,10 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                     cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
-                    cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(10).Value.ToString())
+                    cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(10).Value.ToString(), "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
                     cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
-                    cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = returndatetimeformat(.Rows(i).Cells(10).Value.ToString())
+                    cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(10).Value.ToString(), "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
                     cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.ExecuteNonQuery()
@@ -1321,7 +1319,6 @@ Public Class ConfigManager
                 Dim path = My.Computer.FileSystem.SpecialDirectories.MyDocuments
                 CreateFolder(path, FolderName)
                 BTNSaveLocalConn = True
-                MsgBox(BTNSaveLocalConn)
             Else
                 MsgBox("Connection must be valid")
             End If
@@ -1329,19 +1326,17 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
-
     Private Sub BackgroundWorker5_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker5.ProgressChanged
         ProgressBar6.Value = e.ProgressPercentage
     End Sub
-
-    'Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+    'Private Sub Button7_Click(sender As Object, e As EventArgs)
     '    InsertToProducts()
     '    InsertToInventory()
     '    InsertToCategories()
     '    InsertToFormula()
     'End Sub
 
-    'Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles Button8.Click
+    'Private Sub Button8_Click_1(sender As Object, e As EventArgs)
     '    GetCategories()
     '    GetProducts()
     '    GetInventory()
