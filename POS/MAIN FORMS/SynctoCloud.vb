@@ -224,41 +224,48 @@ Public Class SynctoCloud
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Private Sub LoadData()
+        Try
+            Timer1.Start()
+            Label1.Text = ""
+            Label2.Text = ""
+            Label3.Text = ""
+            Label5.Text = ""
+            ClearDataGridViewRows(Me)
+            filldatagridtransaction()
+            '================================================
+            filldatagridtransactiondetails1()
+            '================================================
+            filldatagridinventory()
+            filldatagridexpenses()
+            filldatagridexpensesdetails()
+            filldatagridlocusers()
+            '================================================
+            filldatagridsystemlog1()
+            filldatagridsystemlog2()
+            filldatagridsystemlog3()
+            filldatagridsystemlog4()
+            filldatagridrefretdetails()
+            filldatagridproducts()
+            '================================================
+            filldatagridmodeoftransaction()
+            filldatagriddepositslip()
+            '================================================
+            totalrow = SumOfColumnsToInt(DataGridView2, 0)
+            Label3.Text = totalrow
+            Button1.Enabled = False
+            Label2.Text = "Item(s)"
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Timer1.Start()
-        Label1.Text = ""
-        Label2.Text = ""
-        Label3.Text = ""
-        Label5.Text = ""
-        ClearDataGridViewRows(Me)
-        filldatagridtransaction()
-        '================================================
-        filldatagridtransactiondetails1()
-        '================================================
-        filldatagridinventory()
-        filldatagridexpenses()
-        filldatagridexpensesdetails()
-        filldatagridlocusers()
-        '================================================
-        filldatagridsystemlog1()
-        filldatagridsystemlog2()
-        filldatagridsystemlog3()
-        filldatagridsystemlog4()
-        filldatagridrefretdetails()
-        filldatagridproducts()
-        '================================================
-        filldatagridmodeoftransaction()
-        filldatagriddepositslip()
-        '================================================
-        totalrow = SumOfColumnsToInt(DataGridView2, 0)
-        Label3.Text = totalrow
-        Button1.Enabled = False
-        Label2.Text = "Item(s)"
-
+        LoadData()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If My.Settings.ValidCloudConn = True Then
-            Button1.PerformClick()
+            'Button1.PerformClick()
+            ProgressBar1.Value = 0
             BackgroundWorker1.WorkerSupportsCancellation = True
             BackgroundWorker1.WorkerReportsProgress = True
             BackgroundWorker1.RunWorkerAsync()
@@ -267,7 +274,6 @@ Public Class SynctoCloud
         Else
             MsgBox("Cloud connection is not valid.")
         End If
-
     End Sub
     Dim threadListLOCTRAN As List(Of Thread) = New List(Of Thread)
     Dim threadListLOCTD1 As List(Of Thread) = New List(Of Thread)
@@ -284,11 +290,18 @@ Public Class SynctoCloud
     Dim threadListLOCPRODUCT As List(Of Thread) = New List(Of Thread)
     Dim threadListMODEOFTRANSACTION As List(Of Thread) = New List(Of Thread)
     Dim threadListLocDeposit As List(Of Thread) = New List(Of Thread)
+    Dim threadListloadData As List(Of Thread) = New List(Of Thread)
     Dim thread1 As Thread
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
             If CheckForInternetConnection() = True Then
-                Button1.PerformClick()
+                'Button1.PerformClick()
+                thread1 = New Thread(AddressOf LoadData)
+                thread1.Start()
+                threadListloadData.Add(thread1)
+                For Each t In threadListloadData
+                    t.Join()
+                Next
                 ProgressBar1.Maximum = Val(Label3.Text)
                 'POS.ProgressBar1.Maximum = Val(Label7.Text)
                 '   ============================================================================Transaction
