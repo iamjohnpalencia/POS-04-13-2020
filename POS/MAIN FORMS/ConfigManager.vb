@@ -415,16 +415,12 @@ Public Class ConfigManager
     End Sub
     Private Sub LoadOutlets()
         Try
-            Dim CloudCmd As MySqlCommand
-            Dim CloudDa As MySqlDataAdapter
-            Dim CloudDT As DataTable
-            sql = "SELECT * FROM admin_outlets WHERE user_guid = '" & UserGUID & "' AND active = 1"
-            CloudCmd = New MySqlCommand(sql, CloudConn2)
-            CloudDa = New MySqlDataAdapter(CloudCmd)
-            CloudDT = New DataTable
+            Dim sql = "SELECT * FROM admin_outlets WHERE user_guid = '" & UserGUID & "' AND active = 1"
+            Dim CloudCmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+            Dim CloudDa As MySqlDataAdapter = New MySqlDataAdapter(CloudCmd)
+            Dim CloudDT As DataTable = New DataTable
             CloudDa.Fill(CloudDT)
             With DataGridViewOutlets
-                .DataSource = Nothing
                 .DataSource = CloudDT
                 .Columns(0).Visible = False
                 .Columns(3).Visible = False
@@ -527,8 +523,7 @@ Public Class ConfigManager
             t.Join()
         Next
     End Sub
-    Dim DataadapterCheckAcc As MySqlDataAdapter
-    Dim DatatableCheckAcc As DataTable
+
     Dim AccountExist As Boolean
     Dim UserGUID As String
     Dim UserStoreID As Integer
@@ -537,26 +532,28 @@ Public Class ConfigManager
         Try
             AccountExist = False
             FranchiseeStoreValidation = False
-            CloudConn2 = New MySqlConnection
-            CloudConn2.ConnectionString = "server=" & Trim(TextBoxCloudServer.Text) &
-            ";user id= " & Trim(TextBoxCloudUsername.Text) &
-            ";password=" & Trim(TextBoxCloudPassword.Text) &
-            ";database=" & Trim(TextBoxCloudDatabase.Text) &
-            ";port=" & Trim(TextBoxCloudPort.Text)
-            CloudConn2.Open()
             sql = "SELECT user_guid, user_id FROM admin_user WHERE user_name = '" & TextBoxFrancUser.Text & "' AND user_pass = '" & ConvertPassword(TextBoxFrancPass.Text) & "' AND user_role = 'Client' AND status = 1; "
-            cmd = New MySqlCommand(sql, CloudConn2)
-            DataadapterCheckAcc = New MySqlDataAdapter(cmd)
-            DatatableCheckAcc = New DataTable
+            cmd = New MySqlCommand(sql, TestCloudConnection())
+            Dim DataadapterCheckAcc As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim DatatableCheckAcc As DataTable = New DataTable
             DataadapterCheckAcc.Fill(DatatableCheckAcc)
-            If DatatableCheckAcc.Rows.Count > 0 Then
-                AccountExist = True
-                UserGUID = DatatableCheckAcc(0)(0)
-                UserID = DatatableCheckAcc(0)(1)
-            Else
-                AccountExist = False
-                UserGUID = ""
-            End If
+            For Each row As DataRow In DatatableCheckAcc.Rows
+                If row("user_guid") <> "" Then
+                    If row("user_id") <> 0 Then
+                        AccountExist = True
+                        UserGUID = row("user_guid")
+                        UserID = row("user_id")
+                    Else
+                        AccountExist = False
+                        UserGUID = ""
+                        Exit For
+                    End If
+                Else
+                    AccountExist = False
+                    UserGUID = ""
+                    Exit For
+                End If
+            Next
         Catch ex As MySqlException
             MsgBox(ex.ToString)
         Finally
@@ -570,7 +567,6 @@ Public Class ConfigManager
             BackgroundWorker4.WorkerSupportsCancellation = True
             BackgroundWorker4.WorkerReportsProgress = True
             BackgroundWorker4.RunWorkerAsync()
-            MsgBox("Exist")
         Else
             MsgBox("Invalid account.")
         End If
@@ -589,32 +585,34 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
-
     Private Sub DataGridViewOutlets_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewOutlets.CellClick
         Button2.PerformClick()
     End Sub
-
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        If DataGridViewOutlets.Rows.Count > 0 Then
-            With Me
-                DataGridViewOutletDetails.Rows.Clear()
-                TextBoxBrandname.Text = DataGridViewOutlets.SelectedRows(0).Cells(1).Value.ToString
-                TextBoxLocation.Text = DataGridViewOutlets.SelectedRows(0).Cells(4).Value.ToString
-                TextBoxPostalCode.Text = DataGridViewOutlets.SelectedRows(0).Cells(5).Value.ToString
-                TextBoxAddress.Text = DataGridViewOutlets.SelectedRows(0).Cells(6).Value.ToString
-                TextBoxMun.Text = DataGridViewOutlets.SelectedRows(0).Cells(8).Value.ToString
-                TextBoxProv.Text = DataGridViewOutlets.SelectedRows(0).Cells(9).Value.ToString
-                TextBoxTIN.Text = DataGridViewOutlets.SelectedRows(0).Cells(10).Value.ToString
-                TextBoxTEL.Text = DataGridViewOutlets.SelectedRows(0).Cells(11).Value.ToString
-                TextBoxPTUN.Text = DataGridViewOutlets.SelectedRows(0).Cells(17).Value.ToString
-                TextBoxMIN.Text = DataGridViewOutlets.SelectedRows(0).Cells(15).Value.ToString
-                TextBoxMSN.Text = DataGridViewOutlets.SelectedRows(0).Cells(16).Value.ToString
-                DataGridViewOutletDetails.Rows.Add(DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString, TextBoxBrandname.Text, DataGridViewOutlets.SelectedRows(0).Cells(2).Value.ToString, UserGUID, TextBoxLocation.Text, TextBoxPostalCode.Text, TextBoxAddress.Text, DataGridViewOutlets.SelectedRows(0).Cells(7).Value.ToString, TextBoxMun.Text, TextBoxProv.Text, TextBoxTIN.Text, TextBoxTEL.Text, TextBoxMIN.Text, TextBoxMSN.Text, TextBoxPTUN.Text)
-                FranchiseeStoreValidation = True
-            End With
-        Else
-            FranchiseeStoreValidation = False
-        End If
+        Try
+            If DataGridViewOutlets.Rows.Count > 0 Then
+                With Me
+                    DataGridViewOutletDetails.Rows.Clear()
+                    TextBoxBrandname.Text = DataGridViewOutlets.SelectedRows(0).Cells(1).Value.ToString
+                    TextBoxLocation.Text = DataGridViewOutlets.SelectedRows(0).Cells(4).Value.ToString
+                    TextBoxPostalCode.Text = DataGridViewOutlets.SelectedRows(0).Cells(5).Value.ToString
+                    TextBoxAddress.Text = DataGridViewOutlets.SelectedRows(0).Cells(6).Value.ToString
+                    TextBoxMun.Text = DataGridViewOutlets.SelectedRows(0).Cells(8).Value.ToString
+                    TextBoxProv.Text = DataGridViewOutlets.SelectedRows(0).Cells(9).Value.ToString
+                    TextBoxTIN.Text = DataGridViewOutlets.SelectedRows(0).Cells(10).Value.ToString
+                    TextBoxTEL.Text = DataGridViewOutlets.SelectedRows(0).Cells(11).Value.ToString
+                    TextBoxPTUN.Text = DataGridViewOutlets.SelectedRows(0).Cells(17).Value.ToString
+                    TextBoxMIN.Text = DataGridViewOutlets.SelectedRows(0).Cells(15).Value.ToString
+                    TextBoxMSN.Text = DataGridViewOutlets.SelectedRows(0).Cells(16).Value.ToString
+                    DataGridViewOutletDetails.Rows.Add(DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString, TextBoxBrandname.Text, DataGridViewOutlets.SelectedRows(0).Cells(2).Value.ToString, UserGUID, TextBoxLocation.Text, TextBoxPostalCode.Text, TextBoxAddress.Text, DataGridViewOutlets.SelectedRows(0).Cells(7).Value.ToString, TextBoxMun.Text, TextBoxProv.Text, TextBoxTIN.Text, TextBoxTEL.Text, TextBoxMIN.Text, TextBoxMSN.Text, TextBoxPTUN.Text)
+                    FranchiseeStoreValidation = True
+                End With
+            Else
+                FranchiseeStoreValidation = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Try
@@ -826,9 +824,10 @@ Public Class ConfigManager
     Dim ThreadActivation As Thread
     Private Sub BackgroundWorkerACTIVATION_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerACTIVATION.DoWork
         Try
-            Thread.Sleep(50)
+
             For i = 0 To 20
                 BackgroundWorkerACTIVATION.ReportProgress(i)
+                Thread.Sleep(50)
                 If i = 0 Then
                     ThreadActivation = New Thread(AddressOf SerialKey)
                     ThreadActivation.Start()
@@ -840,57 +839,57 @@ Public Class ConfigManager
             Next
             For i = 20 To 100
                 BackgroundWorkerACTIVATION.ReportProgress(i)
+                Thread.Sleep(50)
                 If i = 20 Then
                     If ValidProductKey = True Then
                         ThreadActivation = New System.Threading.Thread(AddressOf adminserialkey)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        'For Each t In threadListActivation
-                        '    t.Join()
-                        'Next
+                        For Each t In threadListActivation
+                            t.Join()
+                        Next
                         ThreadActivation = New System.Threading.Thread(AddressOf adminoutlets)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        'For Each t In threadListActivation
-                        '    t.Join()
-                        'Next
+                        For Each t In threadListActivation
+                            t.Join()
+                        Next
                         ThreadActivation = New System.Threading.Thread(AddressOf insertintocloud)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        'For Each t In threadListActivation
-                        '    t.Join()
-                        'Next
+                        For Each t In threadListActivation
+                            t.Join()
+                        Next
                         ThreadActivation = New System.Threading.Thread(AddressOf insertintolocaloutlets)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        'For Each t In threadListActivation
-                        '    t.Join()
-                        'Next
+                        For Each t In threadListActivation
+                            t.Join()
+                        Next
                         ThreadActivation = New System.Threading.Thread(AddressOf InsertLocalMasterList)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        'For Each t In threadListActivation
-                        '    t.Join()
-                        'Next
-                        '===
+                        For Each t In threadListActivation
+                            t.Join()
+                        Next
                         ThreadActivation = New System.Threading.Thread(AddressOf GetCategories)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        'For Each t In threadListActivation
-                        '    t.Join()
-                        'Next
+                        For Each t In threadListActivation
+                            t.Join()
+                        Next
                         ThreadActivation = New System.Threading.Thread(AddressOf GetProducts)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        'For Each t In threadListActivation
-                        '    t.Join()
-                        'Next
+                        For Each t In threadListActivation
+                            t.Join()
+                        Next
                         ThreadActivation = New System.Threading.Thread(AddressOf GetInventory)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
-                        'For Each t In threadListActivation
-                        '    t.Join()
-                        'Next
+                        For Each t In threadListActivation
+                            t.Join()
+                        Next
                         ThreadActivation = New System.Threading.Thread(AddressOf GetFormula)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
@@ -920,37 +919,37 @@ Public Class ConfigManager
     End Sub
     Private Sub adminserialkey()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Updating server(serial key)...." & vbNewLine
+            RichTextBox1.Text += "Updating server(serial key)...." & vbNewLine
             Dim table = "admin_serialkeys"
             Dim fields = " active = 1 "
             Dim where = " serial_key = '" & TextBoxProdKey.Text & "'"
             Dim sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
             Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
             cloudcmd.ExecuteNonQuery()
-            RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
+            RichTextBox1.Text += "Done!..." & vbNewLine
         Catch ex As Exception
-            RichTextBox1.Text = RichTextBox1.Text & "Failed to Update serial key...." & vbNewLine
+            RichTextBox1.Text += "Failed to Update serial key...." & vbNewLine
             MsgBox(ex.ToString)
         End Try
     End Sub
     Public Sub adminoutlets()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Updating server(outlet)...." & vbNewLine
+            RichTextBox1.Text += "Updating server(outlet)...." & vbNewLine
             Dim table = "admin_outlets"
             Dim fields = " active = 2 "
             Dim where = " store_id = " & DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString
             Dim sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
             Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
             cloudcmd.ExecuteNonQuery()
-            RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
+            RichTextBox1.Text += "Done!..." & vbNewLine
         Catch ex As Exception
-            RichTextBox1.Text = RichTextBox1.Text & "Failed to update outlets...." & vbNewLine
+            RichTextBox1.Text += "Failed to update outlets...." & vbNewLine
             MsgBox(ex.ToString)
         End Try
     End Sub
     Public Sub insertintocloud()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Inserting server masterlist data...." & vbNewLine
+            RichTextBox1.Text += "Inserting server masterlist data...." & vbNewLine
             Dim table1 = "admin_masterlist"
             Dim fields1 = " (`masterlist_username`,`masterlist_password`,`client_guid`,`client_product_key`,`user_id`,`active`,`client_store_id`)"
             Dim value1 = "('" & TextBoxFrancUser.Text & "'
@@ -963,15 +962,15 @@ Public Class ConfigManager
             Dim sql = "INSERT INTO " + table1 + fields1 + " VALUES " + value1
             Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
             cloudcmd.ExecuteNonQuery()
-            RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
+            RichTextBox1.Text += "Done!..." & vbNewLine
         Catch ex As Exception
             MsgBox(ex.ToString)
-            RichTextBox1.Text = RichTextBox1.Text & "Failed to insert masterlist...." & vbNewLine
+            RichTextBox1.Text += "Failed to insert masterlist...." & vbNewLine
         End Try
     End Sub
     Private Sub insertintolocaloutlets()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Getting server's outlet data...." & vbNewLine
+            RichTextBox1.Text += "Getting server's outlet data...." & vbNewLine
             Dim Municipalityname
             Dim ProvinceName
             With DataGridViewOutletDetails
@@ -988,7 +987,7 @@ Public Class ConfigManager
                 Dim dt2 As DataTable = New DataTable
                 da2.Fill(dt2)
                 ProvinceName = dt2(0)(0)
-                RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
+                RichTextBox1.Text += "Done!..." & vbNewLine
                 Dim table = "admin_outlets"
                 Dim fields = "(`store_id`, `brand_name`, `store_name`, `user_guid`, `location_name`, `postal_code`, `address`, `Barangay`, `municipality`, `municipality_name`, `province`, `province_name`, `tin_no`, `tel_no`, `active`, `MIN`, `MSN`, `PTUN`)"
                 Dim value = "(" & .Rows(0).Cells(0).Value.ToString & "                       
@@ -1009,11 +1008,11 @@ Public Class ConfigManager
                         ,'" & .Rows(0).Cells(12).Value.ToString & "'
                         ,'" & .Rows(0).Cells(13).Value.ToString & "'
                         ,'" & .Rows(0).Cells(14).Value.ToString & "')"
-                RichTextBox1.Text = RichTextBox1.Text & "Inserting outlet data...." & vbNewLine
+                RichTextBox1.Text += "Inserting outlet data...." & vbNewLine
                 Dim sql = "INSERT INTO " & table & fields & " VALUES " & value
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
                 cmd.ExecuteNonQuery()
-                RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
+                RichTextBox1.Text += "Done!..." & vbNewLine
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1021,7 +1020,7 @@ Public Class ConfigManager
     End Sub
     Private Sub InsertLocalMasterList()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Inserting master List data...." & vbNewLine
+            RichTextBox1.Text += "Inserting master List data...." & vbNewLine
             messageboxappearance = False
             Dim table1 = "admin_masterlist"
             Dim fields1 = " (`masterlist_username`,`masterlist_password`,`client_guid`,`client_product_key`,`user_id`,`active`,`client_store_id`)"
@@ -1035,7 +1034,7 @@ Public Class ConfigManager
             Dim sql = "INSERT INTO " & table1 & fields1 & " VALUES " & value1
             Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
             cmd.ExecuteNonQuery()
-            RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
+            RichTextBox1.Text += "Done!..." & vbNewLine
         Catch ex As Exception
             MsgBox("Contact Administrator Error Code: 3.0")
         End Try
@@ -1161,7 +1160,7 @@ Public Class ConfigManager
     End Sub
     Public Sub GetCategories()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Getting Categories...." & vbNewLine
+            RichTextBox1.Text += "Getting Categories...." & vbNewLine
             table = "admin_category"
             fields = "`category_name`, `brand_name`, `updated_at`, `origin`, `status`"
             GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewCATEGORIES)
@@ -1171,7 +1170,7 @@ Public Class ConfigManager
     End Sub
     Public Sub GetProducts()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Getting Products...." & vbNewLine
+            RichTextBox1.Text += "Getting Products...." & vbNewLine
             table = "admin_products_org"
             fields = "`product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`"
             GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewPRODUCTS)
@@ -1181,7 +1180,7 @@ Public Class ConfigManager
     End Sub
     Public Sub GetInventory()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Getting Inventory...." & vbNewLine
+            RichTextBox1.Text += "Getting Inventory...." & vbNewLine
             table = "admin_pos_inventory_org"
             fields = "`inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified`"
             GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewINVENTORY)
@@ -1191,7 +1190,7 @@ Public Class ConfigManager
     End Sub
     Public Sub GetFormula()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Getting Formula's...." & vbNewLine
+            RichTextBox1.Text += "Getting Formula's...." & vbNewLine
             table = "admin_product_formula_org"
             fields = "`formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`"
             GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewFORMULA)
@@ -1201,7 +1200,7 @@ Public Class ConfigManager
     End Sub
     Private Sub InsertToProducts()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Inserting Productlist data...." & vbNewLine
+            RichTextBox1.Text += "Inserting Productlist data...." & vbNewLine
             With DataGridViewPRODUCTS
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1224,7 +1223,7 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
                     cmdlocal.ExecuteNonQuery()
                 Next
-                RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
+                RichTextBox1.Text += "Done!..." & vbNewLine
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1232,7 +1231,7 @@ Public Class ConfigManager
     End Sub
     Private Sub InsertToInventory()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Inserting Inventory list...." & vbNewLine
+            RichTextBox1.Text += "Inserting Inventory list...." & vbNewLine
             With DataGridViewINVENTORY
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1254,14 +1253,14 @@ Public Class ConfigManager
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With
-            RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
+            RichTextBox1.Text += "Done!..." & vbNewLine
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub InsertToCategories()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Inserting Category list...." & vbNewLine
+            RichTextBox1.Text += "Inserting Category list...." & vbNewLine
             With DataGridViewCATEGORIES
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1275,14 +1274,14 @@ Public Class ConfigManager
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With
-            RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
+            RichTextBox1.Text += "Done!..." & vbNewLine
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub InsertToFormula()
         Try
-            RichTextBox1.Text = RichTextBox1.Text & "Inserting Formula List...." & vbNewLine
+            RichTextBox1.Text += "Inserting Formula List...." & vbNewLine
             With DataGridViewFORMULA
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1306,7 +1305,7 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.ExecuteNonQuery()
                 Next
-                RichTextBox1.Text = RichTextBox1.Text & "Done!..." & vbNewLine
+                RichTextBox1.Text += "Done!..." & vbNewLine
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1343,4 +1342,6 @@ Public Class ConfigManager
         'GetInventory()
         'GetFormula()
     End Sub
+
+
 End Class

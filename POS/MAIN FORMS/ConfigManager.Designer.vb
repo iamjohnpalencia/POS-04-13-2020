@@ -22,9 +22,6 @@ Partial Class ConfigManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.ButtonExit = New System.Windows.Forms.Button()
@@ -2198,36 +2195,18 @@ Partial Class ConfigManager
         Me.DataGridViewOutlets.AllowUserToDeleteRows = False
         Me.DataGridViewOutlets.AllowUserToResizeColumns = False
         Me.DataGridViewOutlets.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        Me.DataGridViewOutlets.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridViewOutlets.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewOutlets.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewOutlets.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridViewOutlets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewOutlets.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridViewOutlets.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewOutlets.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridViewOutlets.EnableHeadersVisualStyles = False
         Me.DataGridViewOutlets.Location = New System.Drawing.Point(0, 0)
         Me.DataGridViewOutlets.Name = "DataGridViewOutlets"
+        Me.DataGridViewOutlets.ReadOnly = True
         Me.DataGridViewOutlets.RowHeadersVisible = False
         Me.DataGridViewOutlets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridViewOutlets.Size = New System.Drawing.Size(494, 426)
-        Me.DataGridViewOutlets.TabIndex = 211
+        Me.DataGridViewOutlets.TabIndex = 242
         '
         'Panel17
         '
@@ -2982,7 +2961,6 @@ Partial Class ConfigManager
     Friend WithEvents ProgressBar3 As ProgressBar
     Friend WithEvents Panel38 As Panel
     Friend WithEvents BackgroundWorker4 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents DataGridViewOutlets As DataGridView
     Friend WithEvents TextBoxBrandname As TextBox
     Friend WithEvents TextBoxMIN As TextBox
     Friend WithEvents TextBoxLocation As TextBox
@@ -3094,4 +3072,5 @@ Partial Class ConfigManager
     Friend WithEvents TableLayoutPanel11 As TableLayoutPanel
     Friend WithEvents Button8 As Button
     Friend WithEvents Button7 As Button
+    Friend WithEvents DataGridViewOutlets As DataGridView
 End Class
