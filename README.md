@@ -143,17 +143,20 @@ May 11 12:00 PM to 2:00 PM
 * Debugging
 * Optimization of connection
 
-May 16 12:00 pm to 4:00 pm
+May 15 12:00 pm to 4:00 pm
 
 * Debugging
 
-May 17 4:00 pm to 8:00 pm
+May 16 14:00 pm to 8:00 pm
 
 * Debugging
 
-May 18 6:00 Pm to 2:00 am
+May 6:00 Pm to 2:00 am
 
 * Polish local connection
 * Fix Z reading date format bug
+
+
+
 
 
