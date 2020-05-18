@@ -156,7 +156,17 @@ May 17 6:00 Pm to 2:00 am
 * Polish local connection
 * Fix Z reading date format bug
 
+May 17 6:00 Pm to 2:00 am
 
+* Changed the structure of zreading column in database
+* Fixed dateformat issue of the following 
+	* Configuration manager debugging
+	* Load form debugging
+	* Syncform debugging
+	* POS form
+	* Settings form/ Refund
+	* Beginning balance form
+* Fixed search function in Reports form
 
 
 
