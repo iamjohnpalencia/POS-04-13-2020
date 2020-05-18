@@ -251,8 +251,6 @@ Partial Class ConfigManager
         Me.BackgroundWorkerACTIVATION = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker5 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorkerABTDB = New System.ComponentModel.BackgroundWorker()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -2303,8 +2301,6 @@ Partial Class ConfigManager
         '
         'GroupBox14
         '
-        Me.GroupBox14.Controls.Add(Me.Button8)
-        Me.GroupBox14.Controls.Add(Me.Button7)
         Me.GroupBox14.Controls.Add(Me.GroupBox18)
         Me.GroupBox14.Controls.Add(Me.GroupBox17)
         Me.GroupBox14.Controls.Add(Me.GroupBox16)
@@ -2734,24 +2730,6 @@ Partial Class ConfigManager
         'BackgroundWorkerABTDB
         '
         '
-        'Button7
-        '
-        Me.Button7.Location = New System.Drawing.Point(9, 406)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(75, 23)
-        Me.Button7.TabIndex = 257
-        Me.Button7.Text = "Button7"
-        Me.Button7.UseVisualStyleBackColor = True
-        '
-        'Button8
-        '
-        Me.Button8.Location = New System.Drawing.Point(90, 406)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(75, 23)
-        Me.Button8.TabIndex = 258
-        Me.Button8.Text = "Button8"
-        Me.Button8.UseVisualStyleBackColor = True
-        '
         'ConfigManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3092,6 +3070,4 @@ Partial Class ConfigManager
     Friend WithEvents GroupBox15 As GroupBox
     Friend WithEvents TableLayoutPanel10 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel11 As TableLayoutPanel
-    Friend WithEvents Button8 As Button
-    Friend WithEvents Button7 As Button
 End Class
