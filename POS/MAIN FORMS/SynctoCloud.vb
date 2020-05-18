@@ -851,9 +851,8 @@ Public Class SynctoCloud
                                                                         , `log_date_time`
                                                                         , `log_store`
                                                                         , `guid`
-                                                                        , `ip_address`
                                                                         , `loc_systemlog_id`) 
-                    VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
+                    VALUES (@0, @1, @2, @3, @4, @5, @6)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -863,7 +862,6 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
-                    cmd.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label37.Text = Val(Label37.Text) + 1
@@ -873,10 +871,9 @@ Public Class SynctoCloud
                     cmd.ExecuteNonQuery()
                     '====================================================================
                     table = " loc_system_logs "
-                    where = " loc_systemlog_id = '" & .Rows(i).Cells(7).Value.ToString & "'"
+                    where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
                     fields = "`synced`='Synced' "
                     sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
-                    MsgBox(sql)
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
                     '====================================================================
@@ -914,9 +911,8 @@ Public Class SynctoCloud
                                                                         , `log_date_time`
                                                                         , `log_store`
                                                                         , `guid`
-                                                                        , `ip_address`
                                                                         , `loc_systemlog_id`) 
-                    VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
+                    VALUES (@0, @1, @2, @3, @4, @5, @6)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -924,7 +920,6 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
-                    cmd.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label38.Text = Val(Label38.Text) + 1
@@ -934,7 +929,7 @@ Public Class SynctoCloud
                     cmd.ExecuteNonQuery()
                     '====================================================================
                     table = " loc_system_logs "
-                    where = " loc_systemlog_id = '" & .Rows(i).Cells(7).Value.ToString & "'"
+                    where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
                     fields = "`synced`='Synced' "
                     sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
@@ -974,9 +969,8 @@ Public Class SynctoCloud
                                                                         , `log_date_time`
                                                                         , `log_store`
                                                                         , `guid`
-                                                                        , `ip_address`
                                                                         , `loc_systemlog_id`) 
-                    VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
+                    VALUES (@0, @1, @2, @3, @4, @5, @6)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -984,7 +978,6 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
-                    cmd.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label39.Text = Val(Label39.Text) + 1
@@ -994,7 +987,7 @@ Public Class SynctoCloud
                     cmd.ExecuteNonQuery()
                     '====================================================================
                     table = " loc_system_logs "
-                    where = " loc_systemlog_id = '" & .Rows(i).Cells(7).Value.ToString & "'"
+                    where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
                     fields = "`synced`='Synced' "
                     sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
@@ -1034,9 +1027,8 @@ Public Class SynctoCloud
                                                                         , `log_date_time`
                                                                         , `log_store`
                                                                         , `guid`
-                                                                        , `ip_address`
                                                                         , `loc_systemlog_id`) 
-                    VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
+                    VALUES (@0, @1, @2, @3, @4, @5, @6)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1044,7 +1036,6 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
-                    cmd.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label40.Text = Val(Label40.Text) + 1
@@ -1054,7 +1045,7 @@ Public Class SynctoCloud
                     cmd.ExecuteNonQuery()
                     '====================================================================
                     table = " loc_system_logs "
-                    where = " loc_systemlog_id = '" & .Rows(i).Cells(7).Value.ToString & "'"
+                    where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
                     fields = "`synced`='Synced' "
                     sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)

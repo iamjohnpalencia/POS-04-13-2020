@@ -343,19 +343,9 @@ Module publicfunctions
     End Function
     Public Function returndateformatfulldate(datetoformat As String)
         Try
-            'Dim date4 As DateTime
-            'Dim dateString As String = datetoformat
-            'Dim result As Boolean = DateTime.TryParse(dateString, date4)
-
-
             Dim iDate As String = datetoformat
             Dim oDate As DateTime = Convert.ToDateTime(iDate)
             dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00") & " " & oDate.Hour & ":" & oDate.Minute & ":" & oDate.Second
-
-            'Dim dateTime = datetoformat
-            'Dim dt As DateTime = Convert.ToDateTime(dateTime)
-            'Dim format As String = "yyyy-MM-dd HH:mm:ss"
-            'dateformat = dt.ToString(format)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -415,19 +405,19 @@ Module publicfunctions
     Public Sub EndBalance()
         If Shift = "First Shift" Then
             SystemLogType = "END-1"
-            Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & returndateformat(Now) & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
+            Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
             EndingBalance = BeginningBalance + Val(DailySales)
         ElseIf Shift = "Second Shift" Then
             SystemLogType = "END-2"
-            Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & returndateformat(Now) & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
+            Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
             EndingBalance = BeginningBalance + Val(DailySales)
         ElseIf Shift = "Third Shift" Then
             SystemLogType = "END-3"
-            Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & returndateformat(Now) & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
+            Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
             EndingBalance = BeginningBalance + Val(DailySales)
         Else
             SystemLogType = "END-4"
-            Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & returndateformat(Now) & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
+            Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
             EndingBalance = BeginningBalance + Val(DailySales)
         End If
         SystemLogDesc = EndingBalance
