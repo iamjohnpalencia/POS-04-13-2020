@@ -390,7 +390,6 @@ Public Class Loading
                 Next
             End With
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Label1.Text = "Invalid connection..."
             'MsgBox(ex.ToString)
         End Try
