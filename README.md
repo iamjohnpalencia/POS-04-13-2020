@@ -161,8 +161,8 @@ May 17 6:00 Pm to 2:00 am
 * Changed the structure of zreading column in database
 * Fixed dateformat issue of the following 
 	* Configuration manager debugging
-	* Load form debugging
-	* Syncform debugging
+	* Load form
+	* Syncform
 	* POS form
 	* Settings form/ Refund
 	* Beginning balance form
