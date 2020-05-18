@@ -1271,7 +1271,7 @@ Public Class ConfigManager
                                              VALUES (@0, @1, @2, @3, @4)", TestLocalConnection())
                     cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-                    cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(2).Value.ToString(), "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(2).Value.ToString(), "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
                     cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmdlocal.ExecuteNonQuery()
@@ -1332,17 +1332,17 @@ Public Class ConfigManager
         ProgressBar6.Value = e.ProgressPercentage
     End Sub
 
-    'Private Sub button7_click(sender As Object, e As EventArgs) Handles Button7.Click
-    '    'InsertToProducts()
-    '    InsertToInventory()
-    '    'InsertToCategories()
-    '    'InsertToFormula()
-    'End Sub
+    Private Sub button7_click(sender As Object, e As EventArgs) Handles Button7.Click
+        'InsertToProducts()
+        'InsertToInventory()
+        InsertToCategories()
+        'InsertToFormula()
+    End Sub
 
-    'Private Sub button8_click_1(sender As Object, e As EventArgs) Handles Button8.Click
-    '    'GetCategories()
-    '    'GetProducts()
-    '    GetInventory()
-    '    'GetFormula()
-    'End Sub
+    Private Sub button8_click_1(sender As Object, e As EventArgs) Handles Button8.Click
+        GetCategories()
+        'GetProducts()
+        'GetInventory()
+        'GetFormula()
+    End Sub
 End Class

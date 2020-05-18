@@ -198,6 +198,8 @@ Partial Class ConfigManager
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel10 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.Button7 = New System.Windows.Forms.Button()
         Me.GroupBox18 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewCATEGORIES = New System.Windows.Forms.DataGridView()
         Me.GroupBox17 = New System.Windows.Forms.GroupBox()
@@ -2301,6 +2303,8 @@ Partial Class ConfigManager
         '
         'GroupBox14
         '
+        Me.GroupBox14.Controls.Add(Me.Button8)
+        Me.GroupBox14.Controls.Add(Me.Button7)
         Me.GroupBox14.Controls.Add(Me.GroupBox18)
         Me.GroupBox14.Controls.Add(Me.GroupBox17)
         Me.GroupBox14.Controls.Add(Me.GroupBox16)
@@ -2314,6 +2318,24 @@ Partial Class ConfigManager
         Me.GroupBox14.TabIndex = 40
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "Data"
+        '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(104, 406)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(75, 23)
+        Me.Button8.TabIndex = 258
+        Me.Button8.Text = "Button8"
+        Me.Button8.UseVisualStyleBackColor = True
+        '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(23, 406)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(75, 23)
+        Me.Button7.TabIndex = 257
+        Me.Button7.Text = "Button7"
+        Me.Button7.UseVisualStyleBackColor = True
         '
         'GroupBox18
         '
@@ -3070,4 +3092,6 @@ Partial Class ConfigManager
     Friend WithEvents GroupBox15 As GroupBox
     Friend WithEvents TableLayoutPanel10 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel11 As TableLayoutPanel
+    Friend WithEvents Button8 As Button
+    Friend WithEvents Button7 As Button
 End Class
