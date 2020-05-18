@@ -205,7 +205,7 @@ Public Class ConfigManager
                      ,'" & ConvertToBase64(Trim(TextBoxCloudPassword.Text)) & "'
                      ,'" & ConvertToBase64(Trim(TextBoxCloudDatabase.Text)) & "'
                      ,'" & ConvertToBase64(Trim(TextBoxCloudPort.Text)) & "'
-                     ,'" & returndateformat(Now) & "')"
+                     ,'" & Format(Now(), "yyyy-MM-dd") & "')"
                         sql = "INSERT INTO " & table & " " & fields & " VALUES " & value
                         cmd = New MySqlCommand(sql, TestLocalConnection)
                         cmd.ExecuteNonQuery()
