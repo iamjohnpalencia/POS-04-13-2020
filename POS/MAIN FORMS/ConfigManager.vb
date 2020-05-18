@@ -719,6 +719,7 @@ Public Class ConfigManager
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
+                MsgBox(DateTimePicker1ACCRDI.Value)
                 If dt.Rows.Count > 0 Then
                     Dim fields1 = "`Dev_Company_Name`= '" & Trim(TextBoxDevname.Text) & "',
 `Dev_Address`= '" & Trim(TextBoxDevAdd.Text) & "',
