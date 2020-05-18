@@ -151,7 +151,7 @@ May 16 14:00 pm to 8:00 pm
 
 * Debugging
 
-May 6:00 Pm to 2:00 am
+May 17 6:00 Pm to 2:00 am
 
 * Polish local connection
 * Fix Z reading date format bug
