@@ -719,18 +719,16 @@ Public Class ConfigManager
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
-
-                MsgBox(Dateandtimeformat(DateTimePicker1ACCRDI.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd"))
                 If dt.Rows.Count > 0 Then
                     Dim fields1 = "`Dev_Company_Name`= '" & Trim(TextBoxDevname.Text) & "',
                 `Dev_Address`= '" & Trim(TextBoxDevAdd.Text) & "',
                 `Dev_Tin`= '" & Trim(TextBoxDevTIN.Text) & "',
                 `Dev_Accr_No`= '" & Trim(TextBoxDevAccr.Text) & "' ,
-                `Dev_Accr_Date_Issued`= '" & Dateandtimeformat(DateTimePicker1ACCRDI.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "',
-                `Dev_Accr_Valid_Until`= '" & Dateandtimeformat(DateTimePicker2ACCRVU.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "',
+                `Dev_Accr_Date_Issued`= '" & Format(DateTimePicker1ACCRDI.Value, "yyy-MM-dd") & "',
+                `Dev_Accr_Valid_Until`= '" & Format(DateTimePicker2ACCRVU.Value, "yyyy-MM-dd") & "',
                 `Dev_PTU_No`= '" & Trim(TextBoxDEVPTU.Text) & "',
-                `Dev_PTU_Date_Issued`= '" & Dateandtimeformat(DateTimePickerPTUVU.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "',
-                `Dev_PTU_Valid_Until`= '" & Dateandtimeformat(DateTimePicker4PTUDI.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "'"
+                `Dev_PTU_Date_Issued`= '" & Format(DateTimePickerPTUVU.Value, "yyyy-MM-dd") & "',
+                `Dev_PTU_Valid_Until`= '" & Format(DateTimePicker4PTUDI.Value, "yyyy-MM-dd") & "'"
                     sql = "UPDATE " & table & " SET " & fields1 & " WHERE " & where
                     cmd = New MySqlCommand(sql, TestLocalConnection)
                     cmd.ExecuteNonQuery()
@@ -743,11 +741,11 @@ Public Class ConfigManager
                 ,'" & Trim(TextBoxDevAdd.Text) & "'
                 ,'" & Trim(TextBoxDevTIN.Text) & "'
                 ,'" & Trim(TextBoxDevAccr.Text) & "'
-                ,'" & Dateandtimeformat(DateTimePicker1ACCRDI.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "'
-                ,'" & Dateandtimeformat(DateTimePicker2ACCRVU.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "'
+                ,'" & Format(DateTimePicker1ACCRDI.Value, "yyyy-MM-dd") & "'
+                ,'" & Format(DateTimePicker2ACCRVU.Value, "yyyy-MM-dd") & "'
                 ,'" & Trim(TextBoxDEVPTU.Text) & "'
-                ,'" & Dateandtimeformat(DateTimePickerPTUVU.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "'
-                ,'" & Dateandtimeformat(DateTimePicker4PTUDI.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "')"
+                ,'" & Format(DateTimePickerPTUVU.Value, "yyyy-MM-dd") & "'
+                ,'" & Format(DateTimePicker4PTUDI.Value, "yyyy-MM-dd") & "')"
                     sql = "INSERT INTO " & table & " " & fields2 & " VALUES " & value
                     cmd = New MySqlCommand(sql, TestLocalConnection)
                     cmd.ExecuteNonQuery()
@@ -1220,7 +1218,7 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                     cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                     cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
-                    cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(11).Value.ToString(), "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(11).Value, "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.Parameters.Add("@13", MySqlDbType.Int32).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
@@ -1248,11 +1246,11 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@5", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
                     cmdlocal.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(6).Value.ToString()
                     cmdlocal.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
-                    cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(8).Value, "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
                     cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = "Synced"
-                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(8).Value, "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With
@@ -1271,7 +1269,7 @@ Public Class ConfigManager
                                              VALUES (@0, @1, @2, @3, @4)", TestLocalConnection())
                     cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-                    cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(2).Value.ToString(), "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(2).Value, "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
                     cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
                     cmdlocal.ExecuteNonQuery()
@@ -1300,10 +1298,10 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                     cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
-                    cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(10).Value.ToString(), "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(10).Value, "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
                     cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
-                    cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(10).Value.ToString(), "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(10).Value, "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
                     cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.ExecuteNonQuery()
