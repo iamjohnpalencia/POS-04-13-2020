@@ -5,6 +5,7 @@ Imports System.Net
 Imports MySql.Data.MySqlClient
 Imports System.Drawing.Printing
 Imports System.Text.RegularExpressions
+Imports System.Globalization
 
 Module publicfunctions
     Public drasd
@@ -342,9 +343,15 @@ Module publicfunctions
     End Function
     Public Function returndateformatfulldate(datetoformat As String)
         Try
+            'Dim date4 As DateTime
+            'Dim dateString As String = datetoformat
+            'Dim result As Boolean = DateTime.TryParse(dateString, date4)
+
+
             Dim iDate As String = datetoformat
             Dim oDate As DateTime = Convert.ToDateTime(iDate)
             dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00") & " " & oDate.Hour & ":" & oDate.Minute & ":" & oDate.Second
+
             'Dim dateTime = datetoformat
             'Dim dt As DateTime = Convert.ToDateTime(dateTime)
             'Dim format As String = "yyyy-MM-dd HH:mm:ss"
@@ -398,9 +405,14 @@ Module publicfunctions
     End Function
     Public Function returndatetimeformat(ByVal datetoformat)
         Try
-            Dim iDate As String = datetoformat.ToString
-            Dim oDate As DateTime = Convert.ToDateTime(iDate)
-            dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00") & " " & oDate.Hour & ":" & oDate.Minute & ":" & oDate.Second
+            Dim dt As DateTime
+            Dim result = DateTime.TryParseExact(datetoformat, "yyyy-MM-dd hh:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, dt)
+
+            datetoformat = result
+
+            'Dim iDate As String = datetoformat.ToString
+            'Dim oDate As DateTime = Convert.ToDateTime(iDate)
+            'dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00") & " " & oDate.Hour & ":" & oDate.Minute & ":" & oDate.Second
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
