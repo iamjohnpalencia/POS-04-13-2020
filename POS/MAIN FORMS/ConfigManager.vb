@@ -719,17 +719,18 @@ Public Class ConfigManager
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
-                MsgBox(DateTimePicker1ACCRDI.Value)
+
+                MsgBox(Dateandtimeformat(DateTimePicker1ACCRDI.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd"))
                 If dt.Rows.Count > 0 Then
                     Dim fields1 = "`Dev_Company_Name`= '" & Trim(TextBoxDevname.Text) & "',
-`Dev_Address`= '" & Trim(TextBoxDevAdd.Text) & "',
-`Dev_Tin`= '" & Trim(TextBoxDevTIN.Text) & "',
-`Dev_Accr_No`= '" & Trim(TextBoxDevAccr.Text) & "' ,
-`Dev_Accr_Date_Issued`= '" & returndateformat(DateTimePicker1ACCRDI.Value) & "',
-`Dev_Accr_Valid_Until`= '" & returndateformat(DateTimePicker2ACCRVU.Value) & "',
-`Dev_PTU_No`= '" & Trim(TextBoxDEVPTU.Text) & "',
-`Dev_PTU_Date_Issued`= '" & returndateformat(DateTimePickerPTUVU.Value) & "',
-`Dev_PTU_Valid_Until`= '" & returndateformat(DateTimePicker4PTUDI.Value) & "'"
+                `Dev_Address`= '" & Trim(TextBoxDevAdd.Text) & "',
+                `Dev_Tin`= '" & Trim(TextBoxDevTIN.Text) & "',
+                `Dev_Accr_No`= '" & Trim(TextBoxDevAccr.Text) & "' ,
+                `Dev_Accr_Date_Issued`= '" & Dateandtimeformat(DateTimePicker1ACCRDI.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "',
+                `Dev_Accr_Valid_Until`= '" & Dateandtimeformat(DateTimePicker2ACCRVU.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "',
+                `Dev_PTU_No`= '" & Trim(TextBoxDEVPTU.Text) & "',
+                `Dev_PTU_Date_Issued`= '" & Dateandtimeformat(DateTimePickerPTUVU.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "',
+                `Dev_PTU_Valid_Until`= '" & Dateandtimeformat(DateTimePicker4PTUDI.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "'"
                     sql = "UPDATE " & table & " SET " & fields1 & " WHERE " & where
                     cmd = New MySqlCommand(sql, TestLocalConnection)
                     cmd.ExecuteNonQuery()
@@ -739,14 +740,14 @@ Public Class ConfigManager
                 Else
                     Dim fields2 = "(Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until)"
                     Dim value = "('" & Trim(TextBoxDevname.Text) & "'
-,'" & Trim(TextBoxDevAdd.Text) & "'
-,'" & Trim(TextBoxDevTIN.Text) & "'
-,'" & Trim(TextBoxDevAccr.Text) & "'
-,'" & returndateformat(DateTimePicker1ACCRDI.Value) & "'
-,'" & returndateformat(DateTimePicker2ACCRVU.Value) & "'
-,'" & Trim(TextBoxDEVPTU.Text) & "'
-,'" & returndateformat(DateTimePickerPTUVU.Value) & "'
-,'" & returndateformat(DateTimePicker4PTUDI.Value) & "')"
+                ,'" & Trim(TextBoxDevAdd.Text) & "'
+                ,'" & Trim(TextBoxDevTIN.Text) & "'
+                ,'" & Trim(TextBoxDevAccr.Text) & "'
+                ,'" & Dateandtimeformat(DateTimePicker1ACCRDI.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "'
+                ,'" & Dateandtimeformat(DateTimePicker2ACCRVU.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "'
+                ,'" & Trim(TextBoxDEVPTU.Text) & "'
+                ,'" & Dateandtimeformat(DateTimePickerPTUVU.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "'
+                ,'" & Dateandtimeformat(DateTimePicker4PTUDI.Value, "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd") & "')"
                     sql = "INSERT INTO " & table & " " & fields2 & " VALUES " & value
                     cmd = New MySqlCommand(sql, TestLocalConnection)
                     cmd.ExecuteNonQuery()
@@ -1247,11 +1248,11 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@5", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
                     cmdlocal.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(6).Value.ToString()
                     cmdlocal.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
-                    cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
                     cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = "Synced"
-                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "dd/MM/yyyy h:mm:ss tt", "yyyy-MM-dd hh:mm:ss")
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With
@@ -1330,17 +1331,18 @@ Public Class ConfigManager
     Private Sub BackgroundWorker5_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker5.ProgressChanged
         ProgressBar6.Value = e.ProgressPercentage
     End Sub
-    'Private Sub Button7_Click(sender As Object, e As EventArgs)
-    '    InsertToProducts()
-    '    InsertToInventory()
-    '    InsertToCategories()
-    '    InsertToFormula()
-    'End Sub
 
-    'Private Sub Button8_Click_1(sender As Object, e As EventArgs)
-    '    GetCategories()
-    '    GetProducts()
-    '    GetInventory()
-    '    GetFormula()
-    'End Sub
+    Private Sub button7_click(sender As Object, e As EventArgs) Handles Button7.Click
+        'InsertToProducts()
+        InsertToInventory()
+        'InsertToCategories()
+        'InsertToFormula()
+    End Sub
+
+    Private Sub button8_click_1(sender As Object, e As EventArgs) Handles Button8.Click
+        'GetCategories()
+        'GetProducts()
+        GetInventory()
+        'GetFormula()
+    End Sub
 End Class
