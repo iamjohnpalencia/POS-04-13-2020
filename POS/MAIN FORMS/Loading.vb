@@ -496,7 +496,6 @@ Public Class Loading
                 Next
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
             'If table doesnt have data
         End Try
     End Sub
