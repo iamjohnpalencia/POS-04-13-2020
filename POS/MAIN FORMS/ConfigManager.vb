@@ -1045,6 +1045,7 @@ Public Class ConfigManager
             Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection())
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
+            dt.Locale = System.Globalization.CultureInfo.InvariantCulture
             da.Fill(dt)
             datagrid.DataSource = dt
         Catch ex As Exception
@@ -1264,6 +1265,7 @@ Public Class ConfigManager
             With DataGridViewCATEGORIES
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    MsgBox(.Rows(i).Cells(2).Value)
                     cmdlocal = New MySqlCommand("INSERT INTO loc_admin_category( `category_name`, `brand_name`, `updated_at`, `origin`, `status`)
                                              VALUES (@0, @1, @2, @3, @4)", TestLocalConnection())
                     cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
