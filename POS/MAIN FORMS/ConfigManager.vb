@@ -1241,8 +1241,8 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
                     cmdlocal.ExecuteNonQuery()
                 Next
-                RichTextBox1.Text += "Done!..." & vbNewLine
             End With
+            RichTextBox1.Text += "Done!..." & vbNewLine
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1347,17 +1347,17 @@ Public Class ConfigManager
         ProgressBar6.Value = e.ProgressPercentage
     End Sub
 
-    Private Sub button7_click(sender As Object, e As EventArgs) Handles Button7.Click
-        InsertToProducts()
-        InsertToInventory()
-        InsertToCategories()
-        'InsertToFormula()
-    End Sub
+    'Private Sub button7_click(sender As Object, e As EventArgs) Handles Button7.Click
+    '    InsertToProducts()
+    '    InsertToInventory()
+    '    InsertToCategories()
+    '    'InsertToFormula()
+    'End Sub
 
-    Private Sub button8_click_1(sender As Object, e As EventArgs) Handles Button8.Click
-        GetCategories()
-        GetProducts()
-        GetInventory()
-        GetFormula()
-    End Sub
+    'Private Sub button8_click_1(sender As Object, e As EventArgs) Handles Button8.Click
+    '    GetCategories()
+    '    GetProducts()
+    '    GetInventory()
+    '    GetFormula()
+    'End Sub
 End Class
