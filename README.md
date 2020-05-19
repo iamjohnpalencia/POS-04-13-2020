@@ -156,7 +156,7 @@ May 17 6:00 Pm to 2:00 am
 * Polish local connection
 * Fix Z reading date format bug
 
-May 17 6:00 Pm to 2:00 am
+May 18 6:00 Pm to 2:00 am
 
 * Changed the structure of zreading column in database
 * Fixed dateformat issue of the following 
@@ -168,5 +168,8 @@ May 17 6:00 Pm to 2:00 am
 	* Beginning balance form
 * Fixed search function in Reports form
 
+May 19 1:00 PM to 5:00 PM
+
+* Dateformat Debugging
 
 
