@@ -199,6 +199,11 @@ Partial Class ConfigManager
         Me.Button7 = New System.Windows.Forms.Button()
         Me.GroupBox18 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewCATEGORIES = New System.Windows.Forms.DataGridView()
+        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox17 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewFORMULA = New System.Windows.Forms.DataGridView()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
@@ -250,6 +255,40 @@ Partial Class ConfigManager
         Me.BackgroundWorkerACTIVATION = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker5 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorkerABTDB = New System.ComponentModel.BackgroundWorker()
+        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column31 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column32 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column34 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column36 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column37 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column38 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column39 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column40 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column41 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column42 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column43 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column44 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column45 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column46 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column47 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column48 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column49 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column50 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column51 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column52 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column53 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column54 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column55 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column56 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel2.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -2335,11 +2374,37 @@ Partial Class ConfigManager
         Me.DataGridViewCATEGORIES.AllowUserToResizeRows = False
         Me.DataGridViewCATEGORIES.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewCATEGORIES.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewCATEGORIES.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column18, Me.Column19, Me.Column20, Me.Column21, Me.Column22})
         Me.DataGridViewCATEGORIES.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewCATEGORIES.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewCATEGORIES.Name = "DataGridViewCATEGORIES"
         Me.DataGridViewCATEGORIES.Size = New System.Drawing.Size(488, 70)
         Me.DataGridViewCATEGORIES.TabIndex = 65
+        '
+        'Column18
+        '
+        Me.Column18.HeaderText = "Column18"
+        Me.Column18.Name = "Column18"
+        '
+        'Column19
+        '
+        Me.Column19.HeaderText = "Column19"
+        Me.Column19.Name = "Column19"
+        '
+        'Column20
+        '
+        Me.Column20.HeaderText = "Column20"
+        Me.Column20.Name = "Column20"
+        '
+        'Column21
+        '
+        Me.Column21.HeaderText = "Column21"
+        Me.Column21.Name = "Column21"
+        '
+        'Column22
+        '
+        Me.Column22.HeaderText = "Column22"
+        Me.Column22.Name = "Column22"
         '
         'GroupBox17
         '
@@ -2360,6 +2425,7 @@ Partial Class ConfigManager
         Me.DataGridViewFORMULA.AllowUserToResizeRows = False
         Me.DataGridViewFORMULA.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewFORMULA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewFORMULA.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column44, Me.Column45, Me.Column46, Me.Column47, Me.Column48, Me.Column49, Me.Column50, Me.Column51, Me.Column52, Me.Column53, Me.Column54, Me.Column55, Me.Column56})
         Me.DataGridViewFORMULA.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewFORMULA.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewFORMULA.Name = "DataGridViewFORMULA"
@@ -2385,6 +2451,7 @@ Partial Class ConfigManager
         Me.DataGridViewPRODUCTS.AllowUserToResizeRows = False
         Me.DataGridViewPRODUCTS.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewPRODUCTS.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column23, Me.Column24, Me.Column25, Me.Column26, Me.Column27, Me.Column28, Me.Column29, Me.Column30, Me.Column31, Me.Column32, Me.Column33, Me.Column34})
         Me.DataGridViewPRODUCTS.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewPRODUCTS.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewPRODUCTS.Name = "DataGridViewPRODUCTS"
@@ -2410,6 +2477,7 @@ Partial Class ConfigManager
         Me.DataGridViewINVENTORY.AllowUserToResizeRows = False
         Me.DataGridViewINVENTORY.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewINVENTORY.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewINVENTORY.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column35, Me.Column36, Me.Column37, Me.Column38, Me.Column39, Me.Column40, Me.Column41, Me.Column42, Me.Column43})
         Me.DataGridViewINVENTORY.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewINVENTORY.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewINVENTORY.Name = "DataGridViewINVENTORY"
@@ -2730,6 +2798,176 @@ Partial Class ConfigManager
         '
         'BackgroundWorkerABTDB
         '
+        '
+        'Column23
+        '
+        Me.Column23.HeaderText = "Column23"
+        Me.Column23.Name = "Column23"
+        '
+        'Column24
+        '
+        Me.Column24.HeaderText = "Column24"
+        Me.Column24.Name = "Column24"
+        '
+        'Column25
+        '
+        Me.Column25.HeaderText = "Column25"
+        Me.Column25.Name = "Column25"
+        '
+        'Column26
+        '
+        Me.Column26.HeaderText = "Column26"
+        Me.Column26.Name = "Column26"
+        '
+        'Column27
+        '
+        Me.Column27.HeaderText = "Column27"
+        Me.Column27.Name = "Column27"
+        '
+        'Column28
+        '
+        Me.Column28.HeaderText = "Column28"
+        Me.Column28.Name = "Column28"
+        '
+        'Column29
+        '
+        Me.Column29.HeaderText = "Column29"
+        Me.Column29.Name = "Column29"
+        '
+        'Column30
+        '
+        Me.Column30.HeaderText = "Column30"
+        Me.Column30.Name = "Column30"
+        '
+        'Column31
+        '
+        Me.Column31.HeaderText = "Column31"
+        Me.Column31.Name = "Column31"
+        '
+        'Column32
+        '
+        Me.Column32.HeaderText = "Column32"
+        Me.Column32.Name = "Column32"
+        '
+        'Column33
+        '
+        Me.Column33.HeaderText = "Column33"
+        Me.Column33.Name = "Column33"
+        '
+        'Column34
+        '
+        Me.Column34.HeaderText = "Column34"
+        Me.Column34.Name = "Column34"
+        '
+        'Column35
+        '
+        Me.Column35.HeaderText = "Column35"
+        Me.Column35.Name = "Column35"
+        '
+        'Column36
+        '
+        Me.Column36.HeaderText = "Column36"
+        Me.Column36.Name = "Column36"
+        '
+        'Column37
+        '
+        Me.Column37.HeaderText = "Column37"
+        Me.Column37.Name = "Column37"
+        '
+        'Column38
+        '
+        Me.Column38.HeaderText = "Column38"
+        Me.Column38.Name = "Column38"
+        '
+        'Column39
+        '
+        Me.Column39.HeaderText = "Column39"
+        Me.Column39.Name = "Column39"
+        '
+        'Column40
+        '
+        Me.Column40.HeaderText = "Column40"
+        Me.Column40.Name = "Column40"
+        '
+        'Column41
+        '
+        Me.Column41.HeaderText = "Column41"
+        Me.Column41.Name = "Column41"
+        '
+        'Column42
+        '
+        Me.Column42.HeaderText = "Column42"
+        Me.Column42.Name = "Column42"
+        '
+        'Column43
+        '
+        Me.Column43.HeaderText = "Column43"
+        Me.Column43.Name = "Column43"
+        '
+        'Column44
+        '
+        Me.Column44.HeaderText = "Column44"
+        Me.Column44.Name = "Column44"
+        '
+        'Column45
+        '
+        Me.Column45.HeaderText = "Column45"
+        Me.Column45.Name = "Column45"
+        '
+        'Column46
+        '
+        Me.Column46.HeaderText = "Column46"
+        Me.Column46.Name = "Column46"
+        '
+        'Column47
+        '
+        Me.Column47.HeaderText = "Column47"
+        Me.Column47.Name = "Column47"
+        '
+        'Column48
+        '
+        Me.Column48.HeaderText = "Column48"
+        Me.Column48.Name = "Column48"
+        '
+        'Column49
+        '
+        Me.Column49.HeaderText = "Column49"
+        Me.Column49.Name = "Column49"
+        '
+        'Column50
+        '
+        Me.Column50.HeaderText = "Column50"
+        Me.Column50.Name = "Column50"
+        '
+        'Column51
+        '
+        Me.Column51.HeaderText = "Column51"
+        Me.Column51.Name = "Column51"
+        '
+        'Column52
+        '
+        Me.Column52.HeaderText = "Column52"
+        Me.Column52.Name = "Column52"
+        '
+        'Column53
+        '
+        Me.Column53.HeaderText = "Column53"
+        Me.Column53.Name = "Column53"
+        '
+        'Column54
+        '
+        Me.Column54.HeaderText = "Column54"
+        Me.Column54.Name = "Column54"
+        '
+        'Column55
+        '
+        Me.Column55.HeaderText = "Column55"
+        Me.Column55.Name = "Column55"
+        '
+        'Column56
+        '
+        Me.Column56.HeaderText = "Column56"
+        Me.Column56.Name = "Column56"
         '
         'ConfigManager
         '
@@ -3073,4 +3311,43 @@ Partial Class ConfigManager
     Friend WithEvents Button8 As Button
     Friend WithEvents Button7 As Button
     Friend WithEvents DataGridViewOutlets As DataGridView
+    Friend WithEvents Column18 As DataGridViewTextBoxColumn
+    Friend WithEvents Column19 As DataGridViewTextBoxColumn
+    Friend WithEvents Column20 As DataGridViewTextBoxColumn
+    Friend WithEvents Column21 As DataGridViewTextBoxColumn
+    Friend WithEvents Column22 As DataGridViewTextBoxColumn
+    Friend WithEvents Column23 As DataGridViewTextBoxColumn
+    Friend WithEvents Column24 As DataGridViewTextBoxColumn
+    Friend WithEvents Column25 As DataGridViewTextBoxColumn
+    Friend WithEvents Column26 As DataGridViewTextBoxColumn
+    Friend WithEvents Column27 As DataGridViewTextBoxColumn
+    Friend WithEvents Column28 As DataGridViewTextBoxColumn
+    Friend WithEvents Column29 As DataGridViewTextBoxColumn
+    Friend WithEvents Column30 As DataGridViewTextBoxColumn
+    Friend WithEvents Column31 As DataGridViewTextBoxColumn
+    Friend WithEvents Column32 As DataGridViewTextBoxColumn
+    Friend WithEvents Column33 As DataGridViewTextBoxColumn
+    Friend WithEvents Column34 As DataGridViewTextBoxColumn
+    Friend WithEvents Column35 As DataGridViewTextBoxColumn
+    Friend WithEvents Column36 As DataGridViewTextBoxColumn
+    Friend WithEvents Column37 As DataGridViewTextBoxColumn
+    Friend WithEvents Column38 As DataGridViewTextBoxColumn
+    Friend WithEvents Column39 As DataGridViewTextBoxColumn
+    Friend WithEvents Column40 As DataGridViewTextBoxColumn
+    Friend WithEvents Column41 As DataGridViewTextBoxColumn
+    Friend WithEvents Column42 As DataGridViewTextBoxColumn
+    Friend WithEvents Column43 As DataGridViewTextBoxColumn
+    Friend WithEvents Column44 As DataGridViewTextBoxColumn
+    Friend WithEvents Column45 As DataGridViewTextBoxColumn
+    Friend WithEvents Column46 As DataGridViewTextBoxColumn
+    Friend WithEvents Column47 As DataGridViewTextBoxColumn
+    Friend WithEvents Column48 As DataGridViewTextBoxColumn
+    Friend WithEvents Column49 As DataGridViewTextBoxColumn
+    Friend WithEvents Column50 As DataGridViewTextBoxColumn
+    Friend WithEvents Column51 As DataGridViewTextBoxColumn
+    Friend WithEvents Column52 As DataGridViewTextBoxColumn
+    Friend WithEvents Column53 As DataGridViewTextBoxColumn
+    Friend WithEvents Column54 As DataGridViewTextBoxColumn
+    Friend WithEvents Column55 As DataGridViewTextBoxColumn
+    Friend WithEvents Column56 As DataGridViewTextBoxColumn
 End Class

@@ -1040,20 +1040,23 @@ Public Class ConfigManager
             MsgBox("Contact Administrator Error Code: 3.0")
         End Try
     End Sub
-    Private Sub GLOBAL_SELECT_ALL_FUNCTION_CLOUD(tbl As String, flds As String, datagrid As DataGridView)
+    Private Function GLOBAL_SELECT_ALL_FUNCTION_CLOUD(tbl As String, flds As String, datagrid As DataGridView) As DataTable
+        datagrid.Rows.Clear()
+        Dim dt As DataTable = New DataTable()
         Try
             Dim sql = "SELECT " & flds & " FROM " & table
             Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection())
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
-            Dim dt As DataTable = New DataTable()
-            Dim currentCultureInfo As CultureInfo = New CultureInfo("en-gb")
-            dt.Locale = currentCultureInfo
             da.Fill(dt)
-            datagrid.DataSource = dt
+            'Dim currentCultureInfo As CultureInfo = New CultureInfo("en-US")
+            'dt.Locale = currentCultureInfo
+            'da.Fill(dt)
+            'datagrid.DataSource = dt
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-    End Sub
+        Return dt
+    End Function
     Dim threadLISTINSERPROD As List(Of Thread) = New List(Of Thread)
     Private Sub BackgroundWorker5_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker5.DoWork
         Try
@@ -1166,7 +1169,10 @@ Public Class ConfigManager
             RichTextBox1.Text += "Getting Categories...." & vbNewLine
             table = "admin_category"
             fields = "`category_name`, `brand_name`, `updated_at`, `origin`, `status`"
-            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewCATEGORIES)
+            Dim Datatablecat = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewCATEGORIES)
+            For Each row As DataRow In Datatablecat.Rows
+                DataGridViewCATEGORIES.Rows.Add(row("category_name"), row("brand_name"), Format(CDate(row("updated_at")), "yyyy-MM-dd hh:mm:ss"), row("origin"), row("status"))
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1176,7 +1182,10 @@ Public Class ConfigManager
             RichTextBox1.Text += "Getting Products...." & vbNewLine
             table = "admin_products_org"
             fields = "`product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`"
-            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewPRODUCTS)
+            Dim DatatableProd = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewPRODUCTS)
+            For Each row As DataRow In DatatableProd.Rows
+                DataGridViewPRODUCTS.Rows.Add(row("product_id"), row("product_sku"), row("product_name"), row("formula_id"), row("product_barcode"), row("product_category"), row("product_price"), row("product_desc"), row("product_image"), row("product_status"), row("origin"), Format(CDate(row("date_modified")), "yyyy-MM-dd hh:mm:ss"))
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1186,7 +1195,10 @@ Public Class ConfigManager
             RichTextBox1.Text += "Getting Inventory...." & vbNewLine
             table = "admin_pos_inventory_org"
             fields = "`inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified`"
-            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewINVENTORY)
+            Dim DatatableInv = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewINVENTORY)
+            For Each row As DataRow In DatatableInv.Rows
+                DataGridViewINVENTORY.Rows.Add(row("inventory_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_quantity"), row("stock_total"), row("stock_status"), row("critical_limit"), Format(CDate(row("date_modified")), "yyyy-MM-dd hh:mm:ss"))
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1196,7 +1208,10 @@ Public Class ConfigManager
             RichTextBox1.Text += "Getting Formula's...." & vbNewLine
             table = "admin_product_formula_org"
             fields = "`formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`"
-            GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewFORMULA)
+            Dim DatatableForm = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewFORMULA)
+            For Each row As DataRow In DatatableForm.Rows
+                DataGridViewFORMULA.Rows.Add(row("formula_id"), row("product_ingredients"), row("primary_unit"), row("primary_value"), row("secondary_unit"), row("secondary_value"), row("serving_unit"), row("serving_value"), row("no_servings"), row("status"), Format(CDate(row("date_modified")), "yyyy-MM-dd hh:mm:ss"), row("unit_cost"), row("origin"))
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1220,7 +1235,7 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                     cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                     cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
-                    cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(11).Value, "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value
                     cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.Parameters.Add("@13", MySqlDbType.Int32).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
@@ -1248,11 +1263,11 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@5", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
                     cmdlocal.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(6).Value.ToString()
                     cmdlocal.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
-                    cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(8).Value, "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value
                     cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
                     cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = "Synced"
-                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(8).Value, "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With
@@ -1267,15 +1282,14 @@ Public Class ConfigManager
             With DataGridViewCATEGORIES
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    MsgBox(.Rows(i).Cells(2).Value)
-                    'cmdlocal = New MySqlCommand("INSERT INTO loc_admin_category( `category_name`, `brand_name`, `updated_at`, `origin`, `status`)
-                    '                         VALUES (@0, @1, @2, @3, @4)", TestLocalConnection())
-                    'cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
-                    'cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-                    'cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(2).Value, "yyyy-MM-dd hh:mm:ss")
-                    'cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-                    'cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
-                    'cmdlocal.ExecuteNonQuery()
+                    cmdlocal = New MySqlCommand("INSERT INTO loc_admin_category( `category_name`, `brand_name`, `updated_at`, `origin`, `status`)
+                                             VALUES (@0, @1, @2, @3, @4)", TestLocalConnection())
+                    cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
+                    cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString
+                    cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+                    cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmdlocal.ExecuteNonQuery()
                 Next
             End With
             RichTextBox1.Text += "Done!..." & vbNewLine
@@ -1301,16 +1315,16 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                     cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
-                    cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(10).Value, "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value
                     cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
                     cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
-                    cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(10).Value, "yyyy-MM-dd hh:mm:ss")
+                    cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
                     cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.ExecuteNonQuery()
                 Next
-                RichTextBox1.Text += "Done!..." & vbNewLine
             End With
+            RichTextBox1.Text += "Done!..." & vbNewLine
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1334,25 +1348,16 @@ Public Class ConfigManager
     End Sub
 
     Private Sub button7_click(sender As Object, e As EventArgs) Handles Button7.Click
-        'InsertToProducts()
-        'InsertToInventory()
+        InsertToProducts()
+        InsertToInventory()
         InsertToCategories()
         'InsertToFormula()
     End Sub
 
     Private Sub button8_click_1(sender As Object, e As EventArgs) Handles Button8.Click
         GetCategories()
-        'GetProducts()
-        'GetInventory()
-        'GetFormula()
-    End Sub
-    Private Sub DataGridViewCATEGORIES_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridViewCATEGORIES.CellFormatting
-        If e.ColumnIndex = 2 Then 'your column
-            Dim d As Date
-            If Date.TryParse(e.Value.ToString, d) Then
-                e.Value = d.ToString("dd-MM-yyyy hh:mm:ss")
-                e.FormattingApplied = True
-            End If
-        End If
+        GetProducts()
+        GetInventory()
+        GetFormula()
     End Sub
 End Class
