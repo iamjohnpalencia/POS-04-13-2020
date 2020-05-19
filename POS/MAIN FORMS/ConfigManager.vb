@@ -2,6 +2,7 @@
 Imports System.Threading
 Imports System.IO
 Imports System.Text
+Imports System.Globalization
 'Requirements
 'my.settings.validlocalconn/cloudconn = 1
 'franchiseeacc = true/ accountexist = true
@@ -1045,7 +1046,7 @@ Public Class ConfigManager
             Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection())
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
-            dt.Locale = System.Globalization.CultureInfo.InvariantCulture
+            dt.Locale = CultureInfo.CreateSpecificCulture("en-US")
             da.Fill(dt)
             datagrid.DataSource = dt
         Catch ex As Exception
