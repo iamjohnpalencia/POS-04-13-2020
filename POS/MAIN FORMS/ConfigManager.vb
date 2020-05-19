@@ -1048,7 +1048,7 @@ Public Class ConfigManager
             Dim dt As DataTable = New DataTable
             dt.Locale = CultureInfo.CreateSpecificCulture("en-US")
             da.Fill(dt)
-            datagrid.DataSource = dt
+            datagrid.DataSource = dts
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
