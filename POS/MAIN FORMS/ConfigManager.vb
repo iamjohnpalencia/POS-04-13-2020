@@ -1045,10 +1045,11 @@ Public Class ConfigManager
             Dim sql = "SELECT " & flds & " FROM " & table
             Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection())
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
-            Dim dt As DataTable = New DataTable
-            dt.Locale = CultureInfo.CreateSpecificCulture("en-US")
+            Dim dt As DataTable = New DataTable()
+            Dim currentCultureInfo As CultureInfo = New CultureInfo("en-gb")
+            dt.Locale = currentCultureInfo
             da.Fill(dt)
-            datagrid.DataSource = dts
+            datagrid.DataSource = dt
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1267,14 +1268,14 @@ Public Class ConfigManager
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     MsgBox(.Rows(i).Cells(2).Value)
-                    cmdlocal = New MySqlCommand("INSERT INTO loc_admin_category( `category_name`, `brand_name`, `updated_at`, `origin`, `status`)
-                                             VALUES (@0, @1, @2, @3, @4)", TestLocalConnection())
-                    cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
-                    cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-                    cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(2).Value, "yyyy-MM-dd hh:mm:ss")
-                    cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-                    cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
-                    cmdlocal.ExecuteNonQuery()
+                    'cmdlocal = New MySqlCommand("INSERT INTO loc_admin_category( `category_name`, `brand_name`, `updated_at`, `origin`, `status`)
+                    '                         VALUES (@0, @1, @2, @3, @4)", TestLocalConnection())
+                    'cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
+                    'cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                    'cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = Format(.Rows(i).Cells(2).Value, "yyyy-MM-dd hh:mm:ss")
+                    'cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+                    'cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
+                    'cmdlocal.ExecuteNonQuery()
                 Next
             End With
             RichTextBox1.Text += "Done!..." & vbNewLine
@@ -1345,6 +1346,13 @@ Public Class ConfigManager
         'GetInventory()
         'GetFormula()
     End Sub
-
-
+    Private Sub DataGridViewCATEGORIES_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridViewCATEGORIES.CellFormatting
+        If e.ColumnIndex = 2 Then 'your column
+            Dim d As Date
+            If Date.TryParse(e.Value.ToString, d) Then
+                e.Value = d.ToString("dd-MM-yyyy hh:mm:ss")
+                e.FormattingApplied = True
+            End If
+        End If
+    End Sub
 End Class
