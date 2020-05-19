@@ -19,7 +19,7 @@ Public Class DepositSlip
                                 ,'" & TextBoxTRANNUM.Text & "'   
                                 ," & TextBoxAMT.Text & "                
                                 ,'" & ComboBoxBankName.Text & "'
-                                ,'" & Dateandtimeformat(DateTimePickerDATE.Value, "M/d/yyyy h:mm:ss tt", "yyyy-MM-dd HH:mm:ss") & "'
+                                ,'" & Format(DateTimePickerDATE.Value, "yyyy-MM-dd HH:mm:ss") & "'
                                 ,'" & ClientStoreID & "'
                                 ,'" & ClientGuid & "'                    
                                 ,'Unsynced'
