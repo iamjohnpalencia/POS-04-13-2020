@@ -8,14 +8,15 @@ Module Addmodule
             End If
             messageboxappearance = False
             table = "loc_system_logs"
-            fields = "(`log_type`,`crew_id`,`log_description`, `log_store`, `guid`, `loc_systemlog_id`, `synced`)"
+            fields = "(`log_type`,`crew_id`,`log_description`, `log_store`, `guid`, `loc_systemlog_id`, `synced`, `zreading`)"
             value = "('" & logtype & "'
                 , '" & ClientCrewID & "'
                 , '" & logdesc & "'
                 , '" & ClientStoreID & "'
                 , '" & ClientGuid & "'
                 , '" & Format(Now, ("yyyyMMdd-HHmmss")) & "'
-                , 'Unsynced')"
+                , 'Unsynced'
+                , '" & S_Zreading & "' )"
             GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:="", errormessage:="System Logs")
 
         Catch ex As Exception

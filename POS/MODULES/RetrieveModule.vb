@@ -172,9 +172,7 @@ Module RetrieveModule
             cmd.Dispose()
         End Try
     End Sub
-
     'MANAGE PRODUCTS PANEL ========================================================
-
     Public Sub selectmax(ByVal whatform As Integer)
         If whatform = 1 Then
             POS.TextBoxMAXID.Text = Format(Now, "yyddMMHHmmssyy")
@@ -195,7 +193,6 @@ Module RetrieveModule
             MsgBox(ex.ToString)
         End Try
         Return formulaid
-        cloudconn.Close()
         cmd.Dispose()
     End Function
 

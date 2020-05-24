@@ -185,7 +185,7 @@ Module publicfunctions
             MsgBox(ex.ToString)
         End Try
     End Sub
-    '       .DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString)
+    '.DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString)
     Public Sub preventdgvordersdup(ByVal price, ByVal name, ByVal ID, ByVal SKU, ByVal CAT)
         Try
             With POS
@@ -341,6 +341,15 @@ Module publicfunctions
         Dim iMonth As Integer = Month(dat)
         GetMonthName = MonthName(iMonth)
     End Function
+    Public Function FullDateFormat(datetoformat, stringformat)
+        Try
+            Dim Strdate = Format(CDate(datetoformat), stringformat)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return datetoformat
+    End Function
+
     Public Function returndateformatfulldate(datetoformat As String)
         Try
             Dim iDate As String = datetoformat

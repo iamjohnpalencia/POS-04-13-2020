@@ -22,6 +22,7 @@ Public Class Reports
     Dim data As String
     Dim data2 As String
     Dim total
+    Dim ReadingOR
     Private Sub Reports_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabControl1.TabPages(0).Text = "Daily Transactions"
         TabControl1.TabPages(1).Text = "System Logs"
@@ -32,7 +33,6 @@ Public Class Reports
         TabControl1.TabPages(6).Text = "Item Return"
         TabControl1.TabPages(7).Text = "Deposit Slip"
         TabControl1.TabPages(8).Text = "Z/X Reading"
-
         reportsdailytransaction(False)
         reportssystemlogs(False)
         reportssales(False)
@@ -41,11 +41,15 @@ Public Class Reports
         reportexpensedet(False)
         reportsreturnsandrefunds(False)
         viewdeposit(False)
-        'If returndateformat(S_Zreading.ToString) = returndateformat(Now) Then
-        '    ButtonZread.Enabled = False
-        'Else
-        '    ButtonZread.Enabled = True
-        'End If
+        If ClientRole = "Head Crew" Then
+            Button6.Visible = True
+        Else
+            Button6.Visible = False
+        End If
+        If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
+            ButtonZread.Enabled = False
+            Button6.Enabled = False
+        End If
     End Sub
     Public Sub reportssystemlogs(ByVal searchdate As Boolean)
         Try
@@ -116,10 +120,10 @@ Public Class Reports
             End If
             With DataGridViewDaily
                 .Columns(0).Visible = False
-                .Columns(1).HeaderCell.Value = "TRN. Date"
-                .Columns(2).HeaderCell.Value = "TRN. Time"
-                .Columns(3).HeaderCell.Value = "TRN. Number"
-                .Columns(4).HeaderCell.Value = "Service Crew"
+                .Columns(1).HeaderCell.Value = "Date"
+                .Columns(2).HeaderCell.Value = "Time"
+                .Columns(3).HeaderCell.Value = "Ref. #"
+                .Columns(4).HeaderCell.Value = "Crew"
                 .Columns(5).HeaderCell.Value = "Money"
                 .Columns(6).HeaderCell.Value = "Change"
                 .Columns(7).Visible = False
@@ -600,6 +604,7 @@ Public Class Reports
     Dim XreadOrZread As String
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         XreadOrZread = "X-READ"
+        ReadingOR = "X" & Format(Now, "yyddMMHHmmssyy")
         printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
         PrintPreviewDialogXread.Document = printdocXread
         PrintPreviewDialogXread.ShowDialog()
@@ -621,9 +626,13 @@ Public Class Reports
         Dim ReturnsTotal = sum("total", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
         Dim ReturnsExchange = sum("quantity", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
         Dim SrDiscount = sum("discount", "loc_daily_transaction WHERE discount_type = 'Percentage' AND zreading = '" & ZreadDateFormat & "' ")
+        Dim CashInDrawer = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ") + Val(NEWgrandtotal)
+        Dim VatExempt = sum("vat_exempt", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
+        Dim zeroratedsales = sum("zero_rated", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
+        Dim vatablesales = sum("vatable", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
+
+        'Select Case sum(CAST(log_description As Decimal(10, 2))) As CashierBal FROM `loc_system_logs` WHERE log_type In ('BG-1','BG-2','BG-3','BG-4')
         Dim NetSales = GrossSale - LessVat - TotalDiscount
-
-
         CenterTextDisplay(sender, e, ClientBrand.ToUpper, brandfont, 10)
         '============================================================================================================================
         CenterTextDisplay(sender, e, "Opt by : Innovention Food Asia Co.", font, 21)
@@ -634,15 +643,15 @@ Public Class Reports
         '============================================================================================================================
         CenterTextDisplay(sender, e, "VAT REG TIN : " & ClientTin, font, 51)
         '============================================================================================================================
-        CenterTextDisplay(sender, e, "MSN : T500114100140", font, 61)
+        CenterTextDisplay(sender, e, "MSN : " & ClientMSN, font, 61)
         '============================================================================================================================
-        CenterTextDisplay(sender, e, "MIN : 140351765", font, 71)
+        CenterTextDisplay(sender, e, "MIN : " & ClientMIN, font, 71)
         '============================================================================================================================
-        CenterTextDisplay(sender, e, "PTUN : 0414-038-184993-000", font, 81)
+        CenterTextDisplay(sender, e, "PTUN : " & ClientPTUN, font, 81)
         '============================================================================================================================
         RightToLeftDisplay(sender, e, 100, "TERMINAL REPORT", XreadOrZread, font)
         '============================================================================================================================
-        SimpleTextDisplay(sender, e, "XT0000002110", font, 0, 90)
+        SimpleTextDisplay(sender, e, ReadingOR, font, 0, 90)
         SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 95)
         '============================================================================================================================
         RightToLeftDisplay(sender, e, 123, "DESCRIPTION", "QTY/AMOUNT", font)
@@ -659,9 +668,9 @@ Public Class Reports
         '============================================================================================================================
         RightToLeftDisplay(sender, e, 220, "VAT AMOUNT", "1", font)
         RightToLeftDisplay(sender, e, 230, "LOCAL GOV'T TAX", "3000.00", font)
-        RightToLeftDisplay(sender, e, 240, "VATABLE SALES", "3000.00", font)
-        RightToLeftDisplay(sender, e, 250, "ZERO RATED SALES", "3000.00", font)
-        RightToLeftDisplay(sender, e, 260, "VAT EXEMPT SALES", "3000.00", font)
+        RightToLeftDisplay(sender, e, 240, "VATABLE SALES", vatablesales, font)
+        RightToLeftDisplay(sender, e, 250, "ZERO RATED SALES", zeroratedsales, font)
+        RightToLeftDisplay(sender, e, 260, "VAT EXEMPT SALES", VatExempt, font)
         RightToLeftDisplay(sender, e, 270, "LESS DISC (VE)", TotalDiscount, font)
         RightToLeftDisplay(sender, e, 280, "NET SALES", NetSales, font)
         '============================================================================================================================
@@ -673,7 +682,7 @@ Public Class Reports
         RightToLeftDisplay(sender, e, 345, "A/R", "0", font)
         RightToLeftDisplay(sender, e, 355, "OTHERS", "0", font)
         RightToLeftDisplay(sender, e, 365, "DEPOSIT", "IDK", font)
-        RightToLeftDisplay(sender, e, 375, "CASH IN DRAWER", "IDK", font)
+        RightToLeftDisplay(sender, e, 375, "CASH IN DRAWER", CashInDrawer, font)
         '============================================================================================================================
         RightToLeftDisplay(sender, e, 390, "ITEM VOID E/C", ReturnsExchange, font)
         RightToLeftDisplay(sender, e, 400, "TRANSACTION VOID", ReturnsExchange, font)
@@ -691,14 +700,12 @@ Public Class Reports
         RightToLeftDisplay(sender, e, 515, "TOTAL GUEST", TotalGuest, font)
         RightToLeftDisplay(sender, e, 525, "BEGINNING OR NO.", begORNm, font)
         RightToLeftDisplay(sender, e, 535, "END OR NO.", EndORNumber, font)
-
-        RightToLeftDisplay(sender, e, 550, "CURRENT TOTAL SALES", "3000.00", font)
+        '============================================================================================================================
+        RightToLeftDisplay(sender, e, 550, "CURRENT TOTAL SALES", DailySales, font)
         RightToLeftDisplay(sender, e, 560, "OLD GRAND TOTAL", OLDgrandtotal, font)
         RightToLeftDisplay(sender, e, 570, "NEW GRAND TOTAL", NEWgrandtotal, font)
-
         'RightToLeftDisplay(sender, e, 575, "RETURNS EXCHANGE", "3000.00", Font)
         'RightToLeftDisplay(sender, e, 585, "RETURNS REFUND", "3000.00", Font)
-        '============================================================================================================================
         'RightToLeftDisplay(sender, e, 600, "TOTAL QTY. SOLD", "3000.00", Font)
         'RightToLeftDisplay(sender, e, 610, "TRANSACTION COUNT", "3000.00", Font)
         'RightToLeftDisplay(sender, e, 620, "TOTAL GUEST", "3000.00", Font)
@@ -718,14 +725,43 @@ Public Class Reports
             Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
                 XreadOrZread = "Z-READ"
+                ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
                 printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
                 PrintPreviewDialogXread.Document = printdocXread
                 PrintPreviewDialogXread.ShowDialog()
-                sql = "UPDATE loc_settings SET S_Zreading = '" & Format(Now(), "yyyy-MM-dd") & "'"
+                GLOBAL_SYSTEM_LOGS("Z-READ", ClientCrewID & " : " & S_Zreading)
+                S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
+                sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
+                cmd = New MySqlCommand(sql, LocalhostConn())
+                cmd.ExecuteNonQuery()
+                cmd.Dispose()
+                If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
+                    ButtonZread.Enabled = False
+                End If
+            Else
+                MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles Button6.Click
+        Try
+            Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = DialogResult.Yes Then
+                XreadOrZread = "Z-READ"
+                ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
+                printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
+                PrintPreviewDialogXread.Document = printdocXread
+                PrintPreviewDialogXread.ShowDialog()
+                Dim datenow = Format(Now(), "yyyy-MM-dd")
+                GLOBAL_SYSTEM_LOGS("Z-READ", ClientCrewID & " : " & datenow)
+                sql = "UPDATE loc_settings SET S_Zreading = '" & datenow & "'"
                 cmd = New MySqlCommand(sql, LocalhostConn())
                 cmd.ExecuteNonQuery()
                 cmd.Dispose()
                 S_Zreading = Format(Now(), "yyyy-MM-dd")
+                ButtonZread.Enabled = False
             Else
                 MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
