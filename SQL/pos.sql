@@ -574,6 +574,7 @@ CREATE TABLE `loc_system_logs` (
   `guid` varchar(255) NOT NULL,
   `loc_systemlog_id` varchar(255) NOT NULL,
   `synced` varchar(255) NOT NULL
+  `zreading` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
