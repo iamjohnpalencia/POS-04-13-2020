@@ -172,4 +172,9 @@ May 19 1:00 PM to 5:00 PM
 
 * Dateformat Debugging
 
+May 24 9:00 AM to 5:00 PM
+
+* zreading data
+* button for rewriting zread date to current date
+* zread add date function
 
