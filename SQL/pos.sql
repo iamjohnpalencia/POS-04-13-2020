@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2020 at 08:54 PM
+-- Generation Time: May 25, 2020 at 09:34 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -65,6 +65,10 @@ CREATE TABLE `admin_masterlist` (
   `client_store_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `admin_masterlist`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -95,6 +99,10 @@ CREATE TABLE `admin_outlets` (
   `PTUN` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `admin_outlets`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -110,6 +118,11 @@ CREATE TABLE `loc_admin_category` (
   `origin` varchar(50) NOT NULL,
   `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_admin_category`
+--
+
 
 -- --------------------------------------------------------
 
@@ -137,6 +150,10 @@ CREATE TABLE `loc_admin_products` (
   `synced` varchar(50) NOT NULL,
   `server_product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_admin_products`
+--
 
 -- --------------------------------------------------------
 
@@ -170,6 +187,10 @@ CREATE TABLE `loc_daily_transaction` (
   `discount_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_daily_transaction`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -197,6 +218,10 @@ CREATE TABLE `loc_daily_transaction_details` (
   `zreading` date NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_daily_transaction_details`
+--
 
 -- --------------------------------------------------------
 
@@ -311,6 +336,9 @@ CREATE TABLE `loc_fm_stock` (
   `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_fm_stock`
+--
 -- --------------------------------------------------------
 
 --
@@ -370,6 +398,10 @@ CREATE TABLE `loc_inv_temp_data` (
   `date_modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `date_created` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_inv_temp_data`
+--
 
 -- --------------------------------------------------------
 
@@ -451,6 +483,10 @@ CREATE TABLE `loc_pos_inventory` (
   `server_inventory_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_pos_inventory`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -478,6 +514,10 @@ CREATE TABLE `loc_product_formula` (
   `server_formula_id` int(11) NOT NULL,
   `server_date_modified` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_product_formula`
+--
 
 -- --------------------------------------------------------
 
@@ -558,6 +598,10 @@ CREATE TABLE `loc_settings` (
   `S_Zreading` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_settings`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -573,9 +617,13 @@ CREATE TABLE `loc_system_logs` (
   `log_store` varchar(20) NOT NULL,
   `guid` varchar(255) NOT NULL,
   `loc_systemlog_id` varchar(255) NOT NULL,
+  `zreading` varchar(255) NOT NULL,
   `synced` varchar(255) NOT NULL
-  `zreading` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_system_logs`
+--
 
 -- --------------------------------------------------------
 
@@ -636,6 +684,10 @@ CREATE TABLE `loc_users` (
   `uniq_id` varchar(50) NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_users`
+--
 
 -- --------------------------------------------------------
 
@@ -753,6 +805,13 @@ CREATE TABLE `triggers_loc_users` (
   `uniq_id` varchar(50) NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `triggers_loc_users`
+--
+
+INSERT INTO `triggers_loc_users` (`user_id`, `user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `created_at`, `updated_at`, `active`, `guid`, `store_id`, `uniq_id`, `synced`) VALUES
+(1, 'Head Crew', 'Jay Reyes', 'jj', '296506902c693b458707ad6f7e24a544', '09195328421', 'aiolosinnovativesolutions@gmail.com', 'Head Crew', 'Male', '2020-05-24 01:24:47', '2020-05-24 01:24:47', '1', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '40', 'FBW40-7922', 'Unsynced');
 
 --
 -- Triggers `triggers_loc_users`
@@ -923,6 +982,12 @@ ALTER TABLE `loc_users`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `sampletable`
+--
+ALTER TABLE `sampletable`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbcoupon`
 --
 ALTER TABLE `tbcoupon`
@@ -960,37 +1025,37 @@ ALTER TABLE `admin_coupon`
 -- AUTO_INCREMENT for table `admin_masterlist`
 --
 ALTER TABLE `admin_masterlist`
-  MODIFY `masterlist_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `masterlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `admin_outlets`
 --
 ALTER TABLE `admin_outlets`
-  MODIFY `loc_store_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `loc_store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `loc_admin_category`
 --
 ALTER TABLE `loc_admin_category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `loc_admin_products`
 --
 ALTER TABLE `loc_admin_products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `loc_daily_transaction`
 --
 ALTER TABLE `loc_daily_transaction`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `loc_daily_transaction_details`
 --
 ALTER TABLE `loc_daily_transaction_details`
-  MODIFY `details_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `loc_deposit`
@@ -1020,7 +1085,7 @@ ALTER TABLE `loc_expense_list`
 -- AUTO_INCREMENT for table `loc_fm_stock`
 --
 ALTER TABLE `loc_fm_stock`
-  MODIFY `fm_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `fm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `loc_hold_inventory`
@@ -1038,7 +1103,7 @@ ALTER TABLE `loc_inbox_messages`
 -- AUTO_INCREMENT for table `loc_inv_temp_data`
 --
 ALTER TABLE `loc_inv_temp_data`
-  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `loc_partners_transaction`
@@ -1056,13 +1121,13 @@ ALTER TABLE `loc_pending_orders`
 -- AUTO_INCREMENT for table `loc_pos_inventory`
 --
 ALTER TABLE `loc_pos_inventory`
-  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `loc_product_formula`
 --
 ALTER TABLE `loc_product_formula`
-  MODIFY `formula_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `formula_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `loc_promo_coupon_list`
@@ -1080,7 +1145,7 @@ ALTER TABLE `loc_refund_return_details`
 -- AUTO_INCREMENT for table `loc_settings`
 --
 ALTER TABLE `loc_settings`
-  MODIFY `settings_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `settings_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `loc_transaction_mode_details`
@@ -1098,7 +1163,13 @@ ALTER TABLE `loc_updates`
 -- AUTO_INCREMENT for table `loc_users`
 --
 ALTER TABLE `loc_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `sampletable`
+--
+ALTER TABLE `sampletable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `tbcoupon`
@@ -1122,7 +1193,7 @@ ALTER TABLE `triggers_loc_admin_products`
 -- AUTO_INCREMENT for table `triggers_loc_users`
 --
 ALTER TABLE `triggers_loc_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

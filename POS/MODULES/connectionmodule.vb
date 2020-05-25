@@ -11,9 +11,14 @@ Module connectionModule
             localconn.Open()
             If localconn.State = ConnectionState.Open Then
                 LocalConnectionIsOnOrValid = True
+                My.Settings.ValidLocalConn = True
+                My.Settings.Save()
             End If
         Catch ex As Exception
+            MsgBox(ex.ToString)
             LocalConnectionIsOnOrValid = False
+            My.Settings.ValidLocalConn = False
+            My.Settings.Save()
         End Try
         Return localconn
     End Function
@@ -70,6 +75,47 @@ Module connectionModule
                     Loop
                     LocalConnectionString = ConnStr2
                     objReader.Close()
+                End If
+            Else
+                Dim path2 = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\Innovention\user.config"
+                If System.IO.File.Exists(path2) Then
+                    'The File exists 
+                    Dim CreateConnString As String = ""
+                    Dim filename As String = String.Empty
+                    Dim TextLine As String = ""
+                    Dim objReader As New System.IO.StreamReader(path2)
+                    Dim lineCount As Integer
+                    Do While objReader.Peek() <> -1
+                        TextLine = objReader.ReadLine()
+                        If lineCount = 0 Then
+                            ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "server="))
+                            ConnStr2 = "server=" & ConnStr
+                        End If
+                        If lineCount = 1 Then
+                            ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "user id="))
+                            ConnStr2 += ";user id=" & ConnStr
+                        End If
+                        If lineCount = 2 Then
+                            ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "password="))
+                            ConnStr2 += ";password=" & ConnStr
+                        End If
+                        If lineCount = 3 Then
+                            ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "database="))
+                            ConnStr2 += ";database=" & ConnStr
+                        End If
+                        If lineCount = 4 Then
+                            ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "port="))
+                            ConnStr2 += ";port=" & ConnStr
+                        End If
+                        If lineCount = 5 Then
+                            ConnStr2 += ";" & TextLine
+                        End If
+                        lineCount = lineCount + 1
+                    Loop
+                    LocalConnectionString = ConnStr2
+                    objReader.Close()
+                    My.Settings.LocalConnectionPath = path2
+                    My.Settings.Save()
                 End If
             End If
         Catch ex As Exception

@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class CouponCode
     Private Sub CouponCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        GLOBAL_SELECT_ALL_FUNCTION(table:="tbcoupon", fields:="*", successmessage:="", errormessage:="", datagrid:=DataGridViewCoupons)
+        GLOBAL_SELECT_ALL_FUNCTION(table:="tbcoupon", fields:="*", datagrid:=DataGridViewCoupons)
         With DataGridViewCoupons
             .Columns(0).Visible = False
             .Columns(3).Visible = False

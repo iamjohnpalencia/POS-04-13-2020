@@ -5,7 +5,7 @@ Public Class Formula
     End Sub
     Public Sub loadformula()
         fields = "`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`"
-        GLOBAL_SELECT_ALL_FUNCTION(table:="loc_product_formula WHERE status = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", datagrid:=DataGridViewProductFormula, errormessage:="", successmessage:="", fields:=fields)
+        GLOBAL_SELECT_ALL_FUNCTION(table:="loc_product_formula WHERE status = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", datagrid:=DataGridViewProductFormula, fields:=fields)
         With DataGridViewProductFormula
             .Columns(0).HeaderText = "Ingredients"
             .Columns(1).HeaderText = "Primary Unit"

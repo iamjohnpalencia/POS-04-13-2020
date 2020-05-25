@@ -43,7 +43,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_refund_return_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill System Logs", successmessage:="Success!", datagrid:=DataGridViewRetrefdetails)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewRetrefdetails)
             gettablesize(tablename:="loc_refund_return_details")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -55,7 +55,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('LOG OUT', 'LOGIN', 'ERROR') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill System Logs", successmessage:="Success!", datagrid:=DataGridViewSYSLOG1)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewSYSLOG1)
             gettablesize(tablename:="loc_system_logs")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -66,7 +66,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('MENU FORM', 'STOCK ENTRY', 'STOCK REMOVAL', 'STOCK TRANSFER') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill System Logs", successmessage:="Success!", datagrid:=DataGridViewSYSLOG2)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewSYSLOG2)
             gettablesize(tablename:="loc_system_logs")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -77,7 +77,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('NEW CUSTOM PRODUCT', 'NEW EXPENSE', 'NEW STOCK ADDED', 'NEW USER') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill System Logs", successmessage:="Success!", datagrid:=DataGridViewSYSLOG3)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewSYSLOG3)
             gettablesize(tablename:="loc_system_logs")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -88,7 +88,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('TRANSACTION', 'USER UPDATE') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill System Logs", successmessage:="Success!", datagrid:=DataGridViewSYSLOG4)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewSYSLOG4)
             gettablesize(tablename:="loc_system_logs")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -100,7 +100,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_daily_transaction WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill Transaction", successmessage:="Success!", datagrid:=DataGridViewTRAN)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewTRAN)
             gettablesize(tablename:="loc_daily_transaction")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -112,7 +112,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_daily_transaction_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill Transaction Details", successmessage:="Success!", datagrid:=DataGridViewTRANDET)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewTRANDET)
             gettablesize(tablename:="loc_daily_transaction_details")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -123,7 +123,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND synced = 'Unsynced'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill Transaction Details", successmessage:="Success!", datagrid:=DataGridViewINV)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewINV)
             gettablesize(tablename:="loc_pos_inventory")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -134,7 +134,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_expense_list WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill Transaction Details", successmessage:="Success!", datagrid:=DataGridViewEXP)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewEXP)
             gettablesize(tablename:="loc_expense_list")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -145,7 +145,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_expense_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill Transaction Details", successmessage:="Success!", datagrid:=DataGridViewEXPDET)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewEXPDET)
             gettablesize(tablename:="loc_expense_details")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -156,7 +156,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_users WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND synced = 'Unsynced'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill Local Users", successmessage:="Success!", datagrid:=DataGridViewLocusers)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewLocusers)
             gettablesize(tablename:="loc_users")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -167,7 +167,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_admin_products WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND product_status = 0"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill Transaction", successmessage:="Success!", datagrid:=DataGridViewCUSTOMPRODUCTS)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewCUSTOMPRODUCTS)
             gettablesize(tablename:="loc_daily_transaction")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -178,7 +178,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_transaction_mode_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill Transaction", successmessage:="Success!", datagrid:=DataGridViewMODEOFTRANSACTION)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewMODEOFTRANSACTION)
             gettablesize(tablename:="loc_transaction_mode_details")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -189,7 +189,7 @@ Public Class SynctoCloud
         Try
             fields = "*"
             table = "loc_deposit WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, errormessage:="Fill Transaction", successmessage:="Success!", datagrid:=DataGridViewDepositSlip)
+            GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewDepositSlip)
             gettablesize(tablename:="loc_deposit")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -447,15 +447,12 @@ Public Class SynctoCloud
         Try
             Dim cmd As MySqlCommand
             Dim cmdloc As MySqlCommand
-
             Dim server As MySqlConnection = New MySqlConnection
             server.ConnectionString = CloudConnectionString
             server.Open()
-
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
-
             With DataGridViewTRAN
                 Label8.Text = "Syncing Daily Transaction"
                 messageboxappearance = False
@@ -497,8 +494,9 @@ Public Class SynctoCloud
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
                     '====================================================================
-
                 Next
+
+
                 server.Close()
                 local.Close()
                 Label8.Text = "Synced Daily Transaction"

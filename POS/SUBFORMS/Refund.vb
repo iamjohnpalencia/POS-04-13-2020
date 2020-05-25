@@ -14,14 +14,14 @@ Public Class Refund
     Private Sub loaditemreturn(justload As Boolean)
         fields = "transaction_number, amounttendered, discount, moneychange, crew_id, time, vatable, vat_exempt, zero_rated, vat, transaction_type"
         If justload = True Then
-            GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date = CURDATE() AND active = 1", datagrid:=DataGridView1, errormessage:="", successmessage:="", fields:=fields)
+            GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date = CURDATE() AND active = 1", datagrid:=DataGridView1, fields:=fields)
         Else
             If String.IsNullOrWhiteSpace(TextBox1.Text) Then
                 FlowLayoutPanel1.Controls.Clear()
-                GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date = CURDATE() AND active = 1", datagrid:=DataGridView1, errormessage:="", successmessage:="", fields:=fields)
+                GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date = CURDATE() AND active = 1", datagrid:=DataGridView1, fields:=fields)
             Else
                 FlowLayoutPanel1.Controls.Clear()
-                GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE transaction_number LIKE '%" & TextBox1.Text & "%'  AND date = CURDATE() AND active = 1", datagrid:=DataGridView1, errormessage:="", successmessage:="", fields:=fields)
+                GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE transaction_number LIKE '%" & TextBox1.Text & "%'  AND date = CURDATE() AND active = 1", datagrid:=DataGridView1, fields:=fields)
             End If
         End If
         With DataGridView1

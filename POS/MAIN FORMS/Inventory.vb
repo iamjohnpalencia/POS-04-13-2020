@@ -58,14 +58,14 @@ Public Class Inventory
     Sub loadfastmovingstock()
         Try
             fields = "`formula_id`, SUM(stock_quantity)"
-            GLOBAL_SELECT_ALL_FUNCTION(table:="loc_fm_stock GROUP by formula_id ORDER BY `SUM(stock_quantity)` DESC", datagrid:=DataGridViewFASTMOVING, errormessage:="", successmessage:="", fields:=fields)
+            GLOBAL_SELECT_ALL_FUNCTION(table:="loc_fm_stock GROUP by formula_id ORDER BY `SUM(stock_quantity)` DESC", datagrid:=DataGridViewFASTMOVING, fields:=fields)
+            For Each row As DataRow In dt.Rows
+                row("formula_id") = GLOBAL_SELECT_FUNCTION_RETURN(table:="loc_product_formula", fields:="product_ingredients", returnvalrow:="product_ingredients", values:="formula_id ='" & row("formula_id") & "'")
+            Next
             With DataGridViewFASTMOVING
                 .Columns(0).HeaderCell.Value = "Product Ingredients"
                 .Columns(1).HeaderCell.Value = "Total Stock Quantity"
             End With
-            For Each row As DataRow In dt.Rows
-                row("formula_id") = GLOBAL_SELECT_FUNCTION_RETURN(table:="loc_product_formula", fields:="product_ingredients", returnvalrow:="product_ingredients", values:="formula_id ='" & row("formula_id") & "'")
-            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
             cloudconn.Close()

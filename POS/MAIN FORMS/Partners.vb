@@ -7,7 +7,7 @@ Public Class Partners
         LoadPartners()
     End Sub
     Private Sub LoadPartners()
-        GLOBAL_SELECT_ALL_FUNCTION("loc_partners_transaction ORDER BY arrid ASC", "*", "", "", DataGridViewPartners)
+        GLOBAL_SELECT_ALL_FUNCTION("loc_partners_transaction ORDER BY arrid ASC", "*", DataGridViewPartners)
         With DataGridViewPartners
             .Columns(0).Visible = False
             .Columns(1).Visible = False

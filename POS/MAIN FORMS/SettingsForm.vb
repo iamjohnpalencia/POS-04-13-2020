@@ -32,7 +32,7 @@ Public Class SettingsForm
     End Sub
     '=====================================PARTNERS
     Public Sub LoadPartners()
-        GLOBAL_SELECT_ALL_FUNCTION("loc_partners_transaction WHERE active = 1 ORDER BY arrid ASC", "*", "", "", DataGridViewPartners)
+        GLOBAL_SELECT_ALL_FUNCTION("loc_partners_transaction WHERE active = 1 ORDER BY arrid ASC", "*", DataGridViewPartners)
         With DataGridViewPartners
             .Columns(0).Visible = False
             .Columns(1).Visible = False
@@ -50,7 +50,7 @@ Public Class SettingsForm
 
     End Sub
     Public Sub LoadPartnersDeact()
-        GLOBAL_SELECT_ALL_FUNCTION("loc_partners_transaction WHERE active = 0 ORDER BY arrid ASC", "*", "", "", DataGridViewPartnersDeact)
+        GLOBAL_SELECT_ALL_FUNCTION("loc_partners_transaction WHERE active = 0 ORDER BY arrid ASC", "*", DataGridViewPartnersDeact)
         With DataGridViewPartnersDeact
             .Columns(0).Visible = False
             .Columns(1).Visible = False
@@ -140,7 +140,7 @@ Public Class SettingsForm
     '=====================================FORMULA
     Public Sub loadformula()
         fields = "`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`"
-        GLOBAL_SELECT_ALL_FUNCTION(table:="loc_product_formula WHERE status = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", datagrid:=DataGridViewFormula, errormessage:="", successmessage:="", fields:=fields)
+        GLOBAL_SELECT_ALL_FUNCTION(table:="loc_product_formula WHERE status = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", datagrid:=DataGridViewFormula, fields:=fields)
         With DataGridViewFormula
             .Columns(0).HeaderText = "Ingredients"
             .Columns(1).HeaderText = "Primary Unit"
@@ -162,14 +162,14 @@ Public Class SettingsForm
     Private Sub loaditemreturn(justload As Boolean)
         fields = "transaction_number, amounttendered, discount, moneychange, crew_id, time, vatable, vat_exempt, zero_rated, vat, transaction_type"
         If justload = True Then
-            GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date = CURDATE() AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, errormessage:="", successmessage:="", fields:=fields)
+            GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date = CURDATE() AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
         Else
             If String.IsNullOrWhiteSpace(TextBoxSearchTranNumber.Text) Then
                 FlowLayoutPanel1.Controls.Clear()
-                GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date = CURDATE() AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, errormessage:="", successmessage:="", fields:=fields)
+                GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date = CURDATE() AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
             Else
                 FlowLayoutPanel1.Controls.Clear()
-                GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE transaction_number LIKE '%" & TextBoxSearchTranNumber.Text & "%'  AND date = CURDATE() AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, errormessage:="", successmessage:="", fields:=fields)
+                GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE transaction_number LIKE '%" & TextBoxSearchTranNumber.Text & "%'  AND date = CURDATE() AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
             End If
         End If
         With DataGridViewITEMRETURN1
@@ -407,6 +407,47 @@ Public Class SettingsForm
                         End If
                         lineCount = lineCount + 1
                     Loop
+                    objReader.Close()
+                End If
+            Else
+                Dim path2 = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\Innovention\user.config"
+                If System.IO.File.Exists(path2) Then
+                    'The File exists 
+                    Dim ConnStr
+                    Dim ConnStr2 = ""
+                    Dim CreateConnString As String = ""
+                    Dim filename As String = String.Empty
+                    Dim TextLine As String = ""
+                    Dim objReader As New System.IO.StreamReader(path2)
+                    Dim lineCount As Integer
+                    Do While objReader.Peek() <> -1
+                        TextLine = objReader.ReadLine()
+                        If lineCount = 0 Then
+                            ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "server="))
+                            ConnStr2 = "server=" & ConnStr
+                        End If
+                        If lineCount = 1 Then
+                            ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "user id="))
+                            ConnStr2 += ";user id=" & ConnStr
+                        End If
+                        If lineCount = 2 Then
+                            ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "password="))
+                            ConnStr2 += ";password=" & ConnStr
+                        End If
+                        If lineCount = 3 Then
+                            ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "database="))
+                            ConnStr2 += ";database=" & ConnStr
+                        End If
+                        If lineCount = 4 Then
+                            ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "port="))
+                            ConnStr2 += ";port=" & ConnStr
+                        End If
+                        If lineCount = 5 Then
+                            ConnStr2 += ";" & TextLine
+                        End If
+                        lineCount = lineCount + 1
+                    Loop
+                    LocalConnectionString = ConnStr2
                     objReader.Close()
                 End If
             End If

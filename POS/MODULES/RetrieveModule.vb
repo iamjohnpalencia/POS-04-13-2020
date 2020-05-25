@@ -437,7 +437,7 @@ Module RetrieveModule
             da.Dispose()
         End Try
     End Sub
-    Public Sub GLOBAL_SELECT_ALL_FUNCTION(ByVal table As String, ByVal fields As String, ByVal successmessage As String, ByVal errormessage As String, ByRef datagrid As DataGridView)
+    Public Sub GLOBAL_SELECT_ALL_FUNCTION(ByVal table As String, ByVal fields As String, ByRef datagrid As DataGridView)
         Try
             sql = "SELECT " + fields + " FROM " + table
             cmd = New MySqlCommand(sql, LocalhostConn)
@@ -445,10 +445,8 @@ Module RetrieveModule
             dt = New DataTable
             da.Fill(dt)
             With datagrid
-                If DatasourceOrAdd = False Then
-                    .DataSource = Nothing
-                    .DataSource = dt
-                End If
+                .DataSource = Nothing
+                .DataSource = dt
                 .RowHeadersVisible = False
                 .AllowUserToAddRows = False
                 .AllowUserToDeleteRows = False
@@ -456,8 +454,6 @@ Module RetrieveModule
                 .AllowUserToResizeColumns = False
                 .AllowUserToResizeRows = False
                 .Font = New Font("Kelson Sans Normal", 10)
-                '.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-                '.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
                 .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
                 .SelectionMode = DataGridViewSelectionMode.FullRowSelect
