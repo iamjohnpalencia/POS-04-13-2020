@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2020 at 09:34 AM
+-- Generation Time: May 26, 2020 at 02:44 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -30,8 +30,8 @@ USE `pos`;
 --
 
 DROP TABLE IF EXISTS `admin_coupon`;
-CREATE TABLE `admin_coupon` (
-  `coupon_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `admin_coupon` (
+  `coupon_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_code` varchar(10) NOT NULL,
   `coupon_name` varchar(50) NOT NULL,
   `coupon_val` int(11) NOT NULL,
@@ -42,7 +42,8 @@ CREATE TABLE `admin_coupon` (
   `created_at` date NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `origin` varchar(20) NOT NULL,
-  `active` tinyint(2) NOT NULL
+  `active` tinyint(2) NOT NULL,
+  PRIMARY KEY (`coupon_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -52,8 +53,8 @@ CREATE TABLE `admin_coupon` (
 --
 
 DROP TABLE IF EXISTS `admin_masterlist`;
-CREATE TABLE `admin_masterlist` (
-  `masterlist_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `admin_masterlist` (
+  `masterlist_id` int(11) NOT NULL AUTO_INCREMENT,
   `masterlist_username` varchar(255) NOT NULL,
   `masterlist_password` varchar(255) NOT NULL,
   `client_ipadd` varchar(50) NOT NULL,
@@ -62,7 +63,8 @@ CREATE TABLE `admin_masterlist` (
   `user_id` varchar(11) NOT NULL,
   `active` tinyint(2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `client_store_id` int(11) NOT NULL
+  `client_store_id` int(11) NOT NULL,
+  PRIMARY KEY (`masterlist_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -76,8 +78,8 @@ CREATE TABLE `admin_masterlist` (
 --
 
 DROP TABLE IF EXISTS `admin_outlets`;
-CREATE TABLE `admin_outlets` (
-  `loc_store_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `admin_outlets` (
+  `loc_store_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL,
   `brand_name` varchar(255) NOT NULL,
   `store_name` varchar(255) NOT NULL,
@@ -96,7 +98,8 @@ CREATE TABLE `admin_outlets` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `MIN` varchar(255) NOT NULL,
   `MSN` varchar(255) NOT NULL,
-  `PTUN` varchar(255) NOT NULL
+  `PTUN` varchar(255) NOT NULL,
+  PRIMARY KEY (`loc_store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -110,19 +113,19 @@ CREATE TABLE `admin_outlets` (
 --
 
 DROP TABLE IF EXISTS `loc_admin_category`;
-CREATE TABLE `loc_admin_category` (
-  `category_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_admin_category` (
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(50) NOT NULL,
   `brand_name` varchar(255) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `origin` varchar(50) NOT NULL,
-  `status` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(2) NOT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_admin_category`
 --
-
 
 -- --------------------------------------------------------
 
@@ -131,8 +134,8 @@ CREATE TABLE `loc_admin_category` (
 --
 
 DROP TABLE IF EXISTS `loc_admin_products`;
-CREATE TABLE `loc_admin_products` (
-  `product_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_admin_products` (
+  `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_sku` varchar(50) NOT NULL,
   `product_name` varchar(50) NOT NULL,
   `formula_id` varchar(255) NOT NULL,
@@ -148,8 +151,9 @@ CREATE TABLE `loc_admin_products` (
   `store_id` int(11) NOT NULL,
   `crew_id` varchar(50) NOT NULL,
   `synced` varchar(50) NOT NULL,
-  `server_product_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `server_product_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_admin_products`
@@ -162,8 +166,8 @@ CREATE TABLE `loc_admin_products` (
 --
 
 DROP TABLE IF EXISTS `loc_daily_transaction`;
-CREATE TABLE `loc_daily_transaction` (
-  `transaction_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_daily_transaction` (
+  `transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `transaction_number` varchar(255) NOT NULL,
   `amounttendered` decimal(11,2) NOT NULL,
   `discount` decimal(11,2) NOT NULL,
@@ -184,8 +188,9 @@ CREATE TABLE `loc_daily_transaction` (
   `shift` varchar(255) NOT NULL,
   `zreading` date NOT NULL,
   `synced` varchar(255) NOT NULL,
-  `discount_type` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `discount_type` varchar(50) NOT NULL,
+  PRIMARY KEY (`transaction_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_daily_transaction`
@@ -198,8 +203,8 @@ CREATE TABLE `loc_daily_transaction` (
 --
 
 DROP TABLE IF EXISTS `loc_daily_transaction_details`;
-CREATE TABLE `loc_daily_transaction_details` (
-  `details_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_daily_transaction_details` (
+  `details_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `product_sku` varchar(255) NOT NULL,
   `product_name` varchar(255) NOT NULL,
@@ -216,8 +221,9 @@ CREATE TABLE `loc_daily_transaction_details` (
   `total_cost_of_goods` decimal(11,2) NOT NULL,
   `product_category` varchar(255) NOT NULL,
   `zreading` date NOT NULL,
-  `synced` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `synced` varchar(255) NOT NULL,
+  PRIMARY KEY (`details_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_daily_transaction_details`
@@ -230,8 +236,8 @@ CREATE TABLE `loc_daily_transaction_details` (
 --
 
 DROP TABLE IF EXISTS `loc_deposit`;
-CREATE TABLE `loc_deposit` (
-  `dep_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_deposit` (
+  `dep_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `crew_id` varchar(50) NOT NULL,
   `transaction_number` varchar(255) NOT NULL,
@@ -241,7 +247,8 @@ CREATE TABLE `loc_deposit` (
   `store_id` varchar(11) NOT NULL,
   `guid` varchar(255) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `synced` varchar(50) NOT NULL
+  `synced` varchar(50) NOT NULL,
+  PRIMARY KEY (`dep_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -251,8 +258,8 @@ CREATE TABLE `loc_deposit` (
 --
 
 DROP TABLE IF EXISTS `loc_expenses_hold`;
-CREATE TABLE `loc_expenses_hold` (
-  `expense_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_expenses_hold` (
+  `expense_id` int(11) NOT NULL AUTO_INCREMENT,
   `expense_type` varchar(50) NOT NULL,
   `item_info` varchar(255) NOT NULL,
   `quantity` int(11) NOT NULL,
@@ -264,7 +271,8 @@ CREATE TABLE `loc_expenses_hold` (
   `crew_id` int(11) NOT NULL,
   `guid` varchar(255) NOT NULL,
   `store_id` int(20) NOT NULL,
-  `active` tinyint(2) NOT NULL
+  `active` tinyint(2) NOT NULL,
+  PRIMARY KEY (`expense_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -274,8 +282,8 @@ CREATE TABLE `loc_expenses_hold` (
 --
 
 DROP TABLE IF EXISTS `loc_expense_details`;
-CREATE TABLE `loc_expense_details` (
-  `expense_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_expense_details` (
+  `expense_id` int(11) NOT NULL AUTO_INCREMENT,
   `expense_number` varchar(255) NOT NULL,
   `expense_type` varchar(50) NOT NULL,
   `item_info` varchar(255) NOT NULL,
@@ -290,7 +298,8 @@ CREATE TABLE `loc_expense_details` (
   `store_id` int(20) NOT NULL,
   `active` tinyint(2) NOT NULL,
   `zreading` date NOT NULL,
-  `synced` varchar(255) NOT NULL
+  `synced` varchar(255) NOT NULL,
+  PRIMARY KEY (`expense_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -300,8 +309,8 @@ CREATE TABLE `loc_expense_details` (
 --
 
 DROP TABLE IF EXISTS `loc_expense_list`;
-CREATE TABLE `loc_expense_list` (
-  `expense_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_expense_list` (
+  `expense_id` int(11) NOT NULL AUTO_INCREMENT,
   `crew_id` varchar(50) NOT NULL,
   `expense_number` varchar(255) NOT NULL,
   `total_amount` decimal(11,2) NOT NULL,
@@ -313,7 +322,8 @@ CREATE TABLE `loc_expense_list` (
   `time` time NOT NULL,
   `active` tinyint(2) NOT NULL,
   `zreading` date NOT NULL,
-  `synced` varchar(255) NOT NULL
+  `synced` varchar(255) NOT NULL,
+  PRIMARY KEY (`expense_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -323,8 +333,8 @@ CREATE TABLE `loc_expense_list` (
 --
 
 DROP TABLE IF EXISTS `loc_fm_stock`;
-CREATE TABLE `loc_fm_stock` (
-  `fm_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_fm_stock` (
+  `fm_id` int(11) NOT NULL AUTO_INCREMENT,
   `formula_id` varchar(255) NOT NULL,
   `stock_quantity` int(11) NOT NULL,
   `stock_total` int(11) NOT NULL,
@@ -333,12 +343,15 @@ CREATE TABLE `loc_fm_stock` (
   `guid` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
-  `status` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(2) NOT NULL,
+  PRIMARY KEY (`fm_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_fm_stock`
 --
+
+
 -- --------------------------------------------------------
 
 --
@@ -346,8 +359,8 @@ CREATE TABLE `loc_fm_stock` (
 --
 
 DROP TABLE IF EXISTS `loc_hold_inventory`;
-CREATE TABLE `loc_hold_inventory` (
-  `hold_id` int(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_hold_inventory` (
+  `hold_id` int(255) NOT NULL AUTO_INCREMENT,
   `sr_total` int(255) NOT NULL,
   `f_id` int(255) NOT NULL,
   `qty` int(255) NOT NULL,
@@ -357,7 +370,8 @@ CREATE TABLE `loc_hold_inventory` (
   `name` varchar(255) NOT NULL,
   `cog` decimal(11,2) NOT NULL,
   `ocog` decimal(11,2) NOT NULL,
-  `prd.addid` int(11) NOT NULL
+  `prd.addid` int(11) NOT NULL,
+  PRIMARY KEY (`hold_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -367,14 +381,15 @@ CREATE TABLE `loc_hold_inventory` (
 --
 
 DROP TABLE IF EXISTS `loc_inbox_messages`;
-CREATE TABLE `loc_inbox_messages` (
-  `inbox_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_inbox_messages` (
+  `inbox_id` int(11) NOT NULL AUTO_INCREMENT,
   `crew_id` int(11) NOT NULL,
   `message` varchar(255) NOT NULL,
   `type` varchar(20) NOT NULL,
   `date_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `origin` varchar(20) NOT NULL,
-  `active` tinyint(2) NOT NULL
+  `active` tinyint(2) NOT NULL,
+  PRIMARY KEY (`inbox_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -384,8 +399,8 @@ CREATE TABLE `loc_inbox_messages` (
 --
 
 DROP TABLE IF EXISTS `loc_inv_temp_data`;
-CREATE TABLE `loc_inv_temp_data` (
-  `inventory_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_inv_temp_data` (
+  `inventory_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` varchar(11) NOT NULL,
   `formula_id` int(11) NOT NULL,
   `product_ingredients` varchar(255) NOT NULL,
@@ -396,12 +411,14 @@ CREATE TABLE `loc_inv_temp_data` (
   `critical_limit` int(11) NOT NULL,
   `guid` varchar(255) NOT NULL,
   `date_modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `date_created` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `date_created` varchar(255) NOT NULL,
+  PRIMARY KEY (`inventory_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_inv_temp_data`
 --
+
 
 -- --------------------------------------------------------
 
@@ -410,8 +427,8 @@ CREATE TABLE `loc_inv_temp_data` (
 --
 
 DROP TABLE IF EXISTS `loc_partners_transaction`;
-CREATE TABLE `loc_partners_transaction` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_partners_transaction` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `arrid` int(11) NOT NULL,
   `bankname` varchar(255) NOT NULL,
   `date_modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -419,8 +436,9 @@ CREATE TABLE `loc_partners_transaction` (
   `store_id` varchar(55) NOT NULL,
   `guid` varchar(255) NOT NULL,
   `active` tinyint(2) NOT NULL,
-  `synced` varchar(55) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `synced` varchar(55) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_partners_transaction`
@@ -440,8 +458,8 @@ INSERT INTO `loc_partners_transaction` (`id`, `arrid`, `bankname`, `date_modifie
 --
 
 DROP TABLE IF EXISTS `loc_pending_orders`;
-CREATE TABLE `loc_pending_orders` (
-  `order_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_pending_orders` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `crew_id` varchar(50) NOT NULL,
   `customer_name` varchar(50) NOT NULL,
   `product_name` varchar(50) NOT NULL,
@@ -455,7 +473,8 @@ CREATE TABLE `loc_pending_orders` (
   `datetime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `guid` varchar(50) NOT NULL,
   `active` int(11) NOT NULL,
-  `increment` varchar(11) NOT NULL
+  `increment` varchar(11) NOT NULL,
+  PRIMARY KEY (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -465,8 +484,8 @@ CREATE TABLE `loc_pending_orders` (
 --
 
 DROP TABLE IF EXISTS `loc_pos_inventory`;
-CREATE TABLE `loc_pos_inventory` (
-  `inventory_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_pos_inventory` (
+  `inventory_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` varchar(11) NOT NULL,
   `formula_id` int(11) NOT NULL,
   `product_ingredients` varchar(255) NOT NULL,
@@ -480,8 +499,9 @@ CREATE TABLE `loc_pos_inventory` (
   `crew_id` varchar(50) NOT NULL,
   `synced` varchar(255) NOT NULL,
   `server_date_modified` text NOT NULL,
-  `server_inventory_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `server_inventory_id` int(11) NOT NULL,
+  PRIMARY KEY (`inventory_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_pos_inventory`
@@ -494,8 +514,8 @@ CREATE TABLE `loc_pos_inventory` (
 --
 
 DROP TABLE IF EXISTS `loc_product_formula`;
-CREATE TABLE `loc_product_formula` (
-  `formula_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_product_formula` (
+  `formula_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_ingredients` varchar(255) NOT NULL,
   `primary_unit` varchar(50) NOT NULL,
   `primary_value` varchar(50) NOT NULL,
@@ -512,8 +532,9 @@ CREATE TABLE `loc_product_formula` (
   `crew_id` varchar(50) NOT NULL,
   `origin` varchar(255) NOT NULL,
   `server_formula_id` int(11) NOT NULL,
-  `server_date_modified` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `server_date_modified` varchar(50) NOT NULL,
+  PRIMARY KEY (`formula_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_product_formula`
@@ -526,8 +547,8 @@ CREATE TABLE `loc_product_formula` (
 --
 
 DROP TABLE IF EXISTS `loc_promo_coupon_list`;
-CREATE TABLE `loc_promo_coupon_list` (
-  `coupon_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_promo_coupon_list` (
+  `coupon_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_code` varchar(10) NOT NULL,
   `coupon_name` varchar(255) NOT NULL,
   `coupon_desc` varchar(255) NOT NULL,
@@ -543,7 +564,8 @@ CREATE TABLE `loc_promo_coupon_list` (
   `active` tinyint(2) NOT NULL,
   `guid` varchar(255) NOT NULL,
   `store_id` varchar(11) NOT NULL,
-  `created_at` date NOT NULL
+  `created_at` date NOT NULL,
+  PRIMARY KEY (`coupon_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -553,8 +575,8 @@ CREATE TABLE `loc_promo_coupon_list` (
 --
 
 DROP TABLE IF EXISTS `loc_refund_return_details`;
-CREATE TABLE `loc_refund_return_details` (
-  `refret_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_refund_return_details` (
+  `refret_id` int(11) NOT NULL AUTO_INCREMENT,
   `transaction_number` varchar(255) NOT NULL,
   `crew_id` varchar(50) NOT NULL,
   `reason` text NOT NULL,
@@ -564,7 +586,8 @@ CREATE TABLE `loc_refund_return_details` (
   `store_id` int(11) NOT NULL,
   `datestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `zreading` date NOT NULL,
-  `synced` varchar(255) NOT NULL
+  `synced` varchar(255) NOT NULL,
+  PRIMARY KEY (`refret_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -574,8 +597,8 @@ CREATE TABLE `loc_refund_return_details` (
 --
 
 DROP TABLE IF EXISTS `loc_settings`;
-CREATE TABLE `loc_settings` (
-  `settings_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_settings` (
+  `settings_id` int(11) NOT NULL AUTO_INCREMENT,
   `C_Server` varchar(255) NOT NULL,
   `C_Username` varchar(255) NOT NULL,
   `C_Password` varchar(255) NOT NULL,
@@ -595,7 +618,8 @@ CREATE TABLE `loc_settings` (
   `Dev_PTU_No` text NOT NULL,
   `Dev_PTU_Date_Issued` text NOT NULL,
   `Dev_PTU_Valid_Until` text NOT NULL,
-  `S_Zreading` text NOT NULL
+  `S_Zreading` text NOT NULL,
+  PRIMARY KEY (`settings_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -609,7 +633,7 @@ CREATE TABLE `loc_settings` (
 --
 
 DROP TABLE IF EXISTS `loc_system_logs`;
-CREATE TABLE `loc_system_logs` (
+CREATE TABLE IF NOT EXISTS `loc_system_logs` (
   `crew_id` varchar(50) NOT NULL,
   `log_type` varchar(255) NOT NULL,
   `log_description` text NOT NULL,
@@ -632,8 +656,8 @@ CREATE TABLE `loc_system_logs` (
 --
 
 DROP TABLE IF EXISTS `loc_transaction_mode_details`;
-CREATE TABLE `loc_transaction_mode_details` (
-  `mode_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_transaction_mode_details` (
+  `mode_id` int(11) NOT NULL AUTO_INCREMENT,
   `transaction_type` varchar(255) NOT NULL,
   `transaction_number` varchar(255) NOT NULL,
   `fullname` varchar(255) NOT NULL,
@@ -643,7 +667,8 @@ CREATE TABLE `loc_transaction_mode_details` (
   `status` tinyint(4) NOT NULL,
   `store_id` varchar(255) NOT NULL,
   `guid` varchar(255) NOT NULL,
-  `synced` varchar(50) NOT NULL
+  `synced` varchar(50) NOT NULL,
+  PRIMARY KEY (`mode_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -653,10 +678,11 @@ CREATE TABLE `loc_transaction_mode_details` (
 --
 
 DROP TABLE IF EXISTS `loc_updates`;
-CREATE TABLE `loc_updates` (
-  `up_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_updates` (
+  `up_id` int(11) NOT NULL AUTO_INCREMENT,
   `up_version` varchar(255) NOT NULL,
-  `up_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `up_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`up_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -666,8 +692,8 @@ CREATE TABLE `loc_updates` (
 --
 
 DROP TABLE IF EXISTS `loc_users`;
-CREATE TABLE `loc_users` (
-  `user_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loc_users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_level` varchar(100) NOT NULL,
   `full_name` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -682,8 +708,9 @@ CREATE TABLE `loc_users` (
   `guid` varchar(50) NOT NULL,
   `store_id` varchar(11) NOT NULL,
   `uniq_id` varchar(50) NOT NULL,
-  `synced` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `synced` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_users`
@@ -696,8 +723,8 @@ CREATE TABLE `loc_users` (
 --
 
 DROP TABLE IF EXISTS `tbcoupon`;
-CREATE TABLE `tbcoupon` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbcoupon` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Couponname_` text NOT NULL,
   `Desc_` text NOT NULL,
   `Discountvalue_` text NOT NULL,
@@ -708,8 +735,9 @@ CREATE TABLE `tbcoupon` (
   `Bundlepromo_` text NOT NULL,
   `BPValue_` text NOT NULL,
   `Effectivedate` text NOT NULL,
-  `Expirydate` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Expirydate` text NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbcoupon`
@@ -731,12 +759,13 @@ INSERT INTO `tbcoupon` (`ID`, `Couponname_`, `Desc_`, `Discountvalue_`, `Referen
 --
 
 DROP TABLE IF EXISTS `testcoupon`;
-CREATE TABLE `testcoupon` (
-  `coupon_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `testcoupon` (
+  `coupon_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_type` varchar(255) NOT NULL,
   `coupon_desc` text NOT NULL,
   `coupon_reference_val` int(11) NOT NULL,
-  `coupon_disc_val` int(11) NOT NULL
+  `coupon_disc_val` int(11) NOT NULL,
+  PRIMARY KEY (`coupon_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -746,8 +775,8 @@ CREATE TABLE `testcoupon` (
 --
 
 DROP TABLE IF EXISTS `triggers_loc_admin_products`;
-CREATE TABLE `triggers_loc_admin_products` (
-  `product_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `triggers_loc_admin_products` (
+  `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_sku` varchar(50) NOT NULL,
   `product_name` varchar(50) NOT NULL,
   `formula_id` varchar(255) NOT NULL,
@@ -763,7 +792,8 @@ CREATE TABLE `triggers_loc_admin_products` (
   `ip_address` varchar(20) NOT NULL,
   `store_id` int(11) NOT NULL,
   `crew_id` varchar(50) NOT NULL,
-  `synced` varchar(50) NOT NULL
+  `synced` varchar(50) NOT NULL,
+  PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -787,8 +817,8 @@ DELIMITER ;
 --
 
 DROP TABLE IF EXISTS `triggers_loc_users`;
-CREATE TABLE `triggers_loc_users` (
-  `user_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `triggers_loc_users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_level` varchar(100) NOT NULL,
   `full_name` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -803,15 +833,13 @@ CREATE TABLE `triggers_loc_users` (
   `guid` varchar(50) NOT NULL,
   `store_id` varchar(11) NOT NULL,
   `uniq_id` varchar(50) NOT NULL,
-  `synced` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `synced` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `triggers_loc_users`
 --
-
-INSERT INTO `triggers_loc_users` (`user_id`, `user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `created_at`, `updated_at`, `active`, `guid`, `store_id`, `uniq_id`, `synced`) VALUES
-(1, 'Head Crew', 'Jay Reyes', 'jj', '296506902c693b458707ad6f7e24a544', '09195328421', 'aiolosinnovativesolutions@gmail.com', 'Head Crew', 'Male', '2020-05-24 01:24:47', '2020-05-24 01:24:47', '1', 'eb475414-7efd-1bb3-51b8-1b029a94cd1f', '40', 'FBW40-7922', 'Unsynced');
 
 --
 -- Triggers `triggers_loc_users`
@@ -826,374 +854,6 @@ SELECT `user_level`, `full_name`, `username`, `password`, `contact_number`, `ema
                    WHERE loc_users.uniq_id = Triggers_loc_users.uniq_id )
 $$
 DELIMITER ;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admin_coupon`
---
-ALTER TABLE `admin_coupon`
-  ADD PRIMARY KEY (`coupon_id`);
-
---
--- Indexes for table `admin_masterlist`
---
-ALTER TABLE `admin_masterlist`
-  ADD PRIMARY KEY (`masterlist_id`);
-
---
--- Indexes for table `admin_outlets`
---
-ALTER TABLE `admin_outlets`
-  ADD PRIMARY KEY (`loc_store_id`);
-
---
--- Indexes for table `loc_admin_category`
---
-ALTER TABLE `loc_admin_category`
-  ADD PRIMARY KEY (`category_id`);
-
---
--- Indexes for table `loc_admin_products`
---
-ALTER TABLE `loc_admin_products`
-  ADD PRIMARY KEY (`product_id`);
-
---
--- Indexes for table `loc_daily_transaction`
---
-ALTER TABLE `loc_daily_transaction`
-  ADD PRIMARY KEY (`transaction_id`);
-
---
--- Indexes for table `loc_daily_transaction_details`
---
-ALTER TABLE `loc_daily_transaction_details`
-  ADD PRIMARY KEY (`details_id`);
-
---
--- Indexes for table `loc_deposit`
---
-ALTER TABLE `loc_deposit`
-  ADD PRIMARY KEY (`dep_id`);
-
---
--- Indexes for table `loc_expenses_hold`
---
-ALTER TABLE `loc_expenses_hold`
-  ADD PRIMARY KEY (`expense_id`);
-
---
--- Indexes for table `loc_expense_details`
---
-ALTER TABLE `loc_expense_details`
-  ADD PRIMARY KEY (`expense_id`);
-
---
--- Indexes for table `loc_expense_list`
---
-ALTER TABLE `loc_expense_list`
-  ADD PRIMARY KEY (`expense_id`);
-
---
--- Indexes for table `loc_fm_stock`
---
-ALTER TABLE `loc_fm_stock`
-  ADD PRIMARY KEY (`fm_id`);
-
---
--- Indexes for table `loc_hold_inventory`
---
-ALTER TABLE `loc_hold_inventory`
-  ADD PRIMARY KEY (`hold_id`);
-
---
--- Indexes for table `loc_inbox_messages`
---
-ALTER TABLE `loc_inbox_messages`
-  ADD PRIMARY KEY (`inbox_id`);
-
---
--- Indexes for table `loc_inv_temp_data`
---
-ALTER TABLE `loc_inv_temp_data`
-  ADD PRIMARY KEY (`inventory_id`);
-
---
--- Indexes for table `loc_partners_transaction`
---
-ALTER TABLE `loc_partners_transaction`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `loc_pending_orders`
---
-ALTER TABLE `loc_pending_orders`
-  ADD PRIMARY KEY (`order_id`);
-
---
--- Indexes for table `loc_pos_inventory`
---
-ALTER TABLE `loc_pos_inventory`
-  ADD PRIMARY KEY (`inventory_id`);
-
---
--- Indexes for table `loc_product_formula`
---
-ALTER TABLE `loc_product_formula`
-  ADD PRIMARY KEY (`formula_id`);
-
---
--- Indexes for table `loc_promo_coupon_list`
---
-ALTER TABLE `loc_promo_coupon_list`
-  ADD PRIMARY KEY (`coupon_id`);
-
---
--- Indexes for table `loc_refund_return_details`
---
-ALTER TABLE `loc_refund_return_details`
-  ADD PRIMARY KEY (`refret_id`);
-
---
--- Indexes for table `loc_settings`
---
-ALTER TABLE `loc_settings`
-  ADD PRIMARY KEY (`settings_id`);
-
---
--- Indexes for table `loc_transaction_mode_details`
---
-ALTER TABLE `loc_transaction_mode_details`
-  ADD PRIMARY KEY (`mode_id`);
-
---
--- Indexes for table `loc_updates`
---
-ALTER TABLE `loc_updates`
-  ADD PRIMARY KEY (`up_id`);
-
---
--- Indexes for table `loc_users`
---
-ALTER TABLE `loc_users`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- Indexes for table `sampletable`
---
-ALTER TABLE `sampletable`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbcoupon`
---
-ALTER TABLE `tbcoupon`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `testcoupon`
---
-ALTER TABLE `testcoupon`
-  ADD PRIMARY KEY (`coupon_id`);
-
---
--- Indexes for table `triggers_loc_admin_products`
---
-ALTER TABLE `triggers_loc_admin_products`
-  ADD PRIMARY KEY (`product_id`);
-
---
--- Indexes for table `triggers_loc_users`
---
-ALTER TABLE `triggers_loc_users`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `admin_coupon`
---
-ALTER TABLE `admin_coupon`
-  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `admin_masterlist`
---
-ALTER TABLE `admin_masterlist`
-  MODIFY `masterlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `admin_outlets`
---
-ALTER TABLE `admin_outlets`
-  MODIFY `loc_store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `loc_admin_category`
---
-ALTER TABLE `loc_admin_category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `loc_admin_products`
---
-ALTER TABLE `loc_admin_products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
-
---
--- AUTO_INCREMENT for table `loc_daily_transaction`
---
-ALTER TABLE `loc_daily_transaction`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `loc_daily_transaction_details`
---
-ALTER TABLE `loc_daily_transaction_details`
-  MODIFY `details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT for table `loc_deposit`
---
-ALTER TABLE `loc_deposit`
-  MODIFY `dep_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `loc_expenses_hold`
---
-ALTER TABLE `loc_expenses_hold`
-  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `loc_expense_details`
---
-ALTER TABLE `loc_expense_details`
-  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `loc_expense_list`
---
-ALTER TABLE `loc_expense_list`
-  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `loc_fm_stock`
---
-ALTER TABLE `loc_fm_stock`
-  MODIFY `fm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
-
---
--- AUTO_INCREMENT for table `loc_hold_inventory`
---
-ALTER TABLE `loc_hold_inventory`
-  MODIFY `hold_id` int(255) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `loc_inbox_messages`
---
-ALTER TABLE `loc_inbox_messages`
-  MODIFY `inbox_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `loc_inv_temp_data`
---
-ALTER TABLE `loc_inv_temp_data`
-  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
---
--- AUTO_INCREMENT for table `loc_partners_transaction`
---
-ALTER TABLE `loc_partners_transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `loc_pending_orders`
---
-ALTER TABLE `loc_pending_orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `loc_pos_inventory`
---
-ALTER TABLE `loc_pos_inventory`
-  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
---
--- AUTO_INCREMENT for table `loc_product_formula`
---
-ALTER TABLE `loc_product_formula`
-  MODIFY `formula_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
---
--- AUTO_INCREMENT for table `loc_promo_coupon_list`
---
-ALTER TABLE `loc_promo_coupon_list`
-  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `loc_refund_return_details`
---
-ALTER TABLE `loc_refund_return_details`
-  MODIFY `refret_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `loc_settings`
---
-ALTER TABLE `loc_settings`
-  MODIFY `settings_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `loc_transaction_mode_details`
---
-ALTER TABLE `loc_transaction_mode_details`
-  MODIFY `mode_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `loc_updates`
---
-ALTER TABLE `loc_updates`
-  MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `loc_users`
---
-ALTER TABLE `loc_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `sampletable`
---
-ALTER TABLE `sampletable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
-
---
--- AUTO_INCREMENT for table `tbcoupon`
---
-ALTER TABLE `tbcoupon`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `testcoupon`
---
-ALTER TABLE `testcoupon`
-  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `triggers_loc_admin_products`
---
-ALTER TABLE `triggers_loc_admin_products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `triggers_loc_users`
---
-ALTER TABLE `triggers_loc_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

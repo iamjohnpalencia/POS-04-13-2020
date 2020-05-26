@@ -186,6 +186,7 @@ Public Class Loading
         Label2.Text = e.ProgressPercentage
     End Sub
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
+
         If IfConnectionIsConfigured = True Then
             'MsgBox("Connection is open")
             If RowsReturned = 1 Then

@@ -414,38 +414,18 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub LoadOutlets()
+    Private Function LoadOutlets() As DataTable
+        Dim CloudDT As DataTable = New DataTable
         Try
             Dim sql = "SELECT * FROM admin_outlets WHERE user_guid = '" & UserGUID & "' AND active = 1"
             Dim CloudCmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
             Dim CloudDa As MySqlDataAdapter = New MySqlDataAdapter(CloudCmd)
-            Dim CloudDT As DataTable = New DataTable
             CloudDa.Fill(CloudDT)
-            With DataGridViewOutlets
-                .DataSource = CloudDT
-                .Columns(0).Visible = False
-                .Columns(3).Visible = False
-                .Columns(4).Visible = False
-                .Columns(5).Visible = False
-                .Columns(6).Visible = False
-                .Columns(7).Visible = False
-                .Columns(8).Visible = False
-                .Columns(9).Visible = False
-                .Columns(10).Visible = False
-                .Columns(11).Visible = False
-                .Columns(12).Visible = False
-                .Columns(13).Visible = False
-                .Columns(14).Visible = False
-                .Columns(15).Visible = False
-                .Columns(16).Visible = False
-                .Columns(17).Visible = False
-                .Columns(18).Visible = False
-                .ColumnHeadersVisible = False
-            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-    End Sub
+        Return CloudDT
+    End Function
 
     Public Sub CreateConn(path As String)
         Try
@@ -585,6 +565,29 @@ Public Class ConfigManager
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
+    End Sub
+    Private Sub BackgroundWorker4_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker4.RunWorkerCompleted
+        With DataGridViewOutlets
+            .DataSource = LoadOutlets()
+            .Columns(0).Visible = False
+            .Columns(3).Visible = False
+            .Columns(4).Visible = False
+            .Columns(5).Visible = False
+            .Columns(6).Visible = False
+            .Columns(7).Visible = False
+            .Columns(8).Visible = False
+            .Columns(9).Visible = False
+            .Columns(10).Visible = False
+            .Columns(11).Visible = False
+            .Columns(12).Visible = False
+            .Columns(13).Visible = False
+            .Columns(14).Visible = False
+            .Columns(15).Visible = False
+            .Columns(16).Visible = False
+            .Columns(17).Visible = False
+            .Columns(18).Visible = False
+            .ColumnHeadersVisible = False
+        End With
     End Sub
     Private Sub DataGridViewOutlets_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewOutlets.CellClick
         Button2.PerformClick()
@@ -1346,6 +1349,8 @@ Public Class ConfigManager
     Private Sub BackgroundWorker5_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker5.ProgressChanged
         ProgressBar6.Value = e.ProgressPercentage
     End Sub
+
+
 
     'Private Sub button7_click(sender As Object, e As EventArgs) Handles Button7.Click
     '    InsertToProducts()

@@ -15,7 +15,6 @@ Module connectionModule
                 My.Settings.Save()
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
             LocalConnectionIsOnOrValid = False
             My.Settings.ValidLocalConn = False
             My.Settings.Save()
