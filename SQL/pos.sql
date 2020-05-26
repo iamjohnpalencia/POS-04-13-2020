@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `loc_admin_category` (
   `origin` varchar(50) NOT NULL,
   `status` tinyint(2) NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_admin_category`
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `loc_admin_products` (
   `synced` varchar(50) NOT NULL,
   `server_product_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_admin_products`
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `loc_daily_transaction` (
   `synced` varchar(255) NOT NULL,
   `discount_type` varchar(50) NOT NULL,
   PRIMARY KEY (`transaction_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_daily_transaction`
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `loc_daily_transaction_details` (
   `zreading` date NOT NULL,
   `synced` varchar(255) NOT NULL,
   PRIMARY KEY (`details_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_daily_transaction_details`
@@ -345,7 +345,7 @@ CREATE TABLE IF NOT EXISTS `loc_fm_stock` (
   `time` time NOT NULL,
   `status` tinyint(2) NOT NULL,
   PRIMARY KEY (`fm_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_fm_stock`
@@ -413,7 +413,7 @@ CREATE TABLE IF NOT EXISTS `loc_inv_temp_data` (
   `date_modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `date_created` varchar(255) NOT NULL,
   PRIMARY KEY (`inventory_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_inv_temp_data`
@@ -501,7 +501,7 @@ CREATE TABLE IF NOT EXISTS `loc_pos_inventory` (
   `server_date_modified` text NOT NULL,
   `server_inventory_id` int(11) NOT NULL,
   PRIMARY KEY (`inventory_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_pos_inventory`
@@ -534,7 +534,7 @@ CREATE TABLE IF NOT EXISTS `loc_product_formula` (
   `server_formula_id` int(11) NOT NULL,
   `server_date_modified` varchar(50) NOT NULL,
   PRIMARY KEY (`formula_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_product_formula`
@@ -710,7 +710,7 @@ CREATE TABLE IF NOT EXISTS `loc_users` (
   `uniq_id` varchar(50) NOT NULL,
   `synced` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_users`
@@ -835,7 +835,7 @@ CREATE TABLE IF NOT EXISTS `triggers_loc_users` (
   `uniq_id` varchar(50) NOT NULL,
   `synced` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `triggers_loc_users`
