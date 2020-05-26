@@ -461,7 +461,7 @@ Public Class Loading
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    MsgBox(dtserver(i)(3))
+                    MsgBox(returndateformatfulldate(LoadCategoryLocal(i)(0)))
                     If returndateformatfulldate(LoadCategoryLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(3)) Then
                         DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5))
                         Dim Category As DataRow = CategoryDTUpdate.NewRow

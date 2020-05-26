@@ -195,7 +195,6 @@ Module RetrieveModule
         Return formulaid
         cmd.Dispose()
     End Function
-
     Public Function returnfullname(ByVal where As String)
         Try
             cmd = New MySqlCommand("SELECT full_name FROM loc_users WHERE uniq_id = '" + where + "' ", LocalhostConn())
@@ -267,6 +266,19 @@ Module RetrieveModule
             MsgBox(ex.ToString)
         End Try
         Return fullname
+    End Function
+    Public Function AsDatatable(table, fields, datagridd) As DataTable
+        datagridd.rows.clear
+        Dim dttable As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT " & fields & " FROM " & table
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            da.Fill(dttable)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dttable
     End Function
     Public Sub retrieveformulaids()
         Try

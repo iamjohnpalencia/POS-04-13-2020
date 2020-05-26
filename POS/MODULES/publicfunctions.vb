@@ -349,7 +349,6 @@ Module publicfunctions
         End Try
         Return datetoformat
     End Function
-
     Public Function returndateformatfulldate(datetoformat As String)
         Try
             Dim iDate As String = datetoformat
@@ -359,6 +358,15 @@ Module publicfunctions
             MsgBox(ex.ToString)
         End Try
         Return dateformat
+    End Function
+    Public Function ReturnThisDate()
+        Try
+            Dim iDate As String = "2005-05-05"
+            Dim oDate As DateTime = DateTime.Parse(iDate)
+            MsgBox(oDate.Year & "-" & oDate.Month & "-" & oDate.Day)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Function
     Public Function returndateformat(datetoformat As String)
         Dim dateString, format As String
@@ -538,7 +546,6 @@ Module publicfunctions
     End Sub
     Public Sub ReceiptFooter(sender As Object, e As PrintPageEventArgs, a As Integer)
         Try
-
             Dim sql As String = "SELECT `Dev_Company_Name`, `Dev_Address`, `Dev_Tin`, `Dev_Accr_No`, `Dev_Accr_Date_Issued`, `Dev_Accr_Valid_Until`, `Dev_PTU_No`, `Dev_PTU_Date_Issued`, `Dev_PTU_Valid_Until` FROM loc_settings WHERE settings_id = 1"
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
@@ -556,7 +563,6 @@ Module publicfunctions
             CenterTextDisplay(sender, e, "PERMIT TO OPERATE : " & dt(0)(6).ToString, font, a + 255)
             CenterTextDisplay(sender, e, "DATE ISSUED : " & Dateandtimeformat(dt(0)(7).ToString, "yyyy-MM-dd", "dd/MM/yyyy"), font, a + 265)
             CenterTextDisplay(sender, e, "VALID UNTIL : " & Dateandtimeformat(dt(0)(8).ToString, "yyyy-MM-dd", "dd/MM/yyyy"), font, a + 275)
-
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

@@ -638,7 +638,7 @@ Public Class ConfigManager
                         ElseIf RadioButtonNO.Checked = True Then
                             RButton = 0
                         End If
-                        Dim fields1 = "A_Export_Path = '" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "', A_Tax = '" & Tax & "' , A_SIFormat = '" & Trim(TextBoxSINumber.Text) & "' , A_Terminal_No = '" & Trim(TextBoxTerminalNo.Text) & "' , A_ZeroRated = '" & RButton & "', S_Zreading = CURRENT_DATE()"
+                        Dim fields1 = "A_Export_Path = '" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "', A_Tax = '" & Tax & "' , A_SIFormat = '" & Trim(TextBoxSINumber.Text) & "' , A_Terminal_No = '" & Trim(TextBoxTerminalNo.Text) & "' , A_ZeroRated = '" & RButton & "', S_Zreading = '" & Format(Now(), "yyyy-MM-dd") & "'"
                         sql = "UPDATE " & table & " SET " & fields1 & " WHERE " & where
                         cmd = New MySqlCommand(sql, TestLocalConnection)
                         cmd.ExecuteNonQuery()
@@ -1174,7 +1174,7 @@ Public Class ConfigManager
             fields = "`category_name`, `brand_name`, `updated_at`, `origin`, `status`"
             Dim Datatablecat = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewCATEGORIES)
             For Each row As DataRow In Datatablecat.Rows
-                DataGridViewCATEGORIES.Rows.Add(row("category_name"), row("brand_name"), FullDateFormat(row("updated_at"), "yyyy-MM-dd hh:mm:ss"), row("origin"), row("status"))
+                DataGridViewCATEGORIES.Rows.Add(row("category_name"), row("brand_name"), Format(row("updated_at"), "yyyy-MM-dd hh:mm:ss"), row("origin"), row("status"))
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1187,7 +1187,7 @@ Public Class ConfigManager
             fields = "`product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`"
             Dim DatatableProd = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewPRODUCTS)
             For Each row As DataRow In DatatableProd.Rows
-                DataGridViewPRODUCTS.Rows.Add(row("product_id"), row("product_sku"), row("product_name"), row("formula_id"), row("product_barcode"), row("product_category"), row("product_price"), row("product_desc"), row("product_image"), row("product_status"), row("origin"), FullDateFormat(row("date_modified"), "yyyy-MM-dd hh:mm:ss"))
+                DataGridViewPRODUCTS.Rows.Add(row("product_id"), row("product_sku"), row("product_name"), row("formula_id"), row("product_barcode"), row("product_category"), row("product_price"), row("product_desc"), row("product_image"), row("product_status"), row("origin"), Format(row("date_modified"), "yyyy-MM-dd hh:mm:ss"))
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1200,7 +1200,7 @@ Public Class ConfigManager
             fields = "`inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified`"
             Dim DatatableInv = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewINVENTORY)
             For Each row As DataRow In DatatableInv.Rows
-                DataGridViewINVENTORY.Rows.Add(row("inventory_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_quantity"), row("stock_total"), row("stock_status"), row("critical_limit"), FullDateFormat(row("date_modified"), "yyyy-MM-dd hh:mm:ss"))
+                DataGridViewINVENTORY.Rows.Add(row("inventory_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_quantity"), row("stock_total"), row("stock_status"), row("critical_limit"), Format(row("date_modified"), "yyyy-MM-dd hh:mm:ss"))
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1213,7 +1213,7 @@ Public Class ConfigManager
             fields = "`formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`"
             Dim DatatableForm = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewFORMULA)
             For Each row As DataRow In DatatableForm.Rows
-                DataGridViewFORMULA.Rows.Add(row("formula_id"), row("product_ingredients"), row("primary_unit"), row("primary_value"), row("secondary_unit"), row("secondary_value"), row("serving_unit"), row("serving_value"), row("no_servings"), row("status"), FullDateFormat(row("date_modified"), "yyyy-MM-dd hh:mm:ss"), row("unit_cost"), row("origin"))
+                DataGridViewFORMULA.Rows.Add(row("formula_id"), row("product_ingredients"), row("primary_unit"), row("primary_value"), row("secondary_unit"), row("secondary_value"), row("serving_unit"), row("serving_value"), row("no_servings"), row("status"), Format(row("date_modified"), "yyyy-MM-dd hh:mm:ss"), row("unit_cost"), row("origin"))
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1350,12 +1350,10 @@ Public Class ConfigManager
         ProgressBar6.Value = e.ProgressPercentage
     End Sub
 
-
-
     'Private Sub button7_click(sender As Object, e As EventArgs) Handles Button7.Click
     '    InsertToProducts()
-    '    InsertToInventory()
-    '    InsertToCategories()
+    '    'InsertToInventory()
+    '    'InsertToCategories()
     '    'InsertToFormula()
     'End Sub
 
