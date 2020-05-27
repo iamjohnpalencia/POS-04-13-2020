@@ -828,7 +828,6 @@ Public Class ConfigManager
     Dim ThreadActivation As Thread
     Private Sub BackgroundWorkerACTIVATION_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerACTIVATION.DoWork
         Try
-
             For i = 0 To 20
                 BackgroundWorkerACTIVATION.ReportProgress(i)
                 Thread.Sleep(50)
@@ -1093,9 +1092,6 @@ Public Class ConfigManager
                         t.Join()
                     Next
                 End If
-            Next
-            For Each t In threadLISTINSERPROD
-                t.Join()
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)

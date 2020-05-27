@@ -84,6 +84,11 @@ Public Class Login
         End Try
     End Sub
     Dim bat As String
+
+    Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles Button1.Click
+        Enabled = False
+        Auth.Show()
+    End Sub
     'Declare Function Wow64DisableWow64FsRedirection Lib "kernel32" (ByRef oldvalue As Long) As Boolean
     'Private osk As String = "C:\Windows\System32\osk.exe"
     'Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

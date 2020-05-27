@@ -87,9 +87,9 @@ Public Class Loading
                     If CheckForInternetConnection() = True Then
                         IfInternetIsAvailable = True
                         Label1.Text = "Connecting to cloud server..."
-                        thread = New Thread(AddressOf SyncToLocalUsers)
-                        thread.Start()
-                        threadList.Add(thread)
+                        'thread = New Thread(AddressOf SyncToLocalUsers)
+                        'thread.Start()
+                        'threadList.Add(thread)
                     Else
                         IfInternetIsAvailable = False
                         Label1.Text = "No Internet Connection..."
@@ -387,7 +387,7 @@ Public Class Loading
                 Next
             End With
         Catch ex As Exception
-            Label1.Text = "Invalid connection..."
+            Label1.Text = "Cannot connect to cloud server..."
             'MsgBox(ex.ToString)
         End Try
     End Sub

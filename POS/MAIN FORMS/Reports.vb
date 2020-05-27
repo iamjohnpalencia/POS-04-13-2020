@@ -626,10 +626,16 @@ Public Class Reports
         Dim ReturnsTotal = sum("total", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
         Dim ReturnsExchange = sum("quantity", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
         Dim SrDiscount = sum("discount", "loc_daily_transaction WHERE discount_type = 'Percentage' AND zreading = '" & ZreadDateFormat & "' ")
-        Dim CashInDrawer = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ") + Val(NEWgrandtotal)
+        Dim totalExpenses = sum("total_amount", "loc_expense_list WHERE zreading = '" & ZreadDateFormat & "'")
+        Dim CashInDrawer = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ORDER by log_date_time DESC LIMIT 1") + Val(NEWgrandtotal) - Val(totalExpenses)
         Dim VatExempt = sum("vat_exempt", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
         Dim zeroratedsales = sum("zero_rated", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
         Dim vatablesales = sum("vatable", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
+        Dim DepositSlip = sum("amount", "loc_deposit WHERE date(transaction_date) = '" & ZreadDateFormat & "' ")
+
+        'Dim BegBalance = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ORDER by log_date_time DESC LIMIT 1")
+
+        Dim CashTotal = CashInDrawer
 
         'Select Case sum(CAST(log_description As Decimal(10, 2))) As CashierBal FROM `loc_system_logs` WHERE log_type In ('BG-1','BG-2','BG-3','BG-4')
         Dim NetSales = GrossSale - LessVat - TotalDiscount
@@ -674,24 +680,24 @@ Public Class Reports
         RightToLeftDisplay(sender, e, 270, "LESS DISC (VE)", TotalDiscount, font)
         RightToLeftDisplay(sender, e, 280, "NET SALES", NetSales, font)
         '============================================================================================================================
-        RightToLeftDisplay(sender, e, 295, "CASH TOTAL", "0", font)
+        RightToLeftDisplay(sender, e, 295, "CASH TOTAL", CashTotal, font)
         RightToLeftDisplay(sender, e, 305, "CREDIT CARD", "0", font)
         RightToLeftDisplay(sender, e, 315, "DEBIT CARD", "0", font)
         RightToLeftDisplay(sender, e, 325, "MISC/CHEQUES", "0", font)
         RightToLeftDisplay(sender, e, 335, "GIFT CARD(GC)", "0", font)
         RightToLeftDisplay(sender, e, 345, "A/R", "0", font)
         RightToLeftDisplay(sender, e, 355, "OTHERS", "0", font)
-        RightToLeftDisplay(sender, e, 365, "DEPOSIT", "IDK", font)
+        RightToLeftDisplay(sender, e, 365, "DEPOSIT", DepositSlip, font)
         RightToLeftDisplay(sender, e, 375, "CASH IN DRAWER", CashInDrawer, font)
         '============================================================================================================================
         RightToLeftDisplay(sender, e, 390, "ITEM VOID E/C", ReturnsExchange, font)
         RightToLeftDisplay(sender, e, 400, "TRANSACTION VOID", ReturnsExchange, font)
         RightToLeftDisplay(sender, e, 410, "TRANSACTION CANCEL", ReturnsExchange, font)
-        RightToLeftDisplay(sender, e, 420, "DIMPLOMAT", "0", font)
+        RightToLeftDisplay(sender, e, 420, "DIMPLOMAT", "IDK", font)
         RightToLeftDisplay(sender, e, 430, "TOTAL DISCOUNTS", TotalDiscount, font)
         RightToLeftDisplay(sender, e, 440, " - SENIOR CITIZEN", SrDiscount, font)
-        RightToLeftDisplay(sender, e, 450, "TAKE OUT CHARGE", "0", font)
-        RightToLeftDisplay(sender, e, 460, "DELIVERY CHARGE", "0", font)
+        RightToLeftDisplay(sender, e, 450, "TAKE OUT CHARGE", "IDK", font)
+        RightToLeftDisplay(sender, e, 460, "DELIVERY CHARGE", "IDK", font)
         RightToLeftDisplay(sender, e, 470, "RETURNS EXCHANGE", ReturnsExchange, font)
         RightToLeftDisplay(sender, e, 480, "RETURNS REFUND", ReturnsTotal, font)
         '============================================================================================================================

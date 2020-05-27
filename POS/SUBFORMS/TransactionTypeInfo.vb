@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class TransactionTypeInfo
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TopMost = True
         If transactionmode = "GCash" Then
