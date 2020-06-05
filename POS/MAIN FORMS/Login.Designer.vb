@@ -26,6 +26,7 @@ Partial Class Login
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Login))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -43,13 +44,13 @@ Partial Class Login
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.ButttonLogin = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         Me.Panel8.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel24.SuspendLayout()
         Me.Panel25.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -59,14 +60,14 @@ Partial Class Login
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(280, 316)
+        Me.Panel1.Size = New System.Drawing.Size(280, 324)
         Me.Panel1.TabIndex = 0
         '
         'Panel8
         '
         Me.Panel8.BackColor = System.Drawing.Color.White
+        Me.Panel8.Controls.Add(Me.PictureBox2)
         Me.Panel8.Controls.Add(Me.Label1)
-        Me.Panel8.Controls.Add(Me.Button1)
         Me.Panel8.Controls.Add(Me.LinkLabel2)
         Me.Panel8.Controls.Add(Me.PictureBox1)
         Me.Panel8.Controls.Add(Me.Label7)
@@ -84,8 +85,19 @@ Partial Class Login
         Me.Panel8.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.Panel8.Location = New System.Drawing.Point(0, 0)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(278, 314)
+        Me.Panel8.Size = New System.Drawing.Size(278, 322)
         Me.Panel8.TabIndex = 82
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(67, 247)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(190, 14)
+        Me.Label1.TabIndex = 227
+        Me.Label1.Text = "Click refresh button to sync user(s)."
         '
         'LinkLabel2
         '
@@ -93,7 +105,7 @@ Partial Class Login
         Me.LinkLabel2.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.LinkLabel2.ForeColor = System.Drawing.Color.Black
         Me.LinkLabel2.LinkColor = System.Drawing.Color.Firebrick
-        Me.LinkLabel2.Location = New System.Drawing.Point(233, 266)
+        Me.LinkLabel2.Location = New System.Drawing.Point(227, 270)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(27, 15)
         Me.LinkLabel2.TabIndex = 225
@@ -189,7 +201,7 @@ Partial Class Login
         '
         Me.Panel23.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel23.Location = New System.Drawing.Point(0, 284)
+        Me.Panel23.Location = New System.Drawing.Point(0, 292)
         Me.Panel23.Name = "Panel23"
         Me.Panel23.Size = New System.Drawing.Size(278, 10)
         Me.Panel23.TabIndex = 219
@@ -200,7 +212,7 @@ Partial Class Login
         Me.Panel24.Controls.Add(Me.Label3)
         Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel24.Location = New System.Drawing.Point(0, 294)
+        Me.Panel24.Location = New System.Drawing.Point(0, 302)
         Me.Panel24.Name = "Panel24"
         Me.Panel24.Size = New System.Drawing.Size(278, 20)
         Me.Panel24.TabIndex = 218
@@ -243,7 +255,7 @@ Partial Class Login
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(36, 266)
+        Me.Label4.Location = New System.Drawing.Point(20, 270)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(141, 15)
         Me.Label4.TabIndex = 69
@@ -255,7 +267,7 @@ Partial Class Login
         Me.LinkLabel1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.LinkLabel1.ForeColor = System.Drawing.Color.Black
         Me.LinkLabel1.LinkColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.LinkLabel1.Location = New System.Drawing.Point(183, 266)
+        Me.LinkLabel1.Location = New System.Drawing.Point(167, 270)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(50, 15)
         Me.LinkLabel1.TabIndex = 68
@@ -277,31 +289,21 @@ Partial Class Login
         Me.ButttonLogin.Text = "LOGIN"
         Me.ButttonLogin.UseVisualStyleBackColor = False
         '
-        'Button1
+        'PictureBox2
         '
-        Me.Button1.Location = New System.Drawing.Point(23, 240)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(74, 23)
-        Me.Button1.TabIndex = 226
-        Me.Button1.Text = "Refresh"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(103, 244)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(153, 15)
-        Me.Label1.TabIndex = 227
-        Me.Label1.Text = "Click this to refresh users."
+        Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox2.Location = New System.Drawing.Point(24, 238)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(41, 29)
+        Me.PictureBox2.TabIndex = 228
+        Me.PictureBox2.TabStop = False
         '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(280, 316)
+        Me.ClientSize = New System.Drawing.Size(280, 324)
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Century Gothic", 11.25!)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -319,6 +321,7 @@ Partial Class Login
         Me.Panel24.PerformLayout()
         Me.Panel25.ResumeLayout(False)
         Me.Panel25.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -342,6 +345,6 @@ Partial Class Login
     Friend WithEvents Label5 As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents LinkLabel2 As LinkLabel
-    Friend WithEvents Button1 As Button
     Friend WithEvents Label1 As Label
+    Friend WithEvents PictureBox2 As PictureBox
 End Class

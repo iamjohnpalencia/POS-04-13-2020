@@ -37,7 +37,6 @@ Partial Class Inventory
         Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Inventory))
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -810,14 +809,18 @@ Partial Class Inventory
         '
         'Button1
         '
-        Me.Button1.BackgroundImage = CType(resources.GetObject("Button1.BackgroundImage"), System.Drawing.Image)
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(711, 6)
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button1.ForeColor = System.Drawing.Color.White
+        Me.Button1.Location = New System.Drawing.Point(711, 7)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(51, 23)
+        Me.Button1.Size = New System.Drawing.Size(84, 23)
         Me.Button1.TabIndex = 15
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Text = "Search"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'DateTimePicker2
         '
@@ -888,9 +891,9 @@ Partial Class Inventory
         Me.DataGridViewSTOCKENTRY.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewSTOCKENTRY.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewSTOCKENTRY.EnableHeadersVisualStyles = False
-        Me.DataGridViewSTOCKENTRY.Location = New System.Drawing.Point(3, 301)
+        Me.DataGridViewSTOCKENTRY.Location = New System.Drawing.Point(3, 280)
         Me.DataGridViewSTOCKENTRY.Name = "DataGridViewSTOCKENTRY"
-        Me.DataGridViewSTOCKENTRY.Size = New System.Drawing.Size(1117, 220)
+        Me.DataGridViewSTOCKENTRY.Size = New System.Drawing.Size(1117, 241)
         Me.DataGridViewSTOCKENTRY.TabIndex = 6
         '
         'Panel21
@@ -919,14 +922,14 @@ Partial Class Inventory
         Me.Panel21.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel21.Location = New System.Drawing.Point(3, 40)
         Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(1117, 261)
+        Me.Panel21.Size = New System.Drawing.Size(1117, 240)
         Me.Panel21.TabIndex = 5
         '
         'Panel10
         '
         Me.Panel10.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel10.Location = New System.Drawing.Point(0, 251)
+        Me.Panel10.Location = New System.Drawing.Point(0, 230)
         Me.Panel10.Name = "Panel10"
         Me.Panel10.Size = New System.Drawing.Size(1117, 10)
         Me.Panel10.TabIndex = 33
@@ -939,7 +942,7 @@ Partial Class Inventory
         Me.ComboBoxDESC.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.ComboBoxDESC.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.ComboBoxDESC.FormattingEnabled = True
-        Me.ComboBoxDESC.Location = New System.Drawing.Point(125, 25)
+        Me.ComboBoxDESC.Location = New System.Drawing.Point(125, 12)
         Me.ComboBoxDESC.Name = "ComboBoxDESC"
         Me.ComboBoxDESC.Size = New System.Drawing.Size(260, 23)
         Me.ComboBoxDESC.TabIndex = 32
@@ -948,7 +951,7 @@ Partial Class Inventory
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label25.Location = New System.Drawing.Point(22, 145)
+        Me.Label25.Location = New System.Drawing.Point(22, 124)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(86, 15)
         Me.Label25.TabIndex = 31
@@ -958,7 +961,7 @@ Partial Class Inventory
         '
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label24.Location = New System.Drawing.Point(22, 117)
+        Me.Label24.Location = New System.Drawing.Point(22, 97)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(79, 15)
         Me.Label24.TabIndex = 30
@@ -971,7 +974,7 @@ Partial Class Inventory
         Me.ButtonENTRYADDSTOCK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonENTRYADDSTOCK.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.ButtonENTRYADDSTOCK.ForeColor = System.Drawing.Color.White
-        Me.ButtonENTRYADDSTOCK.Location = New System.Drawing.Point(516, 107)
+        Me.ButtonENTRYADDSTOCK.Location = New System.Drawing.Point(516, 93)
         Me.ButtonENTRYADDSTOCK.Name = "ButtonENTRYADDSTOCK"
         Me.ButtonENTRYADDSTOCK.Size = New System.Drawing.Size(260, 46)
         Me.ButtonENTRYADDSTOCK.TabIndex = 27
@@ -983,7 +986,7 @@ Partial Class Inventory
         Me.TextBoxENTRYTOTALQTY.BackColor = System.Drawing.Color.White
         Me.TextBoxENTRYTOTALQTY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxENTRYTOTALQTY.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxENTRYTOTALQTY.Location = New System.Drawing.Point(516, 80)
+        Me.TextBoxENTRYTOTALQTY.Location = New System.Drawing.Point(516, 67)
         Me.TextBoxENTRYTOTALQTY.Name = "TextBoxENTRYTOTALQTY"
         Me.TextBoxENTRYTOTALQTY.ReadOnly = True
         Me.TextBoxENTRYTOTALQTY.Size = New System.Drawing.Size(260, 21)
@@ -994,7 +997,7 @@ Partial Class Inventory
         '
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label22.Location = New System.Drawing.Point(395, 83)
+        Me.Label22.Location = New System.Drawing.Point(395, 70)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(106, 15)
         Me.Label22.TabIndex = 18
@@ -1004,17 +1007,17 @@ Partial Class Inventory
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label21.Location = New System.Drawing.Point(395, 55)
+        Me.Label21.Location = New System.Drawing.Point(395, 43)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(29, 15)
+        Me.Label21.Size = New System.Drawing.Size(57, 15)
         Me.Label21.TabIndex = 17
-        Me.Label21.Text = "QTY:"
+        Me.Label21.Text = "Quantity:"
         '
         'Label20
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label20.Location = New System.Drawing.Point(395, 27)
+        Me.Label20.Location = New System.Drawing.Point(395, 16)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(92, 15)
         Me.Label20.TabIndex = 15
@@ -1023,7 +1026,7 @@ Partial Class Inventory
         'PictureBoxBARCODE
         '
         Me.PictureBoxBARCODE.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBoxBARCODE.Location = New System.Drawing.Point(125, 169)
+        Me.PictureBoxBARCODE.Location = New System.Drawing.Point(125, 148)
         Me.PictureBoxBARCODE.Name = "PictureBoxBARCODE"
         Me.PictureBoxBARCODE.Size = New System.Drawing.Size(260, 71)
         Me.PictureBoxBARCODE.TabIndex = 23
@@ -1033,7 +1036,7 @@ Partial Class Inventory
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label18.Location = New System.Drawing.Point(22, 170)
+        Me.Label18.Location = New System.Drawing.Point(22, 148)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(57, 15)
         Me.Label18.TabIndex = 13
@@ -1044,7 +1047,7 @@ Partial Class Inventory
         Me.TextBoxSERVINGVAL.BackColor = System.Drawing.Color.White
         Me.TextBoxSERVINGVAL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxSERVINGVAL.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxSERVINGVAL.Location = New System.Drawing.Point(125, 142)
+        Me.TextBoxSERVINGVAL.Location = New System.Drawing.Point(125, 121)
         Me.TextBoxSERVINGVAL.Name = "TextBoxSERVINGVAL"
         Me.TextBoxSERVINGVAL.ReadOnly = True
         Me.TextBoxSERVINGVAL.Size = New System.Drawing.Size(260, 21)
@@ -1055,7 +1058,7 @@ Partial Class Inventory
         Me.TextBoxENTRYQTY.BackColor = System.Drawing.Color.White
         Me.TextBoxENTRYQTY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxENTRYQTY.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxENTRYQTY.Location = New System.Drawing.Point(516, 52)
+        Me.TextBoxENTRYQTY.Location = New System.Drawing.Point(516, 40)
         Me.TextBoxENTRYQTY.Name = "TextBoxENTRYQTY"
         Me.TextBoxENTRYQTY.ReadOnly = True
         Me.TextBoxENTRYQTY.Size = New System.Drawing.Size(260, 21)
@@ -1067,7 +1070,7 @@ Partial Class Inventory
         Me.TextBoxSERVINGUNIT.BackColor = System.Drawing.Color.White
         Me.TextBoxSERVINGUNIT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxSERVINGUNIT.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxSERVINGUNIT.Location = New System.Drawing.Point(125, 114)
+        Me.TextBoxSERVINGUNIT.Location = New System.Drawing.Point(125, 94)
         Me.TextBoxSERVINGUNIT.Name = "TextBoxSERVINGUNIT"
         Me.TextBoxSERVINGUNIT.ReadOnly = True
         Me.TextBoxSERVINGUNIT.Size = New System.Drawing.Size(260, 21)
@@ -1078,7 +1081,7 @@ Partial Class Inventory
         Me.TextBoxSTCKONHAND.BackColor = System.Drawing.Color.White
         Me.TextBoxSTCKONHAND.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxSTCKONHAND.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxSTCKONHAND.Location = New System.Drawing.Point(516, 24)
+        Me.TextBoxSTCKONHAND.Location = New System.Drawing.Point(516, 13)
         Me.TextBoxSTCKONHAND.Name = "TextBoxSTCKONHAND"
         Me.TextBoxSTCKONHAND.ReadOnly = True
         Me.TextBoxSTCKONHAND.Size = New System.Drawing.Size(260, 21)
@@ -1090,7 +1093,7 @@ Partial Class Inventory
         Me.TextBoxSKU.BackColor = System.Drawing.Color.White
         Me.TextBoxSKU.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxSKU.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxSKU.Location = New System.Drawing.Point(125, 87)
+        Me.TextBoxSKU.Location = New System.Drawing.Point(125, 67)
         Me.TextBoxSKU.Name = "TextBoxSKU"
         Me.TextBoxSKU.ReadOnly = True
         Me.TextBoxSKU.Size = New System.Drawing.Size(260, 21)
@@ -1101,7 +1104,7 @@ Partial Class Inventory
         Me.TextBoxINVENTORYID.BackColor = System.Drawing.Color.White
         Me.TextBoxINVENTORYID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxINVENTORYID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxINVENTORYID.Location = New System.Drawing.Point(125, 59)
+        Me.TextBoxINVENTORYID.Location = New System.Drawing.Point(125, 40)
         Me.TextBoxINVENTORYID.Name = "TextBoxINVENTORYID"
         Me.TextBoxINVENTORYID.ReadOnly = True
         Me.TextBoxINVENTORYID.Size = New System.Drawing.Size(260, 21)
@@ -1111,7 +1114,7 @@ Partial Class Inventory
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label23.Location = New System.Drawing.Point(22, 27)
+        Me.Label23.Location = New System.Drawing.Point(22, 16)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(75, 15)
         Me.Label23.TabIndex = 19
@@ -1121,7 +1124,7 @@ Partial Class Inventory
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label19.Location = New System.Drawing.Point(22, 90)
+        Me.Label19.Location = New System.Drawing.Point(22, 70)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(86, 15)
         Me.Label19.TabIndex = 14
@@ -1131,7 +1134,7 @@ Partial Class Inventory
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label17.Location = New System.Drawing.Point(22, 62)
+        Me.Label17.Location = New System.Drawing.Point(22, 43)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(78, 15)
         Me.Label17.TabIndex = 12
@@ -1153,14 +1156,18 @@ Partial Class Inventory
         '
         'ButtonSearchDailyTransaction
         '
-        Me.ButtonSearchDailyTransaction.BackgroundImage = CType(resources.GetObject("ButtonSearchDailyTransaction.BackgroundImage"), System.Drawing.Image)
-        Me.ButtonSearchDailyTransaction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ButtonSearchDailyTransaction.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonSearchDailyTransaction.Location = New System.Drawing.Point(711, 6)
+        Me.ButtonSearchDailyTransaction.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.ButtonSearchDailyTransaction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.ButtonSearchDailyTransaction.FlatAppearance.BorderSize = 0
+        Me.ButtonSearchDailyTransaction.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSearchDailyTransaction.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonSearchDailyTransaction.ForeColor = System.Drawing.Color.White
+        Me.ButtonSearchDailyTransaction.Location = New System.Drawing.Point(711, 7)
         Me.ButtonSearchDailyTransaction.Name = "ButtonSearchDailyTransaction"
-        Me.ButtonSearchDailyTransaction.Size = New System.Drawing.Size(51, 23)
+        Me.ButtonSearchDailyTransaction.Size = New System.Drawing.Size(84, 23)
         Me.ButtonSearchDailyTransaction.TabIndex = 14
-        Me.ButtonSearchDailyTransaction.UseVisualStyleBackColor = True
+        Me.ButtonSearchDailyTransaction.Text = "Search"
+        Me.ButtonSearchDailyTransaction.UseVisualStyleBackColor = False
         '
         'DateTimePicker3
         '

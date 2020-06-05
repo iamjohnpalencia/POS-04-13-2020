@@ -123,12 +123,13 @@ Public Class Reports
                 .Columns(1).HeaderCell.Value = "Date"
                 .Columns(2).HeaderCell.Value = "Time"
                 .Columns(3).HeaderCell.Value = "Ref. #"
+                .Columns(3).Width = 100
                 .Columns(4).HeaderCell.Value = "Crew"
-                .Columns(5).HeaderCell.Value = "Money"
+                .Columns(5).HeaderCell.Value = "Cash"
                 .Columns(6).HeaderCell.Value = "Change"
                 .Columns(7).Visible = False
                 .Columns(8).HeaderCell.Value = "Discount"
-                .Columns(9).HeaderCell.Value = "Amount Due"
+                .Columns(9).HeaderCell.Value = "Amt. due"
                 .Columns(10).HeaderCell.Value = "Vat Exempt"
                 .Columns(11).HeaderCell.Value = "TRN. Type"
                 .Columns(12).Visible = False
@@ -136,7 +137,6 @@ Public Class Reports
                 .Columns.Item(5).DefaultCellStyle.Format = "n2"
                 .Columns.Item(6).DefaultCellStyle.Format = "n2"
                 .Columns.Item(1).DefaultCellStyle.Format = "yyyy/MM/dd"
-                .Font = New Font("Century Gothic", 9)
                 For Each row As DataRow In dt.Rows
                     row("crew_id") = GLOBAL_SELECT_FUNCTION_RETURN(table:="loc_users", fields:="full_name", returnvalrow:="full_name", values:="uniq_id ='" & row("crew_id") & "'")
                 Next
@@ -293,9 +293,6 @@ Public Class Reports
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-    End Sub
-    Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
-        MDIFORM.Button2.PerformClick()
     End Sub
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles ButtonSearchDailyTransaction.Click
         reportsdailytransaction(True)

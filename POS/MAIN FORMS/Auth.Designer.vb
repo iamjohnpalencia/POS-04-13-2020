@@ -25,22 +25,22 @@ Partial Class Auth
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Auth))
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.DataGridViewRESULT = New System.Windows.Forms.DataGridView()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Panel23 = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.DataGridViewRESULT = New System.Windows.Forms.DataGridView()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
-        CType(Me.DataGridViewRESULT, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewRESULT, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -61,20 +61,14 @@ Partial Class Auth
         Me.Panel1.Size = New System.Drawing.Size(269, 78)
         Me.Panel1.TabIndex = 0
         '
-        'DataGridViewRESULT
+        'Panel23
         '
-        Me.DataGridViewRESULT.AllowUserToAddRows = False
-        Me.DataGridViewRESULT.AllowUserToDeleteRows = False
-        Me.DataGridViewRESULT.AllowUserToResizeColumns = False
-        Me.DataGridViewRESULT.AllowUserToResizeRows = False
-        Me.DataGridViewRESULT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewRESULT.Location = New System.Drawing.Point(53, 195)
-        Me.DataGridViewRESULT.Name = "DataGridViewRESULT"
-        Me.DataGridViewRESULT.Size = New System.Drawing.Size(325, 51)
-        Me.DataGridViewRESULT.TabIndex = 220
-        '
-        'BackgroundWorker1
-        '
+        Me.Panel23.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel23.Location = New System.Drawing.Point(0, 56)
+        Me.Panel23.Name = "Panel23"
+        Me.Panel23.Size = New System.Drawing.Size(267, 10)
+        Me.Panel23.TabIndex = 223
         '
         'Panel2
         '
@@ -85,31 +79,36 @@ Partial Class Auth
         Me.Panel2.Size = New System.Drawing.Size(267, 10)
         Me.Panel2.TabIndex = 221
         '
-        'ProgressBar1
+        'Panel3
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(51, 10)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(173, 25)
-        Me.ProgressBar1.TabIndex = 219
+        Me.Panel3.Controls.Add(Me.Label1)
+        Me.Panel3.Controls.Add(Me.Label4)
+        Me.Panel3.Location = New System.Drawing.Point(48, 38)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(220, 26)
+        Me.Panel3.TabIndex = 229
         '
-        'Panel23
+        'Label1
         '
-        Me.Panel23.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel23.Location = New System.Drawing.Point(0, 56)
-        Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(267, 10)
-        Me.Panel23.TabIndex = 223
+        Me.Label1.AutoSize = True
+        Me.Label1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label1.ForeColor = System.Drawing.Color.Red
+        Me.Label1.Location = New System.Drawing.Point(118, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(0, 14)
+        Me.Label1.TabIndex = 228
         '
-        'PictureBox1
+        'Label4
         '
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(-82, -52)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(465, 158)
-        Me.PictureBox1.TabIndex = 224
-        Me.PictureBox1.TabStop = False
+        Me.Label4.AutoSize = True
+        Me.Label4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label4.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label4.Location = New System.Drawing.Point(0, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(118, 14)
+        Me.Label4.TabIndex = 225
+        Me.Label4.Text = "Connecting to server..."
         '
         'Label3
         '
@@ -131,40 +130,41 @@ Partial Class Auth
         Me.Label2.TabIndex = 226
         Me.Label2.Text = "0"
         '
-        'Label4
+        'ProgressBar1
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label4.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
-        Me.Label4.Location = New System.Drawing.Point(0, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(118, 14)
-        Me.Label4.TabIndex = 225
-        Me.Label4.Text = "Connecting to server..."
+        Me.ProgressBar1.Location = New System.Drawing.Point(51, 10)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(173, 25)
+        Me.ProgressBar1.TabIndex = 219
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(-82, -52)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(465, 158)
+        Me.PictureBox1.TabIndex = 224
+        Me.PictureBox1.TabStop = False
+        '
+        'DataGridViewRESULT
+        '
+        Me.DataGridViewRESULT.AllowUserToAddRows = False
+        Me.DataGridViewRESULT.AllowUserToDeleteRows = False
+        Me.DataGridViewRESULT.AllowUserToResizeColumns = False
+        Me.DataGridViewRESULT.AllowUserToResizeRows = False
+        Me.DataGridViewRESULT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewRESULT.Location = New System.Drawing.Point(53, 195)
+        Me.DataGridViewRESULT.Name = "DataGridViewRESULT"
+        Me.DataGridViewRESULT.Size = New System.Drawing.Size(325, 51)
+        Me.DataGridViewRESULT.TabIndex = 220
+        '
+        'BackgroundWorker1
+        '
         '
         'Timer1
         '
         Me.Timer1.Interval = 1000
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
-        Me.Label1.ForeColor = System.Drawing.Color.Red
-        Me.Label1.Location = New System.Drawing.Point(118, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(0, 14)
-        Me.Label1.TabIndex = 228
-        '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Me.Label1)
-        Me.Panel3.Controls.Add(Me.Label4)
-        Me.Panel3.Location = New System.Drawing.Point(48, 38)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(220, 26)
-        Me.Panel3.TabIndex = 229
         '
         'Auth
         '
@@ -179,10 +179,10 @@ Partial Class Auth
         Me.Text = "Auth"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.DataGridViewRESULT, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewRESULT, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

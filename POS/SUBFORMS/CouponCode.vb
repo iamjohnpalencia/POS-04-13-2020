@@ -2,15 +2,15 @@
 Public Class CouponCode
     Private Sub CouponCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GLOBAL_SELECT_ALL_FUNCTION(table:="tbcoupon", fields:="*", datagrid:=DataGridViewCoupons)
-        With DataGridViewCoupons
-            .Columns(0).Visible = False
-            .Columns(3).Visible = False
-            .Columns(4).Visible = False
-            .Columns(6).Visible = False
-            .Columns(7).Visible = False
-            .Columns(8).Visible = False
-            .Columns(9).Visible = False
-        End With
+        'With DataGridViewCoupons
+        '    .Columns(0).Visible = False
+        '    .Columns(3).Visible = False
+        '    .Columns(4).Visible = False
+        '    .Columns(6).Visible = False
+        '    .Columns(7).Visible = False
+        '    .Columns(8).Visible = False
+        '    .Columns(9).Visible = False
+        'End With
     End Sub
     Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
         Me.Close()
@@ -111,7 +111,7 @@ Public Class CouponCode
     Private Sub couponfix1()
         Dim total As Integer = 0
         Dim tax As String = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-        If Val(POS.Label76.Text) > DataGridViewCoupons.SelectedRows(0).Cells(3).Value Then
+        If Val(POS.Label76.Text) >= DataGridViewCoupons.SelectedRows(0).Cells(3).Value Then
             For index As Integer = 0 To DataGridViewCoupons.RowCount - 1
                 total = Val(POS.Label76.Text)
                 POS.Label73.Text = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
@@ -138,29 +138,38 @@ Public Class CouponCode
             End If
         Next
     End Sub
-    'Private Sub couponbundle1()
-    '    For index As Integer = 0 To DataGridViewCoupons.RowCount - 1
-    '        POS.TextBoxDISCOUNT.Text = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-    '        Dim result1 As Boolean = False
-    '        If POS.DataGridViewOrders.Rows(index).Cells(0).Value.ToString.Contains(Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString) = True Then
-    '            MsgBox("Product ID : " & POS.DataGridViewOrders.Rows(index).Cells(0).Value.ToString & " Product Base ID : " & Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString)
-    '            MsgBox("Product Count : " & POS.DataGridViewOrders.Rows(index).Cells(4).Value.ToString & " Minimum Qty : " & Me.DataGridViewCoupons.Item(7, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString)
-    '            result1 = True
-    '            If Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = Trim(String.Empty) Then
-    '                'Form1.Label10.Text = "FREE"
-    '            End If
-    '        End If
-    '        If result1 = True Then
-    '            If Form1.DataGridView2.Rows(index).Cells(0).Value.ToString.Contains(Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString) = True Then
-    '                Form1.DataGridView2.Rows(index).Cells(4).Value = Val(Form1.DataGridView2.Rows(index).Cells(4).Value.ToString) + 1
-    '                Form1.Label7.Text = Val(Form1.Label7.Text) + 1
-    '                'Its up either you combine the QTY or set it in a separate line - in my case i do not have receipt so i set it to the qty w/o affecting the price
-    '                ' You can set the free item in a new line within the receipt with zeroed out price
-    '                ' Ex : PB Waffle - - - - - 0.00
-    '            End If
-    '        End If
-    '    Next
-    'End Sub
+    Private Sub couponbundle1()
+        Try
+            With POS
+                For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+
+                Next
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        'For index As Integer = 0 To DataGridViewCoupons.RowCount - 1
+        '    POS.TextBoxDISCOUNT.Text = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+        '    Dim result1 As Boolean = False
+        '    If POS.DataGridViewOrders.Rows(index).Cells(0).Value.ToString.Contains(Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString) = True Then
+        '        MsgBox("Product ID : " & POS.DataGridViewOrders.Rows(index).Cells(0).Value.ToString & " Product Base ID : " & Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString)
+        '        MsgBox("Product Count : " & POS.DataGridViewOrders.Rows(index).Cells(4).Value.ToString & " Minimum Qty : " & Me.DataGridViewCoupons.Item(7, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString)
+        '        result1 = True
+        '        If Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = Trim(String.Empty) Then
+        '            'Form1.Label10.Text = "FREE"
+        '        End If
+        '    End If
+        '    If result1 = True Then
+        '        If Form1.DataGridView2.Rows(index).Cells(0).Value.ToString.Contains(Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString) = True Then
+        '            Form1.DataGridView2.Rows(index).Cells(4).Value = Val(Form1.DataGridView2.Rows(index).Cells(4).Value.ToString) + 1
+        '            Form1.Label7.Text = Val(Form1.Label7.Text) + 1
+        '            'Its up either you combine the QTY or set it in a separate line - in my case i do not have receipt so i set it to the qty w/o affecting the price
+        '            ' You can set the free item in a new line within the receipt with zeroed out price
+        '            ' Ex : PB Waffle - - - - - 0.00
+        '        End If
+        '    End If
+        'Next
+    End Sub
 
     'Private Sub couponbundle2()
     '    Dim result1 As Boolean = False

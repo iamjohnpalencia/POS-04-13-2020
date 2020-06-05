@@ -1729,6 +1729,16 @@ Partial Class POS
     Friend WithEvents Column18 As DataGridViewTextBoxColumn
     Friend WithEvents Button1 As Button
     Friend WithEvents Panel32 As Panel
+    Friend WithEvents Panel24 As Panel
+    Friend WithEvents Panel25 As Panel
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Panel33 As Panel
+    Friend WithEvents Panel20 As Panel
+    Friend WithEvents DataGridViewINVENTORYUPDATE As DataGridView
+    Friend WithEvents DataGridViewCATEGORYUPDATE As DataGridView
+    Friend WithEvents DataGridViewFORMULAUPDATE As DataGridView
+    Friend WithEvents DataGridViewPRODUCTUPDATE As DataGridView
+    Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
@@ -1740,14 +1750,4 @@ Partial Class POS
     Friend WithEvents Column17 As DataGridViewTextBoxColumn
     Friend WithEvents Column19 As DataGridViewTextBoxColumn
     Friend WithEvents Column20 As DataGridViewTextBoxColumn
-    Friend WithEvents Panel24 As Panel
-    Friend WithEvents Panel25 As Panel
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Panel33 As Panel
-    Friend WithEvents Panel20 As Panel
-    Friend WithEvents DataGridViewINVENTORYUPDATE As DataGridView
-    Friend WithEvents DataGridViewCATEGORYUPDATE As DataGridView
-    Friend WithEvents DataGridViewFORMULAUPDATE As DataGridView
-    Friend WithEvents DataGridViewPRODUCTUPDATE As DataGridView
-    Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
 End Class

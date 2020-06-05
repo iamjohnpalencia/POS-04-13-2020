@@ -451,9 +451,9 @@ Module RetrieveModule
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION(ByVal table As String, ByVal fields As String, ByRef datagrid As DataGridView)
         Try
-            sql = "SELECT " + fields + " FROM " + table
-            cmd = New MySqlCommand(sql, LocalhostConn)
-            da = New MySqlDataAdapter(cmd)
+            Dim sql = "SELECT " + fields + " FROM " + table
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
             With datagrid
@@ -473,7 +473,7 @@ Module RetrieveModule
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
-            da.Dispose()
+            LocalhostConn.close
         End Try
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION_WHERE(ByVal table As String, ByVal fields As String, ByVal where As String, ByVal successmessage As String, ByVal errormessage As String, ByRef datagrid As DataGridView)
@@ -500,7 +500,7 @@ Module RetrieveModule
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
-            da.Dispose()
+            LocalhostConn.close
         End Try
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX(ByVal table As String, ByVal fields As String, ByVal successmessage As String, ByVal errormessage As String, ByRef combobox As ComboBox)

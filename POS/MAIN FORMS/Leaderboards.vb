@@ -1,5 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports System.Threading
+Imports System.Windows.Forms.DataVisualization.Charting
+
 Public Class Leaderboards
     Dim thread1 As Thread
     Dim solocloudconn As New MySqlConnection
@@ -18,100 +20,155 @@ Public Class Leaderboards
         SendMessage(ProgressBar_Name.Handle, &H410, ProgressBar_Color, 0)
     End Sub
     Private Sub ProductList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TabControl1.TabPages(0).Text = "Sales"
+        TabControl1.TabPages(1).Text = "Expenses"
+        TabControl1.TabPages(2).Text = "Transfers"
+        TabControl1.TabPages(3).Text = "Logs"
         CheckForIllegalCrossThreadCalls = False
-        'Button1.PerformClick()
+
+        loadbestseller()
+        LoadTransactions()
+        LoadExpenses()
+        LoadTransfers()
+        LoadLogs()
+
+        LoadChart("SELECT zreading,  SUM(amountdue) FROM `loc_daily_transaction` WHERE zreading > (zreading - INTERVAL 7 DAY) GROUP BY zreading", True)
+        LoadProducts()
+        'Panel3.Focus()
+        'LoadSales()
     End Sub
     Private Sub ProductList_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If BackgroundWorker1.WorkerSupportsCancellation = True Then
             BackgroundWorker1.CancelAsync()
         End If
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Try
-            BackgroundWorker1.RunWorkerAsync()
-            BackgroundWorker1.WorkerSupportsCancellation = True
-            BackgroundWorker1.WorkerReportsProgress = True
-            Button1.Enabled = False
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-
     Dim threadList As List(Of Thread) = New List(Of Thread)
-    Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+    Private Sub loadbestseller()
         Try
-            If CheckForInternetConnection() = True Then
-                If BackgroundWorker1.IsBusy = True Then
-                    thread1 = New Thread(AddressOf bestseller)
-                    thread1.Start()
-                    threadList.Add(thread1)
-                    For Each t In threadList
-                        t.Join()
-                    Next
-                    If BackgroundWorker1.CancellationPending = True Then
-                        e.Cancel = True
-                    End If
+            GLOBAL_SELECT_ALL_FUNCTION("loc_daily_transaction_details  GROUP BY product_name ORDER by COUNT(transaction_number) DESC limit 10", "product_name ,  product_category, SUM(quantity) as Qty, price , Sum(total) as totalprice", DatagridviewTOPSELLER)
+            With DatagridviewTOPSELLER
+                .Columns(0).HeaderCell.Value = "Product Name"
+                .Columns(0).Width = 150
+                .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                .Columns(1).HeaderCell.Value = "Category"
+                .Columns(1).Width = 150
+                .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                .Columns(2).HeaderCell.Value = "Sales Volume"
+                .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).HeaderCell.Value = "Price"
+                .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(4).HeaderCell.Value = "Total Sale"
+                .Columns(4).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(2).Width = 120
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).Width = 100
+                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(4).Width = 100
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub LoadTransactions()
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION("loc_daily_transaction ORDER BY transaction_id DESC LIMIT 10 ", "transaction_number  , CONCAT(date,' ', time) AS datetime , crew_id , amountdue, active", DataGridViewRecentSales)
+            With DataGridViewRecentSales
+                .Columns(0).HeaderCell.Value = "Invoice id"
+                .Columns(0).Width = 150
+                .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+
+                .Columns(1).HeaderCell.Value = "Created At"
+                .Columns(1).Width = 150
+                .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+
+                .Columns(2).HeaderCell.Value = "Full Name"
+                .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+
+                .Columns(3).HeaderCell.Value = "Total Amount"
+                .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
+
+                .Columns(4).HeaderCell.Value = "Status"
+            End With
+            For Each row As DataRow In dt.Rows
+                row("crew_id") = returnfullname(row("crew_id"))
+                If row("active") = 1 Then
+                    row("active") = "Active"
                 End If
-            Else
-                Button1.Enabled = True
-                Label2.Text = "No Internet Connection"
-            End If
-            'For i = 0 To 100
-            '    BackgroundWorker1.ReportProgress(i)
-            '    Thread.Sleep(100)
-            'Next
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
-        ProgressBar1.Value = e.ProgressPercentage
-        Label2.Text = "Loading Products " & e.ProgressPercentage.ToString() & " %"
-    End Sub
-    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
+    Private Sub LoadExpenses()
         Try
-            If BestsellerDataTable.Rows.Count > 0 Then
-                With DataGridViewTOPSOLDS
-                    .DataSource = Nothing
-                    .DataSource = BestsellerDataTable
-                    .RowHeadersVisible = False
-                    .Font = New Font("Century Gothic", 10)
-                    .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-                    .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
-                    .SelectionMode = DataGridViewSelectionMode.FullRowSelect
-                End With
-                Label2.Text = "Loaded Successfully!"
-                Button1.Enabled = True
-                Chart1.Series("Series1").Points.Clear()
-                Chart2.Series("Series1").Points.Clear()
-                For i As Integer = 0 To BestsellerDataTable.Rows.Count - 1 Step +1
-                    Chart1.Series("Series1").Points.AddXY(BestsellerDataTable(i)(0), BestsellerDataTable(i)(2))
-                    Chart2.Series("Series1").Points.AddXY(BestsellerDataTable(i)(0), BestsellerDataTable(i)(2))
-                    Chart1.Series(0)("PieLabelStyle") = "Disabled"
-                Next
-            Else
-                Label2.Text = "Please reload again"
-                'ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
-                Button1.Enabled = True
-            End If
+            GLOBAL_SELECT_ALL_FUNCTION("loc_expense_list GROUP BY expense_id DESC LIMIT 10", "expense_number  , CONCAT(date,' ', time) AS datetime , crew_id , total_amount, active", DataGridViewRecentExpenses)
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub bestseller()
+    Private Sub LoadTransfers()
         Try
-            sql = "SELECT product_name, product_sku , SUM(quantity) FROM admin_daily_transaction_details WHERE store_id = " & ClientStoreID & " GROUP by product_name ORDER BY `SUM(quantity)` DESC"
-            BestSellerCmd = New MySqlCommand(sql, ServerCloudCon())
-            BestsellerDataAdapter = New MySqlDataAdapter(BestSellerCmd)
-            BestsellerDataTable = New DataTable
-            BestsellerDataAdapter.Fill(BestsellerDataTable)
-            cloudconn.Close()
+            GLOBAL_SELECT_ALL_FUNCTION("loc_system_logs WHERE log_type = 'STOCK TRANSFER' GROUP BY log_date_time DESC LIMIT 10 ", "loc_systemlog_id  , log_date_time , crew_id , log_description", DatagridviewTransfers)
+
         Catch ex As Exception
-            'MsgBox(ex.ToString)
-            MsgBox("Please reload and try again.")
-            SystemLogType = "ERROR"
-            SystemLogDesc = "ERROR 6.0 Chart Load"
-            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+            MsgBox(ex.ToString)
         End Try
+    End Sub
+    Private Sub LoadLogs()
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION("loc_system_logs WHERE log_type <> 'STOCK TRANSFER'  GROUP BY log_date_time DESC LIMIT 10", "loc_systemlog_id  , log_date_time , crew_id , log_description", DatagridviewLogs)
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub LoadChart(sql As String, bool As Boolean)
+        Try
+            Chart1.Series("Series1").IsVisibleInLegend = False
+            'Dim sql = "SELECT zreading,  SUM(amountdue) FROM `loc_daily_transaction` WHERE zreading > (zreading - INTERVAL 7 DAY) GROUP BY zreading"
+            'Dim sql = "SELECT zreading,  SUM(amountdue) FROM `loc_daily_transaction` WHERE MONTH(zreading) > (MONTH(zreading)  - INTERVAL 1 MONTH) GROUP BY MONTH(zreading)"
+            'Dim sql = "SELECT YEAR(zreading), SUM(amountdue) FROM `loc_daily_transaction` WHERE YEAR(zreading) GROUP BY YEAR(zreading)"
+            'Dim sql = "SELECT YEAR(zreading), SUM(amountdue) FROM `loc_daily_transaction` WHERE YEAR(zreading) > (YEAR(zreading)  - INTERVAL 1 YEAR) GROUP BY YEAR(zreading)"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim dr As MySqlDataReader
+            dr = cmd.ExecuteReader
+            While dr.Read
+                If bool = True Then
+                    Chart1.Series("Series1").Points.AddXY(dr.GetDateTime("zreading"), dr.GetInt64("SUM(amountdue)"))
+                Else
+                    Chart1.Series("Series1").Points.AddXY(dr.GetString("YEAR(zreading)"), dr.GetInt64("SUM(amountdue)"))
+                End If
+            End While
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub LoadProducts()
+        Try
+            Chart2.Series("Series1").IsVisibleInLegend = False
+            Dim sql = "SELECT product_name , Sum(total) as totalprice FROM loc_daily_transaction_details GROUP BY product_name ORDER by COUNT(transaction_number) DESC limit 10"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim dr As MySqlDataReader
+            dr = cmd.ExecuteReader
+            While dr.Read
+                Chart2.Series("Series1").Points.AddXY(dr.GetString("product_name"), dr.GetInt64("totalprice"))
+            End While
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub RadioButton3_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton3.CheckedChanged
+        LoadChart("SELECT zreading,  SUM(amountdue) FROM `loc_daily_transaction` WHERE zreading > (zreading - INTERVAL 7 DAY) GROUP BY zreading", True)
+    End Sub
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+        LoadChart("SELECT zreading,  SUM(amountdue) FROM `loc_daily_transaction` WHERE MONTH(zreading) > (MONTH(zreading)  - INTERVAL 1 MONTH) GROUP BY MONTH(zreading)", True)
+    End Sub
+    Private Sub RadioButton4_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton4.CheckedChanged
+        LoadChart("SELECT YEAR(zreading), SUM(amountdue) FROM `loc_daily_transaction` WHERE YEAR(zreading) GROUP BY YEAR(zreading)", False)
+    End Sub
+    Private Sub RadioButton5_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton5.CheckedChanged
+        LoadChart("SELECT YEAR(zreading), SUM(amountdue) FROM `loc_daily_transaction` WHERE YEAR(zreading) > (YEAR(zreading)  - INTERVAL 1 YEAR) GROUP BY YEAR(zreading)", False)
     End Sub
 End Class

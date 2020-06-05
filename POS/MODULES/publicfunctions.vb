@@ -209,6 +209,8 @@ Module publicfunctions
                                 MsgBox("Select product")
                             ElseIf .DataGridViewOrders.SelectedRows(0).Cells(7).Value = "Others" Then
                                 MsgBox("Add-Ons are exclusive for fbw waffles only")
+                            ElseIf .DataGridViewOrders.SelectedRows(0).Cells(9).Value = "DRINKS" Then
+                                MsgBox("Add-Ons are exclusive for fbw waffles only")
                             Else
                                 ThisIsMyInventoryID = .TextBoxINC.Text
                                 If hastextboxqty = False Then

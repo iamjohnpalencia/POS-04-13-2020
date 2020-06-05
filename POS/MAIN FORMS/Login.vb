@@ -84,8 +84,7 @@ Public Class Login
         End Try
     End Sub
     Dim bat As String
-
-    Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
         Enabled = False
         Auth.Show()
     End Sub
