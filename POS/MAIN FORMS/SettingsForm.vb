@@ -28,9 +28,24 @@ Public Class SettingsForm
         'TextBoxServerUsername.Text = My.Settings.clouduser
         'TextBoxServerName.Text = My.Settings.cloudserver
         'TextBoxServerPassword.Text = My.Settings.cloudpass
-
     End Sub
-    '=====================================PARTNERS
+    Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
+        If TabControl1.SelectedIndex = 1 Then
+            TabControl3.TabPages(0).Text = "Available Partners"
+            TabControl3.TabPages(1).Text = "Deactivated Parners"
+            LoadPartners()
+            LoadPartnersDeact()
+        ElseIf TabControl1.SelectedIndex = 2 Then
+            loadformula()
+        ElseIf TabControl1.SelectedIndex = 3 Then
+            loaditemreturn(True)
+            loadindexdgv()
+        ElseIf TabControl1.SelectedIndex = 4 Then
+            loaddatagrid1()
+        End If
+    End Sub
+#Region "Partners"
+
     Public Sub LoadPartners()
         GLOBAL_SELECT_ALL_FUNCTION("loc_partners_transaction WHERE active = 1 ORDER BY arrid ASC", "*", DataGridViewPartners)
         With DataGridViewPartners
@@ -136,8 +151,8 @@ Public Class SettingsForm
             AddBank.Show()
         End If
     End Sub
-    '=====================================PARTNERS
-    '=====================================FORMULA
+#End Region
+#Region "Formula"
     Public Sub loadformula()
         fields = "`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`"
         GLOBAL_SELECT_ALL_FUNCTION(table:="loc_product_formula WHERE status = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", datagrid:=DataGridViewFormula, fields:=fields)
@@ -154,8 +169,9 @@ Public Class SettingsForm
             .Columns(2).Width = 70
         End With
     End Sub
-    '=====================================FORMULA
-    '======================================== RETURN
+#End Region
+#Region "Returns"
+
     Private Sub rowindex()
         LabelITEMRET.Text = DataGridViewITEMRETURN1.CurrentCell.RowIndex
     End Sub
@@ -378,6 +394,10 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
         End Try
     End Sub
+#End Region
+#Region "Load"
+
+
     Private Sub LoadConn()
         Try
             If My.Settings.LocalConnectionPath <> "" Then
@@ -621,19 +641,131 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
         End Try
     End Sub
-    '======================================== RETURN
-    Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
-        If TabControl1.SelectedIndex = 1 Then
-            TabControl3.TabPages(0).Text = "Available Partners"
-            TabControl3.TabPages(1).Text = "Deactivated Parners"
-            LoadPartners()
-            LoadPartnersDeact()
-        ElseIf TabControl1.SelectedIndex = 2 Then
-            loadformula()
-        ElseIf TabControl1.SelectedIndex = 3 Then
-            loaditemreturn(True)
-            loadindexdgv()
-
+#End Region
+#Region "Coupons"
+    Private Sub ComboBox1_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxCType.TextChanged
+        If ComboBoxCType.Text = "Percentage" Then
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = False
+            TextBoxCBBP.Enabled = False
+            TextBoxCBV.Enabled = False
+            TextBoxCBP.Enabled = False
+            TextBoxCBundVal.Enabled = False
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        ElseIf ComboBoxCType.Text = "Fix-1" Then
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = False
+            TextBoxCBBP.Enabled = False
+            TextBoxCBV.Enabled = False
+            TextBoxCBP.Enabled = False
+            TextBoxCBundVal.Enabled = False
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        ElseIf ComboBoxCType.Text = "Fix-2" Then
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = True
+            TextBoxCBBP.Enabled = False
+            TextBoxCBV.Enabled = False
+            TextBoxCBP.Enabled = False
+            TextBoxCBundVal.Enabled = False
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        ElseIf ComboBoxCType.Text = "Bundle-1(Fix)" Then
+            TextBoxCDVal.Enabled = False
+            TextBoxCRefVal.Enabled = False
+            TextBoxCBBP.Enabled = True
+            TextBoxCBV.Enabled = True
+            TextBoxCBP.Enabled = True
+            TextBoxCBundVal.Enabled = True
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        ElseIf ComboBoxCType.Text = "Bundle-2(Fix)" Then
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = False
+            TextBoxCBBP.Enabled = True
+            TextBoxCBV.Enabled = True
+            TextBoxCBP.Enabled = True
+            TextBoxCBundVal.Enabled = True
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        ElseIf ComboBoxCType.Text = "Bundle-3(%)" Then
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = False
+            TextBoxCBBP.Enabled = True
+            TextBoxCBV.Enabled = True
+            TextBoxCBP.Enabled = True
+            TextBoxCBundVal.Enabled = True
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        Else
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = True
+            TextBoxCBBP.Enabled = True
+            TextBoxCBV.Enabled = True
+            TextBoxCBP.Enabled = True
+            TextBoxCBundVal.Enabled = True
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
         End If
     End Sub
+    Private Sub loaddatagrid1()
+        Try
+            DataGridView1.Columns.Clear()
+            GLOBAL_SELECT_ALL_FUNCTION("loc_admin_products", "product_id, product_name, product_category, product_price", DataGridView1)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+
+    End Sub
+#End Region
 End Class
