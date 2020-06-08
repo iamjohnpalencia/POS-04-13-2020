@@ -800,8 +800,9 @@ Public Class POS
                 a += 100
                 SimpleTextDisplay(sender, e, CouponName & "(" & discounttype & ")", font, 0, a)
                 SimpleTextDisplay(sender, e, CouponDesc, font, 0, a + 10)
-                RightToLeftDisplay(sender, e, a + 52, "Total Discount", "P" & "0", font)
                 a += 40 + CouponLine
+                RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & CouponTotal, font)
+
             Else
                 a += 120
             End If

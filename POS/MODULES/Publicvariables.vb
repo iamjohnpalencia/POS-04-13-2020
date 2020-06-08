@@ -51,6 +51,7 @@ Module publicVariables
     Public CouponName As String
     Public CouponDesc As String
     Public CouponLine As Integer = 10
+    Public CouponTotal As Integer = 0
     '=============================================================================================================
     'POS INFORMATION
     Public ClientGuid As String

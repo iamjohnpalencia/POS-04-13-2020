@@ -1544,13 +1544,11 @@ Partial Class POS
         '
         Me.Column16.HeaderText = "ColumnCAT"
         Me.Column16.Name = "Column16"
-        Me.Column16.Visible = False
         '
         'Column17
         '
         Me.Column17.HeaderText = "ColumnCATOF"
         Me.Column17.Name = "Column17"
-        Me.Column17.Visible = False
         '
         'Column19
         '

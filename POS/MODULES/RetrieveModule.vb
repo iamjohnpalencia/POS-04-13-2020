@@ -531,6 +531,7 @@ Module RetrieveModule
                     returnval = readerObj(returnvalrow).ToString
                 End While
             End Using
+            LocalhostConn.close()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
