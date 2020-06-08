@@ -27,10 +27,10 @@ Public Class CouponCode
     End Sub
     Private Sub ButtonSubmit_Click(sender As Object, e As EventArgs) Handles ButtonSubmit.Click
         Try
-            'If POS.DataGridViewOrders.RowCount < 2 Then
-            '    MsgBox("Cannot apply coupon, no product found!", vbInformation)
-            '    Exit Sub
-            If Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Percentage" Then
+            If POS.DataGridViewOrders.RowCount < 2 Then
+                MsgBox("Cannot apply coupon, no product found!", vbInformation)
+                Exit Sub
+            ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Percentage" Then
                 'MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
                 couponpercentage()
             ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Fix-1" Then
@@ -41,7 +41,7 @@ Public Class CouponCode
                 couponfix2()
             ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Bundle-1(Fix)" Then
                 MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
-                'couponbundle1()
+                couponbundle1()
             ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Bundle-2(Fix)" Then
                 MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
                 'couponbundle2()
@@ -104,6 +104,7 @@ Public Class CouponCode
                 POS.TextBoxGRANDTOTAL.Text = TotalDiscount + TotalDiscount1 + POS.Label76.Text - SeniorPWd - SeniorPWdDrinks
                 POS.TextBoxDISCOUNT.Text = Discount + Discount1
             End If
+            CouponApplied = True
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -121,6 +122,7 @@ Public Class CouponCode
         Else
             MsgBox("Gift certificate is greater than total")
         End If
+        CouponApplied = True
     End Sub
 
     Private Sub couponfix2()
@@ -137,38 +139,75 @@ Public Class CouponCode
                 POS.TextBoxGRANDTOTAL.Text = Val(POS.Label76.Text) - Val(tax)
             End If
         Next
+        CouponApplied = True
     End Sub
     Private Sub couponbundle1()
         Try
             With POS
-                For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
-
+                Dim ReferenceExist As Boolean = False
+                Dim referenceID As String = Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+                Dim refIds As String() = referenceID.Split(New Char() {","c})
+                For Each getRefids In refIds
+                    For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+                        If POS.DataGridViewOrders.Rows(i).Cells(5).Value.ToString.Contains(getRefids) = True Then
+                            MsgBox("Contains Reference Value")
+                            If POS.DataGridViewOrders.Rows(i).Cells(1).Value.ToString.Contains(Me.DataGridViewCoupons.Item(7, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString) = True Then
+                                MsgBox("Bundle Value meet")
+                                ReferenceExist = True
+                                Exit For
+                            Else
+                                MsgBox("Not enough min Quantity")
+                            End If
+                        Else
+                            ReferenceExist = False
+                        End If
+                    Next
                 Next
+                Dim QtyCondMeet As Boolean = True
+                Dim BundlepromoID As String = Me.DataGridViewCoupons.Item(8, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+                Dim bundIds As String() = BundlepromoID.Split(New Char() {","c})
+                If ReferenceExist = True Then
+                    For Each getBundleids In bundIds
+                        For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+                            If POS.DataGridViewOrders.Rows(i).Cells(5).Value.ToString.Contains(getBundleids) = True Then
+                                MsgBox("Contains Bundle Promo")
+                                If POS.DataGridViewOrders.Rows(i).Cells(1).Value >= Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value Then
+                                    MsgBox("Bundle Promo Quantity meet")
+                                    Dim OrgPrice = POS.DataGridViewOrders.Rows(i).Cells(2).Value
+                                    Dim Qty = Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value
+                                    Dim TotalLess = OrgPrice * Qty
+                                    POS.DataGridViewOrders.Rows(i).Cells(3).Value = POS.DataGridViewOrders.Rows(i).Cells(3).Value - TotalLess
+                                    CouponLine += 10
+                                    CouponDesc = CouponDesc + "   (" & Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value & "x) " & GLOBAL_SELECT_FUNCTION_RETURN("loc_admin_products", "product_sku", "product_id = " & getBundleids, "product_sku") & vbNewLine
+                                Else
+                                    MsgBox("Bundle promo qty not meet")
+                                    QtyCondMeet = False
+                                    Exit For
+                                End If
+                            End If
+                        Next
+                        If QtyCondMeet = False Then
+                            For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+                                POS.DataGridViewOrders.Rows(i).Cells(3).Value = POS.DataGridViewOrders.Rows(i).Cells(1).Value * POS.DataGridViewOrders.Rows(i).Cells(2).Value
+                            Next
+                            CouponLine = 0
+                            CouponDesc = ""
+                            CouponApplied = False
+                        Else
+                            CouponApplied = True
+                            CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+                        End If
+                        POS.Label76.Text = SumOfColumnsToDecimal(datagrid:=POS.DataGridViewOrders, celltocompute:=3)
+                    Next
+                Else
+                    CouponApplied = False
+                    CouponName = ""
+                    MsgBox("Condition not meet")
+                End If
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-        'For index As Integer = 0 To DataGridViewCoupons.RowCount - 1
-        '    POS.TextBoxDISCOUNT.Text = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-        '    Dim result1 As Boolean = False
-        '    If POS.DataGridViewOrders.Rows(index).Cells(0).Value.ToString.Contains(Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString) = True Then
-        '        MsgBox("Product ID : " & POS.DataGridViewOrders.Rows(index).Cells(0).Value.ToString & " Product Base ID : " & Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString)
-        '        MsgBox("Product Count : " & POS.DataGridViewOrders.Rows(index).Cells(4).Value.ToString & " Minimum Qty : " & Me.DataGridViewCoupons.Item(7, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString)
-        '        result1 = True
-        '        If Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = Trim(String.Empty) Then
-        '            'Form1.Label10.Text = "FREE"
-        '        End If
-        '    End If
-        '    If result1 = True Then
-        '        If Form1.DataGridView2.Rows(index).Cells(0).Value.ToString.Contains(Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString) = True Then
-        '            Form1.DataGridView2.Rows(index).Cells(4).Value = Val(Form1.DataGridView2.Rows(index).Cells(4).Value.ToString) + 1
-        '            Form1.Label7.Text = Val(Form1.Label7.Text) + 1
-        '            'Its up either you combine the QTY or set it in a separate line - in my case i do not have receipt so i set it to the qty w/o affecting the price
-        '            ' You can set the free item in a new line within the receipt with zeroed out price
-        '            ' Ex : PB Waffle - - - - - 0.00
-        '        End If
-        '    End If
-        'Next
     End Sub
 
     'Private Sub couponbundle2()

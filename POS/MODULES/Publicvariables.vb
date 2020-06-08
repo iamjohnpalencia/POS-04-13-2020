@@ -46,6 +46,11 @@ Module publicVariables
     Public DiscountType As String
     Public modeoftransaction As Boolean
     Public SyncIsOnProcess As Boolean
+
+    Public CouponApplied As Boolean = False
+    Public CouponName As String
+    Public CouponDesc As String
+    Public CouponLine As Integer = 10
     '=============================================================================================================
     'POS INFORMATION
     Public ClientGuid As String

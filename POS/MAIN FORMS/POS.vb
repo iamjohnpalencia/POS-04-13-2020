@@ -572,7 +572,7 @@ Public Class POS
             Try
                 For i As Integer = 0 To DataGridViewOrders.Rows.Count - 1 Step +1
                     'printdoc.PrinterSettings = printdoc.PrinterSettings
-                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 450 + b)
+                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
                     b += 10
                 Next
                 PrintPreviewDialog1.Document = printdoc
@@ -605,6 +605,9 @@ Public Class POS
             TextBoxDISCOUNT.Text = 0
             transactionmode = "Walk-In"
             discounttype = "N/A"
+            CouponApplied = False
+            CouponName = ""
+            CouponDesc = ""
             '=================================================================================================
         Else
             MsgBox("Select Transaction First!")
@@ -760,15 +763,12 @@ Public Class POS
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
         With Me
             a = 0
-
             Dim font As New Font("Kelson Sans Normal", 7)
             Dim fontAddon As New Font("Kelson Sans Normal", 5)
             Dim font1 As New Font("Kelson Sans Normal", 7)
             Dim font2 As New Font("Kelson Sans Normal", 9)
             Dim font3 As New Font("Kelson Sans Normal", 11, FontStyle.Bold)
             Dim brandfont As New Font("Kelson Sans Normal", 8)
-
-
             'Dim font As New Font("Kelson Sans Normal", 7)
             'Dim fontAddon As New Font("Bahnschrift Light SemiCondensed", 5)
             'Dim font1 As New Font("Bahnschrift  SemiCondensed", 7)
@@ -796,7 +796,16 @@ Public Class POS
                 abc += 10
                 '=========================================================================================================================================================
             Next
-            a += 120
+            If CouponApplied = True Then
+                a += 100
+                SimpleTextDisplay(sender, e, CouponName & "(" & discounttype & ")", font, 0, a)
+                SimpleTextDisplay(sender, e, CouponDesc, font, 0, a + 10)
+                RightToLeftDisplay(sender, e, a + 52, "Total Discount", "P" & "0", font)
+                a += 40 + CouponLine
+            Else
+                a += 120
+            End If
+
             If Val(TextBoxDISCOUNT.Text) < 1 Then
                 'Total
                 Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)

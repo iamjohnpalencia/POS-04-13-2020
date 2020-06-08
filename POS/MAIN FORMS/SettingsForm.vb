@@ -765,7 +765,6 @@ Public Class SettingsForm
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-
     End Sub
 #End Region
 End Class
