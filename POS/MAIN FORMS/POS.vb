@@ -435,6 +435,9 @@ Public Class POS
         End If
 
         Label76.Text = SumOfColumnsToDecimal(DataGridViewOrders, 3)
+
+        'Label76.Text = Format(Val(Label76.Text), "##,##0.00")
+
         TextBoxGRANDTOTAL.Text = Label76.Text
         TextBoxSUBTOTAL.Text = Label76.Text
         'If DiscountType = "All" Then
@@ -784,7 +787,8 @@ Public Class POS
             Dim abc As Integer = 0
             For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
                 Dim rect1st As RectangleF = New RectangleF(10.0F, 115 + abc, 173.0F, 100.0F)
-                Dim price = Convert.ToInt32(.DataGridViewOrders.Rows(i).Cells(3).FormattedValue).ToString("0.00")
+                Dim price = Format(.DataGridViewOrders.Rows(i).Cells(3).Value, "##,##0.00")
+
                 '=========================================================================================================================================================
                 If DataGridViewOrders.Rows(i).Cells(7).Value.ToString = "Add-Ons" Then
                     e.Graphics.DrawString("     @" & .DataGridViewOrders.Rows(i).Cells(1).Value & " " & .DataGridViewOrders.Rows(i).Cells(6).Value, fontAddon, Brushes.Black, rect1st)
@@ -802,7 +806,6 @@ Public Class POS
                 SimpleTextDisplay(sender, e, CouponDesc, font, 0, a + 10)
                 a += 40 + CouponLine
                 RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & CouponTotal, font)
-
             Else
                 a += 120
             End If

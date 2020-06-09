@@ -181,7 +181,7 @@ Public Class CouponCode
                     For Each getBundleids In bundIds
                         For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
                             If POS.DataGridViewOrders.Rows(i).Cells(5).Value.ToString.Contains(getBundleids) = True Then
-                                TotalPrice += POS.DataGridViewOrders.Rows(i).Cells(3).Value
+                                TotalPrice += .DataGridViewOrders.Rows(i).Cells(3).Value
                                 If POS.DataGridViewOrders.Rows(i).Cells(1).Value >= Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value Then
                                     MsgBox("Bundle Promo Quantity meet")
                                     Dim OrgPrice = POS.DataGridViewOrders.Rows(i).Cells(2).Value
@@ -190,6 +190,7 @@ Public Class CouponCode
                                     CouponLine += 10
                                     CouponDesc = CouponDesc + "   (" & Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value & "x) " & GLOBAL_SELECT_FUNCTION_RETURN("loc_admin_products", "product_sku", "product_id = " & getBundleids, "product_sku") & vbNewLine
                                     POS.DataGridViewOrders.Rows(i).Cells(3).Value = POS.DataGridViewOrders.Rows(i).Cells(3).Value - TotalLess
+                                    POS.TextBoxDISCOUNT.Text = TotalPrice
                                 Else
                                     CouponDefault()
                                     MsgBox("Bundle promo qty not meet")
@@ -260,6 +261,7 @@ Public Class CouponCode
                                     POS.Label76.Text = SumOfColumnsToDecimal(datagrid:=POS.DataGridViewOrders, celltocompute:=3)
                                     BundpromoID = True
                                     CouponTotal = Me.DataGridViewCoupons.SelectedRows(0).Cells(3).Value
+                                    POS.TextBoxDISCOUNT.Text = CouponTotal
                                     Exit Try
                                 Else
                                     BundpromoID = False
@@ -298,9 +300,45 @@ Public Class CouponCode
                 Catch ex As Exception
                     MsgBox(ex.ToString)
                 End Try
+                Dim BundlepromoID As String = Me.DataGridViewCoupons.Item(8, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+                Dim bundIds As String() = BundlepromoID.Split(New Char() {","c})
+                Dim BundpromoID As Boolean = False
+                Dim CountQty As Integer = 0
                 If ReferenceExist = True Then
                     If TotalQtyCount >= Me.DataGridViewCoupons.Item(7, Me.DataGridViewCoupons.CurrentRow.Index).Value Then
-                        MsgBox("Cond Meet")
+                        Try
+                            For Each getBundleids In bundIds
+                                For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+                                    If POS.DataGridViewOrders.Rows(i).Cells(5).Value.ToString.Contains(getBundleids) = True Then
+                                        If POS.DataGridViewOrders.Rows(i).Cells(1).Value >= Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value Then
+                                            BundpromoID = True
+                                            Exit Try
+                                        Else
+                                            BundpromoID = False
+                                        End If
+                                    End If
+                                Next
+                            Next
+                        Catch ex As Exception
+
+                        End Try
+                        If BundpromoID = True Then
+                            For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+                                CountQty += .DataGridViewOrders.Rows(i).Cells(1).Value
+                                If CountQty = 3 Then
+                                    CouponLine += 10
+                                    CouponApplied = True
+                                    Dim Percentage = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value / 100
+                                    Dim DiscountedPrice = .DataGridViewOrders.Rows(i).Cells(2).Value * Percentage
+                                    .DataGridViewOrders.Rows(i).Cells(3).Value = .DataGridViewOrders.Rows(i).Cells(3).Value - DiscountedPrice
+                                    CouponTotal = DiscountedPrice
+                                    CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+                                    CouponDesc = CouponDesc + "   (" & Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value & "x) " & GLOBAL_SELECT_FUNCTION_RETURN("loc_admin_products", "product_sku", "product_id = " & .DataGridViewOrders.Rows(i).Cells(5).Value, "product_sku") & vbNewLine
+                                    .Label76.Text = SumOfColumnsToDecimal(datagrid:= .DataGridViewOrders, celltocompute:=3)
+                                    POS.TextBoxDISCOUNT.Text = CouponTotal
+                                End If
+                            Next
+                        End If
                     Else
                         MsgBox("Cond not meet")
                     End If

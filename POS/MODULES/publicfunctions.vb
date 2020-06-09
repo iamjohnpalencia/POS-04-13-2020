@@ -467,11 +467,18 @@ Module publicfunctions
     Dim total
     Public Function SumOfColumnsToDecimal(ByVal datagrid As DataGridView, ByVal celltocompute As Integer)
         With datagrid
-            total = (From row As DataGridViewRow In .Rows
-                     Where row.Cells(celltocompute).FormattedValue.ToString() <> String.Empty
-                     Select Convert.ToDecimal(row.Cells(celltocompute).FormattedValue)).Sum.ToString("0.00")
+            Dim sum As Decimal
+            For i As Integer = 0 To .Rows.Count() - 1 Step +1
+                sum = sum + .Rows(i).Cells(celltocompute).Value
+            Next
+            Return Format(sum, "##,##0.00")
         End With
-        Return total
+        'With datagrid
+        '    total = (From row As DataGridViewRow In .Rows
+        '             Where row.Cells(celltocompute).FormattedValue.ToString() <> String.Empty
+        '             Select Convert.ToDecimal(row.Cells(celltocompute).FormattedValue)).Sum.ToString("0.00")
+        'End With
+        'Return total
     End Function
     Public Function SumOfColumnsToInt(ByVal datagrid As DataGridView, ByVal celltocompute As Integer)
         Try

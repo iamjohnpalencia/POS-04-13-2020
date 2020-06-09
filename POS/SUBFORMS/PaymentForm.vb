@@ -37,7 +37,7 @@
         End With
     End Sub
     Private Sub TextBoxMONEY_TextChanged(sender As Object, e As EventArgs) Handles TextBoxMONEY.TextChanged
-        TextBoxCHANGE.Text = Val(TextBoxMONEY.Text) - Val(TextBoxTOTALPAY.Text)
+        TextBoxCHANGE.Text = Val(TextBoxMONEY.Text) - Format(TextBoxTOTALPAY.Text)
         If TextBoxMONEY.Text = "" Then
             TextBoxCHANGE.Text = ""
         End If
