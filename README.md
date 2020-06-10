@@ -178,3 +178,25 @@ May 24 9:00 AM to 5:00 PM
 * button for rewriting zread date to current date
 * zread add date function
 
+may 25 11:00 AM to 3:00 PM
+
+may 26 9:00 AM to 1:00 PM
+
+may 27 6:00 PM to 10:00 PM
+
+* zreading data
+
+may 28 9:00 PM to 1:00 PM
+
+* Leaderboards for/ Dashboard
+
+june 08 11:00 AM to 7:00 PM
+
+* Coupon(Bundle Fix(1))
+* Coupon(Bundle Fix(2))
+
+
+june 09 10:00 AM to 2:00 PM
+
+* Coupon(Bundle Fix(3) %)
+
