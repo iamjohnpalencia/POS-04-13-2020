@@ -42,6 +42,7 @@ Public Class SettingsForm
             loadindexdgv()
         ElseIf TabControl1.SelectedIndex = 4 Then
             loaddatagrid1()
+            loaddatagrid2()
         End If
     End Sub
 #Region "Partners"
@@ -760,8 +761,75 @@ Public Class SettingsForm
     End Sub
     Private Sub loaddatagrid1()
         Try
-            DataGridView1.Columns.Clear()
-            GLOBAL_SELECT_ALL_FUNCTION("loc_admin_products", "product_id, product_name, product_category, product_price", DataGridView1)
+            DataGridViewCProductList.Columns.Clear()
+            GLOBAL_SELECT_ALL_FUNCTION("loc_admin_products", "product_id, product_name, product_category", DataGridViewCProductList)
+            With DataGridViewCProductList
+                .Columns(0).HeaderText = "Product ID"
+                .Columns(1).HeaderText = "Product Name"
+                .Columns(2).HeaderText = "Category"
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub loaddatagrid2()
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION(table:="tbcoupon", fields:="*", datagrid:=DataGridView2)
+            With DataGridView2
+                .Columns(0).Visible = False
+                .Columns(3).Visible = False
+                .Columns(4).Visible = False
+                .Columns(6).Visible = False
+                .Columns(7).Visible = False
+                .Columns(8).Visible = False
+                .Columns(9).Visible = False
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub SaveCoupon()
+        Try
+            value = "('" & TextBoxCName.Text & "' , '" & TextBoxCDesc.Text & "', '" & TextBoxCDVal.Text & "', '" & TextBoxCRefVal.Text & "', '" & ComboBoxCType.Text & "' , '" & TextBoxCBBP.Text & "' , '" & TextBoxCBV.Text & "', '" & TextBoxCBP.Text & "', '" & TextBoxCBundVal.Text & "', '" & CDate(DateTimePickerCEffectiveDate.Value).ToShortDateString & "' , '" & CDate(DateTimePickerCExpiryDate.Value).ToShortDateString & "')"
+            GLOBAL_INSERT_FUNCTION("tbcoupon", "(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`)", value, "", "")
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+        SaveCoupon()
+        loaddatagrid2()
+    End Sub
+
+    Private Sub DataGridViewCProductList_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewCProductList.CellClick
+        Try
+            If TextBoxCBBP.Enabled = False Then
+                Exit Sub
+            Else
+                If TextBoxCBBP.Text = String.Empty Then
+                    TextBoxCBBP.Text = Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
+                    '  Dim newString As String
+                    '   newString = deleteDup(TextBox5.Text, TextBox5.Text)
+
+                    '   TextBox5.Text = newString
+                Else
+                    TextBoxCBBP.Text = TextBoxCBBP.Text & "," & Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
+                    ' Dim newString As String
+                    '  newString = deleteDup(TextBox5.Text, TextBox5.Text)
+
+                    ' TextBox5.Text = newString
+                End If
+            End If
+
+            If TextBoxCBP.Enabled = False Then
+                Exit Sub
+            Else
+                If TextBoxCBP.Text = String.Empty Then
+                    TextBoxCBP.Text = Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
+                Else
+                    TextBoxCBP.Text = TextBoxCBP.Text & "," & Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
+                End If
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

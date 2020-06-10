@@ -297,11 +297,11 @@ Partial Class POS
         Me.DataGridViewInv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewInv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewInv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column10, Me.Column11, Me.Column14, Me.Column15, Me.Column18})
-        Me.DataGridViewInv.Location = New System.Drawing.Point(6, 3)
+        Me.DataGridViewInv.Location = New System.Drawing.Point(9, 1)
         Me.DataGridViewInv.Name = "DataGridViewInv"
         Me.DataGridViewInv.ReadOnly = True
         Me.DataGridViewInv.RowHeadersVisible = False
-        Me.DataGridViewInv.Size = New System.Drawing.Size(206, 30)
+        Me.DataGridViewInv.Size = New System.Drawing.Size(199, 30)
         Me.DataGridViewInv.TabIndex = 65
         Me.DataGridViewInv.Visible = False
         '
@@ -366,7 +366,7 @@ Partial Class POS
         Me.Panel32.Controls.Add(Me.Label9)
         Me.Panel32.Controls.Add(Me.Label14)
         Me.Panel32.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel32.Location = New System.Drawing.Point(211, 0)
+        Me.Panel32.Location = New System.Drawing.Point(172, 0)
         Me.Panel32.Name = "Panel32"
         Me.Panel32.Size = New System.Drawing.Size(200, 34)
         Me.Panel32.TabIndex = 156
@@ -375,7 +375,7 @@ Partial Class POS
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Kelson Sans", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.Label13.ForeColor = System.Drawing.Color.Black
+        Me.Label13.ForeColor = System.Drawing.Color.White
         Me.Label13.Location = New System.Drawing.Point(146, 16)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(16, 18)
@@ -397,7 +397,7 @@ Partial Class POS
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Kelson Sans", 11.25!, System.Drawing.FontStyle.Bold)
-        Me.Label9.ForeColor = System.Drawing.Color.Black
+        Me.Label9.ForeColor = System.Drawing.Color.White
         Me.Label9.Location = New System.Drawing.Point(146, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(16, 18)
@@ -419,11 +419,11 @@ Partial Class POS
         '
         Me.LabelStorename.AutoSize = True
         Me.LabelStorename.Dock = System.Windows.Forms.DockStyle.Left
-        Me.LabelStorename.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelStorename.Font = New System.Drawing.Font("Kelson Sans", 20.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelStorename.ForeColor = System.Drawing.Color.Black
         Me.LabelStorename.Location = New System.Drawing.Point(0, 0)
         Me.LabelStorename.Name = "LabelStorename"
-        Me.LabelStorename.Size = New System.Drawing.Size(211, 31)
+        Me.LabelStorename.Size = New System.Drawing.Size(172, 33)
         Me.LabelStorename.TabIndex = 154
         Me.LabelStorename.Text = "STORE  NAME"
         '
@@ -1544,11 +1544,13 @@ Partial Class POS
         '
         Me.Column16.HeaderText = "ColumnCAT"
         Me.Column16.Name = "Column16"
+        Me.Column16.Visible = False
         '
         'Column17
         '
         Me.Column17.HeaderText = "ColumnCATOF"
         Me.Column17.Name = "Column17"
+        Me.Column17.Visible = False
         '
         'Column19
         '
