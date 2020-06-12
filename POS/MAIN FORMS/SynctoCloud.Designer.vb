@@ -45,10 +45,6 @@ Partial Class SynctoCloud
         Me.DataGridViewEXP = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTRAN = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.DataGridViewCUSTOMPRODUCTS = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewDepositSlip = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewDEPOSIT = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewMODEOFTRANSACTION = New System.Windows.Forms.DataGridView()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.Label49 = New System.Windows.Forms.Label()
         Me.Label48 = New System.Windows.Forms.Label()
@@ -92,16 +88,20 @@ Partial Class SynctoCloud
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.DataGridViewSYSLOG3 = New System.Windows.Forms.DataGridView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.DataGridViewDepositSlip = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewCUSTOMPRODUCTS = New System.Windows.Forms.DataGridView()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.DataGridViewTRANDET = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewRetrefdetails = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewLocusers = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewSYSLOG1 = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewSYSLOG2 = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewDEPOSIT = New System.Windows.Forms.DataGridView()
         Me.DataGridViewSYSLOG4 = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewLocusers = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewSYSLOG2 = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewMODEOFTRANSACTION = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewSYSLOG1 = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewSYSLOG3 = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewRetrefdetails = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTRANDET = New System.Windows.Forms.DataGridView()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewEXPDET, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,19 +110,19 @@ Partial Class SynctoCloud
         CType(Me.DataGridViewEXP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewTRAN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        CType(Me.DataGridViewCUSTOMPRODUCTS, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewDepositSlip, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewDEPOSIT, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewMODEOFTRANSACTION, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel16.SuspendLayout()
-        CType(Me.DataGridViewSYSLOG3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.DataGridViewTRANDET, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewRetrefdetails, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewLocusers, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewSYSLOG1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewSYSLOG2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewDepositSlip, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewCUSTOMPRODUCTS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewDEPOSIT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewSYSLOG4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewLocusers, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewSYSLOG2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewMODEOFTRANSACTION, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewSYSLOG1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewSYSLOG3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewRetrefdetails, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewTRANDET, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BackgroundWorker1
@@ -142,9 +142,9 @@ Partial Class SynctoCloud
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Kelson Sans", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(0, 648)
+        Me.Button2.Location = New System.Drawing.Point(0, 238)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(1213, 41)
+        Me.Button2.Size = New System.Drawing.Size(475, 41)
         Me.Button2.TabIndex = 25
         Me.Button2.Text = "SYNC"
         Me.Button2.UseVisualStyleBackColor = False
@@ -157,7 +157,7 @@ Partial Class SynctoCloud
         Me.DataGridView2.AllowUserToResizeRows = False
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2})
-        Me.DataGridView2.Location = New System.Drawing.Point(1004, 555)
+        Me.DataGridView2.Location = New System.Drawing.Point(21, 19)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.ReadOnly = True
         Me.DataGridView2.Size = New System.Drawing.Size(187, 90)
@@ -183,7 +183,7 @@ Partial Class SynctoCloud
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
-        Me.DataGridView1.Location = New System.Drawing.Point(811, 270)
+        Me.DataGridView1.Location = New System.Drawing.Point(21, 19)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.Size = New System.Drawing.Size(187, 90)
@@ -208,7 +208,7 @@ Partial Class SynctoCloud
         Me.DataGridViewEXPDET.AllowUserToResizeColumns = False
         Me.DataGridViewEXPDET.AllowUserToResizeRows = False
         Me.DataGridViewEXPDET.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewEXPDET.Location = New System.Drawing.Point(618, 363)
+        Me.DataGridViewEXPDET.Location = New System.Drawing.Point(21, 19)
         Me.DataGridViewEXPDET.Name = "DataGridViewEXPDET"
         Me.DataGridViewEXPDET.ReadOnly = True
         Me.DataGridViewEXPDET.Size = New System.Drawing.Size(187, 90)
@@ -224,9 +224,9 @@ Partial Class SynctoCloud
         Me.Panel7.Controls.Add(Me.Label4)
         Me.Panel7.Controls.Add(Me.ProgressBar1)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel7.Location = New System.Drawing.Point(0, 689)
+        Me.Panel7.Location = New System.Drawing.Point(0, 279)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(1213, 36)
+        Me.Panel7.Size = New System.Drawing.Size(475, 36)
         Me.Panel7.TabIndex = 24
         '
         'Label5
@@ -235,7 +235,7 @@ Partial Class SynctoCloud
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label5.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(1213, 0)
+        Me.Label5.Location = New System.Drawing.Point(475, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(0, 18)
         Me.Label5.TabIndex = 28
@@ -291,7 +291,7 @@ Partial Class SynctoCloud
         Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ProgressBar1.Location = New System.Drawing.Point(0, 25)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(1213, 11)
+        Me.ProgressBar1.Size = New System.Drawing.Size(475, 11)
         Me.ProgressBar1.TabIndex = 11
         '
         'DataGridViewINV
@@ -301,7 +301,7 @@ Partial Class SynctoCloud
         Me.DataGridViewINV.AllowUserToResizeColumns = False
         Me.DataGridViewINV.AllowUserToResizeRows = False
         Me.DataGridViewINV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewINV.Location = New System.Drawing.Point(618, 459)
+        Me.DataGridViewINV.Location = New System.Drawing.Point(21, 19)
         Me.DataGridViewINV.Name = "DataGridViewINV"
         Me.DataGridViewINV.ReadOnly = True
         Me.DataGridViewINV.Size = New System.Drawing.Size(187, 90)
@@ -327,7 +327,7 @@ Partial Class SynctoCloud
         Me.DataGridViewEXP.AllowUserToResizeColumns = False
         Me.DataGridViewEXP.AllowUserToResizeRows = False
         Me.DataGridViewEXP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewEXP.Location = New System.Drawing.Point(1004, 363)
+        Me.DataGridViewEXP.Location = New System.Drawing.Point(21, 19)
         Me.DataGridViewEXP.Name = "DataGridViewEXP"
         Me.DataGridViewEXP.ReadOnly = True
         Me.DataGridViewEXP.Size = New System.Drawing.Size(187, 90)
@@ -340,7 +340,7 @@ Partial Class SynctoCloud
         Me.DataGridViewTRAN.AllowUserToResizeColumns = False
         Me.DataGridViewTRAN.AllowUserToResizeRows = False
         Me.DataGridViewTRAN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewTRAN.Location = New System.Drawing.Point(618, 270)
+        Me.DataGridViewTRAN.Location = New System.Drawing.Point(21, 19)
         Me.DataGridViewTRAN.Name = "DataGridViewTRAN"
         Me.DataGridViewTRAN.ReadOnly = True
         Me.DataGridViewTRAN.Size = New System.Drawing.Size(187, 90)
@@ -349,84 +349,15 @@ Partial Class SynctoCloud
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.DataGridViewCUSTOMPRODUCTS)
-        Me.Panel1.Controls.Add(Me.DataGridViewDepositSlip)
         Me.Panel1.Controls.Add(Me.Button2)
-        Me.Panel1.Controls.Add(Me.DataGridView2)
-        Me.Panel1.Controls.Add(Me.DataGridViewDEPOSIT)
         Me.Panel1.Controls.Add(Me.Panel7)
-        Me.Panel1.Controls.Add(Me.DataGridViewMODEOFTRANSACTION)
         Me.Panel1.Controls.Add(Me.Panel16)
-        Me.Panel1.Controls.Add(Me.DataGridViewSYSLOG3)
-        Me.Panel1.Controls.Add(Me.DataGridViewTRAN)
         Me.Panel1.Controls.Add(Me.GroupBox1)
-        Me.Panel1.Controls.Add(Me.DataGridViewTRANDET)
-        Me.Panel1.Controls.Add(Me.DataGridViewINV)
-        Me.Panel1.Controls.Add(Me.DataGridViewEXP)
-        Me.Panel1.Controls.Add(Me.DataGridViewRetrefdetails)
-        Me.Panel1.Controls.Add(Me.DataGridViewEXPDET)
-        Me.Panel1.Controls.Add(Me.DataGridViewLocusers)
-        Me.Panel1.Controls.Add(Me.DataGridView1)
-        Me.Panel1.Controls.Add(Me.DataGridViewSYSLOG1)
-        Me.Panel1.Controls.Add(Me.DataGridViewSYSLOG2)
-        Me.Panel1.Controls.Add(Me.DataGridViewSYSLOG4)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1215, 727)
+        Me.Panel1.Size = New System.Drawing.Size(477, 317)
         Me.Panel1.TabIndex = 26
-        '
-        'DataGridViewCUSTOMPRODUCTS
-        '
-        Me.DataGridViewCUSTOMPRODUCTS.AllowUserToAddRows = False
-        Me.DataGridViewCUSTOMPRODUCTS.AllowUserToDeleteRows = False
-        Me.DataGridViewCUSTOMPRODUCTS.AllowUserToResizeColumns = False
-        Me.DataGridViewCUSTOMPRODUCTS.AllowUserToResizeRows = False
-        Me.DataGridViewCUSTOMPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewCUSTOMPRODUCTS.Location = New System.Drawing.Point(618, 555)
-        Me.DataGridViewCUSTOMPRODUCTS.Name = "DataGridViewCUSTOMPRODUCTS"
-        Me.DataGridViewCUSTOMPRODUCTS.ReadOnly = True
-        Me.DataGridViewCUSTOMPRODUCTS.Size = New System.Drawing.Size(187, 90)
-        Me.DataGridViewCUSTOMPRODUCTS.TabIndex = 43
-        '
-        'DataGridViewDepositSlip
-        '
-        Me.DataGridViewDepositSlip.AllowUserToAddRows = False
-        Me.DataGridViewDepositSlip.AllowUserToDeleteRows = False
-        Me.DataGridViewDepositSlip.AllowUserToResizeColumns = False
-        Me.DataGridViewDepositSlip.AllowUserToResizeRows = False
-        Me.DataGridViewDepositSlip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewDepositSlip.Location = New System.Drawing.Point(1004, 459)
-        Me.DataGridViewDepositSlip.Name = "DataGridViewDepositSlip"
-        Me.DataGridViewDepositSlip.ReadOnly = True
-        Me.DataGridViewDepositSlip.Size = New System.Drawing.Size(187, 90)
-        Me.DataGridViewDepositSlip.TabIndex = 45
-        '
-        'DataGridViewDEPOSIT
-        '
-        Me.DataGridViewDEPOSIT.AllowUserToAddRows = False
-        Me.DataGridViewDEPOSIT.AllowUserToDeleteRows = False
-        Me.DataGridViewDEPOSIT.AllowUserToResizeColumns = False
-        Me.DataGridViewDEPOSIT.AllowUserToResizeRows = False
-        Me.DataGridViewDEPOSIT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewDEPOSIT.Location = New System.Drawing.Point(811, 555)
-        Me.DataGridViewDEPOSIT.Name = "DataGridViewDEPOSIT"
-        Me.DataGridViewDEPOSIT.ReadOnly = True
-        Me.DataGridViewDEPOSIT.Size = New System.Drawing.Size(187, 90)
-        Me.DataGridViewDEPOSIT.TabIndex = 42
-        '
-        'DataGridViewMODEOFTRANSACTION
-        '
-        Me.DataGridViewMODEOFTRANSACTION.AllowUserToAddRows = False
-        Me.DataGridViewMODEOFTRANSACTION.AllowUserToDeleteRows = False
-        Me.DataGridViewMODEOFTRANSACTION.AllowUserToResizeColumns = False
-        Me.DataGridViewMODEOFTRANSACTION.AllowUserToResizeRows = False
-        Me.DataGridViewMODEOFTRANSACTION.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewMODEOFTRANSACTION.Location = New System.Drawing.Point(425, 270)
-        Me.DataGridViewMODEOFTRANSACTION.Name = "DataGridViewMODEOFTRANSACTION"
-        Me.DataGridViewMODEOFTRANSACTION.ReadOnly = True
-        Me.DataGridViewMODEOFTRANSACTION.Size = New System.Drawing.Size(187, 90)
-        Me.DataGridViewMODEOFTRANSACTION.TabIndex = 44
         '
         'Panel16
         '
@@ -475,7 +406,7 @@ Partial Class SynctoCloud
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel16.Location = New System.Drawing.Point(0, 0)
         Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(1213, 246)
+        Me.Panel16.Size = New System.Drawing.Size(475, 246)
         Me.Panel16.TabIndex = 41
         '
         'Label49
@@ -898,30 +829,60 @@ Partial Class SynctoCloud
         Me.Label8.TabIndex = 0
         Me.Label8.Text = "Daily Transaction"
         '
-        'DataGridViewSYSLOG3
-        '
-        Me.DataGridViewSYSLOG3.AllowUserToAddRows = False
-        Me.DataGridViewSYSLOG3.AllowUserToDeleteRows = False
-        Me.DataGridViewSYSLOG3.AllowUserToResizeColumns = False
-        Me.DataGridViewSYSLOG3.AllowUserToResizeRows = False
-        Me.DataGridViewSYSLOG3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewSYSLOG3.Location = New System.Drawing.Point(259, 403)
-        Me.DataGridViewSYSLOG3.Name = "DataGridViewSYSLOG3"
-        Me.DataGridViewSYSLOG3.ReadOnly = True
-        Me.DataGridViewSYSLOG3.Size = New System.Drawing.Size(235, 90)
-        Me.DataGridViewSYSLOG3.TabIndex = 28
-        '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.DataGridViewDepositSlip)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewCUSTOMPRODUCTS)
+        Me.GroupBox1.Controls.Add(Me.DataGridView2)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewDEPOSIT)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewEXP)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG4)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewLocusers)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG2)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewMODEOFTRANSACTION)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG1)
+        Me.GroupBox1.Controls.Add(Me.DataGridView1)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG3)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewEXPDET)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewTRAN)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewRetrefdetails)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewINV)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewTRANDET)
         Me.GroupBox1.Location = New System.Drawing.Point(6, 251)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(392, 148)
+        Me.GroupBox1.Size = New System.Drawing.Size(220, 148)
         Me.GroupBox1.TabIndex = 28
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
+        '
+        'DataGridViewDepositSlip
+        '
+        Me.DataGridViewDepositSlip.AllowUserToAddRows = False
+        Me.DataGridViewDepositSlip.AllowUserToDeleteRows = False
+        Me.DataGridViewDepositSlip.AllowUserToResizeColumns = False
+        Me.DataGridViewDepositSlip.AllowUserToResizeRows = False
+        Me.DataGridViewDepositSlip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewDepositSlip.Location = New System.Drawing.Point(21, 19)
+        Me.DataGridViewDepositSlip.Name = "DataGridViewDepositSlip"
+        Me.DataGridViewDepositSlip.ReadOnly = True
+        Me.DataGridViewDepositSlip.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewDepositSlip.TabIndex = 45
+        '
+        'DataGridViewCUSTOMPRODUCTS
+        '
+        Me.DataGridViewCUSTOMPRODUCTS.AllowUserToAddRows = False
+        Me.DataGridViewCUSTOMPRODUCTS.AllowUserToDeleteRows = False
+        Me.DataGridViewCUSTOMPRODUCTS.AllowUserToResizeColumns = False
+        Me.DataGridViewCUSTOMPRODUCTS.AllowUserToResizeRows = False
+        Me.DataGridViewCUSTOMPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewCUSTOMPRODUCTS.Location = New System.Drawing.Point(21, 19)
+        Me.DataGridViewCUSTOMPRODUCTS.Name = "DataGridViewCUSTOMPRODUCTS"
+        Me.DataGridViewCUSTOMPRODUCTS.ReadOnly = True
+        Me.DataGridViewCUSTOMPRODUCTS.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewCUSTOMPRODUCTS.TabIndex = 43
         '
         'Label6
         '
@@ -943,70 +904,18 @@ Partial Class SynctoCloud
         Me.Label7.TabIndex = 31
         Me.Label7.Text = "0"
         '
-        'DataGridViewTRANDET
+        'DataGridViewDEPOSIT
         '
-        Me.DataGridViewTRANDET.AllowUserToAddRows = False
-        Me.DataGridViewTRANDET.AllowUserToDeleteRows = False
-        Me.DataGridViewTRANDET.AllowUserToResizeColumns = False
-        Me.DataGridViewTRANDET.AllowUserToResizeRows = False
-        Me.DataGridViewTRANDET.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewTRANDET.Location = New System.Drawing.Point(811, 459)
-        Me.DataGridViewTRANDET.Name = "DataGridViewTRANDET"
-        Me.DataGridViewTRANDET.ReadOnly = True
-        Me.DataGridViewTRANDET.Size = New System.Drawing.Size(187, 90)
-        Me.DataGridViewTRANDET.TabIndex = 4
-        '
-        'DataGridViewRetrefdetails
-        '
-        Me.DataGridViewRetrefdetails.AllowUserToAddRows = False
-        Me.DataGridViewRetrefdetails.AllowUserToDeleteRows = False
-        Me.DataGridViewRetrefdetails.AllowUserToResizeColumns = False
-        Me.DataGridViewRetrefdetails.AllowUserToResizeRows = False
-        Me.DataGridViewRetrefdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewRetrefdetails.Location = New System.Drawing.Point(811, 363)
-        Me.DataGridViewRetrefdetails.Name = "DataGridViewRetrefdetails"
-        Me.DataGridViewRetrefdetails.ReadOnly = True
-        Me.DataGridViewRetrefdetails.Size = New System.Drawing.Size(187, 90)
-        Me.DataGridViewRetrefdetails.TabIndex = 42
-        '
-        'DataGridViewLocusers
-        '
-        Me.DataGridViewLocusers.AllowUserToAddRows = False
-        Me.DataGridViewLocusers.AllowUserToDeleteRows = False
-        Me.DataGridViewLocusers.AllowUserToResizeColumns = False
-        Me.DataGridViewLocusers.AllowUserToResizeRows = False
-        Me.DataGridViewLocusers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewLocusers.Location = New System.Drawing.Point(1004, 270)
-        Me.DataGridViewLocusers.Name = "DataGridViewLocusers"
-        Me.DataGridViewLocusers.ReadOnly = True
-        Me.DataGridViewLocusers.Size = New System.Drawing.Size(187, 90)
-        Me.DataGridViewLocusers.TabIndex = 26
-        '
-        'DataGridViewSYSLOG1
-        '
-        Me.DataGridViewSYSLOG1.AllowUserToAddRows = False
-        Me.DataGridViewSYSLOG1.AllowUserToDeleteRows = False
-        Me.DataGridViewSYSLOG1.AllowUserToResizeColumns = False
-        Me.DataGridViewSYSLOG1.AllowUserToResizeRows = False
-        Me.DataGridViewSYSLOG1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewSYSLOG1.Location = New System.Drawing.Point(17, 403)
-        Me.DataGridViewSYSLOG1.Name = "DataGridViewSYSLOG1"
-        Me.DataGridViewSYSLOG1.ReadOnly = True
-        Me.DataGridViewSYSLOG1.Size = New System.Drawing.Size(236, 90)
-        Me.DataGridViewSYSLOG1.TabIndex = 28
-        '
-        'DataGridViewSYSLOG2
-        '
-        Me.DataGridViewSYSLOG2.AllowUserToAddRows = False
-        Me.DataGridViewSYSLOG2.AllowUserToDeleteRows = False
-        Me.DataGridViewSYSLOG2.AllowUserToResizeColumns = False
-        Me.DataGridViewSYSLOG2.AllowUserToResizeRows = False
-        Me.DataGridViewSYSLOG2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewSYSLOG2.Location = New System.Drawing.Point(17, 499)
-        Me.DataGridViewSYSLOG2.Name = "DataGridViewSYSLOG2"
-        Me.DataGridViewSYSLOG2.ReadOnly = True
-        Me.DataGridViewSYSLOG2.Size = New System.Drawing.Size(236, 90)
-        Me.DataGridViewSYSLOG2.TabIndex = 28
+        Me.DataGridViewDEPOSIT.AllowUserToAddRows = False
+        Me.DataGridViewDEPOSIT.AllowUserToDeleteRows = False
+        Me.DataGridViewDEPOSIT.AllowUserToResizeColumns = False
+        Me.DataGridViewDEPOSIT.AllowUserToResizeRows = False
+        Me.DataGridViewDEPOSIT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewDEPOSIT.Location = New System.Drawing.Point(21, 19)
+        Me.DataGridViewDEPOSIT.Name = "DataGridViewDEPOSIT"
+        Me.DataGridViewDEPOSIT.ReadOnly = True
+        Me.DataGridViewDEPOSIT.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewDEPOSIT.TabIndex = 42
         '
         'DataGridViewSYSLOG4
         '
@@ -1015,17 +924,108 @@ Partial Class SynctoCloud
         Me.DataGridViewSYSLOG4.AllowUserToResizeColumns = False
         Me.DataGridViewSYSLOG4.AllowUserToResizeRows = False
         Me.DataGridViewSYSLOG4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewSYSLOG4.Location = New System.Drawing.Point(259, 499)
+        Me.DataGridViewSYSLOG4.Location = New System.Drawing.Point(21, 19)
         Me.DataGridViewSYSLOG4.Name = "DataGridViewSYSLOG4"
         Me.DataGridViewSYSLOG4.ReadOnly = True
-        Me.DataGridViewSYSLOG4.Size = New System.Drawing.Size(235, 90)
+        Me.DataGridViewSYSLOG4.Size = New System.Drawing.Size(187, 90)
         Me.DataGridViewSYSLOG4.TabIndex = 28
+        '
+        'DataGridViewLocusers
+        '
+        Me.DataGridViewLocusers.AllowUserToAddRows = False
+        Me.DataGridViewLocusers.AllowUserToDeleteRows = False
+        Me.DataGridViewLocusers.AllowUserToResizeColumns = False
+        Me.DataGridViewLocusers.AllowUserToResizeRows = False
+        Me.DataGridViewLocusers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewLocusers.Location = New System.Drawing.Point(21, 19)
+        Me.DataGridViewLocusers.Name = "DataGridViewLocusers"
+        Me.DataGridViewLocusers.ReadOnly = True
+        Me.DataGridViewLocusers.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewLocusers.TabIndex = 26
+        '
+        'DataGridViewSYSLOG2
+        '
+        Me.DataGridViewSYSLOG2.AllowUserToAddRows = False
+        Me.DataGridViewSYSLOG2.AllowUserToDeleteRows = False
+        Me.DataGridViewSYSLOG2.AllowUserToResizeColumns = False
+        Me.DataGridViewSYSLOG2.AllowUserToResizeRows = False
+        Me.DataGridViewSYSLOG2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewSYSLOG2.Location = New System.Drawing.Point(21, 19)
+        Me.DataGridViewSYSLOG2.Name = "DataGridViewSYSLOG2"
+        Me.DataGridViewSYSLOG2.ReadOnly = True
+        Me.DataGridViewSYSLOG2.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewSYSLOG2.TabIndex = 28
+        '
+        'DataGridViewMODEOFTRANSACTION
+        '
+        Me.DataGridViewMODEOFTRANSACTION.AllowUserToAddRows = False
+        Me.DataGridViewMODEOFTRANSACTION.AllowUserToDeleteRows = False
+        Me.DataGridViewMODEOFTRANSACTION.AllowUserToResizeColumns = False
+        Me.DataGridViewMODEOFTRANSACTION.AllowUserToResizeRows = False
+        Me.DataGridViewMODEOFTRANSACTION.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewMODEOFTRANSACTION.Location = New System.Drawing.Point(21, 19)
+        Me.DataGridViewMODEOFTRANSACTION.Name = "DataGridViewMODEOFTRANSACTION"
+        Me.DataGridViewMODEOFTRANSACTION.ReadOnly = True
+        Me.DataGridViewMODEOFTRANSACTION.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewMODEOFTRANSACTION.TabIndex = 44
+        '
+        'DataGridViewSYSLOG1
+        '
+        Me.DataGridViewSYSLOG1.AllowUserToAddRows = False
+        Me.DataGridViewSYSLOG1.AllowUserToDeleteRows = False
+        Me.DataGridViewSYSLOG1.AllowUserToResizeColumns = False
+        Me.DataGridViewSYSLOG1.AllowUserToResizeRows = False
+        Me.DataGridViewSYSLOG1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewSYSLOG1.Location = New System.Drawing.Point(21, 19)
+        Me.DataGridViewSYSLOG1.Name = "DataGridViewSYSLOG1"
+        Me.DataGridViewSYSLOG1.ReadOnly = True
+        Me.DataGridViewSYSLOG1.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewSYSLOG1.TabIndex = 28
+        '
+        'DataGridViewSYSLOG3
+        '
+        Me.DataGridViewSYSLOG3.AllowUserToAddRows = False
+        Me.DataGridViewSYSLOG3.AllowUserToDeleteRows = False
+        Me.DataGridViewSYSLOG3.AllowUserToResizeColumns = False
+        Me.DataGridViewSYSLOG3.AllowUserToResizeRows = False
+        Me.DataGridViewSYSLOG3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewSYSLOG3.Location = New System.Drawing.Point(21, 19)
+        Me.DataGridViewSYSLOG3.Name = "DataGridViewSYSLOG3"
+        Me.DataGridViewSYSLOG3.ReadOnly = True
+        Me.DataGridViewSYSLOG3.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewSYSLOG3.TabIndex = 28
+        '
+        'DataGridViewRetrefdetails
+        '
+        Me.DataGridViewRetrefdetails.AllowUserToAddRows = False
+        Me.DataGridViewRetrefdetails.AllowUserToDeleteRows = False
+        Me.DataGridViewRetrefdetails.AllowUserToResizeColumns = False
+        Me.DataGridViewRetrefdetails.AllowUserToResizeRows = False
+        Me.DataGridViewRetrefdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewRetrefdetails.Location = New System.Drawing.Point(21, 19)
+        Me.DataGridViewRetrefdetails.Name = "DataGridViewRetrefdetails"
+        Me.DataGridViewRetrefdetails.ReadOnly = True
+        Me.DataGridViewRetrefdetails.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewRetrefdetails.TabIndex = 42
+        '
+        'DataGridViewTRANDET
+        '
+        Me.DataGridViewTRANDET.AllowUserToAddRows = False
+        Me.DataGridViewTRANDET.AllowUserToDeleteRows = False
+        Me.DataGridViewTRANDET.AllowUserToResizeColumns = False
+        Me.DataGridViewTRANDET.AllowUserToResizeRows = False
+        Me.DataGridViewTRANDET.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewTRANDET.Location = New System.Drawing.Point(21, 19)
+        Me.DataGridViewTRANDET.Name = "DataGridViewTRANDET"
+        Me.DataGridViewTRANDET.ReadOnly = True
+        Me.DataGridViewTRANDET.Size = New System.Drawing.Size(187, 90)
+        Me.DataGridViewTRANDET.TabIndex = 4
         '
         'SynctoCloud
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1215, 727)
+        Me.ClientSize = New System.Drawing.Size(477, 317)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SynctoCloud"
@@ -1040,21 +1040,21 @@ Partial Class SynctoCloud
         CType(Me.DataGridViewEXP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewTRAN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
-        CType(Me.DataGridViewCUSTOMPRODUCTS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewDepositSlip, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewDEPOSIT, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewMODEOFTRANSACTION, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel16.ResumeLayout(False)
         Me.Panel16.PerformLayout()
-        CType(Me.DataGridViewSYSLOG3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.DataGridViewTRANDET, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewRetrefdetails, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewLocusers, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewSYSLOG1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewSYSLOG2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewDepositSlip, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewCUSTOMPRODUCTS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewDEPOSIT, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewSYSLOG4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewLocusers, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewSYSLOG2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewMODEOFTRANSACTION, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewSYSLOG1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewSYSLOG3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewRetrefdetails, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewTRANDET, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

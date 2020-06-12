@@ -797,8 +797,12 @@ Public Class SettingsForm
         End Try
     End Sub
     Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
-        SaveCoupon()
-        loaddatagrid2()
+        If TextboxIsEmpty(Panel19) = True Then
+            SaveCoupon()
+            loaddatagrid2()
+        Else
+            MsgBox("Fill up all blanks")
+        End If
     End Sub
 
     Private Sub DataGridViewCProductList_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewCProductList.CellClick

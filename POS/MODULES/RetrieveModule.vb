@@ -197,8 +197,9 @@ Module RetrieveModule
     End Function
     Public Function returnfullname(ByVal where As String)
         Try
-            cmd = New MySqlCommand("SELECT full_name FROM loc_users WHERE uniq_id = '" + where + "' ", LocalhostConn())
-            da = New MySqlDataAdapter(cmd)
+            Dim cmd As MySqlCommand = New MySqlCommand("SELECT full_name FROM loc_users WHERE uniq_id = '" + where + "' ", LocalhostConn())
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim dr As MySqlDataReader
             dr = cmd.ExecuteReader
             If dr.HasRows Then
                 While dr.Read()
@@ -208,6 +209,7 @@ Module RetrieveModule
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
+            LocalhostConn.close()
             da.Dispose()
         End Try
         Return full_name

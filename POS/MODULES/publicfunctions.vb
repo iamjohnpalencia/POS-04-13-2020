@@ -361,14 +361,14 @@ Module publicfunctions
         End Try
         Return dateformat
     End Function
-    Public Function ReturnThisDate()
+    Public Function ReturnThisDate(iDate As String)
         Try
-            Dim iDate As String = "2005-05-05"
             Dim oDate As DateTime = DateTime.Parse(iDate)
-            MsgBox(oDate.Year & "-" & oDate.Month & "-" & oDate.Day)
+            dateformat = oDate.Year & "-" & oDate.Month & "-" & oDate.Day
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
+        Return dateformat
     End Function
     Public Function returndateformat(datetoformat As String)
         Dim dateString, format As String

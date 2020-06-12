@@ -71,10 +71,10 @@ Public Class Inventory
             cloudconn.Close()
         End Try
     End Sub
-    Sub loadpanelstockadjustment()
+    Private Sub loadpanelstockadjustment()
         Try
             fields = "inventory_id, store_id, formula_id, product_ingredients, stock_quantity, stock_total, stock_status, date_modified"
-            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_pos_inventory", datagrid:=DataGridViewPanelStockAdjustment, errormessage:="", successmessage:="", fields:=fields, where:=" stock_status = 1 AND store_id=" & ClientStoreID)
+            GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory WHERE stock_status = 1 AND store_id = " & ClientStoreID, fields, DataGridViewPanelStockAdjustment)
             With DataGridViewPanelStockAdjustment
                 .Columns(0).Visible = False
                 .Columns(1).Visible = False
@@ -84,12 +84,10 @@ Public Class Inventory
                 .Columns(5).HeaderCell.Value = "Total Stocks"
                 .Columns(6).Visible = False
                 .Columns(7).Visible = False
-                '.Columns(7).HeaderCell.Value = "Date"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-
     End Sub
     Sub loadcomboboxingredients()
         GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX(table:="loc_pos_inventory", combobox:=ComboBoxDESC, errormessage:="", fields:="product_ingredients", successmessage:="")
@@ -99,7 +97,7 @@ Public Class Inventory
     Dim inv
     Public Sub selectingredients()
         Try
-            sql = "SELECT formula_id, serving_unit, serving_value FROM loc_product_formula WHERE product_ingredients ='" & ComboBoxDESC.Text & "'"
+            sql = "Select formula_id, serving_unit, serving_value FROM loc_product_formula WHERE product_ingredients ='" & ComboBoxDESC.Text & "'"
             cmd = New MySqlCommand
             With cmd
                 .CommandText = sql
@@ -151,6 +149,7 @@ Public Class Inventory
     End Sub
     Dim inventoryid
     Private Sub DataGridViewPanelStockAdjustment_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewPanelStockAdjustment.CellClick
+        rowindex()
         Try
             With DataGridViewPanelStockAdjustment
                 inventoryid = .SelectedRows(0).Cells(0).Value.ToString
@@ -201,9 +200,13 @@ Public Class Inventory
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Private Sub rowindex()
+        Label1.Text = DataGridViewPanelStockAdjustment.CurrentCell.RowIndex
+    End Sub
+
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         loadpanelstockadjustment()
-
+        '
         PanelSTOCKADJUSTMENT.Top = (Me.Height - PanelSTOCKADJUSTMENT.Height) / 5
         PanelSTOCKADJUSTMENT.Left = (Me.Width - PanelSTOCKADJUSTMENT.Width) / 4
         PanelSTOCKADJUSTMENT.Visible = True
@@ -303,9 +306,6 @@ Public Class Inventory
     Private Sub TextBoxENTRYQTY_TextChanged(sender As Object, e As EventArgs) Handles TextBoxENTRYQTY.TextChanged
         TextBoxENTRYTOTALQTY.Text = Val(TextBoxENTRYQTY.Text) + Val(TextBoxSTCKONHAND.Text)
     End Sub
-    Private Sub ComboBoxDESC_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxDESC.TextChanged
-
-    End Sub
     Private Sub TextBoxSTCKONHAND_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSTCKONHAND.TextChanged
         If TextBoxSTCKONHAND.Text = "" Then
             TextBoxENTRYQTY.ReadOnly = True
@@ -332,5 +332,8 @@ Public Class Inventory
             ComboBoxOutlets.Visible = False
             Label10.Visible = False
         End If
+    End Sub
+    Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
+
     End Sub
 End Class

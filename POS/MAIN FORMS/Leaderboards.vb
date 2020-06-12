@@ -25,17 +25,12 @@ Public Class Leaderboards
         TabControl1.TabPages(2).Text = "Transfers"
         TabControl1.TabPages(3).Text = "Logs"
         CheckForIllegalCrossThreadCalls = False
+        BackgroundWorker1.WorkerReportsProgress = True
+        BackgroundWorker1.WorkerSupportsCancellation = True
+        BackgroundWorker1.RunWorkerAsync()
 
-        loadbestseller()
-        LoadTransactions()
-        LoadExpenses()
-        LoadTransfers()
-        LoadLogs()
+        LoadChart("SELECT DATE_FORMAT(zreading, '%Y-%m-%d') as zreading, SUM(amountdue) FROM `loc_daily_transaction` WHERE DATE(CURRENT_DATE) - INTERVAL 7 DAY GROUP BY zreading DESC LIMIT 7", 0)
 
-        LoadChart("SELECT zreading,  SUM(amountdue) FROM `loc_daily_transaction` WHERE zreading > (zreading - INTERVAL 7 DAY) GROUP BY zreading", True)
-        LoadProducts()
-        'Panel3.Focus()
-        'LoadSales()
     End Sub
     Private Sub ProductList_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If BackgroundWorker1.WorkerSupportsCancellation = True Then
@@ -82,10 +77,10 @@ Public Class Leaderboards
                 .Columns(1).Width = 150
                 .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
 
-                .Columns(2).HeaderCell.Value = "Full Name"
+                .Columns(2).HeaderCell.Value = "Crew"
                 .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
 
-                .Columns(3).HeaderCell.Value = "Total Amount"
+                .Columns(3).HeaderCell.Value = "Total Sales"
                 .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
 
                 .Columns(4).HeaderCell.Value = "Status"
@@ -119,28 +114,6 @@ Public Class Leaderboards
     Private Sub LoadLogs()
         Try
             GLOBAL_SELECT_ALL_FUNCTION("loc_system_logs WHERE log_type <> 'STOCK TRANSFER'  GROUP BY log_date_time DESC LIMIT 10", "loc_systemlog_id  , log_date_time , crew_id , log_description", DatagridviewLogs)
-
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-    Private Sub LoadChart(sql As String, bool As Boolean)
-        Try
-            Chart1.Series("Series1").IsVisibleInLegend = False
-            'Dim sql = "SELECT zreading,  SUM(amountdue) FROM `loc_daily_transaction` WHERE zreading > (zreading - INTERVAL 7 DAY) GROUP BY zreading"
-            'Dim sql = "SELECT zreading,  SUM(amountdue) FROM `loc_daily_transaction` WHERE MONTH(zreading) > (MONTH(zreading)  - INTERVAL 1 MONTH) GROUP BY MONTH(zreading)"
-            'Dim sql = "SELECT YEAR(zreading), SUM(amountdue) FROM `loc_daily_transaction` WHERE YEAR(zreading) GROUP BY YEAR(zreading)"
-            'Dim sql = "SELECT YEAR(zreading), SUM(amountdue) FROM `loc_daily_transaction` WHERE YEAR(zreading) > (YEAR(zreading)  - INTERVAL 1 YEAR) GROUP BY YEAR(zreading)"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
-            Dim dr As MySqlDataReader
-            dr = cmd.ExecuteReader
-            While dr.Read
-                If bool = True Then
-                    Chart1.Series("Series1").Points.AddXY(dr.GetDateTime("zreading"), dr.GetInt64("SUM(amountdue)"))
-                Else
-                    Chart1.Series("Series1").Points.AddXY(dr.GetString("YEAR(zreading)"), dr.GetInt64("SUM(amountdue)"))
-                End If
-            End While
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -159,16 +132,101 @@ Public Class Leaderboards
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub RadioButton3_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton3.CheckedChanged
-        LoadChart("SELECT zreading,  SUM(amountdue) FROM `loc_daily_transaction` WHERE zreading > (zreading - INTERVAL 7 DAY) GROUP BY zreading", True)
+
+    Private Sub LoadChart(sql As String, trueorfalse As Integer)
+        Try
+            Chart1.Series.Clear()
+            Dim Series1 As New DataVisualization.Charting.Series
+            With Series1
+                .Name = "Series1"
+                .ChartType = SeriesChartType.Column
+            End With
+            Chart1.Series.Add(Series1)
+            Chart1.Invalidate()
+            Chart1.Series("Series1").IsVisibleInLegend = False
+            DataGridView1.Rows.Clear()
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim dt As DataTable = New DataTable
+            da.Fill(dt)
+            With DataGridView1
+                For Each row As DataRow In dt.Rows
+                    If trueorfalse = 0 Then
+                        .Rows.Add(row("zreading").ToString, row("SUM(amountdue)"))
+                    ElseIf trueorfalse = 1 Then
+                        .Rows.Add(row("YEAR(zreading)"), row("SUM(amountdue)"))
+                    ElseIf trueorfalse = 2 Then
+                        .Rows.Add(row("MONTHNAME(zreading)"), row("SUM(amountdue)"))
+                    End If
+                Next
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    Me.Chart1.Series("Series1").Points.AddXY(.Rows(i).Cells(0).Value.ToString, .Rows(i).Cells(1).Value.ToString)
+                Next
+            End With
+            LocalhostConn.close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
-    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
-        LoadChart("SELECT zreading,  SUM(amountdue) FROM `loc_daily_transaction` WHERE MONTH(zreading) > (MONTH(zreading)  - INTERVAL 1 MONTH) GROUP BY MONTH(zreading)", True)
+    Private Sub RadioButton3_Click(sender As Object, e As EventArgs) Handles RadioButtonWeek.Click
+        LoadChart("SELECT DATE_FORMAT(zreading, '%Y-%m-%d') as zreading, SUM(amountdue) FROM `loc_daily_transaction` WHERE DATE(CURRENT_DATE) - INTERVAL 7 DAY GROUP BY zreading DESC LIMIT 7", 0)
     End Sub
-    Private Sub RadioButton4_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton4.CheckedChanged
-        LoadChart("SELECT YEAR(zreading), SUM(amountdue) FROM `loc_daily_transaction` WHERE YEAR(zreading) GROUP BY YEAR(zreading)", False)
+    Private Sub RadioButton2_Click(sender As Object, e As EventArgs) Handles RadioButtonMonth.Click
+        LoadChart("SELECT MONTHNAME(zreading) , SUM(amountdue) FROM `loc_daily_transaction` WHERE DATE(zreading) - INTERVAL 1 MONTH GROUP BY MONTHNAME(zreading)", 2)
     End Sub
-    Private Sub RadioButton5_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton5.CheckedChanged
-        LoadChart("SELECT YEAR(zreading), SUM(amountdue) FROM `loc_daily_transaction` WHERE YEAR(zreading) > (YEAR(zreading)  - INTERVAL 1 YEAR) GROUP BY YEAR(zreading)", False)
+    Private Sub RadioButton4_Click(sender As Object, e As EventArgs) Handles RadioButtonYear.Click
+        LoadChart("SELECT YEAR(zreading), SUM(amountdue) FROM `loc_daily_transaction` WHERE YEAR(zreading) GROUP BY YEAR(zreading)", 1)
+    End Sub
+    Private Sub RadioButton5_Click(sender As Object, e As EventArgs) Handles RadioButtonLastYear.Click
+        LoadChart("SELECT YEAR(zreading), SUM(amountdue) FROM `loc_daily_transaction` WHERE YEAR(zreading) - INTERVAL 1 YEAR GROUP BY YEAR(zreading)", 1)
+    End Sub
+    Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+        Try
+            For i = 0 To 100
+                Thread.Sleep(30)
+                BackgroundWorker1.ReportProgress(i)
+                If i = 0 Then
+                    thread1 = New Thread(AddressOf LoadProducts)
+                    thread1.Start()
+                    threadList.Add(thread1)
+                    For Each t In threadList
+                        t.Join()
+                    Next
+                    thread1 = New Thread(AddressOf loadbestseller)
+                    thread1.Start()
+                    threadList.Add(thread1)
+                    For Each t In threadList
+                        t.Join()
+                    Next
+                    thread1 = New Thread(AddressOf LoadTransactions)
+                    thread1.Start()
+                    threadList.Add(thread1)
+                    For Each t In threadList
+                        t.Join()
+                    Next
+                    thread1 = New Thread(AddressOf LoadExpenses)
+                    thread1.Start()
+                    threadList.Add(thread1)
+                    For Each t In threadList
+                        t.Join()
+                    Next
+                    thread1 = New Thread(AddressOf LoadTransfers)
+                    thread1.Start()
+                    threadList.Add(thread1)
+                    For Each t In threadList
+                        t.Join()
+                    Next
+                    thread1 = New Thread(AddressOf LoadLogs)
+                    thread1.Start()
+                    threadList.Add(thread1)
+                    For Each t In threadList
+                        t.Join()
+                    Next
+                End If
+            Next
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 End Class
