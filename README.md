@@ -180,7 +180,11 @@ May 24 9:00 AM to 5:00 PM
 
 may 25 11:00 AM to 3:00 PM
 
+* Debugging
+
 may 26 9:00 AM to 1:00 PM
+
+* Debugging
 
 may 27 6:00 PM to 10:00 PM
 
