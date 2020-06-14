@@ -681,7 +681,7 @@ Public Class POS
                             ," & Active & "
                             ,'" & TEXTBOXMONEYVALUE & "'
                             ,'" & TEXTBOXCHANGEVALUE & "'
-                            ,'" & TextBoxGRANDTOTAL.Text & "'
+                            ,'" & Double.Parse(TextBoxGRANDTOTAL.Text) & "'
                             ,'" & ClientStoreID & "'
                             , " & VATABLE & "
                             , " & LESSVAT & "
