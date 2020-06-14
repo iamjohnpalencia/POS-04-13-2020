@@ -66,6 +66,8 @@ Public Class CouponCode
                 POS.LESSVAT = lessvat + lessvat1
                 POS.TextBoxGRANDTOTAL.Text = TotalDiscount + TotalDiscount1 + POS.Label76.Text - SeniorPWd - SeniorPWdDrinks
                 POS.TextBoxDISCOUNT.Text = Discount + Discount1
+                CouponDesc = ""
+                CouponTotal = Discount + Discount1
             Else
                 'Waffle
                 Dim GrossSale = SeniorPWd
@@ -81,13 +83,18 @@ Public Class CouponCode
                 POS.GRANDTOTALDISCOUNT = TotalDiscount + TotalDiscount1
                 POS.TextBoxGRANDTOTAL.Text = TotalDiscount + TotalDiscount1 + POS.Label76.Text - SeniorPWd - SeniorPWdDrinks
                 POS.TextBoxDISCOUNT.Text = Discount + Discount1
+                CouponDesc = ""
+                CouponTotal = Discount + Discount1
             End If
+
             CouponApplied = True
+            CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub couponfix1()
+        CouponDefault()
         Dim total As Integer = 0
         Dim tax As String = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
         If Val(POS.Label76.Text) >= DataGridViewCoupons.SelectedRows(0).Cells(3).Value Then
@@ -96,11 +103,19 @@ Public Class CouponCode
                 POS.Label73.Text = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                 POS.TextBoxDISCOUNT.Text = tax
                 POS.TextBoxGRANDTOTAL.Text = total - Val(POS.TextBoxDISCOUNT.Text)
+                CouponDesc = ""
+                CouponTotal = tax
             Next
         Else
             MsgBox("Gift certificate is greater than total")
+            POS.TextBoxGRANDTOTAL.Text = 0
+            POS.TextBoxDISCOUNT.Text = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+            CouponDesc = ""
+            CouponTotal = tax
         End If
         CouponApplied = True
+        CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+
     End Sub
 
     Private Sub couponfix2()
@@ -140,7 +155,7 @@ Public Class CouponCode
                     For Each getRefids In refIds
                         For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
                             If POS.DataGridViewOrders.Rows(i).Cells(5).Value.ToString.Contains(getRefids) = True Then
-                                If POS.DataGridViewOrders.Rows(i).Cells(1).ValueType >= Me.DataGridViewCoupons.Item(7, Me.DataGridViewCoupons.CurrentRow.Index).Value Then
+                                If POS.DataGridViewOrders.Rows(i).Cells(1).Value >= Me.DataGridViewCoupons.Item(7, Me.DataGridViewCoupons.CurrentRow.Index).Value Then
                                     ReferenceExist = True
                                     Exit Try
                                 Else

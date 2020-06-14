@@ -29,7 +29,7 @@ Public Class Leaderboards
         BackgroundWorker1.WorkerSupportsCancellation = True
         BackgroundWorker1.RunWorkerAsync()
 
-        LoadChart("SELECT DATE_FORMAT(zreading, '%Y-%m-%d') as zreading, SUM(amountdue) FROM `loc_daily_transaction` WHERE DATE(CURRENT_DATE) - INTERVAL 7 DAY GROUP BY zreading DESC LIMIT 7", 0)
+        LoadChart("SELECT DATE_FORMAT(zreading, '%Y-%m-%d') as zreading, SUM(total) FROM loc_daily_transaction_details WHERE DATE(CURRENT_DATE) - INTERVAL 7 DAY GROUP BY zreading DESC LIMIT 7", 0)
 
     End Sub
     Private Sub ProductList_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -152,11 +152,11 @@ Public Class Leaderboards
             With DataGridView1
                 For Each row As DataRow In dt.Rows
                     If trueorfalse = 0 Then
-                        .Rows.Add(row("zreading").ToString, row("SUM(amountdue)"))
+                        .Rows.Add(row("zreading").ToString, row("SUM(total)"))
                     ElseIf trueorfalse = 1 Then
-                        .Rows.Add(row("YEAR(zreading)"), row("SUM(amountdue)"))
+                        .Rows.Add(row("YEAR(zreading)"), row("SUM(total)"))
                     ElseIf trueorfalse = 2 Then
-                        .Rows.Add(row("MONTHNAME(zreading)"), row("SUM(amountdue)"))
+                        .Rows.Add(row("MONTHNAME(zreading)"), row("SUM(total)"))
                     End If
                 Next
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -169,16 +169,16 @@ Public Class Leaderboards
         End Try
     End Sub
     Private Sub RadioButton3_Click(sender As Object, e As EventArgs) Handles RadioButtonWeek.Click
-        LoadChart("SELECT DATE_FORMAT(zreading, '%Y-%m-%d') as zreading, SUM(amountdue) FROM `loc_daily_transaction` WHERE DATE(CURRENT_DATE) - INTERVAL 7 DAY GROUP BY zreading DESC LIMIT 7", 0)
+        LoadChart("SELECT DATE_FORMAT(zreading, '%Y-%m-%d') as zreading, SUM(total) FROM loc_daily_transaction_details WHERE DATE(CURRENT_DATE) - INTERVAL 7 DAY GROUP BY zreading DESC LIMIT 7", 0)
     End Sub
     Private Sub RadioButton2_Click(sender As Object, e As EventArgs) Handles RadioButtonMonth.Click
-        LoadChart("SELECT MONTHNAME(zreading) , SUM(amountdue) FROM `loc_daily_transaction` WHERE DATE(zreading) - INTERVAL 1 MONTH GROUP BY MONTHNAME(zreading)", 2)
+        LoadChart("SELECT MONTHNAME(zreading) , SUM(total) FROM `loc_daily_transaction_details` WHERE DATE(zreading) - INTERVAL 1 MONTH GROUP BY MONTHNAME(zreading)", 2)
     End Sub
     Private Sub RadioButton4_Click(sender As Object, e As EventArgs) Handles RadioButtonYear.Click
-        LoadChart("SELECT YEAR(zreading), SUM(amountdue) FROM `loc_daily_transaction` WHERE YEAR(zreading) GROUP BY YEAR(zreading)", 1)
+        LoadChart("SELECT YEAR(zreading), SUM(total) FROM `loc_daily_transaction_details` WHERE YEAR(zreading) GROUP BY YEAR(zreading)", 1)
     End Sub
     Private Sub RadioButton5_Click(sender As Object, e As EventArgs) Handles RadioButtonLastYear.Click
-        LoadChart("SELECT YEAR(zreading), SUM(amountdue) FROM `loc_daily_transaction` WHERE YEAR(zreading) - INTERVAL 1 YEAR GROUP BY YEAR(zreading)", 1)
+        LoadChart("SELECT YEAR(zreading), SUM(total) FROM `loc_daily_transaction_details` WHERE YEAR(zreading) - INTERVAL 1 YEAR GROUP BY YEAR(zreading)", 1)
     End Sub
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
