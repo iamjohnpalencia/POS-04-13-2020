@@ -40,7 +40,7 @@ Public Class Leaderboards
     Dim threadList As List(Of Thread) = New List(Of Thread)
     Private Sub loadbestseller()
         Try
-            GLOBAL_SELECT_ALL_FUNCTION("loc_daily_transaction_details  GROUP BY product_name ORDER by COUNT(transaction_number) DESC limit 10", "product_name ,  product_category, SUM(quantity) as Qty, price , Sum(total) as totalprice", DatagridviewTOPSELLER)
+            GLOBAL_SELECT_ALL_FUNCTION("loc_daily_transaction_details GROUP BY product_name ORDER by SUM(quantity) DESC limit 10", "product_name ,  product_category, SUM(quantity) as Qty, price , Sum(total) as totalprice", DatagridviewTOPSELLER)
             With DatagridviewTOPSELLER
                 .Columns(0).HeaderCell.Value = "Product Name"
                 .Columns(0).Width = 150

@@ -197,15 +197,11 @@ Module RetrieveModule
     End Function
     Public Function returnfullname(ByVal where As String)
         Try
-            Dim cmd As MySqlCommand = New MySqlCommand("SELECT full_name FROM loc_users WHERE uniq_id = '" + where + "' ", LocalhostConn())
+            Dim cmd As MySqlCommand = New MySqlCommand("SELECT full_name FROM loc_users WHERE uniq_id = '" + where + "' ", LocalhostConn)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
-            Dim dr As MySqlDataReader
-            dr = cmd.ExecuteReader
-            If dr.HasRows Then
-                While dr.Read()
-                    full_name = dr("full_name")
-                End While
-            End If
+            Dim dt As DataTable = New DataTable
+            da.Fill(dt)
+            full_name = dt(0)(0)
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally

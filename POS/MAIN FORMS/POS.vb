@@ -762,6 +762,21 @@ Public Class POS
             MsgBox(ex.ToString)
         End Try
         '=================================================================================================
+        Try
+            table = "loc_coupon_data"
+            fields = "(`transaction_number`, `coupon_name`, `coupon_type`, `coupon_desc`, `coupon_line`, `coupon_total`)"
+            value = "( '" & TextBoxMAXID.Text & "'
+                      ,'" & CouponName & "'
+                      , '" & discounttype & "'
+                      , '" & CouponDesc & "'
+                      , '" & CouponLine & "'
+                      , '" & CouponTotal & "')"
+            successmessage = ""
+            errormessage = ""
+            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
         With Me

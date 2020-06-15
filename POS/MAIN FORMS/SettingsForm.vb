@@ -4,6 +4,11 @@ Public Class SettingsForm
     Private Sub SettingsForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         POS.Enabled = True
     End Sub
+    Dim Partners As Boolean = False
+    Dim Formula As Boolean = False
+    Dim Returns As Boolean = False
+    Dim Coupons As Boolean = False
+    Dim Updates As Boolean = False
     Private Sub SettingsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabControl1.TabPages(0).Text = "General Settings"
         TabControl1.TabPages(1).Text = "Partners Transaction"
@@ -31,18 +36,30 @@ Public Class SettingsForm
     End Sub
     Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
         If TabControl1.SelectedIndex = 1 Then
-            TabControl3.TabPages(0).Text = "Available Partners"
-            TabControl3.TabPages(1).Text = "Deactivated Parners"
-            LoadPartners()
-            LoadPartnersDeact()
+            If Partners = False Then
+                TabControl3.TabPages(0).Text = "Available Partners"
+                TabControl3.TabPages(1).Text = "Deactivated Parners"
+                LoadPartners()
+                LoadPartnersDeact()
+                Partners = True
+            End If
         ElseIf TabControl1.SelectedIndex = 2 Then
-            loadformula()
+            If Formula = False Then
+                loadformula()
+                Formula = True
+            End If
         ElseIf TabControl1.SelectedIndex = 3 Then
-            loaditemreturn(True)
-            loadindexdgv()
+            If Returns = False Then
+                loaditemreturn(True)
+                loadindexdgv()
+                Returns = True
+            End If
         ElseIf TabControl1.SelectedIndex = 4 Then
-            loaddatagrid1()
-            loaddatagrid2()
+            If Coupons = False Then
+                loaddatagrid1()
+                loaddatagrid2()
+                Coupons = True
+            End If
         End If
     End Sub
 #Region "Partners"
