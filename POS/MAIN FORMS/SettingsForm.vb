@@ -1,9 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class SettingsForm
     Public AddOrEdit As Boolean
-    Private Sub SettingsForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        POS.Enabled = True
-    End Sub
     Dim Partners As Boolean = False
     Dim Formula As Boolean = False
     Dim Returns As Boolean = False
@@ -23,6 +20,9 @@ Public Class SettingsForm
         LoadAdditionalSettings()
         LoadDevInfo()
         LoadAutoBackup()
+    End Sub
+    Private Sub SettingsForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        POS.Enabled = True
     End Sub
     Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
         If TabControl1.SelectedIndex = 1 Then
@@ -887,7 +887,11 @@ Public Class SettingsForm
         End Try
     End Sub
     Private Sub ButtonExport_Click(sender As Object, e As EventArgs) Handles ButtonExport.Click
-        BackupDatabase()
+        If ClientRole = "Crew" Then
+            MsgBox("You dont have administrator rights.")
+        Else
+            BackupDatabase()
+        End If
     End Sub
     Private Sub BackupDatabase()
         Try
@@ -898,8 +902,12 @@ Public Class SettingsForm
         End Try
     End Sub
     Private Sub ButtonImport_Click(sender As Object, e As EventArgs) Handles ButtonImport.Click
-        If (OpenFileDialog1.ShowDialog = DialogResult.OK) Then
-            TextBoxLocalRestorePath.Text = OpenFileDialog1.FileName
+        If ClientRole = "Crew" Then
+            MsgBox("You dont have administrator rights.")
+        Else
+            If (OpenFileDialog1.ShowDialog = DialogResult.OK) Then
+                TextBoxLocalRestorePath.Text = OpenFileDialog1.FileName
+            End If
         End If
     End Sub
     Private Function Connect() As MySqlConnection
@@ -927,7 +935,12 @@ Public Class SettingsForm
         RestoreDatabase()
     End Sub
     Private Sub ButtonMaintenance_Click(sender As Object, e As EventArgs) Handles ButtonMaintenance.Click
-        RepairDatabase()
+        If ClientRole = "Crew" Then
+            MsgBox("You dont have administrator rights.")
+        Else
+            RepairDatabase()
+        End If
+
     End Sub
     Private Sub RepairDatabase()
         Try
@@ -937,11 +950,58 @@ Public Class SettingsForm
         End Try
     End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles ButtonOptimizeDB.Click
-        OptimizeDatabase()
+        If ClientRole = "Crew" Then
+            MsgBox("You dont have administrator rights.")
+        Else
+            OptimizeDatabase()
+        End If
     End Sub
     Private Sub OptimizeDatabase()
         Try
             Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqlcheck -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " -o --databases " & TextBoxLocalDatabase.Text)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub ButtonDatabaseReset_Click(sender As Object, e As EventArgs) Handles ButtonDatabaseReset.Click
+        If ClientRole = "Crew" Then
+            MsgBox("You dont have administrator rights.")
+        Else
+
+        End If
+    End Sub
+    Private Function TestDBConnection(server, username, password, database, port) As MySqlConnection
+        Dim testcon As MySqlConnection = New MySqlConnection
+        Try
+            testcon.ConnectionString = "server=" & server & ";user id=" & username & ";password=" & password & ";database=" & database & ";port=" & port & ""
+            testcon.Open()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return testcon
+    End Function
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles ButtonTestLocCon.Click
+        Try
+            Dim Con = TestDBConnection(TextBoxLocalServer.Text, TextBoxLocalUsername.Text, TextBoxLocalPassword.Text, TextBoxLocalDatabase.Text, TextBoxLocalPort.Text)
+            If Con.State = ConnectionState.Open Then
+                MsgBox("Connected successfully!")
+            Else
+                MsgBox("Cannot connect to server.")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub ButtonTestCloudCon_Click(sender As Object, e As EventArgs) Handles ButtonTestCloudCon.Click
+        Try
+            Dim Con = TestDBConnection(TextBoxCloudServer.Text, TextBoxCloudUsername.Text, TextBoxCloudPassword.Text, TextBoxCloudDatabase.Text, TextBoxCloudPort.Text)
+            If Con.State = ConnectionState.Open Then
+                MsgBox("Connected successfully!")
+            Else
+                MsgBox("Cannot connect to server.")
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
