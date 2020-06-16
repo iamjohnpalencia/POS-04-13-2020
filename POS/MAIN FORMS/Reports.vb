@@ -629,11 +629,8 @@ Public Class Reports
         Dim zeroratedsales = sum("zero_rated", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
         Dim vatablesales = sum("vatable", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
         Dim DepositSlip = sum("amount", "loc_deposit WHERE date(transaction_date) = '" & ZreadDateFormat & "' ")
-
         'Dim BegBalance = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ORDER by log_date_time DESC LIMIT 1")
-
         Dim CashTotal = CashInDrawer
-
         'Select Case sum(CAST(log_description As Decimal(10, 2))) As CashierBal FROM `loc_system_logs` WHERE log_type In ('BG-1','BG-2','BG-3','BG-4')
         Dim NetSales = GrossSale - LessVat - TotalDiscount
         CenterTextDisplay(sender, e, ClientBrand.ToUpper, brandfont, 10)
@@ -661,16 +658,16 @@ Public Class Reports
         '============================================================================================================================
         SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 110)
         '============================================================================================================================
-        RightToLeftDisplay(sender, e, 140, "TERMINAL N0.", "1", font)
+        RightToLeftDisplay(sender, e, 140, "TERMINAL N0.", S_Terminal_No, font)
         RightToLeftDisplay(sender, e, 155, "GROSS", GrossSale, font)
         RightToLeftDisplay(sender, e, 165, "LESS VAT (VE)", LessVat & "-", font)
-        RightToLeftDisplay(sender, e, 175, "LESS VAT DIPLOMAT", "0", font)
-        RightToLeftDisplay(sender, e, 185, "LESS VAT (OTHER)", "0", font)
-        RightToLeftDisplay(sender, e, 195, "ADD VAT", "0", font)
+        RightToLeftDisplay(sender, e, 175, "LESS VAT DIPLOMAT", "IDK", font)
+        RightToLeftDisplay(sender, e, 185, "LESS VAT (OTHER)", "IDK", font)
+        RightToLeftDisplay(sender, e, 195, "ADD VAT", "IDK", font)
         RightToLeftDisplay(sender, e, 205, "DAILY SALES", DailySales, font)
         '============================================================================================================================
-        RightToLeftDisplay(sender, e, 220, "VAT AMOUNT", "1", font)
-        RightToLeftDisplay(sender, e, 230, "LOCAL GOV'T TAX", "3000.00", font)
+        RightToLeftDisplay(sender, e, 220, "VAT AMOUNT", "IDK", font)
+        RightToLeftDisplay(sender, e, 230, "LOCAL GOV'T TAX", "IDK", font)
         RightToLeftDisplay(sender, e, 240, "VATABLE SALES", vatablesales, font)
         RightToLeftDisplay(sender, e, 250, "ZERO RATED SALES", zeroratedsales, font)
         RightToLeftDisplay(sender, e, 260, "VAT EXEMPT SALES", VatExempt, font)
@@ -678,23 +675,23 @@ Public Class Reports
         RightToLeftDisplay(sender, e, 280, "NET SALES", NetSales, font)
         '============================================================================================================================
         RightToLeftDisplay(sender, e, 295, "CASH TOTAL", CashTotal, font)
-        RightToLeftDisplay(sender, e, 305, "CREDIT CARD", "0", font)
-        RightToLeftDisplay(sender, e, 315, "DEBIT CARD", "0", font)
-        RightToLeftDisplay(sender, e, 325, "MISC/CHEQUES", "0", font)
-        RightToLeftDisplay(sender, e, 335, "GIFT CARD(GC)", "0", font)
-        RightToLeftDisplay(sender, e, 345, "A/R", "0", font)
-        RightToLeftDisplay(sender, e, 355, "OTHERS", "0", font)
+        RightToLeftDisplay(sender, e, 305, "CREDIT CARD", "N/A", font)
+        RightToLeftDisplay(sender, e, 315, "DEBIT CARD", "N/A", font)
+        RightToLeftDisplay(sender, e, 325, "MISC/CHEQUES", "N/A", font)
+        RightToLeftDisplay(sender, e, 335, "GIFT CARD(GC)", "N/A", font)
+        RightToLeftDisplay(sender, e, 345, "A/R", "N/A", font)
+        RightToLeftDisplay(sender, e, 355, "OTHERS", "N/A", font)
         RightToLeftDisplay(sender, e, 365, "DEPOSIT", DepositSlip, font)
         RightToLeftDisplay(sender, e, 375, "CASH IN DRAWER", CashInDrawer, font)
         '============================================================================================================================
         RightToLeftDisplay(sender, e, 390, "ITEM VOID E/C", ReturnsExchange, font)
         RightToLeftDisplay(sender, e, 400, "TRANSACTION VOID", ReturnsExchange, font)
         RightToLeftDisplay(sender, e, 410, "TRANSACTION CANCEL", ReturnsExchange, font)
-        RightToLeftDisplay(sender, e, 420, "DIMPLOMAT", "IDK", font)
+        RightToLeftDisplay(sender, e, 420, "DIMPLOMAT", "N/A", font)
         RightToLeftDisplay(sender, e, 430, "TOTAL DISCOUNTS", TotalDiscount, font)
         RightToLeftDisplay(sender, e, 440, " - SENIOR CITIZEN", SrDiscount, font)
-        RightToLeftDisplay(sender, e, 450, "TAKE OUT CHARGE", "IDK", font)
-        RightToLeftDisplay(sender, e, 460, "DELIVERY CHARGE", "IDK", font)
+        RightToLeftDisplay(sender, e, 450, "TAKE OUT CHARGE", "N/A", font)
+        RightToLeftDisplay(sender, e, 460, "DELIVERY CHARGE", "N/A", font)
         RightToLeftDisplay(sender, e, 470, "RETURNS EXCHANGE", ReturnsExchange, font)
         RightToLeftDisplay(sender, e, 480, "RETURNS REFUND", ReturnsTotal, font)
         '============================================================================================================================
@@ -740,6 +737,7 @@ Public Class Reports
                 cmd.Dispose()
                 If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
                     ButtonZread.Enabled = False
+                    Button6.Enabled = False
                 End If
             Else
                 MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)

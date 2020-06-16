@@ -34,12 +34,12 @@ Partial Class SettingsForm
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -78,7 +78,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Panel8 = New System.Windows.Forms.Panel()
-        Me.Button7 = New System.Windows.Forms.Button()
+        Me.ButtonOptimizeDB = New System.Windows.Forms.Button()
         Me.ButtonDatabaseReset = New System.Windows.Forms.Button()
         Me.ButtonMaintenance = New System.Windows.Forms.Button()
         Me.Label64 = New System.Windows.Forms.Label()
@@ -214,29 +214,34 @@ Partial Class SettingsForm
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel11 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox18 = New System.Windows.Forms.GroupBox()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.GroupBox17 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewCProductList = New System.Windows.Forms.DataGridView()
+        Me.GroupBox19 = New System.Windows.Forms.GroupBox()
+        Me.Panel19 = New System.Windows.Forms.Panel()
+        Me.TextBoxCDesc = New System.Windows.Forms.TextBox()
         Me.DateTimePickerCExpiryDate = New System.Windows.Forms.DateTimePicker()
+        Me.Label46 = New System.Windows.Forms.Label()
+        Me.TextBoxCName = New System.Windows.Forms.TextBox()
         Me.DateTimePickerCEffectiveDate = New System.Windows.Forms.DateTimePicker()
-        Me.ComboBoxCType = New System.Windows.Forms.ComboBox()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
-        Me.Label34 = New System.Windows.Forms.Label()
+        Me.ComboBoxCType = New System.Windows.Forms.ComboBox()
         Me.Label37 = New System.Windows.Forms.Label()
-        Me.Label38 = New System.Windows.Forms.Label()
-        Me.Label40 = New System.Windows.Forms.Label()
-        Me.Label42 = New System.Windows.Forms.Label()
-        Me.Label43 = New System.Windows.Forms.Label()
-        Me.Label44 = New System.Windows.Forms.Label()
-        Me.Label45 = New System.Windows.Forms.Label()
-        Me.Label46 = New System.Windows.Forms.Label()
-        Me.TextBoxCDesc = New System.Windows.Forms.TextBox()
-        Me.TextBoxCRefVal = New System.Windows.Forms.TextBox()
-        Me.TextBoxCBundVal = New System.Windows.Forms.TextBox()
-        Me.TextBoxCBP = New System.Windows.Forms.TextBox()
-        Me.TextBoxCBV = New System.Windows.Forms.TextBox()
-        Me.TextBoxCBBP = New System.Windows.Forms.TextBox()
         Me.TextBoxCDVal = New System.Windows.Forms.TextBox()
-        Me.TextBoxCName = New System.Windows.Forms.TextBox()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.TextBoxCRefVal = New System.Windows.Forms.TextBox()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.TextBoxCBP = New System.Windows.Forms.TextBox()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.TextBoxCBundVal = New System.Windows.Forms.TextBox()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.TextBoxCBBP = New System.Windows.Forms.TextBox()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.TextBoxCBV = New System.Windows.Forms.TextBox()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.Label44 = New System.Windows.Forms.Label()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.Panel24 = New System.Windows.Forms.Panel()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -248,11 +253,8 @@ Partial Class SettingsForm
         Me.Label52 = New System.Windows.Forms.Label()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Label51 = New System.Windows.Forms.Label()
-        Me.Panel19 = New System.Windows.Forms.Panel()
-        Me.GroupBox17 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox18 = New System.Windows.Forms.GroupBox()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.GroupBox19 = New System.Windows.Forms.GroupBox()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.TextBoxLocalRestorePath = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -314,16 +316,16 @@ Partial Class SettingsForm
         Me.TabPage5.SuspendLayout()
         Me.TableLayoutPanel11.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
+        Me.GroupBox18.SuspendLayout()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox17.SuspendLayout()
         CType(Me.DataGridViewCProductList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox19.SuspendLayout()
+        Me.Panel19.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.TabPage6.SuspendLayout()
         Me.Panel20.SuspendLayout()
-        Me.Panel19.SuspendLayout()
-        Me.GroupBox17.SuspendLayout()
-        Me.GroupBox18.SuspendLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox19.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -773,7 +775,7 @@ Partial Class SettingsForm
         'Panel8
         '
         Me.Panel8.AutoScroll = True
-        Me.Panel8.Controls.Add(Me.Button7)
+        Me.Panel8.Controls.Add(Me.ButtonOptimizeDB)
         Me.Panel8.Controls.Add(Me.ButtonDatabaseReset)
         Me.Panel8.Controls.Add(Me.ButtonMaintenance)
         Me.Panel8.Controls.Add(Me.Label64)
@@ -785,15 +787,15 @@ Partial Class SettingsForm
         Me.Panel8.Size = New System.Drawing.Size(475, 113)
         Me.Panel8.TabIndex = 0
         '
-        'Button7
+        'ButtonOptimizeDB
         '
-        Me.Button7.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Button7.Location = New System.Drawing.Point(59, 84)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(360, 23)
-        Me.Button7.TabIndex = 30
-        Me.Button7.Text = "Optimize"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.ButtonOptimizeDB.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ButtonOptimizeDB.Location = New System.Drawing.Point(59, 84)
+        Me.ButtonOptimizeDB.Name = "ButtonOptimizeDB"
+        Me.ButtonOptimizeDB.Size = New System.Drawing.Size(360, 23)
+        Me.ButtonOptimizeDB.TabIndex = 30
+        Me.ButtonOptimizeDB.Text = "Optimize"
+        Me.ButtonOptimizeDB.UseVisualStyleBackColor = True
         '
         'ButtonDatabaseReset
         '
@@ -862,6 +864,7 @@ Partial Class SettingsForm
         '
         'Panel7
         '
+        Me.Panel7.Controls.Add(Me.TextBoxLocalRestorePath)
         Me.Panel7.Controls.Add(Me.ButtonImport)
         Me.Panel7.Controls.Add(Me.ButtonExport)
         Me.Panel7.Controls.Add(Me.Label61)
@@ -874,7 +877,7 @@ Partial Class SettingsForm
         'ButtonImport
         '
         Me.ButtonImport.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.ButtonImport.Location = New System.Drawing.Point(57, 64)
+        Me.ButtonImport.Location = New System.Drawing.Point(59, 64)
         Me.ButtonImport.Name = "ButtonImport"
         Me.ButtonImport.Size = New System.Drawing.Size(179, 23)
         Me.ButtonImport.TabIndex = 27
@@ -896,7 +899,7 @@ Partial Class SettingsForm
         Me.Label61.AutoSize = True
         Me.Label61.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.Label61.ForeColor = System.Drawing.Color.Black
-        Me.Label61.Location = New System.Drawing.Point(100, 46)
+        Me.Label61.Location = New System.Drawing.Point(79, 15)
         Me.Label61.Name = "Label61"
         Me.Label61.Size = New System.Drawing.Size(295, 15)
         Me.Label61.TabIndex = 25
@@ -996,10 +999,10 @@ Partial Class SettingsForm
         'TabPage12
         '
         Me.TabPage12.Controls.Add(Me.Panel10)
-        Me.TabPage12.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage12.Location = New System.Drawing.Point(4, 28)
         Me.TabPage12.Name = "TabPage12"
         Me.TabPage12.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage12.Size = New System.Drawing.Size(992, 449)
+        Me.TabPage12.Size = New System.Drawing.Size(992, 443)
         Me.TabPage12.TabIndex = 1
         Me.TabPage12.Text = "TabPage12"
         Me.TabPage12.UseVisualStyleBackColor = True
@@ -1010,7 +1013,7 @@ Partial Class SettingsForm
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel10.Location = New System.Drawing.Point(3, 3)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(986, 443)
+        Me.Panel10.Size = New System.Drawing.Size(986, 437)
         Me.Panel10.TabIndex = 0
         '
         'TableLayoutPanel9
@@ -1027,7 +1030,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel9.RowCount = 1
         Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel9.Size = New System.Drawing.Size(986, 443)
+        Me.TableLayoutPanel9.Size = New System.Drawing.Size(986, 437)
         Me.TableLayoutPanel9.TabIndex = 282
         '
         'GroupBox12
@@ -1046,7 +1049,7 @@ Partial Class SettingsForm
         Me.GroupBox12.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox12.Location = New System.Drawing.Point(331, 3)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(322, 437)
+        Me.GroupBox12.Size = New System.Drawing.Size(322, 431)
         Me.GroupBox12.TabIndex = 296
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "Additional Settings"
@@ -1186,7 +1189,7 @@ Partial Class SettingsForm
         Me.GroupBox11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox11.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(322, 437)
+        Me.GroupBox11.Size = New System.Drawing.Size(322, 431)
         Me.GroupBox11.TabIndex = 295
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "Developer Information"
@@ -2460,6 +2463,64 @@ Partial Class SettingsForm
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "Bank List"
         '
+        'GroupBox18
+        '
+        Me.GroupBox18.Controls.Add(Me.DataGridView2)
+        Me.GroupBox18.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox18.Location = New System.Drawing.Point(416, 21)
+        Me.GroupBox18.Name = "GroupBox18"
+        Me.GroupBox18.Size = New System.Drawing.Size(575, 153)
+        Me.GroupBox18.TabIndex = 10
+        Me.GroupBox18.TabStop = False
+        Me.GroupBox18.Text = "Coupon List"
+        '
+        'DataGridView2
+        '
+        Me.DataGridView2.AllowUserToAddRows = False
+        Me.DataGridView2.AllowUserToDeleteRows = False
+        Me.DataGridView2.AllowUserToResizeColumns = False
+        Me.DataGridView2.AllowUserToResizeRows = False
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.White
+        Me.DataGridView2.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
+        Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView2.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView2.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle15
+        Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridView2.EnableHeadersVisualStyles = False
+        Me.DataGridView2.Location = New System.Drawing.Point(3, 21)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.Size = New System.Drawing.Size(569, 129)
+        Me.DataGridView2.TabIndex = 8
+        '
+        'GroupBox17
+        '
+        Me.GroupBox17.Controls.Add(Me.DataGridViewCProductList)
+        Me.GroupBox17.Dock = System.Windows.Forms.DockStyle.Left
+        Me.GroupBox17.Location = New System.Drawing.Point(3, 21)
+        Me.GroupBox17.Name = "GroupBox17"
+        Me.GroupBox17.Size = New System.Drawing.Size(413, 153)
+        Me.GroupBox17.TabIndex = 9
+        Me.GroupBox17.TabStop = False
+        Me.GroupBox17.Text = "Product List"
+        '
         'DataGridViewCProductList
         '
         Me.DataGridViewCProductList.AllowUserToAddRows = False
@@ -2496,6 +2557,55 @@ Partial Class SettingsForm
         Me.DataGridViewCProductList.Size = New System.Drawing.Size(407, 129)
         Me.DataGridViewCProductList.TabIndex = 7
         '
+        'GroupBox19
+        '
+        Me.GroupBox19.Controls.Add(Me.Panel19)
+        Me.GroupBox19.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupBox19.Location = New System.Drawing.Point(3, 174)
+        Me.GroupBox19.Name = "GroupBox19"
+        Me.GroupBox19.Size = New System.Drawing.Size(988, 222)
+        Me.GroupBox19.TabIndex = 11
+        Me.GroupBox19.TabStop = False
+        '
+        'Panel19
+        '
+        Me.Panel19.Controls.Add(Me.TextBoxCDesc)
+        Me.Panel19.Controls.Add(Me.DateTimePickerCExpiryDate)
+        Me.Panel19.Controls.Add(Me.Label46)
+        Me.Panel19.Controls.Add(Me.TextBoxCName)
+        Me.Panel19.Controls.Add(Me.DateTimePickerCEffectiveDate)
+        Me.Panel19.Controls.Add(Me.Label32)
+        Me.Panel19.Controls.Add(Me.Label33)
+        Me.Panel19.Controls.Add(Me.ComboBoxCType)
+        Me.Panel19.Controls.Add(Me.Label37)
+        Me.Panel19.Controls.Add(Me.TextBoxCDVal)
+        Me.Panel19.Controls.Add(Me.Label40)
+        Me.Panel19.Controls.Add(Me.TextBoxCRefVal)
+        Me.Panel19.Controls.Add(Me.Label43)
+        Me.Panel19.Controls.Add(Me.TextBoxCBP)
+        Me.Panel19.Controls.Add(Me.Label42)
+        Me.Panel19.Controls.Add(Me.TextBoxCBundVal)
+        Me.Panel19.Controls.Add(Me.Label34)
+        Me.Panel19.Controls.Add(Me.TextBoxCBBP)
+        Me.Panel19.Controls.Add(Me.Label45)
+        Me.Panel19.Controls.Add(Me.TextBoxCBV)
+        Me.Panel19.Controls.Add(Me.Label38)
+        Me.Panel19.Controls.Add(Me.Label44)
+        Me.Panel19.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel19.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Panel19.Location = New System.Drawing.Point(3, 21)
+        Me.Panel19.Name = "Panel19"
+        Me.Panel19.Size = New System.Drawing.Size(982, 198)
+        Me.Panel19.TabIndex = 8
+        '
+        'TextBoxCDesc
+        '
+        Me.TextBoxCDesc.Location = New System.Drawing.Point(10, 73)
+        Me.TextBoxCDesc.Multiline = True
+        Me.TextBoxCDesc.Name = "TextBoxCDesc"
+        Me.TextBoxCDesc.Size = New System.Drawing.Size(223, 117)
+        Me.TextBoxCDesc.TabIndex = 0
+        '
         'DateTimePickerCExpiryDate
         '
         Me.DateTimePickerCExpiryDate.CustomFormat = "mm/dd/yyyy"
@@ -2505,6 +2615,22 @@ Partial Class SettingsForm
         Me.DateTimePickerCExpiryDate.TabIndex = 3
         Me.DateTimePickerCExpiryDate.Value = New Date(2020, 1, 5, 0, 0, 0, 0)
         '
+        'Label46
+        '
+        Me.Label46.AutoSize = True
+        Me.Label46.Location = New System.Drawing.Point(7, 14)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(83, 14)
+        Me.Label46.TabIndex = 1
+        Me.Label46.Text = "Coupon Name "
+        '
+        'TextBoxCName
+        '
+        Me.TextBoxCName.Location = New System.Drawing.Point(10, 31)
+        Me.TextBoxCName.Name = "TextBoxCName"
+        Me.TextBoxCName.Size = New System.Drawing.Size(223, 22)
+        Me.TextBoxCName.TabIndex = 0
+        '
         'DateTimePickerCEffectiveDate
         '
         Me.DateTimePickerCEffectiveDate.CustomFormat = "mm/dd/yyyy"
@@ -2513,17 +2639,6 @@ Partial Class SettingsForm
         Me.DateTimePickerCEffectiveDate.Size = New System.Drawing.Size(207, 22)
         Me.DateTimePickerCEffectiveDate.TabIndex = 3
         Me.DateTimePickerCEffectiveDate.Value = New Date(2020, 1, 5, 0, 0, 0, 0)
-        '
-        'ComboBoxCType
-        '
-        Me.ComboBoxCType.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.ComboBoxCType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBoxCType.FormattingEnabled = True
-        Me.ComboBoxCType.Items.AddRange(New Object() {"Percentage", "Fix-1", "Fix-2", "Bundle-1(Fix)", "Bundle-2(Fix)", "Bundle-3(%)"})
-        Me.ComboBoxCType.Location = New System.Drawing.Point(239, 116)
-        Me.ComboBoxCType.Name = "ComboBoxCType"
-        Me.ComboBoxCType.Size = New System.Drawing.Size(174, 22)
-        Me.ComboBoxCType.TabIndex = 2
         '
         'Label32
         '
@@ -2543,14 +2658,16 @@ Partial Class SettingsForm
         Me.Label33.TabIndex = 1
         Me.Label33.Text = "Expiry Date"
         '
-        'Label34
+        'ComboBoxCType
         '
-        Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(236, 56)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(88, 14)
-        Me.Label34.TabIndex = 1
-        Me.Label34.Text = "Reference Value"
+        Me.ComboBoxCType.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.ComboBoxCType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxCType.FormattingEnabled = True
+        Me.ComboBoxCType.Items.AddRange(New Object() {"Percentage", "Fix-1", "Fix-2", "Bundle-1(Fix)", "Bundle-2(Fix)", "Bundle-3(%)"})
+        Me.ComboBoxCType.Location = New System.Drawing.Point(239, 116)
+        Me.ComboBoxCType.Name = "ComboBoxCType"
+        Me.ComboBoxCType.Size = New System.Drawing.Size(174, 22)
+        Me.ComboBoxCType.TabIndex = 2
         '
         'Label37
         '
@@ -2561,14 +2678,14 @@ Partial Class SettingsForm
         Me.Label37.TabIndex = 1
         Me.Label37.Text = "Effective Date"
         '
-        'Label38
+        'TextBoxCDVal
         '
-        Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(236, 99)
-        Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(79, 14)
-        Me.Label38.TabIndex = 1
-        Me.Label38.Text = "Discount Type"
+        Me.TextBoxCDVal.BackColor = System.Drawing.Color.White
+        Me.TextBoxCDVal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxCDVal.Location = New System.Drawing.Point(239, 31)
+        Me.TextBoxCDVal.Name = "TextBoxCDVal"
+        Me.TextBoxCDVal.Size = New System.Drawing.Size(174, 22)
+        Me.TextBoxCDVal.TabIndex = 0
         '
         'Label40
         '
@@ -2579,14 +2696,14 @@ Partial Class SettingsForm
         Me.Label40.TabIndex = 1
         Me.Label40.Text = "Bundle Value"
         '
-        'Label42
+        'TextBoxCRefVal
         '
-        Me.Label42.AutoSize = True
-        Me.Label42.Location = New System.Drawing.Point(416, 57)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(74, 14)
-        Me.Label42.TabIndex = 1
-        Me.Label42.Text = "Bundle Value"
+        Me.TextBoxCRefVal.BackColor = System.Drawing.Color.White
+        Me.TextBoxCRefVal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxCRefVal.Location = New System.Drawing.Point(239, 74)
+        Me.TextBoxCRefVal.Name = "TextBoxCRefVal"
+        Me.TextBoxCRefVal.Size = New System.Drawing.Size(174, 22)
+        Me.TextBoxCRefVal.TabIndex = 0
         '
         'Label43
         '
@@ -2597,49 +2714,23 @@ Partial Class SettingsForm
         Me.Label43.TabIndex = 1
         Me.Label43.Text = "Bundle Promo (Product ID)"
         '
-        'Label44
+        'TextBoxCBP
         '
-        Me.Label44.AutoSize = True
-        Me.Label44.Location = New System.Drawing.Point(416, 13)
-        Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(121, 14)
-        Me.Label44.TabIndex = 1
-        Me.Label44.Text = "Bundle (Base Product)"
+        Me.TextBoxCBP.BackColor = System.Drawing.Color.White
+        Me.TextBoxCBP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxCBP.Location = New System.Drawing.Point(599, 32)
+        Me.TextBoxCBP.Name = "TextBoxCBP"
+        Me.TextBoxCBP.Size = New System.Drawing.Size(174, 22)
+        Me.TextBoxCBP.TabIndex = 0
         '
-        'Label45
+        'Label42
         '
-        Me.Label45.AutoSize = True
-        Me.Label45.Location = New System.Drawing.Point(236, 14)
-        Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(83, 14)
-        Me.Label45.TabIndex = 1
-        Me.Label45.Text = "Discount Value"
-        '
-        'Label46
-        '
-        Me.Label46.AutoSize = True
-        Me.Label46.Location = New System.Drawing.Point(7, 14)
-        Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(83, 14)
-        Me.Label46.TabIndex = 1
-        Me.Label46.Text = "Coupon Name "
-        '
-        'TextBoxCDesc
-        '
-        Me.TextBoxCDesc.Location = New System.Drawing.Point(10, 73)
-        Me.TextBoxCDesc.Multiline = True
-        Me.TextBoxCDesc.Name = "TextBoxCDesc"
-        Me.TextBoxCDesc.Size = New System.Drawing.Size(223, 117)
-        Me.TextBoxCDesc.TabIndex = 0
-        '
-        'TextBoxCRefVal
-        '
-        Me.TextBoxCRefVal.BackColor = System.Drawing.Color.White
-        Me.TextBoxCRefVal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCRefVal.Location = New System.Drawing.Point(239, 74)
-        Me.TextBoxCRefVal.Name = "TextBoxCRefVal"
-        Me.TextBoxCRefVal.Size = New System.Drawing.Size(174, 22)
-        Me.TextBoxCRefVal.TabIndex = 0
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(416, 57)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(74, 14)
+        Me.Label42.TabIndex = 1
+        Me.Label42.Text = "Bundle Value"
         '
         'TextBoxCBundVal
         '
@@ -2650,23 +2741,14 @@ Partial Class SettingsForm
         Me.TextBoxCBundVal.Size = New System.Drawing.Size(174, 22)
         Me.TextBoxCBundVal.TabIndex = 0
         '
-        'TextBoxCBP
+        'Label34
         '
-        Me.TextBoxCBP.BackColor = System.Drawing.Color.White
-        Me.TextBoxCBP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCBP.Location = New System.Drawing.Point(599, 32)
-        Me.TextBoxCBP.Name = "TextBoxCBP"
-        Me.TextBoxCBP.Size = New System.Drawing.Size(174, 22)
-        Me.TextBoxCBP.TabIndex = 0
-        '
-        'TextBoxCBV
-        '
-        Me.TextBoxCBV.BackColor = System.Drawing.Color.White
-        Me.TextBoxCBV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCBV.Location = New System.Drawing.Point(419, 74)
-        Me.TextBoxCBV.Name = "TextBoxCBV"
-        Me.TextBoxCBV.Size = New System.Drawing.Size(174, 22)
-        Me.TextBoxCBV.TabIndex = 0
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(236, 56)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(88, 14)
+        Me.Label34.TabIndex = 1
+        Me.Label34.Text = "Reference Value"
         '
         'TextBoxCBBP
         '
@@ -2677,21 +2759,41 @@ Partial Class SettingsForm
         Me.TextBoxCBBP.Size = New System.Drawing.Size(174, 22)
         Me.TextBoxCBBP.TabIndex = 0
         '
-        'TextBoxCDVal
+        'Label45
         '
-        Me.TextBoxCDVal.BackColor = System.Drawing.Color.White
-        Me.TextBoxCDVal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCDVal.Location = New System.Drawing.Point(239, 31)
-        Me.TextBoxCDVal.Name = "TextBoxCDVal"
-        Me.TextBoxCDVal.Size = New System.Drawing.Size(174, 22)
-        Me.TextBoxCDVal.TabIndex = 0
+        Me.Label45.AutoSize = True
+        Me.Label45.Location = New System.Drawing.Point(236, 14)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(83, 14)
+        Me.Label45.TabIndex = 1
+        Me.Label45.Text = "Discount Value"
         '
-        'TextBoxCName
+        'TextBoxCBV
         '
-        Me.TextBoxCName.Location = New System.Drawing.Point(10, 31)
-        Me.TextBoxCName.Name = "TextBoxCName"
-        Me.TextBoxCName.Size = New System.Drawing.Size(223, 22)
-        Me.TextBoxCName.TabIndex = 0
+        Me.TextBoxCBV.BackColor = System.Drawing.Color.White
+        Me.TextBoxCBV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxCBV.Location = New System.Drawing.Point(419, 74)
+        Me.TextBoxCBV.Name = "TextBoxCBV"
+        Me.TextBoxCBV.Size = New System.Drawing.Size(174, 22)
+        Me.TextBoxCBV.TabIndex = 0
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(236, 99)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(79, 14)
+        Me.Label38.TabIndex = 1
+        Me.Label38.Text = "Discount Type"
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(416, 13)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(121, 14)
+        Me.Label44.TabIndex = 1
+        Me.Label44.Text = "Bundle (Base Product)"
         '
         'GroupBox16
         '
@@ -2829,104 +2931,17 @@ Partial Class SettingsForm
         Me.Label51.TabIndex = 2
         Me.Label51.Text = "Your System is currently up to date"
         '
-        'Panel19
+        'OpenFileDialog1
         '
-        Me.Panel19.Controls.Add(Me.TextBoxCDesc)
-        Me.Panel19.Controls.Add(Me.DateTimePickerCExpiryDate)
-        Me.Panel19.Controls.Add(Me.Label46)
-        Me.Panel19.Controls.Add(Me.TextBoxCName)
-        Me.Panel19.Controls.Add(Me.DateTimePickerCEffectiveDate)
-        Me.Panel19.Controls.Add(Me.Label32)
-        Me.Panel19.Controls.Add(Me.Label33)
-        Me.Panel19.Controls.Add(Me.ComboBoxCType)
-        Me.Panel19.Controls.Add(Me.Label37)
-        Me.Panel19.Controls.Add(Me.TextBoxCDVal)
-        Me.Panel19.Controls.Add(Me.Label40)
-        Me.Panel19.Controls.Add(Me.TextBoxCRefVal)
-        Me.Panel19.Controls.Add(Me.Label43)
-        Me.Panel19.Controls.Add(Me.TextBoxCBP)
-        Me.Panel19.Controls.Add(Me.Label42)
-        Me.Panel19.Controls.Add(Me.TextBoxCBundVal)
-        Me.Panel19.Controls.Add(Me.Label34)
-        Me.Panel19.Controls.Add(Me.TextBoxCBBP)
-        Me.Panel19.Controls.Add(Me.Label45)
-        Me.Panel19.Controls.Add(Me.TextBoxCBV)
-        Me.Panel19.Controls.Add(Me.Label38)
-        Me.Panel19.Controls.Add(Me.Label44)
-        Me.Panel19.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel19.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel19.Location = New System.Drawing.Point(3, 21)
-        Me.Panel19.Name = "Panel19"
-        Me.Panel19.Size = New System.Drawing.Size(982, 198)
-        Me.Panel19.TabIndex = 8
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'GroupBox17
+        'TextBoxLocalRestorePath
         '
-        Me.GroupBox17.Controls.Add(Me.DataGridViewCProductList)
-        Me.GroupBox17.Dock = System.Windows.Forms.DockStyle.Left
-        Me.GroupBox17.Location = New System.Drawing.Point(3, 21)
-        Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(413, 153)
-        Me.GroupBox17.TabIndex = 9
-        Me.GroupBox17.TabStop = False
-        Me.GroupBox17.Text = "Product List"
-        '
-        'GroupBox18
-        '
-        Me.GroupBox18.Controls.Add(Me.DataGridView2)
-        Me.GroupBox18.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox18.Location = New System.Drawing.Point(416, 21)
-        Me.GroupBox18.Name = "GroupBox18"
-        Me.GroupBox18.Size = New System.Drawing.Size(575, 153)
-        Me.GroupBox18.TabIndex = 10
-        Me.GroupBox18.TabStop = False
-        Me.GroupBox18.Text = "Coupon List"
-        '
-        'DataGridView2
-        '
-        Me.DataGridView2.AllowUserToAddRows = False
-        Me.DataGridView2.AllowUserToDeleteRows = False
-        Me.DataGridView2.AllowUserToResizeColumns = False
-        Me.DataGridView2.AllowUserToResizeRows = False
-        DataGridViewCellStyle13.BackColor = System.Drawing.Color.White
-        Me.DataGridView2.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
-        Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView2.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle14.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView2.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle15.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle15
-        Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridView2.EnableHeadersVisualStyles = False
-        Me.DataGridView2.Location = New System.Drawing.Point(3, 21)
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.Size = New System.Drawing.Size(569, 129)
-        Me.DataGridView2.TabIndex = 8
-        '
-        'GroupBox19
-        '
-        Me.GroupBox19.Controls.Add(Me.Panel19)
-        Me.GroupBox19.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupBox19.Location = New System.Drawing.Point(3, 174)
-        Me.GroupBox19.Name = "GroupBox19"
-        Me.GroupBox19.Size = New System.Drawing.Size(988, 222)
-        Me.GroupBox19.TabIndex = 11
-        Me.GroupBox19.TabStop = False
+        Me.TextBoxLocalRestorePath.Location = New System.Drawing.Point(59, 33)
+        Me.TextBoxLocalRestorePath.Name = "TextBoxLocalRestorePath"
+        Me.TextBoxLocalRestorePath.ReadOnly = True
+        Me.TextBoxLocalRestorePath.Size = New System.Drawing.Size(363, 25)
+        Me.TextBoxLocalRestorePath.TabIndex = 28
         '
         'SettingsForm
         '
@@ -3019,18 +3034,18 @@ Partial Class SettingsForm
         Me.TabPage5.ResumeLayout(False)
         Me.TableLayoutPanel11.ResumeLayout(False)
         Me.GroupBox13.ResumeLayout(False)
+        Me.GroupBox18.ResumeLayout(False)
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox17.ResumeLayout(False)
         CType(Me.DataGridViewCProductList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox19.ResumeLayout(False)
+        Me.Panel19.ResumeLayout(False)
+        Me.Panel19.PerformLayout()
         Me.GroupBox16.ResumeLayout(False)
         Me.Panel24.ResumeLayout(False)
         Me.TabPage6.ResumeLayout(False)
         Me.Panel20.ResumeLayout(False)
         Me.Panel20.PerformLayout()
-        Me.Panel19.ResumeLayout(False)
-        Me.Panel19.PerformLayout()
-        Me.GroupBox17.ResumeLayout(False)
-        Me.GroupBox18.ResumeLayout(False)
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox19.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -3088,7 +3103,7 @@ Partial Class SettingsForm
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents Panel8 As Panel
-    Friend WithEvents Button7 As Button
+    Friend WithEvents ButtonOptimizeDB As Button
     Friend WithEvents ButtonDatabaseReset As Button
     Friend WithEvents ButtonMaintenance As Button
     Friend WithEvents Label64 As Label
@@ -3248,4 +3263,6 @@ Partial Class SettingsForm
     Friend WithEvents GroupBox17 As GroupBox
     Friend WithEvents Panel19 As Panel
     Friend WithEvents GroupBox19 As GroupBox
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents TextBoxLocalRestorePath As TextBox
 End Class

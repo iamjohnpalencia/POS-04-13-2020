@@ -22,17 +22,7 @@ Public Class SettingsForm
         LoadCloudConn()
         LoadAdditionalSettings()
         LoadDevInfo()
-        'TextBoxLocalSchema.Text = My.Settings.localname
-        'TextBoxLocalPort.Text = My.Settings.localport
-        'TextBoxLocalUsername.Text = My.Settings.localuser
-        'TextBoxLocalServer.Text = My.Settings.localserver
-        'TextBoxLocalPassword.Text = My.Settings.localpass
-
-        'TextBoxServerSchema.Text = My.Settings.cloudname
-        'TextBoxServerPort.Text = My.Settings.cloudport
-        'TextBoxServerUsername.Text = My.Settings.clouduser
-        'TextBoxServerName.Text = My.Settings.cloudserver
-        'TextBoxServerPassword.Text = My.Settings.cloudpass
+        LoadAutoBackup()
     End Sub
     Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
         If TabControl1.SelectedIndex = 1 Then
@@ -413,9 +403,205 @@ Public Class SettingsForm
         End Try
     End Sub
 #End Region
+#Region "Coupons"
+    Private Sub ComboBox1_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxCType.TextChanged
+        If ComboBoxCType.Text = "Percentage" Then
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = False
+            TextBoxCBBP.Enabled = False
+            TextBoxCBV.Enabled = False
+            TextBoxCBP.Enabled = False
+            TextBoxCBundVal.Enabled = False
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        ElseIf ComboBoxCType.Text = "Fix-1" Then
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = False
+            TextBoxCBBP.Enabled = False
+            TextBoxCBV.Enabled = False
+            TextBoxCBP.Enabled = False
+            TextBoxCBundVal.Enabled = False
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        ElseIf ComboBoxCType.Text = "Fix-2" Then
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = True
+            TextBoxCBBP.Enabled = False
+            TextBoxCBV.Enabled = False
+            TextBoxCBP.Enabled = False
+            TextBoxCBundVal.Enabled = False
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        ElseIf ComboBoxCType.Text = "Bundle-1(Fix)" Then
+            TextBoxCDVal.Enabled = False
+            TextBoxCRefVal.Enabled = False
+            TextBoxCBBP.Enabled = True
+            TextBoxCBV.Enabled = True
+            TextBoxCBP.Enabled = True
+            TextBoxCBundVal.Enabled = True
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        ElseIf ComboBoxCType.Text = "Bundle-2(Fix)" Then
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = False
+            TextBoxCBBP.Enabled = True
+            TextBoxCBV.Enabled = True
+            TextBoxCBP.Enabled = True
+            TextBoxCBundVal.Enabled = True
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        ElseIf ComboBoxCType.Text = "Bundle-3(%)" Then
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = False
+            TextBoxCBBP.Enabled = True
+            TextBoxCBV.Enabled = True
+            TextBoxCBP.Enabled = True
+            TextBoxCBundVal.Enabled = True
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        Else
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = True
+            TextBoxCBBP.Enabled = True
+            TextBoxCBV.Enabled = True
+            TextBoxCBP.Enabled = True
+            TextBoxCBundVal.Enabled = True
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        End If
+    End Sub
+    Private Sub loaddatagrid1()
+        Try
+            DataGridViewCProductList.Columns.Clear()
+            GLOBAL_SELECT_ALL_FUNCTION("loc_admin_products", "product_id, product_name, product_category", DataGridViewCProductList)
+            With DataGridViewCProductList
+                .Columns(0).HeaderText = "Product ID"
+                .Columns(1).HeaderText = "Product Name"
+                .Columns(2).HeaderText = "Category"
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub loaddatagrid2()
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION(table:="tbcoupon", fields:="*", datagrid:=DataGridView2)
+            With DataGridView2
+                .Columns(0).Visible = False
+                .Columns(3).Visible = False
+                .Columns(4).Visible = False
+                .Columns(6).Visible = False
+                .Columns(7).Visible = False
+                .Columns(8).Visible = False
+                .Columns(9).Visible = False
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub SaveCoupon()
+        Try
+            value = "('" & TextBoxCName.Text & "' , '" & TextBoxCDesc.Text & "', '" & TextBoxCDVal.Text & "', '" & TextBoxCRefVal.Text & "', '" & ComboBoxCType.Text & "' , '" & TextBoxCBBP.Text & "' , '" & TextBoxCBV.Text & "', '" & TextBoxCBP.Text & "', '" & TextBoxCBundVal.Text & "', '" & CDate(DateTimePickerCEffectiveDate.Value).ToShortDateString & "' , '" & CDate(DateTimePickerCExpiryDate.Value).ToShortDateString & "')"
+            GLOBAL_INSERT_FUNCTION("tbcoupon", "(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`)", value, "", "")
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+        If TextboxIsEmpty(Panel19) = True Then
+            SaveCoupon()
+            loaddatagrid2()
+        Else
+            MsgBox("Fill up all blanks")
+        End If
+    End Sub
+
+    Private Sub DataGridViewCProductList_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewCProductList.CellClick
+        Try
+            If TextBoxCBBP.Enabled = False Then
+                Exit Sub
+            Else
+                If TextBoxCBBP.Text = String.Empty Then
+                    TextBoxCBBP.Text = Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
+                    '  Dim newString As String
+                    '   newString = deleteDup(TextBox5.Text, TextBox5.Text)
+
+                    '   TextBox5.Text = newString
+                Else
+                    TextBoxCBBP.Text = TextBoxCBBP.Text & "," & Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
+                    ' Dim newString As String
+                    '  newString = deleteDup(TextBox5.Text, TextBox5.Text)
+
+                    ' TextBox5.Text = newString
+                End If
+            End If
+
+            If TextBoxCBP.Enabled = False Then
+                Exit Sub
+            Else
+                If TextBoxCBP.Text = String.Empty Then
+                    TextBoxCBP.Text = Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
+                Else
+                    TextBoxCBP.Text = TextBoxCBP.Text & "," & Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+
+#End Region
 #Region "Load"
-
-
     Private Sub LoadConn()
         Try
             If My.Settings.LocalConnectionPath <> "" Then
@@ -659,198 +845,103 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
         End Try
     End Sub
-#End Region
-#Region "Coupons"
-    Private Sub ComboBox1_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxCType.TextChanged
-        If ComboBoxCType.Text = "Percentage" Then
-            TextBoxCDVal.Enabled = True
-            TextBoxCRefVal.Enabled = False
-            TextBoxCBBP.Enabled = False
-            TextBoxCBV.Enabled = False
-            TextBoxCBP.Enabled = False
-            TextBoxCBundVal.Enabled = False
-            For Each a In Panel19.Controls
-                If TypeOf a Is TextBox Then
-                    If a.Enabled = False Then
-                        a.Text = "N/A"
-                    ElseIf a.Enabled = True Then
-                        a.Text = ""
-                    End If
-                End If
-            Next
-        ElseIf ComboBoxCType.Text = "Fix-1" Then
-            TextBoxCDVal.Enabled = True
-            TextBoxCRefVal.Enabled = False
-            TextBoxCBBP.Enabled = False
-            TextBoxCBV.Enabled = False
-            TextBoxCBP.Enabled = False
-            TextBoxCBundVal.Enabled = False
-            For Each a In Panel19.Controls
-                If TypeOf a Is TextBox Then
-                    If a.Enabled = False Then
-                        a.Text = "N/A"
-                    ElseIf a.Enabled = True Then
-                        a.Text = ""
-                    End If
-                End If
-            Next
-        ElseIf ComboBoxCType.Text = "Fix-2" Then
-            TextBoxCDVal.Enabled = True
-            TextBoxCRefVal.Enabled = True
-            TextBoxCBBP.Enabled = False
-            TextBoxCBV.Enabled = False
-            TextBoxCBP.Enabled = False
-            TextBoxCBundVal.Enabled = False
-            For Each a In Panel19.Controls
-                If TypeOf a Is TextBox Then
-                    If a.Enabled = False Then
-                        a.Text = "N/A"
-                    ElseIf a.Enabled = True Then
-                        a.Text = ""
-                    End If
-                End If
-            Next
-        ElseIf ComboBoxCType.Text = "Bundle-1(Fix)" Then
-            TextBoxCDVal.Enabled = False
-            TextBoxCRefVal.Enabled = False
-            TextBoxCBBP.Enabled = True
-            TextBoxCBV.Enabled = True
-            TextBoxCBP.Enabled = True
-            TextBoxCBundVal.Enabled = True
-            For Each a In Panel19.Controls
-                If TypeOf a Is TextBox Then
-                    If a.Enabled = False Then
-                        a.Text = "N/A"
-                    ElseIf a.Enabled = True Then
-                        a.Text = ""
-                    End If
-                End If
-            Next
-        ElseIf ComboBoxCType.Text = "Bundle-2(Fix)" Then
-            TextBoxCDVal.Enabled = True
-            TextBoxCRefVal.Enabled = False
-            TextBoxCBBP.Enabled = True
-            TextBoxCBV.Enabled = True
-            TextBoxCBP.Enabled = True
-            TextBoxCBundVal.Enabled = True
-            For Each a In Panel19.Controls
-                If TypeOf a Is TextBox Then
-                    If a.Enabled = False Then
-                        a.Text = "N/A"
-                    ElseIf a.Enabled = True Then
-                        a.Text = ""
-                    End If
-                End If
-            Next
-        ElseIf ComboBoxCType.Text = "Bundle-3(%)" Then
-            TextBoxCDVal.Enabled = True
-            TextBoxCRefVal.Enabled = False
-            TextBoxCBBP.Enabled = True
-            TextBoxCBV.Enabled = True
-            TextBoxCBP.Enabled = True
-            TextBoxCBundVal.Enabled = True
-            For Each a In Panel19.Controls
-                If TypeOf a Is TextBox Then
-                    If a.Enabled = False Then
-                        a.Text = "N/A"
-                    ElseIf a.Enabled = True Then
-                        a.Text = ""
-                    End If
-                End If
-            Next
-        Else
-            TextBoxCDVal.Enabled = True
-            TextBoxCRefVal.Enabled = True
-            TextBoxCBBP.Enabled = True
-            TextBoxCBV.Enabled = True
-            TextBoxCBP.Enabled = True
-            TextBoxCBundVal.Enabled = True
-            For Each a In Panel19.Controls
-                If TypeOf a Is TextBox Then
-                    If a.Enabled = False Then
-                        a.Text = "N/A"
-                    ElseIf a.Enabled = True Then
-                        a.Text = ""
-                    End If
-                End If
-            Next
-        End If
-    End Sub
-    Private Sub loaddatagrid1()
-        Try
-            DataGridViewCProductList.Columns.Clear()
-            GLOBAL_SELECT_ALL_FUNCTION("loc_admin_products", "product_id, product_name, product_category", DataGridViewCProductList)
-            With DataGridViewCProductList
-                .Columns(0).HeaderText = "Product ID"
-                .Columns(1).HeaderText = "Product Name"
-                .Columns(2).HeaderText = "Category"
-            End With
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-    Private Sub loaddatagrid2()
-        Try
-            GLOBAL_SELECT_ALL_FUNCTION(table:="tbcoupon", fields:="*", datagrid:=DataGridView2)
-            With DataGridView2
-                .Columns(0).Visible = False
-                .Columns(3).Visible = False
-                .Columns(4).Visible = False
-                .Columns(6).Visible = False
-                .Columns(7).Visible = False
-                .Columns(8).Visible = False
-                .Columns(9).Visible = False
-            End With
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-    Private Sub SaveCoupon()
-        Try
-            value = "('" & TextBoxCName.Text & "' , '" & TextBoxCDesc.Text & "', '" & TextBoxCDVal.Text & "', '" & TextBoxCRefVal.Text & "', '" & ComboBoxCType.Text & "' , '" & TextBoxCBBP.Text & "' , '" & TextBoxCBV.Text & "', '" & TextBoxCBP.Text & "', '" & TextBoxCBundVal.Text & "', '" & CDate(DateTimePickerCEffectiveDate.Value).ToShortDateString & "' , '" & CDate(DateTimePickerCExpiryDate.Value).ToShortDateString & "')"
-            GLOBAL_INSERT_FUNCTION("tbcoupon", "(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`)", value, "", "")
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
-        If TextboxIsEmpty(Panel19) = True Then
-            SaveCoupon()
-            loaddatagrid2()
-        Else
-            MsgBox("Fill up all blanks")
-        End If
-    End Sub
 
-    Private Sub DataGridViewCProductList_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewCProductList.CellClick
+    Private Sub LoadAutoBackup()
         Try
-            If TextBoxCBBP.Enabled = False Then
-                Exit Sub
-            Else
-                If TextBoxCBBP.Text = String.Empty Then
-                    TextBoxCBBP.Text = Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
-                    '  Dim newString As String
-                    '   newString = deleteDup(TextBox5.Text, TextBox5.Text)
-
-                    '   TextBox5.Text = newString
-                Else
-                    TextBoxCBBP.Text = TextBoxCBBP.Text & "," & Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
-                    ' Dim newString As String
-                    '  newString = deleteDup(TextBox5.Text, TextBox5.Text)
-
-                    ' TextBox5.Text = newString
+            If My.Settings.ValidLocalConn = True Then
+                sql = "SELECT S_BackupInterval, S_BackupDate FROM loc_settings WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt = New DataTable
+                da.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    If dt(0)(0).ToString = "1" Then
+                        RadioButtonDaily.Checked = True
+                        '=================================
+                        RadioButtonWeekly.Enabled = False
+                        RadioButtonMonthly.Enabled = False
+                        RadioButtonYearly.Enabled = False
+                    ElseIf dt(0)(0).ToString = "2" Then
+                        RadioButtonWeekly.Checked = True
+                        '=================================
+                        RadioButtonDaily.Enabled = False
+                        RadioButtonMonthly.Enabled = False
+                        RadioButtonYearly.Enabled = False
+                    ElseIf dt(0)(0).ToString = "3" Then
+                        RadioButtonMonthly.Checked = True
+                        '=================================
+                        RadioButtonDaily.Enabled = False
+                        RadioButtonWeekly.Enabled = False
+                        RadioButtonYearly.Enabled = False
+                    ElseIf dt(0)(0).ToString = "4" Then
+                        RadioButtonYearly.Checked = True
+                        '=================================
+                        RadioButtonDaily.Enabled = False
+                        RadioButtonWeekly.Enabled = False
+                        RadioButtonMonthly.Enabled = False
+                    End If
                 End If
             End If
-
-            If TextBoxCBP.Enabled = False Then
-                Exit Sub
-            Else
-                If TextBoxCBP.Text = String.Empty Then
-                    TextBoxCBP.Text = Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
-                Else
-                    TextBoxCBP.Text = TextBoxCBP.Text & "," & Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
-                End If
-            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub ButtonExport_Click(sender As Object, e As EventArgs) Handles ButtonExport.Click
+        BackupDatabase()
+    End Sub
+    Private Sub BackupDatabase()
+        Try
+            Dim DatabaseName = "\" & TextBoxLocalDatabase.Text & Format(Now(), "yyyy-MM-dd") & ".sql"
+            Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqldump --databases -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " " & TextBoxLocalDatabase.Text & " > """ & TextBoxExportPath.Text & DatabaseName & """")
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub ButtonImport_Click(sender As Object, e As EventArgs) Handles ButtonImport.Click
+        If (OpenFileDialog1.ShowDialog = DialogResult.OK) Then
+            TextBoxLocalRestorePath.Text = OpenFileDialog1.FileName
+        End If
+    End Sub
+    Private Function Connect() As MySqlConnection
+        Dim con As MySqlConnection = New MySqlConnection
+        Try
+            con.ConnectionString = "server=" & TextBoxLocalServer.Text & ";user name=" & TextBoxLocalUsername.Text & ";password=" & TextBoxLocalPassword.Text
+            con.Open()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return con
+    End Function
+    Private Sub RestoreDatabase()
+        Try
+            Dim sql = "CREATE DATABASE /*!32312 IF NOT EXISTS*/ `" & TextBoxLocalDatabase.Text & "` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;USE `" & TextBoxLocalDatabase.Text & "`;"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, Connect)
+            cmd.ExecuteNonQuery()
+            Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysql -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " " & TextBoxLocalDatabase.Text & " < """ & TextBoxLocalRestorePath.Text & """")
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
+        TextBoxLocalRestorePath.Text = System.IO.Path.GetFullPath(OpenFileDialog1.FileName)
+        RestoreDatabase()
+    End Sub
+    Private Sub ButtonMaintenance_Click(sender As Object, e As EventArgs) Handles ButtonMaintenance.Click
+        RepairDatabase()
+    End Sub
+    Private Sub RepairDatabase()
+        Try
+            Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqlcheck -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " --auto-repair -c --databases " & TextBoxLocalDatabase.Text)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles ButtonOptimizeDB.Click
+        OptimizeDatabase()
+    End Sub
+    Private Sub OptimizeDatabase()
+        Try
+            Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqlcheck -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " -o --databases " & TextBoxLocalDatabase.Text)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
