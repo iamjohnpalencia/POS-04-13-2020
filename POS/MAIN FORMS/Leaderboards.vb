@@ -85,12 +85,12 @@ Public Class Leaderboards
 
                 .Columns(4).HeaderCell.Value = "Status"
             End With
-            For Each row As DataRow In dt.Rows
-                row("crew_id") = returnfullname(row("crew_id"))
-                If row("active") = 1 Then
-                    row("active") = "Active"
-                End If
-            Next
+            'For Each row As DataRow In dt.Rows
+            '    row("crew_id") = returnfullname(row("crew_id"))
+            '    If row("active") = 1 Then
+            '        row("active") = "Active"
+            '    End If
+            'Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

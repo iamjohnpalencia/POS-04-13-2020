@@ -81,7 +81,7 @@ Public Class CouponCode
                 Dim TotalDiscount1 As Double = Math.Round(vatableSales1 - Discount1, 2)
                 '==============================================================
                 POS.GRANDTOTALDISCOUNT = TotalDiscount + TotalDiscount1
-                POS.TextBoxGRANDTOTAL.Text = TotalDiscount + TotalDiscount1 + POS.Label76.Text - SeniorPWd - SeniorPWdDrinks
+                POS.TextBoxGRANDTOTAL.Text = TotalDiscount + TotalDiscount1 + Double.Parse(POS.Label76.Text) - SeniorPWd - SeniorPWdDrinks
                 POS.TextBoxDISCOUNT.Text = Discount + Discount1
                 CouponDesc = ""
                 CouponTotal = Discount + Discount1
@@ -97,18 +97,19 @@ Public Class CouponCode
         CouponDefault()
         Dim total As Integer = 0
         Dim tax As String = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-        If Val(POS.Label76.Text) >= DataGridViewCoupons.SelectedRows(0).Cells(3).Value Then
+        If Double.Parse(POS.Label76.Text) >= DataGridViewCoupons.SelectedRows(0).Cells(3).Value Then
             For index As Integer = 0 To DataGridViewCoupons.RowCount - 1
-                total = Val(POS.Label76.Text)
+                total = Double.Parse(POS.Label76.Text)
                 POS.Label73.Text = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                 POS.TextBoxDISCOUNT.Text = tax
                 POS.TextBoxGRANDTOTAL.Text = total - Val(POS.TextBoxDISCOUNT.Text)
+                POS.TextBoxGRANDTOTAL.Text = Format(Val(POS.TextBoxGRANDTOTAL.Text), "##,##0.00")
                 CouponDesc = ""
                 CouponTotal = tax
             Next
         Else
             MsgBox("Gift certificate is greater than total")
-            POS.TextBoxGRANDTOTAL.Text = 0
+            POS.TextBoxGRANDTOTAL.Text = Format(0, "##,##0.00")
             POS.TextBoxDISCOUNT.Text = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
             CouponDesc = ""
             CouponTotal = tax
@@ -122,14 +123,15 @@ Public Class CouponCode
         Dim total As Integer = 0
         Dim tax As String = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
         For index As Integer = 0 To DataGridViewCoupons.RowCount - 1
-            total = Val(POS.Label76.Text)
+            total = Double.Parse(POS.Label76.Text)
             POS.Label76.Text = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-            If CInt(POS.Label76.Text) < CInt(Me.DataGridViewCoupons.Item(4, Me.DataGridViewCoupons.CurrentRow.Index).Value) Then
-                MsgBox(POS.Label76.Text & " " & CInt(Me.DataGridViewCoupons.Item(4, Me.DataGridViewCoupons.CurrentRow.Index).Value))
+            If Double.Parse(POS.Label76.Text) < Double.Parse(Me.DataGridViewCoupons.Item(4, Me.DataGridViewCoupons.CurrentRow.Index).Value) Then
+                MsgBox(POS.Label76.Text & " " & Double.Parse(Me.DataGridViewCoupons.Item(4, Me.DataGridViewCoupons.CurrentRow.Index).Value))
                 Exit Sub
             Else
                 POS.TextBoxDISCOUNT.Text = tax
-                POS.TextBoxGRANDTOTAL.Text = Val(POS.Label76.Text) - Val(tax)
+                POS.TextBoxGRANDTOTAL.Text = Double.Parse(POS.Label76.Text) - Val(tax)
+                POS.TextBoxGRANDTOTAL.Text = Format(Val(POS.TextBoxGRANDTOTAL.Text), "##,##0.00")
             End If
         Next
         CouponApplied = True

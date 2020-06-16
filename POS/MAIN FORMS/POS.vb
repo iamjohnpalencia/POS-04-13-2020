@@ -355,6 +355,7 @@ Public Class POS
         Dim discounttotal As Double = Val(TextBoxSUBTOTAL.Text * discount)
         discountgrandtotal = discounttotal
         TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
+        TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
     End Sub
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles ButtonPendingOrders.Click
         Dim newMDIchild As New PendingOrders()
@@ -407,7 +408,10 @@ Public Class POS
                     Dim discount As Double = Val(TextBoxDISCOUNT.Text / 100)
                     Dim discounttotal As Double = Val(Label76.Text) * discount
                     TextBoxSUBTOTAL.Text = Val(Label76.Text)
+
                     TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
+                    TextBoxSUBTOTAL.Text = Format(Val(TextBoxSUBTOTAL.Text), "##,##0.00")
+                    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
                 Next
             Else
                 TextBoxQTY.Text = 0

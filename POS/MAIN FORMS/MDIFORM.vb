@@ -140,21 +140,21 @@
             SynctoCloud.Close()
         End If
     End Sub
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
-        Dim newMDIchild As New ImportandExport()
-        If Application.OpenForms().OfType(Of ImportandExport).Any Then
-        Else
-            btncolor(changecolor:=Button11)
-            btndefaut(defaultcolor:=Button11)
-            formclose(closeform:=ImportandExport)
-            newMDIchild.MdiParent = Me
-            newMDIchild.ShowIcon = False
-            newMDIchild.Show()
-        End If
-        If SyncIsOnProcess = False Then
-            SynctoCloud.Close()
-        End If
-    End Sub
+    'Private Sub Button11_Click(sender As Object, e As EventArgs)
+    '    Dim newMDIchild As New ImportandExport()
+    '    If Application.OpenForms().OfType(Of ImportandExport).Any Then
+    '    Else
+    '        btncolor(changecolor:=Button11)
+    '        btndefaut(defaultcolor:=Button11)
+    '        formclose(closeform:=ImportandExport)
+    '        newMDIchild.MdiParent = Me
+    '        newMDIchild.ShowIcon = False
+    '        newMDIchild.Show()
+    '    End If
+    '    If SyncIsOnProcess = False Then
+    '        SynctoCloud.Close()
+    '    End If
+    'End Sub
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
         Dim newMDIchild As New DepositSlip()
         If Application.OpenForms().OfType(Of DepositSlip).Any Then

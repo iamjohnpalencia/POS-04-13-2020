@@ -31,7 +31,6 @@ Partial Class MDIFORM
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button11 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
@@ -111,7 +110,6 @@ Partial Class MDIFORM
         Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.Button12)
         Me.Panel1.Controls.Add(Me.Button8)
-        Me.Panel1.Controls.Add(Me.Button11)
         Me.Panel1.Controls.Add(Me.Button10)
         Me.Panel1.Controls.Add(Me.Button3)
         Me.Panel1.Controls.Add(Me.Button6)
@@ -140,7 +138,7 @@ Partial Class MDIFORM
         Me.Button4.ForeColor = System.Drawing.Color.Black
         Me.Button4.Image = CType(resources.GetObject("Button4.Image"), System.Drawing.Image)
         Me.Button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button4.Location = New System.Drawing.Point(20, 570)
+        Me.Button4.Location = New System.Drawing.Point(20, 530)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(226, 40)
         Me.Button4.TabIndex = 189
@@ -160,7 +158,7 @@ Partial Class MDIFORM
         Me.Button1.ForeColor = System.Drawing.Color.Black
         Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
         Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.Location = New System.Drawing.Point(20, 530)
+        Me.Button1.Location = New System.Drawing.Point(20, 490)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(226, 40)
         Me.Button1.TabIndex = 173
@@ -180,7 +178,7 @@ Partial Class MDIFORM
         Me.Button12.ForeColor = System.Drawing.Color.Black
         Me.Button12.Image = CType(resources.GetObject("Button12.Image"), System.Drawing.Image)
         Me.Button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button12.Location = New System.Drawing.Point(20, 490)
+        Me.Button12.Location = New System.Drawing.Point(20, 450)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(226, 40)
         Me.Button12.TabIndex = 191
@@ -200,7 +198,7 @@ Partial Class MDIFORM
         Me.Button8.ForeColor = System.Drawing.Color.Black
         Me.Button8.Image = CType(resources.GetObject("Button8.Image"), System.Drawing.Image)
         Me.Button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button8.Location = New System.Drawing.Point(20, 450)
+        Me.Button8.Location = New System.Drawing.Point(20, 410)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(226, 40)
         Me.Button8.TabIndex = 181
@@ -208,26 +206,6 @@ Partial Class MDIFORM
         Me.Button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.Button8.UseVisualStyleBackColor = False
-        '
-        'Button11
-        '
-        Me.Button11.BackColor = System.Drawing.Color.White
-        Me.Button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button11.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button11.FlatAppearance.BorderSize = 0
-        Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button11.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button11.ForeColor = System.Drawing.Color.Black
-        Me.Button11.Image = CType(resources.GetObject("Button11.Image"), System.Drawing.Image)
-        Me.Button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button11.Location = New System.Drawing.Point(20, 410)
-        Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(226, 40)
-        Me.Button11.TabIndex = 190
-        Me.Button11.Text = "     Export/ Import"
-        Me.Button11.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button11.UseVisualStyleBackColor = False
         '
         'Button10
         '
@@ -962,7 +940,6 @@ Partial Class MDIFORM
     Friend WithEvents Panel29 As Panel
     Friend WithEvents Panel30 As Panel
     Friend WithEvents Panel32 As Panel
-    Friend WithEvents Button11 As Button
     Friend WithEvents Button12 As Button
     Friend WithEvents Panel9 As Panel
 End Class
