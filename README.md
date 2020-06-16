@@ -199,8 +199,35 @@ june 08 11:00 AM to 7:00 PM
 * Coupon(Bundle Fix(1))
 * Coupon(Bundle Fix(2))
 
-
 june 09 10:00 AM to 2:00 PM
 
 * Coupon(Bundle Fix(3) %)
+
+june 10 4:00 PM to 8:00 PM
+
+* Database Reset
+* POS registration
+	
+June 11 6:00 PM to 10:00 PM
+
+* Dashboard Layout
+* Fixing DatagridviewStock Focus after refreshing data(Undone)
+
+June 14 4:00 PM to 8:00 PM
+
+* Dashboard Sales Bug
+* Coupons Bug	
+* Reports Amount Due bug
+
+June 15 4:00 PM to 8:00 PM
+	
+* Debugging 
+
+June 16 7:00 AM to 12:00 PM
+
+* Settings form
+	* Database Repair
+	* Database optimization
+	* Database Export/ import
+	* Automatic Backup
 
