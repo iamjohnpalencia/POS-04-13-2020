@@ -388,6 +388,7 @@ Public Class Loading
             End With
         Catch ex As Exception
             Label1.Text = "Cannot connect to cloud server..."
+            MsgBox(ex.ToString)
             'MsgBox(ex.ToString)
         End Try
     End Sub
@@ -434,6 +435,20 @@ Public Class Loading
         End Try
         Return dtlocal
     End Function
+    Private Function LoadProductLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT date_modified, server_product_id FROM loc_admin_products"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
     Private Sub Function1()
         Try
             Dim cmdserver As MySqlCommand
@@ -461,8 +476,7 @@ Public Class Loading
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    MsgBox(returndateformatfulldate(LoadCategoryLocal(i)(0)))
-                    If returndateformatfulldate(LoadCategoryLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(3)) Then
+                    If returndateformatfulldate(LoadCategoryLocal(i)(0).ToString) <> returndateformatfulldate(dtserver(i)(3).ToString) Then
                         DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5))
                         Dim Category As DataRow = CategoryDTUpdate.NewRow
                         Category("category_id") = dtserver(i)(0)
@@ -494,23 +508,11 @@ Public Class Loading
                 Next
             End If
         Catch ex As Exception
+            BackgroundWorker1.CancelAsync()
             'If table doesnt have data
         End Try
     End Sub
-    Private Function LoadProductLocal() As DataTable
-        Dim cmdlocal As MySqlCommand
-        Dim dalocal As MySqlDataAdapter
-        Dim dtlocal As DataTable = New DataTable
-        Try
-            Dim sql = "SELECT date_modified, server_product_id FROM loc_admin_products"
-            cmdlocal = New MySqlCommand(sql, LocalhostConn())
-            dalocal = New MySqlDataAdapter(cmdlocal)
-            dalocal.Fill(dtlocal)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        Return dtlocal
-    End Function
+
     Private Sub Function2()
         Try
             Dim cmdserver As MySqlCommand
@@ -544,7 +546,7 @@ Public Class Loading
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    If returndateformatfulldate(LoadProductLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(11)) Then
+                    If returndateformatfulldate(LoadProductLocal(i)(0).ToString) <> returndateformatfulldate(dtserver(i)(11).ToString) Then
                         DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11))
                         Dim Product As DataRow = ProductDTUpdate.NewRow
                         Product("product_id") = dtserver(i)(0)
@@ -588,6 +590,7 @@ Public Class Loading
                 Next
             End If
         Catch ex As Exception
+            BackgroundWorker1.CancelAsync()
             'If table doesnt have data
         End Try
     End Sub
@@ -627,7 +630,7 @@ Public Class Loading
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    If returndateformatfulldate(LoadFormulaLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(10)) Then
+                    If returndateformatfulldate(LoadFormulaLocal(i)(0).ToString) <> returndateformatfulldate(dtserver(i)(10).ToString) Then
                         DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11), dtserver(i)(12))
                         Dim Formula As DataRow = FormulaDTUpdate.NewRow
                         Formula("formula_id") = dtserver(i)(0)
@@ -673,6 +676,7 @@ Public Class Loading
                 Next
             End If
         Catch ex As Exception
+            BackgroundWorker1.CancelAsync()
             'If table doesnt have data
         End Try
     End Sub
@@ -706,7 +710,7 @@ Public Class Loading
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    If returndateformatfulldate(LoadInventoryLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(8)) Then
+                    If returndateformatfulldate(LoadInventoryLocal(i)(0).ToString) <> returndateformatfulldate(dtserver(i)(8).ToString) Then
                         DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8))
                         Dim Inventory As DataRow = InventoryDTUpdate.NewRow
                         Inventory("inventory_id") = dtserver(i)(0)
@@ -744,6 +748,7 @@ Public Class Loading
                 Next
             End If
         Catch ex As Exception
+            BackgroundWorker1.CancelAsync()
             'If table doesnt have data
         End Try
     End Sub

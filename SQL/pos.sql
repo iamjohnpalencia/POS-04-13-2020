@@ -141,6 +141,8 @@ CREATE TABLE `loc_admin_category` (
 -- Dumping data for table `loc_admin_category`
 --
 
+
+
 --
 -- Table structure for table `loc_admin_products`
 --
@@ -174,6 +176,7 @@ CREATE TABLE `loc_admin_products` (
 -- Dumping data for table `loc_admin_products`
 --
 
+
 --
 -- Table structure for table `loc_coupon_data`
 --
@@ -196,6 +199,7 @@ CREATE TABLE `loc_coupon_data` (
 --
 -- Dumping data for table `loc_coupon_data`
 --
+
 --
 -- Table structure for table `loc_daily_transaction`
 --
@@ -223,7 +227,7 @@ CREATE TABLE `loc_daily_transaction` (
   `time` time NOT NULL,
   `transaction_type` varchar(50) NOT NULL,
   `shift` varchar(255) NOT NULL,
-  `zreading` date NOT NULL,
+  `zreading` text NOT NULL,
   `synced` varchar(255) NOT NULL,
   `discount_type` varchar(50) NOT NULL,
   PRIMARY KEY (`transaction_id`)
@@ -258,7 +262,7 @@ CREATE TABLE `loc_daily_transaction_details` (
   `store_id` varchar(50) NOT NULL,
   `total_cost_of_goods` decimal(11,2) NOT NULL,
   `product_category` varchar(255) NOT NULL,
-  `zreading` date NOT NULL,
+  `zreading` text NOT NULL,
   `synced` varchar(255) NOT NULL,
   PRIMARY KEY (`details_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -267,6 +271,7 @@ CREATE TABLE `loc_daily_transaction_details` (
 --
 -- Dumping data for table `loc_daily_transaction_details`
 --
+
 
 --
 -- Table structure for table `loc_deposit`
@@ -295,10 +300,6 @@ CREATE TABLE `loc_deposit` (
 -- Dumping data for table `loc_deposit`
 --
 
-LOCK TABLES `loc_deposit` WRITE;
-/*!40000 ALTER TABLE `loc_deposit` DISABLE KEYS */;
-/*!40000 ALTER TABLE `loc_deposit` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `loc_expense_details`
@@ -322,7 +323,7 @@ CREATE TABLE `loc_expense_details` (
   `guid` varchar(255) NOT NULL,
   `store_id` int(20) NOT NULL,
   `active` tinyint(2) NOT NULL,
-  `zreading` date NOT NULL,
+  `zreading` text NOT NULL,
   `synced` varchar(255) NOT NULL,
   PRIMARY KEY (`expense_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -331,11 +332,6 @@ CREATE TABLE `loc_expense_details` (
 --
 -- Dumping data for table `loc_expense_details`
 --
-
-LOCK TABLES `loc_expense_details` WRITE;
-/*!40000 ALTER TABLE `loc_expense_details` DISABLE KEYS */;
-/*!40000 ALTER TABLE `loc_expense_details` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `loc_expense_list`
@@ -356,7 +352,7 @@ CREATE TABLE `loc_expense_list` (
   `date` date NOT NULL,
   `time` time NOT NULL,
   `active` tinyint(2) NOT NULL,
-  `zreading` date NOT NULL,
+  `zreading` text NOT NULL,
   `synced` varchar(255) NOT NULL,
   PRIMARY KEY (`expense_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -365,11 +361,6 @@ CREATE TABLE `loc_expense_list` (
 --
 -- Dumping data for table `loc_expense_list`
 --
-
-LOCK TABLES `loc_expense_list` WRITE;
-/*!40000 ALTER TABLE `loc_expense_list` DISABLE KEYS */;
-/*!40000 ALTER TABLE `loc_expense_list` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `loc_expenses_hold`
@@ -651,6 +642,7 @@ CREATE TABLE `loc_product_formula` (
 -- Dumping data for table `loc_product_formula`
 --
 
+
 --
 -- Table structure for table `loc_promo_coupon_list`
 --
@@ -703,7 +695,6 @@ CREATE TABLE `loc_refund_return_details` (
   `reason` text NOT NULL,
   `total` decimal(11,2) NOT NULL,
   `guid` varchar(255) NOT NULL,
-  `ipaddress` varchar(255) NOT NULL,
   `store_id` int(11) NOT NULL,
   `datestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `zreading` date NOT NULL,
@@ -716,10 +707,6 @@ CREATE TABLE `loc_refund_return_details` (
 -- Dumping data for table `loc_refund_return_details`
 --
 
-LOCK TABLES `loc_refund_return_details` WRITE;
-/*!40000 ALTER TABLE `loc_refund_return_details` DISABLE KEYS */;
-/*!40000 ALTER TABLE `loc_refund_return_details` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `loc_settings`
@@ -750,6 +737,8 @@ CREATE TABLE `loc_settings` (
   `Dev_PTU_Date_Issued` text NOT NULL,
   `Dev_PTU_Valid_Until` text NOT NULL,
   `S_Zreading` text NOT NULL,
+  `S_BackupInterval` text NOT NULL,
+  `S_BackupDate` text NOT NULL,
   PRIMARY KEY (`settings_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -782,6 +771,7 @@ CREATE TABLE `loc_system_logs` (
 -- Dumping data for table `loc_system_logs`
 --
 
+
 --
 -- Table structure for table `loc_transaction_mode_details`
 --
@@ -809,10 +799,6 @@ CREATE TABLE `loc_transaction_mode_details` (
 -- Dumping data for table `loc_transaction_mode_details`
 --
 
-LOCK TABLES `loc_transaction_mode_details` WRITE;
-/*!40000 ALTER TABLE `loc_transaction_mode_details` DISABLE KEYS */;
-/*!40000 ALTER TABLE `loc_transaction_mode_details` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `loc_updates`
@@ -869,6 +855,7 @@ CREATE TABLE `loc_users` (
 --
 -- Dumping data for table `loc_users`
 --
+
 
 --
 -- Table structure for table `tbcoupon`
@@ -1020,6 +1007,7 @@ CREATE TABLE `triggers_loc_users` (
 -- Dumping data for table `triggers_loc_users`
 --
 
+
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1050,4 +1038,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-16  9:42:52
+-- Dump completed on 2020-06-17 22:14:27

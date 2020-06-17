@@ -123,7 +123,7 @@ Partial Class Loading
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(385, 89)
+        Me.Panel1.Size = New System.Drawing.Size(545, 477)
         Me.Panel1.TabIndex = 21
         '
         'DataGridView4
@@ -460,9 +460,9 @@ Partial Class Loading
         '
         Me.Panel23.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel23.Location = New System.Drawing.Point(0, 57)
+        Me.Panel23.Location = New System.Drawing.Point(0, 445)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(383, 10)
+        Me.Panel23.Size = New System.Drawing.Size(543, 10)
         Me.Panel23.TabIndex = 22
         '
         'Panel24
@@ -471,9 +471,9 @@ Partial Class Loading
         Me.Panel24.Controls.Add(Me.Label4)
         Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel24.Location = New System.Drawing.Point(0, 67)
+        Me.Panel24.Location = New System.Drawing.Point(0, 455)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(383, 20)
+        Me.Panel24.Size = New System.Drawing.Size(543, 20)
         Me.Panel24.TabIndex = 21
         '
         'Label4
@@ -492,7 +492,7 @@ Partial Class Loading
         '
         Me.Panel25.Controls.Add(Me.Label147)
         Me.Panel25.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel25.Location = New System.Drawing.Point(127, 0)
+        Me.Panel25.Location = New System.Drawing.Point(287, 0)
         Me.Panel25.Name = "Panel25"
         Me.Panel25.Size = New System.Drawing.Size(256, 20)
         Me.Panel25.TabIndex = 0
@@ -543,7 +543,7 @@ Partial Class Loading
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(385, 89)
+        Me.ClientSize = New System.Drawing.Size(545, 477)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Loading"
