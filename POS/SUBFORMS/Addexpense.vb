@@ -37,12 +37,16 @@ Public Class Addexpense
         Enabled = False
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonSubmitReport.Click
-        ButtonSubmitReport.Enabled = False
-        ButtonSaveCustomProducts.Enabled = False
-        ButtonRemove.Enabled = False
-        BackgroundWorker1.WorkerSupportsCancellation = True
-        BackgroundWorker1.WorkerReportsProgress = True
-        BackgroundWorker1.RunWorkerAsync()
+        If DataGridViewExpenses.Rows.Count > 0 Then
+            ButtonSubmitReport.Enabled = False
+            ButtonSaveCustomProducts.Enabled = False
+            ButtonRemove.Enabled = False
+            BackgroundWorker1.WorkerSupportsCancellation = True
+            BackgroundWorker1.WorkerReportsProgress = True
+            BackgroundWorker1.RunWorkerAsync()
+        Else
+            MsgBox("Create report first")
+        End If
     End Sub
     Private Sub inserttolocal()
         Try

@@ -24,36 +24,36 @@ Partial Class Expenses
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.PictureBoxAttachment = New System.Windows.Forms.PictureBox()
-        Me.TextBoxAttatchment = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TextBoxTOTAL = New System.Windows.Forms.TextBox()
         Me.TextBoxPRICE = New System.Windows.Forms.TextBox()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.TextBoxITEMINF = New System.Windows.Forms.TextBox()
         Me.ComboBoxType = New System.Windows.Forms.ComboBox()
-        Me.Button5 = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.TextBoxQTY = New System.Windows.Forms.TextBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.PictureBoxAttachment = New System.Windows.Forms.PictureBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TextBoxAttatchment = New System.Windows.Forms.TextBox()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel1.SuspendLayout()
-        Me.StatusStrip1.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.PictureBoxAttachment, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox1.SuspendLayout()
-        Me.TableLayoutPanel1.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -68,76 +68,20 @@ Partial Class Expenses
         Me.Panel1.Size = New System.Drawing.Size(648, 249)
         Me.Panel1.TabIndex = 0
         '
-        'StatusStrip1
+        'TableLayoutPanel1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 225)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(646, 22)
-        Me.StatusStrip1.TabIndex = 211
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'ToolStripStatusLabel1
-        '
-        Me.ToolStripStatusLabel1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.ToolStripStatusLabel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
-        Me.ToolStripStatusLabel1.Text = "Status"
-        '
-        'ToolStripProgressBar1
-        '
-        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
-        Me.ToolStripProgressBar1.Size = New System.Drawing.Size(540, 16)
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.BackColor = System.Drawing.Color.White
-        Me.GroupBox2.Controls.Add(Me.PictureBoxAttachment)
-        Me.GroupBox2.Controls.Add(Me.Button1)
-        Me.GroupBox2.Controls.Add(Me.TextBoxAttatchment)
-        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.GroupBox2.Location = New System.Drawing.Point(399, 3)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(244, 219)
-        Me.GroupBox2.TabIndex = 26
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Image"
-        '
-        'PictureBoxAttachment
-        '
-        Me.PictureBoxAttachment.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBoxAttachment.Location = New System.Drawing.Point(3, 19)
-        Me.PictureBoxAttachment.Name = "PictureBoxAttachment"
-        Me.PictureBoxAttachment.Size = New System.Drawing.Size(238, 164)
-        Me.PictureBoxAttachment.TabIndex = 0
-        Me.PictureBoxAttachment.TabStop = False
-        '
-        'TextBoxAttatchment
-        '
-        Me.TextBoxAttatchment.Enabled = False
-        Me.TextBoxAttatchment.Location = New System.Drawing.Point(54, 82)
-        Me.TextBoxAttatchment.Multiline = True
-        Me.TextBoxAttatchment.Name = "TextBoxAttatchment"
-        Me.TextBoxAttatchment.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBoxAttatchment.Size = New System.Drawing.Size(100, 75)
-        Me.TextBoxAttatchment.TabIndex = 1
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.Button1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(3, 183)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(238, 33)
-        Me.Button1.TabIndex = 26
-        Me.Button1.Text = "SELECT ATTACHMENT"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox2, 1, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(646, 225)
+        Me.TableLayoutPanel1.TabIndex = 212
         '
         'GroupBox1
         '
@@ -184,6 +128,34 @@ Partial Class Expenses
         Me.TextBoxPRICE.Size = New System.Drawing.Size(146, 23)
         Me.TextBoxPRICE.TabIndex = 23
         '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.Button5.FlatAppearance.BorderSize = 0
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Button5.ForeColor = System.Drawing.Color.White
+        Me.Button5.Location = New System.Drawing.Point(295, 183)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(89, 33)
+        Me.Button5.TabIndex = 31
+        Me.Button5.Text = "BACK"
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Button4.ForeColor = System.Drawing.Color.White
+        Me.Button4.Location = New System.Drawing.Point(106, 183)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(183, 33)
+        Me.Button4.TabIndex = 25
+        Me.Button4.Text = "SAVE"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
         'TextBoxITEMINF
         '
         Me.TextBoxITEMINF.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -203,20 +175,6 @@ Partial Class Expenses
         Me.ComboBoxType.Name = "ComboBoxType"
         Me.ComboBoxType.Size = New System.Drawing.Size(278, 23)
         Me.ComboBoxType.TabIndex = 32
-        '
-        'Button5
-        '
-        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
-        Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Button5.ForeColor = System.Drawing.Color.White
-        Me.Button5.Location = New System.Drawing.Point(295, 183)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(89, 33)
-        Me.Button5.TabIndex = 31
-        Me.Button5.Text = "CANCEL"
-        Me.Button5.UseVisualStyleBackColor = False
         '
         'Label9
         '
@@ -268,20 +226,6 @@ Partial Class Expenses
         Me.Label1.TabIndex = 26
         Me.Label1.Text = "Item:"
         '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(106, 183)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(183, 33)
-        Me.Button4.TabIndex = 25
-        Me.Button4.Text = "SAVE"
-        Me.Button4.UseVisualStyleBackColor = False
-        '
         'TextBoxQTY
         '
         Me.TextBoxQTY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -292,6 +236,77 @@ Partial Class Expenses
         Me.TextBoxQTY.Size = New System.Drawing.Size(146, 23)
         Me.TextBoxQTY.TabIndex = 22
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.BackColor = System.Drawing.Color.White
+        Me.GroupBox2.Controls.Add(Me.PictureBoxAttachment)
+        Me.GroupBox2.Controls.Add(Me.Button1)
+        Me.GroupBox2.Controls.Add(Me.TextBoxAttatchment)
+        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox2.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.GroupBox2.Location = New System.Drawing.Point(399, 3)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(244, 219)
+        Me.GroupBox2.TabIndex = 26
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Image"
+        '
+        'PictureBoxAttachment
+        '
+        Me.PictureBoxAttachment.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBoxAttachment.Location = New System.Drawing.Point(3, 19)
+        Me.PictureBoxAttachment.Name = "PictureBoxAttachment"
+        Me.PictureBoxAttachment.Size = New System.Drawing.Size(238, 164)
+        Me.PictureBoxAttachment.TabIndex = 0
+        Me.PictureBoxAttachment.TabStop = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Button1.ForeColor = System.Drawing.Color.White
+        Me.Button1.Location = New System.Drawing.Point(3, 183)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(238, 33)
+        Me.Button1.TabIndex = 26
+        Me.Button1.Text = "SELECT ATTACHMENT"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'TextBoxAttatchment
+        '
+        Me.TextBoxAttatchment.Enabled = False
+        Me.TextBoxAttatchment.Location = New System.Drawing.Point(54, 82)
+        Me.TextBoxAttatchment.Multiline = True
+        Me.TextBoxAttatchment.Name = "TextBoxAttatchment"
+        Me.TextBoxAttatchment.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBoxAttatchment.Size = New System.Drawing.Size(100, 75)
+        Me.TextBoxAttatchment.TabIndex = 1
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 225)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(646, 22)
+        Me.StatusStrip1.TabIndex = 211
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ToolStripStatusLabel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
+        Me.ToolStripStatusLabel1.Text = "Status"
+        '
+        'ToolStripProgressBar1
+        '
+        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
+        Me.ToolStripProgressBar1.Size = New System.Drawing.Size(540, 16)
+        '
         'BackgroundWorker1
         '
         '
@@ -301,21 +316,6 @@ Partial Class Expenses
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'TableLayoutPanel1
-        '
-        Me.TableLayoutPanel1.ColumnCount = 2
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox2, 1, 0)
-        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 1
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(646, 225)
-        Me.TableLayoutPanel1.TabIndex = 212
         '
         'Expenses
         '
@@ -331,14 +331,14 @@ Partial Class Expenses
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.PictureBoxAttachment, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
