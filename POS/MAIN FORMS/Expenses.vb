@@ -39,6 +39,7 @@ Public Class Expenses
                 .DataGridViewExpenses.Rows.Add(ComboBoxType.Text, TextBoxITEMINF.Text, TextBoxQTY.Text, TextBoxPRICE.Text, TextBoxTOTAL.Text, insertcurrentdate, insertcurrenttime, TextBoxAttatchment.Text, .ButtonClickCount)
                 .Label1.Text = SumOfColumnsToDecimal(.DataGridViewExpenses, 4)
             End With
+            Me.Close()
             ClearTextBox(root:=GroupBox1)
         End If
     End Sub
@@ -59,7 +60,7 @@ Public Class Expenses
                     BackgroundWorker1.RunWorkerAsync()
                 End If
                 PictureBoxAttachment.Image = Image.FromFile(OpenFileDialog1.FileName)
-                PictureBoxAttachment.SizeMode = PictureBoxSizeMode.StretchImage
+                PictureBoxAttachment.SizeMode = PictureBoxSizeMode.Zoom
                 Button1.Enabled = False
             End If
         Catch ex As Exception

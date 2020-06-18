@@ -615,6 +615,7 @@ Public Class POS
             CouponApplied = False
             CouponName = ""
             CouponDesc = ""
+            VATEXEMPTSALES = 0
             '=================================================================================================
         Else
             MsgBox("Select Transaction First!")
@@ -669,7 +670,7 @@ Public Class POS
             If transactionmode = "Representation Expenses" Then
                 Active = 3
             End If
-            total = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
+            total = Convert.ToDecimal(Double.Parse(TextBoxGRANDTOTAL.Text))
             If TextBoxDISCOUNT.Text = "" Then
                 VATABLE = 0.00
             Else
@@ -685,7 +686,7 @@ Public Class POS
                             ," & Active & "
                             ,'" & TEXTBOXMONEYVALUE & "'
                             ,'" & TEXTBOXCHANGEVALUE & "'
-                            ,'" & Double.Parse(TextBoxGRANDTOTAL.Text) & "'
+                            ,'" & total & "'
                             ,'" & ClientStoreID & "'
                             , " & VATABLE & "
                             , " & LESSVAT & "
@@ -783,6 +784,7 @@ Public Class POS
         End Try
     End Sub
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
+        Dim totalDisplay = Format(total, "##,##0.00")
         With Me
             a = 0
             Dim font As New Font("Kelson Sans Normal", 7)
@@ -828,7 +830,6 @@ Public Class POS
             Else
                 a += 120
             End If
-
             If Val(TextBoxDISCOUNT.Text) < 1 Then
                 'Total
                 Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
@@ -837,7 +838,8 @@ Public Class POS
                 Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
                 Dim change = String.Format("{0:n2}", aNumber1)
                 'AMOUT DUE
-                RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & total, font3)
+
+                RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & totalDisplay, font3)
                 'Cash
                 RightToLeftDisplay(sender, e, a + 15, "CASH:", "P" & cash, font2)
                 'Change
@@ -846,7 +848,7 @@ Public Class POS
 
                 SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 27)
                 'Vatable
-                RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & vatable, font)
+                RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & VATABLE, font)
                 'Vat Exempt
                 RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & "0.00", font)
                 'Zero Rated Sales
@@ -876,9 +878,9 @@ Public Class POS
                 Dim cash = String.Format("{0:n2}", aNumber)
                 Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
                 'amount due
-                RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & Math.Round(Val(TextBoxGRANDTOTAL.Text), 2), font3)
+                RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & totalDisplay, font3)
                 'Sub total
-                RightToLeftDisplay(sender, e, a + 15, "SUB TOTAL:", "P" & total, font2)
+                RightToLeftDisplay(sender, e, a + 15, "SUB TOTAL:", "P" & TextBoxSUBTOTAL.Text, font2)
                 'Discount
                 Dim aNumber0 As Double = TextBoxDISCOUNT.Text
                 Dim disc = String.Format(aNumber0)

@@ -17,8 +17,14 @@ Public Class CouponCode
     End Sub
     Private Sub ButtonSubmit_Click(sender As Object, e As EventArgs) Handles ButtonSubmit.Click
         Try
-            If POS.DataGridViewOrders.RowCount < 2 Then
-                MsgBox("Cannot apply coupon, no product found!", vbInformation)
+            Dim CountItem As Integer = 0
+            With POS
+                For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+                    CountItem += .DataGridViewOrders.Rows(i).Cells(1).Value
+                Next
+            End With
+            If CountItem < 2 Then
+                MsgBox("Cannot apply coupon! Minimum product quantity is 2", vbInformation)
                 Exit Sub
             ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Percentage" Then
                 'MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)

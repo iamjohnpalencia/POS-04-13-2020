@@ -23,6 +23,7 @@ Partial Class Expenses
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Expenses))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -253,10 +254,13 @@ Partial Class Expenses
         '
         'PictureBoxAttachment
         '
+        Me.PictureBoxAttachment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.PictureBoxAttachment.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBoxAttachment.Image = CType(resources.GetObject("PictureBoxAttachment.Image"), System.Drawing.Image)
         Me.PictureBoxAttachment.Location = New System.Drawing.Point(3, 19)
         Me.PictureBoxAttachment.Name = "PictureBoxAttachment"
         Me.PictureBoxAttachment.Size = New System.Drawing.Size(238, 164)
+        Me.PictureBoxAttachment.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxAttachment.TabIndex = 0
         Me.PictureBoxAttachment.TabStop = False
         '
@@ -284,6 +288,7 @@ Partial Class Expenses
         Me.TextBoxAttatchment.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.TextBoxAttatchment.Size = New System.Drawing.Size(100, 75)
         Me.TextBoxAttatchment.TabIndex = 1
+        Me.TextBoxAttatchment.Text = resources.GetString("TextBoxAttatchment.Text")
         '
         'StatusStrip1
         '

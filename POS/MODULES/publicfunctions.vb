@@ -355,7 +355,7 @@ Module publicfunctions
         Try
             Dim iDate As String = datetoformat
             Dim oDate As DateTime = Convert.ToDateTime(iDate)
-            dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00") & " " & oDate.Hour & ":" & oDate.Minute & ":" & oDate.Second
+            dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00") & " " & oDate.Hour.ToString("#00") & ":" & oDate.Minute.ToString("#00") & ":" & oDate.Second.ToString("#00")
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

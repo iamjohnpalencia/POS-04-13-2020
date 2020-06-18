@@ -393,57 +393,26 @@ Public Class Loading
         End Try
     End Sub
 #Region "Updates"
-    Private Function LoadFormulaLocal() As DataTable
-        Dim cmdlocal As MySqlCommand
-        Dim dalocal As MySqlDataAdapter
-        Dim dtlocal As DataTable = New DataTable
-        Try
-            Dim sql = "SELECT date_modified, server_formula_id FROM loc_product_formula"
-            cmdlocal = New MySqlCommand(sql, LocalhostConn())
-            dalocal = New MySqlDataAdapter(cmdlocal)
-            dalocal.Fill(dtlocal)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        Return dtlocal
-    End Function
-    Private Function LoadInventoryLocal() As DataTable
-        Dim cmdlocal As MySqlCommand
-        Dim dalocal As MySqlDataAdapter
-        Dim dtlocal As DataTable = New DataTable
-        Try
-            Dim sql = "SELECT server_date_modified , server_inventory_id FROM loc_pos_inventory"
-            cmdlocal = New MySqlCommand(sql, LocalhostConn())
-            dalocal = New MySqlDataAdapter(cmdlocal)
-            dalocal.Fill(dtlocal)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        Return dtlocal
-    End Function
+#Region "Categories Update"
+
     Private Function LoadCategoryLocal() As DataTable
         Dim cmdlocal As MySqlCommand
         Dim dalocal As MySqlDataAdapter
         Dim dtlocal As DataTable = New DataTable
+        dtlocal.Columns.Add("updated_at")
+        dtlocal.Columns.Add("category_id")
+        Dim dtlocal1 As DataTable = New DataTable
         Try
             Dim sql = "SELECT updated_at, category_id FROM loc_admin_category"
             cmdlocal = New MySqlCommand(sql, LocalhostConn())
             dalocal = New MySqlDataAdapter(cmdlocal)
-            dalocal.Fill(dtlocal)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        Return dtlocal
-    End Function
-    Private Function LoadProductLocal() As DataTable
-        Dim cmdlocal As MySqlCommand
-        Dim dalocal As MySqlDataAdapter
-        Dim dtlocal As DataTable = New DataTable
-        Try
-            Dim sql = "SELECT date_modified, server_product_id FROM loc_admin_products"
-            cmdlocal = New MySqlCommand(sql, LocalhostConn())
-            dalocal = New MySqlDataAdapter(cmdlocal)
-            dalocal.Fill(dtlocal)
+            dalocal.Fill(dtlocal1)
+            For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
+                Dim Cat As DataRow = dtlocal.NewRow
+                Cat("updated_at") = returndateformatfulldate(dtlocal1(i)(0).ToString)
+                Cat("category_id") = dtlocal1(i)(1)
+                dtlocal.Rows.Add(Cat)
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -476,13 +445,13 @@ Public Class Loading
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    If returndateformatfulldate(LoadCategoryLocal(i)(0).ToString) <> returndateformatfulldate(dtserver(i)(3).ToString) Then
-                        DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5))
+                    If LoadCategoryLocal(i)(0).ToString <> returndateformatfulldate(dtserver(i)(3).ToString) Then
+                        DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), returndateformatfulldate(dtserver(i)(3).ToString), dtserver(i)(4), dtserver(i)(5))
                         Dim Category As DataRow = CategoryDTUpdate.NewRow
                         Category("category_id") = dtserver(i)(0)
                         Category("category_name") = dtserver(i)(1)
                         Category("brand_name") = dtserver(i)(2)
-                        Category("updated_at") = dtserver(i)(3)
+                        Category("updated_at") = returndateformatfulldate(dtserver(i)(3).ToString)
                         Category("origin") = dtserver(i)(4)
                         Category("status") = dtserver(i)(5)
                         CategoryDTUpdate.Rows.Add(Category)
@@ -495,12 +464,12 @@ Public Class Loading
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                     If returndateformatfulldate(LoadCategoryLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(3)) Then
-                        DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5))
+                        DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), returndateformatfulldate(dtserver(i)(3).ToString), dtserver(i)(4), dtserver(i)(5))
                         Dim Category As DataRow = CategoryDTUpdate.NewRow
                         Category("category_id") = dtserver(i)(0)
                         Category("category_name") = dtserver(i)(1)
                         Category("brand_name") = dtserver(i)(2)
-                        Category("updated_at") = dtserver(i)(3)
+                        Category("updated_at") = returndateformatfulldate(dtserver(i)(3).ToString)
                         Category("origin") = dtserver(i)(4)
                         Category("status") = dtserver(i)(5)
                         CategoryDTUpdate.Rows.Add(Category)
@@ -512,7 +481,31 @@ Public Class Loading
             'If table doesnt have data
         End Try
     End Sub
-
+#End Region
+#Region "Products Update"
+    Private Function LoadProductLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        dtlocal.Columns.Add("date_modified")
+        dtlocal.Columns.Add("server_product_id")
+        Dim dtlocal1 As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT date_modified, server_product_id FROM loc_admin_products"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal1)
+            For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
+                Dim Cat As DataRow = dtlocal.NewRow
+                Cat("date_modified") = returndateformatfulldate(dtlocal1(i)(0).ToString)
+                Cat("server_product_id") = dtlocal1(i)(1)
+                dtlocal.Rows.Add(Cat)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
     Private Sub Function2()
         Try
             Dim cmdserver As MySqlCommand
@@ -546,8 +539,8 @@ Public Class Loading
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    If returndateformatfulldate(LoadProductLocal(i)(0).ToString) <> returndateformatfulldate(dtserver(i)(11).ToString) Then
-                        DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11))
+                    If LoadProductLocal(i)(0) <> returndateformatfulldate(dtserver(i)(11).ToString) Then
+                        DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), returndateformatfulldate(dtserver(i)(11).ToString))
                         Dim Product As DataRow = ProductDTUpdate.NewRow
                         Product("product_id") = dtserver(i)(0)
                         Product("product_sku") = dtserver(i)(1)
@@ -560,7 +553,7 @@ Public Class Loading
                         Product("product_image") = dtserver(i)(8)
                         Product("product_status") = dtserver(i)(9)
                         Product("origin") = dtserver(i)(10)
-                        Product("date_modified") = dtserver(i)(11)
+                        Product("date_modified") = returndateformatfulldate(dtserver(i)(11).ToString)
                         ProductDTUpdate.Rows.Add(Product)
                     End If
                 Next
@@ -570,8 +563,8 @@ Public Class Loading
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    If returndateformatfulldate(LoadProductLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(11)) Then
-                        DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11))
+                    If LoadProductLocal(i)(0) <> returndateformatfulldate(dtserver(i)(11).ToString) Then
+                        DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), returndateformatfulldate(dtserver(i)(11).ToString))
                         Dim Product As DataRow = ProductDTUpdate.NewRow
                         Product("product_id") = dtserver(i)(0)
                         Product("product_sku") = dtserver(i)(1)
@@ -595,6 +588,31 @@ Public Class Loading
         End Try
     End Sub
 
+#End Region
+#Region "Formulas Update"
+    Private Function LoadFormulaLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        dtlocal.Columns.Add("date_modified")
+        dtlocal.Columns.Add("server_formula_id")
+        Dim dtlocal1 As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT date_modified, server_formula_id FROM loc_product_formula"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal)
+            For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
+                Dim Cat As DataRow = dtlocal.NewRow
+                Cat("date_modified") = returndateformatfulldate(dtlocal1(i)(0).ToString)
+                Cat("server_product_id") = dtlocal1(i)(1)
+                dtlocal.Rows.Add(Cat)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
     Private Sub Function3()
         Try
             Dim Ids As String = ""
@@ -630,8 +648,8 @@ Public Class Loading
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    If returndateformatfulldate(LoadFormulaLocal(i)(0).ToString) <> returndateformatfulldate(dtserver(i)(10).ToString) Then
-                        DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11), dtserver(i)(12))
+                    If LoadFormulaLocal(i)(0) <> returndateformatfulldate(dtserver(i)(10).ToString) Then
+                        DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), returndateformatfulldate(dtserver(i)(10).ToString), dtserver(i)(11), dtserver(i)(12))
                         Dim Formula As DataRow = FormulaDTUpdate.NewRow
                         Formula("formula_id") = dtserver(i)(0)
                         Formula("product_ingredients") = dtserver(i)(1)
@@ -643,7 +661,7 @@ Public Class Loading
                         Formula("serving_value") = dtserver(i)(7)
                         Formula("no_servings") = dtserver(i)(8)
                         Formula("status") = dtserver(i)(9)
-                        Formula("date_modified") = dtserver(i)(10)
+                        Formula("date_modified") = returndateformatfulldate(dtserver(i)(10).ToString)
                         Formula("unit_cost") = dtserver(i)(11)
                         Formula("origin") = dtserver(i)(12)
                         FormulaDTUpdate.Rows.Add(Formula)
@@ -655,8 +673,8 @@ Public Class Loading
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    If returndateformatfulldate(LoadFormulaLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(10)) Then
-                        DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11), dtserver(i)(12))
+                    If LoadFormulaLocal(i)(0) <> returndateformatfulldate(dtserver(i)(10)) Then
+                        DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), returndateformatfulldate(dtserver(i)(10).ToString), dtserver(i)(11), dtserver(i)(12))
                         Dim Formula As DataRow = FormulaDTUpdate.NewRow
                         Formula("formula_id") = dtserver(i)(0)
                         Formula("product_ingredients") = dtserver(i)(1)
@@ -668,7 +686,7 @@ Public Class Loading
                         Formula("serving_value") = dtserver(i)(7)
                         Formula("no_servings") = dtserver(i)(8)
                         Formula("status") = dtserver(i)(9)
-                        Formula("date_modified") = dtserver(i)(10)
+                        Formula("date_modified") = returndateformatfulldate(dtserver(i)(10).ToString)
                         Formula("unit_cost") = dtserver(i)(11)
                         Formula("origin") = dtserver(i)(12)
                         FormulaDTUpdate.Rows.Add(Formula)
@@ -680,6 +698,30 @@ Public Class Loading
             'If table doesnt have data
         End Try
     End Sub
+#End Region
+    Private Function LoadInventoryLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        dtlocal.Columns.Add("server_date_modified")
+        dtlocal.Columns.Add("server_inventory_id")
+        Dim dtlocal1 As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT server_date_modified , server_inventory_id FROM loc_pos_inventory"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal)
+            For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
+                Dim Cat As DataRow = dtlocal.NewRow
+                Cat("server_date_modified") = returndateformatfulldate(dtlocal1(i)(0).ToString)
+                Cat("server_inventory_id") = dtlocal1(i)(1)
+                dtlocal.Rows.Add(Cat)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
     Private Sub Function4()
         Try
             InventoryDTUpdate = New DataTable
@@ -710,8 +752,8 @@ Public Class Loading
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    If returndateformatfulldate(LoadInventoryLocal(i)(0).ToString) <> returndateformatfulldate(dtserver(i)(8).ToString) Then
-                        DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8))
+                    If LoadInventoryLocal(i)(0).ToString <> returndateformatfulldate(dtserver(i)(8).ToString) Then
+                        DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), returndateformatfulldate(dtserver(i)(8).ToString))
                         Dim Inventory As DataRow = InventoryDTUpdate.NewRow
                         Inventory("inventory_id") = dtserver(i)(0)
                         Inventory("formula_id") = dtserver(i)(1)
@@ -721,7 +763,7 @@ Public Class Loading
                         Inventory("stock_total") = dtserver(i)(5)
                         Inventory("stock_status") = dtserver(i)(6)
                         Inventory("critical_limit") = dtserver(i)(7)
-                        Inventory("date_modified") = dtserver(i)(8)
+                        Inventory("date_modified") = returndateformatfulldate(dtserver(i)(8).ToString)
                         InventoryDTUpdate.Rows.Add(Inventory)
                     End If
                 Next
@@ -731,8 +773,8 @@ Public Class Loading
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    If returndateformatfulldate(LoadInventoryLocal(i)(0)) <> returndateformatfulldate(dtserver(i)(8)) Then
-                        DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8))
+                    If LoadInventoryLocal(i)(0) <> returndateformatfulldate(dtserver(i)(8)) Then
+                        DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), returndateformatfulldate(dtserver(i)(8).ToString))
                         Dim Inventory As DataRow = InventoryDTUpdate.NewRow
                         Inventory("inventory_id") = dtserver(i)(0)
                         Inventory("formula_id") = dtserver(i)(1)
@@ -742,7 +784,7 @@ Public Class Loading
                         Inventory("stock_total") = dtserver(i)(5)
                         Inventory("stock_status") = dtserver(i)(6)
                         Inventory("critical_limit") = dtserver(i)(7)
-                        Inventory("date_modified") = dtserver(i)(8)
+                        Inventory("date_modified") = returndateformatfulldate(dtserver(i)(8).ToString)
                         InventoryDTUpdate.Rows.Add(Inventory)
                     End If
                 Next

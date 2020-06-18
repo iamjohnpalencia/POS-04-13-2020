@@ -108,6 +108,18 @@ Public Class ConfigManager
     End Sub
     Private Sub ButtonClearLocal_Click(sender As Object, e As EventArgs) Handles ButtonClearLocal.Click
         ClearTextBox(Panel5)
+        My.Settings.ValidLocalConn = False
+        My.Settings.Save()
+    End Sub
+    Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles ButtonEditLocal.Click
+        Try
+            BTNSaveLocalConn = False
+            TextboxEnableability(Panel5, True)
+            ButtonClearLocal.Enabled = True
+            ButtonTestLocConn.Enabled = True
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub ButtonClearCloud_Click(sender As Object, e As EventArgs) Handles ButtonClearCloud.Click
         ClearTextBox(Panel9)
@@ -181,6 +193,15 @@ Public Class ConfigManager
         TextboxEnableability(Panel9, True)
         ButtonEnableability(Panel9, True)
     End Sub
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        Try
+            TextboxEnableability(Panel9, True)
+            ButtonClearCloud.Enabled = True
+            ButtonTestCloudConn.Enabled = True
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Private Sub ButtonSaveCloudConn_Click(sender As Object, e As EventArgs) Handles ButtonSaveCloudConn.Click
         Try
             table = "loc_settings"
@@ -212,7 +233,10 @@ Public Class ConfigManager
                         cmd.ExecuteNonQuery()
                         MsgBox("Saved!")
                     End If
+                    TextboxEnableability(Panel9, False)
                     BTNSaveCloudConn = True
+                    ButtonClearCloud.Enabled = False
+                    ButtonTestCloudConn.Enabled = False
                 Else
                     MsgBox("Connection must be valid")
                 End If
@@ -279,7 +303,6 @@ Public Class ConfigManager
                     My.Settings.ValidCloudConn = False
                     My.Settings.Save()
                 End If
-
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -533,6 +556,7 @@ Public Class ConfigManager
                     AccountExist = False
                     UserGUID = ""
                     Exit For
+
                 End If
             Next
         Catch ex As MySqlException
@@ -548,11 +572,14 @@ Public Class ConfigManager
             BackgroundWorker4.WorkerSupportsCancellation = True
             BackgroundWorker4.WorkerReportsProgress = True
             BackgroundWorker4.RunWorkerAsync()
+            TextboxEnableability(Panel14, False)
+            ButtonEnableability(Panel14, True)
         Else
+            TextboxEnableability(Panel14, True)
+            ButtonEnableability(Panel14, True)
             MsgBox("Invalid account.")
         End If
-        TextboxEnableability(Panel14, True)
-        ButtonEnableability(Panel14, True)
+
     End Sub
     Private Sub BackgroundWorker4_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker4.DoWork
         Try
@@ -618,6 +645,19 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Private Sub RDButtons(tf As Boolean)
+        Try
+            RadioButtonNO.Enabled = tf
+            RadioButtonYES.Enabled = tf
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+        TextboxEnableability(GroupBox10, True)
+        RDButtons(True)
+        ButtonGetExportPath.Enabled = True
+    End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Try
             Dim RButton As Integer
@@ -660,6 +700,9 @@ Public Class ConfigManager
                         My.Settings.ValidAddtionalSettings = True
                         My.Settings.Save()
                     End If
+                    TextboxEnableability(GroupBox10, False)
+                    RDButtons(False)
+                    ButtonGetExportPath.Enabled = False
                 Else
                     My.Settings.ValidAddtionalSettings = False
                     My.Settings.Save()
@@ -672,7 +715,7 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles ButtonGetExportPath.Click
         If (FolderBrowserDialog1.ShowDialog() = DialogResult.OK) Then
             TextBoxExportPath.Text = FolderBrowserDialog1.SelectedPath
         End If
@@ -684,6 +727,12 @@ Public Class ConfigManager
                 BackgroundWorkerLOAD.ReportProgress(i)
                 If i = 0 Then
                     thread1 = New Thread(AddressOf LoadConn)
+                    thread1.Start()
+                    threadList.Add(thread1)
+                    For Each t In threadList
+                        t.Join()
+                    Next
+                    thread1 = New Thread(AddressOf TestLocalConnection)
                     thread1.Start()
                     threadList.Add(thread1)
                     For Each t In threadList
@@ -709,6 +758,20 @@ Public Class ConfigManager
     End Sub
     Private Sub BackgroundWorkerLOAD_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorkerLOAD.ProgressChanged
         ProgressBar4.Value = e.ProgressPercentage
+    End Sub
+    Private Sub DatePickerState(tf As Boolean)
+        Try
+            DateTimePicker1ACCRDI.Enabled = tf
+            DateTimePicker2ACCRVU.Enabled = tf
+            DateTimePicker4PTUDI.Enabled = tf
+            DateTimePickerPTUVU.Enabled = tf
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub ButtonEditDevSet_Click(sender As Object, e As EventArgs) Handles ButtonEditDevSet.Click
+        TextboxEnableability(GroupBox11, True)
+        DatePickerState(True)
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         Dim table = "loc_settings"
@@ -755,6 +818,8 @@ Public Class ConfigManager
                     My.Settings.ValidAddtionalSettings = True
                     My.Settings.Save()
                 End If
+                TextboxEnableability(GroupBox11, False)
+                DatePickerState(False)
             Else
                 MsgBox("Invalid local connection")
                 My.Settings.ValidDevSettings = False
@@ -762,6 +827,8 @@ Public Class ConfigManager
             End If
         Else
             MsgBox("All fields are required")
+            My.Settings.ValidDevSettings = False
+            My.Settings.Save()
         End If
     End Sub
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
@@ -1328,6 +1395,14 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        TextboxEnableability(Panel14, True)
+        AccountExist = False
+        FranchiseeStoreValidation = False
+        DataGridViewOutlets.DataSource = Nothing
+        DataGridViewOutletDetails.Rows.Clear()
+        ClearTextBox(Panel15)
+    End Sub
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonSaveLocalCon.Click
         Try
             If My.Settings.ValidLocalConn = True Then
@@ -1335,6 +1410,9 @@ Public Class ConfigManager
                 Dim path = My.Computer.FileSystem.SpecialDirectories.MyDocuments
                 CreateFolder(path, FolderName)
                 BTNSaveLocalConn = True
+                TextboxEnableability(Panel5, False)
+                ButtonClearLocal.Enabled = False
+                ButtonTestLocConn.Enabled = False
             Else
                 MsgBox("Connection must be valid")
             End If
@@ -1345,7 +1423,63 @@ Public Class ConfigManager
     Private Sub BackgroundWorker5_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker5.ProgressChanged
         ProgressBar6.Value = e.ProgressPercentage
     End Sub
+    Private Sub TextBoxLocalServer_TextChanged(sender As Object, e As EventArgs) Handles TextBoxLocalUsername.TextChanged, TextBoxLocalServer.TextChanged, TextBoxLocalPort.TextChanged, TextBoxLocalPassword.TextChanged, TextBoxLocalDatabase.TextChanged
+        Try
+            BTNSaveLocalConn = False
+            My.Settings.ValidLocalConn = False
+            My.Settings.Save()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 
+    Private Sub TextBoxCloudServer_TextChanged(sender As Object, e As EventArgs) Handles TextBoxCloudUsername.TextChanged, TextBoxCloudServer.TextChanged, TextBoxCloudPort.TextChanged, TextBoxCloudPassword.TextChanged, TextBoxCloudDatabase.TextChanged
+        Try
+            BTNSaveCloudConn = False
+            My.Settings.ValidCloudConn = False
+            My.Settings.Save()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub TextBoxDEVPTU_TextChanged(sender As Object, e As EventArgs) Handles TextBoxDevTIN.TextChanged, TextBoxDEVPTU.TextChanged, TextBoxDevname.TextChanged, TextBoxDevAdd.TextChanged, TextBoxDevAccr.TextChanged
+        Try
+            My.Settings.ValidDevSettings = False
+            My.Settings.Save()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub DateTimePicker1ACCRDI_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePickerPTUVU.ValueChanged, DateTimePicker4PTUDI.ValueChanged, DateTimePicker2ACCRVU.ValueChanged, DateTimePicker1ACCRDI.ValueChanged
+        Try
+            My.Settings.ValidDevSettings = False
+            My.Settings.Save()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub TextBoxExportPath_TextChanged(sender As Object, e As EventArgs) Handles TextBoxTerminalNo.TextChanged, TextBoxTax.TextChanged, TextBoxSINumber.TextChanged, TextBoxExportPath.TextChanged
+        Try
+            My.Settings.ValidAddtionalSettings = False
+            My.Settings.Save()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub RadioButtonYES_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonYES.CheckedChanged, RadioButtonNO.CheckedChanged
+        Try
+            My.Settings.ValidAddtionalSettings = False
+            My.Settings.Save()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+
+
+
+
+#Region "Test Insert"
     'Private Sub button7_click(sender As Object, e As EventArgs) Handles Button7.Click
     '    InsertToProducts()
     '    'InsertToInventory()
@@ -1359,4 +1493,6 @@ Public Class ConfigManager
     '    GetInventory()
     '    GetFormula()
     'End Sub
+#End Region
+
 End Class

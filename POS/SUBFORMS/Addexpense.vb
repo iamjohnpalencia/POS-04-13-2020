@@ -80,7 +80,7 @@ Public Class Addexpense
         Try
             With DataGridViewExpenses
                 Dim total
-                total = SumOfColumnsToDecimal(DataGridViewExpenses, 3)
+                total = SumOfColumnsToDecimal(DataGridViewExpenses, 4)
                 messageboxappearance = False
                 table = "loc_expense_list"
                 fields = "(`expense_number`,`crew_id`, `total_amount`, `paid_amount`, `unpaid_amount`, `store_id`, `guid`, `date`, `time`, `active`, `synced`, `zreading`)"

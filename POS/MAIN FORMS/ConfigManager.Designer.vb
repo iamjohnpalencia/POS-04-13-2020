@@ -36,6 +36,7 @@ Partial Class ConfigManager
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.Button9 = New System.Windows.Forms.Button()
         Me.Panel10 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
         Me.LabelCloud = New System.Windows.Forms.Label()
@@ -55,6 +56,7 @@ Partial Class ConfigManager
         Me.TextBoxCloudServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.ButtonEditLocal = New System.Windows.Forms.Button()
         Me.ButtonSaveLocalCon = New System.Windows.Forms.Button()
         Me.ButtonTestLocConn = New System.Windows.Forms.Button()
         Me.ButtonClearLocal = New System.Windows.Forms.Button()
@@ -109,6 +111,7 @@ Partial Class ConfigManager
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel8 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox11 = New System.Windows.Forms.GroupBox()
+        Me.ButtonEditDevSet = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Label79 = New System.Windows.Forms.Label()
         Me.Label78 = New System.Windows.Forms.Label()
@@ -130,7 +133,8 @@ Partial Class ConfigManager
         Me.TextBoxDevname = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel9 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.ButtonEdit = New System.Windows.Forms.Button()
+        Me.ButtonGetExportPath = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.TextBoxExportPath = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -180,6 +184,7 @@ Partial Class ConfigManager
         Me.ProgressBar3 = New System.Windows.Forms.ProgressBar()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Panel14 = New System.Windows.Forms.Panel()
+        Me.Button7 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -518,6 +523,7 @@ Partial Class ConfigManager
         'Panel9
         '
         Me.Panel9.AutoScroll = True
+        Me.Panel9.Controls.Add(Me.Button9)
         Me.Panel9.Controls.Add(Me.Panel10)
         Me.Panel9.Controls.Add(Me.Panel24)
         Me.Panel9.Controls.Add(Me.Label12)
@@ -539,6 +545,19 @@ Partial Class ConfigManager
         Me.Panel9.Name = "Panel9"
         Me.Panel9.Size = New System.Drawing.Size(488, 209)
         Me.Panel9.TabIndex = 1
+        '
+        'Button9
+        '
+        Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Button9.FlatAppearance.BorderSize = 0
+        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button9.ForeColor = System.Drawing.Color.White
+        Me.Button9.Location = New System.Drawing.Point(392, 53)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(65, 23)
+        Me.Button9.TabIndex = 272
+        Me.Button9.Text = "Edit"
+        Me.Button9.UseVisualStyleBackColor = False
         '
         'Panel10
         '
@@ -658,7 +677,7 @@ Partial Class ConfigManager
         Me.ButtonClearCloud.ForeColor = System.Drawing.Color.White
         Me.ButtonClearCloud.Location = New System.Drawing.Point(321, 53)
         Me.ButtonClearCloud.Name = "ButtonClearCloud"
-        Me.ButtonClearCloud.Size = New System.Drawing.Size(136, 23)
+        Me.ButtonClearCloud.Size = New System.Drawing.Size(65, 23)
         Me.ButtonClearCloud.TabIndex = 262
         Me.ButtonClearCloud.Text = "Clear"
         Me.ButtonClearCloud.UseVisualStyleBackColor = False
@@ -725,6 +744,7 @@ Partial Class ConfigManager
         'Panel5
         '
         Me.Panel5.AutoScroll = True
+        Me.Panel5.Controls.Add(Me.ButtonEditLocal)
         Me.Panel5.Controls.Add(Me.ButtonSaveLocalCon)
         Me.Panel5.Controls.Add(Me.ButtonTestLocConn)
         Me.Panel5.Controls.Add(Me.ButtonClearLocal)
@@ -746,6 +766,19 @@ Partial Class ConfigManager
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(488, 209)
         Me.Panel5.TabIndex = 0
+        '
+        'ButtonEditLocal
+        '
+        Me.ButtonEditLocal.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonEditLocal.FlatAppearance.BorderSize = 0
+        Me.ButtonEditLocal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonEditLocal.ForeColor = System.Drawing.Color.White
+        Me.ButtonEditLocal.Location = New System.Drawing.Point(392, 52)
+        Me.ButtonEditLocal.Name = "ButtonEditLocal"
+        Me.ButtonEditLocal.Size = New System.Drawing.Size(65, 23)
+        Me.ButtonEditLocal.TabIndex = 263
+        Me.ButtonEditLocal.Text = "Edit"
+        Me.ButtonEditLocal.UseVisualStyleBackColor = False
         '
         'ButtonSaveLocalCon
         '
@@ -780,7 +813,7 @@ Partial Class ConfigManager
         Me.ButtonClearLocal.ForeColor = System.Drawing.Color.White
         Me.ButtonClearLocal.Location = New System.Drawing.Point(321, 52)
         Me.ButtonClearLocal.Name = "ButtonClearLocal"
-        Me.ButtonClearLocal.Size = New System.Drawing.Size(136, 23)
+        Me.ButtonClearLocal.Size = New System.Drawing.Size(65, 23)
         Me.ButtonClearLocal.TabIndex = 261
         Me.ButtonClearLocal.Text = "Clear"
         Me.ButtonClearLocal.UseVisualStyleBackColor = False
@@ -1347,6 +1380,7 @@ Partial Class ConfigManager
         '
         'GroupBox11
         '
+        Me.GroupBox11.Controls.Add(Me.ButtonEditDevSet)
         Me.GroupBox11.Controls.Add(Me.Button6)
         Me.GroupBox11.Controls.Add(Me.Label79)
         Me.GroupBox11.Controls.Add(Me.Label78)
@@ -1374,12 +1408,22 @@ Partial Class ConfigManager
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "Developer Information"
         '
+        'ButtonEditDevSet
+        '
+        Me.ButtonEditDevSet.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonEditDevSet.Location = New System.Drawing.Point(221, 401)
+        Me.ButtonEditDevSet.Name = "ButtonEditDevSet"
+        Me.ButtonEditDevSet.Size = New System.Drawing.Size(65, 23)
+        Me.ButtonEditDevSet.TabIndex = 273
+        Me.ButtonEditDevSet.Text = "Edit"
+        Me.ButtonEditDevSet.UseVisualStyleBackColor = True
+        '
         'Button6
         '
         Me.Button6.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
         Me.Button6.Location = New System.Drawing.Point(41, 401)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(245, 23)
+        Me.Button6.Size = New System.Drawing.Size(174, 23)
         Me.Button6.TabIndex = 272
         Me.Button6.Text = "Save"
         Me.Button6.UseVisualStyleBackColor = True
@@ -1567,7 +1611,8 @@ Partial Class ConfigManager
         '
         'GroupBox10
         '
-        Me.GroupBox10.Controls.Add(Me.Button4)
+        Me.GroupBox10.Controls.Add(Me.ButtonEdit)
+        Me.GroupBox10.Controls.Add(Me.ButtonGetExportPath)
         Me.GroupBox10.Controls.Add(Me.Button3)
         Me.GroupBox10.Controls.Add(Me.TextBoxExportPath)
         Me.GroupBox10.Controls.Add(Me.Label17)
@@ -1588,25 +1633,35 @@ Partial Class ConfigManager
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "Additional Settings"
         '
-        'Button4
+        'ButtonEdit
         '
-        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
-        Me.Button4.Location = New System.Drawing.Point(238, 44)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(45, 22)
-        Me.Button4.TabIndex = 294
-        Me.Button4.Text = "..."
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.ButtonEdit.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonEdit.Location = New System.Drawing.Point(218, 196)
+        Me.ButtonEdit.Name = "ButtonEdit"
+        Me.ButtonEdit.Size = New System.Drawing.Size(65, 23)
+        Me.ButtonEdit.TabIndex = 294
+        Me.ButtonEdit.Text = "Edit"
+        Me.ButtonEdit.UseVisualStyleBackColor = True
+        '
+        'ButtonGetExportPath
+        '
+        Me.ButtonGetExportPath.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ButtonGetExportPath.FlatAppearance.BorderSize = 0
+        Me.ButtonGetExportPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonGetExportPath.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonGetExportPath.Location = New System.Drawing.Point(238, 44)
+        Me.ButtonGetExportPath.Name = "ButtonGetExportPath"
+        Me.ButtonGetExportPath.Size = New System.Drawing.Size(45, 22)
+        Me.ButtonGetExportPath.TabIndex = 294
+        Me.ButtonGetExportPath.Text = "..."
+        Me.ButtonGetExportPath.UseVisualStyleBackColor = False
         '
         'Button3
         '
         Me.Button3.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
-        Me.Button3.Location = New System.Drawing.Point(38, 201)
+        Me.Button3.Location = New System.Drawing.Point(38, 196)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(245, 23)
+        Me.Button3.Size = New System.Drawing.Size(174, 23)
         Me.Button3.TabIndex = 293
         Me.Button3.Text = "Save"
         Me.Button3.UseVisualStyleBackColor = True
@@ -2149,6 +2204,7 @@ Partial Class ConfigManager
         'Panel14
         '
         Me.Panel14.AutoScroll = True
+        Me.Panel14.Controls.Add(Me.Button7)
         Me.Panel14.Controls.Add(Me.Button1)
         Me.Panel14.Controls.Add(Me.Label16)
         Me.Panel14.Controls.Add(Me.Label15)
@@ -2161,9 +2217,18 @@ Partial Class ConfigManager
         Me.Panel14.Size = New System.Drawing.Size(488, 118)
         Me.Panel14.TabIndex = 0
         '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(316, 78)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(112, 23)
+        Me.Button7.TabIndex = 5
+        Me.Button7.Text = "Edit"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(295, 78)
+        Me.Button1.Location = New System.Drawing.Point(177, 78)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(133, 23)
         Me.Button1.TabIndex = 4
@@ -3237,7 +3302,7 @@ Partial Class ConfigManager
     Friend WithEvents TextBoxTax As TextBox
     Friend WithEvents TextBoxSINumber As TextBox
     Friend WithEvents Label19 As Label
-    Friend WithEvents Button4 As Button
+    Friend WithEvents ButtonGetExportPath As Button
     Friend WithEvents FolderBrowserDialog2 As FolderBrowserDialog
     Friend WithEvents BackgroundWorkerLOAD As System.ComponentModel.BackgroundWorker
     Friend WithEvents ProgressBar4 As ProgressBar
@@ -3331,4 +3396,9 @@ Partial Class ConfigManager
     Friend WithEvents Column54 As DataGridViewTextBoxColumn
     Friend WithEvents Column55 As DataGridViewTextBoxColumn
     Friend WithEvents Column56 As DataGridViewTextBoxColumn
+    Friend WithEvents Button7 As Button
+    Friend WithEvents Button9 As Button
+    Friend WithEvents ButtonEditLocal As Button
+    Friend WithEvents ButtonEditDevSet As Button
+    Friend WithEvents ButtonEdit As Button
 End Class

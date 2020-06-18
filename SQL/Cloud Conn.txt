@@ -8,6 +8,3 @@ SERVER:
 gator3218.hostgator.com
 PORT:
 3306
-
-Product Key:
-B8E6V-/u8H8-0dXt-2y8L0-LM7x0
