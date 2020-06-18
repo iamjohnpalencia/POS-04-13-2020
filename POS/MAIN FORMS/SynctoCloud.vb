@@ -379,27 +379,27 @@ Public Class SynctoCloud
                 ProgressBar1.Maximum = Val(Label3.Text)
                 'POS.ProgressBar1.Maximum = Val(Label7.Text)
                 '  ============================================================================transaction
-                thread1 = New Thread(AddressOf insertlocaldailytransaction)
-                thread1.Start()
-                threadListLOCTRAN.Add(thread1)
-                thread1 = New Thread(AddressOf inserttransactiondetails1)
-                thread1.Start()
-                threadListLOCTD1.Add(thread1)
-                '  ============================================================================inventory
-                thread1 = New Thread(AddressOf insertinventory)
-                thread1.Start()
-                threadListLOCINV.Add(thread1)
-                '   ============================================================================expenses
-                thread1 = New Thread(AddressOf insertexpenses)
-                thread1.Start()
-                threadListLOCEXP.Add(thread1)
-                thread1 = New Thread(AddressOf insertexpensedetails)
-                thread1.Start()
-                threadListLOCEXPD.Add(thread1)
-                '============================================================================users
-                thread1 = New Thread(AddressOf insertlocalusers)
-                thread1.Start()
-                threadListLOCTUSER.Add(thread1)
+                'thread1 = New Thread(AddressOf insertlocaldailytransaction)
+                'thread1.Start()
+                'threadListLOCTRAN.Add(thread1)
+                'thread1 = New Thread(AddressOf inserttransactiondetails1)
+                'thread1.Start()
+                'threadListLOCTD1.Add(thread1)
+                ''  ============================================================================inventory
+                'thread1 = New Thread(AddressOf insertinventory)
+                'thread1.Start()
+                'threadListLOCINV.Add(thread1)
+                ''   ============================================================================expenses
+                'thread1 = New Thread(AddressOf insertexpenses)
+                'thread1.Start()
+                'threadListLOCEXP.Add(thread1)
+                'thread1 = New Thread(AddressOf insertexpensedetails)
+                'thread1.Start()
+                'threadListLOCEXPD.Add(thread1)
+                ''============================================================================users
+                'thread1 = New Thread(AddressOf insertlocalusers)
+                'thread1.Start()
+                'threadListLOCTUSER.Add(thread1)
                 '============================================================================System Logs
                 thread1 = New Thread(AddressOf insertsystemlogs1)
                 thread1.Start()
@@ -414,21 +414,21 @@ Public Class SynctoCloud
                 thread1.Start()
                 threadListLOCSYSLOG4.Add(thread1)
                 '============================================================================Returns / Refunds
-                thread1 = New Thread(AddressOf insertrefretdetails)
-                thread1.Start()
-                threadListLOCREFRET.Add(thread1)
+                'thread1 = New Thread(AddressOf insertrefretdetails)
+                'thread1.Start()
+                'threadListLOCREFRET.Add(thread1)
 
-                thread1 = New Thread(AddressOf insertlocproducts)
-                thread1.Start()
-                threadListLOCPRODUCT.Add(thread1)
+                'thread1 = New Thread(AddressOf insertlocproducts)
+                'thread1.Start()
+                'threadListLOCPRODUCT.Add(thread1)
 
-                thread1 = New Thread(AddressOf insertlocmodeoftransaction)
-                thread1.Start()
-                threadListMODEOFTRANSACTION.Add(thread1)
+                'thread1 = New Thread(AddressOf insertlocmodeoftransaction)
+                'thread1.Start()
+                'threadListMODEOFTRANSACTION.Add(thread1)
 
-                thread1 = New Thread(AddressOf insertlocdeposit)
-                thread1.Start()
-                threadListLocDeposit.Add(thread1)
+                'thread1 = New Thread(AddressOf insertlocdeposit)
+                'thread1.Start()
+                'threadListLocDeposit.Add(thread1)
 
                 For Each t In threadListLOCTRAN
                     t.Join()
@@ -932,23 +932,16 @@ Public Class SynctoCloud
             Label22.Text = "Syncing Systemlogs 1"
             With DataGridViewSYSLOG1
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`
-                                                                        , `log_type`
-                                                                        , `log_description`
-                                                                        , `log_date_time`
-                                                                        , `log_store`
-                                                                        , `guid`
-                                                                        , `loc_systemlog_id`) 
-                    VALUES (@0, @1, @2, @3, @4, @5, @6)", server)
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
+                    VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                    '= "MM/dd/yyyy hh:mm:ss"
-                    '"yyyy-MM-dd hh:mm:ss"
                     cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-                    cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
+                    cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label37.Text = Val(Label37.Text) + 1
@@ -992,21 +985,16 @@ Public Class SynctoCloud
             Label23.Text = "Syncing Systemlogs 2"
             With DataGridViewSYSLOG2
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`
-                                                                        , `log_type`
-                                                                        , `log_description`
-                                                                        , `log_date_time`
-                                                                        , `log_store`
-                                                                        , `guid`
-                                                                        , `loc_systemlog_id`) 
-                    VALUES (@0, @1, @2, @3, @4, @5, @6)", server)
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
+                    VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
                     cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-                    cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
+                    cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label38.Text = Val(Label38.Text) + 1
@@ -1050,21 +1038,16 @@ Public Class SynctoCloud
             Label24.Text = "Syncing Systemlogs 3"
             With DataGridViewSYSLOG3
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`
-                                                                        , `log_type`
-                                                                        , `log_description`
-                                                                        , `log_date_time`
-                                                                        , `log_store`
-                                                                        , `guid`
-                                                                        , `loc_systemlog_id`) 
-                    VALUES (@0, @1, @2, @3, @4, @5, @6)", server)
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
+                    VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
                     cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-                    cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
+                    cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label39.Text = Val(Label39.Text) + 1
@@ -1108,21 +1091,16 @@ Public Class SynctoCloud
             Label25.Text = "Syncing Systemlogs 4"
             With DataGridViewSYSLOG4
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`
-                                                                        , `log_type`
-                                                                        , `log_description`
-                                                                        , `log_date_time`
-                                                                        , `log_store`
-                                                                        , `guid`
-                                                                        , `loc_systemlog_id`) 
-                    VALUES (@0, @1, @2, @3, @4, @5, @6)", server)
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
+                    VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
                     cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-                    cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
+                    cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label40.Text = Val(Label40.Text) + 1
