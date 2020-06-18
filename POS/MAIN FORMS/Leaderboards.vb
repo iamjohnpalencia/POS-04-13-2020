@@ -27,15 +27,9 @@ Public Class Leaderboards
         BackgroundWorker1.WorkerReportsProgress = True
         BackgroundWorker1.WorkerSupportsCancellation = True
         BackgroundWorker1.RunWorkerAsync()
-
         LoadChart("SELECT DATE_FORMAT(zreading, '%Y-%m-%d') as zreading, SUM(total) FROM loc_daily_transaction_details WHERE DATE(CURRENT_DATE) - INTERVAL 7 DAY GROUP BY zreading DESC LIMIT 7", 0)
+    End Sub
 
-    End Sub
-    Private Sub ProductList_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        If BackgroundWorker1.WorkerSupportsCancellation = True Then
-            BackgroundWorker1.CancelAsync()
-        End If
-    End Sub
     Dim threadList As List(Of Thread) = New List(Of Thread)
     Private Sub loadbestseller()
         Try
@@ -194,45 +188,50 @@ Public Class Leaderboards
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Try
-            With DatagridviewTOPSELLER
-                .Columns(0).HeaderCell.Value = "Product Name"
-                .Columns(0).Width = 150
-                .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-                .Columns(1).HeaderCell.Value = "Category"
-                .Columns(1).Width = 150
-                .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-                .Columns(2).HeaderCell.Value = "Sales Volume"
-                .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(3).HeaderCell.Value = "Price"
-                .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(4).HeaderCell.Value = "Total Sale"
-                .Columns(4).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(2).Width = 120
-                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(3).Width = 100
-                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(4).Width = 100
-            End With
-            With DataGridViewRecentSales
-                .Columns(0).HeaderCell.Value = "Invoice id"
-                .Columns(0).Width = 150
-                .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+            If e.[Error] IsNot Nothing Then
 
-                .Columns(1).HeaderCell.Value = "Created At"
-                .Columns(1).Width = 150
-                .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+            ElseIf e.Cancelled Then
 
-                .Columns(2).HeaderCell.Value = "Crew"
-                .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-
-                .Columns(3).HeaderCell.Value = "Total Sales"
-                .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
-
-                .Columns(4).HeaderCell.Value = "Status"
-            End With
+            Else
+                With DatagridviewTOPSELLER
+                    .Columns(0).HeaderCell.Value = "Product Name"
+                    .Columns(0).Width = 150
+                    .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                    .Columns(1).HeaderCell.Value = "Category"
+                    .Columns(1).Width = 150
+                    .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                    .Columns(2).HeaderCell.Value = "Sales Volume"
+                    .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                    .Columns(3).HeaderCell.Value = "Price"
+                    .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                    .Columns(4).HeaderCell.Value = "Total Sale"
+                    .Columns(4).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                    .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                    .Columns(2).Width = 120
+                    .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                    .Columns(3).Width = 100
+                    .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                    .Columns(4).Width = 100
+                End With
+                With DataGridViewRecentSales
+                    .Columns(0).HeaderCell.Value = "Invoice id"
+                    .Columns(0).Width = 150
+                    .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                    .Columns(1).HeaderCell.Value = "Created At"
+                    .Columns(1).Width = 150
+                    .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                    .Columns(2).HeaderCell.Value = "Crew"
+                    .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                    .Columns(3).HeaderCell.Value = "Total Sales"
+                    .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
+                    .Columns(4).HeaderCell.Value = "Status"
+                End With
+            End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
+    End Sub
+    Private Sub Leaderboards_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        BackgroundWorker1.CancelAsync()
     End Sub
 End Class

@@ -203,7 +203,7 @@
                 For Each ctrl As Control In P.Controls
                     If TypeOf ctrl Is Form Then
                         If ctrl.Name <> closeform.Name Then
-                            CType(ctrl, Form).FindForm.Hide()
+                            CType(ctrl, Form).FindForm.Close()
                         End If
                     End If
                 Next

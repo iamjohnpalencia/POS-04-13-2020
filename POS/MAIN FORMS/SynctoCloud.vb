@@ -45,8 +45,8 @@ Public Class SynctoCloud
 
     Private Sub filldatagridrefretdetails()
         Try
-            fields = "*"
-            table = "loc_refund_return_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            Dim fields = "*"
+            Dim table = "loc_refund_return_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewRetrefdetails)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewRetrefdetails)
             For Each row As DataRow In ThisDT.Rows
@@ -61,8 +61,8 @@ Public Class SynctoCloud
     '=====================================================SYSTEMLOGS
     Private Sub filldatagridsystemlog1()
         Try
-            table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('LOG OUT', 'LOGIN', 'ERROR') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            fields = "*"
+            Dim table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('LOG OUT', 'LOGIN', 'ERROR') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            Dim fields = "*"
             Dim ThisDT = AsDatatable(table, fields, DataGridViewSYSLOG1)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewSYSLOG1.Rows.Add(row("crew_id"), row("log_type"), row("log_description"), returndateformatfulldate(row("log_date_time").ToString), row("log_store"), row("guid"), row("loc_systemlog_id"), row("zreading"), row("synced"))
@@ -76,8 +76,8 @@ Public Class SynctoCloud
 
     Private Sub filldatagridsystemlog2()
         Try
-            fields = "*"
-            table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('MENU FORM', 'STOCK ENTRY', 'STOCK REMOVAL', 'STOCK TRANSFER') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            Dim fields = "*"
+            Dim table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('MENU FORM', 'STOCK ENTRY', 'STOCK REMOVAL', 'STOCK TRANSFER') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             Dim ThisDT = AsDatatable(table, fields, DataGridViewSYSLOG2)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewSYSLOG2.Rows.Add(row("crew_id"), row("log_type"), row("log_description"), returndateformatfulldate(row("log_date_time").ToString), row("log_store"), row("guid"), row("loc_systemlog_id"), row("zreading"), row("synced"))
@@ -90,8 +90,8 @@ Public Class SynctoCloud
     End Sub
     Private Sub filldatagridsystemlog3()
         Try
-            fields = "*"
-            table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('NEW CUSTOM PRODUCT', 'NEW EXPENSE', 'NEW STOCK ADDED', 'NEW USER') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            Dim fields = "*"
+            Dim table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('NEW CUSTOM PRODUCT', 'NEW EXPENSE', 'NEW STOCK ADDED', 'NEW USER') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
 
             Dim ThisDT = AsDatatable(table, fields, DataGridViewSYSLOG3)
             For Each row As DataRow In ThisDT.Rows
@@ -107,8 +107,8 @@ Public Class SynctoCloud
     End Sub
     Private Sub filldatagridsystemlog4()
         Try
-            fields = "*"
-            table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('TRANSACTION', 'USER UPDATE') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            Dim fields = "*"
+            Dim table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('TRANSACTION', 'USER UPDATE') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
 
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewSYSLOG4)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewSYSLOG4)
@@ -126,8 +126,8 @@ Public Class SynctoCloud
     '=====================================================SYSTEMLOGS
     Private Sub filldatagridtransaction()
         Try
-            fields = "*"
-            table = "loc_daily_transaction WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            Dim fields = "*"
+            Dim table = "loc_daily_transaction WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewTRAN)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewTRAN)
             For Each row As DataRow In ThisDT.Rows
@@ -142,8 +142,8 @@ Public Class SynctoCloud
     '======================================================TRANSACTION DETAILS
     Private Sub filldatagridtransactiondetails1()
         Try
-            fields = "*"
-            table = "loc_daily_transaction_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            Dim fields = "*"
+            Dim table = "loc_daily_transaction_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewTRANDET)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewTRANDET)
             For Each row As DataRow In ThisDT.Rows
@@ -157,8 +157,8 @@ Public Class SynctoCloud
     End Sub
     Private Sub filldatagridinventory()
         Try
-            fields = "*"
-            table = "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND synced = 'Unsynced'"
+            Dim fields = "*"
+            Dim table = "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND synced = 'Unsynced'"
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewINV)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewINV)
             For Each row As DataRow In ThisDT.Rows
@@ -172,8 +172,8 @@ Public Class SynctoCloud
     End Sub
     Private Sub filldatagridexpenses()
         Try
-            fields = "*"
-            table = "loc_expense_list WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            Dim fields = "*"
+            Dim table = "loc_expense_list WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewEXP)
 
             Dim ThisDT = AsDatatable(table, fields, DataGridViewEXP)
@@ -189,8 +189,8 @@ Public Class SynctoCloud
     End Sub
     Private Sub filldatagridexpensesdetails()
         Try
-            fields = "*"
-            table = "loc_expense_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            Dim fields = "*"
+            Dim table = "loc_expense_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewEXPDET)
 
             Dim ThisDT = AsDatatable(table, fields, DataGridViewEXPDET)
@@ -206,8 +206,8 @@ Public Class SynctoCloud
     End Sub
     Private Sub filldatagridlocusers()
         Try
-            fields = "*"
-            table = "loc_users WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND synced = 'Unsynced'"
+            Dim fields = "*"
+            Dim table = "loc_users WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND synced = 'Unsynced'"
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewLocusers)
 
             Dim ThisDT = AsDatatable(table, fields, DataGridViewLocusers)
@@ -223,8 +223,8 @@ Public Class SynctoCloud
     End Sub
     Private Sub filldatagridproducts()
         Try
-            fields = "*"
-            table = "loc_admin_products WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND product_status = 0"
+            Dim fields = "*"
+            Dim table = "loc_admin_products WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND product_status = 0"
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewCUSTOMPRODUCTS)
 
             Dim ThisDT = AsDatatable(table, fields, DataGridViewCUSTOMPRODUCTS)
@@ -240,8 +240,8 @@ Public Class SynctoCloud
     End Sub
     Private Sub filldatagriddepositslip()
         Try
-            fields = "*"
-            table = "loc_deposit WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            Dim fields = "*"
+            Dim table = "loc_deposit WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewDepositSlip)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewDepositSlip)
             For Each row As DataRow In ThisDT.Rows
@@ -255,8 +255,8 @@ Public Class SynctoCloud
     End Sub
     Private Sub filldatagridmodeoftransaction()
         Try
-            fields = "*"
-            table = "loc_transaction_mode_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            Dim fields = "*"
+            Dim table = "loc_transaction_mode_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewMODEOFTRANSACTION)
 
             Dim ThisDT = AsDatatable(table, fields, DataGridViewMODEOFTRANSACTION)
@@ -273,10 +273,10 @@ Public Class SynctoCloud
 
     Private Sub countrows(ByVal tablename As String)
         Try
-            sql = "SELECT COUNT(*) FROM " & tablename & " "
-            cmd = New MySqlCommand(sql, LocalhostConn())
-            da = New MySqlDataAdapter(cmd)
-            dt = New DataTable
+            Dim sql = "SELECT COUNT(*) FROM " & tablename & " "
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim dt As DataTable = New DataTable
             da.Fill(dt)
             For Each row As DataRow In dt.Rows
                 DataGridView2.Rows.Add(row("COUNT(*)"), tablename)
@@ -287,10 +287,10 @@ Public Class SynctoCloud
     End Sub
     Private Sub gettablesize(ByVal tablename As String)
         Try
-            sql = "SELECT table_name AS `Table`, round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` FROM information_schema.TABLES WHERE table_schema = 'pos' AND table_name = '" & tablename & "'"
-            cmd = New MySqlCommand(sql, LocalhostConn())
-            da = New MySqlDataAdapter(cmd)
-            dt = New DataTable
+            Dim sql = "SELECT table_name AS `Table`, round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` FROM information_schema.TABLES WHERE table_schema = 'pos' AND table_name = '" & tablename & "'"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim dt As DataTable = New DataTable
             da.Fill(dt)
             For Each row As DataRow In dt.Rows
                 DataGridView1.Rows.Add(row("Table"), row("Size in MB"))
@@ -307,30 +307,24 @@ Public Class SynctoCloud
             Label2.Text = ""
             Label3.Text = ""
             Label5.Text = ""
-            ClearDataGridViewRows(Me)
+            Label3.Text = totalrow
+            Button1.Enabled = False
+            Label2.Text = "Item(s)"
             filldatagridtransaction()
-            '================================================
             filldatagridtransactiondetails1()
-            '================================================
             filldatagridinventory()
             filldatagridexpenses()
             filldatagridexpensesdetails()
             filldatagridlocusers()
-            '================================================
             filldatagridsystemlog1()
             filldatagridsystemlog2()
             filldatagridsystemlog3()
             filldatagridsystemlog4()
             filldatagridrefretdetails()
             filldatagridproducts()
-            '================================================
             filldatagridmodeoftransaction()
             filldatagriddepositslip()
-            '================================================
             totalrow = SumOfColumnsToInt(DataGridView2, 0)
-            Label3.Text = totalrow
-            Button1.Enabled = False
-            Label2.Text = "Item(s)"
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

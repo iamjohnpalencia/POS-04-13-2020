@@ -2127,7 +2127,7 @@ Partial Class SynctoCloud
         Me.GroupBox1.Controls.Add(Me.DataGridViewLocusers)
         Me.GroupBox1.Location = New System.Drawing.Point(15, 251)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(285, 148)
+        Me.GroupBox1.Size = New System.Drawing.Size(442, 148)
         Me.GroupBox1.TabIndex = 28
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
