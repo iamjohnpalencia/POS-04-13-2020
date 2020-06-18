@@ -1,7 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports System.Threading
 Imports System.Windows.Forms.DataVisualization.Charting
-
 Public Class Leaderboards
     Dim thread1 As Thread
     Dim solocloudconn As New MySqlConnection
@@ -41,26 +40,6 @@ Public Class Leaderboards
     Private Sub loadbestseller()
         Try
             GLOBAL_SELECT_ALL_FUNCTION("loc_daily_transaction_details GROUP BY product_name ORDER by SUM(quantity) DESC limit 10", "product_name ,  product_category, SUM(quantity) as Qty, price , Sum(total) as totalprice", DatagridviewTOPSELLER)
-            With DatagridviewTOPSELLER
-                .Columns(0).HeaderCell.Value = "Product Name"
-                .Columns(0).Width = 150
-                .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-                .Columns(1).HeaderCell.Value = "Category"
-                .Columns(1).Width = 150
-                .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-                .Columns(2).HeaderCell.Value = "Sales Volume"
-                .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(3).HeaderCell.Value = "Price"
-                .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(4).HeaderCell.Value = "Total Sale"
-                .Columns(4).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(2).Width = 120
-                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(3).Width = 100
-                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(4).Width = 100
-            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -68,29 +47,12 @@ Public Class Leaderboards
     Private Sub LoadTransactions()
         Try
             GLOBAL_SELECT_ALL_FUNCTION("loc_daily_transaction ORDER BY transaction_id DESC LIMIT 10 ", "transaction_number  , CONCAT(date,' ', time) AS datetime , crew_id , amountdue, active", DataGridViewRecentSales)
-            With DataGridViewRecentSales
-                .Columns(0).HeaderCell.Value = "Invoice id"
-                .Columns(0).Width = 150
-                .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-
-                .Columns(1).HeaderCell.Value = "Created At"
-                .Columns(1).Width = 150
-                .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-
-                .Columns(2).HeaderCell.Value = "Crew"
-                .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-
-                .Columns(3).HeaderCell.Value = "Total Sales"
-                .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
-
-                .Columns(4).HeaderCell.Value = "Status"
-            End With
-            'For Each row As DataRow In dt.Rows
-            '    row("crew_id") = returnfullname(row("crew_id"))
-            '    If row("active") = 1 Then
-            '        row("active") = "Active"
-            '    End If
-            'Next
+            For Each row As DataRow In dt.Rows
+                row("crew_id") = returnfullname(row("crew_id"))
+                If row("active") = 1 Then
+                    row("active") = "Active"
+                End If
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -225,6 +187,50 @@ Public Class Leaderboards
                 End If
             Next
 
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
+        Try
+            With DatagridviewTOPSELLER
+                .Columns(0).HeaderCell.Value = "Product Name"
+                .Columns(0).Width = 150
+                .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                .Columns(1).HeaderCell.Value = "Category"
+                .Columns(1).Width = 150
+                .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                .Columns(2).HeaderCell.Value = "Sales Volume"
+                .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).HeaderCell.Value = "Price"
+                .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(4).HeaderCell.Value = "Total Sale"
+                .Columns(4).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(2).Width = 120
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).Width = 100
+                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(4).Width = 100
+            End With
+            With DataGridViewRecentSales
+                .Columns(0).HeaderCell.Value = "Invoice id"
+                .Columns(0).Width = 150
+                .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+
+                .Columns(1).HeaderCell.Value = "Created At"
+                .Columns(1).Width = 150
+                .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+
+                .Columns(2).HeaderCell.Value = "Crew"
+                .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+
+                .Columns(3).HeaderCell.Value = "Total Sales"
+                .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
+
+                .Columns(4).HeaderCell.Value = "Status"
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

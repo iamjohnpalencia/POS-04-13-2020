@@ -692,7 +692,7 @@ Public Class ConfigManager
                      ,'" & Trim(TextBoxSINumber.Text) & "'
                      ,'" & Trim(TextBoxTerminalNo.Text) & "'
                      ,'" & RButton & "'
-                     ,'" & returndateformat(Now()) & "')"
+                     ,'" & Format(Now(), "yyyy-MM-dd") & "')"
                         sql = "INSERT INTO " & table & " " & fields2 & " VALUES " & value
                         cmd = New MySqlCommand(sql, TestLocalConnection)
                         cmd.ExecuteNonQuery()

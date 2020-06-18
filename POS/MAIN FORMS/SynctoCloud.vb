@@ -1,6 +1,8 @@
 ﻿Imports System.ComponentModel
 Imports MySql.Data.MySqlClient
 Imports System.Threading
+Imports System.Globalization
+
 Public Class SynctoCloud
     Dim totalrow As Integer
     Dim counter As Integer = 0
@@ -379,27 +381,27 @@ Public Class SynctoCloud
                 ProgressBar1.Maximum = Val(Label3.Text)
                 'POS.ProgressBar1.Maximum = Val(Label7.Text)
                 '  ============================================================================transaction
-                'thread1 = New Thread(AddressOf insertlocaldailytransaction)
-                'thread1.Start()
-                'threadListLOCTRAN.Add(thread1)
-                'thread1 = New Thread(AddressOf inserttransactiondetails1)
-                'thread1.Start()
-                'threadListLOCTD1.Add(thread1)
-                ''  ============================================================================inventory
-                'thread1 = New Thread(AddressOf insertinventory)
-                'thread1.Start()
-                'threadListLOCINV.Add(thread1)
-                ''   ============================================================================expenses
-                'thread1 = New Thread(AddressOf insertexpenses)
-                'thread1.Start()
-                'threadListLOCEXP.Add(thread1)
-                'thread1 = New Thread(AddressOf insertexpensedetails)
-                'thread1.Start()
-                'threadListLOCEXPD.Add(thread1)
-                ''============================================================================users
-                'thread1 = New Thread(AddressOf insertlocalusers)
-                'thread1.Start()
-                'threadListLOCTUSER.Add(thread1)
+                thread1 = New Thread(AddressOf insertlocaldailytransaction)
+                thread1.Start()
+                threadListLOCTRAN.Add(thread1)
+                thread1 = New Thread(AddressOf inserttransactiondetails1)
+                thread1.Start()
+                threadListLOCTD1.Add(thread1)
+                '  ============================================================================inventory
+                thread1 = New Thread(AddressOf insertinventory)
+                thread1.Start()
+                threadListLOCINV.Add(thread1)
+                '   ============================================================================expenses
+                thread1 = New Thread(AddressOf insertexpenses)
+                thread1.Start()
+                threadListLOCEXP.Add(thread1)
+                thread1 = New Thread(AddressOf insertexpensedetails)
+                thread1.Start()
+                threadListLOCEXPD.Add(thread1)
+                '============================================================================users
+                thread1 = New Thread(AddressOf insertlocalusers)
+                thread1.Start()
+                threadListLOCTUSER.Add(thread1)
                 '============================================================================System Logs
                 thread1 = New Thread(AddressOf insertsystemlogs1)
                 thread1.Start()
@@ -414,21 +416,21 @@ Public Class SynctoCloud
                 thread1.Start()
                 threadListLOCSYSLOG4.Add(thread1)
                 '============================================================================Returns / Refunds
-                'thread1 = New Thread(AddressOf insertrefretdetails)
-                'thread1.Start()
-                'threadListLOCREFRET.Add(thread1)
+                thread1 = New Thread(AddressOf insertrefretdetails)
+                thread1.Start()
+                threadListLOCREFRET.Add(thread1)
 
-                'thread1 = New Thread(AddressOf insertlocproducts)
-                'thread1.Start()
-                'threadListLOCPRODUCT.Add(thread1)
+                thread1 = New Thread(AddressOf insertlocproducts)
+                thread1.Start()
+                threadListLOCPRODUCT.Add(thread1)
 
-                'thread1 = New Thread(AddressOf insertlocmodeoftransaction)
-                'thread1.Start()
-                'threadListMODEOFTRANSACTION.Add(thread1)
+                thread1 = New Thread(AddressOf insertlocmodeoftransaction)
+                thread1.Start()
+                threadListMODEOFTRANSACTION.Add(thread1)
 
-                'thread1 = New Thread(AddressOf insertlocdeposit)
-                'thread1.Start()
-                'threadListLocDeposit.Add(thread1)
+                thread1 = New Thread(AddressOf insertlocdeposit)
+                thread1.Start()
+                threadListLocDeposit.Add(thread1)
 
                 For Each t In threadListLOCTRAN
                     t.Join()

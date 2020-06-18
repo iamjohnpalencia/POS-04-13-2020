@@ -361,28 +361,16 @@ Module publicfunctions
         End Try
         Return dateformat
     End Function
-    Public Function ReturnThisDate(iDate As String)
-        Try
-            Dim oDate As DateTime = DateTime.Parse(iDate)
-            dateformat = oDate.Year & "-" & oDate.Month & "-" & oDate.Day
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        Return dateformat
-    End Function
     Public Function returndateformat(datetoformat As String)
-        Dim dateString, format As String
-        Dim result As DateTime
-        Dim provider As CultureInfo = CultureInfo.InvariantCulture
-        dateString = datetoformat
-        format = "MM/dd/yyyy"
+        Dim returnthisformat As Object = ""
         Try
-            result = DateTime.ParseExact(dateString, format, provider)
-            dateformat = result.ToString("yyyy-MM-dd")
+            Dim iDate As String = datetoformat
+            Dim oDate As DateTime = Convert.ToDateTime(iDate)
+            returnthisformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00")
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-        Return dateformat
+        Return returnthisformat
     End Function
     Public Function Dateandtimeformat(getstring As String, format As String, returnthisformat As String)
         Dim dateString

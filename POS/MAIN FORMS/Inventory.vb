@@ -180,7 +180,7 @@ Public Class Inventory
                 where = " date(log_date_time) = CURRENT_DATE() AND log_type IN('NEW STOCK ADDED','STOCK REMOVAL','STOCK TRANSFER')"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewStockAdjustment, errormessage:="", fields:=fields, successmessage:="", where:=where)
             Else
-                where = " log_type IN('NEW STOCK ADDED','STOCK REMOVAL','STOCK TRANSFER') AND date(log_date_time) >= '" & returndateformat(DateTimePicker1.Text) & "' AND date(log_date_time) <= '" & returndateformat(DateTimePicker2.Text) & "'"
+                where = " log_type IN('NEW STOCK ADDED','STOCK REMOVAL','STOCK TRANSFER') AND date(log_date_time) >= '" & Format(DateTimePicker1.Value, "yyyy-MM-dd") & "' AND date(log_date_time) <= '" & Format(DateTimePicker2.Value, "yyyy-MM-dd") & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewStockAdjustment, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
             With DataGridViewStockAdjustment
