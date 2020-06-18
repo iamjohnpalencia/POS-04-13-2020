@@ -23,11 +23,11 @@ Public Class Leaderboards
         TabControl1.TabPages(1).Text = "Expenses"
         TabControl1.TabPages(2).Text = "Transfers"
         TabControl1.TabPages(3).Text = "Logs"
+        LoadChart("SELECT DATE_FORMAT(zreading, '%Y-%m-%d') as zreading, SUM(total) FROM loc_daily_transaction_details WHERE DATE(CURRENT_DATE) - INTERVAL 7 DAY GROUP BY zreading DESC LIMIT 7", 0)
         CheckForIllegalCrossThreadCalls = False
         BackgroundWorker1.WorkerReportsProgress = True
         BackgroundWorker1.WorkerSupportsCancellation = True
         BackgroundWorker1.RunWorkerAsync()
-        LoadChart("SELECT DATE_FORMAT(zreading, '%Y-%m-%d') as zreading, SUM(total) FROM loc_daily_transaction_details WHERE DATE(CURRENT_DATE) - INTERVAL 7 DAY GROUP BY zreading DESC LIMIT 7", 0)
     End Sub
 
     Dim threadList As List(Of Thread) = New List(Of Thread)

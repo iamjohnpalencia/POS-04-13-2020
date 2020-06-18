@@ -22,7 +22,7 @@ Public Class SynctoCloud
     End Sub
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CheckForIllegalCrossThreadCalls = False
-
+        ProgressBar1.Value = 0
     End Sub
     Private Sub SynctoCloud_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
@@ -302,14 +302,10 @@ Public Class SynctoCloud
 #End Region
     Private Sub LoadData()
         Try
-            Timer1.Start()
             Label1.Text = ""
             Label2.Text = ""
             Label3.Text = ""
             Label5.Text = ""
-            Label3.Text = totalrow
-            Button1.Enabled = False
-            Label2.Text = "Item(s)"
             filldatagridtransaction()
             filldatagridtransactiondetails1()
             filldatagridinventory()
@@ -325,6 +321,10 @@ Public Class SynctoCloud
             filldatagridmodeoftransaction()
             filldatagriddepositslip()
             totalrow = SumOfColumnsToInt(DataGridView2, 0)
+            Timer1.Start()
+            Label3.Text = totalrow
+            Button1.Enabled = False
+            Label2.Text = "Item(s)"
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -335,7 +335,7 @@ Public Class SynctoCloud
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If My.Settings.ValidCloudConn = True Then
             'Button1.PerformClick()
-            ProgressBar1.Value = 0
+
             BackgroundWorker1.WorkerSupportsCancellation = True
             BackgroundWorker1.WorkerReportsProgress = True
             BackgroundWorker1.RunWorkerAsync()
@@ -372,7 +372,11 @@ Public Class SynctoCloud
                 For Each t In threadListloadData
                     t.Join()
                 Next
+
                 ProgressBar1.Maximum = Val(Label3.Text)
+                MsgBox(ProgressBar1.Value)
+                MsgBox(ProgressBar1.Minimum)
+                MsgBox(ProgressBar1.Maximum)
                 'POS.ProgressBar1.Maximum = Val(Label7.Text)
                 '  ============================================================================transaction
                 thread1 = New Thread(AddressOf insertlocaldailytransaction)
@@ -551,10 +555,9 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@19", MySqlDbType.VarChar).Value = .Rows(i).Cells(18).Value.ToString()
                     cmd.Parameters.Add("@20", MySqlDbType.Text).Value = .Rows(i).Cells(19).Value.ToString()
                     cmd.Parameters.Add("@21", MySqlDbType.Text).Value = .Rows(i).Cells(20).Value.ToString()
-
                     Label7.Text = Val(Label7.Text + 1)
                     Label30.Text = Val(Label30.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     cmd.ExecuteNonQuery()
@@ -567,8 +570,6 @@ Public Class SynctoCloud
                     cmdloc.ExecuteNonQuery()
                     '====================================================================
                 Next
-
-
                 server.Close()
                 local.Close()
                 Label8.Text = "Synced Daily Transaction"
@@ -619,7 +620,7 @@ Public Class SynctoCloud
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label31.Text = Val(Label31.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     cmd.ExecuteNonQuery()
@@ -678,7 +679,7 @@ Public Class SynctoCloud
                     With cmd
                         Label7.Text = Val(Label7.Text + 1)
                         Label32.Text = Val(Label32.Text) + 1
-                        ProgressBar1.Value = Val(Label7.Text)
+                        ProgressBar1.Value = CInt(Label7.Text)
                         'POS.ProgressBar1.Value = Val(Label7.Text)
                         Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                         .ExecuteNonQuery()
@@ -747,7 +748,7 @@ Public Class SynctoCloud
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label33.Text = Val(Label33.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     '====================================================================
@@ -823,7 +824,7 @@ Public Class SynctoCloud
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label34.Text = Val(Label34.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     cmd.ExecuteNonQuery()
@@ -888,7 +889,7 @@ Public Class SynctoCloud
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label35.Text = Val(Label35.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     cmd.ExecuteNonQuery()
@@ -941,7 +942,7 @@ Public Class SynctoCloud
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label37.Text = Val(Label37.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     cmd.ExecuteNonQuery()
@@ -994,7 +995,7 @@ Public Class SynctoCloud
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label38.Text = Val(Label38.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     cmd.ExecuteNonQuery()
@@ -1047,7 +1048,7 @@ Public Class SynctoCloud
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label39.Text = Val(Label39.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     cmd.ExecuteNonQuery()
@@ -1100,7 +1101,7 @@ Public Class SynctoCloud
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label40.Text = Val(Label40.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     cmd.ExecuteNonQuery()
@@ -1153,7 +1154,7 @@ Public Class SynctoCloud
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label14.Text = Val(Label14.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     '====================================================================
@@ -1214,7 +1215,7 @@ Public Class SynctoCloud
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label41.Text = Val(Label41.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     '====================================================================
@@ -1271,7 +1272,7 @@ Public Class SynctoCloud
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label46.Text = Val(Label46.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     '====================================================================
@@ -1328,7 +1329,7 @@ Public Class SynctoCloud
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label49.Text = Val(Label49.Text) + 1
-                    ProgressBar1.Value = Val(Label7.Text)
+                    ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
                     '====================================================================

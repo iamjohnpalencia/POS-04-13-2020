@@ -336,10 +336,10 @@ Partial Class SynctoCloud
         Me.DataGridView2.AllowUserToResizeRows = False
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2})
-        Me.DataGridView2.Location = New System.Drawing.Point(519, 25)
+        Me.DataGridView2.Location = New System.Drawing.Point(733, 19)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.ReadOnly = True
-        Me.DataGridView2.Size = New System.Drawing.Size(225, 90)
+        Me.DataGridView2.Size = New System.Drawing.Size(353, 112)
         Me.DataGridView2.TabIndex = 19
         '
         'DataGridViewTextBoxColumn1
