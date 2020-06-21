@@ -28,14 +28,14 @@ Public Class PendingOrders
     End Sub
     Public Sub pendingloadorders()
         Try
-            Dim command As New MySqlCommand("SELECT `product_name`, `product_quantity`, `product_price`, `product_total`, `datetime`, `guid`, `active`, `increment`  FROM `loc_pending_orders` WHERE customer_name = '" & ComboBoxCustomerName.Text & "' AND guid = '" & ClientGuid & "'", LocalhostConn())
+            Dim command As New MySqlCommand("SELECT `product_name`, `product_quantity`, `product_price`, `product_total`, `created_at`, `guid`, `active`, `increment`  FROM `loc_pending_orders` WHERE customer_name = '" & ComboBoxCustomerName.Text & "' AND guid = '" & ClientGuid & "'", LocalhostConn())
             Dim adapter As New MySqlDataAdapter(command)
             Dim table As New DataTable()
             adapter.Fill(table)
             With DataGridView1
                 .Rows.Clear()
                 For Each row As DataRow In table.Rows
-                    .Rows.Add(row("product_name"), row("product_quantity"), row("product_price"), row("product_total"), row("datetime"), row("guid"), row("active"), row("increment"))
+                    .Rows.Add(row("product_name"), row("product_quantity"), row("product_price"), row("product_total"), row("created_at"), row("guid"), row("active"), row("increment"))
                 Next
                 .RowHeadersVisible = False
                 .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
