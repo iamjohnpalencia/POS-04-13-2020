@@ -433,28 +433,19 @@ Public Class POS
         End Try
     End Sub
     Private Sub Label76_TextChanged(sender As Object, e As EventArgs) Handles Label76.TextChanged
-        If DataGridViewOrders.RowCount > 0 Then
-            ButtonApplyCoupon.Enabled = True
-        Else
-            ButtonApplyCoupon.Enabled = False
-        End If
+        Try
+            If DataGridViewOrders.RowCount > 0 Then
+                ButtonApplyCoupon.Enabled = True
+            Else
+                ButtonApplyCoupon.Enabled = False
+            End If
 
-        Label76.Text = SumOfColumnsToDecimal(DataGridViewOrders, 3)
-
-        'Label76.Text = Format(Val(Label76.Text), "##,##0.00")
-
-        TextBoxGRANDTOTAL.Text = Label76.Text
-        TextBoxSUBTOTAL.Text = Label76.Text
-        'If DiscountType = "All" Then
-        '    TextBoxSUBTOTAL.Text = sum.ToString()
-        '    Dim discount As Double = Val(TextBoxDISCOUNT.Text / 100)
-        '    Dim discounttotal As Double = Val(TextBoxSUBTOTAL.Text * discount)
-        '    discountgrandtotal = discounttotal
-        '    TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
-        'Else
-        '    TextBoxSUBTOTAL.Text = sum.ToString()
-        '    TextBoxGRANDTOTAL.Text = sum.ToString()
-        'End If
+            Label76.Text = SumOfColumnsToDecimal(DataGridViewOrders, 3)
+            TextBoxGRANDTOTAL.Text = Label76.Text
+            TextBoxSUBTOTAL.Text = Label76.Text
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub POS_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Expenses.Dispose()
@@ -783,163 +774,161 @@ Public Class POS
         End Try
     End Sub
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
-        Dim totalDisplay = Format(total, "##,##0.00")
-        With Me
-            a = 0
-            Dim font As New Font("Kelson Sans Normal", 7)
-            Dim fontAddon As New Font("Kelson Sans Normal", 5)
-            Dim font1 As New Font("Kelson Sans Normal", 7)
-            Dim font2 As New Font("Kelson Sans Normal", 9)
-            Dim font3 As New Font("Kelson Sans Normal", 11, FontStyle.Bold)
-            Dim brandfont As New Font("Kelson Sans Normal", 8)
-            'Dim font As New Font("Kelson Sans Normal", 7)
-            'Dim fontAddon As New Font("Bahnschrift Light SemiCondensed", 5)
-            'Dim font1 As New Font("Bahnschrift  SemiCondensed", 7)
-            'Dim font2 As New Font("Bahnschrift Light SemiCondensed", 9)
-            'Dim font3 As New Font("Bahnschrift Condensed", 12)
-            'Dim brandfont As New Font("Bahnschrift Condensed", 8)
-            Dim shopnameX As Integer = 10, shopnameY As Integer = 20
-            Dim StrRight As New StringFormat()
-            'HEADER
-            ReceiptHeader(sender, e)
-            'Items
-            Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-            Dim abc As Integer = 0
-            For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
-                Dim rect1st As RectangleF = New RectangleF(10.0F, 115 + abc, 173.0F, 100.0F)
-                Dim price = Format(.DataGridViewOrders.Rows(i).Cells(3).Value, "##,##0.00")
+        Try
+            Dim totalDisplay = Format(total, "##,##0.00")
+            With Me
+                a = 0
+                Dim font As New Font("Kelson Sans Normal", 7)
+                Dim fontAddon As New Font("Kelson Sans Normal", 5)
+                Dim font1 As New Font("Kelson Sans Normal", 7)
+                Dim font2 As New Font("Kelson Sans Normal", 9)
+                Dim font3 As New Font("Kelson Sans Normal", 11, FontStyle.Bold)
+                Dim brandfont As New Font("Kelson Sans Normal", 8)
+                Dim shopnameX As Integer = 10, shopnameY As Integer = 20
+                Dim StrRight As New StringFormat()
+                'HEADER
+                ReceiptHeader(sender, e)
+                'Items
+                Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
+                Dim abc As Integer = 0
+                For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+                    Dim rect1st As RectangleF = New RectangleF(10.0F, 115 + abc, 173.0F, 100.0F)
+                    Dim price = Format(.DataGridViewOrders.Rows(i).Cells(3).Value, "##,##0.00")
 
-                '=========================================================================================================================================================
-                If DataGridViewOrders.Rows(i).Cells(7).Value.ToString = "Add-Ons" Then
-                    e.Graphics.DrawString("     @" & .DataGridViewOrders.Rows(i).Cells(1).Value & " " & .DataGridViewOrders.Rows(i).Cells(6).Value, fontAddon, Brushes.Black, rect1st)
+                    '=========================================================================================================================================================
+                    If DataGridViewOrders.Rows(i).Cells(7).Value.ToString = "Add-Ons" Then
+                        e.Graphics.DrawString("     @" & .DataGridViewOrders.Rows(i).Cells(1).Value & " " & .DataGridViewOrders.Rows(i).Cells(6).Value, fontAddon, Brushes.Black, rect1st)
+                    Else
+                        e.Graphics.DrawString(.DataGridViewOrders.Rows(i).Cells(1).Value & " " & .DataGridViewOrders.Rows(i).Cells(6).Value, font, Brushes.Black, rect1st)
+                    End If
+                    e.Graphics.DrawString(price, font, Brushes.Black, rect1st, format1st)
+                    .a += 10
+                    abc += 10
+                    '=========================================================================================================================================================
+                Next
+                If CouponApplied = True Then
+                    a += 100
+                    SimpleTextDisplay(sender, e, CouponName & "(" & discounttype & ")", font, 0, a)
+                    SimpleTextDisplay(sender, e, CouponDesc, font, 0, a + 10)
+                    a += 40 + CouponLine
+                    RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & CouponTotal, font)
                 Else
-                    e.Graphics.DrawString(.DataGridViewOrders.Rows(i).Cells(1).Value & " " & .DataGridViewOrders.Rows(i).Cells(6).Value, font, Brushes.Black, rect1st)
+                    a += 120
                 End If
-                e.Graphics.DrawString(price, font, Brushes.Black, rect1st, format1st)
-                .a += 10
-                abc += 10
-                '=========================================================================================================================================================
-            Next
-            If CouponApplied = True Then
-                a += 100
-                SimpleTextDisplay(sender, e, CouponName & "(" & discounttype & ")", font, 0, a)
-                SimpleTextDisplay(sender, e, CouponDesc, font, 0, a + 10)
-                a += 40 + CouponLine
-                RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & CouponTotal, font)
-            Else
-                a += 120
-            End If
-            If Val(TextBoxDISCOUNT.Text) < 1 Then
-                'Total
-                Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-                Dim aNumber As Double = TEXTBOXMONEYVALUE
-                Dim cash = String.Format("{0:n2}", aNumber)
-                Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
-                Dim change = String.Format("{0:n2}", aNumber1)
-                'AMOUT DUE
+                If Val(TextBoxDISCOUNT.Text) < 1 Then
+                    'Total
+                    Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
+                    Dim aNumber As Double = TEXTBOXMONEYVALUE
+                    Dim cash = String.Format("{0:n2}", aNumber)
+                    Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
+                    Dim change = String.Format("{0:n2}", aNumber1)
+                    'AMOUT DUE
 
-                RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & totalDisplay, font3)
-                'Cash
-                RightToLeftDisplay(sender, e, a + 15, "CASH:", "P" & cash, font2)
-                'Change
-                RightToLeftDisplay(sender, e, a + 25, "CHANGE:", "P" & change, font2)
-                'Vatable
-
-                SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 27)
-                'Vatable
-                RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & VATABLE, font)
-                'Vat Exempt
-                RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & "0.00", font)
-                'Zero Rated Sales
-                RightToLeftDisplay(sender, e, a + 72, "     Zero Rated Sales", "    " & "0.00", font)
-                'VAT
-                RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & Math.Round(total - VATABLE, 2) & "-", font)
-                'Total
-                RightToLeftDisplay(sender, e, a + 92, "     Total", "    " & total, font)
-                'INFOS
-                SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 82)
-                SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(transactionmode), font, 0, a + 90)
-                SimpleTextDisplay(sender, e, "Total Item(s): " & .DataGridViewOrders.Rows.Count, font, 0, a + 100)
-                SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 110)
-                SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 110, a + 100)
-                SimpleTextDisplay(sender, e, "Date & Time: " & insertcurrentdate & " " & TIMETOINSERT, font, 0, a + 120)
-                SimpleTextDisplay(sender, e, "Terminal No: ", font, 110, a + 130)
-                SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 130)
-                SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 140)
-                SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 150)
-                SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 160)
-                'Additional Info
-                ReceiptFooter(sender, e, a - 10)
-            Else
-                Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
-                Dim change = String.Format("{0:n2}", aNumber1)
-                Dim aNumber As Double = TEXTBOXMONEYVALUE
-                Dim cash = String.Format("{0:n2}", aNumber)
-                Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-                'amount due
-                RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & totalDisplay, font3)
-                'Sub total
-                RightToLeftDisplay(sender, e, a + 15, "SUB TOTAL:", "P" & TextBoxSUBTOTAL.Text, font2)
-                'Discount
-                Dim aNumber0 As Double = TextBoxDISCOUNT.Text
-                Dim disc = String.Format(aNumber0)
-                RightToLeftDisplay(sender, e, a + 25, "DISCOUNT:", disc & "-", font2)
-                'cash
-                RightToLeftDisplay(sender, e, a + 35, "CASH:", "P" & cash, font2)
-                'change
-                RightToLeftDisplay(sender, e, a + 45, "CHANGE:", "P" & change, font2)
-                'vatable
-                If S_ZeroRated = "0" Then
-                    SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 47)
+                    RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & totalDisplay, font3)
+                    'Cash
+                    RightToLeftDisplay(sender, e, a + 15, "CASH:", "P" & cash, font2)
+                    'Change
+                    RightToLeftDisplay(sender, e, a + 25, "CHANGE:", "P" & change, font2)
                     'Vatable
-                    RightToLeftDisplay(sender, e, a + 72, "     Vatable", "    " & "0.00", font)
+
+                    SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 27)
+                    'Vatable
+                    RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & VATABLE, font)
                     'Vat Exempt
-                    RightToLeftDisplay(sender, e, a + 82, "     Vat Exempt Sales", "    " & VATEXEMPTSALES, font)
+                    RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & "0.00", font)
                     'Zero Rated Sales
-                    RightToLeftDisplay(sender, e, a + 92, "     Zero Rated Sales", "    " & "0.00", font)
+                    RightToLeftDisplay(sender, e, a + 72, "     Zero Rated Sales", "    " & "0.00", font)
                     'VAT
-                    RightToLeftDisplay(sender, e, a + 102, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & LESSVAT & "-", font)
-                    'BODY
-                    SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 92)
-                    SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(transactionmode), font, 0, a + 100)
-                    SimpleTextDisplay(sender, e, "Total Item(s): " & .DataGridViewOrders.Rows.Count, font, 0, a + 110)
-                    SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 120)
-                    SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 110)
-                    SimpleTextDisplay(sender, e, "Date & Time: " & insertcurrentdate & " " & TIMETOINSERT, font, 0, a + 130)
-                    SimpleTextDisplay(sender, e, "Terminal No: ", font, 120, a + 140)
-                    SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 140)
-                    SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 150)
-                    SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 160)
-                    SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 170)
-                    'INFOS.
-                    ReceiptFooter(sender, e, a)
+                    RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & Math.Round(total - VATABLE, 2) & "-", font)
+                    'Total
+                    RightToLeftDisplay(sender, e, a + 92, "     Total", "    " & total, font)
+                    'INFOS
+                    SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 82)
+                    SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(transactionmode), font, 0, a + 90)
+                    SimpleTextDisplay(sender, e, "Total Item(s): " & .DataGridViewOrders.Rows.Count, font, 0, a + 100)
+                    SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 110)
+                    SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 110, a + 100)
+                    SimpleTextDisplay(sender, e, "Date & Time: " & insertcurrentdate & " " & TIMETOINSERT, font, 0, a + 120)
+                    SimpleTextDisplay(sender, e, "Terminal No: ", font, 110, a + 130)
+                    SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 130)
+                    SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 140)
+                    SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 150)
+                    SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 160)
+                    'Additional Info
+                    ReceiptFooter(sender, e, a - 10)
                 Else
-                    SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 47)
-                    'Vatable
-                    RightToLeftDisplay(sender, e, a + 72, "     Vatable", "    " & "0.00", font)
-                    'Vat Exempt
-                    RightToLeftDisplay(sender, e, a + 82, "     Vat Exempt Sales", "    " & Val(TextBoxGRANDTOTAL.Text), font)
-                    'Zero Rated Sales
-                    RightToLeftDisplay(sender, e, a + 92, "     Zero Rated Sales", "    " & "0.00", font)
-                    'VAT
-                    RightToLeftDisplay(sender, e, a + 102, "     VAT", "    " & "0.00", font)
-                    'BODY
-                    SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 92)
-                    SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(transactionmode), font, 0, a + 100)
-                    SimpleTextDisplay(sender, e, "Total Item(s): " & .DataGridViewOrders.Rows.Count, font, 0, a + 110)
-                    SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 120)
-                    SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 110)
-                    SimpleTextDisplay(sender, e, "Date & Time: " & insertcurrentdate & " " & TIMETOINSERT, font, 0, a + 130)
-                    SimpleTextDisplay(sender, e, "Terminal No: ", font, 120, a + 140)
-                    SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 140)
-                    SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 150)
-                    SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 160)
-                    SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 170)
-                    'Dev Info
-                    ReceiptFooter(sender, e, a)
+                    Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
+                    Dim change = String.Format("{0:n2}", aNumber1)
+                    Dim aNumber As Double = TEXTBOXMONEYVALUE
+                    Dim cash = String.Format("{0:n2}", aNumber)
+                    Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
+                    'amount due
+                    RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & totalDisplay, font3)
+                    'Sub total
+                    RightToLeftDisplay(sender, e, a + 15, "SUB TOTAL:", "P" & TextBoxSUBTOTAL.Text, font2)
+                    'Discount
+                    Dim aNumber0 As Double = TextBoxDISCOUNT.Text
+                    Dim disc = String.Format(aNumber0)
+                    RightToLeftDisplay(sender, e, a + 25, "DISCOUNT:", disc & "-", font2)
+                    'cash
+                    RightToLeftDisplay(sender, e, a + 35, "CASH:", "P" & cash, font2)
+                    'change
+                    RightToLeftDisplay(sender, e, a + 45, "CHANGE:", "P" & change, font2)
+                    'vatable
+                    If S_ZeroRated = "0" Then
+                        SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 47)
+                        'Vatable
+                        RightToLeftDisplay(sender, e, a + 72, "     Vatable", "    " & "0.00", font)
+                        'Vat Exempt
+                        RightToLeftDisplay(sender, e, a + 82, "     Vat Exempt Sales", "    " & VATEXEMPTSALES, font)
+                        'Zero Rated Sales
+                        RightToLeftDisplay(sender, e, a + 92, "     Zero Rated Sales", "    " & "0.00", font)
+                        'VAT
+                        RightToLeftDisplay(sender, e, a + 102, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & LESSVAT & "-", font)
+                        'BODY
+                        SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 92)
+                        SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(transactionmode), font, 0, a + 100)
+                        SimpleTextDisplay(sender, e, "Total Item(s): " & .DataGridViewOrders.Rows.Count, font, 0, a + 110)
+                        SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 120)
+                        SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 110)
+                        SimpleTextDisplay(sender, e, "Date & Time: " & insertcurrentdate & " " & TIMETOINSERT, font, 0, a + 130)
+                        SimpleTextDisplay(sender, e, "Terminal No: ", font, 120, a + 140)
+                        SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 140)
+                        SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 150)
+                        SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 160)
+                        SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 170)
+                        'INFOS.
+                        ReceiptFooter(sender, e, a)
+                    Else
+                        SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 47)
+                        'Vatable
+                        RightToLeftDisplay(sender, e, a + 72, "     Vatable", "    " & "0.00", font)
+                        'Vat Exempt
+                        RightToLeftDisplay(sender, e, a + 82, "     Vat Exempt Sales", "    " & Val(TextBoxGRANDTOTAL.Text), font)
+                        'Zero Rated Sales
+                        RightToLeftDisplay(sender, e, a + 92, "     Zero Rated Sales", "    " & "0.00", font)
+                        'VAT
+                        RightToLeftDisplay(sender, e, a + 102, "     VAT", "    " & "0.00", font)
+                        'BODY
+                        SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 92)
+                        SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(transactionmode), font, 0, a + 100)
+                        SimpleTextDisplay(sender, e, "Total Item(s): " & .DataGridViewOrders.Rows.Count, font, 0, a + 110)
+                        SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 120)
+                        SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 110)
+                        SimpleTextDisplay(sender, e, "Date & Time: " & insertcurrentdate & " " & TIMETOINSERT, font, 0, a + 130)
+                        SimpleTextDisplay(sender, e, "Terminal No: ", font, 120, a + 140)
+                        SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 140)
+                        SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 150)
+                        SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 160)
+                        SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 170)
+                        'Dev Info
+                        ReceiptFooter(sender, e, a)
+                    End If
                 End If
-            End If
-        End With
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub ButtonCDISC_Click(sender As Object, e As EventArgs) Handles ButtonCDISC.Click
         TextBoxDISCOUNT.Text = 0

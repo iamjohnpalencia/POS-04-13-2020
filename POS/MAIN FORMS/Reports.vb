@@ -616,123 +616,127 @@ Public Class Reports
         Return Format(formatthis, "##,##0.00")
     End Function
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdocXread.PrintPage
-        Dim ZreadDateFormat = S_Zreading
-        Dim font As New Font("Bahnschrift Light SemiCondensed", 7)
-        Dim brandfont As New Font("Bahnschrift Condensed", 9)
-        Dim GrossSale = sum("total", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' ")
-        Dim LessVat = sum("vat", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
-        Dim TotalDiscount = sum("discount", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
-        Dim begORNm = returnselect("transaction_number", "`loc_daily_transaction` WHERE date(zreading) = CURRENT_DATE Limit 1")
-        Dim EndORNumber = Format(Now, "yyddMMHHmmssyy")
-        Dim DailySales = GrossSale - LessVat - TotalDiscount
-        Dim ReturnsTotal = sum("total", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
-        Dim ReturnsExchange = sum("quantity", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
-        Dim OLDgrandtotal = sum("total", "loc_daily_transaction_details WHERE zreading <> '" & ZreadDateFormat & "' ")
-        Dim NEWgrandtotal = sum("total", "loc_daily_transaction_details") - ReturnsTotal
-        Dim TotalGuest = count("transaction_id", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
-        Dim TotalQuantity = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' ") - ReturnsExchange
+        Try
+            Dim ZreadDateFormat = S_Zreading
+            Dim font As New Font("Bahnschrift Light SemiCondensed", 7)
+            Dim brandfont As New Font("Bahnschrift Condensed", 9)
+            Dim GrossSale = sum("total", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' ")
+            Dim LessVat = sum("vat", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
+            Dim TotalDiscount = sum("discount", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
+            Dim begORNm = returnselect("transaction_number", "`loc_daily_transaction` WHERE date(zreading) = CURRENT_DATE Limit 1")
+            Dim EndORNumber = Format(Now, "yyddMMHHmmssyy")
+            Dim DailySales = GrossSale - LessVat - TotalDiscount
+            Dim ReturnsTotal = sum("total", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
+            Dim ReturnsExchange = sum("quantity", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
+            Dim OLDgrandtotal = sum("total", "loc_daily_transaction_details WHERE zreading <> '" & ZreadDateFormat & "' ")
+            Dim NEWgrandtotal = sum("total", "loc_daily_transaction_details") - ReturnsTotal
+            Dim TotalGuest = count("transaction_id", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
+            Dim TotalQuantity = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' ") - ReturnsExchange
 
-        Dim SrDiscount = sum("discount", "loc_daily_transaction WHERE discount_type = 'Percentage' AND zreading = '" & ZreadDateFormat & "' ")
-        Dim totalExpenses = sum("amount", "loc_expense_details WHERE zreading = '" & ZreadDateFormat & "'")
+            Dim SrDiscount = sum("discount", "loc_daily_transaction WHERE discount_type = 'Percentage' AND zreading = '" & ZreadDateFormat & "' ")
+            Dim totalExpenses = sum("amount", "loc_expense_details WHERE zreading = '" & ZreadDateFormat & "'")
 
-        Dim VatExempt = sum("vat_exempt", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
-        Dim zeroratedsales = sum("zero_rated", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
-        Dim vatablesales = sum("vatable", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
-        Dim DepositSlip = sum("amount", "loc_deposit WHERE date(transaction_date) = '" & ZreadDateFormat & "' ")
-        Dim TotalVat = LessVat
-        Dim BegBalance = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ORDER by log_date_time DESC LIMIT 1")
-        Dim CashInDrawer = BegBalance + Val(NEWgrandtotal) - Val(totalExpenses)
-        Dim CashTotal = CashInDrawer
-        'Select Case sum(CAST(log_description As Decimal(10, 2))) As CashierBal FROM `loc_system_logs` WHERE log_type In ('BG-1','BG-2','BG-3','BG-4')
-        Dim NetSales = GrossSale - LessVat - TotalDiscount
-        CenterTextDisplay(sender, e, ClientBrand.ToUpper, brandfont, 10)
-        '============================================================================================================================
-        CenterTextDisplay(sender, e, "Opt by : Innovention Food Asia Co.", font, 21)
-        '============================================================================================================================
-        CenterTextDisplay(sender, e, ClientAddress & ", Brgy. " & ClientBrgy, font, 31)
-        '============================================================================================================================
-        CenterTextDisplay(sender, e, getmunicipality & ", " & getprovince, font, 41)
-        '============================================================================================================================
-        CenterTextDisplay(sender, e, "VAT REG TIN : " & ClientTin, font, 51)
-        '============================================================================================================================
-        CenterTextDisplay(sender, e, "MSN : " & ClientMSN, font, 61)
-        '============================================================================================================================
-        CenterTextDisplay(sender, e, "MIN : " & ClientMIN, font, 71)
-        '============================================================================================================================
-        CenterTextDisplay(sender, e, "PTUN : " & ClientPTUN, font, 81)
-        '============================================================================================================================
-        RightToLeftDisplay(sender, e, 100, "TERMINAL REPORT", XreadOrZread, font)
-        '============================================================================================================================
-        SimpleTextDisplay(sender, e, ReadingOR, font, 0, 90)
-        SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 95)
-        '============================================================================================================================
-        RightToLeftDisplay(sender, e, 123, "DESCRIPTION", "QTY/AMOUNT", font)
-        '============================================================================================================================
-        SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 110)
-        '============================================================================================================================
-        RightToLeftDisplay(sender, e, 140, "TERMINAL N0.", S_Terminal_No, font)
-        RightToLeftDisplay(sender, e, 155, "GROSS", NUMBERFORMAT(GrossSale), font)
-        RightToLeftDisplay(sender, e, 165, "LESS VAT (VE)", "0*", font)
-        RightToLeftDisplay(sender, e, 175, "LESS VAT DIPLOMAT", "0", font)
-        RightToLeftDisplay(sender, e, 185, "LESS VAT (OTHER)", "0", font)
-        RightToLeftDisplay(sender, e, 195, "ADD VAT", "0", font)
-        RightToLeftDisplay(sender, e, 205, "DAILY SALES", NUMBERFORMAT(DailySales), font)
-        '============================================================================================================================
-        RightToLeftDisplay(sender, e, 220, "VAT AMOUNT", NUMBERFORMAT(TotalVat), font)
-        RightToLeftDisplay(sender, e, 230, "LOCAL GOV'T TAX", "0", font)
-        RightToLeftDisplay(sender, e, 240, "VATABLE SALES", NUMBERFORMAT(vatablesales), font)
-        RightToLeftDisplay(sender, e, 250, "ZERO RATED SALES", NUMBERFORMAT(zeroratedsales), font)
-        RightToLeftDisplay(sender, e, 260, "VAT EXEMPT SALES", NUMBERFORMAT(VatExempt), font)
-        RightToLeftDisplay(sender, e, 270, "LESS DISC (VE)", NUMBERFORMAT(TotalDiscount), font)
-        RightToLeftDisplay(sender, e, 280, "NET SALES", NUMBERFORMAT(NetSales), font)
-        '============================================================================================================================
-        RightToLeftDisplay(sender, e, 295, "CASH TOTAL", NUMBERFORMAT(CashTotal), font)
-        RightToLeftDisplay(sender, e, 305, "CREDIT CARD", "N/A", font)
-        RightToLeftDisplay(sender, e, 315, "DEBIT CARD", "N/A", font)
-        RightToLeftDisplay(sender, e, 325, "MISC/CHEQUES", "N/A", font)
-        RightToLeftDisplay(sender, e, 335, "GIFT CARD(GC)", "N/A", font)
-        RightToLeftDisplay(sender, e, 345, "A/R", "N/A", font)
-        RightToLeftDisplay(sender, e, 355, "TOTAL EXPENSES", NUMBERFORMAT(totalExpenses), font)
-        RightToLeftDisplay(sender, e, 365, "OTHERS", "N/A", font)
-        RightToLeftDisplay(sender, e, 375, "BEG.BALANCE", NUMBERFORMAT(BegBalance), font)
-        RightToLeftDisplay(sender, e, 385, "DEPOSIT", NUMBERFORMAT(DepositSlip), font)
-        RightToLeftDisplay(sender, e, 400, "CASH IN DRAWER", NUMBERFORMAT(CashInDrawer), font)
-        '============================================================================================================================
-        RightToLeftDisplay(sender, e, 415, "ITEM VOID E/C", ReturnsExchange, font)
-        RightToLeftDisplay(sender, e, 425, "TRANSACTION VOID", ReturnsExchange, font)
-        RightToLeftDisplay(sender, e, 435, "TRANSACTION CANCEL", ReturnsExchange, font)
-        RightToLeftDisplay(sender, e, 445, "DIMPLOMAT", "N/A", font)
-        RightToLeftDisplay(sender, e, 455, "TOTAL DISCOUNTS", NUMBERFORMAT(TotalDiscount), font)
-        RightToLeftDisplay(sender, e, 465, " - SENIOR CITIZEN", NUMBERFORMAT(SrDiscount), font)
-        RightToLeftDisplay(sender, e, 475, "TAKE OUT CHARGE", "N/A", font)
-        RightToLeftDisplay(sender, e, 485, "DELIVERY CHARGE", "N/A", font)
-        RightToLeftDisplay(sender, e, 495, "RETURNS EXCHANGE", ReturnsExchange, font)
-        RightToLeftDisplay(sender, e, 505, "RETURNS REFUND", NUMBERFORMAT(ReturnsTotal), font)
-        '============================================================================================================================
-        RightToLeftDisplay(sender, e, 515, "TOTAL QTY SOLD", TotalQuantity, font)
-        RightToLeftDisplay(sender, e, 525, "TOTAL TRANS. COUNT", TotalGuest, font)
-        RightToLeftDisplay(sender, e, 535, "TOTAL GUEST", TotalGuest, font)
-        RightToLeftDisplay(sender, e, 545, "BEGINNING OR NO.", begORNm, font)
-        RightToLeftDisplay(sender, e, 555, "END OR NO.", EndORNumber, font)
-        '============================================================================================================================
-        RightToLeftDisplay(sender, e, 570, "CURRENT TOTAL SALES", NUMBERFORMAT(DailySales), font)
-        RightToLeftDisplay(sender, e, 580, "OLD GRAND TOTAL", NUMBERFORMAT(OLDgrandtotal), font)
-        RightToLeftDisplay(sender, e, 590, "NEW GRAND TOTAL", NUMBERFORMAT(NEWgrandtotal), font)
-        'RightToLeftDisplay(sender, e, 575, "RETURNS EXCHANGE", "3000.00", Font)
-        'RightToLeftDisplay(sender, e, 585, "RETURNS REFUND", "3000.00", Font)
-        'RightToLeftDisplay(sender, e, 600, "TOTAL QTY. SOLD", "3000.00", Font)
-        'RightToLeftDisplay(sender, e, 610, "TRANSACTION COUNT", "3000.00", Font)
-        'RightToLeftDisplay(sender, e, 620, "TOTAL GUEST", "3000.00", Font)
-        'RightToLeftDisplay(sender, e, 630, "BEG. OR NO.", "3000.00", Font)
-        'RightToLeftDisplay(sender, e, 640, "END OR NO.", "3000.00", Font)
-        '============================================================================================================================
-        'RightToLeftDisplay(sender, e, 655, "CURRENT TOTAL SALES", "3000.00", Font)
-        'RightToLeftDisplay(sender, e, 665, "OLD GRAND TOTAL", "3000.00", Font)
-        'RightToLeftDisplay(sender, e, 675, "NEW GRAND TOTAL", "3000.00", Font)
-        '============================================================================================================================
-        SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 600)
-        '============================================================================================================================
-        CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 605)
+            Dim VatExempt = sum("vat_exempt", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
+            Dim zeroratedsales = sum("zero_rated", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
+            Dim vatablesales = sum("vatable", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
+            Dim DepositSlip = sum("amount", "loc_deposit WHERE date(transaction_date) = '" & ZreadDateFormat & "' ")
+            Dim TotalVat = LessVat
+            Dim BegBalance = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ORDER by log_date_time DESC LIMIT 1")
+            Dim CashInDrawer = BegBalance + Val(NEWgrandtotal) - Val(totalExpenses)
+            Dim CashTotal = CashInDrawer
+            'Select Case sum(CAST(log_description As Decimal(10, 2))) As CashierBal FROM `loc_system_logs` WHERE log_type In ('BG-1','BG-2','BG-3','BG-4')
+            Dim NetSales = GrossSale - LessVat - TotalDiscount
+            CenterTextDisplay(sender, e, ClientBrand.ToUpper, brandfont, 10)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, "Opt by : Innovention Food Asia Co.", font, 21)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, ClientAddress & ", Brgy. " & ClientBrgy, font, 31)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, getmunicipality & ", " & getprovince, font, 41)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, "VAT REG TIN : " & ClientTin, font, 51)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, "MSN : " & ClientMSN, font, 61)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, "MIN : " & ClientMIN, font, 71)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, "PTUN : " & ClientPTUN, font, 81)
+            '============================================================================================================================
+            RightToLeftDisplay(sender, e, 100, "TERMINAL REPORT", XreadOrZread, font)
+            '============================================================================================================================
+            SimpleTextDisplay(sender, e, ReadingOR, font, 0, 90)
+            SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 95)
+            '============================================================================================================================
+            RightToLeftDisplay(sender, e, 123, "DESCRIPTION", "QTY/AMOUNT", font)
+            '============================================================================================================================
+            SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 110)
+            '============================================================================================================================
+            RightToLeftDisplay(sender, e, 140, "TERMINAL N0.", S_Terminal_No, font)
+            RightToLeftDisplay(sender, e, 155, "GROSS", NUMBERFORMAT(GrossSale), font)
+            RightToLeftDisplay(sender, e, 165, "LESS VAT (VE)", "0*", font)
+            RightToLeftDisplay(sender, e, 175, "LESS VAT DIPLOMAT", "0", font)
+            RightToLeftDisplay(sender, e, 185, "LESS VAT (OTHER)", "0", font)
+            RightToLeftDisplay(sender, e, 195, "ADD VAT", "0", font)
+            RightToLeftDisplay(sender, e, 205, "DAILY SALES", NUMBERFORMAT(DailySales), font)
+            '============================================================================================================================
+            RightToLeftDisplay(sender, e, 220, "VAT AMOUNT", NUMBERFORMAT(TotalVat), font)
+            RightToLeftDisplay(sender, e, 230, "LOCAL GOV'T TAX", "0", font)
+            RightToLeftDisplay(sender, e, 240, "VATABLE SALES", NUMBERFORMAT(vatablesales), font)
+            RightToLeftDisplay(sender, e, 250, "ZERO RATED SALES", NUMBERFORMAT(zeroratedsales), font)
+            RightToLeftDisplay(sender, e, 260, "VAT EXEMPT SALES", NUMBERFORMAT(VatExempt), font)
+            RightToLeftDisplay(sender, e, 270, "LESS DISC (VE)", NUMBERFORMAT(TotalDiscount), font)
+            RightToLeftDisplay(sender, e, 280, "NET SALES", NUMBERFORMAT(NetSales), font)
+            '============================================================================================================================
+            RightToLeftDisplay(sender, e, 295, "CASH TOTAL", NUMBERFORMAT(CashTotal), font)
+            RightToLeftDisplay(sender, e, 305, "CREDIT CARD", "N/A", font)
+            RightToLeftDisplay(sender, e, 315, "DEBIT CARD", "N/A", font)
+            RightToLeftDisplay(sender, e, 325, "MISC/CHEQUES", "N/A", font)
+            RightToLeftDisplay(sender, e, 335, "GIFT CARD(GC)", "N/A", font)
+            RightToLeftDisplay(sender, e, 345, "A/R", "N/A", font)
+            RightToLeftDisplay(sender, e, 355, "TOTAL EXPENSES", NUMBERFORMAT(totalExpenses), font)
+            RightToLeftDisplay(sender, e, 365, "OTHERS", "N/A", font)
+            RightToLeftDisplay(sender, e, 375, "BEG.BALANCE", NUMBERFORMAT(BegBalance), font)
+            RightToLeftDisplay(sender, e, 385, "DEPOSIT", NUMBERFORMAT(DepositSlip), font)
+            RightToLeftDisplay(sender, e, 400, "CASH IN DRAWER", NUMBERFORMAT(CashInDrawer), font)
+            '============================================================================================================================
+            RightToLeftDisplay(sender, e, 415, "ITEM VOID E/C", ReturnsExchange, font)
+            RightToLeftDisplay(sender, e, 425, "TRANSACTION VOID", ReturnsExchange, font)
+            RightToLeftDisplay(sender, e, 435, "TRANSACTION CANCEL", ReturnsExchange, font)
+            RightToLeftDisplay(sender, e, 445, "DIMPLOMAT", "N/A", font)
+            RightToLeftDisplay(sender, e, 455, "TOTAL DISCOUNTS", NUMBERFORMAT(TotalDiscount), font)
+            RightToLeftDisplay(sender, e, 465, " - SENIOR CITIZEN", NUMBERFORMAT(SrDiscount), font)
+            RightToLeftDisplay(sender, e, 475, "TAKE OUT CHARGE", "N/A", font)
+            RightToLeftDisplay(sender, e, 485, "DELIVERY CHARGE", "N/A", font)
+            RightToLeftDisplay(sender, e, 495, "RETURNS EXCHANGE", ReturnsExchange, font)
+            RightToLeftDisplay(sender, e, 505, "RETURNS REFUND", NUMBERFORMAT(ReturnsTotal), font)
+            '============================================================================================================================
+            RightToLeftDisplay(sender, e, 515, "TOTAL QTY SOLD", TotalQuantity, font)
+            RightToLeftDisplay(sender, e, 525, "TOTAL TRANS. COUNT", TotalGuest, font)
+            RightToLeftDisplay(sender, e, 535, "TOTAL GUEST", TotalGuest, font)
+            RightToLeftDisplay(sender, e, 545, "BEGINNING OR NO.", begORNm, font)
+            RightToLeftDisplay(sender, e, 555, "END OR NO.", EndORNumber, font)
+            '============================================================================================================================
+            RightToLeftDisplay(sender, e, 570, "CURRENT TOTAL SALES", NUMBERFORMAT(DailySales), font)
+            RightToLeftDisplay(sender, e, 580, "OLD GRAND TOTAL", NUMBERFORMAT(OLDgrandtotal), font)
+            RightToLeftDisplay(sender, e, 590, "NEW GRAND TOTAL", NUMBERFORMAT(NEWgrandtotal), font)
+            'RightToLeftDisplay(sender, e, 575, "RETURNS EXCHANGE", "3000.00", Font)
+            'RightToLeftDisplay(sender, e, 585, "RETURNS REFUND", "3000.00", Font)
+            'RightToLeftDisplay(sender, e, 600, "TOTAL QTY. SOLD", "3000.00", Font)
+            'RightToLeftDisplay(sender, e, 610, "TRANSACTION COUNT", "3000.00", Font)
+            'RightToLeftDisplay(sender, e, 620, "TOTAL GUEST", "3000.00", Font)
+            'RightToLeftDisplay(sender, e, 630, "BEG. OR NO.", "3000.00", Font)
+            'RightToLeftDisplay(sender, e, 640, "END OR NO.", "3000.00", Font)
+            '============================================================================================================================
+            'RightToLeftDisplay(sender, e, 655, "CURRENT TOTAL SALES", "3000.00", Font)
+            'RightToLeftDisplay(sender, e, 665, "OLD GRAND TOTAL", "3000.00", Font)
+            'RightToLeftDisplay(sender, e, 675, "NEW GRAND TOTAL", "3000.00", Font)
+            '============================================================================================================================
+            SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 600)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 605)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonZread.Click
         Try
