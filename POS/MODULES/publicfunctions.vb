@@ -353,9 +353,11 @@ Module publicfunctions
     End Function
     Public Function returndateformatfulldate(datetoformat As String)
         Try
+            MsgBox(datetoformat)
             Dim iDate As String = datetoformat
             Dim oDate As DateTime = Convert.ToDateTime(iDate)
-            dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00") & " " & oDate.Hour.ToString("#00") & ":" & oDate.Minute.ToString("#00") & ":" & oDate.Second.ToString("#00")
+            dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00")
+            '& " " & oDate.Hour.ToString("#00") & ":" & oDate.Minute.ToString("#00") & ":" & oDate.Second.ToString("#00")
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -395,7 +397,7 @@ Module publicfunctions
         Dim da As MySqlDataAdapter
         Dim firstday = Format(FirstDayOfMonth(Date.Now), "yyyy-MM-dd")
         Try
-            Dim sql = "SELECT * FROM loc_inv_temp_data WHERE date_created = '" & firstday & "'"
+            Dim sql = "SELECT * FROM loc_inv_temp_data WHERE created_at = '" & firstday & "'"
             cmd = New MySqlCommand(sql, conn)
             da = New MySqlDataAdapter(cmd)
             dtRESET = New DataTable
@@ -408,6 +410,15 @@ Module publicfunctions
         Else
             Return False
         End If
+    End Function
+    Dim DateNow
+    Public Function FullDate24HR()
+        Try
+            DateNow = Format(Now(), "yyyy-MM-dd HH:mm:ss")
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return DateNow
     End Function
     Public Sub EndBalance()
         If Shift = "First Shift" Then

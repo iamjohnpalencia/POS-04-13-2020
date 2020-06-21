@@ -5,7 +5,6 @@ Imports System.Text
 Public Class Reports
     Private WithEvents printdoc As PrintDocument = New PrintDocument
     Private WithEvents printdocXread As PrintDocument = New PrintDocument
-
     Private PrintPreviewDialog1 As New PrintPreviewDialog
     Private PrintPreviewDialogXread As New PrintPreviewDialog
     Dim buttons As DataGridViewButtonColumn = New DataGridViewButtonColumn()
@@ -72,45 +71,53 @@ Public Class Reports
         End Try
     End Sub
     Public Sub reportsreturnsandrefunds(ByVal searchdate As Boolean)
-        table = "`loc_refund_return_details`"
-        fields = "`transaction_number`, `crew_id`, `reason`, `datestamp`"
-        If searchdate = False Then
-            where = " date(zreading) = CURRENT_DATE() AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewReturns, errormessage:="", fields:=fields, successmessage:="", where:=where)
-        Else
-            where = " date(zreading) >= '" & Format(DateTimePicker14.Value, "yyyy-MM-dd") & "' AND date(zreading) <= '" & Format(DateTimePicker13.Value, "yyyy-MM-dd") & "' AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
-            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewReturns, errormessage:="", fields:=fields, successmessage:="", where:=where)
-        End If
-        With DataGridViewReturns
-            .Columns(0).HeaderText = "Transaction #"
-            .Columns(1).HeaderText = "Service Crew"
-            .Columns(2).HeaderText = "Reason"
-            .Columns(3).HeaderText = "Date and Time"
-            For Each row As DataRow In dt.Rows
-                row("crew_id") = returnfullname(row("crew_id"))
-            Next
-        End With
+        Try
+            table = "`loc_refund_return_details`"
+            fields = "`transaction_number`, `crew_id`, `reason`, `created_at`"
+            If searchdate = False Then
+                where = " date(zreading) = CURRENT_DATE() AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewReturns, errormessage:="", fields:=fields, successmessage:="", where:=where)
+            Else
+                where = " date(zreading) >= '" & Format(DateTimePicker14.Value, "yyyy-MM-dd") & "' AND date(zreading) <= '" & Format(DateTimePicker13.Value, "yyyy-MM-dd") & "' AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewReturns, errormessage:="", fields:=fields, successmessage:="", where:=where)
+            End If
+            With DataGridViewReturns
+                .Columns(0).HeaderText = "Transaction #"
+                .Columns(1).HeaderText = "Service Crew"
+                .Columns(2).HeaderText = "Reason"
+                .Columns(3).HeaderText = "Date and Time"
+                For Each row As DataRow In dt.Rows
+                    row("crew_id") = returnfullname(row("crew_id"))
+                Next
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Public Sub reportstransactionlogs(ByVal searchdate As Boolean)
-        table = "`loc_system_logs`"
-        fields = "`log_type`, `log_description`, `log_date_time`"
-        If searchdate = False Then
-            where = " log_type = 'TRANSACTION' AND date(log_date_time) = CURRENT_DATE() AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' "
-            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewTRANSACTIONLOGS, errormessage:="", fields:=fields, successmessage:="", where:=where)
-        Else
-            where = " log_type = 'TRANSACTION' AND date(log_date_time) >= '" & Format(DateTimePicker11.Value, "yyyy-MM-dd") & "' AND date(log_date_time) <= '" & Format(DateTimePicker12.Value, "yyyy-MM-dd") & "' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' "
-            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewTRANSACTIONLOGS, errormessage:="", fields:=fields, successmessage:="", where:=where)
-        End If
-        With DataGridViewTRANSACTIONLOGS
-            .Columns(0).HeaderText = "Type"
-            .Columns(1).HeaderText = "Description"
-            .Columns(2).HeaderText = "Date and Time"
-        End With
+        Try
+            table = "`loc_system_logs`"
+            fields = "`log_type`, `log_description`, `log_date_time`"
+            If searchdate = False Then
+                where = " log_type = 'TRANSACTION' AND date(log_date_time) = CURRENT_DATE() AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' "
+                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewTRANSACTIONLOGS, errormessage:="", fields:=fields, successmessage:="", where:=where)
+            Else
+                where = " log_type = 'TRANSACTION' AND date(log_date_time) >= '" & Format(DateTimePicker11.Value, "yyyy-MM-dd") & "' AND date(log_date_time) <= '" & Format(DateTimePicker12.Value, "yyyy-MM-dd") & "' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' "
+                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewTRANSACTIONLOGS, errormessage:="", fields:=fields, successmessage:="", where:=where)
+            End If
+            With DataGridViewTRANSACTIONLOGS
+                .Columns(0).HeaderText = "Type"
+                .Columns(1).HeaderText = "Description"
+                .Columns(2).HeaderText = "Date and Time"
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Public Sub reportsdailytransaction(ByVal searchdate As Boolean)
         Try
             table = "`loc_daily_transaction`"
-            fields = "`transaction_id`,`date`,`time`,`transaction_number`,`crew_id`,`amounttendered`,`moneychange`,`active`,`discount`,`amountdue`,`vat_exempt`,`transaction_type`,`vat`,`si_number`"
+            fields = "`transaction_id`,`created_at`,`transaction_number`,`crew_id`,`amounttendered`,`moneychange`,`active`,`discount`,`amountdue`,`vat_exempt`,`transaction_type`,`vat`,`si_number`"
             If searchdate = False Then
                 where = " zreading = CURRENT_DATE() AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDaily, errormessage:="", fields:=fields, successmessage:="", where:=where)
@@ -120,23 +127,21 @@ Public Class Reports
             End If
             With DataGridViewDaily
                 .Columns(0).Visible = False
-                .Columns(1).HeaderCell.Value = "Date"
-                .Columns(2).HeaderCell.Value = "Time"
-                .Columns(3).HeaderCell.Value = "Ref. #"
-                .Columns(3).Width = 100
-                .Columns(4).HeaderCell.Value = "Crew"
-                .Columns(5).HeaderCell.Value = "Cash"
-                .Columns(6).HeaderCell.Value = "Change"
-                .Columns(7).Visible = False
-                .Columns(8).HeaderCell.Value = "Discount"
-                .Columns(9).HeaderCell.Value = "Amt. due"
-                .Columns(10).HeaderCell.Value = "Vat Exempt"
-                .Columns(11).HeaderCell.Value = "TRN. Type"
+                .Columns(1).HeaderCell.Value = "Date and Time"
+                .Columns(2).HeaderCell.Value = "Ref. #"
+                .Columns(2).Width = 100
+                .Columns(3).HeaderCell.Value = "Crew"
+                .Columns(4).HeaderCell.Value = "Cash"
+                .Columns(5).HeaderCell.Value = "Change"
+                .Columns(6).Visible = False
+                .Columns(7).HeaderCell.Value = "Discount"
+                .Columns(8).HeaderCell.Value = "Amt. due"
+                .Columns(9).HeaderCell.Value = "Vat Exempt"
+                .Columns(10).HeaderCell.Value = "TRN. Type"
+                .Columns(11).Visible = False
                 .Columns(12).Visible = False
-                .Columns(13).Visible = False
+                .Columns.Item(4).DefaultCellStyle.Format = "n2"
                 .Columns.Item(5).DefaultCellStyle.Format = "n2"
-                .Columns.Item(6).DefaultCellStyle.Format = "n2"
-                .Columns.Item(1).DefaultCellStyle.Format = "yyyy/MM/dd"
                 For Each row As DataRow In dt.Rows
                     row("crew_id") = GLOBAL_SELECT_FUNCTION_RETURN(table:="loc_users", fields:="full_name", returnvalrow:="full_name", values:="uniq_id ='" & row("crew_id") & "'")
                 Next
@@ -173,7 +178,7 @@ Public Class Reports
     Public Sub reportexpensedet(ByVal searchdate As Boolean)
         Try
             table = "`loc_expense_details`"
-            fields = "`expense_type`, `item_info`, `quantity`, `price`, `amount`, `attachment`, `created_at`, `time`"
+            fields = "`expense_type`, `item_info`, `quantity`, `price`, `amount`, `attachment`, `created_at`"
             If searchdate = False Then
                 where = " zreading = date(CURRENT_DATE()) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewExpenseDetails, errormessage:="", fields:=fields, successmessage:="", where:=where)
@@ -190,7 +195,6 @@ Public Class Reports
                 .Columns(4).HeaderText = "Total Amount"
                 .Columns(5).Visible = False
                 .Columns(6).HeaderText = "Date Created"
-                .Columns(7).HeaderText = "Time Created"
                 Label15.Text = SumOfColumnsToDecimal(DataGridViewExpenseDetails, 4)
             End With
         Catch ex As Exception
@@ -201,7 +205,7 @@ Public Class Reports
     Public Sub expensereports(ByVal searchdate As Boolean)
         Try
             table = "`loc_expense_list`"
-            fields = "`expense_id`, `crew_id`, `expense_number`, `total_amount`, `paid_amount`, `unpaid_amount`, `date`, `time`"
+            fields = "`expense_id`, `crew_id`, `expense_number`, `total_amount`, `paid_amount`, `unpaid_amount`, `created_at`"
             If searchdate = False Then
                 where = " zreading = date(CURRENT_DATE()) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewEXPENSES, errormessage:="", fields:=fields, successmessage:="", where:=where)
@@ -217,7 +221,6 @@ Public Class Reports
                 .Columns(4).HeaderCell.Value = "Paid Amount"
                 .Columns(5).HeaderCell.Value = "Unpaid Amount"
                 .Columns(6).HeaderCell.Value = "Date"
-                .Columns(7).HeaderCell.Value = "Time"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -226,7 +229,7 @@ Public Class Reports
     Public Sub viewexpensesdetails(ByVal expense_number As String)
         Try
             table = "`loc_expense_details`"
-            fields = "`expense_type`, `item_info`, `quantity`, `price`, `amount`, `created_at`, `time`"
+            fields = "`expense_type`, `item_info`, `quantity`, `price`, `amount`, `created_at`"
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewEXPENSEDET, errormessage:="", fields:=fields, successmessage:="", where:=" expense_number = '" & expense_number & "'")
             With DataGridViewEXPENSEDET
                 .Columns(0).HeaderCell.Value = "Type"
@@ -235,7 +238,6 @@ Public Class Reports
                 .Columns(3).HeaderCell.Value = "Price"
                 .Columns(4).HeaderCell.Value = "Amount"
                 .Columns(5).HeaderCell.Value = "Date"
-                .Columns(6).HeaderCell.Value = "Time"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -270,7 +272,7 @@ Public Class Reports
     Public Sub viewdeposit(ByVal searchdate As Boolean)
         Try
             table = "`loc_deposit`"
-            fields = "`dep_id`, `name`, `crew_id`, `transaction_number`, `amount`, `bank`, `transaction_date`, `store_id`, `guid`, `date_created`"
+            fields = "`dep_id`, `name`, `crew_id`, `transaction_number`, `amount`, `bank`, `transaction_date`, `store_id`, `guid`, `created_at`"
             If searchdate = False Then
                 where = " date(transaction_date) = date(CURRENT_DATE()) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDeposits, errormessage:="", fields:=fields, successmessage:="", where:=where)

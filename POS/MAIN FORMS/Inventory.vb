@@ -28,7 +28,7 @@ Public Class Inventory
     End Sub
     Sub loadinventory()
         Try
-            fields = "I.inventory_id, I.store_id, I.formula_id, I.product_ingredients, I.stock_quantity, CONCAT_WS(' ', I.stock_total, F.serving_unit) as UOM , I.stock_status, I.critical_limit, I.date_modified"
+            fields = "I.inventory_id, I.store_id, I.formula_id, I.product_ingredients, I.stock_quantity, CONCAT_WS(' ', I.stock_total, F.serving_unit) as UOM , I.stock_status, I.critical_limit, I.created_at"
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_pos_inventory I INNER JOIN loc_product_formula F ON F.formula_id = I.formula_id ", datagrid:=DataGridViewINVVIEW, errormessage:="", successmessage:="", fields:=fields, where:=" I.stock_status = 1 AND I.store_id = " & ClientStoreID)
             With DataGridViewINVVIEW
                 .Columns(0).Visible = False
@@ -45,7 +45,7 @@ Public Class Inventory
         End Try
     End Sub
     Sub loadcriticalstocks()
-        fields = "`product_ingredients`, `sku`, `stock_quantity`, `critical_limit`, `date_modified`"
+        fields = "`product_ingredients`, `sku`, `stock_quantity`, `critical_limit`, `created_at`"
         GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_pos_inventory", datagrid:=DataGridViewCriticalStocks, errormessage:="", successmessage:="", fields:=fields, where:=" stock_status = 1 AND critical_limit >= stock_quantity AND store_id = " & ClientStoreID)
         With DataGridViewCriticalStocks
             .Columns(0).HeaderCell.Value = "Product Name"
@@ -73,7 +73,7 @@ Public Class Inventory
     End Sub
     Private Sub loadpanelstockadjustment()
         Try
-            fields = "inventory_id, store_id, formula_id, product_ingredients, stock_quantity, stock_total, stock_status, date_modified"
+            fields = "inventory_id, store_id, formula_id, product_ingredients, stock_quantity, stock_total, stock_status, created_at"
             GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory WHERE stock_status = 1 AND store_id = " & ClientStoreID, fields, DataGridViewPanelStockAdjustment)
             With DataGridViewPanelStockAdjustment
                 .Columns(0).Visible = False

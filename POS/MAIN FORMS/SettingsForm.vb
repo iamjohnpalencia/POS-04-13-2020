@@ -184,37 +184,39 @@ Public Class SettingsForm
         LabelITEMRET.Text = DataGridViewITEMRETURN1.CurrentCell.RowIndex
     End Sub
     Private Sub loaditemreturn(justload As Boolean)
-        fields = "transaction_number, amounttendered, discount, moneychange, crew_id, time, vatable, vat_exempt, zero_rated, vat, transaction_type"
-        If justload = True Then
-            GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date = CURDATE() AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
-        Else
-            If String.IsNullOrWhiteSpace(TextBoxSearchTranNumber.Text) Then
-                FlowLayoutPanel1.Controls.Clear()
-                GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date = CURDATE() AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
+        Try
+            fields = "transaction_number, amounttendered, discount, moneychange, crew_id, vatable, vat_exempt, zero_rated, vat, transaction_type"
+            If justload = True Then
+                GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date(created_at) = date(CURDATE()) AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
             Else
-                FlowLayoutPanel1.Controls.Clear()
-                GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE transaction_number LIKE '%" & TextBoxSearchTranNumber.Text & "%'  AND date = CURDATE() AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
+                If String.IsNullOrWhiteSpace(TextBoxSearchTranNumber.Text) Then
+                    FlowLayoutPanel1.Controls.Clear()
+                    GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date(created_at) = date(CURDATE()) AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
+                Else
+                    FlowLayoutPanel1.Controls.Clear()
+                    GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE transaction_number LIKE '%" & TextBoxSearchTranNumber.Text & "%'  AND date(created_at) = date(CURDATE()) AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
+                End If
             End If
-        End If
-        With DataGridViewITEMRETURN1
-            .Columns(0).HeaderText = "Reference #"
-            .Columns(1).HeaderText = "Cash"
-            .Columns(2).HeaderText = "Discount"
-            .Columns(3).HeaderText = "Change"
-            .Columns(4).HeaderText = "Crew"
-            .Columns(5).HeaderText = "Time"
-            .Columns(5).Name = "Time"
-            .Columns(0).Width = 100
-            .Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            .Columns(6).Visible = False
-            .Columns(7).Visible = False
-            .Columns(8).Visible = False
-            .Columns(9).Visible = False
-            .Columns(10).Visible = False
-            For Each row As DataRow In dt.Rows
-                row("crew_id") = returnfullname(row("crew_id"))
-            Next
-        End With
+            With DataGridViewITEMRETURN1
+                .Columns(0).HeaderText = "Reference #"
+                .Columns(1).HeaderText = "Cash"
+                .Columns(2).HeaderText = "Discount"
+                .Columns(3).HeaderText = "Change"
+                .Columns(4).HeaderText = "Crew"
+                .Columns(0).Width = 100
+                .Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+                .Columns(5).Visible = False
+                .Columns(6).Visible = False
+                .Columns(7).Visible = False
+                .Columns(8).Visible = False
+                .Columns(9).Visible = False
+                For Each row As DataRow In dt.Rows
+                    row("crew_id") = returnfullname(row("crew_id"))
+                Next
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub DataGridViewITEMRETURN1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewITEMRETURN1.CellClick
         rowindex()
@@ -227,14 +229,14 @@ Public Class SettingsForm
             Dim countrow As Integer = 0
             FlowLayoutPanel1.Controls.Clear()
             Dim sql = "SELECT product_id, product_name, quantity, price, total, product_sku FROM loc_daily_transaction_details WHERE transaction_number = '" & DataGridViewITEMRETURN1.SelectedRows(0).Cells(0).Value.ToString & "' AND active = 1"
-            Dim query As String = "SELECT SUM(TOTAL) FROM loc_daily_transaction_details WHERE transaction_number = '" & DataGridViewITEMRETURN1.SelectedRows(0).Cells(0).Value.ToString & "'"
+            Dim query As String = "SELECT amountdue FROM loc_daily_transaction WHERE transaction_number = '" & DataGridViewITEMRETURN1.SelectedRows(0).Cells(0).Value.ToString & "'"
             Dim cmdquery As MySqlCommand = New MySqlCommand(query, LocalhostConn())
             Dim queryda As MySqlDataAdapter = New MySqlDataAdapter(cmdquery)
             Dim dt1 As DataTable = New DataTable
             queryda.Fill(dt1)
             Using readerObj As MySqlDataReader = cmdquery.ExecuteReader
                 While readerObj.Read
-                    grandtotal = readerObj("SUM(TOTAL)")
+                    grandtotal = readerObj("amountdue")
                 End While
             End Using
             cmd = New MySqlCommand
@@ -246,63 +248,62 @@ Public Class SettingsForm
                 da.Fill(dt)
                 For Each row As DataRow In dt.Rows
                     countrow += 1
-
                     Dim buttonname As String = row("product_name")
-                    sql = "SELECT product_image FROM loc_admin_products WHERE product_id = " & row("product_id")
+                    sql = "select product_image from loc_admin_products where product_id = " & row("product_id")
                     cmd = New MySqlCommand
                     With cmd
                         .CommandText = sql
                         .Connection = LocalhostConn()
-                        Using readerObj As MySqlDataReader = cmd.ExecuteReader
-                            While readerObj.Read
-                                productimage = readerObj("product_image")
+                        Using readerobj As MySqlDataReader = cmd.ExecuteReader
+                            While readerobj.Read
+                                productimage = readerobj("product_image")
                             End While
                         End Using
                     End With
-                    Dim Drawproduct As New Panel
-                    Dim Myname As New Label
-                    Dim MyQty As New Label
-                    Dim MyPrice As New Label
-                    Dim MyTotal As New Label
-                    Dim MyImage As New Button
-                    With Drawproduct
+                    Dim drawproduct As New Panel
+                    Dim myname As New Label
+                    Dim myqty As New Label
+                    Dim myprice As New Label
+                    Dim mytotal As New Label
+                    Dim myimage As New Button
+                    With drawproduct
                         .Name = buttonname
                         .Text = buttonname
                         .BorderStyle = BorderStyle.None
                         .ForeColor = Color.White
-                        .Font = New Font("Kelson Sans Normal", 10)
+                        .Font = New Font("kelson sans normal", 10)
                         .Width = 345
                         .Height = 140
                         .Cursor = Cursors.Hand
-                        With Myname
+                        With myname
                             .Location = New Point(200, 10)
                             .Text = row("product_sku")
                             .ForeColor = Color.Black
-                            .Font = New Font("Kelson Sans Normal", 10, FontStyle.Bold)
+                            .Font = New Font("kelson sans normal", 10, FontStyle.Bold)
                             .Width = 200
                         End With
-                        With MyQty
-                            .Font = New Font("Kelson Sans Normal", 10)
+                        With myqty
+                            .Font = New Font("kelson sans normal", 10)
                             .Location = New Point(200, 35)
-                            .Text = "Quantity: " & row("quantity")
+                            .Text = "quantity: " & row("quantity")
                             .ForeColor = Color.Black
                             .Width = 200
                         End With
-                        With MyPrice
-                            .Font = New Font("Kelson Sans Normal", 10)
+                        With myprice
+                            .Font = New Font("kelson sans normal", 10)
                             .Location = New Point(200, 60)
-                            .Text = "Price: " & row("price")
+                            .Text = "price: " & row("price")
                             .ForeColor = Color.Black
                             .Width = 200
                         End With
-                        With MyTotal
-                            .Font = New Font("Kelson Sans Normal", 10)
+                        With mytotal
+                            .Font = New Font("kelson sans normal", 10)
                             .Location = New Point(200, 85)
-                            .Text = "TOTAL: " & row("total")
+                            .Text = "total: " & row("total")
                             .ForeColor = Color.Black
                             .Width = 200
                         End With
-                        With MyImage
+                        With myimage
                             .Location = New Point(5, 5)
                             .Width = 166.5
                             .Height = 120
@@ -313,26 +314,26 @@ Public Class SettingsForm
                             .BackgroundImageLayout = ImageLayout.Stretch
                         End With
                     End With
-                    Drawproduct.Controls.Add(Myname)
-                    Drawproduct.Controls.Add(MyQty)
-                    Drawproduct.Controls.Add(MyPrice)
-                    Drawproduct.Controls.Add(MyTotal)
-                    Drawproduct.Controls.Add(MyImage)
-                    FlowLayoutPanel1.Controls.Add(Drawproduct)
+                    drawproduct.Controls.Add(myname)
+                    drawproduct.Controls.Add(myqty)
+                    drawproduct.Controls.Add(myprice)
+                    drawproduct.Controls.Add(mytotal)
+                    drawproduct.Controls.Add(myimage)
+                    FlowLayoutPanel1.Controls.Add(drawproduct)
                 Next
                 With DataGridViewITEMRETURN1
                     LabelIRTRANSNUM.Text = .SelectedRows(0).Cells(0).Value.ToString
                     LabelIRSUBTOTAL.Text = countrow & " item(s)"
-                    LabelIRTYPE.Text = .SelectedRows(0).Cells(10).Value.ToString
+                    LabelIRTYPE.Text = .SelectedRows(0).Cells(9).Value.ToString
                     LabelIRTOTAL.Text = grandtotal
                     LabelIRCASH.Text = .SelectedRows(0).Cells(1).Value.ToString
                     LabelIRCHANGE.Text = .SelectedRows(0).Cells(3).Value.ToString
                     LabelIRDISC.Text = .SelectedRows(0).Cells(2).Value.ToString
-                    LabelIRVAT.Text = .SelectedRows(0).Cells(6).Value.ToString
-                    LabelIRVATEX.Text = .SelectedRows(0).Cells(7).Value.ToString
-                    LabelIRZERO.Text = .SelectedRows(0).Cells(8).Value.ToString
-                    LabelIRINPUTVAT.Text = .SelectedRows(0).Cells(9).Value.ToString
-                    ButtonRefund.Text = "Refund PHP " & grandtotal
+                    LabelIRVAT.Text = .SelectedRows(0).Cells(5).Value.ToString
+                    LabelIRVATEX.Text = .SelectedRows(0).Cells(6).Value.ToString
+                    LabelIRZERO.Text = .SelectedRows(0).Cells(7).Value.ToString
+                    LabelIRINPUTVAT.Text = .SelectedRows(0).Cells(8).Value.ToString
+                    ButtonRefund.Text = "Refund php " & grandtotal
                 End With
             End With
         Catch ex As Exception
@@ -361,7 +362,7 @@ Public Class SettingsForm
             If String.IsNullOrWhiteSpace(TextBoxIRREASON.Text) Then
                 MessageBox.Show("Reason for refund is required!", "Refund", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
-                sql = "SELECT * FROM loc_daily_transaction WHERE date = CURDATE() AND time >= Now() - INTERVAL 10 MINUTE AND transaction_number = '" & transaction_num & "'"
+                sql = "SELECT * FROM loc_daily_transaction WHERE date(created_at) = date(CURDATE()) AND created_at >= Now() - INTERVAL 10 MINUTE AND transaction_number = '" & transaction_num & "'"
                 cmd = New MySqlCommand(sql, LocalhostConn())
                 da = New MySqlDataAdapter(cmd)
                 dt = New DataTable
@@ -381,7 +382,7 @@ Public Class SettingsForm
     End Sub
     Private Sub INSERTRETURNS(transaction_num As String)
         Try
-            fields = "(`transaction_number`, `reason`, `total`, `guid`, `store_id`, `crew_id`, `synced`, `zreading`)"
+            fields = "(`transaction_number`, `reason`, `total`, `guid`, `store_id`, `crew_id`, `synced`, `zreading`, `created_at`)"
             value = "('" & transaction_num & "'
                             , '" & TextBoxIRREASON.Text & "'
                             , " & grandtotal & "
@@ -389,7 +390,8 @@ Public Class SettingsForm
                             , '" & ClientStoreID & "'
                             , '" & ClientCrewID & "'
                             , 'Unsynced'
-                            , '" & S_Zreading & "')"
+                            , '" & S_Zreading & "'
+                            , '" & FullDate24HR() & "')"
             GLOBAL_INSERT_FUNCTION(table:="`loc_refund_return_details`", fields:=fields, errormessage:="", successmessage:="", values:=value)
             GLOBAL_FUNCTION_UPDATE("loc_daily_transaction", "active = 2 , synced = 'Unsynced'", "transaction_number = '" & transaction_num & "'")
             GLOBAL_FUNCTION_UPDATE("loc_daily_transaction_details", "active = 2 , synced = 'Unsynced'", "transaction_number = '" & transaction_num & "'")

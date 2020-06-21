@@ -142,6 +142,7 @@ Public Class POS
         End If
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonApplyCoupon.Click
+        Enabled = False
         GetProductHighestValue()
         CouponCode.Show()
         CouponCode.ButtonSubmit.Enabled = True
@@ -629,15 +630,14 @@ Public Class POS
         Try
             For i As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
                 table = "loc_fm_stock"
-                fields = "(`formula_id`, `stock_quantity`, `stock_total`,`crew_id`, `store_id`, `guid`, `date`, `time`, `status`)"
+                fields = "(`formula_id`, `stock_quantity`, `stock_total`,`crew_id`, `store_id`, `guid`, `created_at`, `status`)"
                 value = "('" & DataGridViewInv.Rows(i).Cells(1).Value & "'  
                                 ," & DataGridViewInv.Rows(i).Cells(2).Value & "    
                                 ," & DataGridViewInv.Rows(i).Cells(0).Value & "                   
                                 ,'" & ClientCrewID & "'
                                 ,'" & ClientStoreID & "'
                                 ,'" & ClientGuid & "'
-                                ,'" & Format(Now, ("yyyy-MM-dd")) & "'                    
-                                ,'" & Format(Now, ("hh:mm:ss")) & "'
+                                ,'" & FullDate24HR() & "'                    
                                 , " & 1 & ")"
                 GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
                 '=================================================================================================
@@ -654,7 +654,7 @@ Public Class POS
                             End While
                         End Using
                     End With
-                    fields = "`stock_quantity` = " & stockqty - DataGridViewInv.Rows(i).Cells(2).Value & ", `stock_total` = " & stocktotal - DataGridViewInv.Rows(i).Cells(0).Value & ",`synced`= 'Unsynced'"
+                    fields = "`stock_quantity` = " & stockqty - DataGridViewInv.Rows(i).Cells(2).Value & ", `stock_total` = " & stocktotal - DataGridViewInv.Rows(i).Cells(0).Value & ",`synced`= 'Unsynced',`created_at`= '" & FullDate24HR() & "' "
                     table = " loc_pos_inventory "
                     where = " inventory_id = " & DataGridViewInv.Rows(i).Cells(1).Value
                     GLOBAL_FUNCTION_UPDATE(table:=table, fields:=fields, where:=where)
@@ -678,7 +678,7 @@ Public Class POS
                 LESSVAT = Math.Round(total - VATABLE, 2)
             End If
             table = "loc_daily_transaction"
-            fields = "(`transaction_number`,`crew_id`,`guid`,`active`,`amounttendered`,`moneychange`,`amountdue`,`store_id`,`vatable`,`vat`,`date`,`time`,`discount`,`synced`,`transaction_type`,`shift`,`vat_exempt`,`si_number`,`zreading`,`discount_type`)"
+            fields = "(`transaction_number`,`crew_id`,`guid`,`active`,`amounttendered`,`moneychange`,`amountdue`,`store_id`,`vatable`,`vat`,`created_at`,`discount`,`synced`,`transaction_type`,`shift`,`vat_exempt`,`si_number`,`zreading`,`discount_type`)"
             TIMETOINSERT = insertcurrenttime
             value = "('" & TextBoxMAXID.Text & "'                         
                             ,'" & ClientCrewID & "'
@@ -690,8 +690,7 @@ Public Class POS
                             ,'" & ClientStoreID & "'
                             , " & VATABLE & "
                             , " & LESSVAT & "
-                            , '" & insertcurrentdate & "'
-                            , '" & TIMETOINSERT & "'
+                            , '" & FullDate24HR() & "'
                             , " & TextBoxDISCOUNT.Text & "
                             , 'Unsynced'
                             , '" & Trim(transactionmode) & "'
@@ -711,7 +710,7 @@ Public Class POS
             For i As Integer = 0 To DataGridViewOrders.Rows.Count - 1 Step +1
                 Dim totalcostofgoods As Decimal
                 table = "loc_daily_transaction_details"
-                fields = "(`product_id`,`product_sku`,`product_name`,`quantity`,`price`,`total`,`crew_id`,`transaction_number`,`active`,`created_at`,`timenow`,`guid`,`store_id`,`synced`,`total_cost_of_goods`,`product_category`,`zreading`)"
+                fields = "(`product_id`,`product_sku`,`product_name`,`quantity`,`price`,`total`,`crew_id`,`transaction_number`,`active`,`created_at`,`guid`,`store_id`,`synced`,`total_cost_of_goods`,`product_category`,`zreading`)"
 
                 For a As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
                     If DataGridViewInv.Rows(a).Cells(4).Value = DataGridViewOrders.Rows(i).Cells(0).Value Then
@@ -727,8 +726,7 @@ Public Class POS
                             , '" & ClientCrewID & "'
                             , '" & TextBoxMAXID.Text & "'
                             , " & Active & "
-                            , '" & insertcurrentdate & "'
-                            , '" & insertcurrenttime & "'
+                            , '" & FullDate24HR() & "'
                             , '" & ClientGuid & "'
                             , '" & ClientStoreID & "'
                             , 'Unsynced'
@@ -747,7 +745,7 @@ Public Class POS
         Try
             If modeoftransaction = True Then
                 table = "loc_transaction_mode_details"
-                fields = "(`transaction_type`, `transaction_number`, `fullname`, `reference`, `markup`, `status`, `synced`, `store_id`, `guid`)"
+                fields = "(`transaction_type`, `transaction_number`, `fullname`, `reference`, `markup`, `status`, `synced`, `store_id`, `guid`, `created_at`)"
                 value = "( '" & transactionmode & "'
                             ,'" & TextBoxMAXID.Text & "'
                             , '" & TEXTBOXFULLNAMEVALUE & "'
@@ -756,7 +754,8 @@ Public Class POS
                             , " & 1 & "
                             , 'Unsynced'
                             , '" & ClientStoreID & "'
-                            , '" & ClientGuid & "')"
+                            , '" & ClientGuid & "'
+                            , '" & FullDate24HR() & "')"
                 successmessage = "Success"
                 errormessage = "error holdorder(loc_daily_transaction_details)"
                 GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)

@@ -8,3 +8,4 @@ SERVER:
 gator3218.hostgator.com
 PORT:
 3306
+2NMQC-PQDVV-G826G-W58KE

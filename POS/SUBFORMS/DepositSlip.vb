@@ -14,7 +14,7 @@ Public Class DepositSlip
             Else
                 MsgBox((DateTimePickerDATE.Value))
                 table = "loc_deposit"
-                fields = "(`name`, `transaction_number`, `amount`, `bank`, `transaction_date`, `store_id`, `guid`, `synced`, `crew_id`)"
+                fields = "(`name`, `transaction_number`, `amount`, `bank`, `transaction_date`, `store_id`, `guid`, `synced`, `crew_id`, `created_at`)"
                 value = "('" & TextBoxNAME.Text & "'  
                                 ,'" & TextBoxTRANNUM.Text & "'   
                                 ," & TextBoxAMT.Text & "                
@@ -23,7 +23,8 @@ Public Class DepositSlip
                                 ,'" & ClientStoreID & "'
                                 ,'" & ClientGuid & "'                    
                                 ,'Unsynced'
-                                ,'" & ClientCrewID & "')"
+                                ,'" & ClientCrewID & "'
+                                ,'" & FullDate24HR() & "')"
                 GLOBAL_INSERT_FUNCTION(table:=table, errormessage:="", fields:=fields, successmessage:="", values:=value)
                 MsgBox("Thank you!")
                 ClearTextBox(Me)

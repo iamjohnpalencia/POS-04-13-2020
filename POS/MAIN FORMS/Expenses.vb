@@ -36,7 +36,7 @@ Public Class Expenses
         Else
             With Addexpense
                 .ButtonClickCount += 1
-                .DataGridViewExpenses.Rows.Add(ComboBoxType.Text, TextBoxITEMINF.Text, TextBoxQTY.Text, TextBoxPRICE.Text, TextBoxTOTAL.Text, insertcurrentdate, insertcurrenttime, TextBoxAttatchment.Text, .ButtonClickCount)
+                .DataGridViewExpenses.Rows.Add(ComboBoxType.Text, TextBoxITEMINF.Text, TextBoxQTY.Text, TextBoxPRICE.Text, TextBoxTOTAL.Text, TextBoxAttatchment.Text, .ButtonClickCount)
                 .Label1.Text = SumOfColumnsToDecimal(.DataGridViewExpenses, 4)
             End With
             Me.Close()

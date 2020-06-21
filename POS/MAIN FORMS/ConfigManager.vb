@@ -13,6 +13,7 @@ Public Class ConfigManager
     Dim UserID
     Dim BTNSaveLocalConn As Boolean = False
     Dim BTNSaveCloudConn As Boolean = False
+    Dim Autobackup As Boolean = False
     Private Sub ConfigManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CheckForIllegalCrossThreadCalls = False
         TabControl1.TabPages(0).Text = "General Settings"
@@ -308,6 +309,44 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Private Sub LoadAutoBackup()
+        Try
+            If My.Settings.ValidLocalConn = True Then
+                Dim sql = "SELECT `S_BackupInterval`, `S_BackupDate` FROM loc_settings WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                For Each row As DataRow In dt.Rows
+                    If row("S_BackupInterval") <> "" Then
+                        If row("S_BackupDate") <> "" Then
+                            Autobackup = True
+                            Dim interval = row("S_BackupInterval")
+                            If interval = "1" Then
+                                RadioButtonDaily.Checked = True
+                            ElseIf interval = "2" Then
+                                RadioButtonWeekly.Checked = True
+                            ElseIf interval = "3" Then
+                                RadioButtonMonthly.Checked = True
+                            ElseIf interval = "4" Then
+                                RadioButtonYearly.Checked = True
+                            End If
+                        Else
+                            Autobackup = False
+                            Exit For
+                        End If
+                    Else
+                        Autobackup = False
+                        Exit For
+                    End If
+                Next
+            Else
+                Autobackup = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Private Sub LoadAdditionalSettings()
         Try
             If My.Settings.ValidLocalConn = True Then
@@ -353,11 +392,10 @@ Public Class ConfigManager
                         Exit For
                     End If
                 Next
-                My.Settings.Save()
             Else
                 My.Settings.ValidAddtionalSettings = False
-                My.Settings.Save()
             End If
+            My.Settings.Save()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -390,7 +428,6 @@ Public Class ConfigManager
                                                         DateTimePicker4PTUDI.Value = row("Dev_PTU_Date_Issued")
                                                         DateTimePickerPTUVU.Value = row("Dev_PTU_Valid_Until")
                                                         My.Settings.ValidDevSettings = True
-                                                        My.Settings.Save()
                                                     Else
                                                         My.Settings.ValidDevSettings = False
                                                         Exit For
@@ -428,11 +465,10 @@ Public Class ConfigManager
                         Exit For
                     End If
                 Next
-                My.Settings.Save()
             Else
                 My.Settings.ValidDevSettings = False
-                My.Settings.Save()
             End If
+            My.Settings.Save()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -498,6 +534,7 @@ Public Class ConfigManager
                 If CheckForInternetConnection() = True Then
                     TextboxEnableability(Panel14, False)
                     ButtonEnableability(Panel14, False)
+                    ClearTextBox(Panel15)
                     BackgroundWorker3.WorkerSupportsCancellation = True
                     BackgroundWorker3.WorkerReportsProgress = True
                     BackgroundWorker3.RunWorkerAsync()
@@ -574,24 +611,35 @@ Public Class ConfigManager
             BackgroundWorker4.RunWorkerAsync()
             TextboxEnableability(Panel14, False)
             ButtonEnableability(Panel14, True)
+            LabelAccCheck.Text = "Complete!"
         Else
+            ChangeProgBarColor(ProgressBar3, ProgressBarColor.Yellow)
             TextboxEnableability(Panel14, True)
             ButtonEnableability(Panel14, True)
-            MsgBox("Invalid account.")
+            LabelAccCheck.Text = "Invalid franchisee's Account."
         End If
-
     End Sub
     Private Sub BackgroundWorker4_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker4.DoWork
         Try
-            thread1 = New Thread(AddressOf LoadOutlets)
-            thread1.Start()
-            threadList.Add(thread1)
+            For i = 0 To 100
+                BackgroundWorker4.ReportProgress(i)
+                LabelAccCheck.Text = "Getting Account information " & i & " %"
+                If i = 0 Then
+                    thread1 = New Thread(AddressOf LoadOutlets)
+                    thread1.Start()
+                    threadList.Add(thread1)
+                End If
+                Thread.Sleep(20)
+            Next
             For Each t In threadList
                 t.Join()
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
+    End Sub
+    Private Sub BackgroundWorker4_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker4.ProgressChanged
+        ProgressBar3.Value = e.ProgressPercentage
     End Sub
     Private Sub BackgroundWorker4_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker4.RunWorkerCompleted
         With DataGridViewOutlets
@@ -614,6 +662,7 @@ Public Class ConfigManager
             .Columns(17).Visible = False
             .Columns(18).Visible = False
             .ColumnHeadersVisible = False
+            LabelAccCheck.Text = "Complete!"
         End With
     End Sub
     Private Sub DataGridViewOutlets_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewOutlets.CellClick
@@ -741,6 +790,9 @@ Public Class ConfigManager
                     thread1 = New Thread(AddressOf LoadCloudConn)
                     thread1.Start()
                     threadList.Add(thread1)
+                    thread1 = New Thread(AddressOf LoadAutoBackup)
+                    thread1.Start()
+                    threadList.Add(thread1)
                     thread1 = New Thread(AddressOf LoadAdditionalSettings)
                     thread1.Start()
                     threadList.Add(thread1)
@@ -835,34 +887,38 @@ Public Class ConfigManager
         If My.Settings.ValidLocalConn = True Then
             If BTNSaveLocalConn = True Then
                 If My.Settings.ValidCloudConn = True Then
-                    If BTNSaveCloudConn = True Then
-                        If My.Settings.ValidAddtionalSettings = True Then
-                            If My.Settings.ValidDevSettings = True Then
-                                If AccountExist = True Then
-                                    If FranchiseeStoreValidation = True Then
-                                        If Not String.IsNullOrWhiteSpace(TextBoxProdKey.Text) Then
-                                            TextboxEnableability(GroupBox12, False)
-                                            ButtonEnableability(GroupBox12, False)
-                                            BackgroundWorkerACTIVATION.WorkerReportsProgress = True
-                                            BackgroundWorkerACTIVATION.WorkerReportsProgress = True
-                                            BackgroundWorkerACTIVATION.RunWorkerAsync()
+                    If Autobackup = True Then
+                        If BTNSaveCloudConn = True Then
+                            If My.Settings.ValidAddtionalSettings = True Then
+                                If My.Settings.ValidDevSettings = True Then
+                                    If AccountExist = True Then
+                                        If FranchiseeStoreValidation = True Then
+                                            If Not String.IsNullOrWhiteSpace(TextBoxProdKey.Text) Then
+                                                TextboxEnableability(GroupBox12, False)
+                                                ButtonEnableability(GroupBox12, False)
+                                                BackgroundWorkerACTIVATION.WorkerReportsProgress = True
+                                                BackgroundWorkerACTIVATION.WorkerReportsProgress = True
+                                                BackgroundWorkerACTIVATION.RunWorkerAsync()
+                                            Else
+                                                MsgBox("Please input serial key")
+                                            End If
                                         Else
-                                            MsgBox("Please input serial key")
+                                            MsgBox("Please select store in Account and Store settings tab")
                                         End If
                                     Else
-                                        MsgBox("Please select store in Account and Store settings tab")
+                                        MsgBox("Franchisee's Account must be valid first")
                                     End If
                                 Else
-                                    MsgBox("Franchisee's Account must be valid first")
+                                    MsgBox("Please fill up all fields in Developer Information Settings")
                                 End If
                             Else
-                                MsgBox("Please fill up all fields in Developer Information Settings")
+                                MsgBox("Please fill up all fields in Additional Settings")
                             End If
                         Else
-                            MsgBox("Please fill up all fields in Additional Settings")
+                            MsgBox("Save Cloud connection first")
                         End If
                     Else
-                        MsgBox("Save Cloud connection first")
+                        MsgBox("Automatic backup interval has not been defined")
                     End If
                 Else
                     MsgBox("Invalid Cloud Connection")
@@ -897,19 +953,18 @@ Public Class ConfigManager
         Try
             For i = 0 To 20
                 BackgroundWorkerACTIVATION.ReportProgress(i)
-                Thread.Sleep(50)
                 If i = 0 Then
                     ThreadActivation = New Thread(AddressOf SerialKey)
                     ThreadActivation.Start()
                     threadListActivation.Add(ThreadActivation)
                 End If
+                Thread.Sleep(50)
             Next
             For Each t In threadListActivation
                 t.Join()
             Next
             For i = 20 To 100
                 BackgroundWorkerACTIVATION.ReportProgress(i)
-                Thread.Sleep(50)
                 If i = 20 Then
                     If ValidProductKey = True Then
                         ThreadActivation = New System.Threading.Thread(AddressOf adminserialkey)
@@ -965,6 +1020,7 @@ Public Class ConfigManager
                         threadListActivation.Add(ThreadActivation)
                     End If
                 End If
+                Thread.Sleep(50)
             Next
             For Each t In threadListActivation
                 t.Join()
@@ -991,7 +1047,7 @@ Public Class ConfigManager
         Try
             RichTextBox1.Text += "Updating server(serial key)...." & vbNewLine
             Dim table = "admin_serialkeys"
-            Dim fields = " active = 1 "
+            Dim fields = " active = 1 , date_used = '" & FullDate24HR() & "'"
             Dim where = " serial_key = '" & TextBoxProdKey.Text & "'"
             Dim sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
             Dim cloudcmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
@@ -1017,6 +1073,15 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Dim Datenow
+    Private Function SaveCurrentDate24HR()
+        Try
+            Datenow = Format(Now(), "yyyy-MM-dd HH:mm:ss")
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return Datenow
+    End Function
     Public Sub insertintocloud()
         Try
             RichTextBox1.Text += "Inserting server masterlist data...." & vbNewLine
@@ -1059,7 +1124,7 @@ Public Class ConfigManager
                 ProvinceName = dt2(0)(0)
                 RichTextBox1.Text += "Done!..." & vbNewLine
                 Dim table = "admin_outlets"
-                Dim fields = "(`store_id`, `brand_name`, `store_name`, `user_guid`, `location_name`, `postal_code`, `address`, `Barangay`, `municipality`, `municipality_name`, `province`, `province_name`, `tin_no`, `tel_no`, `active`, `MIN`, `MSN`, `PTUN`)"
+                Dim fields = "(`store_id`, `brand_name`, `store_name`, `user_guid`, `location_name`, `postal_code`, `address`, `Barangay`, `municipality`, `municipality_name`, `province`, `province_name`, `tin_no`, `tel_no`, `active`, `MIN`, `MSN`, `PTUN`, `created_at`)"
                 Dim value = "(" & .Rows(0).Cells(0).Value.ToString & "                       
                         ,'" & .Rows(0).Cells(1).Value.ToString & "'
                         ,'" & .Rows(0).Cells(2).Value.ToString & "'
@@ -1077,7 +1142,8 @@ Public Class ConfigManager
                         ," & 1 & "
                         ,'" & .Rows(0).Cells(12).Value.ToString & "'
                         ,'" & .Rows(0).Cells(13).Value.ToString & "'
-                        ,'" & .Rows(0).Cells(14).Value.ToString & "')"
+                        ,'" & .Rows(0).Cells(14).Value.ToString & "'
+                        ,'" & SaveCurrentDate24HR() & "')"
                 RichTextBox1.Text += "Inserting outlet data...." & vbNewLine
                 Dim sql = "INSERT INTO " & table & fields & " VALUES " & value
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
@@ -1093,14 +1159,15 @@ Public Class ConfigManager
             RichTextBox1.Text += "Inserting master List data...." & vbNewLine
             messageboxappearance = False
             Dim table1 = "admin_masterlist"
-            Dim fields1 = " (`masterlist_username`,`masterlist_password`,`client_guid`,`client_product_key`,`user_id`,`active`,`client_store_id`)"
+            Dim fields1 = " (`masterlist_username`,`masterlist_password`,`client_guid`,`client_product_key`,`user_id`,`active`,`client_store_id`,`created_at`)"
             Dim value1 = "('" & TextBoxFrancUser.Text & "'
                      ,'" & TextBoxFrancPass.Text & "'
                      ,'" & UserGUID & "'
                      ,'" & TextBoxProdKey.Text & "'
                      ,'" & UserID & "'
                      ," & 1 & "
-                     ,'" & DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString & "')"
+                     ,'" & DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString & "'
+                     ,'" & SaveCurrentDate24HR() & "')"
             Dim sql = "INSERT INTO " & table1 & fields1 & " VALUES " & value1
             Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
             cmd.ExecuteNonQuery()
@@ -1237,7 +1304,7 @@ Public Class ConfigManager
             fields = "`category_name`, `brand_name`, `updated_at`, `origin`, `status`"
             Dim Datatablecat = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewCATEGORIES)
             For Each row As DataRow In Datatablecat.Rows
-                DataGridViewCATEGORIES.Rows.Add(row("category_name"), row("brand_name"), Format(row("updated_at"), "yyyy-MM-dd hh:mm:ss"), row("origin"), row("status"))
+                DataGridViewCATEGORIES.Rows.Add(row("category_name"), row("brand_name"), row("updated_at"), row("origin"), row("status"))
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1250,7 +1317,7 @@ Public Class ConfigManager
             fields = "`product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`"
             Dim DatatableProd = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewPRODUCTS)
             For Each row As DataRow In DatatableProd.Rows
-                DataGridViewPRODUCTS.Rows.Add(row("product_id"), row("product_sku"), row("product_name"), row("formula_id"), row("product_barcode"), row("product_category"), row("product_price"), row("product_desc"), row("product_image"), row("product_status"), row("origin"), Format(row("date_modified"), "yyyy-MM-dd hh:mm:ss"))
+                DataGridViewPRODUCTS.Rows.Add(row("product_id"), row("product_sku"), row("product_name"), row("formula_id"), row("product_barcode"), row("product_category"), row("product_price"), row("product_desc"), row("product_image"), row("product_status"), row("origin"), row("date_modified"))
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1263,7 +1330,7 @@ Public Class ConfigManager
             fields = "`inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified`"
             Dim DatatableInv = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewINVENTORY)
             For Each row As DataRow In DatatableInv.Rows
-                DataGridViewINVENTORY.Rows.Add(row("inventory_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_quantity"), row("stock_total"), row("stock_status"), row("critical_limit"), Format(row("date_modified"), "yyyy-MM-dd hh:mm:ss"))
+                DataGridViewINVENTORY.Rows.Add(row("inventory_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_quantity"), row("stock_total"), row("stock_status"), row("critical_limit"), row("date_modified"))
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1276,7 +1343,7 @@ Public Class ConfigManager
             fields = "`formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`"
             Dim DatatableForm = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewFORMULA)
             For Each row As DataRow In DatatableForm.Rows
-                DataGridViewFORMULA.Rows.Add(row("formula_id"), row("product_ingredients"), row("primary_unit"), row("primary_value"), row("secondary_unit"), row("secondary_value"), row("serving_unit"), row("serving_value"), row("no_servings"), row("status"), Format(row("date_modified"), "yyyy-MM-dd hh:mm:ss"), row("unit_cost"), row("origin"))
+                DataGridViewFORMULA.Rows.Add(row("formula_id"), row("product_ingredients"), row("primary_unit"), row("primary_value"), row("secondary_unit"), row("secondary_value"), row("serving_unit"), row("serving_value"), row("no_servings"), row("status"), row("date_modified"), row("unit_cost"), row("origin"))
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1319,7 +1386,7 @@ Public Class ConfigManager
             With DataGridViewINVENTORY
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmdlocal = New MySqlCommand("INSERT INTO loc_pos_inventory(`server_inventory_id`,`formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified`, `guid`, `store_id`, `synced`, `server_date_modified`)
+                    cmdlocal = New MySqlCommand("INSERT INTO loc_pos_inventory(`server_inventory_id`,`formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `created_at`, `guid`, `store_id`, `synced`, `server_date_modified`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12)", TestLocalConnection())
                     cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
@@ -1474,20 +1541,60 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
-
-
-
+    Private Sub RadioButtonDaily_Click(sender As Object, e As EventArgs) Handles RadioButtonYearly.Click, RadioButtonWeekly.Click, RadioButtonMonthly.Click, RadioButtonDaily.Click
+        Try
+            If My.Settings.ValidLocalConn = True Then
+                Dim Interval As Integer = 0
+                Dim IntervalName As String = ""
+                If RadioButtonDaily.Checked = True Then
+                    Interval = 1
+                    IntervalName = "Daily"
+                ElseIf RadioButtonWeekly.Checked = True Then
+                    Interval = 2
+                    IntervalName = "Weekly"
+                ElseIf RadioButtonMonthly.Checked = True Then
+                    Interval = 3
+                    IntervalName = "Monthly"
+                ElseIf RadioButtonYearly.Checked = True Then
+                    Interval = 4
+                    IntervalName = "Yearly"
+                End If
+                Dim sql = "SELECT `S_BackupInterval` , `S_BackupDate` FROM loc_settings WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    sql = "UPDATE loc_settings SET `S_BackupInterval` = " & Interval & " , `S_BackupDate` = '" & Format(Now(), "yyyy-MM-dd") & "'"
+                    cmd = New MySqlCommand(sql, TestLocalConnection)
+                    cmd.ExecuteNonQuery()
+                    Autobackup = True
+                Else
+                    sql = "INSERT INTO loc_settings (`S_BackupInterval` , `S_BackupDate`) VALUES ('" & Interval & "','" & Format(Now(), "yyyy-MM-dd") & "')"
+                    cmd = New MySqlCommand(sql, TestLocalConnection)
+                    cmd.ExecuteNonQuery()
+                    Autobackup = True
+                End If
+                MsgBox("Automatic system backup set to " & IntervalName & " backup")
+            Else
+                Autobackup = False
+                MsgBox("Local connection must be valid first.")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 
 
 #Region "Test Insert"
-    'Private Sub button7_click(sender As Object, e As EventArgs) Handles Button7.Click
+    'Private Sub button734_click(sender As Object, e As EventArgs) Handles Button4.Click
     '    InsertToProducts()
-    '    'InsertToInventory()
-    '    'InsertToCategories()
-    '    'InsertToFormula()
+    '    InsertToInventory()
+    '    InsertToCategories()
+    '    InsertToFormula()
     'End Sub
 
-    'Private Sub button8_click_1(sender As Object, e As EventArgs) Handles Button8.Click
+    'Private Sub button8_click_123(sender As Object, e As EventArgs) Handles Button8.Click
     '    GetCategories()
     '    GetProducts()
     '    GetInventory()

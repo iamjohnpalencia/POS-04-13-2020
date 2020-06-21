@@ -143,10 +143,52 @@ Partial Class SynctoCloud
         Me.Column57 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column58 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label49 = New System.Windows.Forms.Label()
+        Me.DataGridViewMODEOFTRANSACTION = New System.Windows.Forms.DataGridView()
+        Me.Column88 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column89 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column90 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column91 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column92 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column93 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column94 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column95 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column96 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column97 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column98 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label48 = New System.Windows.Forms.Label()
         Me.Label47 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.Label45 = New System.Windows.Forms.Label()
+        Me.DataGridViewTRANDET = New System.Windows.Forms.DataGridView()
+        Me.Column137 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column138 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column139 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column140 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column141 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column142 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column143 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column144 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column145 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column146 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column147 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column148 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column149 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column150 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column151 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column152 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column153 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column154 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewRetrefdetails = New System.Windows.Forms.DataGridView()
+        Me.Column155 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column156 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column157 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column158 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column159 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column160 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column161 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column162 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column163 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column164 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label44 = New System.Windows.Forms.Label()
         Me.Label41 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
@@ -184,18 +226,6 @@ Partial Class SynctoCloud
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.DataGridViewMODEOFTRANSACTION = New System.Windows.Forms.DataGridView()
-        Me.Column88 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column89 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column90 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column91 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column92 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column93 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column94 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column95 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column96 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column97 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column98 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewSYSLOG2 = New System.Windows.Forms.DataGridView()
         Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -204,6 +234,7 @@ Partial Class SynctoCloud
         Me.Column21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column181 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewSYSLOG3 = New System.Windows.Forms.DataGridView()
         Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -212,6 +243,7 @@ Partial Class SynctoCloud
         Me.Column28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column182 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewSYSLOG4 = New System.Windows.Forms.DataGridView()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -220,17 +252,7 @@ Partial Class SynctoCloud
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewRetrefdetails = New System.Windows.Forms.DataGridView()
-        Me.Column155 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column156 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column157 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column158 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column159 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column160 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column161 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column162 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column163 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column164 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column183 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewSYSLOG1 = New System.Windows.Forms.DataGridView()
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -239,25 +261,7 @@ Partial Class SynctoCloud
         Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTRANDET = New System.Windows.Forms.DataGridView()
-        Me.Column137 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column138 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column139 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column140 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column141 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column142 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column143 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column144 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column145 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column146 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column147 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column148 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column149 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column150 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column151 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column152 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column153 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column154 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column180 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -278,10 +282,6 @@ Partial Class SynctoCloud
         Me.Column85 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column86 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column87 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column180 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column181 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column182 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column183 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewEXPDET, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -294,12 +294,12 @@ Partial Class SynctoCloud
         CType(Me.DataGridViewDepositSlip, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewCUSTOMPRODUCTS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewMODEOFTRANSACTION, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewTRANDET, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewRetrefdetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewSYSLOG2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewSYSLOG3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewSYSLOG4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewRetrefdetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewSYSLOG1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewTRANDET, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridViewLocusers, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -321,9 +321,9 @@ Partial Class SynctoCloud
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Kelson Sans", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(0, 533)
+        Me.Button2.Location = New System.Drawing.Point(0, 237)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(1187, 41)
+        Me.Button2.Size = New System.Drawing.Size(468, 41)
         Me.Button2.TabIndex = 25
         Me.Button2.Text = "SYNC"
         Me.Button2.UseVisualStyleBackColor = False
@@ -336,10 +336,10 @@ Partial Class SynctoCloud
         Me.DataGridView2.AllowUserToResizeRows = False
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2})
-        Me.DataGridView2.Location = New System.Drawing.Point(733, 19)
+        Me.DataGridView2.Location = New System.Drawing.Point(121, 19)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.ReadOnly = True
-        Me.DataGridView2.Size = New System.Drawing.Size(353, 112)
+        Me.DataGridView2.Size = New System.Drawing.Size(225, 90)
         Me.DataGridView2.TabIndex = 19
         '
         'DataGridViewTextBoxColumn1
@@ -362,7 +362,7 @@ Partial Class SynctoCloud
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
-        Me.DataGridView1.Location = New System.Drawing.Point(519, 25)
+        Me.DataGridView1.Location = New System.Drawing.Point(121, 19)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.Size = New System.Drawing.Size(225, 90)
@@ -388,7 +388,7 @@ Partial Class SynctoCloud
         Me.DataGridViewEXPDET.AllowUserToResizeRows = False
         Me.DataGridViewEXPDET.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewEXPDET.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column99, Me.Column100, Me.Column101, Me.Column102, Me.Column103, Me.Column104, Me.Column105, Me.Column106, Me.Column107, Me.Column108, Me.Column109, Me.Column110, Me.Column111, Me.Column112, Me.Column113, Me.Column114})
-        Me.DataGridViewEXPDET.Location = New System.Drawing.Point(519, 25)
+        Me.DataGridViewEXPDET.Location = New System.Drawing.Point(121, 19)
         Me.DataGridViewEXPDET.Name = "DataGridViewEXPDET"
         Me.DataGridViewEXPDET.ReadOnly = True
         Me.DataGridViewEXPDET.Size = New System.Drawing.Size(225, 90)
@@ -500,9 +500,9 @@ Partial Class SynctoCloud
         Me.Panel7.Controls.Add(Me.Label4)
         Me.Panel7.Controls.Add(Me.ProgressBar1)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel7.Location = New System.Drawing.Point(0, 574)
+        Me.Panel7.Location = New System.Drawing.Point(0, 278)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(1187, 36)
+        Me.Panel7.Size = New System.Drawing.Size(468, 36)
         Me.Panel7.TabIndex = 24
         '
         'Label5
@@ -511,7 +511,7 @@ Partial Class SynctoCloud
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label5.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(1187, 0)
+        Me.Label5.Location = New System.Drawing.Point(468, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(0, 18)
         Me.Label5.TabIndex = 28
@@ -567,7 +567,7 @@ Partial Class SynctoCloud
         Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ProgressBar1.Location = New System.Drawing.Point(0, 25)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(1187, 11)
+        Me.ProgressBar1.Size = New System.Drawing.Size(468, 11)
         Me.ProgressBar1.TabIndex = 11
         '
         'DataGridViewINV
@@ -578,7 +578,7 @@ Partial Class SynctoCloud
         Me.DataGridViewINV.AllowUserToResizeRows = False
         Me.DataGridViewINV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewINV.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column165, Me.Column166, Me.Column167, Me.Column168, Me.Column169, Me.Column170, Me.Column171, Me.Column172, Me.Column173, Me.Column174, Me.Column175, Me.Column176, Me.Column177, Me.Column178, Me.Column179})
-        Me.DataGridViewINV.Location = New System.Drawing.Point(519, 25)
+        Me.DataGridViewINV.Location = New System.Drawing.Point(121, 19)
         Me.DataGridViewINV.Name = "DataGridViewINV"
         Me.DataGridViewINV.ReadOnly = True
         Me.DataGridViewINV.Size = New System.Drawing.Size(225, 90)
@@ -695,7 +695,7 @@ Partial Class SynctoCloud
         Me.DataGridViewEXP.AllowUserToResizeRows = False
         Me.DataGridViewEXP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewEXP.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column59, Me.Column60, Me.Column61, Me.Column62, Me.Column63, Me.Column64, Me.Column65, Me.Column66, Me.Column67, Me.Column68, Me.Column69, Me.Column70, Me.Column71})
-        Me.DataGridViewEXP.Location = New System.Drawing.Point(15, 414)
+        Me.DataGridViewEXP.Location = New System.Drawing.Point(121, 19)
         Me.DataGridViewEXP.Name = "DataGridViewEXP"
         Me.DataGridViewEXP.ReadOnly = True
         Me.DataGridViewEXP.Size = New System.Drawing.Size(225, 90)
@@ -787,10 +787,10 @@ Partial Class SynctoCloud
         Me.DataGridViewTRAN.AllowUserToResizeRows = False
         Me.DataGridViewTRAN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewTRAN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column115, Me.Column116, Me.Column117, Me.Column118, Me.Column119, Me.Column120, Me.Column121, Me.Column122, Me.Column123, Me.Column124, Me.Column125, Me.Column126, Me.Column127, Me.Column128, Me.Column129, Me.Column130, Me.Column131, Me.Column132, Me.Column133, Me.Column134, Me.Column135, Me.Column136})
-        Me.DataGridViewTRAN.Location = New System.Drawing.Point(477, 148)
+        Me.DataGridViewTRAN.Location = New System.Drawing.Point(121, 19)
         Me.DataGridViewTRAN.Name = "DataGridViewTRAN"
         Me.DataGridViewTRAN.ReadOnly = True
-        Me.DataGridViewTRAN.Size = New System.Drawing.Size(431, 90)
+        Me.DataGridViewTRAN.Size = New System.Drawing.Size(225, 90)
         Me.DataGridViewTRAN.TabIndex = 2
         '
         'Column115
@@ -931,35 +931,20 @@ Partial Class SynctoCloud
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Panel7)
         Me.Panel1.Controls.Add(Me.Panel16)
-        Me.Panel1.Controls.Add(Me.DataGridViewEXP)
-        Me.Panel1.Controls.Add(Me.DataGridViewSYSLOG2)
-        Me.Panel1.Controls.Add(Me.DataGridViewSYSLOG3)
-        Me.Panel1.Controls.Add(Me.DataGridViewSYSLOG4)
-        Me.Panel1.Controls.Add(Me.DataGridViewSYSLOG1)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1189, 612)
+        Me.Panel1.Size = New System.Drawing.Size(470, 316)
         Me.Panel1.TabIndex = 26
         '
         'Panel16
         '
-        Me.Panel16.Controls.Add(Me.DataGridView2)
-        Me.Panel16.Controls.Add(Me.DataGridViewINV)
-        Me.Panel16.Controls.Add(Me.DataGridViewTRAN)
-        Me.Panel16.Controls.Add(Me.DataGridViewDepositSlip)
-        Me.Panel16.Controls.Add(Me.DataGridViewCUSTOMPRODUCTS)
         Me.Panel16.Controls.Add(Me.Label49)
-        Me.Panel16.Controls.Add(Me.DataGridViewMODEOFTRANSACTION)
-        Me.Panel16.Controls.Add(Me.DataGridViewEXPDET)
         Me.Panel16.Controls.Add(Me.Label48)
         Me.Panel16.Controls.Add(Me.Label47)
         Me.Panel16.Controls.Add(Me.Label46)
         Me.Panel16.Controls.Add(Me.Label45)
-        Me.Panel16.Controls.Add(Me.DataGridViewTRANDET)
-        Me.Panel16.Controls.Add(Me.DataGridView1)
-        Me.Panel16.Controls.Add(Me.DataGridViewRetrefdetails)
         Me.Panel16.Controls.Add(Me.Label44)
         Me.Panel16.Controls.Add(Me.Label41)
         Me.Panel16.Controls.Add(Me.Label42)
@@ -1000,7 +985,7 @@ Partial Class SynctoCloud
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel16.Location = New System.Drawing.Point(0, 0)
         Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(1187, 246)
+        Me.Panel16.Size = New System.Drawing.Size(468, 246)
         Me.Panel16.TabIndex = 41
         '
         'DataGridViewDepositSlip
@@ -1011,7 +996,7 @@ Partial Class SynctoCloud
         Me.DataGridViewDepositSlip.AllowUserToResizeRows = False
         Me.DataGridViewDepositSlip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewDepositSlip.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column31, Me.Column32, Me.Column33, Me.Column34, Me.Column35, Me.Column36, Me.Column37, Me.Column38, Me.Column39, Me.Column40, Me.Column41})
-        Me.DataGridViewDepositSlip.Location = New System.Drawing.Point(519, 26)
+        Me.DataGridViewDepositSlip.Location = New System.Drawing.Point(121, 20)
         Me.DataGridViewDepositSlip.Name = "DataGridViewDepositSlip"
         Me.DataGridViewDepositSlip.ReadOnly = True
         Me.DataGridViewDepositSlip.Size = New System.Drawing.Size(225, 88)
@@ -1091,7 +1076,7 @@ Partial Class SynctoCloud
         Me.DataGridViewCUSTOMPRODUCTS.AllowUserToResizeRows = False
         Me.DataGridViewCUSTOMPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewCUSTOMPRODUCTS.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column42, Me.Column43, Me.Column44, Me.Column45, Me.Column46, Me.Column47, Me.Column48, Me.Column49, Me.Column50, Me.Column51, Me.Column52, Me.Column53, Me.Column54, Me.Column55, Me.Column56, Me.Column57, Me.Column58})
-        Me.DataGridViewCUSTOMPRODUCTS.Location = New System.Drawing.Point(519, 25)
+        Me.DataGridViewCUSTOMPRODUCTS.Location = New System.Drawing.Point(121, 19)
         Me.DataGridViewCUSTOMPRODUCTS.Name = "DataGridViewCUSTOMPRODUCTS"
         Me.DataGridViewCUSTOMPRODUCTS.ReadOnly = True
         Me.DataGridViewCUSTOMPRODUCTS.Size = New System.Drawing.Size(225, 90)
@@ -1209,6 +1194,86 @@ Partial Class SynctoCloud
         Me.Label49.TabIndex = 44
         Me.Label49.Text = "0"
         '
+        'DataGridViewMODEOFTRANSACTION
+        '
+        Me.DataGridViewMODEOFTRANSACTION.AllowUserToAddRows = False
+        Me.DataGridViewMODEOFTRANSACTION.AllowUserToDeleteRows = False
+        Me.DataGridViewMODEOFTRANSACTION.AllowUserToResizeColumns = False
+        Me.DataGridViewMODEOFTRANSACTION.AllowUserToResizeRows = False
+        Me.DataGridViewMODEOFTRANSACTION.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewMODEOFTRANSACTION.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column88, Me.Column89, Me.Column90, Me.Column91, Me.Column92, Me.Column93, Me.Column94, Me.Column95, Me.Column96, Me.Column97, Me.Column98})
+        Me.DataGridViewMODEOFTRANSACTION.Location = New System.Drawing.Point(121, 19)
+        Me.DataGridViewMODEOFTRANSACTION.Name = "DataGridViewMODEOFTRANSACTION"
+        Me.DataGridViewMODEOFTRANSACTION.ReadOnly = True
+        Me.DataGridViewMODEOFTRANSACTION.Size = New System.Drawing.Size(225, 90)
+        Me.DataGridViewMODEOFTRANSACTION.TabIndex = 44
+        '
+        'Column88
+        '
+        Me.Column88.HeaderText = "Column88"
+        Me.Column88.Name = "Column88"
+        Me.Column88.ReadOnly = True
+        '
+        'Column89
+        '
+        Me.Column89.HeaderText = "Column89"
+        Me.Column89.Name = "Column89"
+        Me.Column89.ReadOnly = True
+        '
+        'Column90
+        '
+        Me.Column90.HeaderText = "Column90"
+        Me.Column90.Name = "Column90"
+        Me.Column90.ReadOnly = True
+        '
+        'Column91
+        '
+        Me.Column91.HeaderText = "Column91"
+        Me.Column91.Name = "Column91"
+        Me.Column91.ReadOnly = True
+        '
+        'Column92
+        '
+        Me.Column92.HeaderText = "Column92"
+        Me.Column92.Name = "Column92"
+        Me.Column92.ReadOnly = True
+        '
+        'Column93
+        '
+        Me.Column93.HeaderText = "Column93"
+        Me.Column93.Name = "Column93"
+        Me.Column93.ReadOnly = True
+        '
+        'Column94
+        '
+        Me.Column94.HeaderText = "Column94"
+        Me.Column94.Name = "Column94"
+        Me.Column94.ReadOnly = True
+        '
+        'Column95
+        '
+        Me.Column95.HeaderText = "Column95"
+        Me.Column95.Name = "Column95"
+        Me.Column95.ReadOnly = True
+        '
+        'Column96
+        '
+        Me.Column96.HeaderText = "Column96"
+        Me.Column96.Name = "Column96"
+        Me.Column96.ReadOnly = True
+        '
+        'Column97
+        '
+        Me.Column97.HeaderText = "Column97"
+        Me.Column97.Name = "Column97"
+        Me.Column97.ReadOnly = True
+        '
+        'Column98
+        '
+        Me.Column98.HeaderText = "Column98"
+        Me.Column98.Name = "Column98"
+        Me.Column98.ReadOnly = True
+        '
         'Label48
         '
         Me.Label48.AutoSize = True
@@ -1248,6 +1313,202 @@ Partial Class SynctoCloud
         Me.Label45.Size = New System.Drawing.Size(169, 15)
         Me.Label45.TabIndex = 40
         Me.Label45.Text = "Estimating Time. Please Wait"
+        '
+        'DataGridViewTRANDET
+        '
+        Me.DataGridViewTRANDET.AllowUserToAddRows = False
+        Me.DataGridViewTRANDET.AllowUserToDeleteRows = False
+        Me.DataGridViewTRANDET.AllowUserToResizeColumns = False
+        Me.DataGridViewTRANDET.AllowUserToResizeRows = False
+        Me.DataGridViewTRANDET.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewTRANDET.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column137, Me.Column138, Me.Column139, Me.Column140, Me.Column141, Me.Column142, Me.Column143, Me.Column144, Me.Column145, Me.Column146, Me.Column147, Me.Column148, Me.Column149, Me.Column150, Me.Column151, Me.Column152, Me.Column153, Me.Column154})
+        Me.DataGridViewTRANDET.Location = New System.Drawing.Point(121, 19)
+        Me.DataGridViewTRANDET.Name = "DataGridViewTRANDET"
+        Me.DataGridViewTRANDET.ReadOnly = True
+        Me.DataGridViewTRANDET.Size = New System.Drawing.Size(225, 90)
+        Me.DataGridViewTRANDET.TabIndex = 4
+        '
+        'Column137
+        '
+        Me.Column137.HeaderText = "Column137"
+        Me.Column137.Name = "Column137"
+        Me.Column137.ReadOnly = True
+        '
+        'Column138
+        '
+        Me.Column138.HeaderText = "Column138"
+        Me.Column138.Name = "Column138"
+        Me.Column138.ReadOnly = True
+        '
+        'Column139
+        '
+        Me.Column139.HeaderText = "Column139"
+        Me.Column139.Name = "Column139"
+        Me.Column139.ReadOnly = True
+        '
+        'Column140
+        '
+        Me.Column140.HeaderText = "Column140"
+        Me.Column140.Name = "Column140"
+        Me.Column140.ReadOnly = True
+        '
+        'Column141
+        '
+        Me.Column141.HeaderText = "Column141"
+        Me.Column141.Name = "Column141"
+        Me.Column141.ReadOnly = True
+        '
+        'Column142
+        '
+        Me.Column142.HeaderText = "Column142"
+        Me.Column142.Name = "Column142"
+        Me.Column142.ReadOnly = True
+        '
+        'Column143
+        '
+        Me.Column143.HeaderText = "Column143"
+        Me.Column143.Name = "Column143"
+        Me.Column143.ReadOnly = True
+        '
+        'Column144
+        '
+        Me.Column144.HeaderText = "Column144"
+        Me.Column144.Name = "Column144"
+        Me.Column144.ReadOnly = True
+        '
+        'Column145
+        '
+        Me.Column145.HeaderText = "Column145"
+        Me.Column145.Name = "Column145"
+        Me.Column145.ReadOnly = True
+        '
+        'Column146
+        '
+        Me.Column146.HeaderText = "Column146"
+        Me.Column146.Name = "Column146"
+        Me.Column146.ReadOnly = True
+        '
+        'Column147
+        '
+        Me.Column147.HeaderText = "Column147"
+        Me.Column147.Name = "Column147"
+        Me.Column147.ReadOnly = True
+        '
+        'Column148
+        '
+        Me.Column148.HeaderText = "Column148"
+        Me.Column148.Name = "Column148"
+        Me.Column148.ReadOnly = True
+        '
+        'Column149
+        '
+        Me.Column149.HeaderText = "Column149"
+        Me.Column149.Name = "Column149"
+        Me.Column149.ReadOnly = True
+        '
+        'Column150
+        '
+        Me.Column150.HeaderText = "Column150"
+        Me.Column150.Name = "Column150"
+        Me.Column150.ReadOnly = True
+        '
+        'Column151
+        '
+        Me.Column151.HeaderText = "Column151"
+        Me.Column151.Name = "Column151"
+        Me.Column151.ReadOnly = True
+        '
+        'Column152
+        '
+        Me.Column152.HeaderText = "Column152"
+        Me.Column152.Name = "Column152"
+        Me.Column152.ReadOnly = True
+        '
+        'Column153
+        '
+        Me.Column153.HeaderText = "Column153"
+        Me.Column153.Name = "Column153"
+        Me.Column153.ReadOnly = True
+        '
+        'Column154
+        '
+        Me.Column154.HeaderText = "Column154"
+        Me.Column154.Name = "Column154"
+        Me.Column154.ReadOnly = True
+        '
+        'DataGridViewRetrefdetails
+        '
+        Me.DataGridViewRetrefdetails.AllowUserToAddRows = False
+        Me.DataGridViewRetrefdetails.AllowUserToDeleteRows = False
+        Me.DataGridViewRetrefdetails.AllowUserToResizeColumns = False
+        Me.DataGridViewRetrefdetails.AllowUserToResizeRows = False
+        Me.DataGridViewRetrefdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewRetrefdetails.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column155, Me.Column156, Me.Column157, Me.Column158, Me.Column159, Me.Column160, Me.Column161, Me.Column162, Me.Column163, Me.Column164})
+        Me.DataGridViewRetrefdetails.Location = New System.Drawing.Point(121, 19)
+        Me.DataGridViewRetrefdetails.Name = "DataGridViewRetrefdetails"
+        Me.DataGridViewRetrefdetails.ReadOnly = True
+        Me.DataGridViewRetrefdetails.Size = New System.Drawing.Size(225, 90)
+        Me.DataGridViewRetrefdetails.TabIndex = 42
+        '
+        'Column155
+        '
+        Me.Column155.HeaderText = "Column155"
+        Me.Column155.Name = "Column155"
+        Me.Column155.ReadOnly = True
+        '
+        'Column156
+        '
+        Me.Column156.HeaderText = "Column156"
+        Me.Column156.Name = "Column156"
+        Me.Column156.ReadOnly = True
+        '
+        'Column157
+        '
+        Me.Column157.HeaderText = "Column157"
+        Me.Column157.Name = "Column157"
+        Me.Column157.ReadOnly = True
+        '
+        'Column158
+        '
+        Me.Column158.HeaderText = "Column158"
+        Me.Column158.Name = "Column158"
+        Me.Column158.ReadOnly = True
+        '
+        'Column159
+        '
+        Me.Column159.HeaderText = "Column159"
+        Me.Column159.Name = "Column159"
+        Me.Column159.ReadOnly = True
+        '
+        'Column160
+        '
+        Me.Column160.HeaderText = "Column160"
+        Me.Column160.Name = "Column160"
+        Me.Column160.ReadOnly = True
+        '
+        'Column161
+        '
+        Me.Column161.HeaderText = "Column161"
+        Me.Column161.Name = "Column161"
+        Me.Column161.ReadOnly = True
+        '
+        'Column162
+        '
+        Me.Column162.HeaderText = "Column162"
+        Me.Column162.Name = "Column162"
+        Me.Column162.ReadOnly = True
+        '
+        'Column163
+        '
+        Me.Column163.HeaderText = "Column163"
+        Me.Column163.Name = "Column163"
+        Me.Column163.ReadOnly = True
+        '
+        'Column164
+        '
+        Me.Column164.HeaderText = "Column164"
+        Me.Column164.Name = "Column164"
+        Me.Column164.ReadOnly = True
         '
         'Label44
         '
@@ -1619,86 +1880,6 @@ Partial Class SynctoCloud
         Me.Label8.TabIndex = 0
         Me.Label8.Text = "Daily Transaction"
         '
-        'DataGridViewMODEOFTRANSACTION
-        '
-        Me.DataGridViewMODEOFTRANSACTION.AllowUserToAddRows = False
-        Me.DataGridViewMODEOFTRANSACTION.AllowUserToDeleteRows = False
-        Me.DataGridViewMODEOFTRANSACTION.AllowUserToResizeColumns = False
-        Me.DataGridViewMODEOFTRANSACTION.AllowUserToResizeRows = False
-        Me.DataGridViewMODEOFTRANSACTION.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewMODEOFTRANSACTION.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column88, Me.Column89, Me.Column90, Me.Column91, Me.Column92, Me.Column93, Me.Column94, Me.Column95, Me.Column96, Me.Column97, Me.Column98})
-        Me.DataGridViewMODEOFTRANSACTION.Location = New System.Drawing.Point(519, 25)
-        Me.DataGridViewMODEOFTRANSACTION.Name = "DataGridViewMODEOFTRANSACTION"
-        Me.DataGridViewMODEOFTRANSACTION.ReadOnly = True
-        Me.DataGridViewMODEOFTRANSACTION.Size = New System.Drawing.Size(225, 90)
-        Me.DataGridViewMODEOFTRANSACTION.TabIndex = 44
-        '
-        'Column88
-        '
-        Me.Column88.HeaderText = "Column88"
-        Me.Column88.Name = "Column88"
-        Me.Column88.ReadOnly = True
-        '
-        'Column89
-        '
-        Me.Column89.HeaderText = "Column89"
-        Me.Column89.Name = "Column89"
-        Me.Column89.ReadOnly = True
-        '
-        'Column90
-        '
-        Me.Column90.HeaderText = "Column90"
-        Me.Column90.Name = "Column90"
-        Me.Column90.ReadOnly = True
-        '
-        'Column91
-        '
-        Me.Column91.HeaderText = "Column91"
-        Me.Column91.Name = "Column91"
-        Me.Column91.ReadOnly = True
-        '
-        'Column92
-        '
-        Me.Column92.HeaderText = "Column92"
-        Me.Column92.Name = "Column92"
-        Me.Column92.ReadOnly = True
-        '
-        'Column93
-        '
-        Me.Column93.HeaderText = "Column93"
-        Me.Column93.Name = "Column93"
-        Me.Column93.ReadOnly = True
-        '
-        'Column94
-        '
-        Me.Column94.HeaderText = "Column94"
-        Me.Column94.Name = "Column94"
-        Me.Column94.ReadOnly = True
-        '
-        'Column95
-        '
-        Me.Column95.HeaderText = "Column95"
-        Me.Column95.Name = "Column95"
-        Me.Column95.ReadOnly = True
-        '
-        'Column96
-        '
-        Me.Column96.HeaderText = "Column96"
-        Me.Column96.Name = "Column96"
-        Me.Column96.ReadOnly = True
-        '
-        'Column97
-        '
-        Me.Column97.HeaderText = "Column97"
-        Me.Column97.Name = "Column97"
-        Me.Column97.ReadOnly = True
-        '
-        'Column98
-        '
-        Me.Column98.HeaderText = "Column98"
-        Me.Column98.Name = "Column98"
-        Me.Column98.ReadOnly = True
-        '
         'DataGridViewSYSLOG2
         '
         Me.DataGridViewSYSLOG2.AllowUserToAddRows = False
@@ -1707,7 +1888,7 @@ Partial Class SynctoCloud
         Me.DataGridViewSYSLOG2.AllowUserToResizeRows = False
         Me.DataGridViewSYSLOG2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewSYSLOG2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column17, Me.Column18, Me.Column19, Me.Column20, Me.Column21, Me.Column22, Me.Column23, Me.Column181})
-        Me.DataGridViewSYSLOG2.Location = New System.Drawing.Point(489, 347)
+        Me.DataGridViewSYSLOG2.Location = New System.Drawing.Point(121, 19)
         Me.DataGridViewSYSLOG2.Name = "DataGridViewSYSLOG2"
         Me.DataGridViewSYSLOG2.ReadOnly = True
         Me.DataGridViewSYSLOG2.Size = New System.Drawing.Size(225, 90)
@@ -1755,6 +1936,12 @@ Partial Class SynctoCloud
         Me.Column23.Name = "Column23"
         Me.Column23.ReadOnly = True
         '
+        'Column181
+        '
+        Me.Column181.HeaderText = "Column181"
+        Me.Column181.Name = "Column181"
+        Me.Column181.ReadOnly = True
+        '
         'DataGridViewSYSLOG3
         '
         Me.DataGridViewSYSLOG3.AllowUserToAddRows = False
@@ -1763,7 +1950,7 @@ Partial Class SynctoCloud
         Me.DataGridViewSYSLOG3.AllowUserToResizeRows = False
         Me.DataGridViewSYSLOG3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewSYSLOG3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column24, Me.Column25, Me.Column26, Me.Column27, Me.Column28, Me.Column29, Me.Column30, Me.Column182})
-        Me.DataGridViewSYSLOG3.Location = New System.Drawing.Point(720, 252)
+        Me.DataGridViewSYSLOG3.Location = New System.Drawing.Point(121, 19)
         Me.DataGridViewSYSLOG3.Name = "DataGridViewSYSLOG3"
         Me.DataGridViewSYSLOG3.ReadOnly = True
         Me.DataGridViewSYSLOG3.Size = New System.Drawing.Size(225, 90)
@@ -1811,6 +1998,12 @@ Partial Class SynctoCloud
         Me.Column30.Name = "Column30"
         Me.Column30.ReadOnly = True
         '
+        'Column182
+        '
+        Me.Column182.HeaderText = "Column182"
+        Me.Column182.Name = "Column182"
+        Me.Column182.ReadOnly = True
+        '
         'DataGridViewSYSLOG4
         '
         Me.DataGridViewSYSLOG4.AllowUserToAddRows = False
@@ -1819,7 +2012,7 @@ Partial Class SynctoCloud
         Me.DataGridViewSYSLOG4.AllowUserToResizeRows = False
         Me.DataGridViewSYSLOG4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewSYSLOG4.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column183})
-        Me.DataGridViewSYSLOG4.Location = New System.Drawing.Point(720, 347)
+        Me.DataGridViewSYSLOG4.Location = New System.Drawing.Point(121, 19)
         Me.DataGridViewSYSLOG4.Name = "DataGridViewSYSLOG4"
         Me.DataGridViewSYSLOG4.ReadOnly = True
         Me.DataGridViewSYSLOG4.Size = New System.Drawing.Size(225, 90)
@@ -1867,79 +2060,11 @@ Partial Class SynctoCloud
         Me.Column9.Name = "Column9"
         Me.Column9.ReadOnly = True
         '
-        'DataGridViewRetrefdetails
+        'Column183
         '
-        Me.DataGridViewRetrefdetails.AllowUserToAddRows = False
-        Me.DataGridViewRetrefdetails.AllowUserToDeleteRows = False
-        Me.DataGridViewRetrefdetails.AllowUserToResizeColumns = False
-        Me.DataGridViewRetrefdetails.AllowUserToResizeRows = False
-        Me.DataGridViewRetrefdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewRetrefdetails.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column155, Me.Column156, Me.Column157, Me.Column158, Me.Column159, Me.Column160, Me.Column161, Me.Column162, Me.Column163, Me.Column164})
-        Me.DataGridViewRetrefdetails.Location = New System.Drawing.Point(519, 25)
-        Me.DataGridViewRetrefdetails.Name = "DataGridViewRetrefdetails"
-        Me.DataGridViewRetrefdetails.ReadOnly = True
-        Me.DataGridViewRetrefdetails.Size = New System.Drawing.Size(225, 90)
-        Me.DataGridViewRetrefdetails.TabIndex = 42
-        '
-        'Column155
-        '
-        Me.Column155.HeaderText = "Column155"
-        Me.Column155.Name = "Column155"
-        Me.Column155.ReadOnly = True
-        '
-        'Column156
-        '
-        Me.Column156.HeaderText = "Column156"
-        Me.Column156.Name = "Column156"
-        Me.Column156.ReadOnly = True
-        '
-        'Column157
-        '
-        Me.Column157.HeaderText = "Column157"
-        Me.Column157.Name = "Column157"
-        Me.Column157.ReadOnly = True
-        '
-        'Column158
-        '
-        Me.Column158.HeaderText = "Column158"
-        Me.Column158.Name = "Column158"
-        Me.Column158.ReadOnly = True
-        '
-        'Column159
-        '
-        Me.Column159.HeaderText = "Column159"
-        Me.Column159.Name = "Column159"
-        Me.Column159.ReadOnly = True
-        '
-        'Column160
-        '
-        Me.Column160.HeaderText = "Column160"
-        Me.Column160.Name = "Column160"
-        Me.Column160.ReadOnly = True
-        '
-        'Column161
-        '
-        Me.Column161.HeaderText = "Column161"
-        Me.Column161.Name = "Column161"
-        Me.Column161.ReadOnly = True
-        '
-        'Column162
-        '
-        Me.Column162.HeaderText = "Column162"
-        Me.Column162.Name = "Column162"
-        Me.Column162.ReadOnly = True
-        '
-        'Column163
-        '
-        Me.Column163.HeaderText = "Column163"
-        Me.Column163.Name = "Column163"
-        Me.Column163.ReadOnly = True
-        '
-        'Column164
-        '
-        Me.Column164.HeaderText = "Column164"
-        Me.Column164.Name = "Column164"
-        Me.Column164.ReadOnly = True
+        Me.Column183.HeaderText = "Column183"
+        Me.Column183.Name = "Column183"
+        Me.Column183.ReadOnly = True
         '
         'DataGridViewSYSLOG1
         '
@@ -1949,7 +2074,7 @@ Partial Class SynctoCloud
         Me.DataGridViewSYSLOG1.AllowUserToResizeRows = False
         Me.DataGridViewSYSLOG1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewSYSLOG1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column10, Me.Column11, Me.Column12, Me.Column13, Me.Column14, Me.Column15, Me.Column16, Me.Column180})
-        Me.DataGridViewSYSLOG1.Location = New System.Drawing.Point(489, 251)
+        Me.DataGridViewSYSLOG1.Location = New System.Drawing.Point(121, 19)
         Me.DataGridViewSYSLOG1.Name = "DataGridViewSYSLOG1"
         Me.DataGridViewSYSLOG1.ReadOnly = True
         Me.DataGridViewSYSLOG1.Size = New System.Drawing.Size(225, 90)
@@ -1997,134 +2122,33 @@ Partial Class SynctoCloud
         Me.Column16.Name = "Column16"
         Me.Column16.ReadOnly = True
         '
-        'DataGridViewTRANDET
+        'Column180
         '
-        Me.DataGridViewTRANDET.AllowUserToAddRows = False
-        Me.DataGridViewTRANDET.AllowUserToDeleteRows = False
-        Me.DataGridViewTRANDET.AllowUserToResizeColumns = False
-        Me.DataGridViewTRANDET.AllowUserToResizeRows = False
-        Me.DataGridViewTRANDET.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewTRANDET.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column137, Me.Column138, Me.Column139, Me.Column140, Me.Column141, Me.Column142, Me.Column143, Me.Column144, Me.Column145, Me.Column146, Me.Column147, Me.Column148, Me.Column149, Me.Column150, Me.Column151, Me.Column152, Me.Column153, Me.Column154})
-        Me.DataGridViewTRANDET.Location = New System.Drawing.Point(519, 25)
-        Me.DataGridViewTRANDET.Name = "DataGridViewTRANDET"
-        Me.DataGridViewTRANDET.ReadOnly = True
-        Me.DataGridViewTRANDET.Size = New System.Drawing.Size(225, 90)
-        Me.DataGridViewTRANDET.TabIndex = 4
-        '
-        'Column137
-        '
-        Me.Column137.HeaderText = "Column137"
-        Me.Column137.Name = "Column137"
-        Me.Column137.ReadOnly = True
-        '
-        'Column138
-        '
-        Me.Column138.HeaderText = "Column138"
-        Me.Column138.Name = "Column138"
-        Me.Column138.ReadOnly = True
-        '
-        'Column139
-        '
-        Me.Column139.HeaderText = "Column139"
-        Me.Column139.Name = "Column139"
-        Me.Column139.ReadOnly = True
-        '
-        'Column140
-        '
-        Me.Column140.HeaderText = "Column140"
-        Me.Column140.Name = "Column140"
-        Me.Column140.ReadOnly = True
-        '
-        'Column141
-        '
-        Me.Column141.HeaderText = "Column141"
-        Me.Column141.Name = "Column141"
-        Me.Column141.ReadOnly = True
-        '
-        'Column142
-        '
-        Me.Column142.HeaderText = "Column142"
-        Me.Column142.Name = "Column142"
-        Me.Column142.ReadOnly = True
-        '
-        'Column143
-        '
-        Me.Column143.HeaderText = "Column143"
-        Me.Column143.Name = "Column143"
-        Me.Column143.ReadOnly = True
-        '
-        'Column144
-        '
-        Me.Column144.HeaderText = "Column144"
-        Me.Column144.Name = "Column144"
-        Me.Column144.ReadOnly = True
-        '
-        'Column145
-        '
-        Me.Column145.HeaderText = "Column145"
-        Me.Column145.Name = "Column145"
-        Me.Column145.ReadOnly = True
-        '
-        'Column146
-        '
-        Me.Column146.HeaderText = "Column146"
-        Me.Column146.Name = "Column146"
-        Me.Column146.ReadOnly = True
-        '
-        'Column147
-        '
-        Me.Column147.HeaderText = "Column147"
-        Me.Column147.Name = "Column147"
-        Me.Column147.ReadOnly = True
-        '
-        'Column148
-        '
-        Me.Column148.HeaderText = "Column148"
-        Me.Column148.Name = "Column148"
-        Me.Column148.ReadOnly = True
-        '
-        'Column149
-        '
-        Me.Column149.HeaderText = "Column149"
-        Me.Column149.Name = "Column149"
-        Me.Column149.ReadOnly = True
-        '
-        'Column150
-        '
-        Me.Column150.HeaderText = "Column150"
-        Me.Column150.Name = "Column150"
-        Me.Column150.ReadOnly = True
-        '
-        'Column151
-        '
-        Me.Column151.HeaderText = "Column151"
-        Me.Column151.Name = "Column151"
-        Me.Column151.ReadOnly = True
-        '
-        'Column152
-        '
-        Me.Column152.HeaderText = "Column152"
-        Me.Column152.Name = "Column152"
-        Me.Column152.ReadOnly = True
-        '
-        'Column153
-        '
-        Me.Column153.HeaderText = "Column153"
-        Me.Column153.Name = "Column153"
-        Me.Column153.ReadOnly = True
-        '
-        'Column154
-        '
-        Me.Column154.HeaderText = "Column154"
-        Me.Column154.Name = "Column154"
-        Me.Column154.ReadOnly = True
+        Me.Column180.HeaderText = "Column180"
+        Me.Column180.Name = "Column180"
+        Me.Column180.ReadOnly = True
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.DataGridView2)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewTRAN)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label7)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewCUSTOMPRODUCTS)
         Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewINV)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG1)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewDepositSlip)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG4)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewMODEOFTRANSACTION)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewTRANDET)
         Me.GroupBox1.Controls.Add(Me.DataGridViewLocusers)
+        Me.GroupBox1.Controls.Add(Me.DataGridView1)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewRetrefdetails)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewEXP)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG3)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG2)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewEXPDET)
         Me.GroupBox1.Location = New System.Drawing.Point(15, 251)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(442, 148)
@@ -2160,7 +2184,7 @@ Partial Class SynctoCloud
         Me.DataGridViewLocusers.AllowUserToResizeRows = False
         Me.DataGridViewLocusers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewLocusers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column72, Me.Column73, Me.Column74, Me.Column75, Me.Column76, Me.Column77, Me.Column78, Me.Column79, Me.Column80, Me.Column81, Me.Column82, Me.Column83, Me.Column84, Me.Column85, Me.Column86, Me.Column87})
-        Me.DataGridViewLocusers.Location = New System.Drawing.Point(22, 19)
+        Me.DataGridViewLocusers.Location = New System.Drawing.Point(121, 19)
         Me.DataGridViewLocusers.Name = "DataGridViewLocusers"
         Me.DataGridViewLocusers.ReadOnly = True
         Me.DataGridViewLocusers.Size = New System.Drawing.Size(225, 90)
@@ -2262,35 +2286,11 @@ Partial Class SynctoCloud
         Me.Column87.Name = "Column87"
         Me.Column87.ReadOnly = True
         '
-        'Column180
-        '
-        Me.Column180.HeaderText = "Column180"
-        Me.Column180.Name = "Column180"
-        Me.Column180.ReadOnly = True
-        '
-        'Column181
-        '
-        Me.Column181.HeaderText = "Column181"
-        Me.Column181.Name = "Column181"
-        Me.Column181.ReadOnly = True
-        '
-        'Column182
-        '
-        Me.Column182.HeaderText = "Column182"
-        Me.Column182.Name = "Column182"
-        Me.Column182.ReadOnly = True
-        '
-        'Column183
-        '
-        Me.Column183.HeaderText = "Column183"
-        Me.Column183.Name = "Column183"
-        Me.Column183.ReadOnly = True
-        '
         'SynctoCloud
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1189, 612)
+        Me.ClientSize = New System.Drawing.Size(470, 316)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SynctoCloud"
@@ -2310,12 +2310,12 @@ Partial Class SynctoCloud
         CType(Me.DataGridViewDepositSlip, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewCUSTOMPRODUCTS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewMODEOFTRANSACTION, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewTRANDET, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewRetrefdetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewSYSLOG2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewSYSLOG3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewSYSLOG4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewRetrefdetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewSYSLOG1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewTRANDET, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.DataGridViewLocusers, System.ComponentModel.ISupportInitialize).EndInit()

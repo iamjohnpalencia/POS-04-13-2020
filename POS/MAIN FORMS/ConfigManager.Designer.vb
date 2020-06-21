@@ -23,10 +23,9 @@ Partial Class ConfigManager
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Panel12 = New System.Windows.Forms.Panel()
-        Me.ButtonExit = New System.Windows.Forms.Button()
         Me.Panel40 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.ButtonExit = New System.Windows.Forms.Button()
         Me.Panel18 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -260,7 +259,6 @@ Partial Class ConfigManager
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Panel19 = New System.Windows.Forms.Panel()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ProgressBar4 = New System.Windows.Forms.ProgressBar()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -292,8 +290,12 @@ Partial Class ConfigManager
         Me.BackgroundWorkerACTIVATION = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker5 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorkerABTDB = New System.ComponentModel.BackgroundWorker()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel25 = New System.Windows.Forms.Panel()
+        Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.Panel23 = New System.Windows.Forms.Panel()
+        Me.Panel22 = New System.Windows.Forms.Panel()
         Me.Panel2.SuspendLayout()
-        Me.Panel12.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
@@ -362,50 +364,27 @@ Partial Class ConfigManager
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.Panel19.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         Me.Panel4.SuspendLayout()
         CType(Me.DataGridViewOutletDetails, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
+        Me.Panel12.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel2.Controls.Add(Me.Panel12)
         Me.Panel2.Controls.Add(Me.Panel40)
         Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.ButtonExit)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1300, 51)
+        Me.Panel2.Size = New System.Drawing.Size(1298, 51)
         Me.Panel2.TabIndex = 1
-        '
-        'Panel12
-        '
-        Me.Panel12.Controls.Add(Me.ButtonExit)
-        Me.Panel12.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel12.Location = New System.Drawing.Point(1246, 10)
-        Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(54, 41)
-        Me.Panel12.TabIndex = 216
-        '
-        'ButtonExit
-        '
-        Me.ButtonExit.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.ButtonExit.FlatAppearance.BorderSize = 0
-        Me.ButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonExit.Font = New System.Drawing.Font("Kelson Sans", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonExit.ForeColor = System.Drawing.Color.White
-        Me.ButtonExit.Location = New System.Drawing.Point(3, 3)
-        Me.ButtonExit.Name = "ButtonExit"
-        Me.ButtonExit.Size = New System.Drawing.Size(49, 35)
-        Me.ButtonExit.TabIndex = 2
-        Me.ButtonExit.Text = "X"
-        Me.ButtonExit.UseVisualStyleBackColor = False
         '
         'Panel40
         '
         Me.Panel40.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Panel40.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel40.Location = New System.Drawing.Point(0, 0)
         Me.Panel40.Name = "Panel40"
         Me.Panel40.Size = New System.Drawing.Size(1300, 10)
@@ -417,11 +396,25 @@ Partial Class ConfigManager
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Kelson Sans", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(3, 9)
+        Me.Label1.Location = New System.Drawing.Point(3, 10)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(495, 42)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "POS CONFIGURATION MANAGER"
+        '
+        'ButtonExit
+        '
+        Me.ButtonExit.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonExit.FlatAppearance.BorderSize = 0
+        Me.ButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonExit.Font = New System.Drawing.Font("Kelson Sans Normal", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonExit.ForeColor = System.Drawing.Color.White
+        Me.ButtonExit.Location = New System.Drawing.Point(1253, 13)
+        Me.ButtonExit.Name = "ButtonExit"
+        Me.ButtonExit.Size = New System.Drawing.Size(41, 32)
+        Me.ButtonExit.TabIndex = 2
+        Me.ButtonExit.Text = "X"
+        Me.ButtonExit.UseVisualStyleBackColor = False
         '
         'Panel18
         '
@@ -429,7 +422,7 @@ Partial Class ConfigManager
         Me.Panel18.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel18.Location = New System.Drawing.Point(0, 51)
         Me.Panel18.Name = "Panel18"
-        Me.Panel18.Size = New System.Drawing.Size(1300, 30)
+        Me.Panel18.Size = New System.Drawing.Size(1298, 30)
         Me.Panel18.TabIndex = 2
         '
         'TabControl1
@@ -441,7 +434,7 @@ Partial Class ConfigManager
         Me.TabControl1.Location = New System.Drawing.Point(130, 81)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1040, 613)
+        Me.TabControl1.Size = New System.Drawing.Size(1038, 614)
         Me.TabControl1.TabIndex = 3
         '
         'TabPage1
@@ -450,7 +443,7 @@ Partial Class ConfigManager
         Me.TabPage1.Location = New System.Drawing.Point(4, 28)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1032, 581)
+        Me.TabPage1.Size = New System.Drawing.Size(1030, 582)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -464,7 +457,7 @@ Partial Class ConfigManager
         Me.TabControl2.Location = New System.Drawing.Point(3, 3)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(1026, 575)
+        Me.TabControl2.Size = New System.Drawing.Size(1024, 576)
         Me.TabControl2.TabIndex = 4
         '
         'TabPage3
@@ -474,7 +467,7 @@ Partial Class ConfigManager
         Me.TabPage3.Location = New System.Drawing.Point(4, 28)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(1018, 543)
+        Me.TabPage3.Size = New System.Drawing.Size(1016, 544)
         Me.TabPage3.TabIndex = 0
         Me.TabPage3.Text = "TabPage3"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -491,7 +484,7 @@ Partial Class ConfigManager
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1012, 488)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1010, 489)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'TableLayoutPanel2
@@ -506,7 +499,7 @@ Partial Class ConfigManager
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(500, 482)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(499, 483)
         Me.TableLayoutPanel2.TabIndex = 0
         '
         'GroupBox2
@@ -515,7 +508,7 @@ Partial Class ConfigManager
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Location = New System.Drawing.Point(3, 244)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(494, 235)
+        Me.GroupBox2.Size = New System.Drawing.Size(493, 236)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "System connection (System Administrator Only) For Cloud"
@@ -543,7 +536,7 @@ Partial Class ConfigManager
         Me.Panel9.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.Panel9.Location = New System.Drawing.Point(3, 23)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(488, 209)
+        Me.Panel9.Size = New System.Drawing.Size(487, 210)
         Me.Panel9.TabIndex = 1
         '
         'Button9
@@ -563,9 +556,9 @@ Partial Class ConfigManager
         '
         Me.Panel10.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel10.Location = New System.Drawing.Point(0, 171)
+        Me.Panel10.Location = New System.Drawing.Point(0, 172)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(488, 8)
+        Me.Panel10.Size = New System.Drawing.Size(487, 8)
         Me.Panel10.TabIndex = 271
         '
         'Panel24
@@ -574,9 +567,9 @@ Partial Class ConfigManager
         Me.Panel24.Controls.Add(Me.LabelCloud)
         Me.Panel24.Controls.Add(Me.ProgressBar2)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel24.Location = New System.Drawing.Point(0, 179)
+        Me.Panel24.Location = New System.Drawing.Point(0, 180)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(488, 30)
+        Me.Panel24.Size = New System.Drawing.Size(487, 30)
         Me.Panel24.TabIndex = 270
         '
         'LabelCloud
@@ -595,7 +588,7 @@ Partial Class ConfigManager
         Me.ProgressBar2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ProgressBar2.Location = New System.Drawing.Point(0, 19)
         Me.ProgressBar2.Name = "ProgressBar2"
-        Me.ProgressBar2.Size = New System.Drawing.Size(488, 11)
+        Me.ProgressBar2.Size = New System.Drawing.Size(487, 11)
         Me.ProgressBar2.TabIndex = 222
         '
         'Label12
@@ -736,7 +729,7 @@ Partial Class ConfigManager
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(494, 235)
+        Me.GroupBox1.Size = New System.Drawing.Size(493, 235)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "System connection (System Administrator Only) For Local"
@@ -764,7 +757,7 @@ Partial Class ConfigManager
         Me.Panel5.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.Panel5.Location = New System.Drawing.Point(3, 23)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(488, 209)
+        Me.Panel5.Size = New System.Drawing.Size(487, 209)
         Me.Panel5.TabIndex = 0
         '
         'ButtonEditLocal
@@ -917,7 +910,7 @@ Partial Class ConfigManager
         Me.Panel26.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel26.Location = New System.Drawing.Point(0, 171)
         Me.Panel26.Name = "Panel26"
-        Me.Panel26.Size = New System.Drawing.Size(488, 8)
+        Me.Panel26.Size = New System.Drawing.Size(487, 8)
         Me.Panel26.TabIndex = 250
         '
         'Panel29
@@ -928,7 +921,7 @@ Partial Class ConfigManager
         Me.Panel29.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel29.Location = New System.Drawing.Point(0, 179)
         Me.Panel29.Name = "Panel29"
-        Me.Panel29.Size = New System.Drawing.Size(488, 30)
+        Me.Panel29.Size = New System.Drawing.Size(487, 30)
         Me.Panel29.TabIndex = 249
         '
         'LabelLocal
@@ -947,7 +940,7 @@ Partial Class ConfigManager
         Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ProgressBar1.Location = New System.Drawing.Point(0, 19)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(488, 11)
+        Me.ProgressBar1.Size = New System.Drawing.Size(487, 11)
         Me.ProgressBar1.TabIndex = 222
         '
         'TableLayoutPanel3
@@ -958,22 +951,22 @@ Partial Class ConfigManager
         Me.TableLayoutPanel3.Controls.Add(Me.GroupBox3, 0, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.GroupBox4, 0, 1)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(509, 3)
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(508, 3)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 3
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(500, 482)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(499, 483)
         Me.TableLayoutPanel3.TabIndex = 1
         '
         'GroupBox5
         '
         Me.GroupBox5.Controls.Add(Me.Panel8)
         Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox5.Location = New System.Drawing.Point(3, 323)
+        Me.GroupBox5.Location = New System.Drawing.Point(3, 325)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(494, 156)
+        Me.GroupBox5.Size = New System.Drawing.Size(493, 155)
         Me.GroupBox5.TabIndex = 3
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Schedule Automatic System Backup"
@@ -985,7 +978,7 @@ Partial Class ConfigManager
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel8.Location = New System.Drawing.Point(3, 23)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(488, 130)
+        Me.Panel8.Size = New System.Drawing.Size(487, 129)
         Me.Panel8.TabIndex = 1
         '
         'Panel35
@@ -995,7 +988,7 @@ Partial Class ConfigManager
         Me.Panel35.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel35.Location = New System.Drawing.Point(0, 0)
         Me.Panel35.Name = "Panel35"
-        Me.Panel35.Size = New System.Drawing.Size(488, 130)
+        Me.Panel35.Size = New System.Drawing.Size(487, 129)
         Me.Panel35.TabIndex = 1
         '
         'Label60
@@ -1073,7 +1066,7 @@ Partial Class ConfigManager
         Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(494, 154)
+        Me.GroupBox3.Size = New System.Drawing.Size(493, 155)
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "System Database Option"
@@ -1085,7 +1078,7 @@ Partial Class ConfigManager
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel6.Location = New System.Drawing.Point(3, 23)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(488, 128)
+        Me.Panel6.Size = New System.Drawing.Size(487, 129)
         Me.Panel6.TabIndex = 1
         '
         'Panel33
@@ -1098,7 +1091,7 @@ Partial Class ConfigManager
         Me.Panel33.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel33.Location = New System.Drawing.Point(0, 0)
         Me.Panel33.Name = "Panel33"
-        Me.Panel33.Size = New System.Drawing.Size(488, 128)
+        Me.Panel33.Size = New System.Drawing.Size(487, 129)
         Me.Panel33.TabIndex = 1
         '
         'TableLayoutPanel6
@@ -1111,11 +1104,11 @@ Partial Class ConfigManager
         Me.TableLayoutPanel6.Controls.Add(Me.Panel52, 1, 0)
         Me.TableLayoutPanel6.Controls.Add(Me.Panel51, 0, 0)
         Me.TableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TableLayoutPanel6.Location = New System.Drawing.Point(0, 92)
+        Me.TableLayoutPanel6.Location = New System.Drawing.Point(0, 93)
         Me.TableLayoutPanel6.Name = "TableLayoutPanel6"
         Me.TableLayoutPanel6.RowCount = 1
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel6.Size = New System.Drawing.Size(488, 36)
+        Me.TableLayoutPanel6.Size = New System.Drawing.Size(487, 36)
         Me.TableLayoutPanel6.TabIndex = 19
         '
         'Panel53
@@ -1124,7 +1117,7 @@ Partial Class ConfigManager
         Me.Panel53.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel53.Location = New System.Drawing.Point(327, 3)
         Me.Panel53.Name = "Panel53"
-        Me.Panel53.Size = New System.Drawing.Size(158, 30)
+        Me.Panel53.Size = New System.Drawing.Size(157, 30)
         Me.Panel53.TabIndex = 2
         '
         'ButtonRepair
@@ -1137,7 +1130,7 @@ Partial Class ConfigManager
         Me.ButtonRepair.ForeColor = System.Drawing.Color.White
         Me.ButtonRepair.Location = New System.Drawing.Point(0, 0)
         Me.ButtonRepair.Name = "ButtonRepair"
-        Me.ButtonRepair.Size = New System.Drawing.Size(158, 30)
+        Me.ButtonRepair.Size = New System.Drawing.Size(157, 30)
         Me.ButtonRepair.TabIndex = 30
         Me.ButtonRepair.Text = "Repair"
         Me.ButtonRepair.UseVisualStyleBackColor = False
@@ -1227,9 +1220,9 @@ Partial Class ConfigManager
         '
         Me.GroupBox4.Controls.Add(Me.Panel7)
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox4.Location = New System.Drawing.Point(3, 163)
+        Me.GroupBox4.Location = New System.Drawing.Point(3, 164)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(494, 154)
+        Me.GroupBox4.Size = New System.Drawing.Size(493, 155)
         Me.GroupBox4.TabIndex = 2
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Manual System Backup"
@@ -1241,7 +1234,7 @@ Partial Class ConfigManager
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel7.Location = New System.Drawing.Point(3, 23)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(488, 128)
+        Me.Panel7.Size = New System.Drawing.Size(487, 129)
         Me.Panel7.TabIndex = 1
         '
         'Panel34
@@ -1251,7 +1244,7 @@ Partial Class ConfigManager
         Me.Panel34.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel34.Location = New System.Drawing.Point(0, 0)
         Me.Panel34.Name = "Panel34"
-        Me.Panel34.Size = New System.Drawing.Size(488, 128)
+        Me.Panel34.Size = New System.Drawing.Size(487, 129)
         Me.Panel34.TabIndex = 1
         '
         'TableLayoutPanel5
@@ -1262,18 +1255,18 @@ Partial Class ConfigManager
         Me.TableLayoutPanel5.Controls.Add(Me.Panel50, 1, 0)
         Me.TableLayoutPanel5.Controls.Add(Me.Panel49, 0, 0)
         Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TableLayoutPanel5.Location = New System.Drawing.Point(0, 92)
+        Me.TableLayoutPanel5.Location = New System.Drawing.Point(0, 93)
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
         Me.TableLayoutPanel5.RowCount = 1
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel5.Size = New System.Drawing.Size(488, 36)
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(487, 36)
         Me.TableLayoutPanel5.TabIndex = 30
         '
         'Panel50
         '
         Me.Panel50.Controls.Add(Me.ButtonExport)
         Me.Panel50.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel50.Location = New System.Drawing.Point(247, 3)
+        Me.Panel50.Location = New System.Drawing.Point(246, 3)
         Me.Panel50.Name = "Panel50"
         Me.Panel50.Size = New System.Drawing.Size(238, 30)
         Me.Panel50.TabIndex = 1
@@ -1299,7 +1292,7 @@ Partial Class ConfigManager
         Me.Panel49.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel49.Location = New System.Drawing.Point(3, 3)
         Me.Panel49.Name = "Panel49"
-        Me.Panel49.Size = New System.Drawing.Size(238, 30)
+        Me.Panel49.Size = New System.Drawing.Size(237, 30)
         Me.Panel49.TabIndex = 0
         '
         'ButtonImport
@@ -1310,7 +1303,7 @@ Partial Class ConfigManager
         Me.ButtonImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonImport.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.ButtonImport.ForeColor = System.Drawing.Color.White
-        Me.ButtonImport.Location = New System.Drawing.Point(64, 0)
+        Me.ButtonImport.Location = New System.Drawing.Point(63, 0)
         Me.ButtonImport.Name = "ButtonImport"
         Me.ButtonImport.Size = New System.Drawing.Size(174, 30)
         Me.ButtonImport.TabIndex = 27
@@ -1335,7 +1328,7 @@ Partial Class ConfigManager
         Me.Panel44.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel44.Location = New System.Drawing.Point(3, 3)
         Me.Panel44.Name = "Panel44"
-        Me.Panel44.Size = New System.Drawing.Size(1012, 49)
+        Me.Panel44.Size = New System.Drawing.Size(1010, 49)
         Me.Panel44.TabIndex = 33
         '
         'Label3
@@ -1356,7 +1349,7 @@ Partial Class ConfigManager
         Me.TabPage4.Location = New System.Drawing.Point(4, 28)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(1018, 543)
+        Me.TabPage4.Size = New System.Drawing.Size(1016, 544)
         Me.TabPage4.TabIndex = 1
         Me.TabPage4.Text = "TabPage4"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -1374,8 +1367,8 @@ Partial Class ConfigManager
         Me.TableLayoutPanel8.Name = "TableLayoutPanel8"
         Me.TableLayoutPanel8.RowCount = 1
         Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 488.0!))
-        Me.TableLayoutPanel8.Size = New System.Drawing.Size(1012, 488)
+        Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 489.0!))
+        Me.TableLayoutPanel8.Size = New System.Drawing.Size(1010, 489)
         Me.TableLayoutPanel8.TabIndex = 295
         '
         'GroupBox11
@@ -1403,30 +1396,38 @@ Partial Class ConfigManager
         Me.GroupBox11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox11.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(331, 482)
+        Me.GroupBox11.Size = New System.Drawing.Size(330, 483)
         Me.GroupBox11.TabIndex = 294
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "Developer Information"
         '
         'ButtonEditDevSet
         '
+        Me.ButtonEditDevSet.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonEditDevSet.FlatAppearance.BorderSize = 0
+        Me.ButtonEditDevSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonEditDevSet.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonEditDevSet.ForeColor = System.Drawing.Color.White
         Me.ButtonEditDevSet.Location = New System.Drawing.Point(221, 401)
         Me.ButtonEditDevSet.Name = "ButtonEditDevSet"
         Me.ButtonEditDevSet.Size = New System.Drawing.Size(65, 23)
         Me.ButtonEditDevSet.TabIndex = 273
         Me.ButtonEditDevSet.Text = "Edit"
-        Me.ButtonEditDevSet.UseVisualStyleBackColor = True
+        Me.ButtonEditDevSet.UseVisualStyleBackColor = False
         '
         'Button6
         '
+        Me.Button6.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Button6.FlatAppearance.BorderSize = 0
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button6.ForeColor = System.Drawing.Color.White
         Me.Button6.Location = New System.Drawing.Point(41, 401)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(174, 23)
         Me.Button6.TabIndex = 272
         Me.Button6.Text = "Save"
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.Button6.UseVisualStyleBackColor = False
         '
         'Label79
         '
@@ -1601,12 +1602,12 @@ Partial Class ConfigManager
         Me.TableLayoutPanel9.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel9.Controls.Add(Me.GroupBox10, 0, 0)
         Me.TableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel9.Location = New System.Drawing.Point(340, 3)
+        Me.TableLayoutPanel9.Location = New System.Drawing.Point(339, 3)
         Me.TableLayoutPanel9.Name = "TableLayoutPanel9"
         Me.TableLayoutPanel9.RowCount = 2
         Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel9.Size = New System.Drawing.Size(331, 482)
+        Me.TableLayoutPanel9.Size = New System.Drawing.Size(330, 483)
         Me.TableLayoutPanel9.TabIndex = 295
         '
         'GroupBox10
@@ -1628,20 +1629,24 @@ Partial Class ConfigManager
         Me.GroupBox10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox10.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(325, 235)
+        Me.GroupBox10.Size = New System.Drawing.Size(324, 235)
         Me.GroupBox10.TabIndex = 293
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "Additional Settings"
         '
         'ButtonEdit
         '
+        Me.ButtonEdit.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonEdit.FlatAppearance.BorderSize = 0
+        Me.ButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonEdit.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonEdit.ForeColor = System.Drawing.Color.White
         Me.ButtonEdit.Location = New System.Drawing.Point(218, 196)
         Me.ButtonEdit.Name = "ButtonEdit"
         Me.ButtonEdit.Size = New System.Drawing.Size(65, 23)
         Me.ButtonEdit.TabIndex = 294
         Me.ButtonEdit.Text = "Edit"
-        Me.ButtonEdit.UseVisualStyleBackColor = True
+        Me.ButtonEdit.UseVisualStyleBackColor = False
         '
         'ButtonGetExportPath
         '
@@ -1649,6 +1654,7 @@ Partial Class ConfigManager
         Me.ButtonGetExportPath.FlatAppearance.BorderSize = 0
         Me.ButtonGetExportPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonGetExportPath.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonGetExportPath.ForeColor = System.Drawing.Color.White
         Me.ButtonGetExportPath.Location = New System.Drawing.Point(238, 44)
         Me.ButtonGetExportPath.Name = "ButtonGetExportPath"
         Me.ButtonGetExportPath.Size = New System.Drawing.Size(45, 22)
@@ -1658,13 +1664,17 @@ Partial Class ConfigManager
         '
         'Button3
         '
+        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button3.ForeColor = System.Drawing.Color.White
         Me.Button3.Location = New System.Drawing.Point(38, 196)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(174, 23)
         Me.Button3.TabIndex = 293
         Me.Button3.Text = "Save"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.Button3.UseVisualStyleBackColor = False
         '
         'TextBoxExportPath
         '
@@ -1779,7 +1789,7 @@ Partial Class ConfigManager
         Me.Panel11.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel11.Location = New System.Drawing.Point(3, 3)
         Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(1012, 49)
+        Me.Panel11.Size = New System.Drawing.Size(1010, 49)
         Me.Panel11.TabIndex = 34
         '
         'Label13
@@ -1799,7 +1809,7 @@ Partial Class ConfigManager
         Me.TabPage2.Location = New System.Drawing.Point(4, 28)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1032, 581)
+        Me.TabPage2.Size = New System.Drawing.Size(1030, 582)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -1812,7 +1822,7 @@ Partial Class ConfigManager
         Me.TabControl3.Location = New System.Drawing.Point(3, 3)
         Me.TabControl3.Name = "TabControl3"
         Me.TabControl3.SelectedIndex = 0
-        Me.TabControl3.Size = New System.Drawing.Size(1026, 575)
+        Me.TabControl3.Size = New System.Drawing.Size(1024, 576)
         Me.TabControl3.TabIndex = 0
         '
         'TabPage5
@@ -1822,7 +1832,7 @@ Partial Class ConfigManager
         Me.TabPage5.Location = New System.Drawing.Point(4, 28)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(1018, 543)
+        Me.TabPage5.Size = New System.Drawing.Size(1016, 544)
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "TabPage5"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -1839,8 +1849,8 @@ Partial Class ConfigManager
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
         Me.TableLayoutPanel4.RowCount = 1
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 488.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(1012, 488)
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 489.0!))
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(1010, 489)
         Me.TableLayoutPanel4.TabIndex = 0
         '
         'TableLayoutPanel7
@@ -1855,7 +1865,7 @@ Partial Class ConfigManager
         Me.TableLayoutPanel7.RowCount = 2
         Me.TableLayoutPanel7.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.TableLayoutPanel7.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel7.Size = New System.Drawing.Size(500, 482)
+        Me.TableLayoutPanel7.Size = New System.Drawing.Size(499, 483)
         Me.TableLayoutPanel7.TabIndex = 35
         '
         'GroupBox8
@@ -1864,7 +1874,7 @@ Partial Class ConfigManager
         Me.GroupBox8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox8.Location = New System.Drawing.Point(3, 153)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(494, 326)
+        Me.GroupBox8.Size = New System.Drawing.Size(493, 327)
         Me.GroupBox8.TabIndex = 1
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "Outlet Details"
@@ -1900,7 +1910,7 @@ Partial Class ConfigManager
         Me.Panel15.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.Panel15.Location = New System.Drawing.Point(3, 23)
         Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(488, 300)
+        Me.Panel15.Size = New System.Drawing.Size(487, 301)
         Me.Panel15.TabIndex = 1
         '
         'TextBoxBrandname
@@ -2154,9 +2164,9 @@ Partial Class ConfigManager
         '
         Me.Panel38.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel38.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel38.Location = New System.Drawing.Point(0, 262)
+        Me.Panel38.Location = New System.Drawing.Point(0, 263)
         Me.Panel38.Name = "Panel38"
-        Me.Panel38.Size = New System.Drawing.Size(488, 8)
+        Me.Panel38.Size = New System.Drawing.Size(487, 8)
         Me.Panel38.TabIndex = 241
         '
         'Panel39
@@ -2165,9 +2175,9 @@ Partial Class ConfigManager
         Me.Panel39.Controls.Add(Me.LabelAccCheck)
         Me.Panel39.Controls.Add(Me.ProgressBar3)
         Me.Panel39.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel39.Location = New System.Drawing.Point(0, 270)
+        Me.Panel39.Location = New System.Drawing.Point(0, 271)
         Me.Panel39.Name = "Panel39"
-        Me.Panel39.Size = New System.Drawing.Size(488, 30)
+        Me.Panel39.Size = New System.Drawing.Size(487, 30)
         Me.Panel39.TabIndex = 240
         '
         'LabelAccCheck
@@ -2187,7 +2197,7 @@ Partial Class ConfigManager
         Me.ProgressBar3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ProgressBar3.Location = New System.Drawing.Point(0, 19)
         Me.ProgressBar3.Name = "ProgressBar3"
-        Me.ProgressBar3.Size = New System.Drawing.Size(488, 11)
+        Me.ProgressBar3.Size = New System.Drawing.Size(487, 11)
         Me.ProgressBar3.TabIndex = 222
         '
         'GroupBox6
@@ -2196,7 +2206,7 @@ Partial Class ConfigManager
         Me.GroupBox6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox6.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(494, 144)
+        Me.GroupBox6.Size = New System.Drawing.Size(493, 144)
         Me.GroupBox6.TabIndex = 0
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Account"
@@ -2214,26 +2224,34 @@ Partial Class ConfigManager
         Me.Panel14.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.Panel14.Location = New System.Drawing.Point(3, 23)
         Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(488, 118)
+        Me.Panel14.Size = New System.Drawing.Size(487, 118)
         Me.Panel14.TabIndex = 0
         '
         'Button7
         '
+        Me.Button7.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Button7.FlatAppearance.BorderSize = 0
+        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button7.ForeColor = System.Drawing.Color.White
         Me.Button7.Location = New System.Drawing.Point(316, 78)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(112, 23)
         Me.Button7.TabIndex = 5
         Me.Button7.Text = "Edit"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.Button7.UseVisualStyleBackColor = False
         '
         'Button1
         '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.ForeColor = System.Drawing.Color.White
         Me.Button1.Location = New System.Drawing.Point(177, 78)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(133, 23)
         Me.Button1.TabIndex = 4
         Me.Button1.Text = "Validate Account"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'Label16
         '
@@ -2272,9 +2290,9 @@ Partial Class ConfigManager
         '
         Me.GroupBox9.Controls.Add(Me.Panel16)
         Me.GroupBox9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox9.Location = New System.Drawing.Point(509, 3)
+        Me.GroupBox9.Location = New System.Drawing.Point(508, 3)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(500, 482)
+        Me.GroupBox9.Size = New System.Drawing.Size(499, 483)
         Me.GroupBox9.TabIndex = 36
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "Select Outlet"
@@ -2288,7 +2306,7 @@ Partial Class ConfigManager
         Me.Panel16.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.Panel16.Location = New System.Drawing.Point(3, 23)
         Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(494, 456)
+        Me.Panel16.Size = New System.Drawing.Size(493, 457)
         Me.Panel16.TabIndex = 1
         '
         'DataGridViewOutlets
@@ -2307,7 +2325,7 @@ Partial Class ConfigManager
         Me.DataGridViewOutlets.ReadOnly = True
         Me.DataGridViewOutlets.RowHeadersVisible = False
         Me.DataGridViewOutlets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewOutlets.Size = New System.Drawing.Size(494, 426)
+        Me.DataGridViewOutlets.Size = New System.Drawing.Size(493, 427)
         Me.DataGridViewOutlets.TabIndex = 242
         '
         'Panel17
@@ -2315,9 +2333,9 @@ Partial Class ConfigManager
         Me.Panel17.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Panel17.Controls.Add(Me.Button2)
         Me.Panel17.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel17.Location = New System.Drawing.Point(0, 426)
+        Me.Panel17.Location = New System.Drawing.Point(0, 427)
         Me.Panel17.Name = "Panel17"
-        Me.Panel17.Size = New System.Drawing.Size(494, 30)
+        Me.Panel17.Size = New System.Drawing.Size(493, 30)
         Me.Panel17.TabIndex = 241
         '
         'Button2
@@ -2327,7 +2345,7 @@ Partial Class ConfigManager
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(298, 0)
+        Me.Button2.Location = New System.Drawing.Point(297, 0)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(196, 30)
         Me.Button2.TabIndex = 212
@@ -2341,7 +2359,7 @@ Partial Class ConfigManager
         Me.Panel13.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel13.Location = New System.Drawing.Point(3, 3)
         Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(1012, 49)
+        Me.Panel13.Size = New System.Drawing.Size(1010, 49)
         Me.Panel13.TabIndex = 34
         '
         'Label14
@@ -2362,7 +2380,7 @@ Partial Class ConfigManager
         Me.TabPage6.Location = New System.Drawing.Point(4, 28)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(1018, 543)
+        Me.TabPage6.Size = New System.Drawing.Size(1016, 544)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "TabPage6"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -2379,7 +2397,7 @@ Partial Class ConfigManager
         Me.TableLayoutPanel10.Name = "TableLayoutPanel10"
         Me.TableLayoutPanel10.RowCount = 1
         Me.TableLayoutPanel10.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel10.Size = New System.Drawing.Size(1012, 488)
+        Me.TableLayoutPanel10.Size = New System.Drawing.Size(1010, 489)
         Me.TableLayoutPanel10.TabIndex = 40
         '
         'GroupBox14
@@ -2391,9 +2409,9 @@ Partial Class ConfigManager
         Me.GroupBox14.Controls.Add(Me.Panel20)
         Me.GroupBox14.Controls.Add(Me.Panel21)
         Me.GroupBox14.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox14.Location = New System.Drawing.Point(509, 3)
+        Me.GroupBox14.Location = New System.Drawing.Point(508, 3)
         Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Size = New System.Drawing.Size(500, 482)
+        Me.GroupBox14.Size = New System.Drawing.Size(499, 483)
         Me.GroupBox14.TabIndex = 40
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "Data"
@@ -2404,7 +2422,7 @@ Partial Class ConfigManager
         Me.GroupBox18.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox18.Location = New System.Drawing.Point(3, 311)
         Me.GroupBox18.Name = "GroupBox18"
-        Me.GroupBox18.Size = New System.Drawing.Size(494, 96)
+        Me.GroupBox18.Size = New System.Drawing.Size(493, 96)
         Me.GroupBox18.TabIndex = 256
         Me.GroupBox18.TabStop = False
         Me.GroupBox18.Text = "Category"
@@ -2422,7 +2440,7 @@ Partial Class ConfigManager
         Me.DataGridViewCATEGORIES.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewCATEGORIES.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewCATEGORIES.Name = "DataGridViewCATEGORIES"
-        Me.DataGridViewCATEGORIES.Size = New System.Drawing.Size(488, 70)
+        Me.DataGridViewCATEGORIES.Size = New System.Drawing.Size(487, 70)
         Me.DataGridViewCATEGORIES.TabIndex = 65
         '
         'Column18
@@ -2456,7 +2474,7 @@ Partial Class ConfigManager
         Me.GroupBox17.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox17.Location = New System.Drawing.Point(3, 215)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(494, 96)
+        Me.GroupBox17.Size = New System.Drawing.Size(493, 96)
         Me.GroupBox17.TabIndex = 255
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "Formula's"
@@ -2474,7 +2492,7 @@ Partial Class ConfigManager
         Me.DataGridViewFORMULA.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewFORMULA.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewFORMULA.Name = "DataGridViewFORMULA"
-        Me.DataGridViewFORMULA.Size = New System.Drawing.Size(488, 70)
+        Me.DataGridViewFORMULA.Size = New System.Drawing.Size(487, 70)
         Me.DataGridViewFORMULA.TabIndex = 68
         '
         'Column44
@@ -2548,7 +2566,7 @@ Partial Class ConfigManager
         Me.GroupBox16.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox16.Location = New System.Drawing.Point(3, 119)
         Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(494, 96)
+        Me.GroupBox16.Size = New System.Drawing.Size(493, 96)
         Me.GroupBox16.TabIndex = 254
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "Products"
@@ -2566,7 +2584,7 @@ Partial Class ConfigManager
         Me.DataGridViewPRODUCTS.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewPRODUCTS.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewPRODUCTS.Name = "DataGridViewPRODUCTS"
-        Me.DataGridViewPRODUCTS.Size = New System.Drawing.Size(488, 70)
+        Me.DataGridViewPRODUCTS.Size = New System.Drawing.Size(487, 70)
         Me.DataGridViewPRODUCTS.TabIndex = 66
         '
         'Column23
@@ -2635,7 +2653,7 @@ Partial Class ConfigManager
         Me.GroupBox15.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox15.Location = New System.Drawing.Point(3, 23)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(494, 96)
+        Me.GroupBox15.Size = New System.Drawing.Size(493, 96)
         Me.GroupBox15.TabIndex = 253
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "Inventory"
@@ -2653,7 +2671,7 @@ Partial Class ConfigManager
         Me.DataGridViewINVENTORY.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewINVENTORY.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewINVENTORY.Name = "DataGridViewINVENTORY"
-        Me.DataGridViewINVENTORY.Size = New System.Drawing.Size(488, 70)
+        Me.DataGridViewINVENTORY.Size = New System.Drawing.Size(487, 70)
         Me.DataGridViewINVENTORY.TabIndex = 67
         '
         'Column35
@@ -2705,9 +2723,9 @@ Partial Class ConfigManager
         '
         Me.Panel20.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel20.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel20.Location = New System.Drawing.Point(3, 427)
+        Me.Panel20.Location = New System.Drawing.Point(3, 428)
         Me.Panel20.Name = "Panel20"
-        Me.Panel20.Size = New System.Drawing.Size(494, 8)
+        Me.Panel20.Size = New System.Drawing.Size(493, 8)
         Me.Panel20.TabIndex = 252
         '
         'Panel21
@@ -2716,9 +2734,9 @@ Partial Class ConfigManager
         Me.Panel21.Controls.Add(Me.ProgressBar6)
         Me.Panel21.Controls.Add(Me.Label22)
         Me.Panel21.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel21.Location = New System.Drawing.Point(3, 435)
+        Me.Panel21.Location = New System.Drawing.Point(3, 436)
         Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(494, 44)
+        Me.Panel21.Size = New System.Drawing.Size(493, 44)
         Me.Panel21.TabIndex = 251
         '
         'ProgressBar6
@@ -2726,7 +2744,7 @@ Partial Class ConfigManager
         Me.ProgressBar6.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ProgressBar6.Location = New System.Drawing.Point(0, 21)
         Me.ProgressBar6.Name = "ProgressBar6"
-        Me.ProgressBar6.Size = New System.Drawing.Size(494, 23)
+        Me.ProgressBar6.Size = New System.Drawing.Size(493, 23)
         Me.ProgressBar6.TabIndex = 225
         '
         'Label22
@@ -2752,7 +2770,7 @@ Partial Class ConfigManager
         Me.TableLayoutPanel11.RowCount = 2
         Me.TableLayoutPanel11.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
         Me.TableLayoutPanel11.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel11.Size = New System.Drawing.Size(500, 482)
+        Me.TableLayoutPanel11.Size = New System.Drawing.Size(499, 483)
         Me.TableLayoutPanel11.TabIndex = 41
         '
         'GroupBox12
@@ -2763,7 +2781,7 @@ Partial Class ConfigManager
         Me.GroupBox12.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox12.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(494, 114)
+        Me.GroupBox12.Size = New System.Drawing.Size(493, 114)
         Me.GroupBox12.TabIndex = 38
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "Serial Key"
@@ -2777,7 +2795,7 @@ Partial Class ConfigManager
         Me.Button5.ForeColor = System.Drawing.Color.Black
         Me.Button5.Location = New System.Drawing.Point(3, 56)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(488, 32)
+        Me.Button5.Size = New System.Drawing.Size(487, 32)
         Me.Button5.TabIndex = 36
         Me.Button5.Text = "Activate"
         Me.Button5.UseVisualStyleBackColor = False
@@ -2787,7 +2805,7 @@ Partial Class ConfigManager
         Me.ProgressBar5.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ProgressBar5.Location = New System.Drawing.Point(3, 88)
         Me.ProgressBar5.Name = "ProgressBar5"
-        Me.ProgressBar5.Size = New System.Drawing.Size(488, 23)
+        Me.ProgressBar5.Size = New System.Drawing.Size(487, 23)
         Me.ProgressBar5.TabIndex = 39
         '
         'TextBoxProdKey
@@ -2796,7 +2814,7 @@ Partial Class ConfigManager
         Me.TextBoxProdKey.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBoxProdKey.Location = New System.Drawing.Point(3, 23)
         Me.TextBoxProdKey.Name = "TextBoxProdKey"
-        Me.TextBoxProdKey.Size = New System.Drawing.Size(488, 27)
+        Me.TextBoxProdKey.Size = New System.Drawing.Size(487, 27)
         Me.TextBoxProdKey.TabIndex = 37
         '
         'GroupBox13
@@ -2805,7 +2823,7 @@ Partial Class ConfigManager
         Me.GroupBox13.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox13.Location = New System.Drawing.Point(3, 123)
         Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Size = New System.Drawing.Size(494, 356)
+        Me.GroupBox13.Size = New System.Drawing.Size(493, 357)
         Me.GroupBox13.TabIndex = 39
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "Logs"
@@ -2816,7 +2834,7 @@ Partial Class ConfigManager
         Me.RichTextBox1.Location = New System.Drawing.Point(3, 23)
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.ReadOnly = True
-        Me.RichTextBox1.Size = New System.Drawing.Size(488, 330)
+        Me.RichTextBox1.Size = New System.Drawing.Size(487, 331)
         Me.RichTextBox1.TabIndex = 0
         Me.RichTextBox1.Text = ""
         '
@@ -2827,7 +2845,7 @@ Partial Class ConfigManager
         Me.Panel19.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel19.Location = New System.Drawing.Point(3, 3)
         Me.Panel19.Name = "Panel19"
-        Me.Panel19.Size = New System.Drawing.Size(1012, 49)
+        Me.Panel19.Size = New System.Drawing.Size(1010, 49)
         Me.Panel19.TabIndex = 35
         '
         'Label21
@@ -2841,30 +2859,20 @@ Partial Class ConfigManager
         Me.Label21.TabIndex = 4
         Me.Label21.Text = "System Activation"
         '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.Controls.Add(Me.ProgressBar4)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 694)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1300, 24)
-        Me.Panel1.TabIndex = 4
-        '
         'ProgressBar4
         '
-        Me.ProgressBar4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.ProgressBar4.Location = New System.Drawing.Point(0, 13)
+        Me.ProgressBar4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressBar4.Location = New System.Drawing.Point(0, 0)
         Me.ProgressBar4.Name = "ProgressBar4"
-        Me.ProgressBar4.Size = New System.Drawing.Size(1300, 11)
+        Me.ProgressBar4.Size = New System.Drawing.Size(1298, 10)
         Me.ProgressBar4.TabIndex = 223
         '
         'Panel3
         '
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel3.Location = New System.Drawing.Point(1170, 81)
+        Me.Panel3.Location = New System.Drawing.Point(1168, 81)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(130, 613)
+        Me.Panel3.Size = New System.Drawing.Size(130, 614)
         Me.Panel3.TabIndex = 5
         '
         'Panel4
@@ -2873,7 +2881,7 @@ Partial Class ConfigManager
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel4.Location = New System.Drawing.Point(0, 81)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(130, 613)
+        Me.Panel4.Size = New System.Drawing.Size(130, 614)
         Me.Panel4.TabIndex = 6
         '
         'DataGridViewOutletDetails
@@ -2884,7 +2892,7 @@ Partial Class ConfigManager
         Me.DataGridViewOutletDetails.AllowUserToResizeRows = False
         Me.DataGridViewOutletDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewOutletDetails.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column12, Me.Column13, Me.Column14, Me.Column15, Me.Column16, Me.Column17})
-        Me.DataGridViewOutletDetails.Location = New System.Drawing.Point(12, 114)
+        Me.DataGridViewOutletDetails.Location = New System.Drawing.Point(11, 221)
         Me.DataGridViewOutletDetails.Name = "DataGridViewOutletDetails"
         Me.DataGridViewOutletDetails.ReadOnly = True
         Me.DataGridViewOutletDetails.Size = New System.Drawing.Size(95, 65)
@@ -3017,26 +3025,74 @@ Partial Class ConfigManager
         'BackgroundWorkerABTDB
         '
         '
+        'Panel1
+        '
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.TabControl1)
+        Me.Panel1.Controls.Add(Me.Panel3)
+        Me.Panel1.Controls.Add(Me.Panel4)
+        Me.Panel1.Controls.Add(Me.Panel25)
+        Me.Panel1.Controls.Add(Me.Panel12)
+        Me.Panel1.Controls.Add(Me.Panel18)
+        Me.Panel1.Controls.Add(Me.Panel2)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1300, 757)
+        Me.Panel1.TabIndex = 7
+        '
+        'Panel25
+        '
+        Me.Panel25.BackColor = System.Drawing.Color.White
+        Me.Panel25.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel25.Location = New System.Drawing.Point(0, 695)
+        Me.Panel25.Name = "Panel25"
+        Me.Panel25.Size = New System.Drawing.Size(1298, 30)
+        Me.Panel25.TabIndex = 8
+        '
+        'Panel12
+        '
+        Me.Panel12.BackColor = System.Drawing.Color.White
+        Me.Panel12.Controls.Add(Me.ProgressBar4)
+        Me.Panel12.Controls.Add(Me.Panel23)
+        Me.Panel12.Controls.Add(Me.Panel22)
+        Me.Panel12.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel12.Location = New System.Drawing.Point(0, 725)
+        Me.Panel12.Name = "Panel12"
+        Me.Panel12.Size = New System.Drawing.Size(1298, 30)
+        Me.Panel12.TabIndex = 7
+        '
+        'Panel23
+        '
+        Me.Panel23.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel23.Location = New System.Drawing.Point(0, 10)
+        Me.Panel23.Name = "Panel23"
+        Me.Panel23.Size = New System.Drawing.Size(1298, 10)
+        Me.Panel23.TabIndex = 217
+        '
+        'Panel22
+        '
+        Me.Panel22.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Panel22.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel22.Location = New System.Drawing.Point(0, 20)
+        Me.Panel22.Name = "Panel22"
+        Me.Panel22.Size = New System.Drawing.Size(1298, 10)
+        Me.Panel22.TabIndex = 216
+        '
         'ConfigManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1300, 718)
-        Me.Controls.Add(Me.TabControl1)
-        Me.Controls.Add(Me.Panel4)
-        Me.Controls.Add(Me.Panel3)
+        Me.ClientSize = New System.Drawing.Size(1300, 757)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.Panel18)
-        Me.Controls.Add(Me.Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "ConfigManager"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "ConfigManager"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        Me.Panel12.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabControl2.ResumeLayout(False)
@@ -3124,9 +3180,10 @@ Partial Class ConfigManager
         Me.GroupBox13.ResumeLayout(False)
         Me.Panel19.ResumeLayout(False)
         Me.Panel19.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         CType(Me.DataGridViewOutletDetails, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel12.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -3138,7 +3195,6 @@ Partial Class ConfigManager
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Panel4 As Panel
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
@@ -3222,7 +3278,6 @@ Partial Class ConfigManager
     Friend WithEvents RadioButtonDaily As RadioButton
     Friend WithEvents Panel11 As Panel
     Friend WithEvents Label13 As Label
-    Friend WithEvents Panel12 As Panel
     Friend WithEvents ButtonExit As Button
     Friend WithEvents TabControl3 As TabControl
     Friend WithEvents TabPage5 As TabPage
@@ -3401,4 +3456,9 @@ Partial Class ConfigManager
     Friend WithEvents ButtonEditLocal As Button
     Friend WithEvents ButtonEditDevSet As Button
     Friend WithEvents ButtonEdit As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel25 As Panel
+    Friend WithEvents Panel12 As Panel
+    Friend WithEvents Panel23 As Panel
+    Friend WithEvents Panel22 As Panel
 End Class

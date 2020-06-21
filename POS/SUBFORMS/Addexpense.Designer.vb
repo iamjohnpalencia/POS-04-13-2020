@@ -23,9 +23,9 @@ Partial Class Addexpense
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TextBoxMAXID = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -34,31 +34,29 @@ Partial Class Addexpense
         Me.ButtonRemove = New System.Windows.Forms.Button()
         Me.ButtonSaveCustomProducts = New System.Windows.Forms.Button()
         Me.DataGridViewExpenses = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridViewExpenses, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TextBoxMAXID
@@ -163,29 +161,29 @@ Partial Class Addexpense
         Me.DataGridViewExpenses.AllowUserToDeleteRows = False
         Me.DataGridViewExpenses.AllowUserToResizeColumns = False
         Me.DataGridViewExpenses.AllowUserToResizeRows = False
-        DataGridViewCellStyle13.BackColor = System.Drawing.Color.White
-        Me.DataGridViewExpenses.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        Me.DataGridViewExpenses.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridViewExpenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewExpenses.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewExpenses.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle14.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewExpenses.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewExpenses.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridViewExpenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewExpenses.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9})
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle15.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewExpenses.DefaultCellStyle = DataGridViewCellStyle15
+        Me.DataGridViewExpenses.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column8})
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewExpenses.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridViewExpenses.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewExpenses.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewExpenses.EnableHeadersVisualStyles = False
@@ -194,55 +192,6 @@ Partial Class Addexpense
         Me.DataGridViewExpenses.RowHeadersVisible = False
         Me.DataGridViewExpenses.Size = New System.Drawing.Size(1000, 328)
         Me.DataGridViewExpenses.TabIndex = 209
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Column1"
-        Me.Column1.Name = "Column1"
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Column2"
-        Me.Column2.Name = "Column2"
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Column3"
-        Me.Column3.Name = "Column3"
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "Column4"
-        Me.Column4.Name = "Column4"
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "Column5"
-        Me.Column5.Name = "Column5"
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "Column6"
-        Me.Column6.Name = "Column6"
-        Me.Column6.Visible = False
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "Column7"
-        Me.Column7.Name = "Column7"
-        Me.Column7.Visible = False
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "Column8"
-        Me.Column8.Name = "Column8"
-        Me.Column8.Visible = False
-        '
-        'Column9
-        '
-        Me.Column9.HeaderText = "Column9"
-        Me.Column9.Name = "Column9"
-        Me.Column9.Visible = False
         '
         'StatusStrip1
         '
@@ -286,6 +235,31 @@ Partial Class Addexpense
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Expense List"
         '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.Label4)
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel1.Location = New System.Drawing.Point(3, 347)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1000, 26)
+        Me.Panel1.TabIndex = 210
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label3.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(0, 0)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(76, 15)
+        Me.Label3.TabIndex = 218
+        Me.Label3.Text = "Crew Name:"
+        '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.ColumnCount = 1
@@ -316,30 +290,42 @@ Partial Class Addexpense
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Action"
         '
-        'Panel1
+        'Column1
         '
-        Me.Panel1.Controls.Add(Me.Label4)
-        Me.Panel1.Controls.Add(Me.Label2)
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(3, 347)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1000, 26)
-        Me.Panel1.TabIndex = 210
+        Me.Column1.HeaderText = "Column1"
+        Me.Column1.Name = "Column1"
         '
-        'Label3
+        'Column2
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label3.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(0, 0)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(76, 15)
-        Me.Label3.TabIndex = 218
-        Me.Label3.Text = "Crew Name:"
+        Me.Column2.HeaderText = "Column2"
+        Me.Column2.Name = "Column2"
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Column3"
+        Me.Column3.Name = "Column3"
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Column4"
+        Me.Column4.Name = "Column4"
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Column5"
+        Me.Column5.Name = "Column5"
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Column6"
+        Me.Column6.Name = "Column6"
+        Me.Column6.Visible = False
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Column8"
+        Me.Column8.Name = "Column8"
+        Me.Column8.Visible = False
         '
         'Addexpense
         '
@@ -360,11 +346,11 @@ Partial Class Addexpense
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -382,18 +368,16 @@ Partial Class Addexpense
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents ButtonRemove As Button
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Label3 As Label
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
-    Friend WithEvents Column7 As DataGridViewTextBoxColumn
     Friend WithEvents Column8 As DataGridViewTextBoxColumn
-    Friend WithEvents Column9 As DataGridViewTextBoxColumn
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents Label3 As Label
 End Class

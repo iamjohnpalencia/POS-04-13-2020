@@ -42,7 +42,6 @@ Public Class SynctoCloud
     End Sub
 #Region "FillDatagrid"
 
-
     Private Sub filldatagridrefretdetails()
         Try
             Dim fields = "*"
@@ -50,7 +49,7 @@ Public Class SynctoCloud
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewRetrefdetails)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewRetrefdetails)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewRetrefdetails.Rows.Add(row("refret_id"), row("transaction_number"), row("crew_id"), row("reason"), row("total"), row("guid"), row("store_id"), row("datestamp"), row("zreading"), row("synced"))
+                DataGridViewRetrefdetails.Rows.Add(row("refret_id"), row("transaction_number"), row("crew_id"), row("reason"), row("total"), row("guid"), row("store_id"), row("created_at"), row("zreading"), row("synced"))
             Next
             gettablesize(tablename:="loc_refund_return_details")
             countrows(tablename:=table)
@@ -65,7 +64,7 @@ Public Class SynctoCloud
             Dim fields = "*"
             Dim ThisDT = AsDatatable(table, fields, DataGridViewSYSLOG1)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewSYSLOG1.Rows.Add(row("crew_id"), row("log_type"), row("log_description"), returndateformatfulldate(row("log_date_time").ToString), row("log_store"), row("guid"), row("loc_systemlog_id"), row("zreading"), row("synced"))
+                DataGridViewSYSLOG1.Rows.Add(row("crew_id"), row("log_type"), row("log_description"), row("log_date_time"), row("log_store"), row("guid"), row("loc_systemlog_id"), row("zreading"), row("synced"))
             Next
             gettablesize(tablename:="loc_system_logs")
             countrows(tablename:=table)
@@ -80,7 +79,7 @@ Public Class SynctoCloud
             Dim table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('MENU FORM', 'STOCK ENTRY', 'STOCK REMOVAL', 'STOCK TRANSFER') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             Dim ThisDT = AsDatatable(table, fields, DataGridViewSYSLOG2)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewSYSLOG2.Rows.Add(row("crew_id"), row("log_type"), row("log_description"), returndateformatfulldate(row("log_date_time").ToString), row("log_store"), row("guid"), row("loc_systemlog_id"), row("zreading"), row("synced"))
+                DataGridViewSYSLOG2.Rows.Add(row("crew_id"), row("log_type"), row("log_description"), row("log_date_time"), row("log_store"), row("guid"), row("loc_systemlog_id"), row("zreading"), row("synced"))
             Next
             gettablesize(tablename:="loc_system_logs")
             countrows(tablename:=table)
@@ -95,7 +94,7 @@ Public Class SynctoCloud
 
             Dim ThisDT = AsDatatable(table, fields, DataGridViewSYSLOG3)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewSYSLOG3.Rows.Add(row("crew_id"), row("log_type"), row("log_description"), returndateformatfulldate(row("log_date_time").ToString), row("log_store"), row("guid"), row("loc_systemlog_id"), row("zreading"), row("synced"))
+                DataGridViewSYSLOG3.Rows.Add(row("crew_id"), row("log_type"), row("log_description"), row("log_date_time"), row("log_store"), row("guid"), row("loc_systemlog_id"), row("zreading"), row("synced"))
             Next
 
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewSYSLOG3)
@@ -113,7 +112,7 @@ Public Class SynctoCloud
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewSYSLOG4)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewSYSLOG4)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewSYSLOG4.Rows.Add(row("crew_id"), row("log_type"), row("log_description"), returndateformatfulldate(row("log_date_time").ToString), row("log_store"), row("guid"), row("loc_systemlog_id"), row("zreading"), row("synced"))
+                DataGridViewSYSLOG4.Rows.Add(row("crew_id"), row("log_type"), row("log_description"), row("log_date_time"), row("log_store"), row("guid"), row("loc_systemlog_id"), row("zreading"), row("synced"))
             Next
 
 
@@ -131,7 +130,7 @@ Public Class SynctoCloud
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewTRAN)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewTRAN)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewTRAN.Rows.Add(row("transaction_id"), row("transaction_number"), row("amounttendered"), row("discount"), row("moneychange"), row("amountdue"), row("vatable"), row("vat_exempt"), row("zero_rated"), row("vat"), row("si_number"), row("crew_id"), row("guid"), row("active"), row("store_id"), returndateformat(row("date").ToString), row("time"), row("transaction_type"), row("shift"), row("zreading"), row("discount_type"), row("synced"))
+                DataGridViewTRAN.Rows.Add(row("transaction_id"), row("transaction_number"), row("amounttendered"), row("discount"), row("moneychange"), row("amountdue"), row("vatable"), row("vat_exempt"), row("zero_rated"), row("vat"), row("si_number"), row("crew_id"), row("guid"), row("active"), row("store_id"), row("created_at"), row("transaction_type"), row("shift"), row("zreading"), row("discount_type"), row("synced"))
             Next
             gettablesize(tablename:="loc_daily_transaction")
             countrows(tablename:=table)
@@ -147,7 +146,7 @@ Public Class SynctoCloud
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewTRANDET)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewTRANDET)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewTRANDET.Rows.Add(row("details_id"), row("product_id"), row("product_sku"), row("product_name"), row("quantity"), row("price"), row("total"), row("crew_id"), row("transaction_number"), row("active"), returndateformat(row("created_at").ToString), row("timenow"), row("guid"), row("store_id"), row("total_cost_of_goods"), row("product_category"), row("zreading"), row("synced"))
+                DataGridViewTRANDET.Rows.Add(row("details_id"), row("product_id"), row("product_sku"), row("product_name"), row("quantity"), row("price"), row("total"), row("crew_id"), row("transaction_number"), row("active"), row("created_at"), row("guid"), row("store_id"), row("total_cost_of_goods"), row("product_category"), row("zreading"), row("synced"))
             Next
             gettablesize(tablename:="loc_daily_transaction_details")
             countrows(tablename:=table)
@@ -162,7 +161,7 @@ Public Class SynctoCloud
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewINV)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewINV)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewINV.Rows.Add(row("inventory_id"), row("store_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_quantity"), row("stock_total"), row("stock_status"), row("critical_limit"), row("guid"), returndateformatfulldate(row("date_modified").ToString), row("crew_id"), row("synced"), row("server_date_modified"), row("server_inventory_id"))
+                DataGridViewINV.Rows.Add(row("inventory_id"), row("store_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_quantity"), row("stock_total"), row("stock_status"), row("critical_limit"), row("guid"), row("created_at"), row("crew_id"), row("synced"), row("server_date_modified"), row("server_inventory_id"))
             Next
             gettablesize(tablename:="loc_pos_inventory")
             countrows(tablename:=table)
@@ -178,7 +177,7 @@ Public Class SynctoCloud
 
             Dim ThisDT = AsDatatable(table, fields, DataGridViewEXP)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewEXP.Rows.Add(row("expense_id"), row("crew_id"), row("expense_number"), row("total_amount"), row("paid_amount"), row("unpaid_amount"), row("store_id"), row("guid"), returndateformat(row("date").ToString), row("time"), row("active"), row("zreading"), row("synced"))
+                DataGridViewEXP.Rows.Add(row("expense_id"), row("crew_id"), row("expense_number"), row("total_amount"), row("paid_amount"), row("unpaid_amount"), row("store_id"), row("guid"), row("created_at").ToString, row("active"), row("zreading"), row("synced"))
             Next
 
             gettablesize(tablename:="loc_expense_list")
@@ -195,7 +194,7 @@ Public Class SynctoCloud
 
             Dim ThisDT = AsDatatable(table, fields, DataGridViewEXPDET)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewEXPDET.Rows.Add(row("expense_id"), row("expense_number"), row("expense_type"), row("item_info"), row("quantity"), row("price"), row("amount"), row("attachment"), returndateformat(row("created_at").ToString), row("time"), row("crew_id"), row("guid"), row("store_id"), row("active"), row("zreading"), row("synced"))
+                DataGridViewEXPDET.Rows.Add(row("expense_id"), row("expense_number"), row("expense_type"), row("item_info"), row("quantity"), row("price"), row("amount"), row("attachment"), row("created_at"), row("crew_id"), row("guid"), row("store_id"), row("active"), row("zreading"), row("synced"))
             Next
 
             gettablesize(tablename:="loc_expense_details")
@@ -212,7 +211,7 @@ Public Class SynctoCloud
 
             Dim ThisDT = AsDatatable(table, fields, DataGridViewLocusers)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewLocusers.Rows.Add(row("user_id"), row("user_level"), row("full_name"), row("username"), row("password"), row("contact_number"), row("email"), row("position"), row("gender"), returndateformatfulldate(row("created_at").ToString), returndateformatfulldate(row("updated_at").ToString), row("active"), row("guid"), row("store_id"), row("uniq_id"), row("synced"))
+                DataGridViewLocusers.Rows.Add(row("user_id"), row("user_level"), row("full_name"), row("username"), row("password"), row("contact_number"), row("email"), row("position"), row("gender"), row("created_at"), row("updated_at"), row("active"), row("guid"), row("store_id"), row("uniq_id"), row("synced"))
             Next
 
             gettablesize(tablename:="loc_users")
@@ -229,7 +228,7 @@ Public Class SynctoCloud
 
             Dim ThisDT = AsDatatable(table, fields, DataGridViewCUSTOMPRODUCTS)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewCUSTOMPRODUCTS.Rows.Add(row("product_id"), row("product_sku"), row("product_name"), row("formula_id"), row("product_barcode"), row("product_category"), row("product_price"), row("product_desc"), row("product_image"), row("product_status"), row("origin"), returndateformatfulldate(row("date_modified").ToString), row("guid"), row("store_id"), row("crew_id"), row("synced"), row("server_product_id"))
+                DataGridViewCUSTOMPRODUCTS.Rows.Add(row("product_id"), row("product_sku"), row("product_name"), row("formula_id"), row("product_barcode"), row("product_category"), row("product_price"), row("product_desc"), row("product_image"), row("product_status"), row("origin"), row("date_modified"), row("guid"), row("store_id"), row("crew_id"), row("synced"), row("server_product_id"))
             Next
 
             gettablesize(tablename:="loc_daily_transaction")
@@ -245,7 +244,7 @@ Public Class SynctoCloud
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewDepositSlip)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewDepositSlip)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewDepositSlip.Rows.Add(row("dep_id"), row("name"), row("crew_id"), row("transaction_number"), row("amount"), row("bank"), row("transaction_date"), row("store_id"), row("guid"), returndateformatfulldate(row("date_created").ToString), row("synced"))
+                DataGridViewDepositSlip.Rows.Add(row("dep_id"), row("name"), row("crew_id"), row("transaction_number"), row("amount"), row("bank"), row("transaction_date"), row("store_id"), row("guid"), row("created_at"), row("synced"))
             Next
             gettablesize(tablename:="loc_deposit")
             countrows(tablename:=table)
@@ -261,7 +260,7 @@ Public Class SynctoCloud
 
             Dim ThisDT = AsDatatable(table, fields, DataGridViewMODEOFTRANSACTION)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewMODEOFTRANSACTION.Rows.Add(row("mode_id"), row("transaction_type"), row("transaction_number"), row("fullname"), row("reference"), row("markup"), returndateformatfulldate(row("date_time_created").ToString), row("status"), row("store_id"), row("guid"), row("synced"))
+                DataGridViewMODEOFTRANSACTION.Rows.Add(row("mode_id"), row("transaction_type"), row("transaction_number"), row("fullname"), row("reference"), row("markup"), row("created_at"), row("status"), row("store_id"), row("guid"), row("synced"))
             Next
 
             gettablesize(tablename:="loc_transaction_mode_details")
@@ -321,7 +320,6 @@ Public Class SynctoCloud
             filldatagridmodeoftransaction()
             filldatagriddepositslip()
             totalrow = SumOfColumnsToInt(DataGridView2, 0)
-            Timer1.Start()
             Label3.Text = totalrow
             Button1.Enabled = False
             Label2.Text = "Item(s)"
@@ -335,10 +333,10 @@ Public Class SynctoCloud
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If My.Settings.ValidCloudConn = True Then
             'Button1.PerformClick()
-
             BackgroundWorker1.WorkerSupportsCancellation = True
             BackgroundWorker1.WorkerReportsProgress = True
             BackgroundWorker1.RunWorkerAsync()
+            Timer1.Start()
             Button2.Enabled = False
             SyncIsOnProcess = True
         Else
@@ -372,11 +370,7 @@ Public Class SynctoCloud
                 For Each t In threadListloadData
                     t.Join()
                 Next
-
                 ProgressBar1.Maximum = Val(Label3.Text)
-                MsgBox(ProgressBar1.Value)
-                MsgBox(ProgressBar1.Minimum)
-                MsgBox(ProgressBar1.Maximum)
                 'POS.ProgressBar1.Maximum = Val(Label7.Text)
                 '  ============================================================================transaction
                 thread1 = New Thread(AddressOf insertlocaldailytransaction)
@@ -385,22 +379,22 @@ Public Class SynctoCloud
                 thread1 = New Thread(AddressOf inserttransactiondetails1)
                 thread1.Start()
                 threadListLOCTD1.Add(thread1)
-                '  ============================================================================inventory
+                ''  ============================================================================inventory
                 thread1 = New Thread(AddressOf insertinventory)
                 thread1.Start()
                 threadListLOCINV.Add(thread1)
-                '   ============================================================================expenses
+                ''   ============================================================================expenses
                 thread1 = New Thread(AddressOf insertexpenses)
                 thread1.Start()
                 threadListLOCEXP.Add(thread1)
                 thread1 = New Thread(AddressOf insertexpensedetails)
                 thread1.Start()
                 threadListLOCEXPD.Add(thread1)
-                '============================================================================users
+                ''============================================================================users
                 thread1 = New Thread(AddressOf insertlocalusers)
                 thread1.Start()
                 threadListLOCTUSER.Add(thread1)
-                '============================================================================System Logs
+                ''============================================================================System Logs
                 thread1 = New Thread(AddressOf insertsystemlogs1)
                 thread1.Start()
                 threadListLOCSYSLOG1.Add(thread1)
@@ -413,7 +407,7 @@ Public Class SynctoCloud
                 thread1 = New Thread(AddressOf insertsystemlogs4)
                 thread1.Start()
                 threadListLOCSYSLOG4.Add(thread1)
-                '============================================================================Returns / Refunds
+                ''============================================================================Returns / Refunds
                 thread1 = New Thread(AddressOf insertrefretdetails)
                 thread1.Start()
                 threadListLOCREFRET.Add(thread1)
@@ -531,8 +525,8 @@ Public Class SynctoCloud
                 Label8.Text = "Syncing Daily Transaction"
                 messageboxappearance = False
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO `Triggers_admin_daily_transaction`(`loc_transaction_id`, `transaction_number`, `amounttendered`, `discount`, `moneychange`, `amountdue`, `vatable`, `vat_exempt`, `zero_rated`, `vat`, `si_number`, `crew_id`, `guid`, `active`, `store_id`, `date`, `time`, `transaction_type`, `shift`, `zreading`, `discount_type`)
-                                             VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17,@18,@19,@20,@21)", server)
+                    cmd = New MySqlCommand("INSERT INTO `Triggers_admin_daily_transaction`(`loc_transaction_id`, `transaction_number`, `amounttendered`, `discount`, `moneychange`, `amountdue`, `vatable`, `vat_exempt`, `zero_rated`, `vat`, `si_number`, `crew_id`, `guid`, `active`, `store_id`, `created_at`, `transaction_type`, `shift`, `zreading`, `discount_type`)
+                                             VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17,@18,@19,@20)", server)
 
                     cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
@@ -552,9 +546,8 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@16", MySqlDbType.VarChar).Value = .Rows(i).Cells(15).Value.ToString()
                     cmd.Parameters.Add("@17", MySqlDbType.VarChar).Value = .Rows(i).Cells(16).Value.ToString()
                     cmd.Parameters.Add("@18", MySqlDbType.VarChar).Value = .Rows(i).Cells(17).Value.ToString()
-                    cmd.Parameters.Add("@19", MySqlDbType.VarChar).Value = .Rows(i).Cells(18).Value.ToString()
+                    cmd.Parameters.Add("@19", MySqlDbType.Text).Value = .Rows(i).Cells(18).Value.ToString()
                     cmd.Parameters.Add("@20", MySqlDbType.Text).Value = .Rows(i).Cells(19).Value.ToString()
-                    cmd.Parameters.Add("@21", MySqlDbType.Text).Value = .Rows(i).Cells(20).Value.ToString()
                     Label7.Text = Val(Label7.Text + 1)
                     Label30.Text = Val(Label30.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
@@ -598,8 +591,8 @@ Public Class SynctoCloud
             With DataGridViewTRANDET
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_daily_transaction_details(`loc_details_id`, `product_id`, `product_sku`, `product_name`, `quantity`, `price`, `total`, `crew_id`
-                                            , `transaction_number`, `active`, `created_at`, `timenow`, `guid`, `store_id`, `total_cost_of_goods`, `product_category` , `zreading`) 
-                    VALUES (@a0, @a1, @a2, @a3, @a4, @a5, @a6, @a7, @a8, @a9, @a10, @a11, @a12, @a13, @a14, @a15, @a16)", server)
+                                            , `transaction_number`, `active`, `created_at`, `guid`, `store_id`, `total_cost_of_goods`, `product_category` , `zreading`) 
+                    VALUES (@a0, @a1, @a2, @a3, @a4, @a5, @a6, @a7, @a8, @a9, @a10, @a11, @a12, @a13, @a14, @a15)", server)
                     cmd.Parameters.Add("@a0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@a1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@a2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -613,10 +606,9 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@a10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                     cmd.Parameters.Add("@a11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
                     cmd.Parameters.Add("@a12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
-                    cmd.Parameters.Add("@a13", MySqlDbType.VarChar).Value = .Rows(i).Cells(13).Value.ToString()
-                    cmd.Parameters.Add("@a14", MySqlDbType.Decimal).Value = .Rows(i).Cells(14).Value.ToString()
+                    cmd.Parameters.Add("@a13", MySqlDbType.Decimal).Value = .Rows(i).Cells(13).Value.ToString()
+                    cmd.Parameters.Add("@a14", MySqlDbType.VarChar).Value = .Rows(i).Cells(14).Value.ToString()
                     cmd.Parameters.Add("@a15", MySqlDbType.VarChar).Value = .Rows(i).Cells(15).Value.ToString()
-                    cmd.Parameters.Add("@a16", MySqlDbType.VarChar).Value = .Rows(i).Cells(16).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label31.Text = Val(Label31.Text) + 1
@@ -726,12 +718,10 @@ Public Class SynctoCloud
                                                                          , `unpaid_amount`
                                                                          , `store_id`
                                                                          , `guid`
-                                                                         , `date`
-                                                                         , `time`
-                                                                         , `active`) 
+                                                                         , `created_at`
+                                                                         , `active`, `zreading`) 
                                              VALUES (@loc_expense_id, @crew_id, @expense_number
-                                             , @total_amount, @paid_amount, @unpaid_amount, @store_id, @guid, @date
-                                             , @time , @active)", server)
+                                             , @total_amount, @paid_amount, @unpaid_amount, @store_id, @guid, @date, @active, @zreading)", server)
                     cmd.Parameters.Add("@loc_expense_id", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@crew_id", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@expense_number", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -740,11 +730,9 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@unpaid_amount", MySqlDbType.Decimal).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@store_id", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@guid", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
-                    'MsgBox(.Rows(i).Cells(8).Value.ToString())
-                    'MsgBox(Dateandtimeformat(.Rows(i).Cells(8).Value.ToString(), "MM/dd/yyyy", "yyyy-MM-dd"))
                     cmd.Parameters.Add("@date", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
-                    cmd.Parameters.Add("@time", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
-                    cmd.Parameters.Add("@active", MySqlDbType.Int64).Value = .Rows(i).Cells(10).Value.ToString()
+                    cmd.Parameters.Add("@active", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
+                    cmd.Parameters.Add("@zreading", MySqlDbType.Int64).Value = .Rows(i).Cells(10).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label33.Text = Val(Label33.Text) + 1
@@ -799,14 +787,13 @@ Public Class SynctoCloud
                                                                             , `amount`
                                                                             , `attachment`
                                                                             , `created_at`
-                                                                            , `time`
                                                                             , `crew_id`
                                                                             , `guid`
                                                                             , `store_id`
-                                                                            , `active`) 
+                                                                            , `active`, `zreading`) 
                                              VALUES (@loc_details_id, @expense_number, @expense_type
                                              , @item_info, @quantity, @price, @amount, @attachment, @created_at
-                                             , @time , @crew_id, @guid, @store_id, @active)", server)
+                                              , @crew_id, @guid, @store_id, @active, @zreading)", server)
                     cmd.Parameters.Add("@loc_details_id", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@expense_number", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@expense_type", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -816,11 +803,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@amount", MySqlDbType.Decimal).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@attachment", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     cmd.Parameters.Add("@created_at", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
-                    cmd.Parameters.Add("@time", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
-                    cmd.Parameters.Add("@crew_id", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
-                    cmd.Parameters.Add("@guid", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
-                    cmd.Parameters.Add("@store_id", MySqlDbType.Int64).Value = .Rows(i).Cells(12).Value.ToString()
-                    cmd.Parameters.Add("@active", MySqlDbType.Int64).Value = .Rows(i).Cells(13).Value.ToString()
+                    cmd.Parameters.Add("@crew_id", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
+                    cmd.Parameters.Add("@guid", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                    cmd.Parameters.Add("@store_id", MySqlDbType.Int64).Value = .Rows(i).Cells(11).Value.ToString()
+                    cmd.Parameters.Add("@active", MySqlDbType.Int64).Value = .Rows(i).Cells(12).Value.ToString()
+                    cmd.Parameters.Add("@zreading", MySqlDbType.LongText).Value = .Rows(i).Cells(13).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label34.Text = Val(Label34.Text) + 1
@@ -1141,8 +1128,8 @@ Public Class SynctoCloud
             Label36.Text = "Syncing Refund Details"
             With DataGridViewRetrefdetails
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_refund_return_details( `loc_refret_id`, `transaction_number`, `crew_id`, `reason`, `total`, `guid`, `store_id`, `datereturned`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_refund_return_details( `loc_refret_id`, `transaction_number`, `crew_id`, `reason`, `total`, `guid`, `store_id`, `datereturned`, `zreading`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1151,6 +1138,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
+                    cmd.Parameters.Add("@8", MySqlDbType.LongText).Value = .Rows(i).Cells(8).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label14.Text = Val(Label14.Text) + 1
@@ -1256,7 +1244,7 @@ Public Class SynctoCloud
             Label44.Text = "Syncing Mode of Transaction"
             With DataGridViewMODEOFTRANSACTION
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_transaction_mode_details(`loc_mode_id`, `transaction_type`, `transaction_number`, `full_name`, `reference`, `markup`, `date_time_created`, `status`, `store_id`, `guid`)
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_transaction_mode_details(`loc_mode_id`, `transaction_type`, `transaction_number`, `full_name`, `reference`, `markup`, `created_at`, `status`, `store_id`, `guid`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
@@ -1313,7 +1301,7 @@ Public Class SynctoCloud
             Label47.Text = "Syncing Deposit Details"
             With DataGridViewDepositSlip
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_deposit_slip_details( `loc_dep_id`, `name`, `crew_id`, `transaction_number`, `amount`, `bank`, `transaction_date`, `store_id`, `guid`, `date_created`)
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_deposit_slip_details( `loc_dep_id`, `name`, `crew_id`, `transaction_number`, `amount`, `bank`, `transaction_date`, `store_id`, `guid`, `created_at`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()

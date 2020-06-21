@@ -40,7 +40,7 @@ Public Class Leaderboards
     End Sub
     Private Sub LoadTransactions()
         Try
-            GLOBAL_SELECT_ALL_FUNCTION("loc_daily_transaction ORDER BY transaction_id DESC LIMIT 10 ", "transaction_number  , CONCAT(date,' ', time) AS datetime , crew_id , amountdue, active", DataGridViewRecentSales)
+            GLOBAL_SELECT_ALL_FUNCTION("loc_daily_transaction ORDER BY transaction_id DESC LIMIT 10 ", "transaction_number  , created_at AS datetime , crew_id , amountdue, active", DataGridViewRecentSales)
             For Each row As DataRow In dt.Rows
                 row("crew_id") = returnfullname(row("crew_id"))
                 If row("active") = 1 Then
@@ -53,7 +53,7 @@ Public Class Leaderboards
     End Sub
     Private Sub LoadExpenses()
         Try
-            GLOBAL_SELECT_ALL_FUNCTION("loc_expense_list GROUP BY expense_id DESC LIMIT 10", "expense_number  , CONCAT(date,' ', time) AS datetime , crew_id , total_amount, active", DataGridViewRecentExpenses)
+            GLOBAL_SELECT_ALL_FUNCTION("loc_expense_list GROUP BY expense_id DESC LIMIT 10", "expense_number  , created_at AS datetime , crew_id , total_amount, active", DataGridViewRecentExpenses)
 
         Catch ex As Exception
             MsgBox(ex.ToString)

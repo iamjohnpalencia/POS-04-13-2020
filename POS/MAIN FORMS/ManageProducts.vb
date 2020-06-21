@@ -289,13 +289,13 @@ Public Class ManageProducts
         Try
             messageboxappearance = False
             table = "loc_pos_inventory"
-            fields = "(`store_id`, `formula_id`, `product_ingredients`, `stock_status`, `guid`, `date_modified`, `synced`, `critical_limit`)"
+            fields = "(`store_id`, `formula_id`, `product_ingredients`, `stock_status`, `guid`, `created_at`, `synced`, `critical_limit`)"
             value = "('" & ClientStoreID & "'
                     , " & selectmaxformula(whatid:="formula_id", fromtable:="loc_product_formula", flds:="formula_id") & "
                     , '" & Me.TextBoxNAME.Text & "' 
                     , " & 0 & "
                     , '" & ClientGuid & "'
-                    , '" & Format(Now, ("yyyy-MM-dd HH:mm:ss")) & "'
+                    , '" & FullDate24HR() & "'
                     , 'Unsynced'
                     , '" & 10 & "')"
             successmessage = "Successfully Added!"
@@ -311,7 +311,7 @@ Public Class ManageProducts
         Try
             messageboxappearance = True
             table = "loc_admin_products"
-            fields = "(`product_sku`,`product_name`,`formula_id`,`product_barcode`,`product_category`,`product_price`,`product_desc`,`product_image`,`origin`,`product_status`,`guid`,`store_id`,`crew_id`,`synced`)"
+            fields = "(`product_sku`,`product_name`,`formula_id`,`product_barcode`,`product_category`,`product_price`,`product_desc`,`product_image`,`origin`,`product_status`,`guid`,`store_id`,`crew_id`,`synced`,`date_modified`)"
             value = "('" & Me.TextBoxPRCODE.Text & "'
                     , '" & Me.TextBoxNAME.Text & "'
                     , " & selectmaxformula(whatid:="formula_id", fromtable:="loc_product_formula", flds:="formula_id") & "
@@ -325,7 +325,8 @@ Public Class ManageProducts
                     , '" & ClientGuid & "'
                     , " & ClientStoreID & "
                     , '" & ClientCrewID & "'
-                    , 'Unsynced')"
+                    , 'Unsynced'
+                    , '" & FullDate24HR() & "')"
             successmessage = "Successfully Added!"
             errormessage = "error manageproducts(loc_admin_products)"
             GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, errormessage:=errormessage, successmessage:=successmessage)
@@ -355,6 +356,7 @@ Public Class ManageProducts
                       ,`product_category`='Others'
                       ,`product_price`='" & Me.TextBoxPRICE.Text & "'
                       ,`product_desc`='" & Me.TextBoxCustomDesc.Text & "'
+                      ,`date_modified`='" & FullDate24HR() & "'
                       ,`product_image`='" & Me.TxtBase64.Text & "' "
                 where = " product_id = " & productid
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
@@ -367,7 +369,8 @@ Public Class ManageProducts
             Try
 
                 table = " loc_pos_inventory "
-                fields = "`product_ingredients`='" & Me.TextBoxNAME.Text & "'"
+                fields = "`product_ingredients`='" & Me.TextBoxNAME.Text & "',`created_at`='" & FullDate24HR() & "'"
+
                 where = " formula_id = " & formula_id & ""
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
             Catch ex As Exception
@@ -375,7 +378,7 @@ Public Class ManageProducts
             End Try
             Try
                 table = " loc_product_formula "
-                fields = "`product_ingredients`='" & Me.TextBoxNAME.Text & "' "
+                fields = "`product_ingredients`='" & Me.TextBoxNAME.Text & "' ,`date_modified`='" & FullDate24HR() & "'"
                 where = " formula_id = " & formula_id & ""
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
             Catch ex As Exception
@@ -393,6 +396,7 @@ Public Class ManageProducts
                           ,`product_category`='Others'
                           ,`product_price`='" & Me.TextBox2.Text & "'
                           ,`product_desc`='" & Me.TextBox3.Text & "'
+                          ,`date_modified`='" & FullDate24HR() & "'
                           ,`product_image`='" & Me.RichTextBox1.Text & "' "
                 where = " product_id = " & productid
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
@@ -404,7 +408,7 @@ Public Class ManageProducts
             End Try
             Try
                 table = " loc_pos_inventory "
-                fields = "`product_ingredients`='" & Me.TextBox5.Text & "'"
+                fields = "`product_ingredients`='" & Me.TextBoxNAME.Text & "',`created_at`='" & FullDate24HR() & "'"
                 where = " formula_id = " & formula_id & ""
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
             Catch ex As Exception
@@ -412,7 +416,7 @@ Public Class ManageProducts
             End Try
             Try
                 table = " loc_product_formula "
-                fields = "`product_ingredients`='" & Me.TextBox5.Text & "' "
+                fields = "`product_ingredients`='" & Me.TextBoxNAME.Text & "' ,`date_modified`='" & FullDate24HR() & "'"
                 where = " formula_id = " & formula_id & ""
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
             Catch ex As Exception
