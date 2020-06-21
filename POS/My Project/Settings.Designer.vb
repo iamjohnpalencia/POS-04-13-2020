@@ -101,30 +101,6 @@ Namespace My
                 Me("LocalConnectionString") = value
             End Set
         End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property ValidAddtionalSettings() As Boolean
-            Get
-                Return CType(Me("ValidAddtionalSettings"),Boolean)
-            End Get
-            Set
-                Me("ValidAddtionalSettings") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property ValidDevSettings() As Boolean
-            Get
-                Return CType(Me("ValidDevSettings"),Boolean)
-            End Get
-            Set
-                Me("ValidDevSettings") = value
-            End Set
-        End Property
     End Class
 End Namespace
 

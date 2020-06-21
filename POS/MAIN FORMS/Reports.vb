@@ -721,8 +721,9 @@ Public Class Reports
         'RightToLeftDisplay(sender, e, 675, "NEW GRAND TOTAL", "3000.00", Font)
         '============================================================================================================================
         SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 590)
+        MsgBox(S_Zreading)
         '============================================================================================================================
-        CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "hh:mm:ss tt"), font, 595)
+        CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 595)
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonZread.Click
         Try

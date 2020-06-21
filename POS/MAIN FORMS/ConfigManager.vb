@@ -14,6 +14,8 @@ Public Class ConfigManager
     Dim BTNSaveLocalConn As Boolean = False
     Dim BTNSaveCloudConn As Boolean = False
     Dim Autobackup As Boolean = False
+    Dim ConfirmAdditionalSettings As Boolean = False
+    Dim ConfirmDevInfoSettings As Boolean = False
     Private Sub ConfigManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CheckForIllegalCrossThreadCalls = False
         TabControl1.TabPages(0).Text = "General Settings"
@@ -370,30 +372,30 @@ Public Class ConfigManager
                                         ElseIf dt(0)(4) = 1 Then
                                             RadioButtonYES.Checked = True
                                         End If
-                                        My.Settings.ValidAddtionalSettings = True
+                                        ConfirmAdditionalSettings = True
                                     Else
-                                        My.Settings.ValidAddtionalSettings = False
+                                        ConfirmAdditionalSettings = False
                                         Exit For
                                     End If
                                 Else
-                                    My.Settings.ValidAddtionalSettings = False
+                                    ConfirmAdditionalSettings = False
                                     Exit For
                                 End If
                             Else
-                                My.Settings.ValidAddtionalSettings = False
+                                ConfirmAdditionalSettings = False
                                 Exit For
                             End If
                         Else
-                            My.Settings.ValidAddtionalSettings = False
+                            ConfirmAdditionalSettings = False
                             Exit For
                         End If
                     Else
-                        My.Settings.ValidAddtionalSettings = False
+                        ConfirmAdditionalSettings = False
                         Exit For
                     End If
                 Next
             Else
-                My.Settings.ValidAddtionalSettings = False
+                ConfirmAdditionalSettings = False
             End If
             My.Settings.Save()
         Catch ex As Exception
@@ -427,46 +429,46 @@ Public Class ConfigManager
                                                         TextBoxDEVPTU.Text = row("Dev_PTU_No")
                                                         DateTimePicker4PTUDI.Value = row("Dev_PTU_Date_Issued")
                                                         DateTimePickerPTUVU.Value = row("Dev_PTU_Valid_Until")
-                                                        My.Settings.ValidDevSettings = True
+                                                        ConfirmDevInfoSettings = True
                                                     Else
-                                                        My.Settings.ValidDevSettings = False
+                                                        ConfirmDevInfoSettings = False
                                                         Exit For
                                                     End If
                                                 Else
-                                                    My.Settings.ValidDevSettings = False
+                                                    ConfirmDevInfoSettings = False
                                                     Exit For
                                                 End If
                                             Else
-                                                My.Settings.ValidDevSettings = False
+                                                ConfirmDevInfoSettings = False
                                                 Exit For
                                             End If
                                         Else
-                                            My.Settings.ValidDevSettings = False
+                                            ConfirmDevInfoSettings = False
                                             Exit For
                                         End If
                                     Else
-                                        My.Settings.ValidDevSettings = False
+                                        ConfirmDevInfoSettings = False
                                         Exit For
                                     End If
                                 Else
-                                    My.Settings.ValidDevSettings = False
+                                    ConfirmDevInfoSettings = False
                                     Exit For
                                 End If
                             Else
-                                My.Settings.ValidDevSettings = False
+                                ConfirmDevInfoSettings = False
                                 Exit For
                             End If
                         Else
-                            My.Settings.ValidDevSettings = False
+                            ConfirmDevInfoSettings = False
                             Exit For
                         End If
                     Else
-                        My.Settings.ValidDevSettings = False
+                        ConfirmDevInfoSettings = False
                         Exit For
                     End If
                 Next
             Else
-                My.Settings.ValidDevSettings = False
+                ConfirmDevInfoSettings = False
             End If
             My.Settings.Save()
         Catch ex As Exception
@@ -732,8 +734,7 @@ Public Class ConfigManager
                         cmd = New MySqlCommand(sql, TestLocalConnection)
                         cmd.ExecuteNonQuery()
                         MsgBox("Saved!")
-                        My.Settings.ValidAddtionalSettings = True
-                        My.Settings.Save()
+
                     Else
                         Dim fields2 = "(A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading)"
                         Dim value = "('" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "'
@@ -746,18 +747,17 @@ Public Class ConfigManager
                         cmd = New MySqlCommand(sql, TestLocalConnection)
                         cmd.ExecuteNonQuery()
                         MsgBox("Saved!")
-                        My.Settings.ValidAddtionalSettings = True
-                        My.Settings.Save()
                     End If
+                    ConfirmAdditionalSettings = True
                     TextboxEnableability(GroupBox10, False)
                     RDButtons(False)
                     ButtonGetExportPath.Enabled = False
                 Else
-                    My.Settings.ValidAddtionalSettings = False
-                    My.Settings.Save()
+                    ConfirmAdditionalSettings = False
                     MsgBox("Invalid Local Connection.")
                 End If
             Else
+                ConfirmAdditionalSettings = False
                 MsgBox("All fields are required.")
             End If
         Catch ex As Exception
@@ -849,8 +849,7 @@ Public Class ConfigManager
                     sql = "UPDATE " & table & " SET " & fields1 & " WHERE " & where
                     cmd = New MySqlCommand(sql, TestLocalConnection)
                     cmd.ExecuteNonQuery()
-                    My.Settings.ValidDevSettings = True
-                    My.Settings.Save()
+                    ConfirmDevInfoSettings = True
                     MsgBox("Saved!")
                 Else
                     Dim fields2 = "(Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until)"
@@ -867,20 +866,17 @@ Public Class ConfigManager
                     cmd = New MySqlCommand(sql, TestLocalConnection)
                     cmd.ExecuteNonQuery()
                     MsgBox("Saved!")
-                    My.Settings.ValidAddtionalSettings = True
-                    My.Settings.Save()
+                    ConfirmDevInfoSettings = True
                 End If
                 TextboxEnableability(GroupBox11, False)
                 DatePickerState(False)
             Else
                 MsgBox("Invalid local connection")
-                My.Settings.ValidDevSettings = False
-                My.Settings.Save()
+                ConfirmDevInfoSettings = False
             End If
         Else
             MsgBox("All fields are required")
-            My.Settings.ValidDevSettings = False
-            My.Settings.Save()
+            ConfirmDevInfoSettings = False
         End If
     End Sub
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
@@ -889,8 +885,8 @@ Public Class ConfigManager
                 If My.Settings.ValidCloudConn = True Then
                     If Autobackup = True Then
                         If BTNSaveCloudConn = True Then
-                            If My.Settings.ValidAddtionalSettings = True Then
-                                If My.Settings.ValidDevSettings = True Then
+                            If ConfirmAdditionalSettings = True Then
+                                If ConfirmDevInfoSettings = True Then
                                     If AccountExist = True Then
                                         If FranchiseeStoreValidation = True Then
                                             If Not String.IsNullOrWhiteSpace(TextBoxProdKey.Text) Then
@@ -1511,7 +1507,7 @@ Public Class ConfigManager
     End Sub
     Private Sub TextBoxDEVPTU_TextChanged(sender As Object, e As EventArgs) Handles TextBoxDevTIN.TextChanged, TextBoxDEVPTU.TextChanged, TextBoxDevname.TextChanged, TextBoxDevAdd.TextChanged, TextBoxDevAccr.TextChanged
         Try
-            My.Settings.ValidDevSettings = False
+            ConfirmDevInfoSettings = False
             My.Settings.Save()
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1519,15 +1515,14 @@ Public Class ConfigManager
     End Sub
     Private Sub DateTimePicker1ACCRDI_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePickerPTUVU.ValueChanged, DateTimePicker4PTUDI.ValueChanged, DateTimePicker2ACCRVU.ValueChanged, DateTimePicker1ACCRDI.ValueChanged
         Try
-            My.Settings.ValidDevSettings = False
-            My.Settings.Save()
+            ConfirmDevInfoSettings = False
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub TextBoxExportPath_TextChanged(sender As Object, e As EventArgs) Handles TextBoxTerminalNo.TextChanged, TextBoxTax.TextChanged, TextBoxSINumber.TextChanged, TextBoxExportPath.TextChanged
         Try
-            My.Settings.ValidAddtionalSettings = False
+            ConfirmAdditionalSettings = False
             My.Settings.Save()
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1535,7 +1530,7 @@ Public Class ConfigManager
     End Sub
     Private Sub RadioButtonYES_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonYES.CheckedChanged, RadioButtonNO.CheckedChanged
         Try
-            My.Settings.ValidAddtionalSettings = False
+            ConfirmAdditionalSettings = False
             My.Settings.Save()
         Catch ex As Exception
             MsgBox(ex.ToString)

@@ -90,7 +90,19 @@ Public Class Inventory
         End Try
     End Sub
     Sub loadcomboboxingredients()
-        GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX(table:="loc_pos_inventory", combobox:=ComboBoxDESC, errormessage:="", fields:="product_ingredients", successmessage:="")
+        Try
+            Dim sql = "SELECT product_ingredients FROM loc_pos_inventory"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim dt As DataTable = New DataTable
+            da.Fill(dt)
+            For Each row As DataRow In dt.Rows
+                ComboBoxDESC.Items.Add(row("product_ingredients"))
+            Next
+            LocalhostConn.close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Dim DataTableInventory As New DataTable
     Dim DataTableFormula As New DataTable
@@ -321,9 +333,7 @@ Public Class Inventory
             loadstockadjustmentreport(True)
         End If
     End Sub
-    Private Sub ComboBoxDESC_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxDESC.SelectedIndexChanged
-        selectingredients()
-    End Sub
+
     Private Sub ComboBoxAction_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxAction.SelectedIndexChanged
         If ComboBoxAction.Text = "Transfer" Then
             ComboBoxOutlets.Visible = True
@@ -333,7 +343,8 @@ Public Class Inventory
             Label10.Visible = False
         End If
     End Sub
-    Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
 
+    Private Sub ComboBoxDESC_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxDESC.SelectedIndexChanged
+        selectingredients()
     End Sub
 End Class
