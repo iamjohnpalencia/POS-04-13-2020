@@ -333,6 +333,7 @@ Public Class SynctoCloud
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If My.Settings.ValidCloudConn = True Then
             'Button1.PerformClick()
+            GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "Start : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
             BackgroundWorker1.WorkerSupportsCancellation = True
             BackgroundWorker1.WorkerReportsProgress = True
             BackgroundWorker1.RunWorkerAsync()
@@ -495,6 +496,7 @@ Public Class SynctoCloud
                 MsgBox("Internet connection lost")
                 Button1.Enabled = True
                 Button2.Enabled = True
+                GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "State: Unsuccessful, Time End : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
             Else
                 SyncIsOnProcess = False
                 Timer1.Enabled = False
@@ -506,6 +508,7 @@ Public Class SynctoCloud
                     Button1.Enabled = True
                     Button2.Enabled = True
                 End If
+                GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "State: Successful, Time End : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)

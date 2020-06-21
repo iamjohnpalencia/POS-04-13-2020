@@ -440,6 +440,8 @@ Module publicfunctions
         End If
         SystemLogDesc = EndingBalance
         GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+
+
         Shift = ""
         BeginningBalance = 0
         EndingBalance = 0

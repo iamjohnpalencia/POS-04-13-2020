@@ -219,6 +219,9 @@
         Else
             If MessageBox.Show("Are you sure you really want to Logout ?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 FormIsOpen()
+                SystemLogDesc = "User Logout: " & returnfullname(where:=ClientCrewID)
+                SystemLogType = "LOG OUT"
+                GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
                 EndBalance()
                 iflogout = True
                 Login.Show()
