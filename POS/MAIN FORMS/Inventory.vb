@@ -17,7 +17,7 @@ Public Class Inventory
         loadfastmovingstock()
         loadstockentry()
         loadcomboboxingredients()
-        ComboBoxDESC.SelectedIndex = -1
+
     End Sub
     Private Sub Inventory_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Me.Hide()
@@ -96,10 +96,9 @@ Public Class Inventory
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
-            For Each row As DataRow In dt.Rows
-                ComboBoxDESC.Items.Add(row("product_ingredients"))
+            For i As Integer = 0 To dt.Rows.Count - 1 Step +1
+                ComboBoxDESC.Items.Add(dt(i)(0))
             Next
-            LocalhostConn.close()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -109,40 +108,50 @@ Public Class Inventory
     Dim inv
     Public Sub selectingredients()
         Try
-            sql = "Select formula_id, serving_unit, serving_value FROM loc_product_formula WHERE product_ingredients ='" & ComboBoxDESC.Text & "'"
-            cmd = New MySqlCommand
-            With cmd
-                .CommandText = sql
-                .Connection = LocalhostConn()
-                Using readerObj As MySqlDataReader = cmd.ExecuteReader
-                    While readerObj.Read
-                        Dim serving_unit = readerObj("serving_unit").ToString
-                        Dim servingval = readerObj("serving_value").ToString
-                        TextBoxINVENTORYID.Text = readerObj("formula_id").ToString
-                        TextBoxSERVINGVAL.Text = servingval
-                        TextBoxSERVINGUNIT.Text = serving_unit
-                    End While
-                End Using
-            End With
+            Dim sql = "SELECT inventory_id FROM loc_pos_inventory WHERE product_ingredients = '" & ComboBoxDESC.Text & "'"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim dt As DataTable = New DataTable
+            da.Fill(dt)
+            Dim inventory_id = dt(0)(0)
+            Dim sql1 = "Select formula_id, serving_unit, serving_value FROM loc_product_formula WHERE formula_id = " & inventory_id & ""
+            cmd = New MySqlCommand(sql1, LocalhostConn)
+            da = New MySqlDataAdapter(cmd)
+            Dim dt1 As DataTable = New DataTable
+            da.Fill(dt1)
+            For Each row As DataRow In dt1.Rows
+                TextBoxSERVINGUNIT.Text = row("serving_unit")
+                TextBoxSERVINGVAL.Text = row("serving_value")
+                TextBoxINVENTORYID.Text = row("formula_id")
+            Next
+            Dim sql2 = "SELECT formula_id, stock_quantity FROM loc_pos_inventory WHERE formula_id = " & inventory_id & " "
+            cmd = New MySqlCommand(sql2, LocalhostConn)
+            da = New MySqlDataAdapter(cmd)
+            Dim dt2 As DataTable = New DataTable
+            da.Fill(dt2)
+            For Each row As DataRow In dt2.Rows
+                TextBoxSTCKONHAND.Text = row("stock_quantity")
+            Next
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-        Try
-            sql = "SELECT formula_id, stock_quantity FROM loc_pos_inventory WHERE formula_id ='" & TextBoxINVENTORYID.Text & "'"
-            cmd = New MySqlCommand
-            With cmd
-                .CommandText = sql
-                .Connection = LocalhostConn()
-                Using readerObj As MySqlDataReader = cmd.ExecuteReader
-                    While readerObj.Read
-                        Dim stock = readerObj("stock_quantity").ToString
-                        TextBoxSTCKONHAND.Text = stock
-                    End While
-                End Using
-            End With
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
+
+        '    sql = "SELECT formula_id, stock_quantity FROM loc_pos_inventory WHERE formula_id ='" & TextBoxINVENTORYID.Text & "'"
+        '    cmd = New MySqlCommand
+        '    With cmd
+        '        .CommandText = sql
+        '        .Connection = LocalhostConn()
+        '        Using readerObj As MySqlDataReader = cmd.ExecuteReader
+        '            While readerObj.Read
+        '                Dim stock = readerObj("stock_quantity").ToString
+        '                TextBoxSTCKONHAND.Text = stock
+        '            End While
+        '        End Using
+        '    End With
+        'Catch ex As Exception
+        '    MsgBox(ex.ToString)
+        'End Try
     End Sub
     Sub loadstockentry()
 
@@ -295,8 +304,8 @@ Public Class Inventory
                 SystemLogDesc = ComboBoxDESC.Text & " | Qty: " & TextBoxENTRYQTY.Text
                 GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
                 ClearTextBox(Panel21)
-                ComboBoxDESC.SelectedIndex = -1
-                TextBoxENTRYTOTALQTY.Text = ""
+                ComboBoxDESC.SelectedIndex = 0
+                TextBoxENTRYTOTALQTY.Text = 0
                 loadstockentry()
                 loadpanelstockadjustment()
                 loadinventory()

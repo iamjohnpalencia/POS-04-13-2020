@@ -736,27 +736,27 @@ Public Class SettingsForm
                         End If
                     End If
                 End If
-                For i As Integer = 0 To dt.Rows.Count - 1 Step +1
-                    If dt(i)(0) = "" Then
-                        My.Settings.ValidAddtionalSettings = False
-                        Exit For
-                    ElseIf dt(i)(1) = "" Then
-                        My.Settings.ValidAddtionalSettings = False
-                        Exit For
-                    ElseIf dt(i)(2) = "" Then
-                        My.Settings.ValidAddtionalSettings = False
-                        Exit For
-                    ElseIf dt(i)(3) = "" Then
-                        My.Settings.ValidAddtionalSettings = False
-                        Exit For
-                    ElseIf dt(i)(4) = "" Then
-                        My.Settings.ValidAddtionalSettings = False
-                        Exit For
-                    Else
-                        My.Settings.ValidAddtionalSettings = True
-                        Exit For
-                    End If
-                Next
+                'For i As Integer = 0 To dt.Rows.Count - 1 Step +1
+                '    If dt(i)(0) = "" Then
+                '        My.Settings.ValidAddtionalSettings = False
+                '        Exit For
+                '    ElseIf dt(i)(1) = "" Then
+                '        My.Settings.ValidAddtionalSettings = False
+                '        Exit For
+                '    ElseIf dt(i)(2) = "" Then
+                '        My.Settings.ValidAddtionalSettings = False
+                '        Exit For
+                '    ElseIf dt(i)(3) = "" Then
+                '        My.Settings.ValidAddtionalSettings = False
+                '        Exit For
+                '    ElseIf dt(i)(4) = "" Then
+                '        My.Settings.ValidAddtionalSettings = False
+                '        Exit For
+                '    Else
+                '        My.Settings.ValidAddtionalSettings = True
+                '        Exit For
+                '    End If
+                'Next
                 My.Settings.Save()
             End If
         Catch ex As Exception
@@ -800,48 +800,48 @@ Public Class SettingsForm
                         DateTimePickerPTUVU.Value = dt(0)(8)
                     End If
                 End If
-                For i As Integer = 0 To dt.Rows.Count - 1 Step +1
-                    If dt(i)(0) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(1) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(2) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(3) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(4) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(5) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(6) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(7) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    ElseIf dt(i)(8) = "" Then
-                        My.Settings.ValidDevSettings = False
-                        My.Settings.Save()
-                        Exit For
-                    Else
-                        My.Settings.ValidDevSettings = True
-                        My.Settings.Save()
-                    End If
-                Next
+                'For i As Integer = 0 To dt.Rows.Count - 1 Step +1
+                '    If dt(i)(0) = "" Then
+                '        My.Settings.ValidDevSettings = False
+                '        My.Settings.Save()
+                '        Exit For
+                '    ElseIf dt(i)(1) = "" Then
+                '        My.Settings.ValidDevSettings = False
+                '        My.Settings.Save()
+                '        Exit For
+                '    ElseIf dt(i)(2) = "" Then
+                '        My.Settings.ValidDevSettings = False
+                '        My.Settings.Save()
+                '        Exit For
+                '    ElseIf dt(i)(3) = "" Then
+                '        My.Settings.ValidDevSettings = False
+                '        My.Settings.Save()
+                '        Exit For
+                '    ElseIf dt(i)(4) = "" Then
+                '        My.Settings.ValidDevSettings = False
+                '        My.Settings.Save()
+                '        Exit For
+                '    ElseIf dt(i)(5) = "" Then
+                '        My.Settings.ValidDevSettings = False
+                '        My.Settings.Save()
+                '        Exit For
+                '    ElseIf dt(i)(6) = "" Then
+                '        My.Settings.ValidDevSettings = False
+                '        My.Settings.Save()
+                '        Exit For
+                '    ElseIf dt(i)(7) = "" Then
+                '        My.Settings.ValidDevSettings = False
+                '        My.Settings.Save()
+                '        Exit For
+                '    ElseIf dt(i)(8) = "" Then
+                '        My.Settings.ValidDevSettings = False
+                '        My.Settings.Save()
+                '        Exit For
+                '    Else
+                '        My.Settings.ValidDevSettings = True
+                '        My.Settings.Save()
+                '    End If
+                'Next
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
