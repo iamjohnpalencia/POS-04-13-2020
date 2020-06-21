@@ -668,7 +668,7 @@ Public Class Reports
         '============================================================================================================================
         RightToLeftDisplay(sender, e, 140, "TERMINAL N0.", S_Terminal_No, font)
         RightToLeftDisplay(sender, e, 155, "GROSS", GrossSale, font)
-        RightToLeftDisplay(sender, e, 165, "LESS VAT (VE)", "0", font)
+        RightToLeftDisplay(sender, e, 165, "LESS VAT (VE)", "0*", font)
         RightToLeftDisplay(sender, e, 175, "LESS VAT DIPLOMAT", "0", font)
         RightToLeftDisplay(sender, e, 185, "LESS VAT (OTHER)", "0", font)
         RightToLeftDisplay(sender, e, 195, "ADD VAT", "0", font)
