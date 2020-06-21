@@ -84,6 +84,10 @@ Partial Class Leaderboards
         Me.DatagridviewTransfers = New System.Windows.Forms.DataGridView()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.DatagridviewLogs = New System.Windows.Forms.DataGridView()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel3.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -611,10 +615,10 @@ Partial Class Leaderboards
         'TabPage4
         '
         Me.TabPage4.Controls.Add(Me.DatagridviewLogs)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 24)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(654, 234)
+        Me.TabPage4.Size = New System.Drawing.Size(654, 232)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TabPage4"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -638,6 +642,7 @@ Partial Class Leaderboards
         DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DatagridviewLogs.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
         Me.DatagridviewLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DatagridviewLogs.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column3, Me.Column4, Me.Column5, Me.Column6})
         DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle15.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
@@ -651,8 +656,29 @@ Partial Class Leaderboards
         Me.DatagridviewLogs.EnableHeadersVisualStyles = False
         Me.DatagridviewLogs.Location = New System.Drawing.Point(3, 3)
         Me.DatagridviewLogs.Name = "DatagridviewLogs"
-        Me.DatagridviewLogs.Size = New System.Drawing.Size(648, 228)
+        Me.DatagridviewLogs.RowHeadersVisible = False
+        Me.DatagridviewLogs.Size = New System.Drawing.Size(648, 226)
         Me.DatagridviewLogs.TabIndex = 6
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Column3"
+        Me.Column3.Name = "Column3"
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Column4"
+        Me.Column4.Name = "Column4"
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Column5"
+        Me.Column5.Name = "Column5"
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Column6"
+        Me.Column6.Name = "Column6"
         '
         'Leaderboards
         '
@@ -747,4 +773,8 @@ Partial Class Leaderboards
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
 End Class

@@ -69,7 +69,26 @@ Public Class Leaderboards
     End Sub
     Private Sub LoadLogs()
         Try
-            GLOBAL_SELECT_ALL_FUNCTION("loc_system_logs WHERE log_type <> 'STOCK TRANSFER'  GROUP BY log_date_time DESC LIMIT 10", "loc_systemlog_id  , log_date_time , crew_id , log_description", DatagridviewLogs)
+            'GLOBAL_SELECT_ALL_FUNCTION("loc_system_logs WHERE log_type <> 'STOCK TRANSFER'  GROUP BY log_date_time DESC LIMIT 10", "log_type , log_description  , crew_id, log_date_time", DatagridviewLogs)
+            Dim AsDt = AsDatatable("loc_system_logs WHERE log_type <> 'STOCK TRANSFER'  GROUP BY log_date_time DESC LIMIT 10", "log_type , log_description  , crew_id, log_date_time", DatagridviewLogs)
+            Dim Desc As String = ""
+            Dim Type As String = ""
+            For Each row As DataRow In AsDt.Rows
+                If row("log_type") = "BG-1" Then
+                    row("log_type") = "Balance"
+                    row("log_description") = "Begginning Balance : Shift 1 : " & row("log_description")
+                ElseIf row("log_type") = "BG-2" Then
+                    row("log_type") = "Balance"
+                    row("log_description") = "Begginning Balance : Shift 2 : " & row("log_description")
+                ElseIf row("log_type") = "BG-3" Then
+                    row("log_type") = "Balance"
+                    row("log_description") = "Begginning Balance : Shift 3 : " & row("log_description")
+                ElseIf row("log_type") = "BG-4" Then
+                    row("log_type") = "Balance"
+                    row("log_description") = "Begginning Balance : Shift 4 : " & row("log_description")
+                End If
+                DatagridviewLogs.Rows.Add(row("log_type"), row("log_description"), returnfullname(row("crew_id")), row("log_date_time"))
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
