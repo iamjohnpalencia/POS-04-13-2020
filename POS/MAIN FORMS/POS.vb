@@ -12,20 +12,15 @@ Public Class POS
     Public ButtonClickCount As Integer = 0
     Public a = 0
     Public b = 0
-    Public VATABLE As Double
+
     Public vat As Decimal
-    Public total
+    Public SUPERAMOUNTDUE
     Dim result As Integer
     Dim stockqty
     Dim stocktotal
     Dim insertcurrenttime As String
     Dim insertcurrentdate As String
-    Dim discountgrandtotal As Double
     Dim thread As Thread
-    Public VATEXEMPTSALES As Double
-    Public LESSVAT As Double
-    Public GRANDTOTALDISCOUNT As Double
-    Public discounttype As String = "N/A"
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DataGridViewPRODUCTUPDATE.DataSource = ProductDTUpdate
@@ -141,12 +136,7 @@ Public Class POS
             CouponCode.ButtonSubmit.Enabled = False
         End If
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonApplyCoupon.Click
-        Enabled = False
-        GetProductHighestValue()
-        CouponCode.Show()
-        CouponCode.ButtonSubmit.Enabled = True
-    End Sub
+
     Private Sub Button38_Click(sender As Object, e As EventArgs) Handles ButtonEnter.Click
         enterpressorbuttonpress = False
         If payment = False Then
@@ -194,6 +184,186 @@ Public Class POS
             End Try
         Else
             'ButtonSubmitPayment.PerformClick()
+        End If
+    End Sub
+
+    Private Sub ButtonCP_Click(sender As Object, e As EventArgs) Handles ButtonCP.Click
+        Dim discount As Double = Val(TextBoxDISCOUNT.Text / 100)
+        Dim discounttotal As Double = Val(TextBoxSUBTOTAL.Text * discount)
+        discountgrandtotal = discounttotal
+        TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
+        TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+    End Sub
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles ButtonPendingOrders.Click
+        Dim newMDIchild As New PendingOrders()
+        If Application.OpenForms().OfType(Of PendingOrders).Any Then
+            PendingOrders.BringToFront()
+        Else
+            PendingOrders.Show()
+            posandpendingenter = True
+            Me.Enabled = False
+        End If
+    End Sub
+    Private Sub Buttonholdoder_Click(sender As Object, e As EventArgs) Handles Buttonholdoder.Click
+        If Application.OpenForms().OfType(Of HoldOrder).Any Then
+            HoldOrder.BringToFront()
+        Else
+            HoldOrder.Show()
+            Me.Enabled = False
+        End If
+    End Sub
+    Private Sub ButtonPay_Click(sender As Object, e As EventArgs) Handles ButtonPay.Click
+        If Shift = "" Then
+            MessageBox.Show("Input cashier balance first", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Else
+            If S_Zreading <> Format(Now(), "yyyy-MM-dd") Then
+                MessageBox.Show("Z-read", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                Enabled = False
+                PaymentForm.TextBoxTOTALPAY.Text = TextBoxGRANDTOTAL.Text
+                PaymentForm.Show()
+                PaymentForm.Focus()
+            End If
+        End If
+    End Sub
+    Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
+        Try
+            If DataGridViewOrders.Rows.Count > 0 Then
+                datas = DataGridViewOrders.SelectedRows(0).Cells(4).Value.ToString()
+                For x As Integer = DataGridViewInv.Rows.Count - 1 To 0 Step -1
+                    If DataGridViewInv.Rows(x).Cells("Column8").Value = datas Then
+                        DataGridViewInv.Rows.Remove(DataGridViewInv.Rows(x))
+                    End If
+                Next
+                datas = ""
+                deleteitem = True
+                Dim dr As DataGridViewRow
+                For Each dr In DataGridViewOrders.SelectedRows
+                    Dim sum As String = DataGridViewOrders.SelectedRows(0).Cells(3).Value.ToString
+                    DataGridViewOrders.Rows.Remove(dr)
+                    Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
+                    Dim discount As Double = Val(TextBoxDISCOUNT.Text / 100)
+                    Dim discounttotal As Double = Val(Label76.Text) * discount
+                    TextBoxSUBTOTAL.Text = Val(Label76.Text)
+
+                    TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
+                    TextBoxSUBTOTAL.Text = Format(Val(TextBoxSUBTOTAL.Text), "##,##0.00")
+                    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+                Next
+            Else
+                TextBoxQTY.Text = 0
+                MessageBox.Show("Add item first", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+            If DataGridViewOrders.Rows.Count > 0 Then
+                ButtonPay.Enabled = True
+                Buttonholdoder.Enabled = True
+                ButtonPendingOrders.Enabled = False
+            Else
+                ButtonClickCount = 0
+                ButtonPay.Enabled = False
+                Buttonholdoder.Enabled = False
+                ButtonPendingOrders.Enabled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Label76_TextChanged(sender As Object, e As EventArgs) Handles Label76.TextChanged
+        Try
+            If DataGridViewOrders.RowCount > 0 Then
+                ButtonApplyCoupon.Enabled = True
+            Else
+                ButtonApplyCoupon.Enabled = False
+            End If
+
+            Label76.Text = SumOfColumnsToDecimal(DataGridViewOrders, 3)
+            TextBoxGRANDTOTAL.Text = Label76.Text
+            TextBoxSUBTOTAL.Text = Label76.Text
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub POS_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Expenses.Dispose()
+        Promo.Dispose()
+        Couponisavailable = False
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        insertcurrenttime = TimeOfDay.ToString("HH:mm:ss")
+        insertcurrentdate = String.Format("{0:yyyy/MM/dd}", DateTime.Now)
+        Label11.Text = Date.Now.ToString("hh:mm:ss tt")
+    End Sub
+
+
+    Private Sub ButtonCDISC_Click(sender As Object, e As EventArgs) Handles ButtonCDISC.Click
+        TextBoxDISCOUNT.Text = 0
+        ButtonCP.PerformClick()
+        Couponisavailable = False
+    End Sub
+    Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles ButtonTransactionMode.Click
+        Enabled = False
+        TransactionType.Show()
+    End Sub
+    Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim message = MessageBox.Show("Do you want to add Extra packaging?", "Extra packaging", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+        If message = DialogResult.Yes Then
+            Try
+                table = "loc_pos_inventory"
+                fields = "stock_quantity = stock_quantity - 1, stock_total = stock_total - 1"
+                where = "product_ingredients = 'Extra Packaging'"
+                GLOBAL_FUNCTION_UPDATE(table, fields, where)
+                SystemLogType = "PACKAGING"
+                SystemLogDesc = "Crew : " & ClientCrewID
+                GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+            End Try
+        End If
+    End Sub
+#Region "Button Functions"
+    Private Sub POS_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyData = Keys.Alt + Keys.F4 Then
+            e.Handled = True
+        End If
+        If e.KeyCode = Keys.F9 Then
+            ButtonPay.PerformClick()
+        ElseIf e.KeyCode = Keys.Enter Then
+            ButtonEnter.PerformClick()
+        ElseIf e.KeyCode = Keys.F10 Then
+            ButtonTransactionMode.PerformClick()
+        ElseIf e.KeyCode = Keys.F11 Then
+            Buttonholdoder.PerformClick()
+        ElseIf e.KeyCode = Keys.F12 Then
+            ButtonPendingOrders.PerformClick()
+        ElseIf e.KeyCode = Keys.Delete Then
+            ButtonCancel.PerformClick()
+            '=================================
+        End If
+        If payment = False Then
+            If e.KeyCode = Keys.NumPad0 Then
+                ButtonNo0.PerformClick()
+            ElseIf e.KeyCode = Keys.NumPad1 Then
+                ButtonNo1.PerformClick()
+            ElseIf e.KeyCode = Keys.NumPad2 Then
+                ButtonNo2.PerformClick()
+            ElseIf e.KeyCode = Keys.NumPad3 Then
+                ButtonNo3.PerformClick()
+            ElseIf e.KeyCode = Keys.NumPad4 Then
+                ButtonNo4.PerformClick()
+            ElseIf e.KeyCode = Keys.NumPad5 Then
+                ButtonNo5.PerformClick()
+            ElseIf e.KeyCode = Keys.NumPad6 Then
+                ButtonNo6.PerformClick()
+            ElseIf e.KeyCode = Keys.NumPad7 Then
+                ButtonNo7.PerformClick()
+            ElseIf e.KeyCode = Keys.NumPad8 Then
+                ButtonNo8.PerformClick()
+            ElseIf e.KeyCode = Keys.NumPad9 Then
+                ButtonNo9.PerformClick()
+            ElseIf e.KeyCode = Keys.Back Then
+                ButtonClear.PerformClick()
+            End If
         End If
     End Sub
     Private Sub ButtonNo9_Click(sender As Object, e As EventArgs) Handles ButtonNo9.Click
@@ -351,161 +521,212 @@ Public Class POS
             TextBoxQTY.Text = 0
         End If
     End Sub
-    Private Sub ButtonCP_Click(sender As Object, e As EventArgs) Handles ButtonCP.Click
-        Dim discount As Double = Val(TextBoxDISCOUNT.Text / 100)
-        Dim discounttotal As Double = Val(TextBoxSUBTOTAL.Text * discount)
-        discountgrandtotal = discounttotal
-        TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
-        TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+#End Region
+#Region "POS Coupon Application/ Print/ Transaction"
+    Public DISCOUNTGRANDTOTAL As Double
+    Public VATEXEMPTSALES As Double
+    Public LESSVAT As Double
+    Public GRANDTOTALDISCOUNT As Double
+    Public DISCOUNTTYPE As String = "N/A"
+    Public VATABLE As Double
+
+    Dim THREADLIST As List(Of Thread) = New List(Of Thread)
+    Dim TIMETOINSERT As String
+    Dim ACTIVE As Integer = 1
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonApplyCoupon.Click
+        Enabled = False
+        'GetProductHighestValue()
+        GetHighest()
+        CouponCode.Show()
+        CouponCode.ButtonSubmit.Enabled = True
     End Sub
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles ButtonPendingOrders.Click
-        Dim newMDIchild As New PendingOrders()
-        If Application.OpenForms().OfType(Of PendingOrders).Any Then
-            PendingOrders.BringToFront()
-        Else
-            PendingOrders.Show()
-            posandpendingenter = True
-            Me.Enabled = False
-        End If
-    End Sub
-    Private Sub Buttonholdoder_Click(sender As Object, e As EventArgs) Handles Buttonholdoder.Click
-        If Application.OpenForms().OfType(Of HoldOrder).Any Then
-            HoldOrder.BringToFront()
-        Else
-            HoldOrder.Show()
-            Me.Enabled = False
-        End If
-    End Sub
-    Private Sub ButtonPay_Click(sender As Object, e As EventArgs) Handles ButtonPay.Click
-        If Shift = "" Then
-            MessageBox.Show("Input cashier balance first", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        Else
-            If S_Zreading <> Format(Now(), "yyyy-MM-dd") Then
-                MessageBox.Show("Z-read", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Else
-                Enabled = False
-                PaymentForm.TextBoxTOTALPAY.Text = TextBoxGRANDTOTAL.Text
-                PaymentForm.Show()
-                PaymentForm.Focus()
-            End If
-        End If
-    End Sub
-    Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
+    Private Sub GetHighest()
         Try
-            If DataGridViewOrders.Rows.Count > 0 Then
-                datas = DataGridViewOrders.SelectedRows(0).Cells(4).Value.ToString()
-                For x As Integer = DataGridViewInv.Rows.Count - 1 To 0 Step -1
-                    If DataGridViewInv.Rows(x).Cells("Column8").Value = datas Then
-                        DataGridViewInv.Rows.Remove(DataGridViewInv.Rows(x))
+            Dim HighestWafflesPrice As Double = 0
+            Dim HighestDrinksPrice As Double = 0
+            With DataGridViewOrders
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If .Rows(i).Cells(9).Value.ToString = "WAFFLE" Then
+                        If HighestWafflesPrice < .Rows(i).Cells(2).Value Then
+                            HighestWafflesPrice = .Rows(i).Cells(2).Value
+                        End If
+                    Else
+                        If HighestDrinksPrice < .Rows(i).Cells(2).Value Then
+                            HighestDrinksPrice = .Rows(i).Cells(2).Value
+                        End If
                     End If
                 Next
-                datas = ""
-                deleteitem = True
-                Dim dr As DataGridViewRow
-                For Each dr In DataGridViewOrders.SelectedRows
-                    Dim sum As String = DataGridViewOrders.SelectedRows(0).Cells(3).Value.ToString
-                    DataGridViewOrders.Rows.Remove(dr)
-                    Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
-                    Dim discount As Double = Val(TextBoxDISCOUNT.Text / 100)
-                    Dim discounttotal As Double = Val(Label76.Text) * discount
-                    TextBoxSUBTOTAL.Text = Val(Label76.Text)
-
-                    TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
-                    TextBoxSUBTOTAL.Text = Format(Val(TextBoxSUBTOTAL.Text), "##,##0.00")
-                    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
-                Next
-            Else
-                TextBoxQTY.Text = 0
-                MessageBox.Show("Add item first", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
-            If DataGridViewOrders.Rows.Count > 0 Then
-                ButtonPay.Enabled = True
-                Buttonholdoder.Enabled = True
-                ButtonPendingOrders.Enabled = False
-            Else
-                ButtonClickCount = 0
-                ButtonPay.Enabled = False
-                Buttonholdoder.Enabled = False
-                ButtonPendingOrders.Enabled = True
-            End If
+                SeniorPWd = HighestWafflesPrice
+                SeniorPWdDrinks = HighestDrinksPrice
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub Label76_TextChanged(sender As Object, e As EventArgs) Handles Label76.TextChanged
+    Private Sub TranFunction()
+        '=================================================================================================
         Try
-            If DataGridViewOrders.RowCount > 0 Then
-                ButtonApplyCoupon.Enabled = True
-            Else
-                ButtonApplyCoupon.Enabled = False
-            End If
+            For i As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
+                table = "loc_fm_stock"
+                fields = "(`formula_id`, `stock_quantity`, `stock_total`,`crew_id`, `store_id`, `guid`, `created_at`, `status`)"
+                value = "('" & DataGridViewInv.Rows(i).Cells(1).Value & "'  
+                                ," & DataGridViewInv.Rows(i).Cells(2).Value & "    
+                                ," & DataGridViewInv.Rows(i).Cells(0).Value & "                   
+                                ,'" & ClientCrewID & "'
+                                ,'" & ClientStoreID & "'
+                                ,'" & ClientGuid & "'
+                                ,'" & FullDate24HR() & "'                    
+                                , " & 1 & ")"
+                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
+                '=================================================================================================
+                Try
+                    sql = "SELECT stock_quantity, stock_total FROM loc_pos_inventory WHERE formula_id = " & DataGridViewInv.Rows(i).Cells(1).Value
+                    cmd = New MySqlCommand
+                    With cmd
+                        .CommandText = sql
+                        .Connection = LocalhostConn()
+                        Using readerObj As MySqlDataReader = cmd.ExecuteReader
+                            While readerObj.Read
+                                stockqty = readerObj("stock_quantity").ToString
+                                stocktotal = readerObj("stock_total").ToString
+                            End While
+                        End Using
+                    End With
+                    fields = "`stock_quantity` = " & stockqty - DataGridViewInv.Rows(i).Cells(2).Value & ", `stock_total` = " & stocktotal - DataGridViewInv.Rows(i).Cells(0).Value & ",`synced`= 'Unsynced',`created_at`= '" & FullDate24HR() & "' "
+                    table = " loc_pos_inventory "
+                    where = " inventory_id = " & DataGridViewInv.Rows(i).Cells(1).Value
+                    GLOBAL_FUNCTION_UPDATE(table:=table, fields:=fields, where:=where)
+                Catch ex As Exception
+                    MsgBox(ex.Message)
+                End Try
+                cmd.Dispose()
+            Next
+        Catch ex As Exception
+        End Try
+        '  =================================================================================================
+        Try
+            table = "loc_daily_transaction"
+            fields = "(`transaction_number`,`crew_id`,`guid`,`active`,`amounttendered`,`moneychange`,`amountdue`,`store_id`,`vatable`,`vat`,`created_at`,`discount`,`synced`,`transaction_type`,`shift`,`vat_exempt`,`si_number`,`zreading`,`discount_type`)"
+            TIMETOINSERT = insertcurrenttime
+            value = "('" & TextBoxMAXID.Text & "'                         
+                            ,'" & ClientCrewID & "'
+                            ,'" & ClientGuid & "'              
+                            ," & ACTIVE & "
+                            ,'" & TEXTBOXMONEYVALUE & "'
+                            ,'" & TEXTBOXCHANGEVALUE & "'
+                            ,'" & SUPERAMOUNTDUE & "'
+                            ,'" & ClientStoreID & "'
+                            , " & VATABLE & "
+                            , " & LESSVAT & "
+                            , '" & FullDate24HR() & "'
+                            , " & TextBoxDISCOUNT.Text & "
+                            , 'Unsynced'
+                            , '" & Trim(TRANSACTIONMODE) & "'
+                            , '" & Shift & "'
+                            , " & VATEXEMPTSALES & "
+                            , " & SINumber & "
+                            , '" & S_Zreading & "'
+                            , '" & DISCOUNTTYPE & "')"
+            successmessage = "Success"
+            errormessage = "Error holdorder(loc_daily_transaction)"
+            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
+        Catch ex As Exception
+        End Try
+        '=================================================================================================
+        Try
+            messageboxappearance = False
+            For i As Integer = 0 To DataGridViewOrders.Rows.Count - 1 Step +1
+                Dim totalcostofgoods As Decimal
+                table = "loc_daily_transaction_details"
+                fields = "(`product_id`,`product_sku`,`product_name`,`quantity`,`price`,`total`,`crew_id`,`transaction_number`,`active`,`created_at`,`guid`,`store_id`,`synced`,`total_cost_of_goods`,`product_category`,`zreading`)"
 
-            Label76.Text = SumOfColumnsToDecimal(DataGridViewOrders, 3)
-            TextBoxGRANDTOTAL.Text = Label76.Text
-            TextBoxSUBTOTAL.Text = Label76.Text
+                For a As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
+                    If DataGridViewInv.Rows(a).Cells(4).Value = DataGridViewOrders.Rows(i).Cells(0).Value Then
+                        totalcostofgoods += DataGridViewInv.Rows(a).Cells(6).Value
+                    End If
+                Next
+                value = "(" & DataGridViewOrders.Rows(i).Cells(5).Value & "
+                            ,'" & DataGridViewOrders.Rows(i).Cells(6).Value & "'
+                            ,'" & DataGridViewOrders.Rows(i).Cells(0).Value & "'
+                            , " & DataGridViewOrders.Rows(i).Cells(1).Value & "
+                            , " & DataGridViewOrders.Rows(i).Cells(2).Value & "
+                            , " & DataGridViewOrders.Rows(i).Cells(3).Value & "
+                            , '" & ClientCrewID & "'
+                            , '" & TextBoxMAXID.Text & "'
+                            , " & ACTIVE & "
+                            , '" & FullDate24HR() & "'
+                            , '" & ClientGuid & "'
+                            , '" & ClientStoreID & "'
+                            , 'Unsynced'
+                            , " & totalcostofgoods & "
+                            , '" & DataGridViewOrders.Rows(i).Cells(7).Value & "'
+                            , '" & S_Zreading & "')"
+                successmessage = "Success"
+                errormessage = "error holdorder(loc_daily_transaction_details)"
+                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
+                totalcostofgoods = 0
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        '=================================================================================================
+        Try
+            If modeoftransaction = True Then
+                table = "loc_transaction_mode_details"
+                fields = "(`transaction_type`, `transaction_number`, `fullname`, `reference`, `markup`, `status`, `synced`, `store_id`, `guid`, `created_at`)"
+                value = "( '" & TRANSACTIONMODE & "'
+                            ,'" & TextBoxMAXID.Text & "'
+                            , '" & TEXTBOXFULLNAMEVALUE & "'
+                            , '" & TEXTBOXREFERENCEVALUE & "'
+                            , '" & TEXTBOXMARKUPVALUE & "'
+                            , " & 1 & "
+                            , 'Unsynced'
+                            , '" & ClientStoreID & "'
+                            , '" & ClientGuid & "'
+                            , '" & FullDate24HR() & "')"
+                successmessage = "Success"
+                errormessage = "error holdorder(loc_daily_transaction_details)"
+                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
+            End If
+            ButtonClickCount = 0
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        '=================================================================================================
+        Try
+            table = "loc_coupon_data"
+            fields = "(`transaction_number`, `coupon_name`, `coupon_type`, `coupon_desc`, `coupon_line`, `coupon_total`)"
+            value = "( '" & TextBoxMAXID.Text & "'
+                      ,'" & CouponName & "'
+                      , '" & DISCOUNTTYPE & "'
+                      , '" & CouponDesc & "'
+                      , '" & CouponLine & "'
+                      , '" & CouponTotal & "')"
+            successmessage = ""
+            errormessage = ""
+            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub POS_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        Expenses.Dispose()
-        Promo.Dispose()
-        Couponisavailable = False
-    End Sub
-    Private Sub POS_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
-        If e.KeyData = Keys.Alt + Keys.F4 Then
-            e.Handled = True
-        End If
-        If e.KeyCode = Keys.F9 Then
-            ButtonPay.PerformClick()
-        ElseIf e.KeyCode = Keys.Enter Then
-            ButtonEnter.PerformClick()
-        ElseIf e.KeyCode = Keys.F10 Then
-            ButtonTransactionMode.PerformClick()
-        ElseIf e.KeyCode = Keys.F11 Then
-            Buttonholdoder.PerformClick()
-        ElseIf e.KeyCode = Keys.F12 Then
-            ButtonPendingOrders.PerformClick()
-        ElseIf e.KeyCode = Keys.Delete Then
-            ButtonCancel.PerformClick()
-            '=================================
-        End If
-        If payment = False Then
-            If e.KeyCode = Keys.NumPad0 Then
-                ButtonNo0.PerformClick()
-            ElseIf e.KeyCode = Keys.NumPad1 Then
-                ButtonNo1.PerformClick()
-            ElseIf e.KeyCode = Keys.NumPad2 Then
-                ButtonNo2.PerformClick()
-            ElseIf e.KeyCode = Keys.NumPad3 Then
-                ButtonNo3.PerformClick()
-            ElseIf e.KeyCode = Keys.NumPad4 Then
-                ButtonNo4.PerformClick()
-            ElseIf e.KeyCode = Keys.NumPad5 Then
-                ButtonNo5.PerformClick()
-            ElseIf e.KeyCode = Keys.NumPad6 Then
-                ButtonNo6.PerformClick()
-            ElseIf e.KeyCode = Keys.NumPad7 Then
-                ButtonNo7.PerformClick()
-            ElseIf e.KeyCode = Keys.NumPad8 Then
-                ButtonNo8.PerformClick()
-            ElseIf e.KeyCode = Keys.NumPad9 Then
-                ButtonNo9.PerformClick()
-            ElseIf e.KeyCode = Keys.Back Then
-                ButtonClear.PerformClick()
-            End If
-        End If
-    End Sub
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        insertcurrenttime = TimeOfDay.ToString("HH:mm:ss")
-        insertcurrentdate = String.Format("{0:yyyy/MM/dd}", DateTime.Now)
-        Label11.Text = Date.Now.ToString("hh:mm:ss tt")
-    End Sub
 
-    Dim threadList As List(Of Thread) = New List(Of Thread)
+
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
             With WaitFrm
+                SUPERAMOUNTDUE = Convert.ToDecimal(Double.Parse(TextBoxGRANDTOTAL.Text))
+                If TRANSACTIONMODE = "Representation Expenses" Then
+                    ACTIVE = 3
+                End If
+                If TextBoxDISCOUNT.Text = "" Then
+                    VATABLE = 0.00
+                Else
+                    VATEXEMPTSALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                    LESSVAT = Math.Round(SUPERAMOUNTDUE - VATEXEMPTSALES, 2, MidpointRounding.AwayFromZero)
+                End If
+
                 sql = "SELECT si_number FROM loc_daily_transaction ORDER BY transaction_id DESC limit 1"
                 cmd = New MySqlCommand(sql, LocalhostConn)
                 da = New MySqlDataAdapter(cmd)
@@ -524,16 +745,16 @@ Public Class POS
                     SiNumberToString = SINumber.ToString(S_SIFormat)
                 End If
                 For i = 0 To 100
-                    Thread.Sleep(10)
                     BackgroundWorker1.ReportProgress(i)
                     If i = 0 Then
                         .Label1.Text = "Transaction is processing. Please wait."
                         thread = New Thread(AddressOf TranFunction)
                         thread.Start()
-                        threadList.Add(thread)
+                        THREADLIST.Add(thread)
                     End If
+                    Thread.Sleep(10)
                 Next
-                For Each t In threadList
+                For Each t In THREADLIST
                     t.Join()
                 Next
             End With
@@ -602,180 +823,26 @@ Public Class POS
             payment = False
             Label76.Text = 0
             TextBoxDISCOUNT.Text = 0
-            transactionmode = "Walk-In"
-            discounttype = "N/A"
+            TRANSACTIONMODE = "Walk-In"
+            DISCOUNTTYPE = "N/A"
             CouponApplied = False
             CouponName = ""
             CouponDesc = ""
             VATEXEMPTSALES = 0
-            '=================================================================================================
+            DISCOUNTGRANDTOTAL = 0
+            LESSVAT = 0
+            GRANDTOTALDISCOUNT = 0
+            VATABLE = 0
+            ACTIVE = 1
+            ''=================================================================================================
         Else
             MsgBox("Select Transaction First!")
         End If
         a = 0
     End Sub
-    Dim TIMETOINSERT As String
-    Dim Active As Integer = 1
-    Private Sub TranFunction()
-        '=================================================================================================
-        Try
-            For i As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
-                table = "loc_fm_stock"
-                fields = "(`formula_id`, `stock_quantity`, `stock_total`,`crew_id`, `store_id`, `guid`, `created_at`, `status`)"
-                value = "('" & DataGridViewInv.Rows(i).Cells(1).Value & "'  
-                                ," & DataGridViewInv.Rows(i).Cells(2).Value & "    
-                                ," & DataGridViewInv.Rows(i).Cells(0).Value & "                   
-                                ,'" & ClientCrewID & "'
-                                ,'" & ClientStoreID & "'
-                                ,'" & ClientGuid & "'
-                                ,'" & FullDate24HR() & "'                    
-                                , " & 1 & ")"
-                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
-                '=================================================================================================
-                Try
-                    sql = "SELECT stock_quantity, stock_total FROM loc_pos_inventory WHERE formula_id = " & DataGridViewInv.Rows(i).Cells(1).Value
-                    cmd = New MySqlCommand
-                    With cmd
-                        .CommandText = sql
-                        .Connection = LocalhostConn()
-                        Using readerObj As MySqlDataReader = cmd.ExecuteReader
-                            While readerObj.Read
-                                stockqty = readerObj("stock_quantity").ToString
-                                stocktotal = readerObj("stock_total").ToString
-                            End While
-                        End Using
-                    End With
-                    fields = "`stock_quantity` = " & stockqty - DataGridViewInv.Rows(i).Cells(2).Value & ", `stock_total` = " & stocktotal - DataGridViewInv.Rows(i).Cells(0).Value & ",`synced`= 'Unsynced',`created_at`= '" & FullDate24HR() & "' "
-                    table = " loc_pos_inventory "
-                    where = " inventory_id = " & DataGridViewInv.Rows(i).Cells(1).Value
-                    GLOBAL_FUNCTION_UPDATE(table:=table, fields:=fields, where:=where)
-                Catch ex As Exception
-                    MsgBox(ex.Message)
-                End Try
-                cmd.Dispose()
-            Next
-        Catch ex As Exception
-        End Try
-        '  =================================================================================================
-        Try
-            If transactionmode = "Representation Expenses" Then
-                Active = 3
-            End If
-            total = Convert.ToDecimal(Double.Parse(TextBoxGRANDTOTAL.Text))
-            If TextBoxDISCOUNT.Text = "" Then
-                VATABLE = 0.00
-            Else
-                VATABLE = Math.Round(total / 1.12, 2)
-                LESSVAT = Math.Round(total - VATABLE, 2)
-            End If
-            table = "loc_daily_transaction"
-            fields = "(`transaction_number`,`crew_id`,`guid`,`active`,`amounttendered`,`moneychange`,`amountdue`,`store_id`,`vatable`,`vat`,`created_at`,`discount`,`synced`,`transaction_type`,`shift`,`vat_exempt`,`si_number`,`zreading`,`discount_type`)"
-            TIMETOINSERT = insertcurrenttime
-            value = "('" & TextBoxMAXID.Text & "'                         
-                            ,'" & ClientCrewID & "'
-                            ,'" & ClientGuid & "'              
-                            ," & Active & "
-                            ,'" & TEXTBOXMONEYVALUE & "'
-                            ,'" & TEXTBOXCHANGEVALUE & "'
-                            ,'" & total & "'
-                            ,'" & ClientStoreID & "'
-                            , " & VATABLE & "
-                            , " & LESSVAT & "
-                            , '" & FullDate24HR() & "'
-                            , " & TextBoxDISCOUNT.Text & "
-                            , 'Unsynced'
-                            , '" & Trim(transactionmode) & "'
-                            , '" & Shift & "'
-                            , " & VATEXEMPTSALES & "
-                            , " & SINumber & "
-                            , '" & S_Zreading & "'
-                            , '" & discounttype & "')"
-            successmessage = "Success"
-            errormessage = "Error holdorder(loc_daily_transaction)"
-            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
-        Catch ex As Exception
-        End Try
-        '=================================================================================================
-        Try
-            messageboxappearance = False
-            For i As Integer = 0 To DataGridViewOrders.Rows.Count - 1 Step +1
-                Dim totalcostofgoods As Decimal
-                table = "loc_daily_transaction_details"
-                fields = "(`product_id`,`product_sku`,`product_name`,`quantity`,`price`,`total`,`crew_id`,`transaction_number`,`active`,`created_at`,`guid`,`store_id`,`synced`,`total_cost_of_goods`,`product_category`,`zreading`)"
-
-                For a As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
-                    If DataGridViewInv.Rows(a).Cells(4).Value = DataGridViewOrders.Rows(i).Cells(0).Value Then
-                        totalcostofgoods += DataGridViewInv.Rows(a).Cells(6).Value
-                    End If
-                Next
-                value = "(" & DataGridViewOrders.Rows(i).Cells(5).Value & "
-                            ,'" & DataGridViewOrders.Rows(i).Cells(6).Value & "'
-                            ,'" & DataGridViewOrders.Rows(i).Cells(0).Value & "'
-                            , " & DataGridViewOrders.Rows(i).Cells(1).Value & "
-                            , " & DataGridViewOrders.Rows(i).Cells(2).Value & "
-                            , " & DataGridViewOrders.Rows(i).Cells(3).Value & "
-                            , '" & ClientCrewID & "'
-                            , '" & TextBoxMAXID.Text & "'
-                            , " & Active & "
-                            , '" & FullDate24HR() & "'
-                            , '" & ClientGuid & "'
-                            , '" & ClientStoreID & "'
-                            , 'Unsynced'
-                            , " & totalcostofgoods & "
-                            , '" & DataGridViewOrders.Rows(i).Cells(7).Value & "'
-                            , '" & S_Zreading & "')"
-                successmessage = "Success"
-                errormessage = "error holdorder(loc_daily_transaction_details)"
-                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
-                totalcostofgoods = 0
-            Next
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        '=================================================================================================
-        Try
-            If modeoftransaction = True Then
-                table = "loc_transaction_mode_details"
-                fields = "(`transaction_type`, `transaction_number`, `fullname`, `reference`, `markup`, `status`, `synced`, `store_id`, `guid`, `created_at`)"
-                value = "( '" & transactionmode & "'
-                            ,'" & TextBoxMAXID.Text & "'
-                            , '" & TEXTBOXFULLNAMEVALUE & "'
-                            , '" & TEXTBOXREFERENCEVALUE & "'
-                            , '" & TEXTBOXMARKUPVALUE & "'
-                            , " & 1 & "
-                            , 'Unsynced'
-                            , '" & ClientStoreID & "'
-                            , '" & ClientGuid & "'
-                            , '" & FullDate24HR() & "')"
-                successmessage = "Success"
-                errormessage = "error holdorder(loc_daily_transaction_details)"
-                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
-            End If
-            ButtonClickCount = 0
-
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        '=================================================================================================
-        Try
-            table = "loc_coupon_data"
-            fields = "(`transaction_number`, `coupon_name`, `coupon_type`, `coupon_desc`, `coupon_line`, `coupon_total`)"
-            value = "( '" & TextBoxMAXID.Text & "'
-                      ,'" & CouponName & "'
-                      , '" & discounttype & "'
-                      , '" & CouponDesc & "'
-                      , '" & CouponLine & "'
-                      , '" & CouponTotal & "')"
-            successmessage = ""
-            errormessage = ""
-            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
         Try
-            Dim totalDisplay = Format(total, "##,##0.00")
+            Dim totalDisplay = Format(SUPERAMOUNTDUE, "##,##0.00")
             With Me
                 a = 0
                 Dim font As New Font("Kelson Sans Normal", 7)
@@ -784,11 +851,7 @@ Public Class POS
                 Dim font2 As New Font("Kelson Sans Normal", 9)
                 Dim font3 As New Font("Kelson Sans Normal", 11, FontStyle.Bold)
                 Dim brandfont As New Font("Kelson Sans Normal", 8)
-                Dim shopnameX As Integer = 10, shopnameY As Integer = 20
-                Dim StrRight As New StringFormat()
-                'HEADER
                 ReceiptHeader(sender, e)
-                'Items
                 Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
                 Dim abc As Integer = 0
                 For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
@@ -808,7 +871,7 @@ Public Class POS
                 Next
                 If CouponApplied = True Then
                     a += 100
-                    SimpleTextDisplay(sender, e, CouponName & "(" & discounttype & ")", font, 0, a)
+                    SimpleTextDisplay(sender, e, CouponName & "(" & DISCOUNTTYPE & ")", font, 0, a)
                     SimpleTextDisplay(sender, e, CouponDesc, font, 0, a + 10)
                     a += 40 + CouponLine
                     RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & CouponTotal, font)
@@ -833,18 +896,18 @@ Public Class POS
 
                     SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 27)
                     'Vatable
-                    RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & VATABLE, font)
+                    RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & "0.00", font)
                     'Vat Exempt
-                    RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & "0.00", font)
+                    RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & VATEXEMPTSALES, font)
                     'Zero Rated Sales
                     RightToLeftDisplay(sender, e, a + 72, "     Zero Rated Sales", "    " & "0.00", font)
                     'VAT
-                    RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & Math.Round(total - VATABLE, 2) & "-", font)
+                    RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & LESSVAT & "-", font)
                     'Total
-                    RightToLeftDisplay(sender, e, a + 92, "     Total", "    " & total, font)
+                    RightToLeftDisplay(sender, e, a + 92, "     Total", "    " & SUPERAMOUNTDUE, font)
                     'INFOS
                     SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 82)
-                    SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(transactionmode), font, 0, a + 90)
+                    SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 90)
                     SimpleTextDisplay(sender, e, "Total Item(s): " & .DataGridViewOrders.Rows.Count, font, 0, a + 100)
                     SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 110)
                     SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 110, a + 100)
@@ -878,7 +941,7 @@ Public Class POS
                     If S_ZeroRated = "0" Then
                         SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 47)
                         'Vatable
-                        RightToLeftDisplay(sender, e, a + 72, "     Vatable", "    " & "0.00", font)
+                        RightToLeftDisplay(sender, e, a + 72, "     Vatable", "    " & VATABLE, font)
                         'Vat Exempt
                         RightToLeftDisplay(sender, e, a + 82, "     Vat Exempt Sales", "    " & VATEXEMPTSALES, font)
                         'Zero Rated Sales
@@ -887,7 +950,7 @@ Public Class POS
                         RightToLeftDisplay(sender, e, a + 102, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & LESSVAT & "-", font)
                         'BODY
                         SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 92)
-                        SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(transactionmode), font, 0, a + 100)
+                        SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 100)
                         SimpleTextDisplay(sender, e, "Total Item(s): " & .DataGridViewOrders.Rows.Count, font, 0, a + 110)
                         SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 120)
                         SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 110)
@@ -911,7 +974,7 @@ Public Class POS
                         RightToLeftDisplay(sender, e, a + 102, "     VAT", "    " & "0.00", font)
                         'BODY
                         SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 92)
-                        SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(transactionmode), font, 0, a + 100)
+                        SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 100)
                         SimpleTextDisplay(sender, e, "Total Item(s): " & .DataGridViewOrders.Rows.Count, font, 0, a + 110)
                         SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 120)
                         SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 110)
@@ -930,111 +993,7 @@ Public Class POS
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub ButtonCDISC_Click(sender As Object, e As EventArgs) Handles ButtonCDISC.Click
-        TextBoxDISCOUNT.Text = 0
-        ButtonCP.PerformClick()
-        Couponisavailable = False
-    End Sub
-    Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles ButtonTransactionMode.Click
-        Enabled = False
-        TransactionType.Show()
-    End Sub
-    Private Sub Panel14_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel14.Paint
-        '    MyBase.OnPaint(e)
-        '    Dim borderWidth As Integer = 1
-        '    Dim theColor As Color = Color.Blue
-        '    ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, theColor, borderWidth, ButtonBorderStyle.Solid, theColor, borderWidth, ButtonBorderStyle.Solid, theColor, borderWidth, ButtonBorderStyle.Solid, theColor, borderWidth, ButtonBorderStyle.Solid)
-    End Sub
-    Private Sub GetProductHighestValue()
-        Try
-            Dim max As Integer
-            Dim maxDrinks As Integer
-
-            Dim GroupSales = New DataTable
-            GroupSales.Columns.Add("Sameval", GetType(Integer))
-            GroupSales.Columns.Add("Total", GetType(Decimal))
-            Dim RealDataTable = New DataTable
-            RealDataTable.Columns.Add("Total", GetType(Integer))
-            '===================================================
-            Dim Drinks = New DataTable
-            Drinks.Columns.Add("Sameval", GetType(Integer))
-            Drinks.Columns.Add("Total", GetType(Decimal))
-            Dim drinksDatatable = New DataTable
-            drinksDatatable.Columns.Add("Total", GetType(Integer))
-            '===================================================
-            With DataGridViewOrders
-                For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    If .Rows(i).Cells(9).Value.ToString = "DRINKS" Then
-                        Drinks.Rows.Add(.Rows(i).Cells(8).Value, .Rows(i).Cells(3).Value / .Rows(i).Cells(1).Value)
-                    Else
-                        GroupSales.Rows.Add(.Rows(i).Cells(8).Value, .Rows(i).Cells(3).Value / .Rows(i).Cells(1).Value)
-                    End If
-                Next
-            End With
-            '===================================================
-            Dim query = From row In GroupSales
-                        Group row By Sameval = row.Field(Of Int32)("Sameval") Into MonthGroup = Group
-                        Select New With {
-                            Key Sameval,
-                            .Sales = MonthGroup.Sum(Function(r) r.Field(Of Decimal)("Total"))
-                       }
-            '===================================================
-            Dim query2 = From row In Drinks
-                         Group row By Sameval = row.Field(Of Int32)("Sameval") Into MonthGroup = Group
-                         Select New With {
-                            Key Sameval,
-                            .Sales = MonthGroup.Sum(Function(r) r.Field(Of Decimal)("Total"))
-                       }
-            '===================================================
-            For Each xs In query
-                Console.WriteLine(xs.Sales)
-                RealDataTable.Rows.Add(xs.Sales)
-            Next
-            For Each xss In query2
-                Console.WriteLine(xss.Sales)
-                drinksDatatable.Rows.Add(xss.Sales)
-            Next
-            '===================================================
-            For i As Integer = 0 To RealDataTable.Rows.Count - 1 Step +1
-                If i = 0 Then
-                    max = RealDataTable(i)(0)
-                End If
-                If max < RealDataTable(i)(0) Then
-                    max = RealDataTable(i)(0)
-                End If
-            Next
-            '===================================================
-            For i As Integer = 0 To drinksDatatable.Rows.Count - 1 Step +1
-                If i = 0 Then
-                    maxDrinks = drinksDatatable(i)(0)
-                End If
-                If maxDrinks < drinksDatatable(i)(0) Then
-                    maxDrinks = drinksDatatable(i)(0)
-                End If
-            Next
-            '===================================================
-            SeniorPWd = max
-            SeniorPWdDrinks = maxDrinks
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-    Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim message = MessageBox.Show("Do you want to add Extra packaging?", "Extra packaging", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-        If message = DialogResult.Yes Then
-            Try
-                table = "loc_pos_inventory"
-                fields = "stock_quantity = stock_quantity - 1, stock_total = stock_total - 1"
-                where = "product_ingredients = 'Extra Packaging'"
-                GLOBAL_FUNCTION_UPDATE(table, fields, where)
-                SystemLogType = "PACKAGING"
-                SystemLogDesc = "Crew : " & ClientCrewID
-                GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-            Catch ex As Exception
-                MsgBox(ex.ToString)
-            End Try
-        End If
-    End Sub
+#End Region
 End Class
 
 

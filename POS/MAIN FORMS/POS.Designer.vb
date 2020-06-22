@@ -146,6 +146,7 @@ Partial Class POS
         Me.Panel17 = New System.Windows.Forms.Panel()
         Me.PanelProducts = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.DataGridViewINVENTORYUPDATE = New System.Windows.Forms.DataGridView()
         Me.DataGridViewCATEGORYUPDATE = New System.Windows.Forms.DataGridView()
         Me.DataGridViewFORMULAUPDATE = New System.Windows.Forms.DataGridView()
@@ -172,6 +173,7 @@ Partial Class POS
         Me.Panel33.SuspendLayout()
         Me.Panel10.SuspendLayout()
         Me.Panel13.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewINVENTORYUPDATE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewCATEGORYUPDATE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewFORMULAUPDATE, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,18 +184,18 @@ Partial Class POS
         '
         Me.Panel7.BackColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel7.Location = New System.Drawing.Point(697, 46)
+        Me.Panel7.Location = New System.Drawing.Point(1186, 46)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(10, 633)
+        Me.Panel7.Size = New System.Drawing.Size(10, 697)
         Me.Panel7.TabIndex = 47
         '
         'Panel6
         '
         Me.Panel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel6.Location = New System.Drawing.Point(1066, 46)
+        Me.Panel6.Location = New System.Drawing.Point(1555, 46)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(10, 633)
+        Me.Panel6.Size = New System.Drawing.Size(10, 697)
         Me.Panel6.TabIndex = 46
         '
         'Panel5
@@ -202,7 +204,7 @@ Partial Class POS
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel5.Location = New System.Drawing.Point(10, 36)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(1066, 10)
+        Me.Panel5.Size = New System.Drawing.Size(1555, 10)
         Me.Panel5.TabIndex = 45
         '
         'Panel4
@@ -211,7 +213,7 @@ Partial Class POS
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel4.Location = New System.Drawing.Point(0, 36)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(10, 643)
+        Me.Panel4.Size = New System.Drawing.Size(10, 707)
         Me.Panel4.TabIndex = 44
         '
         'Panel8
@@ -220,9 +222,9 @@ Partial Class POS
         Me.Panel8.Controls.Add(Me.Panel23)
         Me.Panel8.Controls.Add(Me.Panel24)
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel8.Location = New System.Drawing.Point(0, 679)
+        Me.Panel8.Location = New System.Drawing.Point(0, 743)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(1076, 35)
+        Me.Panel8.Size = New System.Drawing.Size(1565, 35)
         Me.Panel8.TabIndex = 51
         '
         'Panel23
@@ -231,7 +233,7 @@ Partial Class POS
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel23.Location = New System.Drawing.Point(0, 1)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(1076, 10)
+        Me.Panel23.Size = New System.Drawing.Size(1565, 10)
         Me.Panel23.TabIndex = 18
         '
         'Panel24
@@ -241,14 +243,14 @@ Partial Class POS
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel24.Location = New System.Drawing.Point(0, 11)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(1076, 24)
+        Me.Panel24.Size = New System.Drawing.Size(1565, 24)
         Me.Panel24.TabIndex = 17
         '
         'Panel25
         '
         Me.Panel25.Controls.Add(Me.Label12)
         Me.Panel25.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel25.Location = New System.Drawing.Point(745, 0)
+        Me.Panel25.Location = New System.Drawing.Point(1234, 0)
         Me.Panel25.Name = "Panel25"
         Me.Panel25.Size = New System.Drawing.Size(331, 24)
         Me.Panel25.TabIndex = 1
@@ -285,7 +287,7 @@ Partial Class POS
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1076, 36)
+        Me.Panel1.Size = New System.Drawing.Size(1565, 36)
         Me.Panel1.TabIndex = 0
         '
         'DataGridViewInv
@@ -433,7 +435,7 @@ Partial Class POS
         Me.Label11.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label11.Font = New System.Drawing.Font("Kelson Sans", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.Black
-        Me.Label11.Location = New System.Drawing.Point(497, 0)
+        Me.Label11.Location = New System.Drawing.Point(986, 0)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(70, 33)
         Me.Label11.TabIndex = 155
@@ -456,7 +458,7 @@ Partial Class POS
         Me.Panel22.Controls.Add(Me.ButtonPromo)
         Me.Panel22.Controls.Add(Me.ButtonMenu)
         Me.Panel22.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel22.Location = New System.Drawing.Point(567, 0)
+        Me.Panel22.Location = New System.Drawing.Point(1056, 0)
         Me.Panel22.Name = "Panel22"
         Me.Panel22.Size = New System.Drawing.Size(507, 34)
         Me.Panel22.TabIndex = 10
@@ -614,7 +616,7 @@ Partial Class POS
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(10, 46)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(687, 70)
+        Me.Panel3.Size = New System.Drawing.Size(1176, 70)
         Me.Panel3.TabIndex = 39
         '
         'ImageList1
@@ -639,9 +641,9 @@ Partial Class POS
         Me.Panel14.Controls.Add(Me.Panel21)
         Me.Panel14.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel14.Font = New System.Drawing.Font("Century Gothic", 9.75!)
-        Me.Panel14.Location = New System.Drawing.Point(10, 609)
+        Me.Panel14.Location = New System.Drawing.Point(10, 673)
         Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(687, 70)
+        Me.Panel14.Size = New System.Drawing.Size(1176, 70)
         Me.Panel14.TabIndex = 55
         '
         'Panel21
@@ -653,7 +655,7 @@ Partial Class POS
         Me.Panel21.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Panel21.Location = New System.Drawing.Point(0, 0)
         Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(687, 70)
+        Me.Panel21.Size = New System.Drawing.Size(1176, 70)
         Me.Panel21.TabIndex = 60
         '
         'Panel20
@@ -666,7 +668,7 @@ Partial Class POS
         Me.Panel20.Controls.Add(Me.Label71)
         Me.Panel20.Controls.Add(Me.TextBoxSUBTOTAL)
         Me.Panel20.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel20.Location = New System.Drawing.Point(387, 0)
+        Me.Panel20.Location = New System.Drawing.Point(876, 0)
         Me.Panel20.Name = "Panel20"
         Me.Panel20.Size = New System.Drawing.Size(300, 70)
         Me.Panel20.TabIndex = 65
@@ -851,9 +853,9 @@ Partial Class POS
         Me.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Panel2.Controls.Add(Me.Panel11)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel2.Location = New System.Drawing.Point(707, 46)
+        Me.Panel2.Location = New System.Drawing.Point(1196, 46)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(359, 633)
+        Me.Panel2.Size = New System.Drawing.Size(359, 697)
         Me.Panel2.TabIndex = 41
         '
         'Panel11
@@ -869,7 +871,7 @@ Partial Class POS
         Me.Panel11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel11.Location = New System.Drawing.Point(0, 0)
         Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(359, 633)
+        Me.Panel11.Size = New System.Drawing.Size(359, 697)
         Me.Panel11.TabIndex = 60
         '
         'DataGridViewOrders
@@ -893,7 +895,7 @@ Partial Class POS
         Me.DataGridViewOrders.RowHeadersVisible = False
         Me.DataGridViewOrders.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DataGridViewOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewOrders.Size = New System.Drawing.Size(339, 238)
+        Me.DataGridViewOrders.Size = New System.Drawing.Size(339, 302)
         Me.DataGridViewOrders.TabIndex = 61
         '
         'Column1
@@ -948,32 +950,28 @@ Partial Class POS
         '
         Me.Column16.HeaderText = "ColumnCAT"
         Me.Column16.Name = "Column16"
-        Me.Column16.Visible = False
         '
         'Column17
         '
         Me.Column17.HeaderText = "ColumnCATOF"
         Me.Column17.Name = "Column17"
-        Me.Column17.Visible = False
         '
         'Column19
         '
         Me.Column19.HeaderText = "ColumnSumID"
         Me.Column19.Name = "Column19"
-        Me.Column19.Visible = False
         '
         'Column20
         '
         Me.Column20.HeaderText = "ColumnTYPE"
         Me.Column20.Name = "Column20"
-        Me.Column20.Visible = False
         '
         'Panel27
         '
         Me.Panel27.BackColor = System.Drawing.Color.SlateGray
         Me.Panel27.Controls.Add(Me.Panel30)
         Me.Panel27.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel27.Location = New System.Drawing.Point(10, 302)
+        Me.Panel27.Location = New System.Drawing.Point(10, 366)
         Me.Panel27.Name = "Panel27"
         Me.Panel27.Size = New System.Drawing.Size(339, 20)
         Me.Panel27.TabIndex = 64
@@ -1021,7 +1019,7 @@ Partial Class POS
         Me.Panel28.Controls.Add(Me.Panel31)
         Me.Panel28.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel28.Font = New System.Drawing.Font("Century Gothic", 9.75!)
-        Me.Panel28.Location = New System.Drawing.Point(10, 322)
+        Me.Panel28.Location = New System.Drawing.Point(10, 386)
         Me.Panel28.Name = "Panel28"
         Me.Panel28.Size = New System.Drawing.Size(339, 50)
         Me.Panel28.TabIndex = 63
@@ -1162,7 +1160,7 @@ Partial Class POS
         Me.Panel10.Controls.Add(Me.ButtonNo9)
         Me.Panel10.Controls.Add(Me.ButtonNo6)
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel10.Location = New System.Drawing.Point(10, 372)
+        Me.Panel10.Location = New System.Drawing.Point(10, 436)
         Me.Panel10.Name = "Panel10"
         Me.Panel10.Size = New System.Drawing.Size(339, 261)
         Me.Panel10.TabIndex = 60
@@ -1432,7 +1430,7 @@ Partial Class POS
         Me.Panel19.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel19.Location = New System.Drawing.Point(0, 0)
         Me.Panel19.Name = "Panel19"
-        Me.Panel19.Size = New System.Drawing.Size(10, 633)
+        Me.Panel19.Size = New System.Drawing.Size(10, 697)
         Me.Panel19.TabIndex = 57
         '
         'Panel12
@@ -1441,7 +1439,7 @@ Partial Class POS
         Me.Panel12.Dock = System.Windows.Forms.DockStyle.Right
         Me.Panel12.Location = New System.Drawing.Point(349, 0)
         Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(10, 633)
+        Me.Panel12.Size = New System.Drawing.Size(10, 697)
         Me.Panel12.TabIndex = 56
         '
         'Timer1
@@ -1453,25 +1451,25 @@ Partial Class POS
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel16.Location = New System.Drawing.Point(0, 0)
         Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(687, 8)
+        Me.Panel16.Size = New System.Drawing.Size(1176, 8)
         Me.Panel16.TabIndex = 57
         '
         'Panel15
         '
         Me.Panel15.BackColor = System.Drawing.Color.DarkGray
         Me.Panel15.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel15.Location = New System.Drawing.Point(0, 485)
+        Me.Panel15.Location = New System.Drawing.Point(0, 549)
         Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(687, 8)
+        Me.Panel15.Size = New System.Drawing.Size(1176, 8)
         Me.Panel15.TabIndex = 51
         '
         'Panel18
         '
         Me.Panel18.BackColor = System.Drawing.Color.DarkGray
         Me.Panel18.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel18.Location = New System.Drawing.Point(679, 8)
+        Me.Panel18.Location = New System.Drawing.Point(1168, 8)
         Me.Panel18.Name = "Panel18"
-        Me.Panel18.Size = New System.Drawing.Size(8, 477)
+        Me.Panel18.Size = New System.Drawing.Size(8, 541)
         Me.Panel18.TabIndex = 54
         '
         'Panel17
@@ -1480,7 +1478,7 @@ Partial Class POS
         Me.Panel17.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel17.Location = New System.Drawing.Point(0, 8)
         Me.Panel17.Name = "Panel17"
-        Me.Panel17.Size = New System.Drawing.Size(8, 477)
+        Me.Panel17.Size = New System.Drawing.Size(8, 541)
         Me.Panel17.TabIndex = 53
         '
         'PanelProducts
@@ -1488,15 +1486,15 @@ Partial Class POS
         Me.PanelProducts.AutoScroll = True
         Me.PanelProducts.BackColor = System.Drawing.SystemColors.Window
         Me.PanelProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PanelProducts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelProducts.Location = New System.Drawing.Point(8, 8)
         Me.PanelProducts.Name = "PanelProducts"
-        Me.PanelProducts.Size = New System.Drawing.Size(671, 477)
+        Me.PanelProducts.Size = New System.Drawing.Size(805, 243)
         Me.PanelProducts.TabIndex = 0
         '
         'Panel13
         '
         Me.Panel13.BackColor = System.Drawing.Color.White
+        Me.Panel13.Controls.Add(Me.DataGridView1)
         Me.Panel13.Controls.Add(Me.PanelProducts)
         Me.Panel13.Controls.Add(Me.DataGridViewINVENTORYUPDATE)
         Me.Panel13.Controls.Add(Me.DataGridViewCATEGORYUPDATE)
@@ -1510,8 +1508,16 @@ Partial Class POS
         Me.Panel13.Font = New System.Drawing.Font("Century Gothic", 9.75!)
         Me.Panel13.Location = New System.Drawing.Point(10, 116)
         Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(687, 493)
+        Me.Panel13.Size = New System.Drawing.Size(1176, 557)
         Me.Panel13.TabIndex = 51
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(897, 33)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(240, 150)
+        Me.DataGridView1.TabIndex = 62
         '
         'DataGridViewINVENTORYUPDATE
         '
@@ -1570,7 +1576,7 @@ Partial Class POS
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1076, 714)
+        Me.ClientSize = New System.Drawing.Size(1565, 778)
         Me.Controls.Add(Me.Panel13)
         Me.Controls.Add(Me.Panel14)
         Me.Controls.Add(Me.Panel3)
@@ -1620,6 +1626,7 @@ Partial Class POS
         Me.Panel10.ResumeLayout(False)
         Me.Panel10.PerformLayout()
         Me.Panel13.ResumeLayout(False)
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewINVENTORYUPDATE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewCATEGORYUPDATE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewFORMULAUPDATE, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1739,6 +1746,7 @@ Partial Class POS
     Friend WithEvents DataGridViewFORMULAUPDATE As DataGridView
     Friend WithEvents DataGridViewPRODUCTUPDATE As DataGridView
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn

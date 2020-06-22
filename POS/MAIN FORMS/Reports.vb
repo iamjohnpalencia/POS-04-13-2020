@@ -125,27 +125,27 @@ Public Class Reports
                 where = " zreading >= '" & Format(DateTimePicker1.Value, "yyyy-MM-dd") & "' and zreading <= '" & Format(DateTimePicker2.Value, "yyyy-MM-dd") & "' AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDaily, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
-            With DataGridViewDaily
-                .Columns(0).Visible = False
-                .Columns(1).HeaderCell.Value = "Date and Time"
-                .Columns(2).HeaderCell.Value = "Ref. #"
-                .Columns(2).Width = 100
-                .Columns(3).HeaderCell.Value = "Crew"
-                .Columns(4).HeaderCell.Value = "Cash"
-                .Columns(5).HeaderCell.Value = "Change"
-                .Columns(6).Visible = False
-                .Columns(7).HeaderCell.Value = "Discount"
-                .Columns(8).HeaderCell.Value = "Amt. due"
-                .Columns(9).HeaderCell.Value = "Vat Exempt"
-                .Columns(10).HeaderCell.Value = "TRN. Type"
-                .Columns(11).Visible = False
-                .Columns(12).Visible = False
-                .Columns.Item(4).DefaultCellStyle.Format = "n2"
-                .Columns.Item(5).DefaultCellStyle.Format = "n2"
-                For Each row As DataRow In dt.Rows
-                    row("crew_id") = GLOBAL_SELECT_FUNCTION_RETURN(table:="loc_users", fields:="full_name", returnvalrow:="full_name", values:="uniq_id ='" & row("crew_id") & "'")
-                Next
-            End With
+            'With DataGridViewDaily
+            '    .Columns(0).Visible = False
+            '    .Columns(1).HeaderCell.Value = "Date and Time"
+            '    .Columns(2).HeaderCell.Value = "Ref. #"
+            '    .Columns(2).Width = 100
+            '    .Columns(3).HeaderCell.Value = "Crew"
+            '    .Columns(4).HeaderCell.Value = "Cash"
+            '    .Columns(5).HeaderCell.Value = "Change"
+            '    .Columns(6).Visible = False
+            '    .Columns(7).HeaderCell.Value = "Discount"
+            '    .Columns(8).HeaderCell.Value = "Amt. due"
+            '    .Columns(9).HeaderCell.Value = "Vat Exempt"
+            '    .Columns(10).HeaderCell.Value = "TRN. Type"
+            '    .Columns(11).Visible = False
+            '    .Columns(12).Visible = False
+            '    .Columns.Item(4).DefaultCellStyle.Format = "n2"
+            '    .Columns.Item(5).DefaultCellStyle.Format = "n2"
+            '    For Each row As DataRow In dt.Rows
+            '        row("crew_id") = GLOBAL_SELECT_FUNCTION_RETURN(table:="loc_users", fields:="full_name", returnvalrow:="full_name", values:="uniq_id ='" & row("crew_id") & "'")
+            '    Next
+            'End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -248,21 +248,21 @@ Public Class Reports
             table = "`loc_daily_transaction_details`"
             fields = "`product_name`, `quantity`, `price`, `total`, `product_category`"
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewTransactionDetails, errormessage:="", fields:=fields, successmessage:="", where:=" transaction_number = '" & transaction_number & "'")
-            With DataGridViewTransactionDetails
-                .Columns(0).HeaderCell.Value = "Product Name"
-                .Columns(1).HeaderCell.Value = "Quantity"
-                .Columns(2).HeaderCell.Value = "Price"
-                .Columns(3).HeaderCell.Value = "Total"
-                .Columns(4).Visible = False
-                .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
-                .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
-                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
-                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns.Item(1).DefaultCellStyle.Format = "n2"
-                .Columns.Item(2).DefaultCellStyle.Format = "n2"
-            End With
+            'With DataGridViewTransactionDetails
+            '    .Columns(0).HeaderCell.Value = "Product Name"
+            '    .Columns(1).HeaderCell.Value = "Quantity"
+            '    .Columns(2).HeaderCell.Value = "Price"
+            '    .Columns(3).HeaderCell.Value = "Total"
+            '    .Columns(4).Visible = False
+            '    .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
+            '    .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            '    .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
+            '    .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            '    .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
+            '    .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            '    .Columns.Item(1).DefaultCellStyle.Format = "n2"
+            '    .Columns.Item(2).DefaultCellStyle.Format = "n2"
+            'End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
@@ -335,8 +335,8 @@ Public Class Reports
             data = DataGridViewDaily.SelectedRows(0).Cells(3).Value.ToString()
             data2 = DataGridViewDaily.SelectedRows(0).Cells(4).Value.ToString()
             TextBoxCustomerID.Text = data
-            transaction_number = (Val(TextBoxCustomerID.Text))
-            viewtransactiondetails(transaction_number:=transaction_number)
+            'transaction_number = (Val(TextBoxCustomerID.Text))
+            viewtransactiondetails(transaction_number:=DataGridViewDaily.SelectedRows(0).Cells(2).Value)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -366,239 +366,157 @@ Public Class Reports
         End If
     End Sub
     Private Sub pdoc_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles printdoc.PrintPage
-        a = 0
-        Dim font As New Font("Bahnschrift Light SemiCondensed", 7)
-        Dim font1 As New Font("Bahnschrift  SemiCondensed", 7)
-        Dim fontAddon As New Font("Bahnschrift Light SemiCondensed", 5)
-        Dim font2 As New Font("Bahnschrift Light SemiCondensed", 9)
-        Dim font3 As New Font("Bahnschrift Condensed", 12)
-        Dim brandfont As New Font("Bahnschrift Condensed", 8)
-        '    e.Graphics.DrawRectangle(Pens.Black, e.MarginBounds.Left, e.MarginBounds.Top, e.MarginBounds.Width, e.MarginBounds.Height)
-        Dim shopnameX As Integer = 10, shopnameY As Integer = 20
-        Dim StrRight As New StringFormat()
-        'Receipt Header
-        'Dim font As New Font("Tohama", 7, FontStyle.Regular)
-        'Dim font1 As New Font("Tohama", 7, FontStyle.Regular)
-        'Dim font2 As New Font("Tohama", 10, FontStyle.Regular)
-        'Dim brandfont As New Font("Tohama", 7, FontStyle.Bold)
-        Dim sngCenterPagebrand As Single
-        sngCenterPagebrand = Convert.ToSingle(e.PageBounds.Width / 2 - e.Graphics.MeasureString(ClientBrand, brandfont).Width / 2)
-        e.Graphics.DrawString(ClientBrand, brandfont, Brushes.Black, sngCenterPagebrand, 10)
+        Try
+            Dim totalDisplay = Format(DataGridViewDaily.SelectedRows(0).Cells(8).Value, "##,##0.00")
+            a = 0
+            Dim font As New Font("Kelson Sans Normal", 7)
+            Dim fontAddon As New Font("Kelson Sans Normal", 5)
+            Dim font1 As New Font("Kelson Sans Normal", 7)
+            Dim font2 As New Font("Kelson Sans Normal", 9)
+            Dim font3 As New Font("Kelson Sans Normal", 11, FontStyle.Bold)
+            Dim brandfont As New Font("Kelson Sans Normal", 8)
+            ReceiptHeader(sender, e)
+            Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
+            Dim abc As Integer = 0
 
-        Dim sngCenterPageVatReg As Single
-        sngCenterPageVatReg = Convert.ToSingle(e.PageBounds.Width / 2 - e.Graphics.MeasureString("VAT REG TIN " & ClientTin, brandfont).Width / 2)
-        e.Graphics.DrawString("VAT REG TIN " & ClientTin, font, Brushes.Black, sngCenterPageVatReg, 21)
+            For i As Integer = 0 To DataGridViewTransactionDetails.Rows.Count - 1 Step +1
+                Dim rect1st As RectangleF = New RectangleF(10.0F, 115 + abc, 173.0F, 100.0F)
+                Dim price = Format(DataGridViewTransactionDetails.Rows(i).Cells(3).Value, "##,##0.00")
 
-        Dim sngCenterPageaddbrgy As Single
-        sngCenterPageaddbrgy = Convert.ToSingle(e.PageBounds.Width / 2 - e.Graphics.MeasureString(ClientAddress & " Brgy." & ClientBrgy, brandfont).Width / 2)
-        e.Graphics.DrawString(ClientAddress & " Brgy." & ClientBrgy, font, Brushes.Black, sngCenterPageaddbrgy, 31)
-
-        Dim sngCenterPagemun As Single
-        sngCenterPagemun = Convert.ToSingle(e.PageBounds.Width / 2 - e.Graphics.MeasureString(getmunicipality & ", " & getprovince, brandfont).Width / 2)
-        e.Graphics.DrawString(getmunicipality & ", " & getprovince, font, Brushes.Black, sngCenterPagemun, 41)
-
-        Dim sngCenterPagetel As Single
-        sngCenterPagetel = Convert.ToSingle(e.PageBounds.Width / 2 - e.Graphics.MeasureString(ClientTel, brandfont).Width / 2)
-        e.Graphics.DrawString(ClientTel, font, Brushes.Black, sngCenterPagetel, 51)
-
-        e.Graphics.DrawString("Name: ", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + 50))
-        e.Graphics.DrawLine(Pens.Black, 37, 77, 180, 77)
-        e.Graphics.DrawString("Tin:", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + 60))
-        e.Graphics.DrawLine(Pens.Black, 25, 87, 180, 87)
-        e.Graphics.DrawString("Address:", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + 70))
-        e.Graphics.DrawLine(Pens.Black, 46, 97, 180, 97)
-        e.Graphics.DrawString("Business Style:", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + 80))
-        e.Graphics.DrawLine(Pens.Black, 70, 107, 180, 107)
-        'Items
-        Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-        Dim abc As Integer = 0
-        For i As Integer = 0 To DataGridViewTransactionDetails.Rows.Count - 1 Step +1
-            Dim rect1st As RectangleF = New RectangleF(10.0F, 115 + abc, 173.0F, 100.0F)
-            Dim price = Convert.ToDecimal(DataGridViewTransactionDetails.Rows(i).Cells(3).FormattedValue).ToString("0.00")
-            '=========================================================================================================================================================
-            table = "loc_admin_products"
-            fields = "product_sku"
-            value = " product_name ='" & DataGridViewTransactionDetails.Rows(i).Cells(0).Value & "'"
-            returnvalrow = "product_sku"
-            If DataGridViewTransactionDetails.Rows(i).Cells(4).Value.ToString = "Add-Ons" Then
-                e.Graphics.DrawString("     @" & DataGridViewTransactionDetails.Rows(i).Cells(1).Value & " " & GLOBAL_SELECT_FUNCTION_RETURN(table:=table, fields:=fields, returnvalrow:=returnvalrow, values:=value), fontAddon, Brushes.Black, rect1st)
-            Else
-                e.Graphics.DrawString(DataGridViewTransactionDetails.Rows(i).Cells(1).Value & " " & GLOBAL_SELECT_FUNCTION_RETURN(table:=table, fields:=fields, returnvalrow:=returnvalrow, values:=value), font, Brushes.Black, rect1st)
-            End If
-            e.Graphics.DrawString(price, font, Brushes.Black, rect1st, format1st)
-            a += 10
-            abc += 10
-            '=========================================================================================================================================================
-        Next
-        a += 120
-        Dim SiNumberDgv As Integer = DataGridViewDaily.SelectedRows(0).Cells(13).Value
-        Dim SiNumberString As String = SiNumberDgv.ToString("0000000000")
-        If DataGridViewDaily.SelectedRows(0).Cells(8).Value = 0 Then
-            Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-            Dim rect3 As RectangleF = New RectangleF(10.0F, a, 173.0F, 100.0F)
-            e.Graphics.DrawString("AMOUNT DUE:", font3, Brushes.Black, rect3)
-            e.Graphics.DrawString("P" & total, font3, Brushes.Black, rect3, format)
-            'Cash
-            Dim aNumber As Double = DataGridViewDaily.SelectedRows(0).Cells(5).Value
-            Dim cash = String.Format("{0:n2}", aNumber)
-            Dim rect4 As RectangleF = New RectangleF(10.0F, a + 15, 173.0F, 100.0F)
-            e.Graphics.DrawString("CASH:", font2, Brushes.Black, rect4)
-            e.Graphics.DrawString("P" & cash, font2, Brushes.Black, rect4, format)
-            'Change
-            Dim aNumber1 As Double = DataGridViewDaily.SelectedRows(0).Cells(6).Value
-            Dim change = String.Format("{0:n2}", aNumber1)
-            Dim rect5 As RectangleF = New RectangleF(10.0F, a + 25, 173.0F, 100.0F)
-            e.Graphics.DrawString("CHANGE:", font2, Brushes.Black, rect5)
-            e.Graphics.DrawString("P" & change, font2, Brushes.Black, rect5, Format)
-            'Vatable
-            Dim vatable = Math.Round(total / 1.12, 2)
-            e.Graphics.DrawString("**************************************************", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 27))
-            Dim rect6 As RectangleF = New RectangleF(10.0F, a + 52, 173.0F, 100.0F)
-            e.Graphics.DrawString("     Vatable", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 32))
-            e.Graphics.DrawString("    " & vatable, font1, Brushes.Black, rect6, Format)
-            'Vat Exempt Sales
-            Dim rect7 As RectangleF = New RectangleF(10.0F, a + 62, 173.0F, 100.0F)
-            e.Graphics.DrawString("     Vat Exempt Sales", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 42))
-            e.Graphics.DrawString("    " & "0.00", font1, Brushes.Black, rect7, Format)
-            'Zero Rated Sales
-            Dim rect8 As RectangleF = New RectangleF(10.0F, a + 72, 173.0F, 100.0F)
-            e.Graphics.DrawString("     Zero Rated Sales", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 52))
-            e.Graphics.DrawString("    " & "0.00", font1, Brushes.Black, rect8, Format)
-            'VAT
-            Dim rect9 As RectangleF = New RectangleF(10.0F, a + 82, 173.0F, 100.0F)
-            e.Graphics.DrawString("     VAT", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 62))
-            e.Graphics.DrawString("    " & Math.Round(total - vatable, 2) & "-", font1, Brushes.Black, rect9, format)
-            'Total
-            Dim rect10 As RectangleF = New RectangleF(10.0F, a + 92, 173.0F, 100.0F)
-            e.Graphics.DrawString("     Total", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 72))
-            e.Graphics.DrawString("    " & total, font1, Brushes.Black, rect10, Format)
-            'INFO
-            e.Graphics.DrawString("**************************************************", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 82))
-            e.Graphics.DrawString("Transaction Type: " & DataGridViewDaily.SelectedRows(0).Cells(11).Value.ToString, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 90))
-            e.Graphics.DrawString("Total Item(s): " & DataGridViewTransactionDetails.Rows.Count, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 100))
-            e.Graphics.DrawString("Store No: " & ClientStoreID, font, Brushes.Black, New PointF(shopnameX + 110, shopnameY + a + 100))
-            '=========================================================================================================================================================
-            e.Graphics.DrawString("Cashier: " & returnuserid(full_name:=data2) & " " & data2, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 110))
-            '=========================================================================================================================================================
-            e.Graphics.DrawString("Date & Time: " & DataGridViewDaily.SelectedRows(0).Cells(1).Value.ToString & " " & DataGridViewDaily.SelectedRows(0).Cells(2).Value.ToString, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 120))
-            e.Graphics.DrawString("Terminal No: ", font, Brushes.Black, New PointF(shopnameX + 110, shopnameY + a + 130))
-            e.Graphics.DrawString("Trans ID: " & DataGridViewDaily.SelectedRows(0).Cells(3).Value, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 130))
-            e.Graphics.DrawString("This serves as your Sales Invoice", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 140))
-            e.Graphics.DrawString("SI No: " & SiNumberString, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 150))
-            e.Graphics.DrawString("**************************************************", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 160))
-
-            ReceiptFooter(sender, e, a - 10)
-        Else
-            'Total
-            Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-            Dim rect3 As RectangleF = New RectangleF(10.0F, a + 15, 173.0F, 100.0F)
-            e.Graphics.DrawString("TOTAL:", font2, Brushes.Black, rect3)
-            e.Graphics.DrawString("P" & total, font2, Brushes.Black, rect3, format)
-            'Discount
-            Dim aNumber0 As Double = DataGridViewDaily.SelectedRows(0).Cells(8).Value
-            Dim disc = String.Format(aNumber0)
-            Dim rect0 As RectangleF = New RectangleF(10.0F, a + 25, 173.0F, 100.0F)
-            e.Graphics.DrawString("DISCOUNT:", font2, Brushes.Black, rect0)
-            e.Graphics.DrawString(disc & "-", font2, Brushes.Black, rect0, format)
-            'cash
-            Dim aNumber As Double = DataGridViewDaily.SelectedRows(0).Cells(5).Value
-            Dim cash = String.Format("{0:n2}", aNumber)
-            Dim rect4 As RectangleF = New RectangleF(10.0F, a + 35, 173.0F, 100.0F)
-            e.Graphics.DrawString("CASH:", font2, Brushes.Black, rect4)
-            e.Graphics.DrawString("P" & cash, font2, Brushes.Black, rect4, format)
-            'change
-            Dim aNumber1 As Double = DataGridViewDaily.SelectedRows(0).Cells(6).Value
-            Dim change = String.Format("{0:n2}", aNumber1)
-            Dim rect5 As RectangleF = New RectangleF(10.0F, a + 45, 173.0F, 100.0F)
-            e.Graphics.DrawString("CHANGE:", font2, Brushes.Black, rect5)
-            e.Graphics.DrawString("P" & change, font2, Brushes.Black, rect5, format)
-            'amount due
-            Dim aNumber2 As Double = DataGridViewDaily.SelectedRows(0).Cells(9).Value
-            Dim amountdue = String.Format("{0:n2}", aNumber2)
-            Dim rect11 As RectangleF = New RectangleF(10.0F, a, 173.0F, 100.0F)
-            e.Graphics.DrawString("AMOUNT DUE:", font3, Brushes.Black, rect11)
-            e.Graphics.DrawString("P" & aNumber2, font3, Brushes.Black, rect11, format)
-            e.Graphics.DrawString("**************************************************", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 47))
-            If S_ZeroRated = "0" Then
-                'Vatable
-                Dim vatExemptSales As Double = Math.Round(total / 1.12, 2)
-                Dim vatable = Math.Round(aNumber2 / 1.12, 2)
-                Dim rect6 As RectangleF = New RectangleF(10.0F, a + 72, 173.0F, 100.0F)
-                e.Graphics.DrawString("     Vatable", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 52))
-                e.Graphics.DrawString("    " & "0.00", font1, Brushes.Black, rect6, format)
-
-                'Vat Exempt Sales
-                Dim rect7 As RectangleF = New RectangleF(10.0F, a + 82, 173.0F, 100.0F)
-                e.Graphics.DrawString("     Vat Exempt Sales", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 62))
-                e.Graphics.DrawString("    " & DataGridViewDaily.SelectedRows(0).Cells(10).Value, font1, Brushes.Black, rect7, format)
-                'Zero Rated Sales
-                Dim rect8 As RectangleF = New RectangleF(10.0F, a + 92, 173.0F, 100.0F)
-                e.Graphics.DrawString("     Zero Rated Sales", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 72))
-                e.Graphics.DrawString("    " & "0.00", font1, Brushes.Black, rect8, format)
-                'VAT
-                Dim rect9 As RectangleF = New RectangleF(10.0F, a + 102, 173.0F, 100.0F)
-                e.Graphics.DrawString("     VAT", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 82))
-                e.Graphics.DrawString("    " & DataGridViewDaily.SelectedRows(0).Cells(12).Value & "-", font1, Brushes.Black, rect9, format)
-                'Total
-                'Dim rect10 As RectangleF = New RectangleF(10.0F, a + 112, 173.0F, 100.0F)
-                'e.Graphics.DrawString("     Total", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 92))
-                'e.Graphics.DrawString("    " & DataGridViewDaily.SelectedRows(0).Cells(9).Value, font1, Brushes.Black, rect10, format)
-                'INFO
-                e.Graphics.DrawString("**************************************************", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 92))
-                e.Graphics.DrawString("Transaction Type: " & DataGridViewDaily.SelectedRows(0).Cells(11).Value.ToString, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 100))
-                e.Graphics.DrawString("Total Item(s): " & DataGridViewTransactionDetails.Rows.Count, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 110))
-                e.Graphics.DrawString("Store No: " & ClientStoreID, font, Brushes.Black, New PointF(shopnameX + 110, shopnameY + a + 110))
                 '=========================================================================================================================================================
-                e.Graphics.DrawString("Cashier: " & returnuserid(full_name:=data2) & " " & data2, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 120))
+                If DataGridViewTransactionDetails.Rows(i).Cells(4).Value.ToString = "Add-Ons" Then
+                    e.Graphics.DrawString("     @" & DataGridViewTransactionDetails.Rows(i).Cells(1).Value & " " & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, fontAddon, Brushes.Black, rect1st)
+                Else
+                    e.Graphics.DrawString(DataGridViewTransactionDetails.Rows(i).Cells(1).Value & " " & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, font, Brushes.Black, rect1st)
+                End If
+                e.Graphics.DrawString(price, font, Brushes.Black, rect1st, format1st)
+                a += 10
+                abc += 10
                 '=========================================================================================================================================================
-                e.Graphics.DrawString("Date & Time: " & DataGridViewDaily.SelectedRows(0).Cells(1).Value.ToString & " " & DataGridViewDaily.SelectedRows(0).Cells(2).Value.ToString, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 130))
-                e.Graphics.DrawString("Terminal No: ", font, Brushes.Black, New PointF(shopnameX + 110, shopnameY + a + 140))
-                e.Graphics.DrawString("Trans ID: " & DataGridViewDaily.SelectedRows(0).Cells(3).Value, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 140))
-                e.Graphics.DrawString("This serves as your Sales Invoice", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 150))
-                e.Graphics.DrawString("SI No: " & SiNumberString, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 160))
-                e.Graphics.DrawString("**************************************************", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 170))
+            Next
+            '    If CouponApplied = True Then
+            '        a += 100
+            '        SimpleTextDisplay(sender, e, CouponName & "(" & DiscountType & ")", font, 0, a)
+            '        SimpleTextDisplay(sender, e, CouponDesc, font, 0, a + 10)
+            '        a += 40 + CouponLine
+            '        RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & CouponTotal, font)
+            '    Else
+            '        a += 120
+            '    End If
+            '    If Val(TextBoxDISCOUNT.Text) < 1 Then
+            '        'Total
+            '        Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
+            '        Dim aNumber As Double = TEXTBOXMONEYVALUE
+            '        Dim cash = String.Format("{0:n2}", aNumber)
+            '        Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
+            '        Dim change = String.Format("{0:n2}", aNumber1)
+            '        'AMOUT DUE
 
-                ReceiptFooter(sender, e, a)
-            Else
-                Dim vatExemptSales As Double = Math.Round(total / 1.12, 2)
-                Dim vatable = Math.Round(aNumber2 / 1.12, 2)
-                Dim rect6 As RectangleF = New RectangleF(10.0F, a + 72, 173.0F, 100.0F)
-                e.Graphics.DrawString("     Vatable", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 52))
-                e.Graphics.DrawString("    " & "0.00", font1, Brushes.Black, rect6, format)
+            '        RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & totalDisplay, font3)
+            '        'Cash
+            '        RightToLeftDisplay(sender, e, a + 15, "CASH:", "P" & cash, font2)
+            '        'Change
+            '        RightToLeftDisplay(sender, e, a + 25, "CHANGE:", "P" & change, font2)
+            '        'Vatable
 
-                'Vat Exempt Sales
-                Dim rect7 As RectangleF = New RectangleF(10.0F, a + 82, 173.0F, 100.0F)
-                e.Graphics.DrawString("     Vat Exempt Sales", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 62))
-                e.Graphics.DrawString("    " & DataGridViewDaily.SelectedRows(0).Cells(9).Value, font1, Brushes.Black, rect7, format)
-                'Zero Rated Sales
-                Dim rect8 As RectangleF = New RectangleF(10.0F, a + 92, 173.0F, 100.0F)
-                e.Graphics.DrawString("     Zero Rated Sales", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 72))
-                e.Graphics.DrawString("    " & "0.00", font1, Brushes.Black, rect8, format)
-                'VAT
-                Dim rect9 As RectangleF = New RectangleF(10.0F, a + 102, 173.0F, 100.0F)
-                e.Graphics.DrawString("     VAT", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 82))
-                e.Graphics.DrawString("    " & "0.00", font1, Brushes.Black, rect9, format)
-                'Total
-                'Dim rect10 As RectangleF = New RectangleF(10.0F, a + 112, 173.0F, 100.0F)
-                'e.Graphics.DrawString("     Total", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 92))
-                'e.Graphics.DrawString("    " & DataGridViewDaily.SelectedRows(0).Cells(9).Value, font1, Brushes.Black, rect10, format)
-                'INFO
-                e.Graphics.DrawString("**************************************************", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 92))
-                e.Graphics.DrawString("Transaction Type: " & DataGridViewDaily.SelectedRows(0).Cells(11).Value.ToString, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 100))
-                e.Graphics.DrawString("Total Item(s): " & DataGridViewTransactionDetails.Rows.Count, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 110))
-                e.Graphics.DrawString("Store No: " & ClientStoreID, font, Brushes.Black, New PointF(shopnameX + 110, shopnameY + a + 110))
-                '=========================================================================================================================================================
-                e.Graphics.DrawString("Cashier: " & returnuserid(full_name:=data2) & " " & data2, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 120))
-                '=========================================================================================================================================================
-                e.Graphics.DrawString("Date & Time: " & DataGridViewDaily.SelectedRows(0).Cells(1).Value.ToString & " " & DataGridViewDaily.SelectedRows(0).Cells(2).Value.ToString, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 130))
-                e.Graphics.DrawString("Terminal No: ", font, Brushes.Black, New PointF(shopnameX + 110, shopnameY + a + 140))
-                e.Graphics.DrawString("Trans ID: " & DataGridViewDaily.SelectedRows(0).Cells(3).Value, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 140))
-                e.Graphics.DrawString("This serves as your Sales Invoice", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 150))
-                e.Graphics.DrawString("SI No: " & SiNumberString, font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 160))
-                e.Graphics.DrawString("**************************************************", font, Brushes.Black, New PointF(shopnameX + 0, shopnameY + a + 170))
-                ReceiptFooter(sender, e, a)
-            End If
-        End If
+            '        SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 27)
+            '        'Vatable
+            '        RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & "0.00", font)
+            '        'Vat Exempt
+            '        RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & VATEXEMPTSALES, font)
+            '        'Zero Rated Sales
+            '        RightToLeftDisplay(sender, e, a + 72, "     Zero Rated Sales", "    " & "0.00", font)
+            '        'VAT
+            '        RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & LESSVAT & "-", font)
+            '        'Total
+            '        RightToLeftDisplay(sender, e, a + 92, "     Total", "    " & SUPERAMOUNTDUE, font)
+            '        'INFOS
+            '        SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 82)
+            '        SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 90)
+            '        SimpleTextDisplay(sender, e, "Total Item(s): " & .DataGridViewOrders.Rows.Count, font, 0, a + 100)
+            '        SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 110)
+            '        SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 110, a + 100)
+            '        SimpleTextDisplay(sender, e, "Date & Time: " & insertcurrentdate & " " & TIMETOINSERT, font, 0, a + 120)
+            '        SimpleTextDisplay(sender, e, "Terminal No: ", font, 110, a + 130)
+            '        SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 130)
+            '        SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 140)
+            '        SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 150)
+            '        SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 160)
+            '        'Additional Info
+            '        ReceiptFooter(sender, e, a - 10)
+            '    Else
+            '        Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
+            '        Dim change = String.Format("{0:n2}", aNumber1)
+            '        Dim aNumber As Double = TEXTBOXMONEYVALUE
+            '        Dim cash = String.Format("{0:n2}", aNumber)
+            '        Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
+            '        'amount due
+            '        RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & totalDisplay, font3)
+            '        'Sub total
+            '        RightToLeftDisplay(sender, e, a + 15, "SUB TOTAL:", "P" & TextBoxSUBTOTAL.Text, font2)
+            '        'Discount
+            '        Dim aNumber0 As Double = TextBoxDISCOUNT.Text
+            '        Dim disc = String.Format(aNumber0)
+            '        RightToLeftDisplay(sender, e, a + 25, "DISCOUNT:", disc & "-", font2)
+            '        'cash
+            '        RightToLeftDisplay(sender, e, a + 35, "CASH:", "P" & cash, font2)
+            '        'change
+            '        RightToLeftDisplay(sender, e, a + 45, "CHANGE:", "P" & change, font2)
+            '        'vatable
+            '        If S_ZeroRated = "0" Then
+            '            SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 47)
+            '            'Vatable
+            '            RightToLeftDisplay(sender, e, a + 72, "     Vatable", "    " & VATABLE, font)
+            '            'Vat Exempt
+            '            RightToLeftDisplay(sender, e, a + 82, "     Vat Exempt Sales", "    " & VATEXEMPTSALES, font)
+            '            'Zero Rated Sales
+            '            RightToLeftDisplay(sender, e, a + 92, "     Zero Rated Sales", "    " & "0.00", font)
+            '            'VAT
+            '            RightToLeftDisplay(sender, e, a + 102, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & LESSVAT & "-", font)
+            '            'BODY
+            '            SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 92)
+            '            SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 100)
+            '            SimpleTextDisplay(sender, e, "Total Item(s): " & .DataGridViewOrders.Rows.Count, font, 0, a + 110)
+            '            SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 120)
+            '            SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 110)
+            '            SimpleTextDisplay(sender, e, "Date & Time: " & insertcurrentdate & " " & TIMETOINSERT, font, 0, a + 130)
+            '            SimpleTextDisplay(sender, e, "Terminal No: ", font, 120, a + 140)
+            '            SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 140)
+            '            SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 150)
+            '            SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 160)
+            '            SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 170)
+            '            'INFOS.
+            '            ReceiptFooter(sender, e, a)
+            '        Else
+            '            SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 47)
+            '            'Vatable
+            '            RightToLeftDisplay(sender, e, a + 72, "     Vatable", "    " & "0.00", font)
+            '            'Vat Exempt
+            '            RightToLeftDisplay(sender, e, a + 82, "     Vat Exempt Sales", "    " & Val(TextBoxGRANDTOTAL.Text), font)
+            '            'Zero Rated Sales
+            '            RightToLeftDisplay(sender, e, a + 92, "     Zero Rated Sales", "    " & "0.00", font)
+            '            'VAT
+            '            RightToLeftDisplay(sender, e, a + 102, "     VAT", "    " & "0.00", font)
+            '            'BODY
+            '            SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 92)
+            '            SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 100)
+            '            SimpleTextDisplay(sender, e, "Total Item(s): " & .DataGridViewOrders.Rows.Count, font, 0, a + 110)
+            '            SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 120)
+            '            SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 110)
+            '            SimpleTextDisplay(sender, e, "Date & Time: " & insertcurrentdate & " " & TIMETOINSERT, font, 0, a + 130)
+            '            SimpleTextDisplay(sender, e, "Terminal No: ", font, 120, a + 140)
+            '            SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 140)
+            '            SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 150)
+            '            SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 160)
+            '            SimpleTextDisplay(sender, e, "********************************************************", font, 0, a + 170)
+            '            'Dev Info
+            '            ReceiptFooter(sender, e, a)
+            '        End If
+            '    End If
+            'End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Dim XreadOrZread As String
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click

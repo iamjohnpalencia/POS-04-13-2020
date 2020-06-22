@@ -19,34 +19,84 @@ Public Class Leaderboards
         SendMessage(ProgressBar_Name.Handle, &H410, ProgressBar_Color, 0)
     End Sub
     Private Sub ProductList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TabControl1.TabPages(0).Text = "Sales"
-        TabControl1.TabPages(1).Text = "Expenses"
-        TabControl1.TabPages(2).Text = "Transfers"
-        TabControl1.TabPages(3).Text = "Logs"
-        LoadChart("SELECT DATE_FORMAT(zreading, '%Y-%m-%d') as zreading, SUM(total) FROM loc_daily_transaction_details WHERE DATE(CURRENT_DATE) - INTERVAL 7 DAY GROUP BY zreading DESC LIMIT 7", 0)
-        CheckForIllegalCrossThreadCalls = False
-        BackgroundWorker1.WorkerReportsProgress = True
-        BackgroundWorker1.WorkerSupportsCancellation = True
-        BackgroundWorker1.RunWorkerAsync()
+        Try
+            TabControl1.TabPages(0).Text = "Sales"
+            TabControl1.TabPages(1).Text = "Expenses"
+            TabControl1.TabPages(2).Text = "Transfers"
+            TabControl1.TabPages(3).Text = "Logs"
+            LoadChart("SELECT DATE_FORMAT(zreading, '%Y-%m-%d') as zreading, SUM(total) FROM loc_daily_transaction_details WHERE DATE(CURRENT_DATE) - INTERVAL 7 DAY GROUP BY zreading DESC LIMIT 7", 0)
+            LoadProducts()
+            loadbestseller()
+            LoadTransactions()
+            LoadExpenses()
+            LoadTransfers()
+            LoadLogs()
+
+            'CheckForIllegalCrossThreadCalls = False
+            'BackgroundWorker1.WorkerReportsProgress = True
+            'BackgroundWorker1.WorkerSupportsCancellation = True
+            'BackgroundWorker1.RunWorkerAsync()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
     Dim threadList As List(Of Thread) = New List(Of Thread)
     Private Sub loadbestseller()
         Try
             GLOBAL_SELECT_ALL_FUNCTION("loc_daily_transaction_details GROUP BY product_name ORDER by SUM(quantity) DESC limit 10", "product_name ,  product_category, SUM(quantity) as Qty, price , Sum(total) as totalprice", DatagridviewTOPSELLER)
+            With DatagridviewTOPSELLER
+                .Columns(0).HeaderCell.Value = "Product Name"
+                .Columns(0).Width = 150
+                .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                .Columns(1).HeaderCell.Value = "Category"
+                .Columns(1).Width = 150
+                .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                .Columns(2).HeaderCell.Value = "Sales Volume"
+                .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).HeaderCell.Value = "Price"
+                .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(4).HeaderCell.Value = "Total Sale"
+                .Columns(4).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(2).Width = 120
+                .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(3).Width = 100
+                .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns(4).Width = 100
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub LoadTransactions()
         Try
-            GLOBAL_SELECT_ALL_FUNCTION("loc_daily_transaction ORDER BY transaction_id DESC LIMIT 10 ", "transaction_number  , created_at AS datetime , crew_id , amountdue, active", DataGridViewRecentSales)
-            For Each row As DataRow In dt.Rows
-                row("crew_id") = returnfullname(row("crew_id"))
+            Dim TransacReport = AsDatatable("loc_daily_transaction ORDER BY transaction_id DESC LIMIT 10", "transaction_type , created_at , crew_id , amountdue, active", DataGridViewRecentSales)
+            Dim rowActive
+            For Each row As DataRow In TransacReport.Rows
                 If row("active") = 1 Then
-                    row("active") = "Active"
+                    rowActive = "Active"
+                ElseIf row("active") = 2 Then
+                    rowActive = "Returned"
+                Else
+                    rowActive = "N/A"
                 End If
+                DataGridViewRecentSales.Rows.Add(row("transaction_type"), row("created_at"), row("crew_id"), row("amountdue"), rowActive)
             Next
+            With DataGridViewRecentSales
+                .Columns(0).HeaderCell.Value = "Transaction Type"
+                .Columns(0).Width = 150
+                .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                .Columns(1).HeaderCell.Value = "Date Created"
+                .Columns(1).Width = 150
+                .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                .Columns(2).HeaderCell.Value = "Crew"
+                .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
+                .Columns(3).HeaderCell.Value = "Total Sales"
+                .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
+                .Columns(4).HeaderCell.Value = "Status"
+            End With
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -87,7 +137,7 @@ Public Class Leaderboards
                     row("log_type") = "Balance"
                     row("log_description") = "Begginning Balance : Shift 4 : " & row("log_description")
                 End If
-                DatagridviewLogs.Rows.Add(row("log_type"), row("log_description"), returnfullname(row("crew_id")), row("log_date_time"))
+                DatagridviewLogs.Rows.Add(row("log_type"), row("log_description"), row("crew_id"), row("log_date_time"))
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -203,54 +253,5 @@ Public Class Leaderboards
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-    End Sub
-
-    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
-        Try
-            If e.[Error] IsNot Nothing Then
-
-            ElseIf e.Cancelled Then
-
-            Else
-                With DatagridviewTOPSELLER
-                    .Columns(0).HeaderCell.Value = "Product Name"
-                    .Columns(0).Width = 150
-                    .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-                    .Columns(1).HeaderCell.Value = "Category"
-                    .Columns(1).Width = 150
-                    .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-                    .Columns(2).HeaderCell.Value = "Sales Volume"
-                    .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
-                    .Columns(3).HeaderCell.Value = "Price"
-                    .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
-                    .Columns(4).HeaderCell.Value = "Total Sale"
-                    .Columns(4).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
-                    .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                    .Columns(2).Width = 120
-                    .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                    .Columns(3).Width = 100
-                    .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                    .Columns(4).Width = 100
-                End With
-                With DataGridViewRecentSales
-                    .Columns(0).HeaderCell.Value = "Invoice id"
-                    .Columns(0).Width = 150
-                    .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-                    .Columns(1).HeaderCell.Value = "Created At"
-                    .Columns(1).Width = 150
-                    .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-                    .Columns(2).HeaderCell.Value = "Crew"
-                    .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
-                    .Columns(3).HeaderCell.Value = "Total Sales"
-                    .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
-                    .Columns(4).HeaderCell.Value = "Status"
-                End With
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
-    Private Sub Leaderboards_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        BackgroundWorker1.CancelAsync()
     End Sub
 End Class

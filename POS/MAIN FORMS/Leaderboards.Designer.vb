@@ -88,6 +88,11 @@ Partial Class Leaderboards
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel3.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -504,6 +509,7 @@ Partial Class Leaderboards
         DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewRecentSales.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridViewRecentSales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewRecentSales.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11})
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle6.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
@@ -615,10 +621,10 @@ Partial Class Leaderboards
         'TabPage4
         '
         Me.TabPage4.Controls.Add(Me.DatagridviewLogs)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(654, 232)
+        Me.TabPage4.Size = New System.Drawing.Size(654, 234)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TabPage4"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -657,7 +663,7 @@ Partial Class Leaderboards
         Me.DatagridviewLogs.Location = New System.Drawing.Point(3, 3)
         Me.DatagridviewLogs.Name = "DatagridviewLogs"
         Me.DatagridviewLogs.RowHeadersVisible = False
-        Me.DatagridviewLogs.Size = New System.Drawing.Size(648, 226)
+        Me.DatagridviewLogs.Size = New System.Drawing.Size(648, 228)
         Me.DatagridviewLogs.TabIndex = 6
         '
         'Column3
@@ -679,6 +685,31 @@ Partial Class Leaderboards
         '
         Me.Column6.HeaderText = "Column6"
         Me.Column6.Name = "Column6"
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "Column7"
+        Me.Column7.Name = "Column7"
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Column8"
+        Me.Column8.Name = "Column8"
+        '
+        'Column9
+        '
+        Me.Column9.HeaderText = "Column9"
+        Me.Column9.Name = "Column9"
+        '
+        'Column10
+        '
+        Me.Column10.HeaderText = "Column10"
+        Me.Column10.Name = "Column10"
+        '
+        'Column11
+        '
+        Me.Column11.HeaderText = "Column11"
+        Me.Column11.Name = "Column11"
         '
         'Leaderboards
         '
@@ -777,4 +808,9 @@ Partial Class Leaderboards
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents Column9 As DataGridViewTextBoxColumn
+    Friend WithEvents Column10 As DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As DataGridViewTextBoxColumn
 End Class

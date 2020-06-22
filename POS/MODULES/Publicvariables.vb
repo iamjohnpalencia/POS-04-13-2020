@@ -25,7 +25,7 @@ Module publicVariables
     'POS
     Public SINumber As Integer
     Public SiNumberToString As String
-    Public transactionmode As String = "Walk-In"
+    Public TRANSACTIONMODE As String = "Walk-In"
     Public SeniorPWd As Decimal
     Public SeniorPWdDrinks As Decimal
     Public ThisIsMyInventoryID
