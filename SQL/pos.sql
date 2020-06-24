@@ -172,28 +172,30 @@ DROP TABLE IF EXISTS `loc_daily_transaction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `loc_daily_transaction` (
-  `transaction_id` int(11) NOT NULL AUTO_INCREMENT,
+  `transaction_id` int(11) NOT NULL,
   `transaction_number` varchar(255) NOT NULL,
+  `grosssales` decimal(11,2) NOT NULL,
+  `totaldiscount` decimal(11,2) NOT NULL,
   `amounttendered` decimal(11,2) NOT NULL,
-  `discount` decimal(11,2) NOT NULL,
-  `moneychange` decimal(11,2) NOT NULL,
+  `change` decimal(11,2) NOT NULL,
   `amountdue` decimal(11,2) NOT NULL,
-  `vatable` decimal(11,2) NOT NULL,
-  `vat_exempt` decimal(11,2) NOT NULL,
-  `zero_rated` decimal(11,2) NOT NULL,
-  `vat` decimal(11,2) NOT NULL,
+  `vatablesales` decimal(11,2) NOT NULL,
+  `vatexemptsales` decimal(11,2) NOT NULL,
+  `zeroratedsales` decimal(11,2) NOT NULL,
+  `vatpercentage` decimal(11,2) NOT NULL,
+  `lessvat` decimal(11,2) NOT NULL,
+  `transaction_type` varchar(50) NOT NULL,
+  `discount_type` varchar(50) NOT NULL,
+  `totaldiscountedamount` decimal(11,2) NOT NULL,
   `si_number` int(10) NOT NULL,
   `crew_id` varchar(20) NOT NULL,
   `guid` varchar(50) NOT NULL,
   `active` varchar(2) NOT NULL,
   `store_id` varchar(11) NOT NULL,
   `created_at` text NOT NULL,
-  `transaction_type` varchar(50) NOT NULL,
   `shift` varchar(255) NOT NULL,
   `zreading` text NOT NULL,
-  `synced` varchar(255) NOT NULL,
-  `discount_type` varchar(50) NOT NULL,
-  PRIMARY KEY (`transaction_id`)
+  `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -830,15 +832,10 @@ UNLOCK TABLES;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `Copy_To_Loc_admin_products` AFTER INSERT ON `triggers_loc_admin_products` FOR EACH ROW INSERT INTO loc_admin_products(`product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `ip_address`, `store_id`, `crew_id`, `synced`)
-
 SELECT `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `ip_address`, `store_id`, `crew_id`, `synced`
-
   FROM triggers_loc_admin_products
-
  WHERE NOT EXISTS(SELECT `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `ip_address`, `store_id`, `crew_id`, `synced`
-
                     FROM loc_admin_products
-
                    WHERE loc_admin_products.product_sku = triggers_loc_admin_products.product_sku ) */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -888,15 +885,10 @@ CREATE TABLE `triggers_loc_users` (
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `Copy_To_Loc_Users` AFTER INSERT ON `triggers_loc_users` FOR EACH ROW INSERT INTO loc_users(`user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `created_at`, `updated_at`, `active`, `guid`, `store_id`, `uniq_id`)
-
 SELECT `user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `created_at`, `updated_at`, `active`, `guid`, `store_id`, `uniq_id`
-
   FROM Triggers_loc_users
-
  WHERE NOT EXISTS(SELECT `user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `created_at`, `updated_at`, `active`, `guid`, `store_id`, `uniq_id`
-
                     FROM loc_users
-
                    WHERE loc_users.uniq_id = Triggers_loc_users.uniq_id ) */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;

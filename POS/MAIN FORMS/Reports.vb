@@ -494,8 +494,8 @@ Public Class Reports
             Dim font As New Font("Bahnschrift Light SemiCondensed", 7)
             Dim brandfont As New Font("Bahnschrift Condensed", 9)
             Dim GrossSale = sum("total", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' ")
-            Dim LessVat = sum("vat", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
-            Dim TotalDiscount = sum("discount", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
+            Dim LessVat = sum("vatablesales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
+            Dim TotalDiscount = sum("totaldiscount", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
             Dim begORNm = returnselect("transaction_number", "`loc_daily_transaction` WHERE date(zreading) = CURRENT_DATE Limit 1")
             Dim EndORNumber = Format(Now, "yyddMMHHmmssyy")
             Dim DailySales = GrossSale - LessVat - TotalDiscount
@@ -506,12 +506,12 @@ Public Class Reports
             Dim TotalGuest = count("transaction_id", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
             Dim TotalQuantity = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' ") - ReturnsExchange
 
-            Dim SrDiscount = sum("discount", "loc_daily_transaction WHERE discount_type = 'Percentage' AND zreading = '" & ZreadDateFormat & "' ")
+            Dim SrDiscount = sum("totaldiscount", "loc_daily_transaction WHERE discount_type = 'Percentage' AND zreading = '" & ZreadDateFormat & "' ")
             Dim totalExpenses = sum("amount", "loc_expense_details WHERE zreading = '" & ZreadDateFormat & "'")
 
-            Dim VatExempt = sum("vat_exempt", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
-            Dim zeroratedsales = sum("zero_rated", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
-            Dim vatablesales = sum("vatable", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
+            Dim VatExempt = sum("vatexemptsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
+            Dim zeroratedsales = sum("zeroratedsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
+            Dim vatablesales = sum("vatablesales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
             Dim DepositSlip = sum("amount", "loc_deposit WHERE date(transaction_date) = '" & ZreadDateFormat & "' ")
             Dim TotalVat = LessVat
             Dim BegBalance = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ORDER by log_date_time DESC LIMIT 1")
