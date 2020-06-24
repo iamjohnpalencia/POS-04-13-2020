@@ -717,7 +717,7 @@ Public Class POS
                 If Val(TextBoxDISCOUNT.Text) = 0 Then
                     VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
                     VATEXEMPTSALES = 0.00
-                    VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATEXEMPTSALES, 2, MidpointRounding.AwayFromZero)
+                    VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
                     GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
                 End If
                 sql = "SELECT si_number FROM loc_daily_transaction ORDER BY transaction_id DESC limit 1"
