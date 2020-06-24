@@ -505,10 +505,8 @@ Public Class Reports
             Dim NEWgrandtotal = sum("total", "loc_daily_transaction_details") - ReturnsTotal
             Dim TotalGuest = count("transaction_id", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
             Dim TotalQuantity = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' ") - ReturnsExchange
-
             Dim SrDiscount = sum("totaldiscount", "loc_daily_transaction WHERE discount_type = 'Percentage' AND zreading = '" & ZreadDateFormat & "' ")
             Dim totalExpenses = sum("amount", "loc_expense_details WHERE zreading = '" & ZreadDateFormat & "'")
-
             Dim VatExempt = sum("vatexemptsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
             Dim zeroratedsales = sum("zeroratedsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
             Dim vatablesales = sum("vatablesales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")

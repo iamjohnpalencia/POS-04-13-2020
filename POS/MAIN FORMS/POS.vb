@@ -715,8 +715,8 @@ Public Class POS
                     ACTIVE = 3
                 End If
                 If Val(TextBoxDISCOUNT.Text) = 0 Then
-                    VATABLESALES = 0.00
-                    VATEXEMPTSALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                    VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                    VATEXEMPTSALES = 0.00
                     VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATEXEMPTSALES, 2, MidpointRounding.AwayFromZero)
                     GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
                 End If
@@ -883,8 +883,8 @@ Public Class POS
                     RightToLeftDisplay(sender, e, a + 15, "CASH:", "P" & cash, font1)
                     RightToLeftDisplay(sender, e, a + 25, "CHANGE:", "P" & change, font1)
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 23)
-                    RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & "0.00", font)
-                    RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & VATEXEMPTSALES, font)
+                    RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & VATABLESALES, font)
+                    RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & "0.00", font)
                     RightToLeftDisplay(sender, e, a + 72, "     Zero Rated Sales", "    " & "0.00", font)
                     RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & VAT12PERCENT, font)
                     RightToLeftDisplay(sender, e, a + 92, "     Less Vat", "    " & "0.00" & "-", font)
