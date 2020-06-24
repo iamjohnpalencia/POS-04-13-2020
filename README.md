@@ -231,3 +231,45 @@ June 16 7:00 AM to 12:00 PM
 	* Database Export/ import
 	* Automatic Backup
 
+june 21 5:00 AM to 6:00 PM to 1:00 AM
+
+	Table columns structure
+	* datestamp/timestamp to text structure
+	* Configuration manager query ajustment
+	* Expenses
+	* inventory
+	* Leaderboards 
+	* pos
+	* reports	
+	* settings
+	* sync to cloud
+	* Receipt view font
+
+june 22 7:00 AM - 3:00 PM
+
+	* Updates bug fix
+		* insertion of items into different colums
+			* Guid
+			* Store ID	 
+		* Removing of returndatefullformat function
+	* Loading form
+		* Checking of cloud connection fixed
+	* Pos Form/ Reports Form		
+		* Fixed print view crash when printing
+	* Payment form design
+		* Numpad
+
+june 23 7:00 AM - 3:00 PM
+
+	* Debugging
+
+june 24 8:30 am to 12:30
+
+	* Coupon Code Form
+		* Senior Citizen adjustments
+	* Pos Form
+		* Insert function for loc_daily_transaction
+		* Printview new line (Less Vat)
+	* Reports Form
+		* Print view adjustments
+

@@ -57,204 +57,205 @@ Partial Class BegBalance
         '
         'TextBox1
         '
-        Me.TextBox1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBox1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.Location = New System.Drawing.Point(65, 97)
         Me.TextBox1.MaxLength = 10
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(98, 22)
+        Me.TextBox1.Size = New System.Drawing.Size(98, 23)
         Me.TextBox1.TabIndex = 0
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(17, 100)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(30, 14)
+        Me.Label1.Size = New System.Drawing.Size(33, 15)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "1000"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label2.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(180, 100)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(25, 14)
+        Me.Label2.Size = New System.Drawing.Size(28, 15)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "500"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label3.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(17, 128)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(25, 14)
+        Me.Label3.Size = New System.Drawing.Size(28, 15)
         Me.Label3.TabIndex = 3
         Me.Label3.Text = "200"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label4.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(180, 128)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(24, 14)
+        Me.Label4.Size = New System.Drawing.Size(26, 15)
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "100"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label5.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(17, 156)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(19, 14)
+        Me.Label5.Size = New System.Drawing.Size(21, 15)
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "50"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label6.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(180, 156)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(19, 14)
+        Me.Label6.Size = New System.Drawing.Size(21, 15)
         Me.Label6.TabIndex = 6
         Me.Label6.Text = "20"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label7.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(17, 184)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(18, 14)
+        Me.Label7.Size = New System.Drawing.Size(19, 15)
         Me.Label7.TabIndex = 7
         Me.Label7.Text = "10"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label8.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(180, 184)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(13, 14)
+        Me.Label8.Size = New System.Drawing.Size(14, 15)
         Me.Label8.TabIndex = 8
         Me.Label8.Text = "5"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label9.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.Location = New System.Drawing.Point(17, 212)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(12, 14)
+        Me.Label9.Size = New System.Drawing.Size(12, 15)
         Me.Label9.TabIndex = 9
         Me.Label9.Text = "1"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label10.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.Location = New System.Drawing.Point(180, 212)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(21, 14)
+        Me.Label10.Size = New System.Drawing.Size(24, 15)
         Me.Label10.TabIndex = 10
         Me.Label10.Text = ".25"
         '
         'TextBox2
         '
-        Me.TextBox2.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBox2.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox2.Location = New System.Drawing.Point(222, 97)
         Me.TextBox2.MaxLength = 10
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(98, 22)
+        Me.TextBox2.Size = New System.Drawing.Size(98, 23)
         Me.TextBox2.TabIndex = 13
         '
         'TextBox3
         '
-        Me.TextBox3.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBox3.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox3.Location = New System.Drawing.Point(65, 125)
         Me.TextBox3.MaxLength = 10
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(98, 22)
+        Me.TextBox3.Size = New System.Drawing.Size(98, 23)
         Me.TextBox3.TabIndex = 14
         '
         'TextBox4
         '
-        Me.TextBox4.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBox4.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox4.Location = New System.Drawing.Point(222, 125)
         Me.TextBox4.MaxLength = 10
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(98, 22)
+        Me.TextBox4.Size = New System.Drawing.Size(98, 23)
         Me.TextBox4.TabIndex = 15
         '
         'TextBox5
         '
-        Me.TextBox5.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBox5.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox5.Location = New System.Drawing.Point(65, 153)
         Me.TextBox5.MaxLength = 10
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(98, 22)
+        Me.TextBox5.Size = New System.Drawing.Size(98, 23)
         Me.TextBox5.TabIndex = 16
         '
         'TextBox6
         '
-        Me.TextBox6.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBox6.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox6.Location = New System.Drawing.Point(222, 153)
         Me.TextBox6.MaxLength = 10
         Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(98, 22)
+        Me.TextBox6.Size = New System.Drawing.Size(98, 23)
         Me.TextBox6.TabIndex = 17
         '
         'TextBox7
         '
-        Me.TextBox7.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBox7.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox7.Location = New System.Drawing.Point(65, 181)
         Me.TextBox7.MaxLength = 10
         Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(98, 22)
+        Me.TextBox7.Size = New System.Drawing.Size(98, 23)
         Me.TextBox7.TabIndex = 18
         '
         'TextBox8
         '
-        Me.TextBox8.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBox8.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox8.Location = New System.Drawing.Point(222, 181)
         Me.TextBox8.MaxLength = 10
         Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(98, 22)
+        Me.TextBox8.Size = New System.Drawing.Size(98, 23)
         Me.TextBox8.TabIndex = 19
         '
         'TextBox9
         '
-        Me.TextBox9.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBox9.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox9.Location = New System.Drawing.Point(65, 209)
         Me.TextBox9.MaxLength = 10
         Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(98, 22)
+        Me.TextBox9.Size = New System.Drawing.Size(98, 23)
         Me.TextBox9.TabIndex = 20
         '
         'TextBox10
         '
-        Me.TextBox10.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBox10.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox10.Location = New System.Drawing.Point(222, 209)
         Me.TextBox10.MaxLength = 10
         Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(98, 22)
+        Me.TextBox10.Size = New System.Drawing.Size(98, 23)
         Me.TextBox10.TabIndex = 21
         '
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Button1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(14, 251)
+        Me.Button1.Location = New System.Drawing.Point(0, 261)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(306, 33)
+        Me.Button1.Size = New System.Drawing.Size(338, 33)
         Me.Button1.TabIndex = 24
         Me.Button1.Text = "SUBMIT"
         Me.Button1.UseVisualStyleBackColor = False
@@ -262,41 +263,41 @@ Partial Class BegBalance
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Kelson Sans", 8.999999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(14, 234)
+        Me.Label11.Font = New System.Drawing.Font("Kelson Sans", 9.749999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(14, 239)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(93, 14)
+        Me.Label11.Size = New System.Drawing.Size(101, 15)
         Me.Label11.TabIndex = 233
         Me.Label11.Text = "TOTAL BALANCE:"
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Kelson Sans", 8.999999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(143, 234)
+        Me.Label12.Font = New System.Drawing.Font("Kelson Sans", 9.749999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(143, 239)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(14, 14)
+        Me.Label12.Size = New System.Drawing.Size(14, 15)
         Me.Label12.TabIndex = 234
         Me.Label12.Text = "0"
         '
         'ComboBox1
         '
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ComboBox1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"First Shift", "Second Shift", "Third Shift", "Fourth Shift"})
         Me.ComboBox1.Location = New System.Drawing.Point(65, 69)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(255, 22)
+        Me.ComboBox1.Size = New System.Drawing.Size(255, 23)
         Me.ComboBox1.TabIndex = 235
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label13.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.Location = New System.Drawing.Point(17, 72)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(38, 14)
+        Me.Label13.Size = New System.Drawing.Size(41, 15)
         Me.Label13.TabIndex = 236
         Me.Label13.Text = "SHIFT:"
         '
@@ -340,7 +341,7 @@ Partial Class BegBalance
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(28, 44)
+        Me.Label15.Location = New System.Drawing.Point(37, 44)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(263, 19)
         Me.Label15.TabIndex = 238

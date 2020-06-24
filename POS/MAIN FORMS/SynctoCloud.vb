@@ -331,7 +331,7 @@ Public Class SynctoCloud
         LoadData()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        If My.Settings.ValidCloudConn = True Then
+        If ValidCloudConnection = True Then
             'Button1.PerformClick()
             GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "Start : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
             BackgroundWorker1.WorkerSupportsCancellation = True

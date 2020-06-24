@@ -23,11 +23,10 @@ Public Class CouponCode
                     CountItem += .DataGridViewOrders.Rows(i).Cells(1).Value
                 Next
             End With
-            If CountItem < 2 Then
-                MsgBox("Cannot apply coupon! Minimum product quantity is 2", vbInformation)
+            If CountItem < 1 Then
+                MsgBox("Cannot apply coupon! Minimum product quantity is 1", vbInformation)
                 Exit Sub
             ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Percentage" Then
-                'MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
                 couponpercentage()
             ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Fix-1" Then
                 MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
@@ -46,7 +45,7 @@ Public Class CouponCode
                 couponbundle3()
             End If
             With POS
-                .discounttype = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+                .DISCOUNTTYPE = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -55,26 +54,20 @@ Public Class CouponCode
     Private Sub couponpercentage()
         Try
             If S_ZeroRated = "0" Then
-                'SeniorPWd : Highest waffle price
-                'SeniorPWdDrinks : Highest drinks price
-                'SeniorPwdDisk : 20% discount
-                Dim SeniorPwdDisk = DataGridViewCoupons.SelectedRows(0).Cells(3).Value / 100
-                'Tax : 1.12
-                Dim Tax = 1 + Val(S_Tax)
-                'DiscAmount : Total Amount of Waffle and Drinks
-                Dim DiscAmount = SeniorPWd + SeniorPWdDrinks
-                'DiscTotal : DiscAmount(Total) / 1.12
-                Dim DiscTotal = DiscAmount / Tax
-                Dim LessVat = DiscAmount / Tax * S_Tax
-                LessVat = Format(LessVat, "0.00")
-                Dim LessDiscount = DiscAmount / Tax * SeniorPwdDisk
-                LessDiscount = Format(LessDiscount, "0.00")
-                Dim SubTotal = DiscTotal - LessDiscount
-                SubTotal = Format(SubTotal, "0.00")
-                Dim AmountDueWaffle As Double = 0
-                Dim AmountDueDrinks As Double = 0
                 With POS.DataGridViewOrders
+                    Dim AmountDueWaffle As Double = 0
+                    Dim AmountDueDrinks As Double = 0
+                    Dim SeniorPwdDisk = DataGridViewCoupons.SelectedRows(0).Cells(3).Value / 100
+                    Dim Tax = 1 + Val(S_Tax)
+                    Dim GROSSSALES As Double = 0
+                    Dim DISCOUNTAMOUNT As Double = SeniorPWd + SeniorPWdDrinks
+                    Dim VATEXEMPTSALES As Double = DISCOUNTAMOUNT / Tax
+                    VATEXEMPTSALES = Format(VATEXEMPTSALES, "0.00")
+                    Dim LESSVAT As Double = DISCOUNTAMOUNT - VATEXEMPTSALES
+                    Dim LESSDISCOUNT As Double = VATEXEMPTSALES * SeniorPwdDisk
+                    LESSDISCOUNT = Format(LESSDISCOUNT, "0.00")
                     For i As Integer = 0 To .Rows.Count - 1 Step +1
+                        GROSSSALES += .Rows(i).Cells(3).Value
                         If .Rows(i).Cells(9).Value.ToString = "WAFFLE" Then
                             AmountDueWaffle += .Rows(i).Cells(3).Value
                         Else
@@ -83,69 +76,49 @@ Public Class CouponCode
                     Next
                     AmountDueWaffle = AmountDueWaffle - SeniorPWd
                     AmountDueDrinks = AmountDueDrinks - SeniorPWdDrinks
-                    Dim TotalAmountDueWaffleDrinks = Format(SubTotal + AmountDueWaffle + AmountDueDrinks, "0.00")
-                    Dim RoundDiscTotal As Double = Math.Round(DiscTotal, 2, MidpointRounding.AwayFromZero)
-                    Dim Vatable As Double = AmountDueWaffle + AmountDueDrinks
-                    Dim RoundedVatable = Math.Round(Vatable / Tax, 2, MidpointRounding.AwayFromZero)
-                    Dim vat12percent As Double = Math.Round(Vatable - RoundedVatable, 2, MidpointRounding.AwayFromZero)
-                    MsgBox("Vatable: " & RoundedVatable)
-                    MsgBox("Vat Exempt Sales: " & RoundDiscTotal)
-                    MsgBox("Vat 12%: " & vat12percent)
-                    MsgBox("Less Discount 20%: " & LessDiscount)
-                    MsgBox("Amount Due: " & TotalAmountDueWaffleDrinks)
-                    MsgBox("Less Vat : " & LessVat)
 
-                    POS.VATEXEMPTSALES = RoundDiscTotal
-                    POS.LESSVAT = vat12percent
-                    POS.VATABLE = RoundedVatable
-                    'POS.TextBoxSUBTOTAL.Text =
-                    POS.TextBoxGRANDTOTAL.Text = TotalAmountDueWaffleDrinks
-                    POS.TextBoxDISCOUNT.Text = LessDiscount
-                    CouponTotal = LessDiscount
+                    Dim TOTALPRODUCT As Double = AmountDueWaffle + AmountDueDrinks
+                    Dim VATABLESALES As Double = TOTALPRODUCT / Tax
+                    VATABLESALES = Format(VATABLESALES, "0.00")
+                    Dim VAT12PERCENT As Double = VATABLESALES * S_Tax
+                    VAT12PERCENT = Format(VAT12PERCENT, "0.00")
+                    Dim TOTALAMOUNTDUE As Double = DISCOUNTAMOUNT - LESSVAT - LESSDISCOUNT + TOTALPRODUCT
+                    With POS
+                        .GROSSSALE = GROSSSALES
+                        .TOTALDISCOUNTEDAMOUNT = DISCOUNTAMOUNT
+                        .VATEXEMPTSALES = VATEXEMPTSALES
+                        .LESSVAT = LESSVAT
+                        .TOTALDISCOUNT = LESSDISCOUNT
+                        .VATABLESALES = VATABLESALES
+                        .VAT12PERCENT = VAT12PERCENT
+                        .TOTALAMOUNTDUE = TOTALAMOUNTDUE
+                        .TextBoxGRANDTOTAL.Text = TOTALAMOUNTDUE
+                        .TextBoxDISCOUNT.Text = LESSDISCOUNT
+                    End With
+                    CouponTotal = LESSDISCOUNT
+                    MsgBox("Applied")
                 End With
-
-                ''45 Waffle
+            Else
+                'Waffles
                 'Dim GrossSale = SeniorPWd
-                'Dim vatexemptsales As Double = Math.Round(GrossSale / 1.12, 2)
-                'Dim lessvat As Double = Math.Round(vatexemptsales * Val(S_Tax), 2)
-                'Dim Discount As Double = Math.Round(vatexemptsales * 0.2, 2)
-                'Dim TotalDiscount As Double = GrossSale - Discount - lessvat
+                'Dim vatableSales As Double = Math.Round(GrossSale / 1.12, 2)
+                'Dim Discount As Double = Math.Round(vatableSales * 0.2, 2)
+                'Dim TotalDiscount As Double = Math.Round(vatableSales - Discount, 2)
                 ''Drinks
                 'Dim GrossSale1 = SeniorPWdDrinks
-                'Dim vatexemptsales1 As Double = Math.Round(GrossSale1 / 1.12, 2)
-                'Dim lessvat1 As Double = Math.Round(vatexemptsales1 * Val(S_Tax), 2)
-                'Dim Discount1 As Double = Math.Round(vatexemptsales1 * 0.2, 2)
-                'Dim TotalDiscount1 As Double = GrossSale1 - Discount1 - lessvat1
+                'Dim vatableSales1 As Double = Math.Round(GrossSale1 / 1.12, 2)
+                'Dim Discount1 As Double = Math.Round(vatableSales1 * 0.2, 2)
+                'Dim TotalDiscount1 As Double = Math.Round(vatableSales1 - Discount1, 2)
                 ''==============================================================
-                'POS.VATEXEMPTSALES = vatexemptsales + vatexemptsales1
-                'POS.LESSVAT = lessvat + lessvat1
-                'POS.TextBoxGRANDTOTAL.Text = TotalDiscount + TotalDiscount1 + POS.Label76.Text - SeniorPWd - SeniorPWdDrinks
+                'POS.GRANDTOTALDISCOUNT = TotalDiscount + TotalDiscount1
+                'POS.TextBoxGRANDTOTAL.Text = TotalDiscount + TotalDiscount1 + Double.Parse(POS.Label76.Text) - SeniorPWd - SeniorPWdDrinks
                 'POS.TextBoxDISCOUNT.Text = Discount + Discount1
                 'CouponDesc = ""
                 'CouponTotal = Discount + Discount1
-
-
-            Else
-                'Waffle
-                Dim GrossSale = SeniorPWd
-                Dim vatableSales As Double = Math.Round(GrossSale / 1.12, 2)
-                Dim Discount As Double = Math.Round(vatableSales * 0.2, 2)
-                Dim TotalDiscount As Double = Math.Round(vatableSales - Discount, 2)
-                'Drinks
-                Dim GrossSale1 = SeniorPWdDrinks
-                Dim vatableSales1 As Double = Math.Round(GrossSale1 / 1.12, 2)
-                Dim Discount1 As Double = Math.Round(vatableSales1 * 0.2, 2)
-                Dim TotalDiscount1 As Double = Math.Round(vatableSales1 - Discount1, 2)
-                '==============================================================
-                POS.GRANDTOTALDISCOUNT = TotalDiscount + TotalDiscount1
-                POS.TextBoxGRANDTOTAL.Text = TotalDiscount + TotalDiscount1 + Double.Parse(POS.Label76.Text) - SeniorPWd - SeniorPWdDrinks
-                POS.TextBoxDISCOUNT.Text = Discount + Discount1
-                CouponDesc = ""
-                CouponTotal = Discount + Discount1
             End If
-
             CouponApplied = True
             CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -163,6 +136,16 @@ Public Class CouponCode
                 POS.TextBoxGRANDTOTAL.Text = Format(Val(POS.TextBoxGRANDTOTAL.Text), "##,##0.00")
                 CouponDesc = ""
                 CouponTotal = tax
+
+
+                'POS.VATEXEMPTSALES = RoundDiscTotal
+                'POS.LESSVAT = vat12percent
+                'POS.VATABLE = RoundedVatable
+                'POS.TextBoxGRANDTOTAL.Text = TotalAmountDueWaffleDrinks
+                'POS.TextBoxDISCOUNT.Text = LessDiscount
+                'CouponTotal = LessDiscount
+                CouponApplied = True
+                CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
             Next
         Else
             MsgBox("Gift certificate is greater than total")

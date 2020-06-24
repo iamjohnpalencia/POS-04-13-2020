@@ -75,6 +75,8 @@ Module publicVariables
     '==CONNECTION STRINGS
     Public LocalConnectionString As String
     Public CloudConnectionString As String
+    Public ValidLocalConnection As Boolean = False
+    Public ValidCloudConnection As Boolean = False
     '==SETTINGS
     Public S_ExportPath As String
     Public S_Tax As String

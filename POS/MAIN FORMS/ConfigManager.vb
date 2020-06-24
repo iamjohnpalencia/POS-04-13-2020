@@ -29,9 +29,8 @@ Public Class ConfigManager
             BackgroundWorkerLOAD.WorkerReportsProgress = True
             BackgroundWorkerLOAD.RunWorkerAsync()
         Else
-            My.Settings.ValidLocalConn = False
-            My.Settings.ValidCloudConn = False
-            My.Settings.Save()
+            ValidCloudConnection = False
+            ValidLocalConnection = False
         End If
     End Sub
     Private Function TestLocalConnection()
@@ -44,12 +43,10 @@ Public Class ConfigManager
             ";port=" & Trim(TextBoxLocalPort.Text)
             Conn.Open()
             If Conn.State = ConnectionState.Open Then
-                My.Settings.ValidLocalConn = True
-                My.Settings.Save()
+                ValidLocalConnection = True
             End If
         Catch ex As Exception
-            My.Settings.ValidLocalConn = False
-            My.Settings.Save()
+            ValidLocalConnection = False
         End Try
         Return Conn
     End Function
@@ -63,12 +60,10 @@ Public Class ConfigManager
             ";port=" & Trim(TextBoxCloudPort.Text)
             cloudconn.Open()
             If cloudconn.State = ConnectionState.Open Then
-                My.Settings.ValidCloudConn = True
-                My.Settings.Save()
+                ValidCloudConnection = True
             End If
         Catch ex As Exception
-            My.Settings.ValidCloudConn = False
-            My.Settings.Save()
+            ValidCloudConnection = False
         End Try
         Return cloudconn
     End Function
@@ -111,8 +106,7 @@ Public Class ConfigManager
     End Sub
     Private Sub ButtonClearLocal_Click(sender As Object, e As EventArgs) Handles ButtonClearLocal.Click
         ClearTextBox(Panel5)
-        My.Settings.ValidLocalConn = False
-        My.Settings.Save()
+        ValidLocalConnection = False
     End Sub
     Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles ButtonEditLocal.Click
         Try
@@ -147,7 +141,7 @@ Public Class ConfigManager
     End Sub
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
-        If My.Settings.ValidLocalConn = False Then
+        If ValidLocalConnection = False Then
             ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
             LabelLocal.Text = "Invalid connection please try again."
         Else
@@ -186,7 +180,7 @@ Public Class ConfigManager
         ProgressBar2.Value = e.ProgressPercentage
     End Sub
     Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
-        If My.Settings.ValidCloudConn = False Then
+        If ValidCloudConnection = False Then
             ChangeProgBarColor(ProgressBar2, ProgressBarColor.Yellow)
             LabelCloud.Text = "Invalid connection please try again."
         Else
@@ -209,8 +203,8 @@ Public Class ConfigManager
         Try
             table = "loc_settings"
             where = "settings_id = 1"
-            If My.Settings.ValidLocalConn = True Then
-                If My.Settings.ValidCloudConn = True Then
+            If ValidLocalConnection = True Then
+                If ValidCloudConnection = True Then
                     fields = "C_Server, C_Username, C_Password, C_Database, C_Port"
                     sql = "Select " & fields & " FROM " & table & " WHERE " & where
                     Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
@@ -288,7 +282,7 @@ Public Class ConfigManager
     End Sub
     Public Sub LoadCloudConn()
         Try
-            If My.Settings.ValidLocalConn = True Then
+            If ValidLocalConnection = True Then
                 sql = "SELECT C_Server, C_Username, C_Password, C_Database, C_Port FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
@@ -300,11 +294,9 @@ Public Class ConfigManager
                     TextBoxCloudPassword.Text = ConvertB64ToString(dt(0)(2))
                     TextBoxCloudDatabase.Text = ConvertB64ToString(dt(0)(3))
                     TextBoxCloudPort.Text = ConvertB64ToString(dt(0)(4))
-                    My.Settings.ValidCloudConn = True
-                    My.Settings.Save()
+                    ValidLocalConnection = True
                 Else
-                    My.Settings.ValidCloudConn = False
-                    My.Settings.Save()
+                    ValidLocalConnection = False
                 End If
             End If
         Catch ex As Exception
@@ -313,7 +305,7 @@ Public Class ConfigManager
     End Sub
     Private Sub LoadAutoBackup()
         Try
-            If My.Settings.ValidLocalConn = True Then
+            If ValidLocalConnection = True Then
                 Dim sql = "SELECT `S_BackupInterval`, `S_BackupDate` FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
@@ -351,7 +343,7 @@ Public Class ConfigManager
     End Sub
     Private Sub LoadAdditionalSettings()
         Try
-            If My.Settings.ValidLocalConn = True Then
+            If ValidLocalConnection = True Then
                 Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
@@ -404,7 +396,7 @@ Public Class ConfigManager
     End Sub
     Private Sub LoadDevInfo()
         Try
-            If My.Settings.ValidLocalConn = True Then
+            If ValidLocalConnection = True Then
                 sql = "SELECT Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
@@ -527,7 +519,7 @@ Public Class ConfigManager
         Close()
     End Sub
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        If My.Settings.ValidCloudConn = True Then
+        If ValidCloudConnection = True Then
             If String.IsNullOrWhiteSpace(TextBoxFrancUser.Text) Then
                 MsgBox("All fields are required")
             ElseIf String.IsNullOrWhiteSpace(TextBoxFrancPass.Text) Then
@@ -714,7 +706,7 @@ Public Class ConfigManager
             Dim RButton As Integer
             Dim Tax = Val(TextBoxTax.Text) / 100
             If TextboxIsEmpty(GroupBox10) = True Then
-                If My.Settings.ValidLocalConn = True Then
+                If ValidLocalConnection = True Then
                     Dim table = "loc_settings"
                     Dim fields = "A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated"
                     Dim where = "settings_id = 1"
@@ -829,7 +821,7 @@ Public Class ConfigManager
         Dim table = "loc_settings"
         Dim where = "settings_id = 1"
         If TextboxIsEmpty(GroupBox11) = True Then
-            If My.Settings.ValidLocalConn = True Then
+            If ValidLocalConnection = True Then
                 Dim fields = "Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until"
                 Dim sql = "Select " & fields & " FROM " & table & " WHERE " & where
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
@@ -880,9 +872,9 @@ Public Class ConfigManager
         End If
     End Sub
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        If My.Settings.ValidLocalConn = True Then
+        If ValidLocalConnection = True Then
             If BTNSaveLocalConn = True Then
-                If My.Settings.ValidCloudConn = True Then
+                If ValidCloudConnection = True Then
                     If Autobackup = True Then
                         If BTNSaveCloudConn = True Then
                             If ConfirmAdditionalSettings = True Then
@@ -1468,7 +1460,7 @@ Public Class ConfigManager
     End Sub
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonSaveLocalCon.Click
         Try
-            If My.Settings.ValidLocalConn = True Then
+            If ValidLocalConnection = True Then
                 Dim FolderName As String = "Innovention"
                 Dim path = My.Computer.FileSystem.SpecialDirectories.MyDocuments
                 CreateFolder(path, FolderName)
@@ -1489,8 +1481,7 @@ Public Class ConfigManager
     Private Sub TextBoxLocalServer_TextChanged(sender As Object, e As EventArgs) Handles TextBoxLocalUsername.TextChanged, TextBoxLocalServer.TextChanged, TextBoxLocalPort.TextChanged, TextBoxLocalPassword.TextChanged, TextBoxLocalDatabase.TextChanged
         Try
             BTNSaveLocalConn = False
-            My.Settings.ValidLocalConn = False
-            My.Settings.Save()
+            ValidLocalConnection = False
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1499,7 +1490,7 @@ Public Class ConfigManager
     Private Sub TextBoxCloudServer_TextChanged(sender As Object, e As EventArgs) Handles TextBoxCloudUsername.TextChanged, TextBoxCloudServer.TextChanged, TextBoxCloudPort.TextChanged, TextBoxCloudPassword.TextChanged, TextBoxCloudDatabase.TextChanged
         Try
             BTNSaveCloudConn = False
-            My.Settings.ValidCloudConn = False
+            ValidLocalConnection = False
             My.Settings.Save()
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1538,7 +1529,7 @@ Public Class ConfigManager
     End Sub
     Private Sub RadioButtonDaily_Click(sender As Object, e As EventArgs) Handles RadioButtonYearly.Click, RadioButtonWeekly.Click, RadioButtonMonthly.Click, RadioButtonDaily.Click
         Try
-            If My.Settings.ValidLocalConn = True Then
+            If ValidLocalConnection = True Then
                 Dim Interval As Integer = 0
                 Dim IntervalName As String = ""
                 If RadioButtonDaily.Checked = True Then

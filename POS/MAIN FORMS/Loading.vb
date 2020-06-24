@@ -36,6 +36,7 @@ Public Class Loading
         Loadme()
     End Sub
     Dim threadList As List(Of Thread) = New List(Of Thread)
+    Dim ValidDatabaseLocalConnection As Boolean = False
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
             For i = 0 To 10
@@ -58,19 +59,8 @@ Public Class Loading
                     If LocalhostConn.State = ConnectionState.Open Then
                         Label1.Text = "Getting information..."
                         IfConnectionIsConfigured = True
+                        ValidDatabaseLocalConnection = True
                         thread = New Thread(AddressOf LoadMasterList)
-                        thread.Start()
-                        threadList.Add(thread)
-                        thread = New Thread(AddressOf Function1)
-                        thread.Start()
-                        threadList.Add(thread)
-                        thread = New Thread(AddressOf Function2)
-                        thread.Start()
-                        threadList.Add(thread)
-                        thread = New Thread(AddressOf Function3)
-                        thread.Start()
-                        threadList.Add(thread)
-                        thread = New Thread(AddressOf Function4)
                         thread.Start()
                         threadList.Add(thread)
                     Else
@@ -79,7 +69,7 @@ Public Class Loading
                     End If
                 End If
                 If i = 25 Then
-                    If LocalhostConn.State = ConnectionState.Open Then
+                    If ValidDatabaseLocalConnection Then
                         Label1.Text = "Checking for updates..."
                     End If
                 End If
@@ -87,6 +77,28 @@ Public Class Loading
                     If CheckForInternetConnection() = True Then
                         IfInternetIsAvailable = True
                         Label1.Text = "Connecting to cloud server..."
+                        If ValidDatabaseLocalConnection Then
+                            thread = New Thread(AddressOf ServerCloudCon)
+                            thread.Start()
+                            threadList.Add(thread)
+                            For Each t In threadList
+                                t.Join()
+                            Next
+                            If ServerCloudCon.state = ConnectionState.Open Then
+                                thread = New Thread(AddressOf Function1)
+                                thread.Start()
+                                threadList.Add(thread)
+                                thread = New Thread(AddressOf Function2)
+                                thread.Start()
+                                threadList.Add(thread)
+                                thread = New Thread(AddressOf Function3)
+                                thread.Start()
+                                threadList.Add(thread)
+                                thread = New Thread(AddressOf Function4)
+                                thread.Start()
+                                threadList.Add(thread)
+                            End If
+                        End If
                     Else
                         IfInternetIsAvailable = False
                         Label1.Text = "No Internet Connection..."
@@ -94,7 +106,7 @@ Public Class Loading
                 End If
                 If i = 65 Then
                     If IfConnectionIsConfigured = True Then
-                        If CheckIfNeedToReset(LocalhostConn) = True Then
+                        If CheckIfNeedToReset() = True Then
                             IfNeedsToReset = True
                         Else
                             IfNeedsToReset = False
@@ -102,7 +114,7 @@ Public Class Loading
                     End If
                 End If
                 If i = 80 Then
-                    If LocalhostConn.State = ConnectionState.Open Then
+                    If ValidDatabaseLocalConnection Then
                         thread = New Thread(AddressOf LoadSettings)
                         thread.Start()
                         threadList.Add(thread)
@@ -386,7 +398,7 @@ Public Class Loading
             CategoryDTUpdate.Columns.Add("origin")
             CategoryDTUpdate.Columns.Add("status")
             Dim Ids As String = ""
-            If My.Settings.ValidCloudConn = True Then
+            If ValidCloudConnection = True Then
                 For i As Integer = 0 To LoadCategoryLocal.Rows.Count - 1 Step +1
                     If Ids = "" Then
                         Ids = "" & LoadCategoryLocal(i)(1) & ""
@@ -480,7 +492,7 @@ Public Class Loading
             ProductDTUpdate.Columns.Add("product_status")
             ProductDTUpdate.Columns.Add("origin")
             ProductDTUpdate.Columns.Add("date_modified")
-            If My.Settings.ValidCloudConn = True Then
+            If ValidCloudConnection = True Then
                 For i As Integer = 0 To LoadProductLocal.Rows.Count - 1 Step +1
                     If Ids = "" Then
                         Ids = "" & LoadProductLocal(i)(1) & ""
@@ -586,7 +598,7 @@ Public Class Loading
             FormulaDTUpdate.Columns.Add("unit_cost")
             FormulaDTUpdate.Columns.Add("origin")
 
-            If My.Settings.ValidCloudConn = True Then
+            If ValidCloudConnection = True Then
                 For i As Integer = 0 To LoadFormulaLocal.Rows.Count - 1 Step +1
                     If Ids = "" Then
                         Ids = "" & LoadFormulaLocal(i)(1) & ""
@@ -690,7 +702,7 @@ Public Class Loading
             InventoryDTUpdate.Columns.Add("critical_limit")
             InventoryDTUpdate.Columns.Add("date_modified")
             Dim Ids As String = ""
-            If My.Settings.ValidCloudConn = True Then
+            If ValidCloudConnection = True Then
                 For i As Integer = 0 To LoadInventoryLocal.Rows.Count - 1 Step +1
                     If Ids = "" Then
                         Ids = "" & LoadInventoryLocal(i)(1) & ""

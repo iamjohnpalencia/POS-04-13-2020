@@ -685,7 +685,7 @@ Public Class SettingsForm
     End Sub
     Private Sub LoadCloudConn()
         Try
-            If My.Settings.ValidLocalConn = True Then
+            If ValidLocalConnection = True Then
                 sql = "SELECT C_Server, C_Username, C_Password, C_Database, C_Port FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
@@ -697,13 +697,10 @@ Public Class SettingsForm
                     TextBoxCloudPassword.Text = ConvertB64ToString(dt(0)(2))
                     TextBoxCloudDatabase.Text = ConvertB64ToString(dt(0)(3))
                     TextBoxCloudPort.Text = ConvertB64ToString(dt(0)(4))
-                    My.Settings.ValidCloudConn = True
-                    My.Settings.Save()
+                    ValidLocalConnection = True
                 Else
-                    My.Settings.ValidCloudConn = False
-                    My.Settings.Save()
+                    ValidLocalConnection = False
                 End If
-
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -711,7 +708,7 @@ Public Class SettingsForm
     End Sub
     Private Sub LoadAdditionalSettings()
         Try
-            If My.Settings.ValidLocalConn = True Then
+            If ValidLocalConnection = True Then
                 sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
@@ -767,7 +764,7 @@ Public Class SettingsForm
     End Sub
     Private Sub LoadDevInfo()
         Try
-            If My.Settings.ValidLocalConn = True Then
+            If ValidLocalConnection = True Then
                 sql = "SELECT Dev_Company_Name, Dev_Address, Dev_Tin, Dev_Accr_No, Dev_Accr_Date_Issued, Dev_Accr_Valid_Until, Dev_PTU_No, Dev_PTU_Date_Issued, Dev_PTU_Valid_Until FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
@@ -852,7 +849,7 @@ Public Class SettingsForm
 
     Private Sub LoadAutoBackup()
         Try
-            If My.Settings.ValidLocalConn = True Then
+            If ValidLocalConnection = True Then
                 sql = "SELECT S_BackupInterval, S_BackupDate FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)

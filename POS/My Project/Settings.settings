@@ -5,12 +5,6 @@
     <Setting Name="LocalConnectionPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="ValidCloudConn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="ValidLocalConn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="LocalConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

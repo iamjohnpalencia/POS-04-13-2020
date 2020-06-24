@@ -392,13 +392,13 @@ Module publicfunctions
         Return New DateTime(sourceDate.Year, sourceDate.Month, 1)
     End Function
     Dim dtRESET As DataTable
-    Public Function CheckIfNeedToReset(conn As MySqlConnection) As Boolean
+    Public Function CheckIfNeedToReset() As Boolean
         Dim cmd As MySqlCommand
         Dim da As MySqlDataAdapter
         Dim firstday = Format(FirstDayOfMonth(Date.Now), "yyyy-MM-dd")
         Try
             Dim sql = "SELECT * FROM loc_inv_temp_data WHERE created_at = '" & firstday & "'"
-            cmd = New MySqlCommand(sql, conn)
+            cmd = New MySqlCommand(sql, LocalhostConn)
             da = New MySqlDataAdapter(cmd)
             dtRESET = New DataTable
             da.Fill(dtRESET)
@@ -537,8 +537,9 @@ Module publicfunctions
         SendMessage(ProgressBar_Name.Handle, &H410, ProgressBar_Color, 0)
     End Sub
     Public Sub ReceiptHeader(sender As Object, e As PrintPageEventArgs)
-        Dim brandfont As New Font("Kelson Sans Normal", 8, FontStyle.Bold)
-        Dim font As New Font("Kelson Sans Normal", 7)
+
+        Dim brandfont As New Font("Tahoma", 7, FontStyle.Bold)
+        Dim font As New Font("Tahoma", 6)
         Dim brand = ClientBrand.ToUpper
         CenterTextDisplay(sender, e, brand, brandfont, 10)
         CenterTextDisplay(sender, e, "VAT REG TIN " & ClientTin, font, 21)
@@ -561,8 +562,8 @@ Module publicfunctions
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
-            Dim brandfont As New Font("Kelson Sans Normal", 8, FontStyle.Bold)
-            Dim font As New Font("Kelson Sans Normal", 7)
+            Dim brandfont As New Font("Tahoma", 7, FontStyle.Bold)
+            Dim font As New Font("Tahoma", 6)
             CenterTextDisplay(sender, e, dt(0)(0).ToUpper, brandfont, a + 195)
             CenterTextDisplay(sender, e, "VAT REG TIN : " & dt(0)(2).ToString, font, a + 205)
             CenterTextDisplay(sender, e, dt(0)(1), font, a + 215)

@@ -11,13 +11,11 @@ Module connectionModule
             localconn.Open()
             If localconn.State = ConnectionState.Open Then
                 LocalConnectionIsOnOrValid = True
-                My.Settings.ValidLocalConn = True
-                My.Settings.Save()
+                ValidLocalConnection = True
             End If
         Catch ex As Exception
             LocalConnectionIsOnOrValid = False
-            My.Settings.ValidLocalConn = False
-            My.Settings.Save()
+            ValidLocalConnection = False
         End Try
         Return localconn
     End Function

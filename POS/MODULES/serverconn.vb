@@ -19,12 +19,10 @@ Module serverlocalconn
             servercloudconn.ConnectionString = CloudConnectionString
             servercloudconn.Open()
             If servercloudconn.State = ConnectionState.Open Then
-                My.Settings.ValidCloudConn = True
-                My.Settings.Save()
+                ValidCloudConnection = True
             End If
         Catch ex As Exception
-            My.Settings.ValidCloudConn = False
-            My.Settings.Save()
+            ValidCloudConnection = False
         End Try
         Return servercloudconn
     End Function

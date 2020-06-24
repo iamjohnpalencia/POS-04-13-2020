@@ -68,30 +68,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property ValidCloudConn() As Boolean
-            Get
-                Return CType(Me("ValidCloudConn"),Boolean)
-            End Get
-            Set
-                Me("ValidCloudConn") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property ValidLocalConn() As Boolean
-            Get
-                Return CType(Me("ValidLocalConn"),Boolean)
-            End Get
-            Set
-                Me("ValidLocalConn") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property LocalConnectionString() As String
             Get

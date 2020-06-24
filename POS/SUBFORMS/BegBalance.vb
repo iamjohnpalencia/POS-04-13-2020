@@ -97,7 +97,7 @@ Public Class BegBalance
                         cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
                         cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                        cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = returndateformatfulldate(.Rows(i).Cells(3).Value.ToString())
+                        cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
                         cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
                         cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
@@ -106,7 +106,7 @@ Public Class BegBalance
                         cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
                         cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                        cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = returndateformatfulldate(.Rows(i).Cells(3).Value.ToString())
+                        cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
                         cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
                         cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
@@ -139,16 +139,32 @@ Public Class BegBalance
                         cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                         cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
-                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = returndateformatfulldate(.Rows(i).Cells(10).Value.ToString())
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = ClientGuid
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
-                        cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = returndateformatfulldate(.Rows(i).Cells(10).Value.ToString())
+                        cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
                     Else
-                        Dim sqlupdate = "UPDATE `loc_product_formula` SET `server_formula_id`= @0,`product_ingredients`= @1,`primary_unit`= @2,`primary_value`= @3,`secondary_unit`= @4,`secondary_value`=@5,`serving_unit`=@6,`serving_value`=@7,`no_servings`=@8,`status`=@9,`date_modified`=@10,`unit_cost`=@11,`store_id`=@12,`guid`=@13,`crew_id`=@14,`origin`=@15,`server_date_modified`=@16 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
+                        Dim sqlupdate = "UPDATE `loc_product_formula` SET 
+`server_formula_id`= @0
+,`product_ingredients`= @1
+,`primary_unit`= @2
+,`primary_value`= @3
+,`secondary_unit`= @4
+,`secondary_value`=@5
+,`serving_unit`=@6
+,`serving_value`=@7
+,`no_servings`=@8
+,`status`=@9
+,`date_modified`=@10
+,`unit_cost`=@11
+,`origin`=@12
+,`store_id`=@13
+,`guid`=@14
+,`server_date_modified`=@15 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
                         cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
@@ -160,13 +176,12 @@ Public Class BegBalance
                         cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                         cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
-                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = returndateformatfulldate(.Rows(i).Cells(10).Value.ToString())
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = ClientGuid
-                        cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
-                        cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = returndateformatfulldate(.Rows(i).Cells(10).Value.ToString())
+                        cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
                         cmdlocal.ExecuteNonQuery()
                     End If
@@ -196,15 +211,15 @@ Public Class BegBalance
                         cmdlocal.Parameters.Add("@5", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
                         cmdlocal.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(6).Value.ToString()
                         cmdlocal.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
-                        cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = returndateformatfulldate(.Rows(i).Cells(8).Value.ToString())
+                        cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = ClientGuid
                         cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = "0"
                         cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = "Synced"
                         cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = ClientStoreID
-                        cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = returndateformatfulldate(.Rows(i).Cells(8).Value.ToString())
+                        cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
                     Else
-                        Dim sqlupdate = "UPDATE `loc_pos_inventory` SET `server_inventory_id`=@0, `formula_id`=@1,`product_ingredients`=@2,`sku`=@3,`stock_quantity`=@4,`stock_total`=@5,`stock_status`=@6,`critical_limit`=@7,`date_modified`=@8,`guid`=@9,`crew_id`=@10,`synced`=@11, `store_id`=@12,`server_date_modified`= @13 WHERE server_inventory_id =  " & .Rows(i).Cells(0).Value
+                        Dim sqlupdate = "UPDATE `loc_pos_inventory` SET `server_inventory_id`=@0, `formula_id`=@1,`product_ingredients`=@2,`sku`=@3,`stock_quantity`=@4,`stock_total`=@5,`stock_status`=@6,`critical_limit`=@7,`created_at`=@8,`guid`=@9,`crew_id`=@10,`synced`=@11, `store_id`=@12,`server_date_modified`= @13 WHERE server_inventory_id =  " & .Rows(i).Cells(0).Value
                         cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
@@ -214,12 +229,12 @@ Public Class BegBalance
                         cmdlocal.Parameters.Add("@5", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
                         cmdlocal.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(6).Value.ToString()
                         cmdlocal.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
-                        cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = returndateformatfulldate(.Rows(i).Cells(8).Value.ToString())
+                        cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = ClientGuid
                         cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = "0"
                         cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = "Synced"
                         cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = ClientStoreID
-                        cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = returndateformatfulldate(.Rows(i).Cells(8).Value.ToString())
+                        cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
                     End If
                 Next
@@ -251,7 +266,7 @@ Public Class BegBalance
                         cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                         cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
-                        cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = returndateformatfulldate(.Rows(i).Cells(11).Value.ToString())
+                        cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = ClientGuid
                         cmdlocal.Parameters.Add("@13", MySqlDbType.Int64).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "0"
@@ -271,7 +286,7 @@ Public Class BegBalance
                         cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                         cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
-                        cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = returndateformatfulldate(.Rows(i).Cells(11).Value.ToString())
+                        cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = ClientGuid
                         cmdlocal.Parameters.Add("@13", MySqlDbType.Int64).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "0"
