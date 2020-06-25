@@ -200,7 +200,7 @@ Public Class BegBalance
                     cmdlocal = New MySqlCommand(sql, LocalhostConn())
                     Dim result As Integer = cmdlocal.ExecuteScalar
                     If result = 0 Then
-                        Dim sqlinsert = "INSERT INTO loc_pos_inventory (`server_inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified`, `guid`, `crew_id`, `synced` , `store_id`, `server_date_modified`) VALUES
+                        Dim sqlinsert = "INSERT INTO loc_pos_inventory (`server_inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_status`, `critical_limit`, `created_at`, `guid`, `crew_id`, `synced` , `store_id`, `server_date_modified`) VALUES
                                         (@0 ,@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11 , @12 , @13)"
                         cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
@@ -219,7 +219,7 @@ Public Class BegBalance
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
                     Else
-                        Dim sqlupdate = "UPDATE `loc_pos_inventory` SET `server_inventory_id`=@0, `formula_id`=@1,`product_ingredients`=@2,`sku`=@3,`stock_quantity`=@4,`stock_total`=@5,`stock_status`=@6,`critical_limit`=@7,`created_at`=@8,`guid`=@9,`crew_id`=@10,`synced`=@11, `store_id`=@12,`server_date_modified`= @13 WHERE server_inventory_id =  " & .Rows(i).Cells(0).Value
+                        Dim sqlupdate = "UPDATE `loc_pos_inventory` SET `server_inventory_id`=@0, `formula_id`=@1,`product_ingredients`=@2,`sku`=@3,`stock_primary`=@4,`stock_secondary`=@5,`stock_status`=@6,`critical_limit`=@7,`created_at`=@8,`guid`=@9,`crew_id`=@10,`synced`=@11, `store_id`=@12,`server_date_modified`= @13 WHERE server_inventory_id =  " & .Rows(i).Cells(0).Value
                         cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
