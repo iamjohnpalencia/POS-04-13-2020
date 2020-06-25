@@ -185,7 +185,7 @@ Public Class SettingsForm
     End Sub
     Private Sub loaditemreturn(justload As Boolean)
         Try
-            fields = "transaction_number, amounttendered, discount, moneychange, crew_id, vatable, vat_exempt, zero_rated, vat, transaction_type"
+            fields = "transaction_number, amounttendered, totaldiscount, change, crew_id, vatablesales, vatexemptsales, zeroratedsales, lessvat, transaction_type"
             If justload = True Then
                 GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date(created_at) = date(CURDATE()) AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
             Else

@@ -55,17 +55,35 @@ Public Class Reports
             table = "`loc_system_logs`"
             fields = "`log_type`, `log_description`, `log_date_time`"
             If searchdate = False Then
-                where = " date(log_date_time) = CURRENT_DATE() AND log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
-                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewSysLog, errormessage:="", fields:=fields, successmessage:="", where:=where)
+                where = " WHERE date(log_date_time) = CURRENT_DATE() AND log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
             Else
-                where = " log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND date(log_date_time) >= '" & Format(DateTimePicker9.Value, "yyyy-MM-dd") & "' AND date(log_date_time) <= '" & Format(DateTimePicker10.Value, "yyyy-MM-dd") & "'"
-                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewSysLog, errormessage:="", fields:=fields, successmessage:="", where:=where)
+                where = " WHERE log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND date(log_date_time) >= '" & Format(DateTimePicker9.Value, "yyyy-MM-dd") & "' AND date(log_date_time) <= '" & Format(DateTimePicker10.Value, "yyyy-MM-dd") & "'"
             End If
             With DataGridViewSysLog
                 .Columns(0).HeaderText = "Type"
                 .Columns(1).HeaderText = "Description"
                 .Columns(2).HeaderText = "Date and Time"
             End With
+            '"loc_system_logs WHERE log_type <> 'STOCK TRANSFER'  GROUP BY log_date_time DESC LIMIT 10"
+            Dim AsDt = AsDatatable(table & where, "`log_type`, `log_description`, `log_date_time`", DataGridViewSysLog)
+            Dim Desc As String = ""
+            Dim Type As String = ""
+            For Each row As DataRow In AsDt.Rows
+                If row("log_type") = "BG-1" Then
+                    row("log_type") = "Balance"
+                    row("log_description") = "Begginning Balance : Shift 1 : " & row("log_description")
+                ElseIf row("log_type") = "BG-2" Then
+                    row("log_type") = "Balance"
+                    row("log_description") = "Begginning Balance : Shift 2 : " & row("log_description")
+                ElseIf row("log_type") = "BG-3" Then
+                    row("log_type") = "Balance"
+                    row("log_description") = "Begginning Balance : Shift 3 : " & row("log_description")
+                ElseIf row("log_type") = "BG-4" Then
+                    row("log_type") = "Balance"
+                    row("log_description") = "Begginning Balance : Shift 4 : " & row("log_description")
+                End If
+                DataGridViewSysLog.Rows.Add(row("log_type"), row("log_description"), row("log_date_time"))
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
