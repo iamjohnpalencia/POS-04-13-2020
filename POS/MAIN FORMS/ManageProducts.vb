@@ -279,7 +279,7 @@ Public Class ManageProducts
                 , " & 0 & "
                 , '" & ClientStoreID & "'
                 , '" & ClientGuid & "')"
-            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, errormessage:="", successmessage:="")
+            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
         Catch ex As Exception
             MsgBox("Error 2.0")
             SystemLogType = "ERROR"
@@ -300,7 +300,7 @@ Public Class ManageProducts
                     , '" & 10 & "')"
             successmessage = "Successfully Added!"
             errormessage = "error manageproducts(loc_admin_products)"
-            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, errormessage:=errormessage, successmessage:=successmessage)
+            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
         Catch ex As Exception
             MsgBox("Error 2.0")
             messageboxappearance = False
@@ -329,7 +329,7 @@ Public Class ManageProducts
                     , '" & FullDate24HR() & "')"
             successmessage = "Successfully Added!"
             errormessage = "error manageproducts(loc_admin_products)"
-            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, errormessage:=errormessage, successmessage:=successmessage)
+            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
 
             SystemLogType = "NEW CUSTOM PRODUCT"
             SystemLogDesc = "Added by :" & returnfullname(ClientCrewID) & " : " & ClientRole & " : product name: " & TextBoxNAME.Text

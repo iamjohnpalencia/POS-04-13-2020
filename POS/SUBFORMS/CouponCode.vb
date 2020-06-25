@@ -15,6 +15,16 @@ Public Class CouponCode
     Private Sub CouponCode_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         POS.Enabled = True
     End Sub
+    Private Sub CouponDefault()
+        CouponApplied = False
+        CouponName = ""
+        CouponDesc = ""
+        CouponLine = 10
+        CouponTotal = 0
+        For i As Integer = 0 To POS.DataGridViewOrders.Rows.Count - 1 Step +1
+            POS.DataGridViewOrders.Rows(i).Cells(3).Value = POS.DataGridViewOrders.Rows(i).Cells(1).Value * POS.DataGridViewOrders.Rows(i).Cells(2).Value
+        Next
+    End Sub
     Private Sub ButtonSubmit_Click(sender As Object, e As EventArgs) Handles ButtonSubmit.Click
         Try
             Dim CountItem As Integer = 0
@@ -54,6 +64,7 @@ Public Class CouponCode
     Private Sub couponpercentage()
         Try
             If S_ZeroRated = "0" Then
+                CouponDefault()
                 With POS.DataGridViewOrders
                     Dim AmountDueWaffle As Double = 0
                     Dim AmountDueDrinks As Double = 0
@@ -76,7 +87,6 @@ Public Class CouponCode
                     Next
                     AmountDueWaffle = AmountDueWaffle - SeniorPWd
                     AmountDueDrinks = AmountDueDrinks - SeniorPWdDrinks
-
                     Dim TOTALPRODUCT As Double = AmountDueWaffle + AmountDueDrinks
                     Dim VATABLESALES As Double = TOTALPRODUCT / Tax
                     VATABLESALES = Format(VATABLESALES, "0.00")
@@ -84,6 +94,10 @@ Public Class CouponCode
                     VAT12PERCENT = Format(VAT12PERCENT, "0.00")
                     Dim TOTALAMOUNTDUE As Double = DISCOUNTAMOUNT - LESSVAT - LESSDISCOUNT + TOTALPRODUCT
                     With POS
+                        MsgBox(TOTALAMOUNTDUE)
+                        MsgBox(VATABLESALES)
+                        MsgBox(VATEXEMPTSALES)
+                        MsgBox(LESSVAT)
                         .GROSSSALE = GROSSSALES
                         .TOTALDISCOUNTEDAMOUNT = DISCOUNTAMOUNT
                         .VATEXEMPTSALES = VATEXEMPTSALES
@@ -91,6 +105,7 @@ Public Class CouponCode
                         .TOTALDISCOUNT = LESSDISCOUNT
                         .VATABLESALES = VATABLESALES
                         .VAT12PERCENT = VAT12PERCENT
+
                         .TOTALAMOUNTDUE = TOTALAMOUNTDUE
                         .TextBoxGRANDTOTAL.Text = TOTALAMOUNTDUE
                         .TextBoxDISCOUNT.Text = LESSDISCOUNT
@@ -98,23 +113,7 @@ Public Class CouponCode
                     CouponTotal = LESSDISCOUNT
                     MsgBox("Applied")
                 End With
-            Else
-                'Waffles
-                'Dim GrossSale = SeniorPWd
-                'Dim vatableSales As Double = Math.Round(GrossSale / 1.12, 2)
-                'Dim Discount As Double = Math.Round(vatableSales * 0.2, 2)
-                'Dim TotalDiscount As Double = Math.Round(vatableSales - Discount, 2)
-                ''Drinks
-                'Dim GrossSale1 = SeniorPWdDrinks
-                'Dim vatableSales1 As Double = Math.Round(GrossSale1 / 1.12, 2)
-                'Dim Discount1 As Double = Math.Round(vatableSales1 * 0.2, 2)
-                'Dim TotalDiscount1 As Double = Math.Round(vatableSales1 - Discount1, 2)
-                ''==============================================================
-                'POS.GRANDTOTALDISCOUNT = TotalDiscount + TotalDiscount1
-                'POS.TextBoxGRANDTOTAL.Text = TotalDiscount + TotalDiscount1 + Double.Parse(POS.Label76.Text) - SeniorPWd - SeniorPWdDrinks
-                'POS.TextBoxDISCOUNT.Text = Discount + Discount1
-                'CouponDesc = ""
-                'CouponTotal = Discount + Discount1
+
             End If
             CouponApplied = True
             CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
@@ -125,79 +124,121 @@ Public Class CouponCode
     End Sub
     Private Sub couponfix1()
         CouponDefault()
-        Dim total As Integer = 0
-        Dim tax As String = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-        If Double.Parse(POS.Label76.Text) >= DataGridViewCoupons.SelectedRows(0).Cells(3).Value Then
-            For index As Integer = 0 To DataGridViewCoupons.RowCount - 1
-                total = Double.Parse(POS.Label76.Text)
-                POS.Label73.Text = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-                POS.TextBoxDISCOUNT.Text = tax
-                POS.TextBoxGRANDTOTAL.Text = total - Val(POS.TextBoxDISCOUNT.Text)
-                POS.TextBoxGRANDTOTAL.Text = Format(Val(POS.TextBoxGRANDTOTAL.Text), "##,##0.00")
+        Dim GROSSSALE As Double = 0
+        Dim DISCOUNTAMOUNT As Double = 0
+        Dim LESSVAT As Double = 0
+        Dim TOTALDISCOUNT As Double = 0
+        Dim VATABLE As Double = 0
+        Dim VATABLESALES As Double = 0
+        Dim TOTALAMOUNTDUE As Double = 0
+        Dim TAX As String = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+
+        MsgBox(TAX)
+        Dim TOTAL As Double = 0
+        'With POS
+        '    .GROSSSALE = GROSSSALES
+        '    .TOTALDISCOUNTEDAMOUNT = DISCOUNTAMOUNT
+        '    .VATEXEMPTSALES = VATEXEMPTSALES
+        '    .LESSVAT = LESSVAT
+        '    .TOTALDISCOUNT = LESSDISCOUNT
+        '    .VATABLESALES = VATABLESALES
+        '    .VAT12PERCENT = VAT12PERCENT
+        '    .TOTALAMOUNTDUE = TOTALAMOUNTDUE
+        '    .TextBoxGRANDTOTAL.Text = TOTALAMOUNTDUE
+        '    .TextBoxDISCOUNT.Text = LESSDISCOUNT
+        'End With
+        'Dim total As Integer = 0
+        'Dim tax As String = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+        'If Double.Parse(POS.Label76.Text) >= DataGridViewCoupons.SelectedRows(0).Cells(3).Value Then
+        '    For index As Integer = 0 To DataGridViewCoupons.RowCount - 1
+        '        total = Double.Parse(POS.Label76.Text)
+        '        POS.Label73.Text = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+        '        POS.TextBoxDISCOUNT.Text = tax
+        '        POS.TextBoxGRANDTOTAL.Text = total - Val(POS.TextBoxDISCOUNT.Text)
+        '        POS.TextBoxGRANDTOTAL.Text = Format(Val(POS.TextBoxGRANDTOTAL.Text), "##,##0.00")
+        '        CouponDesc = ""
+        '        CouponTotal = tax
+
+        '        '500 - Gross sales
+        '        '53.57 -VAT 12%
+        '        '446.42 - Vatable Sales
+        '        '396.42 - Net sales
+        '        '50 - Discount
+        '        '500/1.12 = 446.42-50 = 396.42
+
+        '        'POS.VATEXEMPTSALES = RoundDiscTotal
+        '        'POS.LESSVAT = vat12percent
+        '        'POS.VATABLE = RoundedVatable
+        '        'POS.TextBoxGRANDTOTAL.Text = TotalAmountDueWaffleDrinks
+        '        'POS.TextBoxDISCOUNT.Text = LessDiscount
+        '        'CouponTotal = LessDiscount
+        '        CouponApplied = True
+        '        CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+        '    Next
+        'Else
+        '    MsgBox("Gift certificate is greater than total")
+        '    POS.TextBoxGRANDTOTAL.Text = Format(0, "##,##0.00")
+        '    POS.TextBoxDISCOUNT.Text = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+        '    CouponDesc = ""
+        '    CouponTotal = tax
+        'End If
+        'CouponApplied = True
+        'CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+
+    End Sub
+    Private Sub couponfix2()
+        With POS
+            If Double.Parse(.Label76.Text) < Double.Parse(Me.DataGridViewCoupons.Item(4, Me.DataGridViewCoupons.CurrentRow.Index).Value) Then
+                MsgBox("Condition not meet")
+                CouponApplied = False
+            Else
+                Dim GROSSSALES As Double = 0
+                Dim TAX As Double = 1 + Val(S_Tax)
+                Dim TOTALDISCOUNT As Double = DataGridViewCoupons.SelectedRows(0).Cells(3).Value
+                Dim TOTALAMOUNTDUE As Double = 0
+                With .DataGridViewOrders
+                    For i As Integer = 0 To .Rows.Count - 1 Step +1
+                        GROSSSALES += .Rows(i).Cells(3).Value
+                    Next
+                End With
+                Dim VATABLESALES As Double = Format(GROSSSALES / TAX, "0.00")
+                Dim VAT12PERCENT As Double = Format(VATABLESALES * S_Tax, "0.00")
+                TOTALAMOUNTDUE = Format(VATABLESALES - TOTALDISCOUNT, "0.00")
+                .GROSSSALE = GROSSSALES
+                .TOTALDISCOUNTEDAMOUNT = GROSSSALES
+                .VATEXEMPTSALES = 0
+                .LESSVAT = 0
+                .TOTALDISCOUNT = TOTALDISCOUNT
+                .VATABLESALES = VATABLESALES
+                .VAT12PERCENT = VAT12PERCENT
+                .TOTALAMOUNTDUE = TOTALAMOUNTDUE
+                .TextBoxGRANDTOTAL.Text = TOTALAMOUNTDUE
+                .TextBoxDISCOUNT.Text = TOTALDISCOUNT
                 CouponDesc = ""
-                CouponTotal = tax
-
-
-                'POS.VATEXEMPTSALES = RoundDiscTotal
-                'POS.LESSVAT = vat12percent
-                'POS.VATABLE = RoundedVatable
-                'POS.TextBoxGRANDTOTAL.Text = TotalAmountDueWaffleDrinks
-                'POS.TextBoxDISCOUNT.Text = LessDiscount
-                'CouponTotal = LessDiscount
+                CouponTotal = TOTALDISCOUNT
                 CouponApplied = True
                 CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-            Next
-        Else
-            MsgBox("Gift certificate is greater than total")
-            POS.TextBoxGRANDTOTAL.Text = Format(0, "##,##0.00")
-            POS.TextBoxDISCOUNT.Text = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-            CouponDesc = ""
-            CouponTotal = tax
-        End If
-        CouponApplied = True
-        CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-
-    End Sub
-
-    Private Sub couponfix2()
-        Dim total As Integer = 0
-        Dim tax As String = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-        For index As Integer = 0 To DataGridViewCoupons.RowCount - 1
-            total = Double.Parse(POS.Label76.Text)
-            POS.Label76.Text = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-            If Double.Parse(POS.Label76.Text) < Double.Parse(Me.DataGridViewCoupons.Item(4, Me.DataGridViewCoupons.CurrentRow.Index).Value) Then
-                MsgBox(POS.Label76.Text & " " & Double.Parse(Me.DataGridViewCoupons.Item(4, Me.DataGridViewCoupons.CurrentRow.Index).Value))
-                Exit Sub
-            Else
-                POS.TextBoxDISCOUNT.Text = tax
-                POS.TextBoxGRANDTOTAL.Text = Double.Parse(POS.Label76.Text) - Val(tax)
-                POS.TextBoxGRANDTOTAL.Text = Format(Val(POS.TextBoxGRANDTOTAL.Text), "##,##0.00")
+                MsgBox("Applied")
             End If
-        Next
-        CouponApplied = True
-    End Sub
-    Private Sub CouponDefault()
-        CouponApplied = False
-        CouponName = ""
-        CouponDesc = ""
-        CouponLine = 10
-        CouponTotal = 0
-        For i As Integer = 0 To POS.DataGridViewOrders.Rows.Count - 1 Step +1
-            POS.DataGridViewOrders.Rows(i).Cells(3).Value = POS.DataGridViewOrders.Rows(i).Cells(1).Value * POS.DataGridViewOrders.Rows(i).Cells(2).Value 
-        Next
+        End With
     End Sub
     Private Sub couponbundle1()
-        CouponDefault()
         Try
             With POS
                 Dim ReferenceExist As Boolean = False
                 Dim referenceID As String = Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                 Dim refIds As String() = referenceID.Split(New Char() {","c})
+                'Total Discount
+                Dim DISCOUNTEDAMOUNT As Double = 0
+                Dim GROSSSALES As Double = 0
+                Dim VATABLESALES As Double = 0
+                Dim TAX As Double = 1 + Val(S_Tax)
                 Try
                     For Each getRefids In refIds
                         For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
-                            If POS.DataGridViewOrders.Rows(i).Cells(5).Value.ToString.Contains(getRefids) = True Then
-                                If POS.DataGridViewOrders.Rows(i).Cells(1).Value >= Me.DataGridViewCoupons.Item(7, Me.DataGridViewCoupons.CurrentRow.Index).Value Then
+                            If .DataGridViewOrders.Rows(i).Cells(5).Value.ToString.Contains(getRefids) = True Then
+                                If .DataGridViewOrders.Rows(i).Cells(1).Value >= Me.DataGridViewCoupons.Item(7, Me.DataGridViewCoupons.CurrentRow.Index).Value Then
+                                    DISCOUNTEDAMOUNT = .DataGridViewOrders.Rows(i).Cells(2).Value
                                     ReferenceExist = True
                                     Exit Try
                                 Else
@@ -208,11 +249,18 @@ Public Class CouponCode
                             End If
                         Next
                     Next
+
                 Catch ex As Exception
                     MsgBox(ex.ToString)
                 End Try
+                'Gross Sales/ Subtotal
+                Dim TOTALAMOUNTDUE As Double = 0
+                For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+                    GROSSSALES += .DataGridViewOrders.Rows(i).Cells(3).Value
+                Next
+                TOTALAMOUNTDUE = GROSSSALES - DISCOUNTEDAMOUNT
                 Dim QtyCondMeet As Boolean = True
-                Dim TotalPrice As Integer = 0
+                Dim TotalPrice As Double = 0
                 Dim BundlepromoID As String = Me.DataGridViewCoupons.Item(8, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                 Dim bundIds As String() = BundlepromoID.Split(New Char() {","c})
                 If ReferenceExist = True Then
@@ -225,30 +273,30 @@ Public Class CouponCode
                                     Dim OrgPrice = POS.DataGridViewOrders.Rows(i).Cells(2).Value
                                     Dim Qty = Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value
                                     Dim TotalLess = OrgPrice * Qty
-                                    CouponLine += 10
-                                    CouponDesc = CouponDesc + "   (" & Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value & "x) " & GLOBAL_SELECT_FUNCTION_RETURN("loc_admin_products", "product_sku", "product_id = " & getBundleids, "product_sku") & vbNewLine
-                                    POS.DataGridViewOrders.Rows(i).Cells(3).Value = POS.DataGridViewOrders.Rows(i).Cells(3).Value - TotalLess
-                                    POS.TextBoxDISCOUNT.Text = TotalPrice
+                                    VATABLESALES = DISCOUNTEDAMOUNT / TAX
+                                    .GROSSSALE = GROSSSALES
+                                    .TOTALDISCOUNTEDAMOUNT = DISCOUNTEDAMOUNT
+                                    .VATEXEMPTSALES = 0
+                                    .LESSVAT = 0
+                                    .TOTALDISCOUNT = DISCOUNTEDAMOUNT
+                                    .VATABLESALES = Format(VATABLESALES, "0.00")
+                                    .VAT12PERCENT = Format(TOTALAMOUNTDUE - VATABLESALES, "0.00")
+                                    .TOTALAMOUNTDUE = TOTALAMOUNTDUE
+                                    .TextBoxGRANDTOTAL.Text = Format(TOTALAMOUNTDUE, "0.00")
+                                    .TextBoxDISCOUNT.Text = Format(DISCOUNTEDAMOUNT, "0.00")
+                                    CouponDesc = ""
+                                    CouponTotal = DISCOUNTEDAMOUNT
+                                    CouponApplied = True
+                                    CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                                 Else
                                     CouponDefault()
                                     MsgBox("Bundle promo qty not meet")
-                                    QtyCondMeet = False
+                                    CouponApplied = False
                                     Exit For
                                 End If
                             End If
                         Next
-                        If QtyCondMeet = False Then
-                            For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
-                                POS.DataGridViewOrders.Rows(i).Cells(3).Value = POS.DataGridViewOrders.Rows(i).Cells(1).Value * POS.DataGridViewOrders.Rows(i).Cells(2).Value
-                            Next
-                            CouponDefault()
-                        Else
-                            CouponApplied = True
-                            CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-                        End If
-                        POS.Label76.Text = SumOfColumnsToDecimal(datagrid:=POS.DataGridViewOrders, celltocompute:=3)
                     Next
-                    CouponTotal = TotalPrice
                 Else
                     CouponDefault()
                     MsgBox("Condition not meet")
@@ -258,17 +306,19 @@ Public Class CouponCode
             MsgBox(ex.ToString)
         End Try
     End Sub
-
     Private Sub couponbundle2()
         CouponDefault()
         Dim ReferenceExist As Boolean = False
-        Dim referenceID As String = Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+        Dim GROSSSALES As Double = 0
+        Dim VATABLESALES As Double = 0
+        Dim TAX As Double = 1 + Val(S_Tax)
+        Dim referenceID As String = DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+        Dim TOTALDISCOUNT As Double = DataGridViewCoupons.SelectedRows(0).Cells(3).Value
         Dim refIds As String() = referenceID.Split(New Char() {","c})
         With POS
             Try
                 For Each getRefids In refIds
                     For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
-                        MsgBox(POS.DataGridViewOrders.Rows(i).Cells(5).Value.ToString)
                         If POS.DataGridViewOrders.Rows(i).Cells(5).Value.ToString.Contains(getRefids) = True Then
                             If POS.DataGridViewOrders.Rows(i).Cells(1).Value >= Me.DataGridViewCoupons.Item(7, Me.DataGridViewCoupons.CurrentRow.Index).Value Then
                                 ReferenceExist = True
@@ -284,6 +334,12 @@ Public Class CouponCode
             Catch ex As Exception
                 MsgBox(ex.ToString)
             End Try
+            Dim TOTALAMOUNTDUE As Double = 0
+            For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+                GROSSSALES += .DataGridViewOrders.Rows(i).Cells(3).Value
+            Next
+            TOTALAMOUNTDUE = GROSSSALES - TOTALDISCOUNT
+            VATABLESALES = TOTALAMOUNTDUE / TAX
             Dim QtyCondMeet As Boolean = True
             Dim TotalPrice As Integer = 0
             Dim BundlepromoID As String = Me.DataGridViewCoupons.Item(8, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
@@ -296,23 +352,28 @@ Public Class CouponCode
                         For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
                             If POS.DataGridViewOrders.Rows(i).Cells(5).Value.ToString.Contains(getBundleids) = True Then
                                 If POS.DataGridViewOrders.Rows(i).Cells(1).Value >= Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value Then
-                                    POS.DataGridViewOrders.Rows(i).Cells(3).Value = POS.DataGridViewOrders.Rows(i).Cells(3).Value - Me.DataGridViewCoupons.SelectedRows(0).Cells(3).Value
+                                    .GROSSSALE = GROSSSALES
+                                    .TOTALDISCOUNTEDAMOUNT = TOTALAMOUNTDUE
+                                    .VATEXEMPTSALES = 0
+                                    .LESSVAT = 0
+                                    .TOTALDISCOUNT = TOTALDISCOUNT
+                                    .VATABLESALES = Format(VATABLESALES, "0.00")
+                                    .VAT12PERCENT = Format(TOTALAMOUNTDUE - VATABLESALES, "0.00")
+                                    .TOTALAMOUNTDUE = TOTALAMOUNTDUE
+                                    .TextBoxGRANDTOTAL.Text = Format(TOTALAMOUNTDUE, "0.00")
+                                    .TextBoxDISCOUNT.Text = Format(TOTALDISCOUNT, "0.00")
+                                    CouponDesc = ""
+                                    CouponTotal = TOTALDISCOUNT
                                     CouponApplied = True
-                                    CouponLine += 10
                                     CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-                                    CouponDesc = CouponDesc + "   (" & Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value & "x) " & GLOBAL_SELECT_FUNCTION_RETURN("loc_admin_products", "product_sku", "product_id = " & getBundleids, "product_sku") & vbNewLine
-                                    POS.Label76.Text = SumOfColumnsToDecimal(datagrid:=POS.DataGridViewOrders, celltocompute:=3)
-                                    BundpromoID = True
-                                    CouponTotal = Me.DataGridViewCoupons.SelectedRows(0).Cells(3).Value
-                                    POS.TextBoxDISCOUNT.Text = CouponTotal
                                     Exit Try
                                 Else
+                                    CouponApplied = False
                                     BundpromoID = False
                                 End If
                             End If
                         Next
                     Next
-
                 Catch ex As Exception
                     MsgBox(ex.ToString)
                 End Try
@@ -326,6 +387,7 @@ Public Class CouponCode
         CouponDefault()
         Try
             With POS
+                Dim TAX As Double = 1 + Val(S_Tax)
                 Dim ReferenceExist As Boolean = False
                 Dim referenceID As String = Me.DataGridViewCoupons.Item(6, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                 Dim refIds As String() = referenceID.Split(New Char() {","c})
@@ -363,22 +425,39 @@ Public Class CouponCode
                     Catch ex As Exception
                         MsgBox(ex.ToString)
                     End Try
+                    Dim GROSSSALES As Double = 0
+                    Dim DISCOUNTAMOUNT As Double = 0
+                    Dim Percentage As Double = DataGridViewCoupons.SelectedRows(0).Cells(3).Value / 100
+                    Dim TOTALDISCOUNT As Double = 0
+                    Dim VATABLESALES As Double = 0
+                    Dim TOTALAMOUNTDUE As Double = 0
+
                     If BundpromoID = True Then
                         For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+                            GROSSSALES += .DataGridViewOrders.Rows(i).Cells(2).Value
                             CountQty += .DataGridViewOrders.Rows(i).Cells(1).Value
                             If CountQty = 3 Then
-                                CouponLine += 10
+                                DISCOUNTAMOUNT = .DataGridViewOrders.Rows(i).Cells(2).Value
+                                TOTALDISCOUNT = Percentage * DISCOUNTAMOUNT
+                                TOTALAMOUNTDUE = GROSSSALES - TOTALDISCOUNT
+                                VATABLESALES = Format(TOTALAMOUNTDUE / TAX, "0.00")
+                                .GROSSSALE = GROSSSALES
+                                .TOTALDISCOUNTEDAMOUNT = DISCOUNTAMOUNT
+                                .VATEXEMPTSALES = 0
+                                .LESSVAT = 0
+                                .TOTALDISCOUNT = TOTALDISCOUNT
+                                .VATABLESALES = Format(VATABLESALES, "0.00")
+                                .VAT12PERCENT = Format(GROSSSALES - VATABLESALES, "0.00")
+                                .TOTALAMOUNTDUE = TOTALAMOUNTDUE
+                                .TextBoxGRANDTOTAL.Text = Format(TOTALAMOUNTDUE, "0.00")
+                                .TextBoxDISCOUNT.Text = Format(TOTALDISCOUNT, "0.00")
+                                CouponDesc = ""
+                                CouponTotal = TOTALDISCOUNT
                                 CouponApplied = True
-                                Dim Percentage = Me.DataGridViewCoupons.Item(3, Me.DataGridViewCoupons.CurrentRow.Index).Value / 100
-                                Dim DiscountedPrice = .DataGridViewOrders.Rows(i).Cells(2).Value * Percentage
-                                .DataGridViewOrders.Rows(i).Cells(3).Value = .DataGridViewOrders.Rows(i).Cells(3).Value - DiscountedPrice
-                                CouponTotal = DiscountedPrice
                                 CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-                                CouponDesc = CouponDesc + "   (" & Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value & "x) " & GLOBAL_SELECT_FUNCTION_RETURN("loc_admin_products", "product_sku", "product_id = " & .DataGridViewOrders.Rows(i).Cells(5).Value, "product_sku") & vbNewLine
-                                .Label76.Text = SumOfColumnsToDecimal(datagrid:= .DataGridViewOrders, celltocompute:=3)
-                                POS.TextBoxDISCOUNT.Text = CouponTotal
                             End If
                         Next
+
                     End If
                 Else
                     MsgBox("Cond not meet")

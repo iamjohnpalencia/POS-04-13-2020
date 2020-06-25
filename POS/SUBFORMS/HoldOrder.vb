@@ -38,7 +38,7 @@ Public Class HoldOrder
                                 , " & POS.DataGridViewOrders.Rows(i).Cells(8).Value & ")"
                         successmessage = "success"
                         errormessage = "error holdorder(loc_pending_orders)"
-                        GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
+                        GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                     Next
                     MsgBox(sql)
                 Catch ex As Exception
@@ -60,7 +60,7 @@ Public Class HoldOrder
                         , " & POS.DataGridViewInv.Rows(a).Cells(8).Value & ")"
                         successmessage = "success"
                         errormessage = "error holdorder(loc_hold_inventory)"
-                        GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
+                        GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                     Next
                             MsgBox(sql)
                 Catch ex As Exception

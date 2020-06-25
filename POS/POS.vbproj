@@ -323,12 +323,6 @@
     <Compile Include="SUBFORMS\DepositSlip.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SUBFORMS\StockAdjustment.Designer.vb">
-      <DependentUpon>StockAdjustment.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SUBFORMS\StockAdjustment.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="MODULES\Addmodule.vb" />
     <Compile Include="MODULES\connectionmodule.vb" />
     <Compile Include="MAIN FORMS\POS.vb">
@@ -486,9 +480,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\DepositSlip.resx">
       <DependentUpon>DepositSlip.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SUBFORMS\StockAdjustment.resx">
-      <DependentUpon>StockAdjustment.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

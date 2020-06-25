@@ -25,7 +25,7 @@ Public Class DepositSlip
                                 ,'Unsynced'
                                 ,'" & ClientCrewID & "'
                                 ,'" & FullDate24HR() & "')"
-                GLOBAL_INSERT_FUNCTION(table:=table, errormessage:="", fields:=fields, successmessage:="", values:=value)
+                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                 GLOBAL_SYSTEM_LOGS("DEPOSIT", "Name: " & TextBoxNAME.Text & " Trn.Number: " & TextBoxTRANNUM.Text & " Amount: " & TextBoxAMT.Text)
                 MsgBox("Thank you!")
                 ClearTextBox(Me)

@@ -309,7 +309,7 @@ Module RetrieveModule
     Public Sub checkcriticallimit(ByVal formula_id, ByVal ID, ByVal SKU, ByVal CAT)
         Try
             ListOfIngredients = ""
-            sql = "SELECT product_ingredients, critical_limit, stock_quantity, stock_total FROM `loc_pos_inventory` WHERE stock_quantity <= critical_limit AND inventory_id IN (" & Trim(formula_id) & ");"
+            sql = "SELECT product_ingredients, critical_limit, stock_primary, stock_secondary, stock_no_of_servings FROM `loc_pos_inventory` WHERE stock_primary <= critical_limit AND inventory_id IN (" & Trim(formula_id) & ");"
             CmdCriticalLimit = New MySqlCommand(sql, LocalhostConn())
             DataAdapterCriticalLimit = New MySqlDataAdapter(CmdCriticalLimit)
             DataTableCriticalLimit = New DataTable

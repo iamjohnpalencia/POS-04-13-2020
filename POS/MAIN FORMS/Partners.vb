@@ -40,7 +40,7 @@ Public Class Partners
                 Dim arrid = count("arrid", table)
                 fields = "(`arrid`, `bankname`,  `active`, `crew_id`, `synced`, `store_id`, `guid`)"
                 value = "(" & arrid + 1 & ", '" & TextBoxBankName.Text & "', " & 1 & ", '" & ClientCrewID & "', 'Unsynced', '" & ClientStoreID & "', '" & ClientGuid & "')"
-                GLOBAL_INSERT_FUNCTION(table, fields, value, "", "")
+                GLOBAL_INSERT_FUNCTION(table, fields, value)
                 LoadPartners()
             Else
                 fields = "bankname = '" & TextBoxBankName.Text & "'"

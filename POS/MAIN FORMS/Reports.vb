@@ -480,7 +480,6 @@ Public Class Reports
         printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
         PrintPreviewDialogXread.Document = printdocXread
         PrintPreviewDialogXread.ShowDialog()
-
         SystemLogDesc = "X Reading : " & FullDate24HR() & " Crew : " & returnfullname(ClientCrewID)
         SystemLogType = "X-READ"
         GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
@@ -493,9 +492,9 @@ Public Class Reports
             Dim ZreadDateFormat = S_Zreading
             Dim font As New Font("Bahnschrift Light SemiCondensed", 7)
             Dim brandfont As New Font("Bahnschrift Condensed", 9)
-            Dim GrossSale = sum("total", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' ")
-            Dim LessVat = sum("vatablesales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
-            Dim TotalDiscount = sum("totaldiscount", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
+            Dim GrossSale = sum("grosssales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in'")
+            Dim LessVat = sum("lessvat", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in'")
+            Dim TotalDiscount = sum("totaldiscount", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' ")
             Dim begORNm = returnselect("transaction_number", "`loc_daily_transaction` WHERE date(zreading) = CURRENT_DATE Limit 1")
             Dim EndORNumber = Format(Now, "yyddMMHHmmssyy")
             Dim DailySales = GrossSale - LessVat - TotalDiscount
@@ -505,11 +504,11 @@ Public Class Reports
             Dim NEWgrandtotal = sum("total", "loc_daily_transaction_details") - ReturnsTotal
             Dim TotalGuest = count("transaction_id", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
             Dim TotalQuantity = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' ") - ReturnsExchange
-            Dim SrDiscount = sum("totaldiscount", "loc_daily_transaction WHERE discount_type = 'Percentage' AND zreading = '" & ZreadDateFormat & "' ")
+            Dim SrDiscount = sum("totaldiscount", "loc_daily_transaction WHERE discount_type = 'Percentage' AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in'")
             Dim totalExpenses = sum("amount", "loc_expense_details WHERE zreading = '" & ZreadDateFormat & "'")
-            Dim VatExempt = sum("vatexemptsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
+            Dim VatExempt = sum("vatexemptsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in'")
             Dim zeroratedsales = sum("zeroratedsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
-            Dim vatablesales = sum("vatablesales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
+            Dim vatablesales = sum("vatablesales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in'")
             Dim DepositSlip = sum("amount", "loc_deposit WHERE date(transaction_date) = '" & ZreadDateFormat & "' ")
             Dim TotalVat = LessVat
             Dim BegBalance = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ORDER by log_date_time DESC LIMIT 1")
@@ -613,6 +612,7 @@ Public Class Reports
         Try
             Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
+                XZreadingInventory(S_Zreading)
                 XreadOrZread = "Z-READ"
                 ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
                 printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
@@ -642,6 +642,7 @@ Public Class Reports
         Try
             Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
+                XZreadingInventory(S_Zreading)
                 XreadOrZread = "Z-READ"
                 ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
                 printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
@@ -661,6 +662,25 @@ Public Class Reports
             Else
                 MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub XZreadingInventory(zreaddate)
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
+            Dim Fields As String = "(`inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `guid`, `created_at`, `crew_id`, `synced`, `server_date_modified`, `server_inventory_id`, `zreading`)"
+            Dim Values As String = ""
+            With DataGridViewZreadInventory
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    Values = "(" & .Rows(i).Cells(0).Value.ToString & ",'" & .Rows(i).Cells(1).Value.ToString & "'," & .Rows(i).Cells(2).Value.ToString & "
+,'" & .Rows(i).Cells(3).Value.ToString & "','" & .Rows(i).Cells(4).Value.ToString & "'," & .Rows(i).Cells(5).Value.ToString & "," & .Rows(i).Cells(6).Value.ToString & "
+," & .Rows(i).Cells(7).Value.ToString & "," & .Rows(i).Cells(8).Value.ToString & ",'" & .Rows(i).Cells(9).Value.ToString & "','" & .Rows(i).Cells(10).Value.ToString & "','" & .Rows(i).Cells(11).Value.ToString & "'
+,'" & .Rows(i).Cells(12).Value.ToString & "','" & .Rows(i).Cells(13).Value.ToString & "'," & .Rows(i).Cells(14).Value.ToString & ",'" & zreaddate & "')"
+                    GLOBAL_INSERT_FUNCTION("loc_zread_inventory", Fields, Values)
+                Next
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

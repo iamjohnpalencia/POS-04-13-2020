@@ -208,7 +208,7 @@ Public Class Refund
                             , '" & ClientCrewID & "'
                             , 'Unsynced'
                             , '" & S_Zreading & "')"
-                        GLOBAL_INSERT_FUNCTION(table:="loc_refund_return_details", fields:=fields, errormessage:="", successmessage:="", values:=value)
+                        GLOBAL_INSERT_FUNCTION(table:="loc_refund_return_details", fields:=fields, values:=value)
                         table = "loc_daily_transaction"
                         fields = " `active`= 2 AND synced = 'Unsynced' "
                         where = " transaction_number = '" & transaction_number & "'"

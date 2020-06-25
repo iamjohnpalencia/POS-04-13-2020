@@ -16,9 +16,9 @@
 
             LabelTotalProdLine.Text = count(table:="loc_admin_products WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tocount:="product_id")
             LabelTotalProdLine.Text = Val(LabelTotalProdLine.Text) + count(table:="loc_admin_products WHERE product_category <> 'Others'", tocount:="product_id")
-            LabelTotalAvailStock.Text = sum(table:="loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tototal:="stock_quantity")
+            LabelTotalAvailStock.Text = sum(table:="loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tototal:="stock_primary")
             LabelTotalSales.Text = sum(table:="loc_daily_transaction_details WHERE zreading = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
-            LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_quantity AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
+            LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
             If ClientRole = "Crew" Then
                 Button8.Visible = False
                 Button6.Visible = False

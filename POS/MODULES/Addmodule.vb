@@ -18,32 +18,23 @@ Module Addmodule
                 , 'Unsynced'
                 , '" & S_Zreading & "'
                 , '" & FullDate24HR() & "')"
-            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:="", errormessage:="System Logs")
-
+            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
     Dim result As Integer
-    Public Sub GLOBAL_INSERT_FUNCTION(ByVal table As String, ByVal fields As String, ByVal values As String, ByVal successmessage As String, ByVal errormessage As String)
+    Public Sub GLOBAL_INSERT_FUNCTION(ByVal table As String, ByVal fields As String, ByVal values As String)
+        Dim Query
         Try
-            sql = "INSERT INTO " + table + fields + " VALUES " + values
-            cmd = New MySqlCommand
-            With cmd
-                .Connection = LocalhostConn()
-                .CommandText = sql
-                result = .ExecuteNonQuery
-            End With
-            If messageboxappearance = True Then
-                If result = 0 Then
-                    MsgBox(errormessage)
-                Else
-                    MsgBox(successmessage)
-                End If
-            End If
+            Query = "INSERT INTO " + table + fields + " VALUES " + values
+            Dim cmd As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+            cmd.ExecuteNonQuery()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            MsgBox(Query)
         Finally
+            LocalhostConn.close
             cmd.Dispose()
         End Try
     End Sub

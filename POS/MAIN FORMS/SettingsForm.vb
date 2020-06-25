@@ -392,7 +392,7 @@ Public Class SettingsForm
                             , 'Unsynced'
                             , '" & S_Zreading & "'
                             , '" & FullDate24HR() & "')"
-            GLOBAL_INSERT_FUNCTION(table:="`loc_refund_return_details`", fields:=fields, errormessage:="", successmessage:="", values:=value)
+            GLOBAL_INSERT_FUNCTION(table:="`loc_refund_return_details`", fields:=fields, values:=value)
             GLOBAL_FUNCTION_UPDATE("loc_daily_transaction", "active = 2 , synced = 'Unsynced'", "transaction_number = '" & transaction_num & "'")
             GLOBAL_FUNCTION_UPDATE("loc_daily_transaction_details", "active = 2 , synced = 'Unsynced'", "transaction_number = '" & transaction_num & "'")
             GLOBAL_SYSTEM_LOGS("RETURN", "Reason: " & TextBoxIRREASON.Text & " Trn.Number: " & transaction_num & " Total Amount: " & grandtotal)
@@ -554,7 +554,7 @@ Public Class SettingsForm
     Private Sub SaveCoupon()
         Try
             value = "('" & TextBoxCName.Text & "' , '" & TextBoxCDesc.Text & "', '" & TextBoxCDVal.Text & "', '" & TextBoxCRefVal.Text & "', '" & ComboBoxCType.Text & "' , '" & TextBoxCBBP.Text & "' , '" & TextBoxCBV.Text & "', '" & TextBoxCBP.Text & "', '" & TextBoxCBundVal.Text & "', '" & CDate(DateTimePickerCEffectiveDate.Value).ToShortDateString & "' , '" & CDate(DateTimePickerCExpiryDate.Value).ToShortDateString & "')"
-            GLOBAL_INSERT_FUNCTION("tbcoupon", "(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`)", value, "", "")
+            GLOBAL_INSERT_FUNCTION("tbcoupon", "(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`)", value)
             GLOBAL_SYSTEM_LOGS("NEW COUPON", "Name : " & TextBoxCName.Text & " Type : " & ComboBoxCType.Text)
         Catch ex As Exception
             MsgBox(ex.ToString)

@@ -36,8 +36,12 @@ Public Class Login
     End Sub
     Dim bat As String
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
-        Enabled = False
-        Auth.Show()
+        If CheckForInternetConnection() Then
+            Enabled = False
+            Auth.Show()
+        Else
+            MessageBox.Show("Cannot connect to cloud server please try again.", "No internet connection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
     End Sub
     Private Sub PopupKeyboard(sender As Object, e As EventArgs) Handles txtusername.Click, txtpassword.Click
         Wow64DisableWow64FsRedirection(0)

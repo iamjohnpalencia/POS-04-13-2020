@@ -75,7 +75,7 @@ Public Class Auth
                          ,'" & .Rows(i).Cells(10).Value.ToString & "'   
                          ,'" & .Rows(i).Cells(11).Value.ToString & "'       
                          ,'Unsynced')"
-                    GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
+                    GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                     sql = "UPDATE loc_users SET synced = 'Synced' WHERE uniq_id = '" & .Rows(i).Cells(11).Value.ToString & "'"
                     cmd = New MySqlCommand(sql, ServerCloudCon())
                     cmd.ExecuteNonQuery()

@@ -6,7 +6,7 @@
                 Dim arrid = count("arrid", table)
                 fields = "(`arrid`, `bankname`,  `active`, `crew_id`, `synced`, `store_id`, `guid`)"
                 value = "(" & arrid + 1 & ", '" & Trim(TextBoxBankName.Text) & "', " & 1 & ", '" & ClientCrewID & "', 'Unsynced', '" & ClientStoreID & "', '" & ClientGuid & "')"
-                GLOBAL_INSERT_FUNCTION(table, fields, value, "", "")
+                GLOBAL_INSERT_FUNCTION(table, fields, value)
                 SettingsForm.LoadPartners()
             Else
                 fields = "bankname = '" & Trim(TextBoxBankName.Text) & "'"

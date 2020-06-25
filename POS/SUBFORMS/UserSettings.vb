@@ -111,7 +111,7 @@ Public Class UserSettings
                             , 'Unsynced')"
                     successmessage = "Successfully Registered!"
                     errormessage = "error registrationvb(loc_users)"
-                    GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
+                    GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                 Catch ex As Exception
                 End Try
                 ClearTextBox(Me)

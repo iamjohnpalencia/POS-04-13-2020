@@ -69,7 +69,7 @@ Public Class Addexpense
                             , '" & S_Zreading & "')"
                     successmessage = "Success"
                     errormessage = "error addexpenses(loc_expense_details)"
-                    GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
+                    GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                 Next
             End With
         Catch ex As Exception
@@ -94,7 +94,7 @@ Public Class Addexpense
                          ,'" & S_Zreading & "')"
                 successmessage = "Success"
                 errormessage = "error addexpenses(loc_expense_details)"
-                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value, successmessage:=successmessage, errormessage:=errormessage)
+                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
             End With
         Catch ex As Exception
         End Try
