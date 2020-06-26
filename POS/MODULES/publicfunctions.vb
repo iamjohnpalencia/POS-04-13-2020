@@ -34,29 +34,56 @@ Module publicfunctions
         Return ReturnThisThing
     End Function
     Public Sub TextboxEnableability(ByVal root As Control, ENB As Boolean)
-        For Each ctrl As Control In root.Controls
-            TextboxEnableability(ctrl, ENB)
-            If TypeOf ctrl Is TextBox Then
-                CType(ctrl, TextBox).Enabled = ENB
-            End If
-        Next ctrl
+        Try
+            For Each ctrl As Control In root.Controls
+                TextboxEnableability(ctrl, ENB)
+                If TypeOf ctrl Is TextBox Then
+                    CType(ctrl, TextBox).Enabled = ENB
+                End If
+            Next ctrl
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Public Sub ClearTextBox(ByVal root As Control)
-        For Each ctrl As Control In root.Controls
-            ClearTextBox(ctrl)
-            If TypeOf ctrl Is TextBox Then
-                CType(ctrl, TextBox).Text = String.Empty
-            End If
-        Next ctrl
+        Try
+            For Each ctrl As Control In root.Controls
+                ClearTextBox(ctrl)
+                If TypeOf ctrl Is TextBox Then
+                    CType(ctrl, TextBox).Text = String.Empty
+                End If
+            Next ctrl
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Public Sub ClearDataGridViewRows(ByVal root As Control)
-        For Each ctrl As Control In root.Controls
-            ClearDataGridViewRows(ctrl)
-            If TypeOf ctrl Is DataGridView Then
-                CType(ctrl, DataGridView).DataSource = Nothing
-                CType(ctrl, DataGridView).Rows.Clear()
-            End If
-        Next ctrl
+        Try
+            For Each ctrl As Control In root.Controls
+                ClearDataGridViewRows(ctrl)
+                If TypeOf ctrl Is DataGridView Then
+                    CType(ctrl, DataGridView).DataSource = Nothing
+                    CType(ctrl, DataGridView).Rows.Clear()
+                End If
+            Next ctrl
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Public Sub SpecialCharRestriction(ByVal root As Control, ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
+        Try
+            For Each ctrl As Control In root.Controls
+                SpecialCharRestriction(ctrl, sender, e)
+                If TypeOf ctrl Is TextBox Then
+                    Dim allowedChars As String = "[`~!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\\\|:;""'<>,\.\?/"
+                    If Not allowedChars.IndexOf(e.KeyChar) = -1 Then
+                        e.Handled = True
+                    End If
+                End If
+            Next ctrl
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Public Sub buttonpressedenter(ByVal btntext As String)
         If Val(POS.TextBoxQTY.Text) <> 0 Then

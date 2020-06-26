@@ -5,8 +5,13 @@ Imports System.Text
 Public Class Reports
     Private WithEvents printdoc As PrintDocument = New PrintDocument
     Private WithEvents printdocXread As PrintDocument = New PrintDocument
+    Private WithEvents printdocInventory As PrintDocument = New PrintDocument
+
+
     Private PrintPreviewDialog1 As New PrintPreviewDialog
     Private PrintPreviewDialogXread As New PrintPreviewDialog
+    Private PrintPreviewDialogInventory As New PrintPreviewDialog
+
     Dim buttons As DataGridViewButtonColumn = New DataGridViewButtonColumn()
     Dim user_id As String
     Dim pagingAdapter As MySqlDataAdapter
@@ -505,6 +510,7 @@ Public Class Reports
     Private Function NUMBERFORMAT(formatthis)
         Return Format(formatthis, "##,##0.00")
     End Function
+
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdocXread.PrintPage
         Try
             Dim ZreadDateFormat = S_Zreading
@@ -633,9 +639,11 @@ Public Class Reports
                 XZreadingInventory(S_Zreading)
                 XreadOrZread = "Z-READ"
                 ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
+
                 printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
                 PrintPreviewDialogXread.Document = printdocXread
                 PrintPreviewDialogXread.ShowDialog()
+
                 GLOBAL_SYSTEM_LOGS("Z-READ", ClientCrewID & " : " & S_Zreading)
                 S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
                 sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
@@ -688,7 +696,7 @@ Public Class Reports
     Private Sub XZreadingInventory(zreaddate)
         Try
             GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
-            Dim Fields As String = "(`inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `guid`, `created_at`, `crew_id`, `synced`, `server_date_modified`, `server_inventory_id`, `zreading`)"
+            Dim Fields As String = "(`inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_status`, `critical_limit`, `guid`, `created_at`, `crew_id`, `synced`, `server_date_modified`, `server_inventory_id`, `zreading`)"
             Dim Values As String = ""
             With DataGridViewZreadInventory
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -702,5 +710,20 @@ Public Class Reports
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
+    End Sub
+    Private Sub pdoc_PrintInventory(sender As Object, e As Printing.PrintPageEventArgs) Handles printdocInventory.PrintPage
+        Try
+            ReceiptHeader(sender, e)
+
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        printdocInventory.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
+        PrintPreviewDialogInventory.Document = printdocInventory
+        PrintPreviewDialogInventory.ShowDialog()
     End Sub
 End Class

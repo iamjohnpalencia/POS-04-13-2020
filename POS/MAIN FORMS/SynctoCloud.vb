@@ -161,7 +161,7 @@ Public Class SynctoCloud
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewINV)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewINV)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewINV.Rows.Add(row("inventory_id"), row("store_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_quantity"), row("stock_total"), row("stock_status"), row("critical_limit"), row("guid"), row("created_at"), row("crew_id"), row("synced"), row("server_date_modified"), row("server_inventory_id"))
+                DataGridViewINV.Rows.Add(row("inventory_id"), row("store_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_primary"), row("stock_secondary"), row("stock_status"), row("critical_limit"), row("guid"), row("created_at"), row("crew_id"), row("synced"), row("server_date_modified"), row("server_inventory_id"))
             Next
             gettablesize(tablename:="loc_pos_inventory")
             countrows(tablename:=table)
@@ -657,20 +657,21 @@ Public Class SynctoCloud
             Label10.Text = "Syncing Inventory"
             With DataGridViewINV
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmdupdateinventory = New MySqlCommand("UPDATE admin_pos_inventory SET stock_quantity = " & .Rows(i).Cells(6).Value & " , stock_total = " & .Rows(i).Cells(7).Value & " WHERE store_id =" & ClientStoreID & " AND guid = '" & ClientGuid & "' AND loc_inventory_id = " & .Rows(i).Cells(0).Value, server)
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_pos_inventory( `loc_inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `guid`, `date`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10)", server)
+                    cmdupdateinventory = New MySqlCommand("UPDATE admin_pos_inventory SET stock_primary = " & .Rows(i).Cells(6).Value & " , stock_secondary = " & .Rows(i).Cells(7).Value & " , stock_no_of_servings = " & .Rows(i).Cells(8).Value & " WHERE store_id =" & ClientStoreID & " AND guid = '" & ClientGuid & "' AND loc_inventory_id = " & .Rows(i).Cells(0).Value, server)
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_pos_inventory( `loc_inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `guid`, `date`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.Int64).Value = .Rows(i).Cells(2).Value.ToString()
                     cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
                     cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
                     cmd.Parameters.Add("@5", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
-                    cmd.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(6).Value.ToString()
-                    cmd.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
-                    cmd.Parameters.Add("@8", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString()
-                    cmd.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
-                    cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                    cmd.Parameters.Add("@6", MySqlDbType.Decimal).Value = .Rows(i).Cells(6).Value.ToString()
+                    cmd.Parameters.Add("@7", MySqlDbType.Decimal).Value = .Rows(i).Cells(7).Value.ToString()
+                    cmd.Parameters.Add("@8", MySqlDbType.Decimal).Value = .Rows(i).Cells(8).Value.ToString()
+                    cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString()
+                    cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
+                    cmd.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                     With cmd
                         Label7.Text = Val(Label7.Text + 1)
                         Label32.Text = Val(Label32.Text) + 1

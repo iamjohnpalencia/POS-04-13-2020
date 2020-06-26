@@ -72,6 +72,9 @@ Partial Class Reports
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.DataGridViewSysLog = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.ButtonSearchSystemLogs = New System.Windows.Forms.Button()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -158,9 +161,7 @@ Partial Class Reports
         Me.pdoc = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button7 = New System.Windows.Forms.Button()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -484,6 +485,21 @@ Partial Class Reports
         Me.DataGridViewSysLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridViewSysLog.Size = New System.Drawing.Size(1117, 429)
         Me.DataGridViewSysLog.TabIndex = 2
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Column1"
+        Me.Column1.Name = "Column1"
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Column2"
+        Me.Column2.Name = "Column2"
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Column3"
+        Me.Column3.Name = "Column3"
         '
         'Panel7
         '
@@ -1449,6 +1465,7 @@ Partial Class Reports
         'Panel12
         '
         Me.Panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel12.Controls.Add(Me.Button7)
         Me.Panel12.Controls.Add(Me.DataGridViewZreadInventory)
         Me.Panel12.Controls.Add(Me.ButtonZread)
         Me.Panel12.Controls.Add(Me.Button5)
@@ -1474,7 +1491,7 @@ Partial Class Reports
         Me.ButtonZread.FlatAppearance.BorderSize = 0
         Me.ButtonZread.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonZread.ForeColor = System.Drawing.Color.White
-        Me.ButtonZread.Location = New System.Drawing.Point(376, 264)
+        Me.ButtonZread.Location = New System.Drawing.Point(157, 230)
         Me.ButtonZread.Name = "ButtonZread"
         Me.ButtonZread.Size = New System.Drawing.Size(372, 81)
         Me.ButtonZread.TabIndex = 1
@@ -1487,7 +1504,7 @@ Partial Class Reports
         Me.Button5.FlatAppearance.BorderSize = 0
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.ForeColor = System.Drawing.Color.White
-        Me.Button5.Location = New System.Drawing.Point(376, 177)
+        Me.Button5.Location = New System.Drawing.Point(157, 143)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(372, 81)
         Me.Button5.TabIndex = 0
@@ -1500,7 +1517,7 @@ Partial Class Reports
         Me.Button6.FlatAppearance.BorderSize = 0
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(376, 90)
+        Me.Button6.Location = New System.Drawing.Point(157, 56)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(372, 81)
         Me.Button6.TabIndex = 2
@@ -1585,20 +1602,18 @@ Partial Class Reports
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Column1
+        'Button7
         '
-        Me.Column1.HeaderText = "Column1"
-        Me.Column1.Name = "Column1"
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Column2"
-        Me.Column2.Name = "Column2"
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Column3"
-        Me.Column3.Name = "Column3"
+        Me.Button7.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.Button7.FlatAppearance.BorderSize = 0
+        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button7.ForeColor = System.Drawing.Color.White
+        Me.Button7.Location = New System.Drawing.Point(157, 317)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(372, 81)
+        Me.Button7.TabIndex = 4
+        Me.Button7.Text = "Z Reading"
+        Me.Button7.UseVisualStyleBackColor = False
         '
         'Reports
         '
@@ -1781,4 +1796,5 @@ Partial Class Reports
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Button7 As Button
 End Class

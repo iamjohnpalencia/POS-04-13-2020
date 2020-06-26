@@ -81,6 +81,7 @@ Partial Class Loading
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DataGridViewRESULT = New System.Windows.Forms.DataGridView()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
+        Me.Column41 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,7 +124,7 @@ Partial Class Loading
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(382, 93)
+        Me.Panel1.Size = New System.Drawing.Size(669, 598)
         Me.Panel1.TabIndex = 21
         '
         'DataGridView4
@@ -133,12 +134,12 @@ Partial Class Loading
         Me.DataGridView4.AllowUserToResizeColumns = False
         Me.DataGridView4.AllowUserToResizeRows = False
         Me.DataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView4.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column32, Me.Column33, Me.Column34, Me.Column35, Me.Column36, Me.Column37, Me.Column38, Me.Column39, Me.Column40})
+        Me.DataGridView4.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column32, Me.Column33, Me.Column34, Me.Column35, Me.Column36, Me.Column37, Me.Column38, Me.Column39, Me.Column40, Me.Column41})
         Me.DataGridView4.Location = New System.Drawing.Point(11, 358)
         Me.DataGridView4.Name = "DataGridView4"
         Me.DataGridView4.ReadOnly = True
         Me.DataGridView4.RowHeadersVisible = False
-        Me.DataGridView4.Size = New System.Drawing.Size(372, 78)
+        Me.DataGridView4.Size = New System.Drawing.Size(576, 78)
         Me.DataGridView4.TabIndex = 32
         '
         'Column32
@@ -460,9 +461,9 @@ Partial Class Loading
         '
         Me.Panel23.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel23.Location = New System.Drawing.Point(0, 61)
+        Me.Panel23.Location = New System.Drawing.Point(0, 566)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(380, 10)
+        Me.Panel23.Size = New System.Drawing.Size(667, 10)
         Me.Panel23.TabIndex = 22
         '
         'Panel24
@@ -471,9 +472,9 @@ Partial Class Loading
         Me.Panel24.Controls.Add(Me.Label4)
         Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel24.Location = New System.Drawing.Point(0, 71)
+        Me.Panel24.Location = New System.Drawing.Point(0, 576)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(380, 20)
+        Me.Panel24.Size = New System.Drawing.Size(667, 20)
         Me.Panel24.TabIndex = 21
         '
         'Label4
@@ -492,7 +493,7 @@ Partial Class Loading
         '
         Me.Panel25.Controls.Add(Me.Label147)
         Me.Panel25.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel25.Location = New System.Drawing.Point(124, 0)
+        Me.Panel25.Location = New System.Drawing.Point(411, 0)
         Me.Panel25.Name = "Panel25"
         Me.Panel25.Size = New System.Drawing.Size(256, 20)
         Me.Panel25.TabIndex = 0
@@ -538,12 +539,18 @@ Partial Class Loading
         Me.BackgroundWorker2.WorkerReportsProgress = True
         Me.BackgroundWorker2.WorkerSupportsCancellation = True
         '
+        'Column41
+        '
+        Me.Column41.HeaderText = "Column41"
+        Me.Column41.Name = "Column41"
+        Me.Column41.ReadOnly = True
+        '
         'Loading
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(382, 93)
+        Me.ClientSize = New System.Drawing.Size(669, 598)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Loading"
@@ -623,4 +630,5 @@ Partial Class Loading
     Friend WithEvents Column38 As DataGridViewTextBoxColumn
     Friend WithEvents Column39 As DataGridViewTextBoxColumn
     Friend WithEvents Column40 As DataGridViewTextBoxColumn
+    Friend WithEvents Column41 As DataGridViewTextBoxColumn
 End Class

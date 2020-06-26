@@ -326,7 +326,7 @@ Public Class Loading
     End Sub
     Private Sub Temptinventory()
         Try
-            sql = "INSERT INTO loc_inv_temp_data (`store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `guid`, `created_at`)  SELECT `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `guid` ,(SELECT date_add(date_add(LAST_DAY(NOW()),interval 1 DAY),interval -1 MONTH) AS first_day) FROM loc_pos_inventory"
+            sql = "INSERT INTO loc_inv_temp_data (`store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `guid`, `created_at`)  SELECT `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `guid` ,(SELECT date_add(date_add(LAST_DAY(NOW()),interval 1 DAY),interval -1 MONTH) AS first_day) FROM loc_pos_inventory"
             cmd = New MySqlCommand
             With cmd
                 .CommandText = sql
@@ -339,7 +339,7 @@ Public Class Loading
     End Sub
     Private Sub ResetStocks()
         Try
-            sql = "UPDATE `loc_pos_inventory` SET `stock_quantity`= 0,`stock_total`= 0"
+            sql = "UPDATE `loc_pos_inventory` SET `stock_primary`= 0,`stock_secondary`= 0"
             cmd = New MySqlCommand
             With cmd
                 .CommandText = sql
@@ -696,8 +696,9 @@ Public Class Loading
             InventoryDTUpdate.Columns.Add("formula_id")
             InventoryDTUpdate.Columns.Add("product_ingredients")
             InventoryDTUpdate.Columns.Add("sku")
-            InventoryDTUpdate.Columns.Add("stock_quantity")
-            InventoryDTUpdate.Columns.Add("stock_total")
+            InventoryDTUpdate.Columns.Add("stock_primary")
+            InventoryDTUpdate.Columns.Add("stock_secondary")
+            InventoryDTUpdate.Columns.Add("stock_no_of_servings")
             InventoryDTUpdate.Columns.Add("stock_status")
             InventoryDTUpdate.Columns.Add("critical_limit")
             InventoryDTUpdate.Columns.Add("date_modified")
@@ -713,45 +714,48 @@ Public Class Loading
                 Dim cmdserver As MySqlCommand
                 Dim daserver As MySqlDataAdapter
                 Dim dtserver As DataTable
-                Dim sql = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified` FROM admin_pos_inventory_org WHERE inventory_id IN (" & Ids & ")"
+                Dim sql = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified` FROM admin_pos_inventory_org WHERE inventory_id IN (" & Ids & ")"
                 cmdserver = New MySqlCommand(sql, ServerCloudCon())
                 daserver = New MySqlDataAdapter(cmdserver)
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(8).ToString Then
-                        DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString)
+
+                    If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(9).ToString Then
+                        DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
                         Dim Inventory As DataRow = InventoryDTUpdate.NewRow
                         Inventory("inventory_id") = dtserver(i)(0)
                         Inventory("formula_id") = dtserver(i)(1)
                         Inventory("product_ingredients") = dtserver(i)(2)
                         Inventory("sku") = dtserver(i)(3)
-                        Inventory("stock_quantity") = dtserver(i)(4)
-                        Inventory("stock_total") = dtserver(i)(5)
-                        Inventory("stock_status") = dtserver(i)(6)
-                        Inventory("critical_limit") = dtserver(i)(7)
-                        Inventory("date_modified") = dtserver(i)(8).ToString
+                        Inventory("stock_primary") = dtserver(i)(4)
+                        Inventory("stock_secondary") = dtserver(i)(5)
+                        Inventory("stock_no_of_servings") = dtserver(i)(6)
+                        Inventory("stock_status") = dtserver(i)(7)
+                        Inventory("critical_limit") = dtserver(i)(8)
+                        Inventory("date_modified") = dtserver(i)(9)
                         InventoryDTUpdate.Rows.Add(Inventory)
                     End If
                 Next
-                Dim sql2 = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_quantity`, `stock_total`, `stock_status`, `critical_limit`, `date_modified` FROM admin_pos_inventory_org WHERE inventory_id NOT IN (" & Ids & ")"
+                Dim sql2 = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified` FROM admin_pos_inventory_org WHERE inventory_id NOT IN (" & Ids & ")"
                 cmdserver = New MySqlCommand(sql2, ServerCloudCon())
                 daserver = New MySqlDataAdapter(cmdserver)
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(8).ToString Then
-                        DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString)
+                    If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(9) Then
+                        DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
                         Dim Inventory As DataRow = InventoryDTUpdate.NewRow
                         Inventory("inventory_id") = dtserver(i)(0)
                         Inventory("formula_id") = dtserver(i)(1)
                         Inventory("product_ingredients") = dtserver(i)(2)
                         Inventory("sku") = dtserver(i)(3)
-                        Inventory("stock_quantity") = dtserver(i)(4)
-                        Inventory("stock_total") = dtserver(i)(5)
-                        Inventory("stock_status") = dtserver(i)(6)
-                        Inventory("critical_limit") = dtserver(i)(7)
-                        Inventory("date_modified") = dtserver(i)(8).ToString
+                        Inventory("stock_primary") = dtserver(i)(4)
+                        Inventory("stock_secondary") = dtserver(i)(5)
+                        Inventory("stock_no_of_servings") = dtserver(i)(6)
+                        Inventory("stock_status") = dtserver(i)(7)
+                        Inventory("critical_limit") = dtserver(i)(8)
+                        Inventory("date_modified") = dtserver(i)(9)
                         InventoryDTUpdate.Rows.Add(Inventory)
                     End If
                 Next
