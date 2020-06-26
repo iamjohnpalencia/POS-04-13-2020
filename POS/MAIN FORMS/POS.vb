@@ -880,7 +880,6 @@ Public Class POS
     End Sub
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
         Try
-            MsgBox(DISCOUNTTYPE)
             Dim totalDisplay = Format(SUPERAMOUNTDUE, "##,##0.00")
             With Me
                 a = 0
