@@ -309,10 +309,6 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click
-        LoadDefaultSettingsAdd()
-    End Sub
-
     Private Sub LoadConn()
         Try
             If My.Settings.LocalConnectionPath <> "" Then
