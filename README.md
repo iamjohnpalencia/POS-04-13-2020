@@ -231,7 +231,7 @@ June 16 7:00 AM to 12:00 PM
 	* Database Export/ import
 	* Automatic Backup
 
-june 21 5:00 AM to 6:00 PM to 1:00 AM
+june 21 5:00 AM to 6:00 PM to 12:00 AM
 
 	Table columns structure
 	* datestamp/timestamp to text structure
