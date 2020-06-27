@@ -118,4 +118,6 @@ Module publicVariables
     Public TEXTBOXMARKUPVALUE
     '
     Public IfConnectionIsConfigured As Boolean
+    'Loading
+    Public ValidDatabaseLocalConnection As Boolean = False
 End Module

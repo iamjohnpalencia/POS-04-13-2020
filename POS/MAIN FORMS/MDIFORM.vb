@@ -16,7 +16,8 @@
 
             LabelTotalProdLine.Text = count(table:="loc_admin_products WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tocount:="product_id")
             LabelTotalProdLine.Text = Val(LabelTotalProdLine.Text) + count(table:="loc_admin_products WHERE product_category <> 'Others'", tocount:="product_id")
-            LabelTotalAvailStock.Text = sum(table:="loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tototal:="stock_primary")
+            'sum(table:="loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tototal:="stock_primary")
+            LabelTotalAvailStock.Text = roundsum("stock_primary", "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", "P")
             LabelTotalSales.Text = sum(table:="loc_daily_transaction_details WHERE zreading = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
             LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
             If ClientRole = "Crew" Then

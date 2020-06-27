@@ -19,7 +19,6 @@ Public Class Inventory
         loadfastmovingstock()
         loadstockentry()
         loadcomboboxingredients()
-
     End Sub
     Private Sub Inventory_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Me.Hide()
@@ -30,7 +29,7 @@ Public Class Inventory
     End Sub
     Sub loadinventory()
         Try
-            fields = "I.product_ingredients as Ingredients, CONCAT_WS(' ', I.stock_primary, F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , I.stock_no_of_servings, I.stock_status, I.critical_limit, I.created_at"
+            fields = "I.product_ingredients as Ingredients, CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_pos_inventory I INNER JOIN loc_product_formula F ON F.formula_id = I.formula_id ", datagrid:=DataGridViewINVVIEW, errormessage:="", successmessage:="", fields:=fields, where:=" I.stock_status = 1 AND I.store_id = " & ClientStoreID)
             With DataGridViewINVVIEW
                 .Columns(3).HeaderCell.Value = "No. of Servings"
@@ -71,16 +70,14 @@ Public Class Inventory
     End Sub
     Private Sub loadpanelstockadjustment()
         Try
-            fields = "`formula_id`, `product_ingredients`, `stock_primary`, `stock_secondary`, `stock_status`, `stock_no_of_servings`, `critical_limit`"
+            fields = "`formula_id`, `product_ingredients`, ROUND(stock_primary,0) AS P, `stock_secondary`, ROUND(stock_no_of_servings,0) AS S"
             GLOBAL_SELECT_ALL_FUNCTION("`loc_pos_inventory` WHERE `stock_status` = 1 AND `store_id` = " & ClientStoreID, fields, DataGridViewPanelStockAdjustment)
             With DataGridViewPanelStockAdjustment
                 .Columns(0).Visible = False
                 .Columns(1).HeaderText = "Ingredient"
-                .Columns(2).Visible = False
-                .Columns(3).Visible = False
-                .Columns(4).Visible = False
-                .Columns(5).HeaderText = "No. of servings"
-                .Columns(6).Visible = False
+                .Columns(2).HeaderText = "Primary Value"
+                .Columns(3).HeaderText = "Primary Value"
+                .Columns(4).HeaderText = "No. of servings"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -103,36 +100,36 @@ Public Class Inventory
     Dim DataTableInventory As New DataTable
     Dim DataTableFormula As New DataTable
     Dim inv
-    Public Sub selectingredients()
-        Try
-            Dim sql = "SELECT inventory_id FROM loc_pos_inventory WHERE product_ingredients = '" & ComboBoxDESC.Text & "'"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
-            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
-            Dim dt As DataTable = New DataTable
-            da.Fill(dt)
-            Dim inventory_id = dt(0)(0)
-            Dim sql1 = "Select formula_id, serving_unit, serving_value FROM loc_product_formula WHERE formula_id = " & inventory_id & ""
-            cmd = New MySqlCommand(sql1, LocalhostConn)
-            da = New MySqlDataAdapter(cmd)
-            Dim dt1 As DataTable = New DataTable
-            da.Fill(dt1)
-            For Each row As DataRow In dt1.Rows
-                TextBoxSERVINGUNIT.Text = row("serving_unit")
-                TextBoxSERVINGVAL.Text = row("serving_value")
-                TextBoxINVENTORYID.Text = row("formula_id")
-            Next
-            Dim sql2 = "SELECT formula_id, stock_primary FROM loc_pos_inventory WHERE formula_id = " & inventory_id & " "
-            cmd = New MySqlCommand(sql2, LocalhostConn)
-            da = New MySqlDataAdapter(cmd)
-            Dim dt2 As DataTable = New DataTable
-            da.Fill(dt2)
-            For Each row As DataRow In dt2.Rows
-                TextBoxSTCKONHAND.Text = row("stock_primary")
-            Next
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
+    'Public Sub selectingredients()
+    '    Try
+    '        Dim sql = "SELECT inventory_id FROM loc_pos_inventory WHERE product_ingredients = '" & ComboBoxDESC.Text & "'"
+    '        Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+    '        Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+    '        Dim dt As DataTable = New DataTable
+    '        da.Fill(dt)
+    '        Dim inventory_id = dt(0)(0)
+    '        Dim sql1 = "Select formula_id, serving_unit, serving_value FROM loc_product_formula WHERE formula_id = " & inventory_id & ""
+    '        cmd = New MySqlCommand(sql1, LocalhostConn)
+    '        da = New MySqlDataAdapter(cmd)
+    '        Dim dt1 As DataTable = New DataTable
+    '        da.Fill(dt1)
+    '        For Each row As DataRow In dt1.Rows
+    '            TextBoxSERVINGUNIT.Text = row("serving_unit")
+    '            TextBoxSERVINGVAL.Text = row("serving_value")
+    '            TextBoxINVENTORYID.Text = row("formula_id")
+    '        Next
+    '        Dim sql2 = "SELECT formula_id, stock_primary FROM loc_pos_inventory WHERE formula_id = " & inventory_id & " "
+    '        cmd = New MySqlCommand(sql2, LocalhostConn)
+    '        da = New MySqlDataAdapter(cmd)
+    '        Dim dt2 As DataTable = New DataTable
+    '        da.Fill(dt2)
+    '        For Each row As DataRow In dt2.Rows
+    '            TextBoxSTCKONHAND.Text = row("stock_primary")
+    '        Next
+    '    Catch ex As Exception
+    '        MsgBox(ex.ToString)
+    '    End Try
+    'End Sub
     Sub loadstockentry()
 
         where = " date(log_date_time) = CURRENT_DATE() AND log_type = 'STOCK ENTRY' "
@@ -151,8 +148,8 @@ Public Class Inventory
     Dim inventoryid
     Private Sub DataGridViewPanelStockAdjustment_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewPanelStockAdjustment.CellClick
         Try
-            TextBox1.Text = DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(2).Value
-            TextBox2.Text = DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(3).Value
+            TextBoxIPrimaryVal.Text = DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(2).Value
+            TextBoxISecondaryTotal.Text = DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(3).Value
             Dim FormulaID As Integer = DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
             SelectFormula(FormulaID)
         Catch ex As Exception
@@ -167,13 +164,36 @@ Public Class Inventory
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
             For Each row As DataRow In dt.Rows
-                TextBox3.Text = row("primary_unit")
-                TextBox4.Text = row("primary_value")
-                TextBox5.Text = row("secondary_unit")
-                TextBox6.Text = row("secondary_value")
+                TextBoxIPrimaryUnit.Text = row("primary_unit")
+                TextBoxFPrimaryVal.Text = row("primary_value")
+                TextBoxFSecondaryUnit.Text = row("secondary_unit")
+                TextBoxFSecondary.Text = row("secondary_value")
                 TextBox7.Text = row("serving_unit")
                 TextBox8.Text = row("serving_value")
-                TextBox9.Text = row("no_servings")
+                TextBoxFnoofservings.Text = row("no_servings")
+            Next
+            LocalhostConn.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub SelectFormulaEntry(FormulaID)
+        Try
+            Dim sql As String = "SELECT `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings` FROM loc_product_formula WHERE formula_id = " & FormulaID
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim dt As DataTable = New DataTable
+            da.Fill(dt)
+            For Each row As DataRow In dt.Rows
+                TextBoxEFPrimaryVal.Text = row("primary_value")
+                TextBoxEFPUnit.Text = row("primary_unit")
+
+                TextBoxEFSecondVal.Text = row("secondary_value")
+                TextBoxEFSUnit.Text = row("secondary_unit")
+
+                TextBoxEServingValue.Text = row("serving_value")
+                TextBoxEServingVal.Text = row("serving_unit")
+                TextBoxENoServings.Text = row("no_servings")
             Next
             LocalhostConn.Close()
         Catch ex As Exception
@@ -208,95 +228,99 @@ Public Class Inventory
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        loadpanelstockadjustment()
-        '
-        PanelSTOCKADJUSTMENT.Location = New Point(ClientSize.Width / 2 - PanelSTOCKADJUSTMENT.Size.Width / 2, ClientSize.Height / 2 - PanelSTOCKADJUSTMENT.Size.Height / 2)
-        PanelSTOCKADJUSTMENT.Anchor = AnchorStyles.None
-
-        'PanelSTOCKADJUSTMENT.Top = (Me.Height - PanelSTOCKADJUSTMENT.Height) / 5
-        'PanelSTOCKADJUSTMENT.Left = (Me.Width - PanelSTOCKADJUSTMENT.Width) / 4
-        PanelSTOCKADJUSTMENT.Visible = True
-        countingredients()
+    Private Sub LoadOutlets()
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX("admin_outlets", "store_name", ComboBoxtransfer, False)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub FillComboboxReason()
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX("loc_transfer_data WHERE active = 1", "transfer_cat", ComboBoxDeduction, True)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
-    Sub countingredients()
+    Private Sub LoadReasonCategories()
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION("`loc_transfer_data`", "`transfer_id`, `transfer_cat`, `crew_id`, `created_at`, `created_by`, `updated_at`", DataGridViewReasonCategories)
+            With DataGridViewReasonCategories
+                .Columns(0).Visible = False
+                .Columns(1).HeaderText = "Category"
+                .Columns(2).HeaderText = "Crew"
+                .Columns(3).HeaderText = "Date Created"
+                .Columns(4).HeaderText = "Created By"
+                .Columns(5).HeaderText = "Updated At"
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Try
+            loadpanelstockadjustment()
+            LoadReasonCategories()
+            PanelSTOCKADJUSTMENT.Location = New Point(ClientSize.Width / 2 - PanelSTOCKADJUSTMENT.Size.Width / 2, ClientSize.Height / 2 - PanelSTOCKADJUSTMENT.Size.Height / 2)
+            PanelSTOCKADJUSTMENT.Anchor = AnchorStyles.None
+            PanelSTOCKADJUSTMENT.Visible = True
+            countingredients()
+            Dim arg = New DataGridViewCellEventArgs(0, 0)
+            DataGridViewPanelStockAdjustment_CellClick(sender, arg)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub countingredients()
         Label7.Text = "(" & count(table:="loc_pos_inventory", tocount:="inventory_id") & ") record(s) count"
     End Sub
     Dim totalqty As Integer
-    'Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
-    '    If String.IsNullOrWhiteSpace(TextBoxName.Text) Then
-    '        MsgBox("Select item first")
-    '    ElseIf String.IsNullOrWhiteSpace(TextBoxADJQTY.Text) Then
-    '        MsgBox("Input Quantity first")
-    '    ElseIf String.IsNullOrWhiteSpace(ComboBoxAction.Text) Then
-    '        MsgBox("Select action first")
-    '    ElseIf String.IsNullOrWhiteSpace(TextBoxReason.Text) Then
-    '        MsgBox("Input reason first")
-    '    Else
-    '        If ComboBoxAction.SelectedIndex = 0 Then
-    '            totalqty = Val(TextBoxStockOnhand.Text) + Val(TextBoxADJQTY.Text)
-    '            SystemLogType = "NEW STOCK ADDED"
-    '            SystemLogDesc = "Adding stock of: " & TextBoxName.Text & " QTY: " & TextBoxADJQTY.Text & " Reason: " & TextBoxReason.Text
-    '            SaveLog()
-    '        ElseIf ComboBoxAction.SelectedIndex = 1 Then
-    '            totalqty = Val(TextBoxStockOnhand.Text) - Val(TextBoxADJQTY.Text)
-    '            SystemLogType = "STOCK REMOVAL"
-    '            SystemLogDesc = "Removing stock of: " & TextBoxName.Text & " QTY: " & TextBoxADJQTY.Text & " Reason: " & TextBoxReason.Text
-    '            SaveLog()
-    '        ElseIf ComboBoxAction.SelectedIndex = 2 Then
-    '            If ComboBoxOutlets.SelectedIndex = -1 Then
-    '                MsgBox("Select outlet first")
-    '            Else
-    '                totalqty = Val(TextBoxStockOnhand.Text) - Val(TextBoxADJQTY.Text)
-    '                SystemLogType = "STOCK TRANSFER"
-    '                SystemLogDesc = "Transfer stock to: " & ComboBoxOutlets.Text & " Item: " & TextBoxName.Text & " QTY: " & TextBoxADJQTY.Text & " Reason: " & TextBoxReason.Text
-    '                SaveLog()
-    '            End If
-    '        End If
-    '    End If
-    'End Sub
-    'Private Sub SaveLog()
-    '    table = " loc_pos_inventory "
-    '    fields = "`stock_primary`= " & totalqty & ", `stock_secondary`= " & totalqty * Val(TextBox1.Text) & ",`synced`= 'Unsynced'"
-    '    where = " inventory_id = " & inventoryid
-    '    GLOBAL_FUNCTION_UPDATE(table:=table, fields:=fields, where:=where)
-    '    GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-    '    loadpanelstockadjustment()
-    '    loadinventory()
-    '    loadstockadjustmentreport(False)
-    '    loadcriticalstocks()
-    '    MDIFORM.LabelTotalAvailStock.Text = sum(table:="loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tototal:="stock_primary")
-    '    MDIFORM.LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
-    '    MDIFORM.LabelTotalAvailStock.Text = sum(table:="loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tototal:="stock_primary")
-    '    ClearTextBox(Panel23)
-    'End Sub
 
     Private Sub ButtonENTRYADDSTOCK_Click(sender As Object, e As EventArgs) Handles ButtonENTRYADDSTOCK.Click
         Try
-            If Val(TextBoxENTRYQTY.Text) > 0 Then
-                totalqty = TextBoxENTRYTOTALQTY.Text
-                table = " loc_pos_inventory "
-                fields = "`stock_primary`= " & totalqty & ", `stock_secondary`= " & totalqty * Val(TextBoxSERVINGVAL.Text) & ",`synced`= 'Unsynced'"
-                where = " inventory_id = " & TextBoxINVENTORYID.Text
-                GLOBAL_FUNCTION_UPDATE(table:=table, fields:=fields, where:=where)
+            If Val(TextBoxEQuantity.Text) > 0 Then
+                Dim Primary As Double = Double.Parse(TextBoxEQuantity.Text) * Double.Parse(TextBoxEFPrimaryVal.Text)
+                Dim Secondary As Double = Double.Parse(TextBoxEQuantity.Text) * Double.Parse(TextBoxEFSecondVal.Text)
+                Dim NoOfServings As Double = Double.Parse(TextBoxEQuantity.Text) * Double.Parse(TextBoxENoServings.Text)
+
+                Dim SQL = "SELECT `stock_primary`, `stock_secondary`, `stock_no_of_servings` FROM  `loc_pos_inventory` WHERE `inventory_id` = " & TextBox1.Text
+                Dim SQLCmd As MySqlCommand = New MySqlCommand(SQL, LocalhostConn)
+                Dim SQlDa As MySqlDataAdapter = New MySqlDataAdapter(SQLCmd)
+                Dim InvDT As DataTable = New DataTable
+                SQlDa.Fill(InvDT)
+                Dim InvPrimary As Double = 0
+                Dim InvSecondary As Double = 0
+                Dim InvServings As Double = 0
+                For Each row As DataRow In InvDT.Rows
+                    InvPrimary = row("stock_primary")
+                    InvSecondary = row("stock_secondary")
+                    InvServings = row("stock_no_of_servings")
+                Next
+
+                Dim TotalPrimary As Double = Primary + InvPrimary
+                Dim TotalSecondary As Double = Secondary + InvSecondary
+                Dim TotalNoOfServings As Double = NoOfServings + InvServings
+
                 SystemLogType = "STOCK ENTRY"
-                SystemLogDesc = ComboBoxDESC.Text & " | Qty: " & TextBoxENTRYQTY.Text
+                SystemLogDesc = "Adding stock of: " & ComboBoxDESC.Text & ", Quantity(Primary): " & TextBoxEQuantity.Text & ", Crew : " & ClientCrewID
                 GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-                ClearTextBox(Panel21)
-                ComboBoxDESC.SelectedIndex = 0
-                TextBoxENTRYTOTALQTY.Text = 0
+                Dim table = "loc_pos_inventory"
+                Dim fields = "`stock_primary`=" & TotalPrimary & ",`stock_secondary`= " & TotalSecondary & " , `stock_no_of_servings`= " & TotalNoOfServings
+                Dim where = "formula_id = " & TextBox1.Text
+                GLOBAL_FUNCTION_UPDATE(table, fields, where)
                 loadstockentry()
                 loadpanelstockadjustment()
                 loadinventory()
                 loadstockadjustmentreport(False)
                 loadcriticalstocks()
             Else
-                MsgBox("Zero Quantity ????")
+                MsgBox("Quantity(Primary) must be greater than 0")
             End If
-            MDIFORM.LabelTotalAvailStock.Text = sum(table:="loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tototal:="stock_primary")
+            MDIFORM.LabelTotalAvailStock.Text = roundsum("stock_primary", "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", "P")
             MDIFORM.LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
         Catch ex As Exception
+            MsgBox(ex.ToString)
             MsgBox("Error 2.0.1" & vbNewLine & "Please let us know whether you are still facing the problem.")
             messageboxappearance = False
             SystemLogType = "ERROR"
@@ -304,16 +328,16 @@ Public Class Inventory
             GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
         End Try
     End Sub
-    Private Sub TextBoxENTRYQTY_TextChanged(sender As Object, e As EventArgs) Handles TextBoxENTRYQTY.TextChanged
-        TextBoxENTRYTOTALQTY.Text = Val(TextBoxENTRYQTY.Text) + Val(TextBoxSTCKONHAND.Text)
+    Private Sub TextBoxENTRYQTY_TextChanged(sender As Object, e As EventArgs)
+        'TextBoxENTRYTOTALQTY.Text = Val(TextBoxENTRYQTY.Text) + Val(TextBoxSTCKONHAND.Text)
     End Sub
-    Private Sub TextBoxSTCKONHAND_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSTCKONHAND.TextChanged
-        If TextBoxSTCKONHAND.Text = "" Then
-            TextBoxENTRYQTY.ReadOnly = True
-        Else
-            TextBoxENTRYQTY.ReadOnly = False
-        End If
-        TextBoxENTRYTOTALQTY.Text = Val(TextBoxSTCKONHAND.Text) + Val(TextBoxENTRYQTY.Text)
+    Private Sub TextBoxSTCKONHAND_TextChanged(sender As Object, e As EventArgs)
+        'If TextBoxSTCKONHAND.Text = "" Then
+        '    TextBoxENTRYQTY.ReadOnly = True
+        'Else
+        '    TextBoxENTRYQTY.ReadOnly = False
+        'End If
+        'TextBoxENTRYTOTALQTY.Text = Val(TextBoxSTCKONHAND.Text) + Val(TextBoxENTRYQTY.Text)
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If DateTimePicker1.Value.Date > DateTimePicker2.Value.Date Then
@@ -322,65 +346,99 @@ Public Class Inventory
             loadstockadjustmentreport(True)
         End If
     End Sub
-
-    'Private Sub ComboBoxAction_SelectedIndexChanged(sender As Object, e As EventArgs)
-    '    If ComboBoxAction.Text = "Transfer" Then
-    '        ComboBoxOutlets.Visible = True
-    '        Label10.Visible = True
-    '    Else
-    '        ComboBoxOutlets.Visible = False
-    '        Label10.Visible = False
-    '    End If
-    'End Sub
-
     Private Sub ComboBoxDESC_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxDESC.SelectedIndexChanged
-        selectingredients()
+        'selectingredients()
+        Try
+            Dim sql = "SELECT inventory_id, stock_primary, stock_secondary FROM loc_pos_inventory WHERE product_ingredients = '" & ComboBoxDESC.Text & "'"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim dt As DataTable = New DataTable
+            da.Fill(dt)
+            Dim inventory_id = dt(0)(0)
+            TextBoxEPrimary.Text = dt(0)(1)
+            TextBoxESecondary.Text = dt(0)(2)
+            TextBox1.Text = dt(0)(0)
+            SelectFormulaEntry(inventory_id)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
     Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
         Try
-            If TextboxIsEmpty(Panel23) Then
-                If ComboBoxAction.Text = "ADD" Then
-                    SystemLogType = "NEW STOCK ADDED"
-                    SystemLogDesc = "Adding stock of: " & TextBox1.Text & " QTY: " & TextBox10.Text & " Reason: " & TextBox11.Text
-                    Dim stockqty = Double.Parse(TextBox1.Text) + Double.Parse(TextBox10.Text)
-                    Dim stocktotal = stockqty * Double.Parse(TextBox6.Text)
-                    Dim noofservings = stockqty * Double.Parse(TextBox9.Text)
-                    Dim table = "loc_pos_inventory"
-                    Dim fields = "`stock_primary`=" & stockqty & ",`stock_secondary`= " & stocktotal & " , `stock_no_of_servings`= " & noofservings
-                    Dim where = "formula_id = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
-                    GLOBAL_FUNCTION_UPDATE(table, fields, where)
-                ElseIf ComboBoxAction.Text = "TRANSFER" Then
-                    SystemLogType = "STOCK TRANSFER"
-                    SystemLogDesc = "Transfer stock to: " & ComboBoxtransfer.Text & " Item: " & TextBox1.Text & " QTY: " & TextBox10.Text & " Reason: " & TextBox11.Text
-                    Dim stockqty = Double.Parse(TextBox1.Text) - Double.Parse(TextBox10.Text)
-                    Dim stocktotal = stockqty * Double.Parse(TextBox6.Text)
-                    Dim noofservings = stockqty * Double.Parse(TextBox9.Text)
-                    Dim table = "loc_pos_inventory"
-                    Dim fields = "`stock_primary`=" & stockqty & ",`stock_secondary`= " & stocktotal & " , `stock_no_of_servings`= " & noofservings
-                    Dim where = "formula_id = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
-                    GLOBAL_FUNCTION_UPDATE(table, fields, where)
-                ElseIf ComboBoxAction.Text = "DEDUCT" Then
-                    SystemLogType = "STOCK REMOVAL"
-                    SystemLogDesc = "Removing stock of: " & TextBox1.Text & " QTY: " & TextBox10.Text & " Reason: " & TextBox11.Text
-                    Dim stockqty = Double.Parse(TextBox1.Text) - Double.Parse(TextBox10.Text)
-                    Dim stocktotal = stockqty * Double.Parse(TextBox6.Text)
-                    Dim noofservings = stockqty * Double.Parse(TextBox9.Text)
-                    Dim table = "loc_pos_inventory"
-                    Dim fields = "`stock_primary`=" & stockqty & ",`stock_secondary`= " & stocktotal & " , `stock_no_of_servings`= " & noofservings
-                    Dim where = "formula_id = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
-                    GLOBAL_FUNCTION_UPDATE(table, fields, where)
+            If DataGridViewStockAdjustment.SelectedRows.Count > 0 Then
+                Dim Ingredient = DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(1).Value
+                If ComboBoxAction.Text <> "" Then
+                    If TextboxIsEmpty(Panel23) Then
+                        Dim Primary As Double = Double.Parse(TextBoxIPQuantity.Text) * Double.Parse(TextBoxFPrimaryVal.Text)
+                        Dim Secondary As Double = Double.Parse(TextBoxIPQuantity.Text) * Double.Parse(TextBoxFSecondary.Text)
+                        Dim NoOfServings As Double = Double.Parse(TextBoxIPQuantity.Text) * Double.Parse(TextBoxFnoofservings.Text)
+                        Dim SQL = "SELECT `stock_primary`, `stock_secondary`, `stock_no_of_servings` FROM  `loc_pos_inventory` WHERE `inventory_id` = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
+                        Dim SQLCmd As MySqlCommand = New MySqlCommand(SQL, LocalhostConn)
+                        Dim SQlDa As MySqlDataAdapter = New MySqlDataAdapter(SQLCmd)
+                        Dim InvDT As DataTable = New DataTable
+                        SQlDa.Fill(InvDT)
+                        Dim InvPrimary As Double = 0
+                        Dim InvSecondary As Double = 0
+                        Dim InvServings As Double = 0
+                        For Each row As DataRow In InvDT.Rows
+                            InvPrimary = row("stock_primary")
+                            InvSecondary = row("stock_secondary")
+                            InvServings = row("stock_no_of_servings")
+                        Next
+                        LocalhostConn.Close()
+                        If ComboBoxAction.Text = "ADD" Then
+                            Dim TotalPrimary As Double = Primary + InvPrimary
+                            Dim TotalSecondary As Double = Secondary + InvSecondary
+                            Dim TotalNoOfServings As Double = NoOfServings + InvServings
+
+                            SystemLogType = "NEW STOCK ADDED"
+                            SystemLogDesc = "Adding stock of: " & Ingredient & " Quantity(Primary): " & TextBoxIPQuantity.Text & " Reason: " & TextBoxIReason.Text
+                            Dim table = "loc_pos_inventory"
+                            Dim fields = "`stock_primary`=" & TotalPrimary & ",`stock_secondary`= " & TotalSecondary & " , `stock_no_of_servings`= " & TotalNoOfServings
+                            Dim where = "formula_id = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
+                            GLOBAL_FUNCTION_UPDATE(table, fields, where)
+                        ElseIf ComboBoxAction.Text = "TRANSFER" Then
+
+                            Dim TotalPrimary As Double = InvPrimary - Primary
+                            Dim TotalSecondary As Double = InvSecondary - Secondary
+                            Dim TotalNoOfServings As Double = InvServings - NoOfServings
+
+                            SystemLogType = "STOCK TRANSFER"
+                            SystemLogDesc = "Transfer stock to: " & ComboBoxtransfer.Text & " Item: " & Ingredient & " Quantity(Primary): " & TextBoxIPQuantity.Text & " Reason: " & TextBoxIReason.Text
+
+                            Dim table = "loc_pos_inventory"
+                            Dim fields = "`stock_primary`=" & TotalPrimary & ",`stock_secondary`= " & TotalSecondary & " , `stock_no_of_servings`= " & TotalNoOfServings
+                            Dim where = "formula_id = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
+                            GLOBAL_FUNCTION_UPDATE(table, fields, where)
+                        ElseIf ComboBoxAction.Text = "DEDUCT" Then
+                            Dim TotalPrimary As Double = InvPrimary - Primary
+                            Dim TotalSecondary As Double = InvSecondary - Secondary
+                            Dim TotalNoOfServings As Double = InvServings - NoOfServings
+
+                            SystemLogType = "STOCK REMOVAL"
+                            SystemLogDesc = "Removing stock of: " & Ingredient & " Quantity(Primary): " & TextBoxIPQuantity.Text & " Reason: (" & ComboBoxDeduction.Text & ") " & TextBoxIReason.Text
+
+                            Dim table = "loc_pos_inventory"
+                            Dim fields = "`stock_primary`=" & TotalPrimary & ",`stock_secondary`= " & TotalSecondary & " , `stock_no_of_servings`= " & TotalNoOfServings
+                            Dim where = "formula_id = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
+                            GLOBAL_FUNCTION_UPDATE(table, fields, where)
+                        End If
+                        GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+                        loadpanelstockadjustment()
+                        loadinventory()
+                        loadstockadjustmentreport(False)
+                        loadcriticalstocks()
+                        MDIFORM.LabelTotalAvailStock.Text = roundsum("stock_primary", "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", "P")
+                        MDIFORM.LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
+                    Else
+                        MessageBox.Show("Fill up all empty fields", "Empty Fields", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    End If
+                Else
+                    MessageBox.Show("Select action first", "No Action Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
-                GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-                loadpanelstockadjustment()
-                loadinventory()
-                loadstockadjustmentreport(False)
-                loadcriticalstocks()
-                MDIFORM.LabelTotalAvailStock.Text = sum(table:="loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tototal:="stock_primary")
-                MDIFORM.LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
-                MDIFORM.LabelTotalAvailStock.Text = sum(table:="loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tototal:="stock_primary")
             Else
-                MsgBox("Fill up all empty fields")
+                MessageBox.Show("Select inventory first", "No inventory selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -392,9 +450,11 @@ Public Class Inventory
             If ComboBoxAction.Text = "DEDUCT" Then
                 ComboBoxDeduction.Enabled = True
                 ComboBoxtransfer.Enabled = False
+                FillComboboxReason()
             ElseIf ComboBoxAction.Text = "TRANSFER" Then
                 ComboBoxDeduction.Enabled = False
                 ComboBoxtransfer.Enabled = True
+                LoadOutlets()
             Else
                 ComboBoxDeduction.Enabled = False
                 ComboBoxtransfer.Enabled = False
@@ -405,5 +465,33 @@ Public Class Inventory
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         PanelSTOCKADJUSTMENT.Visible = False
+    End Sub
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        PanelReasonCat.Visible = True
+    End Sub
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Try
+            If TextBoxReasonsCat.Text <> "" Then
+                Dim sql = "INSERT INTO `loc_transfer_data`(`transfer_cat`, `crew_id`, `created_at`, `created_by`, `updated_at`, `active`) VALUES (@1,@2,@3,@4,@5,@6)"
+                cmd = New MySqlCommand(sql, LocalhostConn)
+                cmd.Parameters.Add("@1", MySqlDbType.Text).Value = TextBoxReasonsCat.Text
+                cmd.Parameters.Add("@2", MySqlDbType.Text).Value = ClientCrewID
+                cmd.Parameters.Add("@3", MySqlDbType.Text).Value = FullDate24HR()
+                cmd.Parameters.Add("@4", MySqlDbType.Text).Value = ClientCrewID
+                cmd.Parameters.Add("@5", MySqlDbType.Text).Value = FullDate24HR()
+                cmd.Parameters.Add("@6", MySqlDbType.Int64).Value = "1"
+                cmd.ExecuteNonQuery()
+                LoadReasonCategories()
+                PanelReasonCat.Visible = False
+                TextBoxReasonsCat.Clear()
+            Else
+                MsgBox("Fill up required fields.")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles ButtonReasonCancel.Click
+        PanelReasonCat.Visible = False
     End Sub
 End Class

@@ -1,7 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports System.Drawing.Printing
-Imports System.IO
-Imports System.Text
+Imports System.Threading
 Public Class Reports
     Private WithEvents printdoc As PrintDocument = New PrintDocument
     Private WithEvents printdocXread As PrintDocument = New PrintDocument
@@ -45,6 +44,7 @@ Public Class Reports
         reportexpensedet(False)
         reportsreturnsandrefunds(False)
         viewdeposit(False)
+        FillDatagridZreadInv(False)
         If ClientRole = "Head Crew" Then
             Button6.Visible = True
         Else
@@ -636,27 +636,9 @@ Public Class Reports
         Try
             Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
-                XZreadingInventory(S_Zreading)
-                XreadOrZread = "Z-READ"
-                ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
-
-                printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
-                PrintPreviewDialogXread.Document = printdocXread
-                PrintPreviewDialogXread.ShowDialog()
-
-                GLOBAL_SYSTEM_LOGS("Z-READ", ClientCrewID & " : " & S_Zreading)
-                S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
-                sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
-                cmd = New MySqlCommand(sql, LocalhostConn())
-                cmd.ExecuteNonQuery()
-                cmd.Dispose()
-                If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
-                    ButtonZread.Enabled = False
-                    Button6.Enabled = False
-                End If
-                SystemLogDesc = "Z Reading : " & FullDate24HR() & " Crew : " & returnfullname(ClientCrewID)
-                SystemLogType = "Z-READ"
-                GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+                BackgroundWorker2.WorkerReportsProgress = True
+                BackgroundWorker2.WorkerSupportsCancellation = True
+                BackgroundWorker2.RunWorkerAsync()
             Else
                 MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
@@ -668,23 +650,9 @@ Public Class Reports
         Try
             Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
-                XZreadingInventory(S_Zreading)
-                XreadOrZread = "Z-READ"
-                ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
-                printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
-                PrintPreviewDialogXread.Document = printdocXread
-                PrintPreviewDialogXread.ShowDialog()
-                Dim datenow = Format(Now(), "yyyy-MM-dd")
-                GLOBAL_SYSTEM_LOGS("Z-READ", ClientCrewID & " : " & datenow)
-                sql = "UPDATE loc_settings SET S_Zreading = '" & datenow & "'"
-                cmd = New MySqlCommand(sql, LocalhostConn())
-                cmd.ExecuteNonQuery()
-                cmd.Dispose()
-                S_Zreading = Format(Now(), "yyyy-MM-dd")
-                ButtonZread.Enabled = False
-                SystemLogDesc = "Z Reading : " & FullDate24HR() & " Crew : " & returnfullname(ClientCrewID)
-                SystemLogType = "Z-READ"
-                GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+                BackgroundWorker1.WorkerReportsProgress = True
+                BackgroundWorker1.WorkerSupportsCancellation = True
+                BackgroundWorker1.RunWorkerAsync()
             Else
                 MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
@@ -692,19 +660,47 @@ Public Class Reports
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Private Sub FillZreadInv()
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub InsertZreadInv()
+        Try
+            S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
+            XZreadingInventory(S_Zreading)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 
     Private Sub XZreadingInventory(zreaddate)
         Try
-            GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
-            Dim Fields As String = "(`inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_status`, `critical_limit`, `guid`, `created_at`, `crew_id`, `synced`, `server_date_modified`, `server_inventory_id`, `zreading`)"
-            Dim Values As String = ""
+            Dim Fields As String = "`inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `guid`, `created_at`, `crew_id`, `synced`, `server_date_modified`, `server_inventory_id`, `zreading`"
+            Dim cmd As MySqlCommand
             With DataGridViewZreadInventory
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    Values = "(" & .Rows(i).Cells(0).Value.ToString & ",'" & .Rows(i).Cells(1).Value.ToString & "'," & .Rows(i).Cells(2).Value.ToString & "
-,'" & .Rows(i).Cells(3).Value.ToString & "','" & .Rows(i).Cells(4).Value.ToString & "'," & .Rows(i).Cells(5).Value.ToString & "," & .Rows(i).Cells(6).Value.ToString & "
-," & .Rows(i).Cells(7).Value.ToString & "," & .Rows(i).Cells(8).Value.ToString & ",'" & .Rows(i).Cells(9).Value.ToString & "','" & .Rows(i).Cells(10).Value.ToString & "','" & .Rows(i).Cells(11).Value.ToString & "'
-,'" & .Rows(i).Cells(12).Value.ToString & "','" & .Rows(i).Cells(13).Value.ToString & "'," & .Rows(i).Cells(14).Value.ToString & ",'" & zreaddate & "')"
-                    GLOBAL_INSERT_FUNCTION("loc_zread_inventory", Fields, Values)
+                    cmd = New MySqlCommand("INSERT INTO loc_zread_inventory (" & Fields & ") VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17)", LocalhostConn)
+                    cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString
+                    cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString
+                    cmd.Parameters.Add("@3", MySqlDbType.Int64).Value = .Rows(i).Cells(2).Value.ToString
+                    cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString
+                    cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString
+                    cmd.Parameters.Add("@6", MySqlDbType.Double).Value = .Rows(i).Cells(5).Value.ToString
+                    cmd.Parameters.Add("@7", MySqlDbType.Double).Value = .Rows(i).Cells(6).Value.ToString
+                    cmd.Parameters.Add("@8", MySqlDbType.Double).Value = .Rows(i).Cells(7).Value.ToString
+                    cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString
+                    cmd.Parameters.Add("@10", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString
+                    cmd.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString
+                    cmd.Parameters.Add("@12", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value.ToString
+                    cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString
+                    cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = .Rows(i).Cells(13).Value.ToString
+                    cmd.Parameters.Add("@15", MySqlDbType.Text).Value = .Rows(i).Cells(14).Value.ToString
+                    cmd.Parameters.Add("@16", MySqlDbType.Int64).Value = .Rows(i).Cells(15).Value.ToString
+                    cmd.Parameters.Add("@17", MySqlDbType.Text).Value = S_Zreading
+                    cmd.ExecuteNonQuery()
                 Next
             End With
         Catch ex As Exception
@@ -720,10 +716,119 @@ Public Class Reports
 
         End Try
     End Sub
+    Dim threadlist As List(Of Thread) = New List(Of Thread)
+    Dim thread1 As Thread
+    Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+        Try
+            For i = 0 To 100
+                If i = 0 Then
+                    thread1 = New Thread(AddressOf FillZreadInv)
+                    thread1.Start()
+                    threadlist.Add(thread1)
+                    For Each t In threadlist
+                        t.Join()
+                    Next
+                    thread1 = New Thread(AddressOf InsertZreadInv)
+                    thread1.Start()
+                    threadlist.Add(thread1)
+                End If
+                For Each t In threadlist
+                    t.Join()
+                Next
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    'Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+    '    printdocInventory.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
+    '    PrintPreviewDialogInventory.Document = printdocInventory
+    '    PrintPreviewDialogInventory.ShowDialog()
+    'End Sub
 
+    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
+        Try
+            XreadOrZread = "Z-READ"
+            ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
+            printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
+            PrintPreviewDialogXread.Document = printdocXread
+            PrintPreviewDialogXread.ShowDialog()
+            Dim datenow = Format(Now(), "yyyy-MM-dd")
+            GLOBAL_SYSTEM_LOGS("Z-READ", ClientCrewID & ", Z Reading for : " & datenow)
+            sql = "UPDATE loc_settings SET S_Zreading = '" & datenow & "'"
+            cmd = New MySqlCommand(sql, LocalhostConn())
+            cmd.ExecuteNonQuery()
+            cmd.Dispose()
+            S_Zreading = Format(Now(), "yyyy-MM-dd")
+            ButtonZread.Enabled = False
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
+        Try
+            For i = 0 To 100
+                If i = 0 Then
+                    thread1 = New Thread(AddressOf FillZreadInv)
+                    thread1.Start()
+                    threadlist.Add(thread1)
+                    For Each t In threadlist
+                        t.Join()
+                    Next
+                    thread1 = New Thread(AddressOf InsertZreadInv)
+                    thread1.Start()
+                    threadlist.Add(thread1)
+                End If
+                For Each t In threadlist
+                    t.Join()
+                Next
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
+        Try
+            XreadOrZread = "Z-READ"
+            ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
+            printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
+            PrintPreviewDialogXread.Document = printdocXread
+            PrintPreviewDialogXread.ShowDialog()
+
+            sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
+            cmd = New MySqlCommand(sql, LocalhostConn())
+            cmd.ExecuteNonQuery()
+            cmd.Dispose()
+            If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
+                ButtonZread.Enabled = False
+                Button6.Enabled = False
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub FillDatagridZreadInv(searchdate As Boolean)
+        Try
+            table = "loc_zread_inventory I INNER JOIN loc_product_formula F ON F.formula_id = I.formula_id "
+            fields = "I.product_ingredients as Ingredients, CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
+            If searchdate = False Then
+                where = "zreading = date(CURRENT_DATE())"
+                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewZreadInvData, errormessage:="", fields:=fields, successmessage:="", where:=where)
+            Else
+                where = "zreading = '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "'"
+                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewZreadInvData, errormessage:="", fields:=fields, successmessage:="", where:=where)
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+
+    End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        printdocInventory.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
-        PrintPreviewDialogInventory.Document = printdocInventory
-        PrintPreviewDialogInventory.ShowDialog()
+        FillDatagridZreadInv(True)
     End Sub
 End Class

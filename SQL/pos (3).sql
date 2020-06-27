@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2020 at 04:51 AM
+-- Generation Time: Jun 27, 2020 at 07:39 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -43,6 +43,10 @@ CREATE TABLE `admin_masterlist` (
   `client_store_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `admin_masterlist`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -73,6 +77,10 @@ CREATE TABLE `admin_outlets` (
   `PTUN` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `admin_outlets`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -88,6 +96,11 @@ CREATE TABLE `loc_admin_category` (
   `origin` varchar(50) NOT NULL,
   `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_admin_category`
+--
+
 
 -- --------------------------------------------------------
 
@@ -116,6 +129,12 @@ CREATE TABLE `loc_admin_products` (
   `server_product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_admin_products`
+--
+
+
+
 -- --------------------------------------------------------
 
 --
@@ -132,6 +151,11 @@ CREATE TABLE `loc_coupon_data` (
   `coupon_line` text NOT NULL,
   `coupon_total` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `loc_coupon_data`
+--
+
 
 -- --------------------------------------------------------
 
@@ -167,6 +191,11 @@ CREATE TABLE `loc_daily_transaction` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_daily_transaction`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -193,6 +222,11 @@ CREATE TABLE `loc_daily_transaction_details` (
   `zreading` text NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_daily_transaction_details`
+--
+
 
 -- --------------------------------------------------------
 
@@ -303,6 +337,11 @@ CREATE TABLE `loc_fm_stock` (
   `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_fm_stock`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -362,6 +401,11 @@ CREATE TABLE `loc_inv_temp_data` (
   `guid` varchar(255) NOT NULL,
   `created_at` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_inv_temp_data`
+--
+
 
 -- --------------------------------------------------------
 
@@ -431,9 +475,9 @@ CREATE TABLE `loc_pos_inventory` (
   `formula_id` int(11) NOT NULL,
   `product_ingredients` varchar(255) NOT NULL,
   `sku` varchar(255) NOT NULL,
-  `stock_primary` decimal(11,2) NOT NULL,
-  `stock_secondary` decimal(11,2) NOT NULL,
-  `stock_no_of_servings` decimal(11,2) NOT NULL,
+  `stock_primary` double NOT NULL,
+  `stock_secondary` double NOT NULL,
+  `stock_no_of_servings` double NOT NULL,
   `stock_status` int(11) NOT NULL,
   `critical_limit` int(11) NOT NULL,
   `guid` varchar(255) NOT NULL,
@@ -443,6 +487,11 @@ CREATE TABLE `loc_pos_inventory` (
   `server_date_modified` text NOT NULL,
   `server_inventory_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_pos_inventory`
+--
+
 
 -- --------------------------------------------------------
 
@@ -471,6 +520,11 @@ CREATE TABLE `loc_product_formula` (
   `server_formula_id` int(11) NOT NULL,
   `server_date_modified` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_product_formula`
+--
+
 
 -- --------------------------------------------------------
 
@@ -525,6 +579,10 @@ CREATE TABLE `loc_settings` (
   `S_BackupDate` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_settings`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -558,6 +616,11 @@ CREATE TABLE `loc_system_logs` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_system_logs`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -578,6 +641,37 @@ CREATE TABLE `loc_transaction_mode_details` (
   `guid` varchar(255) NOT NULL,
   `synced` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_transaction_mode_details`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_transfer_data`
+--
+
+DROP TABLE IF EXISTS `loc_transfer_data`;
+CREATE TABLE `loc_transfer_data` (
+  `transfer_id` int(11) NOT NULL,
+  `transfer_cat` text NOT NULL,
+  `crew_id` text NOT NULL,
+  `created_at` text NOT NULL,
+  `created_by` text NOT NULL,
+  `updated_at` text NOT NULL,
+  `active` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `loc_transfer_data`
+--
+
+INSERT INTO `loc_transfer_data` (`transfer_id`, `transfer_cat`, `crew_id`, `created_at`, `created_by`, `updated_at`, `active`) VALUES
+(1, 'SPOILAGE', 'FBW17-6051', '2020-06-27 18:25:48', 'FBW17-6051', '2020-06-27 18:25:48', 1),
+(2, 'WASTE', 'FBW17-6051', '2020-06-27 18:26:04', 'FBW17-6051', '2020-06-27 18:26:04', 1),
+(3, 'LOST', 'FBW17-6051', '2020-06-27 18:26:08', 'FBW17-6051', '2020-06-27 18:26:08', 1);
 
 -- --------------------------------------------------------
 
@@ -618,6 +712,11 @@ CREATE TABLE `loc_users` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_users`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -632,8 +731,9 @@ CREATE TABLE `loc_zread_inventory` (
   `formula_id` int(11) NOT NULL,
   `product_ingredients` varchar(255) NOT NULL,
   `sku` varchar(255) NOT NULL,
-  `stock_quantity` int(11) NOT NULL,
-  `stock_total` int(20) NOT NULL,
+  `stock_primary` double NOT NULL,
+  `stock_secondary` double NOT NULL,
+  `stock_no_of_servings` double NOT NULL,
   `stock_status` int(11) NOT NULL,
   `critical_limit` int(11) NOT NULL,
   `guid` varchar(255) NOT NULL,
@@ -644,6 +744,11 @@ CREATE TABLE `loc_zread_inventory` (
   `server_inventory_id` int(11) NOT NULL,
   `zreading` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_zread_inventory`
+--
+
 
 -- --------------------------------------------------------
 
@@ -745,6 +850,11 @@ CREATE TABLE `triggers_loc_users` (
   `uniq_id` varchar(50) NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `triggers_loc_users`
+--
+
 
 --
 -- Triggers `triggers_loc_users`
@@ -901,6 +1011,12 @@ ALTER TABLE `loc_stockadjustment_cat`
 --
 ALTER TABLE `loc_transaction_mode_details`
   ADD PRIMARY KEY (`mode_id`);
+
+--
+-- Indexes for table `loc_transfer_data`
+--
+ALTER TABLE `loc_transfer_data`
+  ADD PRIMARY KEY (`transfer_id`);
 
 --
 -- Indexes for table `loc_update_logs`
@@ -1079,6 +1195,12 @@ ALTER TABLE `loc_stockadjustment_cat`
 --
 ALTER TABLE `loc_transaction_mode_details`
   MODIFY `mode_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `loc_transfer_data`
+--
+ALTER TABLE `loc_transfer_data`
+  MODIFY `transfer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `loc_update_logs`

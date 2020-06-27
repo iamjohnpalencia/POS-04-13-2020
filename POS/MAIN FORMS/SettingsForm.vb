@@ -162,7 +162,7 @@ Public Class SettingsForm
 #End Region
 #Region "Formula"
     Public Sub loadformula()
-        fields = "`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`"
+        fields = "`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, ROUND(`no_servings`,0) as noofservings"
         GLOBAL_SELECT_ALL_FUNCTION(table:="loc_product_formula WHERE status = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", datagrid:=DataGridViewFormula, fields:=fields)
         With DataGridViewFormula
             .Columns(0).HeaderText = "Ingredients"
@@ -185,17 +185,19 @@ Public Class SettingsForm
     End Sub
     Private Sub loaditemreturn(justload As Boolean)
         Try
-            fields = "transaction_number, amounttendered, totaldiscount, change, crew_id, vatablesales, vatexemptsales, zeroratedsales, lessvat, transaction_type"
+            fields = "`transaction_number`, `amounttendered`, `totaldiscount`, `change`, `crew_id`, `vatablesales`, `vatexemptsales`, `zeroratedsales`, `lessvat`, `transaction_type`"
             If justload = True Then
-                GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date(created_at) = date(CURDATE()) AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
+                table = "`loc_daily_transaction` WHERE Date(created_at) = Date(CURDATE()) And `active` = 1 ORDER BY `transaction_id` DESC"
+                GLOBAL_SELECT_ALL_FUNCTION(table, fields, DataGridViewITEMRETURN1)
             Else
                 If String.IsNullOrWhiteSpace(TextBoxSearchTranNumber.Text) Then
                     FlowLayoutPanel1.Controls.Clear()
-                    GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE date(created_at) = date(CURDATE()) AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
+                    GLOBAL_SELECT_ALL_FUNCTION(table:="`loc_daily_transaction` WHERE Date(created_at) = Date(CURDATE()) And `active` = 1 ORDER BY `transaction_id` DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
                 Else
                     FlowLayoutPanel1.Controls.Clear()
-                    GLOBAL_SELECT_ALL_FUNCTION(table:="loc_daily_transaction WHERE transaction_number LIKE '%" & TextBoxSearchTranNumber.Text & "%'  AND date(created_at) = date(CURDATE()) AND active = 1 ORDER BY transaction_id DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
+                    GLOBAL_SELECT_ALL_FUNCTION(table:="`loc_daily_transaction` WHERE `transaction_number` Like '%" & TextBoxSearchTranNumber.Text & "%'  AND date(created_at) = date(CURDATE()) AND `active` = 1 ORDER BY `transaction_id` DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
                 End If
+
             End If
             With DataGridViewITEMRETURN1
                 .Columns(0).HeaderText = "Reference #"

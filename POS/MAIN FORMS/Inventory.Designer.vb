@@ -22,24 +22,27 @@ Partial Class Inventory
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -61,14 +64,53 @@ Partial Class Inventory
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.DataGridViewPanelStockAdjustment = New System.Windows.Forms.DataGridView()
         Me.Panel17 = New System.Windows.Forms.Panel()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.DataGridViewPanelStockAdjustment = New System.Windows.Forms.DataGridView()
         Me.Panel23 = New System.Windows.Forms.Panel()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.ComboBoxtransfer = New System.Windows.Forms.ComboBox()
+        Me.ComboBoxDeduction = New System.Windows.Forms.ComboBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.ComboBoxAction = New System.Windows.Forms.ComboBox()
+        Me.TextBoxIReason = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TextBoxIPQuantity = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TextBoxFnoofservings = New System.Windows.Forms.TextBox()
+        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.TextBoxFSecondary = New System.Windows.Forms.TextBox()
+        Me.TextBoxFSecondaryUnit = New System.Windows.Forms.TextBox()
+        Me.TextBoxFPrimaryVal = New System.Windows.Forms.TextBox()
+        Me.TextBoxIPrimaryUnit = New System.Windows.Forms.TextBox()
+        Me.TextBoxISecondaryTotal = New System.Windows.Forms.TextBox()
+        Me.TextBoxIPrimaryVal = New System.Windows.Forms.TextBox()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
         Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.ButtonSave = New System.Windows.Forms.Button()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.PanelReasonCat = New System.Windows.Forms.Panel()
+        Me.ButtonReasonCancel = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.TextBoxReasonsCat = New System.Windows.Forms.TextBox()
+        Me.DataGridViewReasonCategories = New System.Windows.Forms.DataGridView()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Panel20 = New System.Windows.Forms.Panel()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.ButtonDeleteProducts = New System.Windows.Forms.Button()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.DataGridViewStockAdjustment = New System.Windows.Forms.DataGridView()
         Me.Panel9 = New System.Windows.Forms.Panel()
         Me.Button3 = New System.Windows.Forms.Button()
@@ -80,26 +122,27 @@ Partial Class Inventory
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.DataGridViewSTOCKENTRY = New System.Windows.Forms.DataGridView()
         Me.Panel21 = New System.Windows.Forms.Panel()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.TextBoxEQuantity = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.TextBoxENoServings = New System.Windows.Forms.TextBox()
+        Me.TextBoxEServingVal = New System.Windows.Forms.TextBox()
+        Me.TextBoxEServingValue = New System.Windows.Forms.TextBox()
+        Me.TextBoxEFSecondVal = New System.Windows.Forms.TextBox()
+        Me.TextBoxEFSUnit = New System.Windows.Forms.TextBox()
+        Me.TextBoxEFPrimaryVal = New System.Windows.Forms.TextBox()
+        Me.TextBoxEFPUnit = New System.Windows.Forms.TextBox()
+        Me.TextBoxESecondary = New System.Windows.Forms.TextBox()
+        Me.TextBoxEPrimary = New System.Windows.Forms.TextBox()
         Me.Panel10 = New System.Windows.Forms.Panel()
         Me.ComboBoxDESC = New System.Windows.Forms.ComboBox()
-        Me.Label25 = New System.Windows.Forms.Label()
-        Me.Label24 = New System.Windows.Forms.Label()
         Me.ButtonENTRYADDSTOCK = New System.Windows.Forms.Button()
-        Me.TextBoxENTRYTOTALQTY = New System.Windows.Forms.TextBox()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.PictureBoxBARCODE = New System.Windows.Forms.PictureBox()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.TextBoxSERVINGVAL = New System.Windows.Forms.TextBox()
-        Me.TextBoxENTRYQTY = New System.Windows.Forms.TextBox()
-        Me.TextBoxSERVINGUNIT = New System.Windows.Forms.TextBox()
-        Me.TextBoxSTCKONHAND = New System.Windows.Forms.TextBox()
-        Me.TextBoxSKU = New System.Windows.Forms.TextBox()
-        Me.TextBoxINVENTORYID = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.ButtonSearchDailyTransaction = New System.Windows.Forms.Button()
         Me.DateTimePicker3 = New System.Windows.Forms.DateTimePicker()
@@ -112,31 +155,6 @@ Partial Class Inventory
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.TextBox11 = New System.Windows.Forms.TextBox()
-        Me.ComboBoxAction = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.ComboBoxDeduction = New System.Windows.Forms.ComboBox()
-        Me.ComboBoxtransfer = New System.Windows.Forms.ComboBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -155,18 +173,24 @@ Partial Class Inventory
         Me.TabPage6.SuspendLayout()
         Me.TableLayoutPanel4.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
-        Me.Panel17.SuspendLayout()
         CType(Me.DataGridViewPanelStockAdjustment, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel17.SuspendLayout()
         Me.Panel23.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.Panel12.SuspendLayout()
+        Me.TabPage8.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
+        Me.PanelReasonCat.SuspendLayout()
+        CType(Me.DataGridViewReasonCategories, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
+        Me.Panel20.SuspendLayout()
         CType(Me.DataGridViewStockAdjustment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel9.SuspendLayout()
         Me.Panel11.SuspendLayout()
         Me.TabPage5.SuspendLayout()
         CType(Me.DataGridViewSTOCKENTRY, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel21.SuspendLayout()
-        CType(Me.PictureBoxBARCODE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel16.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -239,27 +263,27 @@ Partial Class Inventory
         Me.DataGridViewINVVIEW.AllowUserToDeleteRows = False
         Me.DataGridViewINVVIEW.AllowUserToResizeColumns = False
         Me.DataGridViewINVVIEW.AllowUserToResizeRows = False
-        DataGridViewCellStyle22.BackColor = System.Drawing.Color.White
-        Me.DataGridViewINVVIEW.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle22
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        Me.DataGridViewINVVIEW.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridViewINVVIEW.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewINVVIEW.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
-        DataGridViewCellStyle23.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewINVVIEW.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewINVVIEW.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridViewINVVIEW.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle24.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle24.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
-        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewINVVIEW.DefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewINVVIEW.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridViewINVVIEW.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewINVVIEW.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewINVVIEW.EnableHeadersVisualStyles = False
@@ -296,27 +320,27 @@ Partial Class Inventory
         Me.DataGridViewCriticalStocks.AllowUserToDeleteRows = False
         Me.DataGridViewCriticalStocks.AllowUserToResizeColumns = False
         Me.DataGridViewCriticalStocks.AllowUserToResizeRows = False
-        DataGridViewCellStyle25.BackColor = System.Drawing.Color.White
-        Me.DataGridViewCriticalStocks.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle25
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
+        Me.DataGridViewCriticalStocks.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridViewCriticalStocks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewCriticalStocks.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle26.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
-        DataGridViewCellStyle26.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewCriticalStocks.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle26
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewCriticalStocks.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridViewCriticalStocks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle27.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle27.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
-        DataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewCriticalStocks.DefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewCriticalStocks.DefaultCellStyle = DataGridViewCellStyle6
         Me.DataGridViewCriticalStocks.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewCriticalStocks.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewCriticalStocks.EnableHeadersVisualStyles = False
@@ -362,27 +386,27 @@ Partial Class Inventory
         Me.DataGridViewFASTMOVING.AllowUserToDeleteRows = False
         Me.DataGridViewFASTMOVING.AllowUserToResizeColumns = False
         Me.DataGridViewFASTMOVING.AllowUserToResizeRows = False
-        DataGridViewCellStyle28.BackColor = System.Drawing.Color.White
-        Me.DataGridViewFASTMOVING.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
+        Me.DataGridViewFASTMOVING.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
         Me.DataGridViewFASTMOVING.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewFASTMOVING.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
-        DataGridViewCellStyle29.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewFASTMOVING.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewFASTMOVING.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewFASTMOVING.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle30.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle30.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
-        DataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewFASTMOVING.DefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewFASTMOVING.DefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridViewFASTMOVING.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewFASTMOVING.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewFASTMOVING.EnableHeadersVisualStyles = False
@@ -487,6 +511,41 @@ Partial Class Inventory
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "Stock List"
         '
+        'DataGridViewPanelStockAdjustment
+        '
+        Me.DataGridViewPanelStockAdjustment.AllowUserToAddRows = False
+        Me.DataGridViewPanelStockAdjustment.AllowUserToDeleteRows = False
+        Me.DataGridViewPanelStockAdjustment.AllowUserToResizeColumns = False
+        Me.DataGridViewPanelStockAdjustment.AllowUserToResizeRows = False
+        DataGridViewCellStyle10.BackColor = System.Drawing.Color.White
+        Me.DataGridViewPanelStockAdjustment.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
+        Me.DataGridViewPanelStockAdjustment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewPanelStockAdjustment.BackgroundColor = System.Drawing.Color.White
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewPanelStockAdjustment.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
+        Me.DataGridViewPanelStockAdjustment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewPanelStockAdjustment.DefaultCellStyle = DataGridViewCellStyle12
+        Me.DataGridViewPanelStockAdjustment.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewPanelStockAdjustment.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridViewPanelStockAdjustment.EnableHeadersVisualStyles = False
+        Me.DataGridViewPanelStockAdjustment.Location = New System.Drawing.Point(3, 21)
+        Me.DataGridViewPanelStockAdjustment.Name = "DataGridViewPanelStockAdjustment"
+        Me.DataGridViewPanelStockAdjustment.Size = New System.Drawing.Size(632, 334)
+        Me.DataGridViewPanelStockAdjustment.TabIndex = 116
+        '
         'Panel17
         '
         Me.Panel17.Controls.Add(Me.Label7)
@@ -506,41 +565,6 @@ Partial Class Inventory
         Me.Label7.TabIndex = 95
         Me.Label7.Text = "Date Range (From - To)"
         '
-        'DataGridViewPanelStockAdjustment
-        '
-        Me.DataGridViewPanelStockAdjustment.AllowUserToAddRows = False
-        Me.DataGridViewPanelStockAdjustment.AllowUserToDeleteRows = False
-        Me.DataGridViewPanelStockAdjustment.AllowUserToResizeColumns = False
-        Me.DataGridViewPanelStockAdjustment.AllowUserToResizeRows = False
-        DataGridViewCellStyle31.BackColor = System.Drawing.Color.White
-        Me.DataGridViewPanelStockAdjustment.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle31
-        Me.DataGridViewPanelStockAdjustment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridViewPanelStockAdjustment.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle32.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle32.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewPanelStockAdjustment.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle32
-        Me.DataGridViewPanelStockAdjustment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle33.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle33.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewPanelStockAdjustment.DefaultCellStyle = DataGridViewCellStyle33
-        Me.DataGridViewPanelStockAdjustment.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewPanelStockAdjustment.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridViewPanelStockAdjustment.EnableHeadersVisualStyles = False
-        Me.DataGridViewPanelStockAdjustment.Location = New System.Drawing.Point(3, 21)
-        Me.DataGridViewPanelStockAdjustment.Name = "DataGridViewPanelStockAdjustment"
-        Me.DataGridViewPanelStockAdjustment.Size = New System.Drawing.Size(632, 334)
-        Me.DataGridViewPanelStockAdjustment.TabIndex = 116
-        '
         'Panel23
         '
         Me.Panel23.AutoScroll = True
@@ -551,29 +575,227 @@ Partial Class Inventory
         Me.Panel23.Controls.Add(Me.Label10)
         Me.Panel23.Controls.Add(Me.Label4)
         Me.Panel23.Controls.Add(Me.ComboBoxAction)
-        Me.Panel23.Controls.Add(Me.TextBox11)
+        Me.Panel23.Controls.Add(Me.TextBoxIReason)
         Me.Panel23.Controls.Add(Me.Label13)
-        Me.Panel23.Controls.Add(Me.TextBox10)
+        Me.Panel23.Controls.Add(Me.TextBoxIPQuantity)
         Me.Panel23.Controls.Add(Me.Label9)
         Me.Panel23.Controls.Add(Me.Label8)
         Me.Panel23.Controls.Add(Me.Label5)
         Me.Panel23.Controls.Add(Me.Label3)
         Me.Panel23.Controls.Add(Me.Label1)
-        Me.Panel23.Controls.Add(Me.TextBox9)
+        Me.Panel23.Controls.Add(Me.TextBoxFnoofservings)
         Me.Panel23.Controls.Add(Me.TextBox8)
         Me.Panel23.Controls.Add(Me.TextBox7)
-        Me.Panel23.Controls.Add(Me.TextBox6)
-        Me.Panel23.Controls.Add(Me.TextBox5)
-        Me.Panel23.Controls.Add(Me.TextBox4)
-        Me.Panel23.Controls.Add(Me.TextBox3)
-        Me.Panel23.Controls.Add(Me.TextBox2)
-        Me.Panel23.Controls.Add(Me.TextBox1)
+        Me.Panel23.Controls.Add(Me.TextBoxFSecondary)
+        Me.Panel23.Controls.Add(Me.TextBoxFSecondaryUnit)
+        Me.Panel23.Controls.Add(Me.TextBoxFPrimaryVal)
+        Me.Panel23.Controls.Add(Me.TextBoxIPrimaryUnit)
+        Me.Panel23.Controls.Add(Me.TextBoxISecondaryTotal)
+        Me.Panel23.Controls.Add(Me.TextBoxIPrimaryVal)
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Right
         Me.Panel23.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.Panel23.Location = New System.Drawing.Point(635, 21)
         Me.Panel23.Name = "Panel23"
         Me.Panel23.Size = New System.Drawing.Size(365, 364)
         Me.Panel23.TabIndex = 119
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(187, 282)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(149, 15)
+        Me.Label12.TabIndex = 36
+        Me.Label12.Text = "Select Store (for transfer)"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(187, 238)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(110, 15)
+        Me.Label11.TabIndex = 35
+        Me.Label11.Text = "Action (for deduct)"
+        '
+        'ComboBoxtransfer
+        '
+        Me.ComboBoxtransfer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxtransfer.Enabled = False
+        Me.ComboBoxtransfer.FormattingEnabled = True
+        Me.ComboBoxtransfer.Location = New System.Drawing.Point(186, 300)
+        Me.ComboBoxtransfer.Name = "ComboBoxtransfer"
+        Me.ComboBoxtransfer.Size = New System.Drawing.Size(160, 23)
+        Me.ComboBoxtransfer.TabIndex = 34
+        '
+        'ComboBoxDeduction
+        '
+        Me.ComboBoxDeduction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxDeduction.Enabled = False
+        Me.ComboBoxDeduction.FormattingEnabled = True
+        Me.ComboBoxDeduction.Location = New System.Drawing.Point(186, 256)
+        Me.ComboBoxDeduction.Name = "ComboBoxDeduction"
+        Me.ComboBoxDeduction.Size = New System.Drawing.Size(160, 23)
+        Me.ComboBoxDeduction.TabIndex = 33
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(18, 238)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(49, 15)
+        Me.Label10.TabIndex = 32
+        Me.Label10.Text = "Reason"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(187, 193)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(43, 15)
+        Me.Label4.TabIndex = 31
+        Me.Label4.Text = "Action"
+        '
+        'ComboBoxAction
+        '
+        Me.ComboBoxAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxAction.FormattingEnabled = True
+        Me.ComboBoxAction.Items.AddRange(New Object() {"ADD", "TRANSFER", "DEDUCT"})
+        Me.ComboBoxAction.Location = New System.Drawing.Point(186, 212)
+        Me.ComboBoxAction.Name = "ComboBoxAction"
+        Me.ComboBoxAction.Size = New System.Drawing.Size(160, 23)
+        Me.ComboBoxAction.TabIndex = 30
+        '
+        'TextBoxIReason
+        '
+        Me.TextBoxIReason.Location = New System.Drawing.Point(21, 256)
+        Me.TextBoxIReason.Multiline = True
+        Me.TextBoxIReason.Name = "TextBoxIReason"
+        Me.TextBoxIReason.Size = New System.Drawing.Size(160, 67)
+        Me.TextBoxIReason.TabIndex = 29
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(18, 193)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(105, 15)
+        Me.Label13.TabIndex = 28
+        Me.Label13.Text = "Quantity(Primary)"
+        '
+        'TextBoxIPQuantity
+        '
+        Me.TextBoxIPQuantity.Location = New System.Drawing.Point(21, 212)
+        Me.TextBoxIPQuantity.Name = "TextBoxIPQuantity"
+        Me.TextBoxIPQuantity.Size = New System.Drawing.Size(160, 23)
+        Me.TextBoxIPQuantity.TabIndex = 27
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(18, 149)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(96, 15)
+        Me.Label9.TabIndex = 26
+        Me.Label9.Text = "No. of Serving(s)"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(18, 105)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(83, 15)
+        Me.Label8.TabIndex = 25
+        Me.Label8.Text = "Serving Value"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(187, 105)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(76, 15)
+        Me.Label5.TabIndex = 24
+        Me.Label5.Text = "Serving Unit"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(18, 61)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(96, 15)
+        Me.Label3.TabIndex = 14
+        Me.Label3.Text = "Secondary Total"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(18, 17)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(80, 15)
+        Me.Label1.TabIndex = 13
+        Me.Label1.Text = "Primary Total"
+        '
+        'TextBoxFnoofservings
+        '
+        Me.TextBoxFnoofservings.Location = New System.Drawing.Point(21, 167)
+        Me.TextBoxFnoofservings.Name = "TextBoxFnoofservings"
+        Me.TextBoxFnoofservings.Size = New System.Drawing.Size(326, 23)
+        Me.TextBoxFnoofservings.TabIndex = 7
+        '
+        'TextBox8
+        '
+        Me.TextBox8.Location = New System.Drawing.Point(21, 123)
+        Me.TextBox8.Name = "TextBox8"
+        Me.TextBox8.Size = New System.Drawing.Size(160, 23)
+        Me.TextBox8.TabIndex = 6
+        '
+        'TextBox7
+        '
+        Me.TextBox7.Location = New System.Drawing.Point(187, 123)
+        Me.TextBox7.Name = "TextBox7"
+        Me.TextBox7.Size = New System.Drawing.Size(160, 23)
+        Me.TextBox7.TabIndex = 5
+        '
+        'TextBoxFSecondary
+        '
+        Me.TextBoxFSecondary.Location = New System.Drawing.Point(186, 79)
+        Me.TextBoxFSecondary.Name = "TextBoxFSecondary"
+        Me.TextBoxFSecondary.Size = New System.Drawing.Size(77, 23)
+        Me.TextBoxFSecondary.TabIndex = 4
+        '
+        'TextBoxFSecondaryUnit
+        '
+        Me.TextBoxFSecondaryUnit.Location = New System.Drawing.Point(270, 79)
+        Me.TextBoxFSecondaryUnit.Name = "TextBoxFSecondaryUnit"
+        Me.TextBoxFSecondaryUnit.Size = New System.Drawing.Size(77, 23)
+        Me.TextBoxFSecondaryUnit.TabIndex = 4
+        '
+        'TextBoxFPrimaryVal
+        '
+        Me.TextBoxFPrimaryVal.Location = New System.Drawing.Point(186, 35)
+        Me.TextBoxFPrimaryVal.Name = "TextBoxFPrimaryVal"
+        Me.TextBoxFPrimaryVal.Size = New System.Drawing.Size(77, 23)
+        Me.TextBoxFPrimaryVal.TabIndex = 3
+        '
+        'TextBoxIPrimaryUnit
+        '
+        Me.TextBoxIPrimaryUnit.Location = New System.Drawing.Point(270, 35)
+        Me.TextBoxIPrimaryUnit.Name = "TextBoxIPrimaryUnit"
+        Me.TextBoxIPrimaryUnit.Size = New System.Drawing.Size(77, 23)
+        Me.TextBoxIPrimaryUnit.TabIndex = 2
+        '
+        'TextBoxISecondaryTotal
+        '
+        Me.TextBoxISecondaryTotal.Location = New System.Drawing.Point(21, 79)
+        Me.TextBoxISecondaryTotal.Name = "TextBoxISecondaryTotal"
+        Me.TextBoxISecondaryTotal.Size = New System.Drawing.Size(160, 23)
+        Me.TextBoxISecondaryTotal.TabIndex = 1
+        '
+        'TextBoxIPrimaryVal
+        '
+        Me.TextBoxIPrimaryVal.Location = New System.Drawing.Point(21, 35)
+        Me.TextBoxIPrimaryVal.Name = "TextBoxIPrimaryVal"
+        Me.TextBoxIPrimaryVal.Size = New System.Drawing.Size(160, 23)
+        Me.TextBoxIPrimaryVal.TabIndex = 0
         '
         'GroupBox9
         '
@@ -597,6 +819,21 @@ Partial Class Inventory
         Me.Panel12.Size = New System.Drawing.Size(997, 40)
         Me.Panel12.TabIndex = 6
         '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.Button2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button2.ForeColor = System.Drawing.Color.White
+        Me.Button2.Location = New System.Drawing.Point(0, 0)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(156, 40)
+        Me.Button2.TabIndex = 115
+        Me.Button2.Text = "Cancel"
+        Me.Button2.UseVisualStyleBackColor = False
+        '
         'ButtonSave
         '
         Me.ButtonSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
@@ -614,6 +851,7 @@ Partial Class Inventory
         '
         'TabPage8
         '
+        Me.TabPage8.Controls.Add(Me.TableLayoutPanel1)
         Me.TabPage8.Location = New System.Drawing.Point(4, 24)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
@@ -622,33 +860,241 @@ Partial Class Inventory
         Me.TabPage8.Text = "TabPage8"
         Me.TabPage8.UseVisualStyleBackColor = True
         '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox2, 0, 1)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 3)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1009, 464)
+        Me.TableLayoutPanel1.TabIndex = 121
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.PanelReasonCat)
+        Me.GroupBox1.Controls.Add(Me.DataGridViewReasonCategories)
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox1.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(1003, 388)
+        Me.GroupBox1.TabIndex = 164
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Reason (Categories)"
+        '
+        'PanelReasonCat
+        '
+        Me.PanelReasonCat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanelReasonCat.Controls.Add(Me.ButtonReasonCancel)
+        Me.PanelReasonCat.Controls.Add(Me.Button6)
+        Me.PanelReasonCat.Controls.Add(Me.Label14)
+        Me.PanelReasonCat.Controls.Add(Me.TextBoxReasonsCat)
+        Me.PanelReasonCat.Location = New System.Drawing.Point(257, 150)
+        Me.PanelReasonCat.Name = "PanelReasonCat"
+        Me.PanelReasonCat.Size = New System.Drawing.Size(460, 60)
+        Me.PanelReasonCat.TabIndex = 117
+        Me.PanelReasonCat.Visible = False
+        '
+        'ButtonReasonCancel
+        '
+        Me.ButtonReasonCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.ButtonReasonCancel.FlatAppearance.BorderSize = 0
+        Me.ButtonReasonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonReasonCancel.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ButtonReasonCancel.ForeColor = System.Drawing.Color.White
+        Me.ButtonReasonCancel.Location = New System.Drawing.Point(375, 24)
+        Me.ButtonReasonCancel.Name = "ButtonReasonCancel"
+        Me.ButtonReasonCancel.Size = New System.Drawing.Size(75, 25)
+        Me.ButtonReasonCancel.TabIndex = 11
+        Me.ButtonReasonCancel.Text = "Cancel"
+        Me.ButtonReasonCancel.UseVisualStyleBackColor = False
+        '
+        'Button6
+        '
+        Me.Button6.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button6.FlatAppearance.BorderSize = 0
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button6.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Button6.ForeColor = System.Drawing.Color.White
+        Me.Button6.Location = New System.Drawing.Point(295, 24)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(75, 25)
+        Me.Button6.TabIndex = 10
+        Me.Button6.Text = "Submit"
+        Me.Button6.UseVisualStyleBackColor = False
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label14.Location = New System.Drawing.Point(7, 6)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(58, 15)
+        Me.Label14.TabIndex = 9
+        Me.Label14.Text = "Category"
+        '
+        'TextBoxReasonsCat
+        '
+        Me.TextBoxReasonsCat.Location = New System.Drawing.Point(9, 24)
+        Me.TextBoxReasonsCat.Name = "TextBoxReasonsCat"
+        Me.TextBoxReasonsCat.Size = New System.Drawing.Size(280, 25)
+        Me.TextBoxReasonsCat.TabIndex = 0
+        '
+        'DataGridViewReasonCategories
+        '
+        Me.DataGridViewReasonCategories.AllowUserToAddRows = False
+        Me.DataGridViewReasonCategories.AllowUserToDeleteRows = False
+        Me.DataGridViewReasonCategories.AllowUserToResizeColumns = False
+        Me.DataGridViewReasonCategories.AllowUserToResizeRows = False
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.White
+        Me.DataGridViewReasonCategories.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
+        Me.DataGridViewReasonCategories.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewReasonCategories.BackgroundColor = System.Drawing.Color.White
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewReasonCategories.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
+        Me.DataGridViewReasonCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewReasonCategories.DefaultCellStyle = DataGridViewCellStyle15
+        Me.DataGridViewReasonCategories.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewReasonCategories.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridViewReasonCategories.EnableHeadersVisualStyles = False
+        Me.DataGridViewReasonCategories.Location = New System.Drawing.Point(3, 21)
+        Me.DataGridViewReasonCategories.Name = "DataGridViewReasonCategories"
+        Me.DataGridViewReasonCategories.Size = New System.Drawing.Size(997, 364)
+        Me.DataGridViewReasonCategories.TabIndex = 116
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.Panel20)
+        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox2.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 397)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(1003, 64)
+        Me.GroupBox2.TabIndex = 166
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Action"
+        '
+        'Panel20
+        '
+        Me.Panel20.Controls.Add(Me.Button5)
+        Me.Panel20.Controls.Add(Me.ButtonDeleteProducts)
+        Me.Panel20.Controls.Add(Me.Button9)
+        Me.Panel20.Controls.Add(Me.Button4)
+        Me.Panel20.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel20.Location = New System.Drawing.Point(3, 21)
+        Me.Panel20.Name = "Panel20"
+        Me.Panel20.Size = New System.Drawing.Size(997, 40)
+        Me.Panel20.TabIndex = 6
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button5.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button5.FlatAppearance.BorderSize = 0
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button5.ForeColor = System.Drawing.Color.White
+        Me.Button5.Location = New System.Drawing.Point(595, 0)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(134, 40)
+        Me.Button5.TabIndex = 163
+        Me.Button5.Text = "Add Bank"
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'ButtonDeleteProducts
+        '
+        Me.ButtonDeleteProducts.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.ButtonDeleteProducts.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonDeleteProducts.Dock = System.Windows.Forms.DockStyle.Right
+        Me.ButtonDeleteProducts.FlatAppearance.BorderSize = 0
+        Me.ButtonDeleteProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonDeleteProducts.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonDeleteProducts.ForeColor = System.Drawing.Color.White
+        Me.ButtonDeleteProducts.Location = New System.Drawing.Point(729, 0)
+        Me.ButtonDeleteProducts.Name = "ButtonDeleteProducts"
+        Me.ButtonDeleteProducts.Size = New System.Drawing.Size(134, 40)
+        Me.ButtonDeleteProducts.TabIndex = 164
+        Me.ButtonDeleteProducts.Text = "Deactivate"
+        Me.ButtonDeleteProducts.UseVisualStyleBackColor = False
+        '
+        'Button9
+        '
+        Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button9.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button9.FlatAppearance.BorderSize = 0
+        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button9.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button9.ForeColor = System.Drawing.Color.White
+        Me.Button9.Location = New System.Drawing.Point(863, 0)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(134, 40)
+        Me.Button9.TabIndex = 165
+        Me.Button9.Text = "Edit"
+        Me.Button9.UseVisualStyleBackColor = False
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.Button4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button4.ForeColor = System.Drawing.Color.White
+        Me.Button4.Location = New System.Drawing.Point(0, 0)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(156, 40)
+        Me.Button4.TabIndex = 115
+        Me.Button4.Text = "Cancel"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
         'DataGridViewStockAdjustment
         '
         Me.DataGridViewStockAdjustment.AllowUserToAddRows = False
         Me.DataGridViewStockAdjustment.AllowUserToDeleteRows = False
         Me.DataGridViewStockAdjustment.AllowUserToResizeColumns = False
         Me.DataGridViewStockAdjustment.AllowUserToResizeRows = False
-        DataGridViewCellStyle19.BackColor = System.Drawing.Color.White
-        Me.DataGridViewStockAdjustment.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle16.BackColor = System.Drawing.Color.White
+        Me.DataGridViewStockAdjustment.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle16
         Me.DataGridViewStockAdjustment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewStockAdjustment.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle20.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
-        DataGridViewCellStyle20.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewStockAdjustment.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        DataGridViewCellStyle17.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewStockAdjustment.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle17
         Me.DataGridViewStockAdjustment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle21.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle21.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
-        DataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewStockAdjustment.DefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle18.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewStockAdjustment.DefaultCellStyle = DataGridViewCellStyle18
         Me.DataGridViewStockAdjustment.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewStockAdjustment.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewStockAdjustment.EnableHeadersVisualStyles = False
@@ -754,69 +1200,220 @@ Partial Class Inventory
         Me.DataGridViewSTOCKENTRY.AllowUserToDeleteRows = False
         Me.DataGridViewSTOCKENTRY.AllowUserToResizeColumns = False
         Me.DataGridViewSTOCKENTRY.AllowUserToResizeRows = False
-        DataGridViewCellStyle34.BackColor = System.Drawing.Color.White
-        Me.DataGridViewSTOCKENTRY.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle34
+        DataGridViewCellStyle19.BackColor = System.Drawing.Color.White
+        Me.DataGridViewSTOCKENTRY.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle19
         Me.DataGridViewSTOCKENTRY.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewSTOCKENTRY.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle35.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle35.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
-        DataGridViewCellStyle35.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewSTOCKENTRY.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle35
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle20.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        DataGridViewCellStyle20.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewSTOCKENTRY.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle20
         Me.DataGridViewSTOCKENTRY.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle36.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle36.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
-        DataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewSTOCKENTRY.DefaultCellStyle = DataGridViewCellStyle36
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle21.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle21.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        DataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewSTOCKENTRY.DefaultCellStyle = DataGridViewCellStyle21
         Me.DataGridViewSTOCKENTRY.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewSTOCKENTRY.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewSTOCKENTRY.EnableHeadersVisualStyles = False
-        Me.DataGridViewSTOCKENTRY.Location = New System.Drawing.Point(3, 280)
+        Me.DataGridViewSTOCKENTRY.Location = New System.Drawing.Point(3, 264)
         Me.DataGridViewSTOCKENTRY.Name = "DataGridViewSTOCKENTRY"
-        Me.DataGridViewSTOCKENTRY.Size = New System.Drawing.Size(1191, 338)
+        Me.DataGridViewSTOCKENTRY.Size = New System.Drawing.Size(1191, 354)
         Me.DataGridViewSTOCKENTRY.TabIndex = 6
         '
         'Panel21
         '
         Me.Panel21.AutoScroll = True
+        Me.Panel21.Controls.Add(Me.ButtonENTRYADDSTOCK)
+        Me.Panel21.Controls.Add(Me.TextBox1)
+        Me.Panel21.Controls.Add(Me.Label20)
+        Me.Panel21.Controls.Add(Me.TextBoxEQuantity)
+        Me.Panel21.Controls.Add(Me.Label21)
+        Me.Panel21.Controls.Add(Me.Label22)
+        Me.Panel21.Controls.Add(Me.Label24)
+        Me.Panel21.Controls.Add(Me.Label25)
+        Me.Panel21.Controls.Add(Me.Label26)
+        Me.Panel21.Controls.Add(Me.TextBoxENoServings)
+        Me.Panel21.Controls.Add(Me.TextBoxEServingVal)
+        Me.Panel21.Controls.Add(Me.TextBoxEServingValue)
+        Me.Panel21.Controls.Add(Me.TextBoxEFSecondVal)
+        Me.Panel21.Controls.Add(Me.TextBoxEFSUnit)
+        Me.Panel21.Controls.Add(Me.TextBoxEFPrimaryVal)
+        Me.Panel21.Controls.Add(Me.TextBoxEFPUnit)
+        Me.Panel21.Controls.Add(Me.TextBoxESecondary)
+        Me.Panel21.Controls.Add(Me.TextBoxEPrimary)
         Me.Panel21.Controls.Add(Me.Panel10)
         Me.Panel21.Controls.Add(Me.ComboBoxDESC)
-        Me.Panel21.Controls.Add(Me.Label25)
-        Me.Panel21.Controls.Add(Me.Label24)
-        Me.Panel21.Controls.Add(Me.ButtonENTRYADDSTOCK)
-        Me.Panel21.Controls.Add(Me.TextBoxENTRYTOTALQTY)
-        Me.Panel21.Controls.Add(Me.Label22)
-        Me.Panel21.Controls.Add(Me.Label21)
-        Me.Panel21.Controls.Add(Me.Label20)
-        Me.Panel21.Controls.Add(Me.PictureBoxBARCODE)
-        Me.Panel21.Controls.Add(Me.Label18)
-        Me.Panel21.Controls.Add(Me.TextBoxSERVINGVAL)
-        Me.Panel21.Controls.Add(Me.TextBoxENTRYQTY)
-        Me.Panel21.Controls.Add(Me.TextBoxSERVINGUNIT)
-        Me.Panel21.Controls.Add(Me.TextBoxSTCKONHAND)
-        Me.Panel21.Controls.Add(Me.TextBoxSKU)
-        Me.Panel21.Controls.Add(Me.TextBoxINVENTORYID)
         Me.Panel21.Controls.Add(Me.Label23)
-        Me.Panel21.Controls.Add(Me.Label19)
-        Me.Panel21.Controls.Add(Me.Label17)
         Me.Panel21.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel21.Location = New System.Drawing.Point(3, 40)
         Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(1191, 240)
+        Me.Panel21.Size = New System.Drawing.Size(1191, 224)
         Me.Panel21.TabIndex = 5
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(405, 165)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.Size = New System.Drawing.Size(160, 23)
+        Me.TextBox1.TabIndex = 53
+        Me.TextBox1.Visible = False
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.Location = New System.Drawing.Point(346, 102)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(54, 15)
+        Me.Label20.TabIndex = 52
+        Me.Label20.Text = "Quantity"
+        '
+        'TextBoxEQuantity
+        '
+        Me.TextBoxEQuantity.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxEQuantity.Location = New System.Drawing.Point(349, 120)
+        Me.TextBoxEQuantity.Name = "TextBoxEQuantity"
+        Me.TextBoxEQuantity.Size = New System.Drawing.Size(326, 23)
+        Me.TextBoxEQuantity.TabIndex = 51
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.Location = New System.Drawing.Point(346, 58)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(96, 15)
+        Me.Label21.TabIndex = 50
+        Me.Label21.Text = "No. of Serving(s)"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.Location = New System.Drawing.Point(346, 14)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(83, 15)
+        Me.Label22.TabIndex = 49
+        Me.Label22.Text = "Serving Value"
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.Location = New System.Drawing.Point(515, 14)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(76, 15)
+        Me.Label24.TabIndex = 48
+        Me.Label24.Text = "Serving Unit"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.Location = New System.Drawing.Point(14, 102)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(96, 15)
+        Me.Label25.TabIndex = 47
+        Me.Label25.Text = "Secondary Total"
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.Location = New System.Drawing.Point(14, 58)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(80, 15)
+        Me.Label26.TabIndex = 46
+        Me.Label26.Text = "Primary Total"
+        '
+        'TextBoxENoServings
+        '
+        Me.TextBoxENoServings.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxENoServings.Location = New System.Drawing.Point(349, 76)
+        Me.TextBoxENoServings.Name = "TextBoxENoServings"
+        Me.TextBoxENoServings.Size = New System.Drawing.Size(326, 23)
+        Me.TextBoxENoServings.TabIndex = 45
+        '
+        'TextBoxEServingVal
+        '
+        Me.TextBoxEServingVal.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxEServingVal.Location = New System.Drawing.Point(349, 32)
+        Me.TextBoxEServingVal.Name = "TextBoxEServingVal"
+        Me.TextBoxEServingVal.Size = New System.Drawing.Size(160, 23)
+        Me.TextBoxEServingVal.TabIndex = 44
+        '
+        'TextBoxEServingValue
+        '
+        Me.TextBoxEServingValue.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxEServingValue.Location = New System.Drawing.Point(515, 32)
+        Me.TextBoxEServingValue.Name = "TextBoxEServingValue"
+        Me.TextBoxEServingValue.Size = New System.Drawing.Size(160, 23)
+        Me.TextBoxEServingValue.TabIndex = 43
+        '
+        'TextBoxEFSecondVal
+        '
+        Me.TextBoxEFSecondVal.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxEFSecondVal.Location = New System.Drawing.Point(182, 120)
+        Me.TextBoxEFSecondVal.Name = "TextBoxEFSecondVal"
+        Me.TextBoxEFSecondVal.Size = New System.Drawing.Size(77, 23)
+        Me.TextBoxEFSecondVal.TabIndex = 42
+        '
+        'TextBoxEFSUnit
+        '
+        Me.TextBoxEFSUnit.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxEFSUnit.Location = New System.Drawing.Point(266, 120)
+        Me.TextBoxEFSUnit.Name = "TextBoxEFSUnit"
+        Me.TextBoxEFSUnit.Size = New System.Drawing.Size(77, 23)
+        Me.TextBoxEFSUnit.TabIndex = 41
+        '
+        'TextBoxEFPrimaryVal
+        '
+        Me.TextBoxEFPrimaryVal.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxEFPrimaryVal.Location = New System.Drawing.Point(182, 76)
+        Me.TextBoxEFPrimaryVal.Name = "TextBoxEFPrimaryVal"
+        Me.TextBoxEFPrimaryVal.Size = New System.Drawing.Size(77, 23)
+        Me.TextBoxEFPrimaryVal.TabIndex = 40
+        '
+        'TextBoxEFPUnit
+        '
+        Me.TextBoxEFPUnit.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxEFPUnit.Location = New System.Drawing.Point(266, 76)
+        Me.TextBoxEFPUnit.Name = "TextBoxEFPUnit"
+        Me.TextBoxEFPUnit.Size = New System.Drawing.Size(77, 23)
+        Me.TextBoxEFPUnit.TabIndex = 39
+        '
+        'TextBoxESecondary
+        '
+        Me.TextBoxESecondary.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxESecondary.Location = New System.Drawing.Point(17, 120)
+        Me.TextBoxESecondary.Name = "TextBoxESecondary"
+        Me.TextBoxESecondary.Size = New System.Drawing.Size(160, 23)
+        Me.TextBoxESecondary.TabIndex = 38
+        '
+        'TextBoxEPrimary
+        '
+        Me.TextBoxEPrimary.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxEPrimary.Location = New System.Drawing.Point(17, 76)
+        Me.TextBoxEPrimary.Name = "TextBoxEPrimary"
+        Me.TextBoxEPrimary.Size = New System.Drawing.Size(160, 23)
+        Me.TextBoxEPrimary.TabIndex = 37
         '
         'Panel10
         '
         Me.Panel10.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel10.Location = New System.Drawing.Point(0, 230)
+        Me.Panel10.Location = New System.Drawing.Point(0, 214)
         Me.Panel10.Name = "Panel10"
         Me.Panel10.Size = New System.Drawing.Size(1191, 10)
         Me.Panel10.TabIndex = 33
@@ -829,30 +1426,10 @@ Partial Class Inventory
         Me.ComboBoxDESC.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.ComboBoxDESC.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.ComboBoxDESC.FormattingEnabled = True
-        Me.ComboBoxDESC.Location = New System.Drawing.Point(125, 12)
+        Me.ComboBoxDESC.Location = New System.Drawing.Point(17, 31)
         Me.ComboBoxDESC.Name = "ComboBoxDESC"
-        Me.ComboBoxDESC.Size = New System.Drawing.Size(260, 23)
+        Me.ComboBoxDESC.Size = New System.Drawing.Size(326, 23)
         Me.ComboBoxDESC.TabIndex = 32
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label25.Location = New System.Drawing.Point(22, 124)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(86, 15)
-        Me.Label25.TabIndex = 31
-        Me.Label25.Text = "Serving Value:"
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label24.Location = New System.Drawing.Point(22, 97)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(79, 15)
-        Me.Label24.TabIndex = 30
-        Me.Label24.Text = "Serving Unit:"
         '
         'ButtonENTRYADDSTOCK
         '
@@ -861,171 +1438,22 @@ Partial Class Inventory
         Me.ButtonENTRYADDSTOCK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonENTRYADDSTOCK.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.ButtonENTRYADDSTOCK.ForeColor = System.Drawing.Color.White
-        Me.ButtonENTRYADDSTOCK.Location = New System.Drawing.Point(516, 93)
+        Me.ButtonENTRYADDSTOCK.Location = New System.Drawing.Point(349, 152)
         Me.ButtonENTRYADDSTOCK.Name = "ButtonENTRYADDSTOCK"
-        Me.ButtonENTRYADDSTOCK.Size = New System.Drawing.Size(260, 46)
+        Me.ButtonENTRYADDSTOCK.Size = New System.Drawing.Size(326, 46)
         Me.ButtonENTRYADDSTOCK.TabIndex = 27
         Me.ButtonENTRYADDSTOCK.Text = "ADD TO STOCK"
         Me.ButtonENTRYADDSTOCK.UseVisualStyleBackColor = False
-        '
-        'TextBoxENTRYTOTALQTY
-        '
-        Me.TextBoxENTRYTOTALQTY.BackColor = System.Drawing.Color.White
-        Me.TextBoxENTRYTOTALQTY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxENTRYTOTALQTY.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxENTRYTOTALQTY.Location = New System.Drawing.Point(516, 67)
-        Me.TextBoxENTRYTOTALQTY.Name = "TextBoxENTRYTOTALQTY"
-        Me.TextBoxENTRYTOTALQTY.ReadOnly = True
-        Me.TextBoxENTRYTOTALQTY.Size = New System.Drawing.Size(260, 21)
-        Me.TextBoxENTRYTOTALQTY.TabIndex = 29
-        Me.TextBoxENTRYTOTALQTY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label22.Location = New System.Drawing.Point(395, 70)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(106, 15)
-        Me.Label22.TabIndex = 18
-        Me.Label22.Text = "Total Qty on hand:"
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label21.Location = New System.Drawing.Point(395, 43)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(57, 15)
-        Me.Label21.TabIndex = 17
-        Me.Label21.Text = "Quantity:"
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label20.Location = New System.Drawing.Point(395, 16)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(92, 15)
-        Me.Label20.TabIndex = 15
-        Me.Label20.Text = "Stock on hand:"
-        '
-        'PictureBoxBARCODE
-        '
-        Me.PictureBoxBARCODE.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBoxBARCODE.Location = New System.Drawing.Point(125, 148)
-        Me.PictureBoxBARCODE.Name = "PictureBoxBARCODE"
-        Me.PictureBoxBARCODE.Size = New System.Drawing.Size(260, 71)
-        Me.PictureBoxBARCODE.TabIndex = 23
-        Me.PictureBoxBARCODE.TabStop = False
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label18.Location = New System.Drawing.Point(22, 148)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(57, 15)
-        Me.Label18.TabIndex = 13
-        Me.Label18.Text = "Barcode:"
-        '
-        'TextBoxSERVINGVAL
-        '
-        Me.TextBoxSERVINGVAL.BackColor = System.Drawing.Color.White
-        Me.TextBoxSERVINGVAL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxSERVINGVAL.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxSERVINGVAL.Location = New System.Drawing.Point(125, 121)
-        Me.TextBoxSERVINGVAL.Name = "TextBoxSERVINGVAL"
-        Me.TextBoxSERVINGVAL.ReadOnly = True
-        Me.TextBoxSERVINGVAL.Size = New System.Drawing.Size(260, 21)
-        Me.TextBoxSERVINGVAL.TabIndex = 25
-        '
-        'TextBoxENTRYQTY
-        '
-        Me.TextBoxENTRYQTY.BackColor = System.Drawing.Color.White
-        Me.TextBoxENTRYQTY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxENTRYQTY.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxENTRYQTY.Location = New System.Drawing.Point(516, 40)
-        Me.TextBoxENTRYQTY.Name = "TextBoxENTRYQTY"
-        Me.TextBoxENTRYQTY.ReadOnly = True
-        Me.TextBoxENTRYQTY.Size = New System.Drawing.Size(260, 21)
-        Me.TextBoxENTRYQTY.TabIndex = 28
-        Me.TextBoxENTRYQTY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBoxSERVINGUNIT
-        '
-        Me.TextBoxSERVINGUNIT.BackColor = System.Drawing.Color.White
-        Me.TextBoxSERVINGUNIT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxSERVINGUNIT.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxSERVINGUNIT.Location = New System.Drawing.Point(125, 94)
-        Me.TextBoxSERVINGUNIT.Name = "TextBoxSERVINGUNIT"
-        Me.TextBoxSERVINGUNIT.ReadOnly = True
-        Me.TextBoxSERVINGUNIT.Size = New System.Drawing.Size(260, 21)
-        Me.TextBoxSERVINGUNIT.TabIndex = 24
-        '
-        'TextBoxSTCKONHAND
-        '
-        Me.TextBoxSTCKONHAND.BackColor = System.Drawing.Color.White
-        Me.TextBoxSTCKONHAND.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxSTCKONHAND.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxSTCKONHAND.Location = New System.Drawing.Point(516, 13)
-        Me.TextBoxSTCKONHAND.Name = "TextBoxSTCKONHAND"
-        Me.TextBoxSTCKONHAND.ReadOnly = True
-        Me.TextBoxSTCKONHAND.Size = New System.Drawing.Size(260, 21)
-        Me.TextBoxSTCKONHAND.TabIndex = 26
-        Me.TextBoxSTCKONHAND.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBoxSKU
-        '
-        Me.TextBoxSKU.BackColor = System.Drawing.Color.White
-        Me.TextBoxSKU.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxSKU.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxSKU.Location = New System.Drawing.Point(125, 67)
-        Me.TextBoxSKU.Name = "TextBoxSKU"
-        Me.TextBoxSKU.ReadOnly = True
-        Me.TextBoxSKU.Size = New System.Drawing.Size(260, 21)
-        Me.TextBoxSKU.TabIndex = 21
-        '
-        'TextBoxINVENTORYID
-        '
-        Me.TextBoxINVENTORYID.BackColor = System.Drawing.Color.White
-        Me.TextBoxINVENTORYID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxINVENTORYID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxINVENTORYID.Location = New System.Drawing.Point(125, 40)
-        Me.TextBoxINVENTORYID.Name = "TextBoxINVENTORYID"
-        Me.TextBoxINVENTORYID.ReadOnly = True
-        Me.TextBoxINVENTORYID.Size = New System.Drawing.Size(260, 21)
-        Me.TextBoxINVENTORYID.TabIndex = 20
         '
         'Label23
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label23.Location = New System.Drawing.Point(22, 16)
+        Me.Label23.Location = New System.Drawing.Point(14, 13)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(75, 15)
         Me.Label23.TabIndex = 19
         Me.Label23.Text = "Description:"
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label19.Location = New System.Drawing.Point(22, 70)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(86, 15)
-        Me.Label19.TabIndex = 14
-        Me.Label19.Text = "Product Code:"
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label17.Location = New System.Drawing.Point(22, 43)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(78, 15)
-        Me.Label17.TabIndex = 12
-        Me.Label17.Text = "Inventory ID:"
         '
         'Panel16
         '
@@ -1156,219 +1584,6 @@ Partial Class Inventory
         Me.Label2.TabIndex = 153
         Me.Label2.Text = "INVENTORY"
         '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(21, 35)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(160, 23)
-        Me.TextBox1.TabIndex = 0
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(21, 79)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(160, 23)
-        Me.TextBox2.TabIndex = 1
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Location = New System.Drawing.Point(270, 35)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(77, 23)
-        Me.TextBox3.TabIndex = 2
-        '
-        'TextBox4
-        '
-        Me.TextBox4.Location = New System.Drawing.Point(186, 35)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(77, 23)
-        Me.TextBox4.TabIndex = 3
-        '
-        'TextBox5
-        '
-        Me.TextBox5.Location = New System.Drawing.Point(270, 79)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(77, 23)
-        Me.TextBox5.TabIndex = 4
-        '
-        'TextBox6
-        '
-        Me.TextBox6.Location = New System.Drawing.Point(186, 79)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(77, 23)
-        Me.TextBox6.TabIndex = 4
-        '
-        'TextBox7
-        '
-        Me.TextBox7.Location = New System.Drawing.Point(187, 123)
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(160, 23)
-        Me.TextBox7.TabIndex = 5
-        '
-        'TextBox8
-        '
-        Me.TextBox8.Location = New System.Drawing.Point(21, 123)
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(160, 23)
-        Me.TextBox8.TabIndex = 6
-        '
-        'TextBox9
-        '
-        Me.TextBox9.Location = New System.Drawing.Point(21, 167)
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(326, 23)
-        Me.TextBox9.TabIndex = 7
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(18, 17)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(80, 15)
-        Me.Label1.TabIndex = 13
-        Me.Label1.Text = "Primary Total"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(18, 61)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(96, 15)
-        Me.Label3.TabIndex = 14
-        Me.Label3.Text = "Secondary Total"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(18, 149)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(96, 15)
-        Me.Label9.TabIndex = 26
-        Me.Label9.Text = "No. of Serving(s)"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(18, 105)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(83, 15)
-        Me.Label8.TabIndex = 25
-        Me.Label8.Text = "Serving Value"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(187, 105)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(76, 15)
-        Me.Label5.TabIndex = 24
-        Me.Label5.Text = "Serving Unit"
-        '
-        'TextBox10
-        '
-        Me.TextBox10.Location = New System.Drawing.Point(21, 212)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(160, 23)
-        Me.TextBox10.TabIndex = 27
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(18, 193)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(54, 15)
-        Me.Label13.TabIndex = 28
-        Me.Label13.Text = "Quantity"
-        '
-        'TextBox11
-        '
-        Me.TextBox11.Location = New System.Drawing.Point(21, 256)
-        Me.TextBox11.Multiline = True
-        Me.TextBox11.Name = "TextBox11"
-        Me.TextBox11.Size = New System.Drawing.Size(160, 67)
-        Me.TextBox11.TabIndex = 29
-        '
-        'ComboBoxAction
-        '
-        Me.ComboBoxAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBoxAction.FormattingEnabled = True
-        Me.ComboBoxAction.Items.AddRange(New Object() {"ADD", "TRANSFER", "DEDUCT"})
-        Me.ComboBoxAction.Location = New System.Drawing.Point(186, 212)
-        Me.ComboBoxAction.Name = "ComboBoxAction"
-        Me.ComboBoxAction.Size = New System.Drawing.Size(160, 23)
-        Me.ComboBoxAction.TabIndex = 30
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(187, 193)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(43, 15)
-        Me.Label4.TabIndex = 31
-        Me.Label4.Text = "Action"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(18, 238)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(49, 15)
-        Me.Label10.TabIndex = 32
-        Me.Label10.Text = "Reason"
-        '
-        'ComboBoxDeduction
-        '
-        Me.ComboBoxDeduction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBoxDeduction.Enabled = False
-        Me.ComboBoxDeduction.FormattingEnabled = True
-        Me.ComboBoxDeduction.Location = New System.Drawing.Point(186, 256)
-        Me.ComboBoxDeduction.Name = "ComboBoxDeduction"
-        Me.ComboBoxDeduction.Size = New System.Drawing.Size(160, 23)
-        Me.ComboBoxDeduction.TabIndex = 33
-        '
-        'ComboBoxtransfer
-        '
-        Me.ComboBoxtransfer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBoxtransfer.Enabled = False
-        Me.ComboBoxtransfer.FormattingEnabled = True
-        Me.ComboBoxtransfer.Location = New System.Drawing.Point(186, 300)
-        Me.ComboBoxtransfer.Name = "ComboBoxtransfer"
-        Me.ComboBoxtransfer.Size = New System.Drawing.Size(160, 23)
-        Me.ComboBoxtransfer.TabIndex = 34
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(187, 238)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(110, 15)
-        Me.Label11.TabIndex = 35
-        Me.Label11.Text = "Action (for deduct)"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(187, 282)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(149, 15)
-        Me.Label12.TabIndex = 36
-        Me.Label12.Text = "Select Store (for transfer)"
-        '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.Brown
-        Me.Button2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(0, 0)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(156, 40)
-        Me.Button2.TabIndex = 115
-        Me.Button2.Text = "Cancel"
-        Me.Button2.UseVisualStyleBackColor = False
-        '
         'Inventory
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1397,13 +1612,21 @@ Partial Class Inventory
         Me.TabPage6.ResumeLayout(False)
         Me.TableLayoutPanel4.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
+        CType(Me.DataGridViewPanelStockAdjustment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel17.ResumeLayout(False)
         Me.Panel17.PerformLayout()
-        CType(Me.DataGridViewPanelStockAdjustment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel23.ResumeLayout(False)
         Me.Panel23.PerformLayout()
         Me.GroupBox9.ResumeLayout(False)
         Me.Panel12.ResumeLayout(False)
+        Me.TabPage8.ResumeLayout(False)
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.PanelReasonCat.ResumeLayout(False)
+        Me.PanelReasonCat.PerformLayout()
+        CType(Me.DataGridViewReasonCategories, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.Panel20.ResumeLayout(False)
         CType(Me.DataGridViewStockAdjustment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel9.ResumeLayout(False)
         Me.Panel11.ResumeLayout(False)
@@ -1412,7 +1635,6 @@ Partial Class Inventory
         CType(Me.DataGridViewSTOCKENTRY, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel21.ResumeLayout(False)
         Me.Panel21.PerformLayout()
-        CType(Me.PictureBoxBARCODE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel16.ResumeLayout(False)
         Me.Panel16.PerformLayout()
         Me.Panel1.ResumeLayout(False)
@@ -1459,23 +1681,7 @@ Partial Class Inventory
     Friend WithEvents DateTimePicker3 As DateTimePicker
     Friend WithEvents DateTimePicker4 As DateTimePicker
     Friend WithEvents Label16 As Label
-    Friend WithEvents Label25 As Label
-    Friend WithEvents Label24 As Label
-    Friend WithEvents TextBoxENTRYTOTALQTY As TextBox
-    Friend WithEvents Label22 As Label
-    Friend WithEvents Label21 As Label
-    Friend WithEvents Label20 As Label
-    Friend WithEvents PictureBoxBARCODE As PictureBox
-    Friend WithEvents Label18 As Label
-    Friend WithEvents TextBoxSERVINGVAL As TextBox
-    Friend WithEvents TextBoxENTRYQTY As TextBox
-    Friend WithEvents TextBoxSERVINGUNIT As TextBox
-    Friend WithEvents TextBoxSTCKONHAND As TextBox
-    Friend WithEvents TextBoxSKU As TextBox
-    Friend WithEvents TextBoxINVENTORYID As TextBox
     Friend WithEvents Label23 As Label
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Label17 As Label
     Friend WithEvents ButtonENTRYADDSTOCK As Button
     Friend WithEvents DataGridViewSTOCKENTRY As DataGridView
     Friend WithEvents ComboBoxDESC As ComboBox
@@ -1493,23 +1699,23 @@ Partial Class Inventory
     Friend WithEvents Panel17 As Panel
     Friend WithEvents GroupBox9 As GroupBox
     Friend WithEvents Panel12 As Panel
-    Friend WithEvents TextBox9 As TextBox
+    Friend WithEvents TextBoxFnoofservings As TextBox
     Friend WithEvents TextBox8 As TextBox
     Friend WithEvents TextBox7 As TextBox
-    Friend WithEvents TextBox6 As TextBox
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TextBoxFSecondary As TextBox
+    Friend WithEvents TextBoxFSecondaryUnit As TextBox
+    Friend WithEvents TextBoxFPrimaryVal As TextBox
+    Friend WithEvents TextBoxIPrimaryUnit As TextBox
+    Friend WithEvents TextBoxISecondaryTotal As TextBox
+    Friend WithEvents TextBoxIPrimaryVal As TextBox
     Friend WithEvents Label13 As Label
-    Friend WithEvents TextBox10 As TextBox
+    Friend WithEvents TextBoxIPQuantity As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox11 As TextBox
+    Friend WithEvents TextBoxIReason As TextBox
     Friend WithEvents Label12 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents ComboBoxtransfer As ComboBox
@@ -1518,4 +1724,35 @@ Partial Class Inventory
     Friend WithEvents Label4 As Label
     Friend WithEvents ComboBoxAction As ComboBox
     Friend WithEvents Button2 As Button
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents DataGridViewReasonCategories As DataGridView
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Panel20 As Panel
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents ButtonDeleteProducts As Button
+    Friend WithEvents Button9 As Button
+    Friend WithEvents PanelReasonCat As Panel
+    Friend WithEvents ButtonReasonCancel As Button
+    Friend WithEvents Button6 As Button
+    Friend WithEvents Label14 As Label
+    Friend WithEvents TextBoxReasonsCat As TextBox
+    Friend WithEvents Label20 As Label
+    Friend WithEvents TextBoxEQuantity As TextBox
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label24 As Label
+    Friend WithEvents Label25 As Label
+    Friend WithEvents Label26 As Label
+    Friend WithEvents TextBoxENoServings As TextBox
+    Friend WithEvents TextBoxEServingVal As TextBox
+    Friend WithEvents TextBoxEServingValue As TextBox
+    Friend WithEvents TextBoxEFSecondVal As TextBox
+    Friend WithEvents TextBoxEFSUnit As TextBox
+    Friend WithEvents TextBoxEFPrimaryVal As TextBox
+    Friend WithEvents TextBoxEFPUnit As TextBox
+    Friend WithEvents TextBoxESecondary As TextBox
+    Friend WithEvents TextBoxEPrimary As TextBox
+    Friend WithEvents TextBox1 As TextBox
 End Class

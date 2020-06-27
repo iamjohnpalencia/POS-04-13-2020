@@ -32,7 +32,6 @@ Module Addmodule
             cmd.ExecuteNonQuery()
         Catch ex As Exception
             MsgBox(ex.ToString)
-            MsgBox(Query)
         Finally
             LocalhostConn.close
             cmd.Dispose()

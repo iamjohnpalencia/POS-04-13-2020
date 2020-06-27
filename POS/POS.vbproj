@@ -169,12 +169,6 @@
     <Compile Include="MAIN FORMS\Loading.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MAIN FORMS\LoadSettings.Designer.vb">
-      <DependentUpon>LoadSettings.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN FORMS\LoadSettings.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="MAIN FORMS\MDIFORM.designer.vb">
       <DependentUpon>MDIFORM.vb</DependentUpon>
     </Compile>
@@ -231,6 +225,12 @@
       <DependentUpon>ExpenseImage.vb</DependentUpon>
     </Compile>
     <Compile Include="SUBFORMS\ExpenseImage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\ReasonCat.Designer.vb">
+      <DependentUpon>ReasonCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\ReasonCat.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SUBFORMS\TransactionTypeInfo.Designer.vb">
@@ -403,9 +403,6 @@
     <EmbeddedResource Include="MAIN FORMS\Loading.resx">
       <DependentUpon>Loading.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MAIN FORMS\LoadSettings.resx">
-      <DependentUpon>LoadSettings.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MAIN FORMS\MDIFORM.resx">
       <DependentUpon>MDIFORM.vb</DependentUpon>
     </EmbeddedResource>
@@ -432,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\ExpenseImage.resx">
       <DependentUpon>ExpenseImage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\ReasonCat.resx">
+      <DependentUpon>ReasonCat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\TransactionTypeInfo.resx">
       <DependentUpon>TransactionTypeInfo.vb</DependentUpon>

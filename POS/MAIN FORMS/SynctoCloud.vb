@@ -127,11 +127,7 @@ Public Class SynctoCloud
         Try
             Dim fields = "*"
             Dim table = "loc_daily_transaction WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewTRAN)
-            Dim ThisDT = AsDatatable(table, fields, DataGridViewTRAN)
-            For Each row As DataRow In ThisDT.Rows
-                DataGridViewTRAN.Rows.Add(row("transaction_id"), row("transaction_number"), row("amounttendered"), row("discount"), row("moneychange"), row("amountdue"), row("vatable"), row("vat_exempt"), row("zero_rated"), row("vat"), row("si_number"), row("crew_id"), row("guid"), row("active"), row("store_id"), row("created_at"), row("transaction_type"), row("shift"), row("zreading"), row("discount_type"), row("synced"))
-            Next
+            GLOBAL_SELECT_ALL_FUNCTION(table, fields, DataGridViewTRAN)
             gettablesize(tablename:="loc_daily_transaction")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -528,8 +524,8 @@ Public Class SynctoCloud
                 Label8.Text = "Syncing Daily Transaction"
                 messageboxappearance = False
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO `Triggers_admin_daily_transaction`(`loc_transaction_id`, `transaction_number`, `amounttendered`, `discount`, `moneychange`, `amountdue`, `vatable`, `vat_exempt`, `zero_rated`, `vat`, `si_number`, `crew_id`, `guid`, `active`, `store_id`, `created_at`, `transaction_type`, `shift`, `zreading`, `discount_type`)
-                                             VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17,@18,@19,@20)", server)
+                    cmd = New MySqlCommand("INSERT INTO `Triggers_admin_daily_transaction`(`loc_transaction_id`, `transaction_number`, `grosssales`, `totaldiscount`, `amounttendered`, `change`, `amountdue`, `vatablesales`, `vatexemptsales`, `zeroratedsales`, `vatpercentage`, `lessvat`, `transaction_type`, `discount_type`, `totaldiscountedamount`, `si_number`, `crew_id`, `guid`, `active`, `store_id`, `created_at`, `shift`, `zreading`)
+                                             VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17,@18,@19,@20,@21,@22,@23)", server)
 
                     cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
@@ -541,16 +537,20 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@8", MySqlDbType.Decimal).Value = .Rows(i).Cells(7).Value.ToString()
                     cmd.Parameters.Add("@9", MySqlDbType.Decimal).Value = .Rows(i).Cells(8).Value.ToString()
                     cmd.Parameters.Add("@10", MySqlDbType.Decimal).Value = .Rows(i).Cells(9).Value.ToString()
-                    cmd.Parameters.Add("@11", MySqlDbType.Int64).Value = .Rows(i).Cells(10).Value.ToString()
-                    cmd.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
+                    cmd.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(10).Value.ToString()
+                    cmd.Parameters.Add("@12", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
                     cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
-                    cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = .Rows(i).Cells(13).Value.ToString()
-                    cmd.Parameters.Add("@15", MySqlDbType.VarChar).Value = .Rows(i).Cells(14).Value.ToString()
-                    cmd.Parameters.Add("@16", MySqlDbType.VarChar).Value = .Rows(i).Cells(15).Value.ToString()
+                    cmd.Parameters.Add("@14", MySqlDbType.Text).Value = .Rows(i).Cells(13).Value.ToString()
+                    cmd.Parameters.Add("@15", MySqlDbType.Decimal).Value = .Rows(i).Cells(14).Value.ToString()
+                    cmd.Parameters.Add("@16", MySqlDbType.Int64).Value = .Rows(i).Cells(15).Value.ToString()
                     cmd.Parameters.Add("@17", MySqlDbType.VarChar).Value = .Rows(i).Cells(16).Value.ToString()
                     cmd.Parameters.Add("@18", MySqlDbType.VarChar).Value = .Rows(i).Cells(17).Value.ToString()
-                    cmd.Parameters.Add("@19", MySqlDbType.Text).Value = .Rows(i).Cells(18).Value.ToString()
-                    cmd.Parameters.Add("@20", MySqlDbType.Text).Value = .Rows(i).Cells(19).Value.ToString()
+                    cmd.Parameters.Add("@19", MySqlDbType.VarChar).Value = .Rows(i).Cells(18).Value.ToString()
+                    cmd.Parameters.Add("@20", MySqlDbType.VarChar).Value = .Rows(i).Cells(19).Value.ToString()
+                    cmd.Parameters.Add("@21", MySqlDbType.Text).Value = .Rows(i).Cells(20).Value.ToString()
+                    cmd.Parameters.Add("@22", MySqlDbType.VarChar).Value = .Rows(i).Cells(21).Value.ToString()
+                    cmd.Parameters.Add("@23", MySqlDbType.Text).Value = .Rows(i).Cells(22).Value.ToString()
+
                     Label7.Text = Val(Label7.Text + 1)
                     Label30.Text = Val(Label30.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
@@ -1347,5 +1347,7 @@ Public Class SynctoCloud
         End Try
     End Sub
 
-
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        filldatagridtransaction()
+    End Sub
 End Class

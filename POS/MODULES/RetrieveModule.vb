@@ -449,7 +449,7 @@ Module RetrieveModule
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION(ByVal table As String, ByVal fields As String, ByRef datagrid As DataGridView)
         Try
-            Dim sql = "SELECT " + fields + " FROM " + table
+            sql = "SELECT " + fields + " FROM " + table
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             dt = New DataTable
@@ -501,10 +501,14 @@ Module RetrieveModule
             LocalhostConn.close
         End Try
     End Sub
-    Public Sub GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX(ByVal table As String, ByVal fields As String, ByVal successmessage As String, ByVal errormessage As String, ByRef combobox As ComboBox)
+    Public Sub GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX(table As String, fields As String, combobox As ComboBox, Loccon As Boolean)
         Try
             sql = "SELECT " + fields + " FROM " + table
-            cmd = New MySqlCommand(sql, LocalhostConn)
+            If Loccon = True Then
+                cmd = New MySqlCommand(sql, LocalhostConn)
+            Else
+                cmd = New MySqlCommand(sql, ServerCloudCon)
+            End If
             da = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
@@ -553,6 +557,25 @@ Module RetrieveModule
         Return returncount
     End Function
     Dim returnsum
+    Public Function roundsum(tototal As String, table As String, Columncall As String)
+        Try
+            sql = "SELECT SUM(ROUND(" & tototal & ",0)) AS " & Columncall & " FROM " & table
+            cmd = New MySqlCommand(sql, LocalhostConn)
+            da = New MySqlDataAdapter(cmd)
+            dt = New DataTable
+            da.Fill(dt)
+            If IsDBNull(dt.Rows(0)(0)) Then
+                returnsum = 0
+            Else
+                For Each row As DataRow In dt.Rows
+                    returnsum = row(Columncall)
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return returnsum
+    End Function
     Public Function sum(ByVal tototal As String, ByVal table As String)
         Try
             sql = "SELECT SUM(" & tototal & ") FROM " & table

@@ -5,6 +5,6 @@ johnpale_testuse
 PASSWORD:
 password2019
 SERVER:
-gator3218.hostgator.com
+	
 PORT:
 3306

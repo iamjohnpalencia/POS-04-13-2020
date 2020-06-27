@@ -22,10 +22,7 @@ Public Class POS
     Dim thread As Thread
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DataGridViewPRODUCTUPDATE.DataSource = ProductDTUpdate
-        DataGridViewFORMULAUPDATE.DataSource = FormulaDTUpdate
-        DataGridViewCATEGORYUPDATE.DataSource = CategoryDTUpdate
-        DataGridViewINVENTORYUPDATE.DataSource = InventoryDTUpdate
+
         If Application.OpenForms().OfType(Of SynctoCloud).Any Then
             SynctoCloud.BringToFront()
         End If
@@ -73,6 +70,9 @@ Public Class POS
         Enabled = False
         BegBalance.Show()
         BegBalance.TopMost = True
+        BackgroundWorker2.WorkerReportsProgress = True
+        BackgroundWorker2.WorkerSupportsCancellation = True
+        BackgroundWorker2.RunWorkerAsync()
     End Sub
     Private Sub new_Button_click(ByVal sender As Object, ByVal e As EventArgs)
         'NEW BUTTON ON CLICK EVENT 
@@ -284,9 +284,14 @@ Public Class POS
         insertcurrenttime = TimeOfDay.ToString("HH:mm:ss")
         insertcurrentdate = String.Format("{0:yyyy/MM/dd}", DateTime.Now)
         Label11.Text = Date.Now.ToString("hh:mm:ss tt")
+        If LabelCheckingUpdates.Text = "Checking for updates." Then
+            LabelCheckingUpdates.Text = "Checking for updates.."
+        ElseIf LabelCheckingUpdates.Text = "Checking for updates.." Then
+            LabelCheckingUpdates.Text = "Checking for updates..."
+        ElseIf LabelCheckingUpdates.Text = "Checking for updates..." Then
+            LabelCheckingUpdates.Text = "Checking for updates."
+        End If
     End Sub
-
-
     Private Sub ButtonCDISC_Click(sender As Object, e As EventArgs) Handles ButtonCDISC.Click
         TextBoxDISCOUNT.Text = 0
         TOTALDISCOUNT = 0
@@ -537,6 +542,7 @@ Public Class POS
     Public VAT12PERCENT As Double = 0
     Public ZERORATEDSALES As Double = 0
     Dim THREADLIST As List(Of Thread) = New List(Of Thread)
+    Dim THREADLISTUPDATE As List(Of Thread) = New List(Of Thread)
     Dim TIMETOINSERT As String
     Dim ACTIVE As Integer = 1
 
@@ -572,17 +578,8 @@ Public Class POS
     End Sub
 
 #Region "Transaction Process"
-    Dim primary_value As Double = 0
     Dim secondary_value As Double = 0
-    Dim serving_value As Double = 0
-    Dim no_servings As Double = 0
-    Dim stock_primary As Double = 0
     Dim stock_secondary As Double = 0
-    Dim stock_no_of_servings As Double = 0
-    Dim SERVVAL As Double
-    Dim TOTALNOOFSERVINGS As Double = 0
-    Dim TOTALSTOCKSEC As Double = 0
-    Dim TOTALPRIMARYVAL As Double = 0
     Private Sub UpdateInventory()
         Try
             Dim Query As String = ""
@@ -591,36 +588,37 @@ Public Class POS
             Dim SqlDt As DataTable
             With DataGridViewInv
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    Query = "SELECT `primary_value`, `secondary_value`, `serving_value`, `no_servings` FROM `loc_product_formula` WHERE `formula_id` = " & .Rows(i).Cells(1).Value
-
-                    SqlCommand = New MySqlCommand(Query, LocalhostConn())
+                    Dim TotalQuantity As Double = 0
+                    Dim TotalServingValue As Double = 0
+                    Dim Secondary As Double = 0
+                    Dim ServingValue As Double = 0
+                    Dim TotalPrimary As Double = 0
+                    TotalQuantity = .Rows(i).Cells(2).Value
+                    TotalServingValue = .Rows(i).Cells(0).Value
+                    Query = "SELECT `secondary_value` FROM `loc_product_formula` WHERE formula_id = " & .Rows(i).Cells(1).Value
+                    SqlCommand = New MySqlCommand(Query, LocalhostConn)
                     SqlAdapter = New MySqlDataAdapter(SqlCommand)
                     SqlDt = New DataTable
                     SqlAdapter.Fill(SqlDt)
                     For Each row As DataRow In SqlDt.Rows
-                        primary_value = row("primary_value")
                         secondary_value = row("secondary_value")
-                        serving_value = row("serving_value")
-                        no_servings = row("no_servings")
                     Next
-                    LocalhostConn.Close()
-                    Query = "SELECT `stock_secondary`, `stock_no_of_servings` FROM loc_pos_inventory WHERE `formula_id` = " & .Rows(i).Cells(1).Value
-                    SqlCommand = New MySqlCommand(Query, LocalhostConn())
+                    Query = "SELECT `stock_secondary` FROM `loc_pos_inventory` WHERE formula_id = " & .Rows(i).Cells(1).Value
+                    SqlCommand = New MySqlCommand(Query, LocalhostConn)
                     SqlAdapter = New MySqlDataAdapter(SqlCommand)
                     SqlDt = New DataTable
                     SqlAdapter.Fill(SqlDt)
                     For Each row As DataRow In SqlDt.Rows
                         stock_secondary = row("stock_secondary")
-                        stock_no_of_servings = row("stock_no_of_servings")
                     Next
-                    SERVVAL = .Rows(i).Cells(0).Value
-                    TOTALSTOCKSEC = stock_secondary - SERVVAL
-                    TOTALNOOFSERVINGS = stock_no_of_servings - .Rows(i).Cells(2).Value
-                    TOTALPRIMARYVAL = TOTALSTOCKSEC / secondary_value
-                    Query = "UPDATE loc_pos_inventory SET `stock_secondary` = " & TOTALSTOCKSEC & " , `stock_no_of_servings` = " & TOTALNOOFSERVINGS & " , `stock_primary` = " & TOTALPRIMARYVAL & " WHERE `formula_id` = " & .Rows(i).Cells(1).Value
+                    Secondary = stock_secondary - TotalServingValue
+                    ServingValue = Secondary / .Rows(i).Cells(5).Value
+                    TotalPrimary = Secondary / secondary_value
+                    Query = "UPDATE loc_pos_inventory SET `stock_secondary` = " & Secondary & " , `stock_no_of_servings` = " & ServingValue & " , `stock_primary` = " & TotalPrimary & " WHERE `formula_id` = " & .Rows(i).Cells(1).Value
                     SqlCommand = New MySqlCommand(Query, LocalhostConn())
                     SqlCommand.ExecuteNonQuery()
                 Next
+
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -730,7 +728,6 @@ Public Class POS
     End Sub
 #End Region
     Dim INSERTTHISDATE
-
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
             With WaitFrm
@@ -1014,8 +1011,802 @@ Public Class POS
             MsgBox(ex.ToString)
         End Try
     End Sub
+#End Region
+#Region "Updates"
+#Region "Categories Update"
+    Private Function LoadCategoryLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        dtlocal.Columns.Add("updated_at")
+        dtlocal.Columns.Add("category_id")
+        Dim dtlocal1 As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT updated_at, category_id FROM loc_admin_category"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal1)
+            For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
+                Dim Cat As DataRow = dtlocal.NewRow
+                Cat("updated_at") = dtlocal1(i)(0).ToString
+                Cat("category_id") = dtlocal1(i)(1)
+                dtlocal.Rows.Add(Cat)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
+    Private Sub Function1()
+        Try
+            Dim Query = "SELECT * FROM loc_admin_category"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
+            Dim DtCheck As DataTable = New DataTable
+            DaCheck.Fill(DtCheck)
+            CategoryDTUpdate = New DataTable
+            CategoryDTUpdate.Columns.Add("category_id")
+            CategoryDTUpdate.Columns.Add("category_name")
+            CategoryDTUpdate.Columns.Add("brand_name")
+            CategoryDTUpdate.Columns.Add("updated_at")
+            CategoryDTUpdate.Columns.Add("origin")
+            CategoryDTUpdate.Columns.Add("status")
+            Dim cmdserver As MySqlCommand
+            Dim daserver As MySqlDataAdapter
+            Dim dtserver As DataTable
+            If DtCheck.Rows.Count < 1 Then
+                Dim sql = "SELECT `category_id`, `category_name`, `brand_name`, `updated_at`, `origin`, `status` FROM admin_category"
+                cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                daserver = New MySqlDataAdapter(cmdserver)
+                dtserver = New DataTable
+                daserver.Fill(dtserver)
+                For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                    DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5))
+                    Dim Category As DataRow = CategoryDTUpdate.NewRow
+                    Category("category_id") = dtserver(i)(0)
+                    Category("category_name") = dtserver(i)(1)
+                    Category("brand_name") = dtserver(i)(2)
+                    Category("updated_at") = dtserver(i)(3).ToString
+                    Category("origin") = dtserver(i)(4)
+                    Category("status") = dtserver(i)(5)
+                    CategoryDTUpdate.Rows.Add(Category)
+                Next
+            Else
+                Dim Ids As String = ""
+                If ValidCloudConnection = True Then
+                    For i As Integer = 0 To LoadCategoryLocal.Rows.Count - 1 Step +1
+                        If Ids = "" Then
+                            Ids = "" & LoadCategoryLocal(i)(1) & ""
+                        Else
+                            Ids += "," & LoadCategoryLocal(i)(1) & ""
+                        End If
+                    Next
+                    Dim sql = "SELECT `category_id`, `category_name`, `brand_name`, `updated_at`, `origin`, `status` FROM admin_category WHERE category_id IN (" & Ids & ")"
+                    cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                    daserver = New MySqlDataAdapter(cmdserver)
+                    dtserver = New DataTable
+                    daserver.Fill(dtserver)
+                    For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                        If LoadCategoryLocal(i)(0).ToString <> dtserver(i)(3).ToString Then
+                            DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5))
+                            Dim Category As DataRow = CategoryDTUpdate.NewRow
+                            Category("category_id") = dtserver(i)(0)
+                            Category("category_name") = dtserver(i)(1)
+                            Category("brand_name") = dtserver(i)(2)
+                            Category("updated_at") = dtserver(i)(3).ToString
+                            Category("origin") = dtserver(i)(4)
+                            Category("status") = dtserver(i)(5)
+                            CategoryDTUpdate.Rows.Add(Category)
+                        End If
+                    Next
+                    Dim sql2 = "SELECT `category_id`, `category_name`, `brand_name`, `updated_at`, `origin`, `status` FROM admin_category WHERE category_id NOT IN (" & Ids & ")"
+                    cmdserver = New MySqlCommand(sql2, ServerCloudCon())
+                    daserver = New MySqlDataAdapter(cmdserver)
+                    dtserver = New DataTable
+                    daserver.Fill(dtserver)
+                    For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                        If LoadCategoryLocal(i)(0) <> dtserver(i)(3) Then
+                            DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5))
+                            Dim Category As DataRow = CategoryDTUpdate.NewRow
+                            Category("category_id") = dtserver(i)(0)
+                            Category("category_name") = dtserver(i)(1)
+                            Category("brand_name") = dtserver(i)(2)
+                            Category("updated_at") = dtserver(i)(3).ToString
+                            Category("origin") = dtserver(i)(4)
+                            Category("status") = dtserver(i)(5)
+                            CategoryDTUpdate.Rows.Add(Category)
+                        End If
+                    Next
+                End If
+            End If
+        Catch ex As Exception
+
+            BackgroundWorker2.CancelAsync()
+            'If table doesnt have data
+        End Try
+    End Sub
+#End Region
+#Region "Products Update"
+    Private Function LoadProductLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        dtlocal.Columns.Add("date_modified")
+        dtlocal.Columns.Add("server_product_id")
+        Dim dtlocal1 As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT date_modified, server_product_id FROM loc_admin_products"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal1)
+            For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
+                Dim Cat As DataRow = dtlocal.NewRow
+                Cat("date_modified") = dtlocal1(i)(0).ToString
+                Cat("server_product_id") = dtlocal1(i)(1)
+                dtlocal.Rows.Add(Cat)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
+    Private Sub Function2()
+        Try
+            Dim Query = "SELECT * FROM loc_admin_products"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
+            Dim DtCheck As DataTable = New DataTable
+            DaCheck.Fill(DtCheck)
+            ProductDTUpdate = New DataTable
+            ProductDTUpdate.Columns.Add("product_id")
+            ProductDTUpdate.Columns.Add("product_sku")
+            ProductDTUpdate.Columns.Add("product_name")
+            ProductDTUpdate.Columns.Add("formula_id")
+            ProductDTUpdate.Columns.Add("product_barcode")
+            ProductDTUpdate.Columns.Add("product_category")
+            ProductDTUpdate.Columns.Add("product_price")
+            ProductDTUpdate.Columns.Add("product_desc")
+            ProductDTUpdate.Columns.Add("product_image")
+            ProductDTUpdate.Columns.Add("product_status")
+            ProductDTUpdate.Columns.Add("origin")
+            ProductDTUpdate.Columns.Add("date_modified")
+            Dim cmdserver As MySqlCommand
+            Dim daserver As MySqlDataAdapter
+            Dim dtserver As DataTable
+            If DtCheck.Rows.Count < 1 Then
+                Dim sql = "SELECT `product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified` FROM admin_products_org "
+                cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                daserver = New MySqlDataAdapter(cmdserver)
+                dtserver = New DataTable
+                daserver.Fill(dtserver)
+                For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                    DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11).ToString)
+                    Dim Product As DataRow = ProductDTUpdate.NewRow
+                    Product("product_id") = dtserver(i)(0)
+                    Product("product_sku") = dtserver(i)(1)
+                    Product("product_name") = dtserver(i)(2)
+                    Product("formula_id") = dtserver(i)(3)
+                    Product("product_barcode") = dtserver(i)(4)
+                    Product("product_category") = dtserver(i)(5)
+                    Product("product_price") = dtserver(i)(6)
+                    Product("product_desc") = dtserver(i)(7)
+                    Product("product_image") = dtserver(i)(8)
+                    Product("product_status") = dtserver(i)(9)
+                    Product("origin") = dtserver(i)(10)
+                    Product("date_modified") = dtserver(i)(11).ToString
+                    ProductDTUpdate.Rows.Add(Product)
+                Next
+            Else
+                Dim Ids As String = ""
+                If ValidCloudConnection = True Then
+                    For i As Integer = 0 To LoadProductLocal.Rows.Count - 1 Step +1
+                        If Ids = "" Then
+                            Ids = "" & LoadProductLocal(i)(1) & ""
+                        Else
+                            Ids += "," & LoadProductLocal(i)(1) & ""
+                        End If
+                    Next
+                    Dim sql = "SELECT `product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified` FROM admin_products_org WHERE product_id IN (" & Ids & ")"
+                    cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                    daserver = New MySqlDataAdapter(cmdserver)
+                    dtserver = New DataTable
+                    daserver.Fill(dtserver)
+                    For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                        If LoadProductLocal(i)(0) <> dtserver(i)(11).ToString Then
+                            DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11).ToString)
+                            Dim Product As DataRow = ProductDTUpdate.NewRow
+                            Product("product_id") = dtserver(i)(0)
+                            Product("product_sku") = dtserver(i)(1)
+                            Product("product_name") = dtserver(i)(2)
+                            Product("formula_id") = dtserver(i)(3)
+                            Product("product_barcode") = dtserver(i)(4)
+                            Product("product_category") = dtserver(i)(5)
+                            Product("product_price") = dtserver(i)(6)
+                            Product("product_desc") = dtserver(i)(7)
+                            Product("product_image") = dtserver(i)(8)
+                            Product("product_status") = dtserver(i)(9)
+                            Product("origin") = dtserver(i)(10)
+                            Product("date_modified") = dtserver(i)(11).ToString
+                            ProductDTUpdate.Rows.Add(Product)
+                        End If
+                    Next
+                    Dim sql2 = "SELECT `product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified` FROM admin_products_org WHERE product_id NOT IN (" & Ids & ")"
+                    cmdserver = New MySqlCommand(sql2, ServerCloudCon())
+                    daserver = New MySqlDataAdapter(cmdserver)
+                    dtserver = New DataTable
+                    daserver.Fill(dtserver)
+                    For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                        If LoadProductLocal(i)(0) <> dtserver(i)(11).ToString Then
+                            DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11).ToString)
+                            Dim Product As DataRow = ProductDTUpdate.NewRow
+                            Product("product_id") = dtserver(i)(0)
+                            Product("product_sku") = dtserver(i)(1)
+                            Product("product_name") = dtserver(i)(2)
+                            Product("formula_id") = dtserver(i)(3)
+                            Product("product_barcode") = dtserver(i)(4)
+                            Product("product_category") = dtserver(i)(5)
+                            Product("product_price") = dtserver(i)(6)
+                            Product("product_desc") = dtserver(i)(7)
+                            Product("product_image") = dtserver(i)(8)
+                            Product("product_status") = dtserver(i)(9)
+                            Product("origin") = dtserver(i)(10)
+                            Product("date_modified") = dtserver(i)(11)
+                            ProductDTUpdate.Rows.Add(Product)
+                        End If
+                    Next
+                End If
+            End If
 
 
+        Catch ex As Exception
+
+            BackgroundWorker2.CancelAsync()
+            'If table doesnt have data
+        End Try
+    End Sub
+
+#End Region
+#Region "Formulas Update"
+    Private Function LoadFormulaLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        dtlocal.Columns.Add("date_modified")
+        dtlocal.Columns.Add("server_formula_id")
+        Dim dtlocal1 As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT date_modified, server_formula_id FROM loc_product_formula"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal1)
+            For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
+                Dim Cat As DataRow = dtlocal.NewRow
+                Cat("date_modified") = dtlocal1(i)(0).ToString
+                Cat("server_formula_id") = dtlocal1(i)(1)
+                dtlocal.Rows.Add(Cat)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
+    Private Sub Function3()
+        Try
+            Dim Query = "SELECT * FROM loc_product_formula"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
+            Dim DtCheck As DataTable = New DataTable
+            DaCheck.Fill(DtCheck)
+            FormulaDTUpdate = New DataTable
+            FormulaDTUpdate.Columns.Add("formula_id")
+            FormulaDTUpdate.Columns.Add("product_ingredients")
+            FormulaDTUpdate.Columns.Add("primary_unit")
+            FormulaDTUpdate.Columns.Add("primary_value")
+            FormulaDTUpdate.Columns.Add("secondary_unit")
+            FormulaDTUpdate.Columns.Add("secondary_value")
+            FormulaDTUpdate.Columns.Add("serving_unit")
+            FormulaDTUpdate.Columns.Add("serving_value")
+            FormulaDTUpdate.Columns.Add("no_servings")
+            FormulaDTUpdate.Columns.Add("status")
+            FormulaDTUpdate.Columns.Add("date_modified")
+            FormulaDTUpdate.Columns.Add("unit_cost")
+            FormulaDTUpdate.Columns.Add("origin")
+            Dim cmdserver As MySqlCommand
+            Dim daserver As MySqlDataAdapter
+            Dim dtserver As DataTable
+            If DtCheck.Rows.Count < 1 Then
+                Dim sql = "SELECT `formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org"
+                cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                daserver = New MySqlDataAdapter(cmdserver)
+                dtserver = New DataTable
+                daserver.Fill(dtserver)
+                For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                    DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10).ToString, dtserver(i)(11), dtserver(i)(12))
+                    Dim Formula As DataRow = FormulaDTUpdate.NewRow
+                    Formula("formula_id") = dtserver(i)(0)
+                    Formula("product_ingredients") = dtserver(i)(1)
+                    Formula("primary_unit") = dtserver(i)(2)
+                    Formula("primary_value") = dtserver(i)(3)
+                    Formula("secondary_unit") = dtserver(i)(4)
+                    Formula("secondary_value") = dtserver(i)(5)
+                    Formula("serving_unit") = dtserver(i)(6)
+                    Formula("serving_value") = dtserver(i)(7)
+                    Formula("no_servings") = dtserver(i)(8)
+                    Formula("status") = dtserver(i)(9)
+                    Formula("date_modified") = dtserver(i)(10).ToString
+                    Formula("unit_cost") = dtserver(i)(11)
+                    Formula("origin") = dtserver(i)(12)
+                    FormulaDTUpdate.Rows.Add(Formula)
+                Next
+            Else
+                Dim Ids As String = ""
+                If ValidCloudConnection = True Then
+                    For i As Integer = 0 To LoadFormulaLocal.Rows.Count - 1 Step +1
+                        If Ids = "" Then
+                            Ids = "" & LoadFormulaLocal(i)(1) & ""
+                        Else
+                            Ids += "," & LoadFormulaLocal(i)(1) & ""
+                        End If
+                    Next
+                    Dim sql = "SELECT `formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE formula_id  IN (" & Ids & ") "
+                    cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                    daserver = New MySqlDataAdapter(cmdserver)
+                    dtserver = New DataTable
+                    daserver.Fill(dtserver)
+                    For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                        If LoadFormulaLocal(i)(0).ToString <> dtserver(i)(10).ToString Then
+                            DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10).ToString, dtserver(i)(11), dtserver(i)(12))
+                            Dim Formula As DataRow = FormulaDTUpdate.NewRow
+                            Formula("formula_id") = dtserver(i)(0)
+                            Formula("product_ingredients") = dtserver(i)(1)
+                            Formula("primary_unit") = dtserver(i)(2)
+                            Formula("primary_value") = dtserver(i)(3)
+                            Formula("secondary_unit") = dtserver(i)(4)
+                            Formula("secondary_value") = dtserver(i)(5)
+                            Formula("serving_unit") = dtserver(i)(6)
+                            Formula("serving_value") = dtserver(i)(7)
+                            Formula("no_servings") = dtserver(i)(8)
+                            Formula("status") = dtserver(i)(9)
+                            Formula("date_modified") = dtserver(i)(10).ToString
+                            Formula("unit_cost") = dtserver(i)(11)
+                            Formula("origin") = dtserver(i)(12)
+                            FormulaDTUpdate.Rows.Add(Formula)
+                        End If
+                    Next
+                    Dim sql2 = "SELECT `formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE formula_id NOT IN (" & Ids & ") "
+                    cmdserver = New MySqlCommand(sql2, ServerCloudCon())
+                    daserver = New MySqlDataAdapter(cmdserver)
+                    dtserver = New DataTable
+                    daserver.Fill(dtserver)
+                    For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                        If LoadFormulaLocal(i)(0).ToString <> dtserver(i)(10) Then
+                            DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10).ToString, dtserver(i)(11), dtserver(i)(12))
+                            Dim Formula As DataRow = FormulaDTUpdate.NewRow
+                            Formula("formula_id") = dtserver(i)(0)
+                            Formula("product_ingredients") = dtserver(i)(1)
+                            Formula("primary_unit") = dtserver(i)(2)
+                            Formula("primary_value") = dtserver(i)(3)
+                            Formula("secondary_unit") = dtserver(i)(4)
+                            Formula("secondary_value") = dtserver(i)(5)
+                            Formula("serving_unit") = dtserver(i)(6)
+                            Formula("serving_value") = dtserver(i)(7)
+                            Formula("no_servings") = dtserver(i)(8)
+                            Formula("status") = dtserver(i)(9)
+                            Formula("date_modified") = dtserver(i)(10).ToString
+                            Formula("unit_cost") = dtserver(i)(11)
+                            Formula("origin") = dtserver(i)(12)
+                            FormulaDTUpdate.Rows.Add(Formula)
+                        End If
+                    Next
+                End If
+            End If
+        Catch ex As Exception
+            BackgroundWorker2.CancelAsync()
+            'If table doesnt have data
+        End Try
+    End Sub
+#End Region
+#Region "Inventory Update"
+    Private Function LoadInventoryLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        dtlocal.Columns.Add("server_date_modified")
+        dtlocal.Columns.Add("server_inventory_id")
+        Dim dtlocal1 As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT server_date_modified , server_inventory_id FROM loc_pos_inventory"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal)
+            For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
+                Dim Cat As DataRow = dtlocal.NewRow
+                Cat("server_date_modified") = dtlocal1(i)(0).ToString
+                Cat("server_inventory_id") = dtlocal1(i)(1)
+                dtlocal.Rows.Add(Cat)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
+    Private Sub Function4()
+        Try
+            Dim Query = "SELECT * FROM loc_pos_inventory"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
+            Dim DtCheck As DataTable = New DataTable
+            DaCheck.Fill(DtCheck)
+            InventoryDTUpdate = New DataTable
+            InventoryDTUpdate.Columns.Add("inventory_id")
+            InventoryDTUpdate.Columns.Add("formula_id")
+            InventoryDTUpdate.Columns.Add("product_ingredients")
+            InventoryDTUpdate.Columns.Add("sku")
+            InventoryDTUpdate.Columns.Add("stock_primary")
+            InventoryDTUpdate.Columns.Add("stock_secondary")
+            InventoryDTUpdate.Columns.Add("stock_no_of_servings")
+            InventoryDTUpdate.Columns.Add("stock_status")
+            InventoryDTUpdate.Columns.Add("critical_limit")
+            InventoryDTUpdate.Columns.Add("date_modified")
+            Dim cmdserver As MySqlCommand
+            Dim daserver As MySqlDataAdapter
+            Dim dtserver As DataTable
+            If DtCheck.Rows.Count < 1 Then
+                Dim sql = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified` FROM admin_pos_inventory_org"
+                cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                daserver = New MySqlDataAdapter(cmdserver)
+                dtserver = New DataTable
+                daserver.Fill(dtserver)
+                For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                    DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
+                    Dim Inventory As DataRow = InventoryDTUpdate.NewRow
+                    Inventory("inventory_id") = dtserver(i)(0)
+                    Inventory("formula_id") = dtserver(i)(1)
+                    Inventory("product_ingredients") = dtserver(i)(2)
+                    Inventory("sku") = dtserver(i)(3)
+                    Inventory("stock_primary") = dtserver(i)(4)
+                    Inventory("stock_secondary") = dtserver(i)(5)
+                    Inventory("stock_no_of_servings") = dtserver(i)(6)
+                    Inventory("stock_status") = dtserver(i)(7)
+                    Inventory("critical_limit") = dtserver(i)(8)
+                    Inventory("date_modified") = dtserver(i)(9)
+                    InventoryDTUpdate.Rows.Add(Inventory)
+                Next
+            Else
+                Dim Ids As String = ""
+                If ValidCloudConnection = True Then
+                    For i As Integer = 0 To LoadInventoryLocal.Rows.Count - 1 Step +1
+                        If Ids = "" Then
+                            Ids = "" & LoadInventoryLocal(i)(1) & ""
+                        Else
+                            Ids += "," & LoadInventoryLocal(i)(1) & ""
+                        End If
+                    Next
+                    Dim sql = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified` FROM admin_pos_inventory_org WHERE inventory_id IN (" & Ids & ")"
+                    cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                    daserver = New MySqlDataAdapter(cmdserver)
+                    dtserver = New DataTable
+                    daserver.Fill(dtserver)
+                    For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                        If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(9).ToString Then
+                            DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
+                            Dim Inventory As DataRow = InventoryDTUpdate.NewRow
+                            Inventory("inventory_id") = dtserver(i)(0)
+                            Inventory("formula_id") = dtserver(i)(1)
+                            Inventory("product_ingredients") = dtserver(i)(2)
+                            Inventory("sku") = dtserver(i)(3)
+                            Inventory("stock_primary") = dtserver(i)(4)
+                            Inventory("stock_secondary") = dtserver(i)(5)
+                            Inventory("stock_no_of_servings") = dtserver(i)(6)
+                            Inventory("stock_status") = dtserver(i)(7)
+                            Inventory("critical_limit") = dtserver(i)(8)
+                            Inventory("date_modified") = dtserver(i)(9)
+                            InventoryDTUpdate.Rows.Add(Inventory)
+                        End If
+                    Next
+                    Dim sql2 = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified` FROM admin_pos_inventory_org WHERE inventory_id NOT IN (" & Ids & ")"
+                    cmdserver = New MySqlCommand(sql2, ServerCloudCon())
+                    daserver = New MySqlDataAdapter(cmdserver)
+                    dtserver = New DataTable
+                    daserver.Fill(dtserver)
+                    For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                        If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(9) Then
+                            DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
+                            Dim Inventory As DataRow = InventoryDTUpdate.NewRow
+                            Inventory("inventory_id") = dtserver(i)(0)
+                            Inventory("formula_id") = dtserver(i)(1)
+                            Inventory("product_ingredients") = dtserver(i)(2)
+                            Inventory("sku") = dtserver(i)(3)
+                            Inventory("stock_primary") = dtserver(i)(4)
+                            Inventory("stock_secondary") = dtserver(i)(5)
+                            Inventory("stock_no_of_servings") = dtserver(i)(6)
+                            Inventory("stock_status") = dtserver(i)(7)
+                            Inventory("critical_limit") = dtserver(i)(8)
+                            Inventory("date_modified") = dtserver(i)(9)
+                            InventoryDTUpdate.Rows.Add(Inventory)
+                        End If
+                    Next
+                End If
+            End If
+        Catch ex As Exception
+            BackgroundWorker2.CancelAsync()
+            'If table doesnt have data
+        End Try
+    End Sub
+    Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
+        Try
+            If ValidDatabaseLocalConnection Then
+                thread = New Thread(AddressOf ServerCloudCon)
+                thread.Start()
+                THREADLISTUPDATE.Add(thread)
+                For Each t In THREADLISTUPDATE
+                    t.Join()
+                Next
+                If ServerCloudCon.state = ConnectionState.Open Then
+                    thread = New Thread(AddressOf Function1)
+                    thread.Start()
+                    THREADLISTUPDATE.Add(thread)
+                    thread = New Thread(AddressOf Function2)
+                    thread.Start()
+                    THREADLISTUPDATE.Add(thread)
+                    thread = New Thread(AddressOf Function3)
+                    thread.Start()
+                    THREADLISTUPDATE.Add(thread)
+                    thread = New Thread(AddressOf Function4)
+                    thread.Start()
+                    THREADLISTUPDATE.Add(thread)
+                End If
+                For Each t In THREADLISTUPDATE
+                    t.Join()
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
+        Try
+            DataGridViewPRODUCTUPDATE.DataSource = ProductDTUpdate
+            DataGridViewFORMULAUPDATE.DataSource = FormulaDTUpdate
+            DataGridViewCATEGORYUPDATE.DataSource = CategoryDTUpdate
+            DataGridViewINVENTORYUPDATE.DataSource = InventoryDTUpdate
+            LabelCheckingUpdates.Text = "Complete!"
+
+            If DataGridViewPRODUCTUPDATE.Rows.Count > 0 Or DataGridViewFORMULAUPDATE.Rows.Count > 0 Or DataGridViewCATEGORYUPDATE.Rows.Count > 0 Or DataGridViewINVENTORYUPDATE.Rows.Count > 0 Then
+                Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                If updatemessage = DialogResult.Yes Then
+                    InstallUpdatesFormula()
+                    InstallUpdatesInventory()
+                    InstallUpdatesCategory()
+                    InstallUpdatesProducts()
+                    listviewproductsshow(where:="Simply Perfect")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub InstallUpdatesCategory()
+        Try
+            Dim cmdlocal As MySqlCommand
+            With DataGridViewCATEGORYUPDATE
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    Dim sql = "SELECT category_id FROM loc_admin_category WHERE category_id = " & .Rows(i).Cells(0).Value
+                    cmdlocal = New MySqlCommand(sql, LocalhostConn())
+                    Dim result As Integer = cmdlocal.ExecuteScalar
+                    If result = 0 Then
+                        Dim sqlinsert = "INSERT INTO `loc_admin_category`(`category_name`, `brand_name`, `updated_at`, `origin`, `status`) VALUES (@0,@1,@2,@3,@4)"
+                        cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
+                        cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                        cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+                        cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+                        cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
+                        cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
+                        cmdlocal.ExecuteNonQuery()
+                    Else
+                        Dim sqlupdate = "UPDATE `loc_admin_category` SET `category_name`=@0,`brand_name`=@1,`updated_at`=@2,`origin`=@3,`status`=@4 WHERE category_id = " & .Rows(i).Cells(0).Value
+                        cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
+                        cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                        cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+                        cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+                        cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
+                        cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
+                        cmdlocal.ExecuteNonQuery()
+                    End If
+                Next
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub InstallUpdatesFormula()
+        Try
+            Dim cmdlocal As MySqlCommand
+            With DataGridViewFORMULAUPDATE
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    Dim sql = "SELECT formula_id FROM loc_product_formula WHERE formula_id = " & .Rows(i).Cells(0).Value
+                    cmdlocal = New MySqlCommand(sql, LocalhostConn())
+                    Dim result As Integer = cmdlocal.ExecuteScalar
+                    If result = 0 Then
+                        Dim sqlinsert = "INSERT INTO loc_product_formula (`server_formula_id`,`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`, `store_id`, `guid`, `crew_id`, `server_date_modified`) VALUES
+                                        (@0 ,@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11 , @12 , @13 , @14, @15, @16)"
+                        cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
+                        cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                        cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                        cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+                        cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+                        cmdlocal.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
+                        cmdlocal.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
+                        cmdlocal.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
+                        cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
+                        cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
+                        cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
+                        cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
+                        cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientStoreID
+                        cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = ClientGuid
+                        cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
+                        cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.ExecuteNonQuery()
+                    Else
+                        Dim sqlupdate = "UPDATE `loc_product_formula` SET 
+`server_formula_id`= @0
+,`product_ingredients`= @1
+,`primary_unit`= @2
+,`primary_value`= @3
+,`secondary_unit`= @4
+,`secondary_value`=@5
+,`serving_unit`=@6
+,`serving_value`=@7
+,`no_servings`=@8
+,`status`=@9
+,`date_modified`=@10
+,`unit_cost`=@11
+,`origin`=@12
+,`store_id`=@13
+,`guid`=@14
+,`server_date_modified`=@15 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
+                        cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
+                        cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                        cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                        cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+                        cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+                        cmdlocal.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
+                        cmdlocal.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
+                        cmdlocal.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
+                        cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
+                        cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
+                        cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
+                        cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
+                        cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientStoreID
+                        cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = ClientGuid
+                        cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.ExecuteNonQuery()
+                        cmdlocal.ExecuteNonQuery()
+                    End If
+                Next
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub InstallUpdatesInventory()
+        Try
+            Dim cmdlocal As MySqlCommand
+            With DataGridViewINVENTORYUPDATE
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    Dim sql = "SELECT inventory_id FROM loc_pos_inventory WHERE inventory_id = " & .Rows(i).Cells(0).Value
+                    cmdlocal = New MySqlCommand(sql, LocalhostConn())
+                    Dim result As Integer = cmdlocal.ExecuteScalar
+                    If result = 0 Then
+                        Dim sqlinsert = "INSERT INTO loc_pos_inventory (`server_inventory_id`,`formula_id`,`product_ingredients`,`sku`,`stock_primary`,`stock_secondary`,`stock_no_of_servings`,`stock_status`,`critical_limit`,`created_at`,`server_date_modified`,`store_id`,`crew_id`,`guid`,`synced`) VALUES
+                                        (@0 ,@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14)"
+                        cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
+                        cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                        cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
+                        cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+                        cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+                        cmdlocal.Parameters.Add("@4", MySqlDbType.Decimal).Value = .Rows(i).Cells(4).Value.ToString()
+                        cmdlocal.Parameters.Add("@5", MySqlDbType.Decimal).Value = .Rows(i).Cells(5).Value.ToString()
+                        cmdlocal.Parameters.Add("@6", MySqlDbType.Decimal).Value = .Rows(i).Cells(6).Value.ToString()
+                        cmdlocal.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
+                        cmdlocal.Parameters.Add("@8", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString()
+                        cmdlocal.Parameters.Add("@9", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString()
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString()
+
+                        cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = ClientStoreID
+                        cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = "0"
+                        cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientGuid
+                        cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
+                        cmdlocal.ExecuteNonQuery()
+                    Else
+
+                        Dim sqlUpdate = "UPDATE `loc_pos_inventory` SET `server_inventory_id`= @0,`formula_id`=@1,`product_ingredients`=@2,`sku`=@3,`stock_primary`=@4,`stock_secondary`=@5,`stock_no_of_servings`=@6,`stock_status`=@7,`critical_limit`=@8,`created_at`=@9,`server_date_modified`=@10,`store_id`=@11,`crew_id`=@12,`guid`=@13,`synced`=@14 WHERE `server_inventory_id`= " & .Rows(i).Cells(0).Value
+                        cmdlocal = New MySqlCommand(sqlUpdate, LocalhostConn())
+                        cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                        cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
+                        cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+                        cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+                        cmdlocal.Parameters.Add("@4", MySqlDbType.Decimal).Value = .Rows(i).Cells(4).Value.ToString()
+                        cmdlocal.Parameters.Add("@5", MySqlDbType.Decimal).Value = .Rows(i).Cells(5).Value.ToString()
+                        cmdlocal.Parameters.Add("@6", MySqlDbType.Decimal).Value = .Rows(i).Cells(6).Value.ToString()
+                        cmdlocal.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
+                        cmdlocal.Parameters.Add("@8", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString()
+                        cmdlocal.Parameters.Add("@9", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString()
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString()
+
+                        cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = ClientStoreID
+                        cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = "0"
+                        cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientGuid
+                        cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
+                        cmdlocal.ExecuteNonQuery()
+                    End If
+                Next
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub InstallUpdatesProducts()
+        Try
+            Dim cmdlocal As MySqlCommand
+            With DataGridViewPRODUCTUPDATE
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    Dim sql = "SELECT product_id FROM loc_admin_products WHERE product_id = " & .Rows(i).Cells(0).Value
+                    cmdlocal = New MySqlCommand(sql, LocalhostConn())
+                    Dim result As Integer = cmdlocal.ExecuteScalar
+                    If result = 0 Then
+                        Dim sqlinsert = "INSERT INTO loc_admin_products (`server_product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `store_id`, `crew_id`, `synced`) VALUES
+                                        (@0 ,@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15)"
+                        cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
+                        cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                        cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                        cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+                        cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+                        cmdlocal.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
+                        cmdlocal.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
+                        cmdlocal.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(6).Value.ToString()
+                        cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
+                        cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
+                        cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
+                        cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = ClientGuid
+                        cmdlocal.Parameters.Add("@13", MySqlDbType.Int64).Value = ClientStoreID
+                        cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "0"
+                        cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "Synced"
+                        cmdlocal.ExecuteNonQuery()
+                    Else
+                        Dim sqlupdate = "UPDATE `loc_admin_products` SET `server_product_id`=@0,`product_sku`=@1,`product_name`=@2,`formula_id`=@3,`product_barcode`=@4,`product_category`=@5,`product_price`=@6,`product_desc`=@7,`product_image`=@8,`product_status`=@9,`origin`=@10,`date_modified`=@11,`guid`=@12,`store_id`=@13,`crew_id`=@14,`synced`=@15 WHERE server_product_id =  " & .Rows(i).Cells(0).Value
+                        cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
+                        cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                        cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                        cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+                        cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+                        cmdlocal.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
+                        cmdlocal.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
+                        cmdlocal.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(6).Value.ToString()
+                        cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
+                        cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
+                        cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
+                        cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = ClientGuid
+                        cmdlocal.Parameters.Add("@13", MySqlDbType.Int64).Value = ClientStoreID
+                        cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "0"
+                        cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "Synced"
+                        cmdlocal.ExecuteNonQuery()
+                    End If
+                Next
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+#End Region
 #End Region
 End Class
 

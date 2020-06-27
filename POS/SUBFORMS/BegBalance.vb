@@ -21,34 +21,34 @@ Public Class BegBalance
             If ComboBox1.Text <> "" Then
                 If Val(Label12.Text) <> 0 Then
                     InsertBeginningBalance()
-                    With POS
-                        If .DataGridViewPRODUCTUPDATE.Rows.Count > 0 Or .DataGridViewFORMULAUPDATE.Rows.Count > 0 Or .DataGridViewCATEGORYUPDATE.Rows.Count > 0 Or .DataGridViewINVENTORYUPDATE.Rows.Count > 0 Then
-                            Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                            If updatemessage = DialogResult.Yes Then
-                                InstallUpdatesFormula()
-                                InstallUpdatesInventory()
-                                InstallUpdatesCategory()
-                                InstallUpdatesProducts()
-                                listviewproductsshow(where:="Simply Perfect")
-                            End If
-                        End If
-                    End With
+                    'With POS
+                    '    If .DataGridViewPRODUCTUPDATE.Rows.Count > 0 Or .DataGridViewFORMULAUPDATE.Rows.Count > 0 Or .DataGridViewCATEGORYUPDATE.Rows.Count > 0 Or .DataGridViewINVENTORYUPDATE.Rows.Count > 0 Then
+                    '        Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                    '        If updatemessage = DialogResult.Yes Then
+                    '            InstallUpdatesFormula()
+                    '            InstallUpdatesInventory()
+                    '            InstallUpdatesCategory()
+                    '            InstallUpdatesProducts()
+                    '            listviewproductsshow(where:="Simply Perfect")
+                    '        End If
+                    '    End If
+                    'End With
                 Else
                     Dim message As Integer = MessageBox.Show("Cash drawer has zero balance. Do you want to proceed ?", "Zero Balance", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                     If message = DialogResult.Yes Then
                         InsertBeginningBalance()
-                        With POS
-                            If .DataGridViewPRODUCTUPDATE.Rows.Count > 0 Or .DataGridViewFORMULAUPDATE.Rows.Count > 0 Or .DataGridViewCATEGORYUPDATE.Rows.Count > 0 Or .DataGridViewINVENTORYUPDATE.Rows.Count > 0 Then
-                                Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                                If updatemessage = DialogResult.Yes Then
-                                    InstallUpdatesFormula()
-                                    InstallUpdatesInventory()
-                                    InstallUpdatesCategory()
-                                    InstallUpdatesProducts()
-                                    listviewproductsshow(where:="Simply Perfect")
-                                End If
-                            End If
-                        End With
+                        'With POS
+                        '    If .DataGridViewPRODUCTUPDATE.Rows.Count > 0 Or .DataGridViewFORMULAUPDATE.Rows.Count > 0 Or .DataGridViewCATEGORYUPDATE.Rows.Count > 0 Or .DataGridViewINVENTORYUPDATE.Rows.Count > 0 Then
+                        '        Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                        '        If updatemessage = DialogResult.Yes Then
+                        '            InstallUpdatesFormula()
+                        '            InstallUpdatesInventory()
+                        '            InstallUpdatesCategory()
+                        '            InstallUpdatesProducts()
+                        '            listviewproductsshow(where:="Simply Perfect")
+                        '        End If
+                        '    End If
+                        'End With
                     End If
                 End If
             Else
@@ -200,8 +200,8 @@ Public Class BegBalance
                     cmdlocal = New MySqlCommand(sql, LocalhostConn())
                     Dim result As Integer = cmdlocal.ExecuteScalar
                     If result = 0 Then
-                        Dim sqlinsert = "INSERT INTO loc_pos_inventory (`server_inventory_id`=,`formula_id`,`product_ingredients`,`sku`,`stock_primary`,`stock_secondary`,`stock_no_of_servings`,`stock_status`,`critical_limit`,`created_at`,`server_date_modified`) VALUES
-                                        (@0 ,@1, @2, @3, @4, @5, @6, @7, @8, @9, @10)"
+                        Dim sqlinsert = "INSERT INTO loc_pos_inventory (`server_inventory_id`,`formula_id`,`product_ingredients`,`sku`,`stock_primary`,`stock_secondary`,`stock_no_of_servings`,`stock_status`,`critical_limit`,`created_at`,`server_date_modified`,`store_id`,`crew_id`,`guid`,`synced`) VALUES
+                                        (@0 ,@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14)"
                         cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
@@ -214,10 +214,15 @@ Public Class BegBalance
                         cmdlocal.Parameters.Add("@8", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString()
                         cmdlocal.Parameters.Add("@10", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString()
+
+                        cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = ClientStoreID
+                        cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = "0"
+                        cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientGuid
+                        cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
                         cmdlocal.ExecuteNonQuery()
                     Else
 
-                        Dim sqlUpdate = "UPDATE `loc_pos_inventory` SET `server_inventory_id`= @0,`formula_id`=@1,`product_ingredients`=@2,`sku`=@3,`stock_primary`=@4,`stock_secondary`=@5,`stock_no_of_servings`=@6,`stock_status`=@7,`critical_limit`=@8,`created_at`=@9,`server_date_modified`=@10 WHERE `server_inventory_id`= " & .Rows(i).Cells(0).Value
+                        Dim sqlUpdate = "UPDATE `loc_pos_inventory` SET `server_inventory_id`= @0,`formula_id`=@1,`product_ingredients`=@2,`sku`=@3,`stock_primary`=@4,`stock_secondary`=@5,`stock_no_of_servings`=@6,`stock_status`=@7,`critical_limit`=@8,`created_at`=@9,`server_date_modified`=@10,`store_id`=@11,`crew_id`=@12,`guid`=@13,`synced`=@14 WHERE `server_inventory_id`= " & .Rows(i).Cells(0).Value
                         cmdlocal = New MySqlCommand(sqlUpdate, LocalhostConn())
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
@@ -230,6 +235,11 @@ Public Class BegBalance
                         cmdlocal.Parameters.Add("@8", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString()
                         cmdlocal.Parameters.Add("@10", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString()
+
+                        cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = ClientStoreID
+                        cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = "0"
+                        cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientGuid
+                        cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
                         cmdlocal.ExecuteNonQuery()
                     End If
                 Next
