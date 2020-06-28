@@ -1254,6 +1254,14 @@ Public Class POS
     End Sub
 #End Region
 #Region "Products Update"
+    Dim UPDATEPRODUCTONLY As Boolean = False
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        UPDATEPRODUCTONLY = True
+        BackgroundWorker2.WorkerReportsProgress = True
+        BackgroundWorker2.WorkerSupportsCancellation = True
+        BackgroundWorker2.RunWorkerAsync()
+        LabelCheckingUpdates.Text = "Checking for updates."
+    End Sub
     Private Function LoadProductLocal() As DataTable
         Dim cmdlocal As MySqlCommand
         Dim dalocal As MySqlDataAdapter
@@ -1674,18 +1682,24 @@ Public Class POS
                     t.Join()
                 Next
                 If ServerCloudCon.state = ConnectionState.Open Then
-                    thread = New Thread(AddressOf Function1)
-                    thread.Start()
-                    THREADLISTUPDATE.Add(thread)
-                    thread = New Thread(AddressOf Function2)
-                    thread.Start()
-                    THREADLISTUPDATE.Add(thread)
-                    thread = New Thread(AddressOf Function3)
-                    thread.Start()
-                    THREADLISTUPDATE.Add(thread)
-                    thread = New Thread(AddressOf Function4)
-                    thread.Start()
-                    THREADLISTUPDATE.Add(thread)
+                    If UPDATEPRODUCTONLY = False Then
+                        thread = New Thread(AddressOf Function1)
+                        thread.Start()
+                        THREADLISTUPDATE.Add(thread)
+                        thread = New Thread(AddressOf Function2)
+                        thread.Start()
+                        THREADLISTUPDATE.Add(thread)
+                        thread = New Thread(AddressOf Function3)
+                        thread.Start()
+                        THREADLISTUPDATE.Add(thread)
+                        thread = New Thread(AddressOf Function4)
+                        thread.Start()
+                        THREADLISTUPDATE.Add(thread)
+                    Else
+                        thread = New Thread(AddressOf Function2)
+                        thread.Start()
+                        THREADLISTUPDATE.Add(thread)
+                    End If
                 End If
                 For Each t In THREADLISTUPDATE
                     t.Join()
@@ -1697,6 +1711,8 @@ Public Class POS
     End Sub
     Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
         Try
+            Button3.Enabled = True
+            UPDATEPRODUCTONLY = False
             DataGridViewPRODUCTUPDATE.DataSource = ProductDTUpdate
             DataGridViewFORMULAUPDATE.DataSource = FormulaDTUpdate
             DataGridViewCATEGORYUPDATE.DataSource = CategoryDTUpdate
@@ -1944,6 +1960,8 @@ Public Class POS
             MsgBox(ex.ToString)
         End Try
     End Sub
+
+
 
 
 #End Region
