@@ -668,14 +668,14 @@ Public Class Reports
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub InsertZreadInv()
-        Try
-            S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
-            XZreadingInventory(S_Zreading)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
+    'Private Sub InsertZreadInv()
+    '    Try
+    '        S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
+    '        XZreadingInventory(S_Zreading)
+    '    Catch ex As Exception
+    '        MsgBox(ex.ToString)
+    '    End Try
+    'End Sub
 
     Private Sub XZreadingInventory(zreaddate)
         Try
@@ -726,12 +726,6 @@ Public Class Reports
                     thread1 = New Thread(AddressOf FillZreadInv)
                     thread1.Start()
                     threadlist.Add(thread1)
-                    For Each t In threadlist
-                        t.Join()
-                    Next
-                    thread1 = New Thread(AddressOf InsertZreadInv)
-                    thread1.Start()
-                    threadlist.Add(thread1)
                 End If
                 For Each t In threadlist
                     t.Join()
@@ -741,12 +735,6 @@ Public Class Reports
             MsgBox(ex.ToString)
         End Try
     End Sub
-    'Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-    '    printdocInventory.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
-    '    PrintPreviewDialogInventory.Document = printdocInventory
-    '    PrintPreviewDialogInventory.ShowDialog()
-    'End Sub
-
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Try
             XreadOrZread = "Z-READ"
@@ -760,6 +748,7 @@ Public Class Reports
             cmd = New MySqlCommand(sql, LocalhostConn())
             cmd.ExecuteNonQuery()
             cmd.Dispose()
+            XZreadingInventory(S_Zreading)
             S_Zreading = Format(Now(), "yyyy-MM-dd")
             ButtonZread.Enabled = False
         Catch ex As Exception
@@ -772,12 +761,6 @@ Public Class Reports
             For i = 0 To 100
                 If i = 0 Then
                     thread1 = New Thread(AddressOf FillZreadInv)
-                    thread1.Start()
-                    threadlist.Add(thread1)
-                    For Each t In threadlist
-                        t.Join()
-                    Next
-                    thread1 = New Thread(AddressOf InsertZreadInv)
                     thread1.Start()
                     threadlist.Add(thread1)
                 End If
@@ -806,7 +789,8 @@ Public Class Reports
                 ButtonZread.Enabled = False
                 Button6.Enabled = False
             End If
-
+            XZreadingInventory(S_Zreading)
+            S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -823,11 +807,9 @@ Public Class Reports
                 where = "zreading = '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewZreadInvData, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
-
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-
     End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         FillDatagridZreadInv(True)
