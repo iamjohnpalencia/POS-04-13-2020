@@ -890,26 +890,26 @@ Public Class POS
                     BackgroundWorker1.ReportProgress(i)
                     If i = 0 Then
                         .Label1.Text = "Transaction is processing. Please wait."
-                        'thread = New Thread(AddressOf InsertFMStock)
-                        'thread.Start()
-                        'THREADLIST.Add(thread)
-                        'thread = New Thread(AddressOf UpdateInventory)
-                        'thread.Start()
-                        'THREADLIST.Add(thread)
-                        'thread = New Thread(AddressOf InsertDailyTransaction)
-                        'thread.Start()
-                        'THREADLIST.Add(thread)
-                        'thread = New Thread(AddressOf InsertDailyDetails)
-                        'thread.Start()
-                        'THREADLIST.Add(thread)
-                        'If modeoftransaction = True Then
-                        '    thread = New Thread(AddressOf InsertModeofTransaction)
-                        '    thread.Start()
-                        '    THREADLIST.Add(thread)
-                        'End If
-                        'thread = New Thread(AddressOf InsertCouponData)
-                        'thread.Start()
-                        'THREADLIST.Add(thread)
+                        thread = New Thread(AddressOf InsertFMStock)
+                        thread.Start()
+                        THREADLIST.Add(thread)
+                        thread = New Thread(AddressOf UpdateInventory)
+                        thread.Start()
+                        THREADLIST.Add(thread)
+                        thread = New Thread(AddressOf InsertDailyTransaction)
+                        thread.Start()
+                        THREADLIST.Add(thread)
+                        thread = New Thread(AddressOf InsertDailyDetails)
+                        thread.Start()
+                        THREADLIST.Add(thread)
+                        If modeoftransaction = True Then
+                            thread = New Thread(AddressOf InsertModeofTransaction)
+                            thread.Start()
+                            THREADLIST.Add(thread)
+                        End If
+                        thread = New Thread(AddressOf InsertCouponData)
+                        thread.Start()
+                        THREADLIST.Add(thread)
                     End If
                     Thread.Sleep(10)
                 Next
