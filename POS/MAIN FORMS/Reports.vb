@@ -500,9 +500,11 @@ Public Class Reports
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         XreadOrZread = "X-READ"
         ReadingOR = "X" & Format(Now, "yyddMMHHmmssyy")
+
         printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
         PrintPreviewDialogXread.Document = printdocXread
         PrintPreviewDialogXread.ShowDialog()
+
         SystemLogDesc = "X Reading : " & FullDate24HR() & " Crew : " & returnfullname(ClientCrewID)
         SystemLogType = "X-READ"
         GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
@@ -536,11 +538,14 @@ Public Class Reports
             Dim DepositSlip = sum("amount", "loc_deposit WHERE date(transaction_date) = '" & ZreadDateFormat & "' ")
             Dim TotalVat = LessVat
             Dim BegBalance = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ORDER by log_date_time DESC LIMIT 1")
-            Dim CashInDrawer = BegBalance + Val(NEWgrandtotal) - Val(totalExpenses)
-            Dim CashTotal = CashInDrawer
+
+
             'Select Case sum(CAST(log_description As Decimal(10, 2))) As CashierBal FROM `loc_system_logs` WHERE log_type In ('BG-1','BG-2','BG-3','BG-4')
             Dim DailySales = GrossSale - LessVat - TotalDiscount
             Dim NetSales = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' ")
+            Dim CashInDrawer = DailySales + BeginningBalance - totalExpenses
+            Dim CashTotal = CashInDrawer
+
             CenterTextDisplay(sender, e, ClientBrand.ToUpper, brandfont, 10)
             '============================================================================================================================
             CenterTextDisplay(sender, e, "Opt by : Innovention Food Asia Co.", font, 21)
