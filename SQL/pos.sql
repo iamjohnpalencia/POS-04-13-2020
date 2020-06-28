@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2020 at 07:39 PM
+-- Generation Time: Jun 28, 2020 at 08:48 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -81,6 +81,7 @@ CREATE TABLE `admin_outlets` (
 -- Dumping data for table `admin_outlets`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -126,13 +127,13 @@ CREATE TABLE `loc_admin_products` (
   `store_id` int(11) NOT NULL,
   `crew_id` varchar(50) NOT NULL,
   `synced` varchar(50) NOT NULL,
-  `server_product_id` int(11) NOT NULL
+  `server_product_id` int(11) NOT NULL,
+  `server_inventory_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_admin_products`
 --
-
 
 
 -- --------------------------------------------------------
@@ -156,6 +157,8 @@ CREATE TABLE `loc_coupon_data` (
 -- Dumping data for table `loc_coupon_data`
 --
 
+INSERT INTO `loc_coupon_data` (`id`, `transaction_number`, `coupon_name`, `coupon_desc`, `coupon_type`, `coupon_line`, `coupon_total`) VALUES
+(1, '20280608082120', '', '', 'N/A', '10', '0');
 
 -- --------------------------------------------------------
 
@@ -406,7 +409,6 @@ CREATE TABLE `loc_inv_temp_data` (
 -- Dumping data for table `loc_inv_temp_data`
 --
 
-
 -- --------------------------------------------------------
 
 --
@@ -492,7 +494,6 @@ CREATE TABLE `loc_pos_inventory` (
 -- Dumping data for table `loc_pos_inventory`
 --
 
-
 -- --------------------------------------------------------
 
 --
@@ -524,7 +525,6 @@ CREATE TABLE `loc_product_formula` (
 --
 -- Dumping data for table `loc_product_formula`
 --
-
 
 -- --------------------------------------------------------
 
@@ -582,6 +582,7 @@ CREATE TABLE `loc_settings` (
 --
 -- Dumping data for table `loc_settings`
 --
+
 
 -- --------------------------------------------------------
 
@@ -642,11 +643,6 @@ CREATE TABLE `loc_transaction_mode_details` (
   `synced` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `loc_transaction_mode_details`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -668,10 +664,6 @@ CREATE TABLE `loc_transfer_data` (
 -- Dumping data for table `loc_transfer_data`
 --
 
-INSERT INTO `loc_transfer_data` (`transfer_id`, `transfer_cat`, `crew_id`, `created_at`, `created_by`, `updated_at`, `active`) VALUES
-(1, 'SPOILAGE', 'FBW17-6051', '2020-06-27 18:25:48', 'FBW17-6051', '2020-06-27 18:25:48', 1),
-(2, 'WASTE', 'FBW17-6051', '2020-06-27 18:26:04', 'FBW17-6051', '2020-06-27 18:26:04', 1),
-(3, 'LOST', 'FBW17-6051', '2020-06-27 18:26:08', 'FBW17-6051', '2020-06-27 18:26:08', 1);
 
 -- --------------------------------------------------------
 
