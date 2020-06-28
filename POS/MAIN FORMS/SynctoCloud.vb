@@ -1347,7 +1347,7 @@ Public Class SynctoCloud
         End Try
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs) 
         Me.WindowState = FormWindowState.Minimized
     End Sub
 End Class

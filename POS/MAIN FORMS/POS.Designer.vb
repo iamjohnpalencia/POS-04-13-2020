@@ -24,10 +24,10 @@ Partial Class POS
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(POS))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
@@ -536,10 +536,10 @@ Partial Class POS
         '
         'TextBoxFormulaID
         '
-        Me.TextBoxFormulaID.Location = New System.Drawing.Point(387, 12)
+        Me.TextBoxFormulaID.Location = New System.Drawing.Point(41, 9)
         Me.TextBoxFormulaID.Name = "TextBoxFormulaID"
         Me.TextBoxFormulaID.ReadOnly = True
-        Me.TextBoxFormulaID.Size = New System.Drawing.Size(479, 20)
+        Me.TextBoxFormulaID.Size = New System.Drawing.Size(311, 20)
         Me.TextBoxFormulaID.TabIndex = 57
         '
         'TextBoxPRICE
@@ -605,12 +605,11 @@ Partial Class POS
         Me.DataGridViewInv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewInv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewInv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column10, Me.Column11, Me.Column14, Me.Column15, Me.Column18})
-        Me.DataGridViewInv.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.DataGridViewInv.Location = New System.Drawing.Point(8, 479)
+        Me.DataGridViewInv.Location = New System.Drawing.Point(128, 442)
         Me.DataGridViewInv.Name = "DataGridViewInv"
         Me.DataGridViewInv.ReadOnly = True
         Me.DataGridViewInv.RowHeadersVisible = False
-        Me.DataGridViewInv.Size = New System.Drawing.Size(1160, 71)
+        Me.DataGridViewInv.Size = New System.Drawing.Size(885, 71)
         Me.DataGridViewInv.TabIndex = 65
         '
         'Column5
@@ -941,8 +940,8 @@ Partial Class POS
         Me.DataGridViewOrders.AllowUserToDeleteRows = False
         Me.DataGridViewOrders.AllowUserToResizeColumns = False
         Me.DataGridViewOrders.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
+        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridViewOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewOrders.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewOrders.BorderStyle = System.Windows.Forms.BorderStyle.None
@@ -967,24 +966,24 @@ Partial Class POS
         '
         'Column2
         '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle6
         Me.Column2.FillWeight = 65.65144!
         Me.Column2.HeaderText = "ColumnQty"
         Me.Column2.Name = "Column2"
         '
         'Column3
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column3.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column3.DefaultCellStyle = DataGridViewCellStyle7
         Me.Column3.FillWeight = 65.65144!
         Me.Column3.HeaderText = "ColumnPrice"
         Me.Column3.Name = "Column3"
         '
         'Column4
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle8
         Me.Column4.FillWeight = 65.65144!
         Me.Column4.HeaderText = "ColumnTotal"
         Me.Column4.Name = "Column4"
@@ -1540,16 +1539,17 @@ Partial Class POS
         Me.PanelProducts.AutoScroll = True
         Me.PanelProducts.BackColor = System.Drawing.SystemColors.Window
         Me.PanelProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanelProducts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelProducts.Location = New System.Drawing.Point(8, 8)
         Me.PanelProducts.Name = "PanelProducts"
-        Me.PanelProducts.Size = New System.Drawing.Size(1160, 289)
+        Me.PanelProducts.Size = New System.Drawing.Size(1160, 542)
         Me.PanelProducts.TabIndex = 0
         '
         'Panel13
         '
         Me.Panel13.BackColor = System.Drawing.Color.White
-        Me.Panel13.Controls.Add(Me.DataGridViewInv)
         Me.Panel13.Controls.Add(Me.PanelProducts)
+        Me.Panel13.Controls.Add(Me.DataGridViewInv)
         Me.Panel13.Controls.Add(Me.DataGridView4)
         Me.Panel13.Controls.Add(Me.DataGridView3)
         Me.Panel13.Controls.Add(Me.DataGridView2)
