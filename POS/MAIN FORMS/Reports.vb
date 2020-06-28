@@ -780,7 +780,6 @@ Public Class Reports
             printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
             PrintPreviewDialogXread.Document = printdocXread
             PrintPreviewDialogXread.ShowDialog()
-
             sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
             cmd = New MySqlCommand(sql, LocalhostConn())
             cmd.ExecuteNonQuery()
