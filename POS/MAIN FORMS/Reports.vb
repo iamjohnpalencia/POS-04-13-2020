@@ -785,16 +785,16 @@ Public Class Reports
             printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
             PrintPreviewDialogXread.Document = printdocXread
             PrintPreviewDialogXread.ShowDialog()
-            sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
-            cmd = New MySqlCommand(sql, LocalhostConn())
-            cmd.ExecuteNonQuery()
-            cmd.Dispose()
             If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
                 ButtonZread.Enabled = False
                 Button6.Enabled = False
             End If
             XZreadingInventory(S_Zreading)
             S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
+            sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
+            cmd = New MySqlCommand(sql, LocalhostConn())
+            cmd.ExecuteNonQuery()
+            cmd.Dispose()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
