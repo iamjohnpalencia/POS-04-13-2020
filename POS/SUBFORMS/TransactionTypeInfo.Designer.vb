@@ -134,7 +134,7 @@ Partial Class TransactionTypeInfo
         Me.Panel1.Size = New System.Drawing.Size(374, 156)
         Me.Panel1.TabIndex = 109
         '
-        'Form1
+        'TransactionTypeInfo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -142,7 +142,7 @@ Partial Class TransactionTypeInfo
         Me.ClientSize = New System.Drawing.Size(374, 156)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "Form1"
+        Me.Name = "TransactionTypeInfo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()

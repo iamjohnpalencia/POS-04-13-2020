@@ -34,8 +34,7 @@ Public Class DepositSlip
             MsgBox(ex.ToString)
         End Try
     End Sub
-
-    Private Sub TextBoxAMT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxAMT.KeyPress
+    Private Sub TextBoxAMT_KeyPress(sender As Object, e As KeyPressEventArgs)
         Numeric(sender:=sender, e:=e)
     End Sub
     Private Sub DepositSlip_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -49,6 +48,15 @@ Public Class DepositSlip
                 ComboBoxBankName.Items.Add(row("bankname"))
             Next
             ComboBoxBankName.SelectedIndex = 0
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub TextBoxNAME_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxTRANNUM.KeyPress, TextBoxNAME.KeyPress, TextBoxAMT.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

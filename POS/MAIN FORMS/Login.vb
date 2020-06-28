@@ -47,4 +47,13 @@ Public Class Login
         Wow64DisableWow64FsRedirection(0)
         Process.Start(osk)
     End Sub
+    Private Sub txtusername_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtusername.KeyPress, txtpassword.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 End Class

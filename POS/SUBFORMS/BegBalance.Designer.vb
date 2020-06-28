@@ -52,7 +52,9 @@ Partial Class BegBalance
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.DataGridViewZreadInventory = New System.Windows.Forms.DataGridView()
         Me.Panel1.SuspendLayout()
+        CType(Me.DataGridViewZreadInventory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TextBox1
@@ -253,7 +255,7 @@ Partial Class BegBalance
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(0, 261)
+        Me.Button1.Location = New System.Drawing.Point(0, 551)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(338, 33)
         Me.Button1.TabIndex = 24
@@ -331,10 +333,11 @@ Partial Class BegBalance
         Me.Panel1.Controls.Add(Me.TextBox2)
         Me.Panel1.Controls.Add(Me.TextBox4)
         Me.Panel1.Controls.Add(Me.TextBox3)
+        Me.Panel1.Controls.Add(Me.DataGridViewZreadInventory)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(340, 296)
+        Me.Panel1.Size = New System.Drawing.Size(340, 586)
         Me.Panel1.TabIndex = 237
         '
         'Label15
@@ -357,12 +360,21 @@ Partial Class BegBalance
         Me.Label14.TabIndex = 237
         Me.Label14.Text = "BEGINNING BALANCE"
         '
+        'DataGridViewZreadInventory
+        '
+        Me.DataGridViewZreadInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewZreadInventory.Location = New System.Drawing.Point(17, 288)
+        Me.DataGridViewZreadInventory.Name = "DataGridViewZreadInventory"
+        Me.DataGridViewZreadInventory.ReadOnly = True
+        Me.DataGridViewZreadInventory.Size = New System.Drawing.Size(303, 127)
+        Me.DataGridViewZreadInventory.TabIndex = 239
+        '
         'BegBalance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(340, 296)
+        Me.ClientSize = New System.Drawing.Size(340, 586)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "BegBalance"
@@ -370,6 +382,7 @@ Partial Class BegBalance
         Me.Text = "BegBalance"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.DataGridViewZreadInventory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -403,4 +416,5 @@ Partial Class BegBalance
     Friend WithEvents Timer1 As Timer
     Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label
+    Friend WithEvents DataGridViewZreadInventory As DataGridView
 End Class

@@ -213,7 +213,7 @@ Module publicfunctions
         End Try
     End Sub
     '.DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString)
-    Public Sub preventdgvordersdup(ByVal price, ByVal name, ByVal ID, ByVal SKU, ByVal CAT)
+    Public Sub preventdgvordersdup(ByVal price, ByVal name, ByVal ID, ByVal SKU, ByVal CAT, ByVal ORIGIN, ByVal INVID)
         Try
             With POS
                 .TextBoxPRICE.Text = Val(price)
@@ -245,7 +245,7 @@ Module publicfunctions
                                 Else
                                     .DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, .TextBoxQTY.Text, .TextBoxPRICE.Text, .TextBoxQTY.Text * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString, .DataGridViewOrders.SelectedRows(0).Cells(9).Value)
                                 End If
-                                .ButtonPay.Enabled = True
+                                .ButtonPayMent.Enabled = True
                                 .Buttonholdoder.Enabled = True
                                 .ButtonPendingOrders.Enabled = False
                             End If
@@ -265,7 +265,7 @@ Module publicfunctions
                                         .DataGridViewOrders.Rows(i).Cells(3).Value = .TextBoxQTY.Text * .DataGridViewOrders.Rows(i).Cells(2).Value
                                         ThisIsMyInventoryID = .DataGridViewOrders.Rows(i).Cells(4).Value
                                     End If
-                                    .ButtonPay.Enabled = True
+                                    .ButtonPayMent.Enabled = True
                                     .Buttonholdoder.Enabled = True
                                     .ButtonPendingOrders.Enabled = False
                                 End If
@@ -285,22 +285,60 @@ Module publicfunctions
                         .TextBoxINC.Text = POS.ButtonClickCount
                         If hastextboxqty = False Then
                             If CAT = "Famous Blends" Then
-                                .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS")
+                                DISABLESERVEROTHERSPRODUCT = True
+                                .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS", "OTHERS", INVID)
+                            ElseIf CAT = "Others" Then
+                                If ORIGIN = "Server" Then
+                                    If DISABLESERVEROTHERSPRODUCT = False Then
+                                        .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID)
+                                        .ButtonTransactionMode.Enabled = True
+                                        .ButtonPayMent.Enabled = True
+                                        .ButtonTransactionMode.Text = "Cancel"
+                                        .ButtonPayMent.Text = "Mix"
+                                        .Buttonholdoder.Enabled = False
+                                        .ButtonPendingOrders.Enabled = False
+                                        .Panel3.Enabled = False
+                                    Else
+                                        MsgBox("Remove product first.")
+                                    End If
+                                Else
+                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID)
+                                    .ButtonTransactionMode.Enabled = True
+                                    .ButtonPayMent.Enabled = True
+                                    .Buttonholdoder.Enabled = True
+                                    .ButtonPendingOrders.Enabled = False
+                                    .Panel3.Enabled = False
+                                End If
                             Else
-                                .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE")
+                                DISABLESERVEROTHERSPRODUCT = True
+                                .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", "OTHERS", INVID)
                             End If
                         Else
                             If CAT = "Famous Blends" Then
-                                .DataGridViewOrders.Rows.Add(name, .TextBoxQTY.Text, .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS")
+                                .DataGridViewOrders.Rows.Add(name, .TextBoxQTY.Text, .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS", "OTHERS", INVID)
+                            ElseIf CAT = "Others" Then
+                                .DataGridViewOrders.Rows.Add(name, .TextBoxQTY.Text, .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", "OTHERS", INVID)
+                                If ORIGIN = "Server" Then
+                                    .ButtonTransactionMode.Enabled = True
+                                    .ButtonPayMent.Enabled = True
+                                    .ButtonTransactionMode.Text = "Cancel"
+                                    .ButtonPayMent.Text = "Mix"
+                                    .Buttonholdoder.Enabled = False
+                                    .ButtonPendingOrders.Enabled = False
+                                    .Panel3.Enabled = False
+                                Else
+                                    .ButtonTransactionMode.Enabled = True
+                                    .ButtonPayMent.Enabled = True
+                                    .Buttonholdoder.Enabled = True
+                                    .ButtonPendingOrders.Enabled = False
+                                    .Panel3.Enabled = False
+                                End If
                             Else
                                 .DataGridViewOrders.Rows.Add(name, .TextBoxQTY.Text, .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE")
-
                             End If
                         End If
                         .TextBoxPressQTY.Text = 1
-                        .ButtonPay.Enabled = True
-                        .Buttonholdoder.Enabled = True
-                        .ButtonPendingOrders.Enabled = False
+                        .ButtonPayMent.Enabled = True
                     Else
                         For i As Integer = 0 To POS.DataGridViewOrders.Rows.Count - 1 Step +1
                             If .DataGridViewOrders.Rows(i).Cells(0).Value.ToString() = name Then
@@ -321,7 +359,7 @@ Module publicfunctions
                                 End If
                             End If
                         Next
-                        .ButtonPay.Enabled = True
+                        .ButtonPayMent.Enabled = True
                         .Buttonholdoder.Enabled = True
                         .ButtonPendingOrders.Enabled = False
                     End If

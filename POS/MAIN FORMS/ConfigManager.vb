@@ -1393,10 +1393,10 @@ Public Class ConfigManager
             fields = "*"
             Dim DatatableProd = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewPRODUCTS)
             For Each row As DataRow In DatatableProd.Rows
-                DataGridViewPRODUCTS.Rows.Add(row("product_id"), row("product_sku"), row("product_name"), row("formula_id"), row("product_barcode"), row("product_category"), row("product_price"), row("product_desc"), row("product_image"), row("product_status"), row("origin"), row("date_modified"))
+                DataGridViewPRODUCTS.Rows.Add(row("product_id"), row("product_sku"), row("product_name"), row("formula_id"), row("product_barcode"), row("product_category"), row("product_price"), row("product_desc"), row("product_image"), row("product_status"), row("origin"), row("date_modified"), row("inventory_id"))
             Next
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            'MsgBox(ex.ToString)
         End Try
     End Sub
     Public Sub GetInventory()
@@ -1431,8 +1431,8 @@ Public Class ConfigManager
             With DataGridViewPRODUCTS
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmdlocal = New MySqlCommand("INSERT INTO loc_admin_products(`server_product_id`,`product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `store_id`, `synced`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14)", TestLocalConnection())
+                    cmdlocal = New MySqlCommand("INSERT INTO loc_admin_products(`server_product_id`,`product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `server_inventory_id`, `guid`, `store_id`, `synced`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15)", TestLocalConnection())
                     cmdlocal.Parameters.Add("@0", MySqlDbType.Int32).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1445,9 +1445,10 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                     cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                     cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value
-                    cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = UserGUID
-                    cmdlocal.Parameters.Add("@13", MySqlDbType.Int32).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
-                    cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
+                    cmdlocal.Parameters.Add("@12", MySqlDbType.Int64).Value = .Rows(i).Cells(12).Value
+                    cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = UserGUID
+                    cmdlocal.Parameters.Add("@14", MySqlDbType.Int32).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
+                    cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "Synced"
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With
@@ -1663,25 +1664,30 @@ Public Class ConfigManager
         End Try
     End Sub
 
-
-
-
+    Private Sub TextBoxLocalDatabase_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxLocalUsername.KeyPress, TextBoxLocalServer.KeyPress, TextBoxLocalPort.KeyPress, TextBoxLocalPassword.KeyPress, TextBoxLocalDatabase.KeyPress, TextBoxCloudUsername.KeyPress, TextBoxCloudServer.KeyPress, TextBoxCloudPort.KeyPress, TextBoxCloudPassword.KeyPress, TextBoxCloudDatabase.KeyPress, TextBoxTerminalNo.KeyPress, TextBoxTax.KeyPress, TextBoxSINumber.KeyPress, TextBoxExportPath.KeyPress, TextBoxDevTIN.KeyPress, TextBoxDEVPTU.KeyPress, TextBoxDevname.KeyPress, TextBoxDevAdd.KeyPress, TextBoxDevAccr.KeyPress, TextBoxFrancUser.KeyPress, TextBoxFrancPass.KeyPress, TextBoxProdKey.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 #Region "Test Insert"
-    'Private Sub button734_click(sender As Object, e As EventArgs) Handles Button4.Click
-    '    InsertToProducts()
-    '    InsertToInventory()
-    '    InsertToCategories()
-    '    InsertToFormula()
-    'End Sub
+    Private Sub button734_click(sender As Object, e As EventArgs) Handles Button4.Click
+        InsertToProducts()
+        InsertToInventory()
+        InsertToCategories()
+        InsertToFormula()
+    End Sub
 
-    'Private Sub button8_click_123(sender As Object, e As EventArgs) Handles Button8.Click
-    '    GetCategories()
-    '    GetProducts()
-    '    GetInventory()
-    '    GetFormula()
-    'End Sub
+    Private Sub button8_click_123(sender As Object, e As EventArgs) Handles Button8.Click
+        GetCategories()
+        GetProducts()
+        GetInventory()
+        GetFormula()
+    End Sub
 
 
 #End Region
-
 End Class

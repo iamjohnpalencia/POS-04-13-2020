@@ -24,10 +24,10 @@ Partial Class POS
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(POS))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
@@ -44,16 +44,6 @@ Partial Class POS
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.DataGridViewInv = New System.Windows.Forms.DataGridView()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LabelStorename = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TextBoxPressTotal = New System.Windows.Forms.TextBox()
@@ -70,6 +60,16 @@ Partial Class POS
         Me.TextBoxINC = New System.Windows.Forms.TextBox()
         Me.TextBoxMAXID = New System.Windows.Forms.TextBox()
         Me.TextBoxPressQTY = New System.Windows.Forms.TextBox()
+        Me.DataGridViewInv = New System.Windows.Forms.DataGridView()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
@@ -83,7 +83,7 @@ Partial Class POS
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label71 = New System.Windows.Forms.Label()
         Me.TextBoxSUBTOTAL = New System.Windows.Forms.Label()
-        Me.ButtonPay = New System.Windows.Forms.Button()
+        Me.ButtonPayMent = New System.Windows.Forms.Button()
         Me.ButtonTransactionMode = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Buttonholdoder = New System.Windows.Forms.Button()
@@ -103,6 +103,7 @@ Partial Class POS
         Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column43 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel27 = New System.Windows.Forms.Panel()
         Me.Panel30 = New System.Windows.Forms.Panel()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -184,6 +185,7 @@ Partial Class POS
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column42 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -196,13 +198,14 @@ Partial Class POS
         Me.DataGridViewFORMULAUPDATE = New System.Windows.Forms.DataGridView()
         Me.DataGridViewPRODUCTUPDATE = New System.Windows.Forms.DataGridView()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
+        Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
         Me.Panel8.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel25.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel32.SuspendLayout()
-        CType(Me.DataGridViewInv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel22.SuspendLayout()
+        CType(Me.DataGridViewInv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel14.SuspendLayout()
         Me.Panel21.SuspendLayout()
         Me.Panel20.SuspendLayout()
@@ -405,76 +408,6 @@ Partial Class POS
         Me.Label14.TabIndex = 158
         Me.Label14.Text = "Previous Change:"
         '
-        'DataGridViewInv
-        '
-        Me.DataGridViewInv.AllowUserToAddRows = False
-        Me.DataGridViewInv.AllowUserToDeleteRows = False
-        Me.DataGridViewInv.AllowUserToResizeColumns = False
-        Me.DataGridViewInv.AllowUserToResizeRows = False
-        Me.DataGridViewInv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridViewInv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewInv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column10, Me.Column11, Me.Column14, Me.Column15, Me.Column18})
-        Me.DataGridViewInv.Location = New System.Drawing.Point(202, 384)
-        Me.DataGridViewInv.Name = "DataGridViewInv"
-        Me.DataGridViewInv.ReadOnly = True
-        Me.DataGridViewInv.RowHeadersVisible = False
-        Me.DataGridViewInv.Size = New System.Drawing.Size(196, 20)
-        Me.DataGridViewInv.TabIndex = 65
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "Srv.T"
-        Me.Column5.Name = "Column5"
-        Me.Column5.ReadOnly = True
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "F.ID"
-        Me.Column6.Name = "Column6"
-        Me.Column6.ReadOnly = True
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "Qty"
-        Me.Column7.Name = "Column7"
-        Me.Column7.ReadOnly = True
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "ID"
-        Me.Column8.Name = "Column8"
-        Me.Column8.ReadOnly = True
-        '
-        'Column10
-        '
-        Me.Column10.HeaderText = "NM"
-        Me.Column10.Name = "Column10"
-        Me.Column10.ReadOnly = True
-        '
-        'Column11
-        '
-        Me.Column11.HeaderText = "Srv"
-        Me.Column11.Name = "Column11"
-        Me.Column11.ReadOnly = True
-        '
-        'Column14
-        '
-        Me.Column14.HeaderText = "COG"
-        Me.Column14.Name = "Column14"
-        Me.Column14.ReadOnly = True
-        '
-        'Column15
-        '
-        Me.Column15.HeaderText = "OCOG"
-        Me.Column15.Name = "Column15"
-        Me.Column15.ReadOnly = True
-        '
-        'Column18
-        '
-        Me.Column18.HeaderText = "Prd.AddID"
-        Me.Column18.Name = "Column18"
-        Me.Column18.ReadOnly = True
-        '
         'LabelStorename
         '
         Me.LabelStorename.AutoSize = True
@@ -603,12 +536,11 @@ Partial Class POS
         '
         'TextBoxFormulaID
         '
-        Me.TextBoxFormulaID.Location = New System.Drawing.Point(41, 9)
+        Me.TextBoxFormulaID.Location = New System.Drawing.Point(387, 12)
         Me.TextBoxFormulaID.Name = "TextBoxFormulaID"
         Me.TextBoxFormulaID.ReadOnly = True
-        Me.TextBoxFormulaID.Size = New System.Drawing.Size(90, 20)
+        Me.TextBoxFormulaID.Size = New System.Drawing.Size(479, 20)
         Me.TextBoxFormulaID.TabIndex = 57
-        Me.TextBoxFormulaID.Visible = False
         '
         'TextBoxPRICE
         '
@@ -664,6 +596,77 @@ Partial Class POS
         Me.TextBoxPressQTY.TabIndex = 66
         Me.TextBoxPressQTY.Visible = False
         '
+        'DataGridViewInv
+        '
+        Me.DataGridViewInv.AllowUserToAddRows = False
+        Me.DataGridViewInv.AllowUserToDeleteRows = False
+        Me.DataGridViewInv.AllowUserToResizeColumns = False
+        Me.DataGridViewInv.AllowUserToResizeRows = False
+        Me.DataGridViewInv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewInv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewInv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column10, Me.Column11, Me.Column14, Me.Column15, Me.Column18})
+        Me.DataGridViewInv.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.DataGridViewInv.Location = New System.Drawing.Point(8, 479)
+        Me.DataGridViewInv.Name = "DataGridViewInv"
+        Me.DataGridViewInv.ReadOnly = True
+        Me.DataGridViewInv.RowHeadersVisible = False
+        Me.DataGridViewInv.Size = New System.Drawing.Size(1160, 71)
+        Me.DataGridViewInv.TabIndex = 65
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Srv.T"
+        Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "F.ID"
+        Me.Column6.Name = "Column6"
+        Me.Column6.ReadOnly = True
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "Qty"
+        Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "ID"
+        Me.Column8.Name = "Column8"
+        Me.Column8.ReadOnly = True
+        '
+        'Column10
+        '
+        Me.Column10.HeaderText = "NM"
+        Me.Column10.Name = "Column10"
+        Me.Column10.ReadOnly = True
+        '
+        'Column11
+        '
+        Me.Column11.HeaderText = "Srv"
+        Me.Column11.Name = "Column11"
+        Me.Column11.ReadOnly = True
+        '
+        'Column14
+        '
+        Me.Column14.HeaderText = "COG"
+        Me.Column14.Name = "Column14"
+        Me.Column14.ReadOnly = True
+        '
+        'Column15
+        '
+        Me.Column15.HeaderText = "OCOG"
+        Me.Column15.Name = "Column15"
+        Me.Column15.ReadOnly = True
+        '
+        'Column18
+        '
+        Me.Column18.HeaderText = "Prd.AddID"
+        Me.Column18.Name = "Column18"
+        Me.Column18.ReadOnly = True
+        '
         'BackgroundWorker1
         '
         '
@@ -707,7 +710,7 @@ Partial Class POS
         'Panel21
         '
         Me.Panel21.Controls.Add(Me.Panel20)
-        Me.Panel21.Controls.Add(Me.ButtonPay)
+        Me.Panel21.Controls.Add(Me.ButtonPayMent)
         Me.Panel21.Controls.Add(Me.ButtonTransactionMode)
         Me.Panel21.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel21.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -808,21 +811,21 @@ Partial Class POS
         Me.TextBoxSUBTOTAL.TabIndex = 58
         Me.TextBoxSUBTOTAL.Text = "0"
         '
-        'ButtonPay
+        'ButtonPayMent
         '
-        Me.ButtonPay.AutoSize = True
-        Me.ButtonPay.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.ButtonPay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ButtonPay.Enabled = False
-        Me.ButtonPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonPay.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
-        Me.ButtonPay.ForeColor = System.Drawing.Color.White
-        Me.ButtonPay.Location = New System.Drawing.Point(8, 11)
-        Me.ButtonPay.Name = "ButtonPay"
-        Me.ButtonPay.Size = New System.Drawing.Size(104, 48)
-        Me.ButtonPay.TabIndex = 59
-        Me.ButtonPay.Text = "Pay"
-        Me.ButtonPay.UseVisualStyleBackColor = False
+        Me.ButtonPayMent.AutoSize = True
+        Me.ButtonPayMent.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonPayMent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonPayMent.Enabled = False
+        Me.ButtonPayMent.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonPayMent.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonPayMent.ForeColor = System.Drawing.Color.White
+        Me.ButtonPayMent.Location = New System.Drawing.Point(8, 11)
+        Me.ButtonPayMent.Name = "ButtonPayMent"
+        Me.ButtonPayMent.Size = New System.Drawing.Size(136, 48)
+        Me.ButtonPayMent.TabIndex = 59
+        Me.ButtonPayMent.Text = "Checkout"
+        Me.ButtonPayMent.UseVisualStyleBackColor = False
         '
         'ButtonTransactionMode
         '
@@ -832,7 +835,7 @@ Partial Class POS
         Me.ButtonTransactionMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonTransactionMode.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonTransactionMode.ForeColor = System.Drawing.Color.White
-        Me.ButtonTransactionMode.Location = New System.Drawing.Point(113, 11)
+        Me.ButtonTransactionMode.Location = New System.Drawing.Point(147, 12)
         Me.ButtonTransactionMode.Name = "ButtonTransactionMode"
         Me.ButtonTransactionMode.Size = New System.Drawing.Size(136, 48)
         Me.ButtonTransactionMode.TabIndex = 59
@@ -938,14 +941,14 @@ Partial Class POS
         Me.DataGridViewOrders.AllowUserToDeleteRows = False
         Me.DataGridViewOrders.AllowUserToResizeColumns = False
         Me.DataGridViewOrders.AllowUserToResizeRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridViewOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewOrders.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewOrders.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridViewOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewOrders.ColumnHeadersVisible = False
-        Me.DataGridViewOrders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column9, Me.Column12, Me.Column13, Me.Column16, Me.Column17, Me.Column19, Me.Column20})
+        Me.DataGridViewOrders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column9, Me.Column12, Me.Column13, Me.Column16, Me.Column17, Me.Column19, Me.Column20, Me.Column43})
         Me.DataGridViewOrders.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewOrders.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewOrders.Location = New System.Drawing.Point(10, 64)
@@ -964,24 +967,24 @@ Partial Class POS
         '
         'Column2
         '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle2
         Me.Column2.FillWeight = 65.65144!
         Me.Column2.HeaderText = "ColumnQty"
         Me.Column2.Name = "Column2"
         '
         'Column3
         '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column3.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column3.DefaultCellStyle = DataGridViewCellStyle3
         Me.Column3.FillWeight = 65.65144!
         Me.Column3.HeaderText = "ColumnPrice"
         Me.Column3.Name = "Column3"
         '
         'Column4
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle4
         Me.Column4.FillWeight = 65.65144!
         Me.Column4.HeaderText = "ColumnTotal"
         Me.Column4.Name = "Column4"
@@ -990,19 +993,16 @@ Partial Class POS
         '
         Me.Column9.HeaderText = "Column9"
         Me.Column9.Name = "Column9"
-        Me.Column9.Visible = False
         '
         'Column12
         '
         Me.Column12.HeaderText = "ColumnPRID"
         Me.Column12.Name = "Column12"
-        Me.Column12.Visible = False
         '
         'Column13
         '
         Me.Column13.HeaderText = "ColumnSKU"
         Me.Column13.Name = "Column13"
-        Me.Column13.Visible = False
         '
         'Column16
         '
@@ -1023,6 +1023,11 @@ Partial Class POS
         '
         Me.Column20.HeaderText = "ColumnTYPE"
         Me.Column20.Name = "Column20"
+        '
+        'Column43
+        '
+        Me.Column43.HeaderText = "ColumnInvID"
+        Me.Column43.Name = "Column43"
         '
         'Panel27
         '
@@ -1535,18 +1540,17 @@ Partial Class POS
         Me.PanelProducts.AutoScroll = True
         Me.PanelProducts.BackColor = System.Drawing.SystemColors.Window
         Me.PanelProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PanelProducts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelProducts.Location = New System.Drawing.Point(8, 8)
         Me.PanelProducts.Name = "PanelProducts"
-        Me.PanelProducts.Size = New System.Drawing.Size(1160, 542)
+        Me.PanelProducts.Size = New System.Drawing.Size(1160, 289)
         Me.PanelProducts.TabIndex = 0
         '
         'Panel13
         '
         Me.Panel13.BackColor = System.Drawing.Color.White
+        Me.Panel13.Controls.Add(Me.DataGridViewInv)
         Me.Panel13.Controls.Add(Me.PanelProducts)
         Me.Panel13.Controls.Add(Me.DataGridView4)
-        Me.Panel13.Controls.Add(Me.DataGridViewInv)
         Me.Panel13.Controls.Add(Me.DataGridView3)
         Me.Panel13.Controls.Add(Me.DataGridView2)
         Me.Panel13.Controls.Add(Me.DataGridView1)
@@ -1573,7 +1577,7 @@ Partial Class POS
         Me.DataGridView4.AllowUserToResizeRows = False
         Me.DataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView4.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column32, Me.Column33, Me.Column34, Me.Column35, Me.Column36, Me.Column37, Me.Column38, Me.Column39, Me.Column40, Me.Column41})
-        Me.DataGridView4.Location = New System.Drawing.Point(169, 358)
+        Me.DataGridView4.Location = New System.Drawing.Point(126, 317)
         Me.DataGridView4.Name = "DataGridView4"
         Me.DataGridView4.ReadOnly = True
         Me.DataGridView4.RowHeadersVisible = False
@@ -1648,7 +1652,7 @@ Partial Class POS
         Me.DataGridView3.AllowUserToResizeRows = False
         Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.Column21, Me.Column22, Me.Column23, Me.Column24, Me.Column25, Me.Column26, Me.Column27, Me.Column28, Me.Column29, Me.Column30, Me.Column31})
-        Me.DataGridView3.Location = New System.Drawing.Point(171, 358)
+        Me.DataGridView3.Location = New System.Drawing.Point(128, 317)
         Me.DataGridView3.Name = "DataGridView3"
         Me.DataGridView3.ReadOnly = True
         Me.DataGridView3.RowHeadersVisible = False
@@ -1740,8 +1744,8 @@ Partial Class POS
         Me.DataGridView2.AllowUserToResizeColumns = False
         Me.DataGridView2.AllowUserToResizeRows = False
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14})
-        Me.DataGridView2.Location = New System.Drawing.Point(169, 359)
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.Column42})
+        Me.DataGridView2.Location = New System.Drawing.Point(126, 318)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.ReadOnly = True
         Me.DataGridView2.RowHeadersVisible = False
@@ -1820,6 +1824,12 @@ Partial Class POS
         Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
         Me.DataGridViewTextBoxColumn14.ReadOnly = True
         '
+        'Column42
+        '
+        Me.Column42.HeaderText = "Column42"
+        Me.Column42.Name = "Column42"
+        Me.Column42.ReadOnly = True
+        '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
@@ -1828,7 +1838,7 @@ Partial Class POS
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn20})
-        Me.DataGridView1.Location = New System.Drawing.Point(171, 359)
+        Me.DataGridView1.Location = New System.Drawing.Point(128, 318)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersVisible = False
@@ -1878,7 +1888,7 @@ Partial Class POS
         Me.DataGridViewINVENTORYUPDATE.AllowUserToResizeColumns = False
         Me.DataGridViewINVENTORYUPDATE.AllowUserToResizeRows = False
         Me.DataGridViewINVENTORYUPDATE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewINVENTORYUPDATE.Location = New System.Drawing.Point(169, 358)
+        Me.DataGridViewINVENTORYUPDATE.Location = New System.Drawing.Point(126, 317)
         Me.DataGridViewINVENTORYUPDATE.Name = "DataGridViewINVENTORYUPDATE"
         Me.DataGridViewINVENTORYUPDATE.ReadOnly = True
         Me.DataGridViewINVENTORYUPDATE.Size = New System.Drawing.Size(260, 92)
@@ -1891,7 +1901,7 @@ Partial Class POS
         Me.DataGridViewCATEGORYUPDATE.AllowUserToResizeColumns = False
         Me.DataGridViewCATEGORYUPDATE.AllowUserToResizeRows = False
         Me.DataGridViewCATEGORYUPDATE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewCATEGORYUPDATE.Location = New System.Drawing.Point(169, 358)
+        Me.DataGridViewCATEGORYUPDATE.Location = New System.Drawing.Point(126, 317)
         Me.DataGridViewCATEGORYUPDATE.Name = "DataGridViewCATEGORYUPDATE"
         Me.DataGridViewCATEGORYUPDATE.ReadOnly = True
         Me.DataGridViewCATEGORYUPDATE.Size = New System.Drawing.Size(260, 92)
@@ -1904,7 +1914,7 @@ Partial Class POS
         Me.DataGridViewFORMULAUPDATE.AllowUserToResizeColumns = False
         Me.DataGridViewFORMULAUPDATE.AllowUserToResizeRows = False
         Me.DataGridViewFORMULAUPDATE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewFORMULAUPDATE.Location = New System.Drawing.Point(169, 358)
+        Me.DataGridViewFORMULAUPDATE.Location = New System.Drawing.Point(126, 317)
         Me.DataGridViewFORMULAUPDATE.Name = "DataGridViewFORMULAUPDATE"
         Me.DataGridViewFORMULAUPDATE.ReadOnly = True
         Me.DataGridViewFORMULAUPDATE.Size = New System.Drawing.Size(260, 92)
@@ -1917,13 +1927,16 @@ Partial Class POS
         Me.DataGridViewPRODUCTUPDATE.AllowUserToResizeColumns = False
         Me.DataGridViewPRODUCTUPDATE.AllowUserToResizeRows = False
         Me.DataGridViewPRODUCTUPDATE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewPRODUCTUPDATE.Location = New System.Drawing.Point(169, 358)
+        Me.DataGridViewPRODUCTUPDATE.Location = New System.Drawing.Point(126, 317)
         Me.DataGridViewPRODUCTUPDATE.Name = "DataGridViewPRODUCTUPDATE"
         Me.DataGridViewPRODUCTUPDATE.ReadOnly = True
         Me.DataGridViewPRODUCTUPDATE.Size = New System.Drawing.Size(260, 92)
         Me.DataGridViewPRODUCTUPDATE.TabIndex = 58
         '
         'BackgroundWorker2
+        '
+        '
+        'BackgroundWorker3
         '
         '
         'POS
@@ -1959,8 +1972,8 @@ Partial Class POS
         Me.Panel1.PerformLayout()
         Me.Panel32.ResumeLayout(False)
         Me.Panel32.PerformLayout()
-        CType(Me.DataGridViewInv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel22.ResumeLayout(False)
+        CType(Me.DataGridViewInv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel14.ResumeLayout(False)
         Me.Panel21.ResumeLayout(False)
         Me.Panel21.PerformLayout()
@@ -2000,7 +2013,7 @@ Partial Class POS
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Panel8 As Panel
     Friend WithEvents Panel14 As Panel
-    Friend WithEvents ButtonPay As Button
+    Friend WithEvents ButtonPayMent As Button
     Friend WithEvents Panel22 As Panel
     Private WithEvents ButtonMenu As Button
     Private WithEvents ButtonPromo As Button
@@ -2103,17 +2116,6 @@ Partial Class POS
     Friend WithEvents DataGridViewFORMULAUPDATE As DataGridView
     Friend WithEvents DataGridViewPRODUCTUPDATE As DataGridView
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As DataGridViewTextBoxColumn
-    Friend WithEvents Column9 As DataGridViewTextBoxColumn
-    Friend WithEvents Column12 As DataGridViewTextBoxColumn
-    Friend WithEvents Column13 As DataGridViewTextBoxColumn
-    Friend WithEvents Column16 As DataGridViewTextBoxColumn
-    Friend WithEvents Column17 As DataGridViewTextBoxColumn
-    Friend WithEvents Column19 As DataGridViewTextBoxColumn
-    Friend WithEvents Column20 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridView4 As DataGridView
     Friend WithEvents Column32 As DataGridViewTextBoxColumn
     Friend WithEvents Column33 As DataGridViewTextBoxColumn
@@ -2161,4 +2163,18 @@ Partial Class POS
     Friend WithEvents DataGridViewTextBoxColumn20 As DataGridViewTextBoxColumn
     Friend WithEvents Panel23 As Panel
     Friend WithEvents LabelCheckingUpdates As Label
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column9 As DataGridViewTextBoxColumn
+    Friend WithEvents Column12 As DataGridViewTextBoxColumn
+    Friend WithEvents Column13 As DataGridViewTextBoxColumn
+    Friend WithEvents Column16 As DataGridViewTextBoxColumn
+    Friend WithEvents Column17 As DataGridViewTextBoxColumn
+    Friend WithEvents Column19 As DataGridViewTextBoxColumn
+    Friend WithEvents Column20 As DataGridViewTextBoxColumn
+    Friend WithEvents Column42 As DataGridViewTextBoxColumn
+    Friend WithEvents Column43 As DataGridViewTextBoxColumn
+    Friend WithEvents BackgroundWorker3 As System.ComponentModel.BackgroundWorker
 End Class

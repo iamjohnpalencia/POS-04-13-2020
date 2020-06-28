@@ -81,7 +81,7 @@ Public Class HoldOrder
                     .DataGridViewInv.Rows.Clear()
                     .DataGridViewOrders.Rows.Clear()
                     .Buttonholdoder.Enabled = False
-                    .ButtonPay.Enabled = False
+                    .ButtonPayMent.Enabled = False
                     .ButtonPendingOrders.Enabled = True
                 End With
             End If

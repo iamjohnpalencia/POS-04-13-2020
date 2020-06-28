@@ -296,6 +296,9 @@ Partial Class ConfigManager
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel22 = New System.Windows.Forms.Panel()
+        Me.Column58 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button8 = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -2581,7 +2584,7 @@ Partial Class ConfigManager
         Me.DataGridViewPRODUCTS.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewPRODUCTS.ColumnHeadersVisible = False
-        Me.DataGridViewPRODUCTS.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column23, Me.Column24, Me.Column25, Me.Column26, Me.Column27, Me.Column28, Me.Column29, Me.Column30, Me.Column31, Me.Column32, Me.Column33, Me.Column34})
+        Me.DataGridViewPRODUCTS.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column23, Me.Column24, Me.Column25, Me.Column26, Me.Column27, Me.Column28, Me.Column29, Me.Column30, Me.Column31, Me.Column32, Me.Column33, Me.Column34, Me.Column58})
         Me.DataGridViewPRODUCTS.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewPRODUCTS.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewPRODUCTS.Name = "DataGridViewPRODUCTS"
@@ -2847,7 +2850,9 @@ Partial Class ConfigManager
         'Panel19
         '
         Me.Panel19.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Panel19.Controls.Add(Me.Button8)
         Me.Panel19.Controls.Add(Me.Label21)
+        Me.Panel19.Controls.Add(Me.Button4)
         Me.Panel19.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel19.Location = New System.Drawing.Point(3, 3)
         Me.Panel19.Name = "Panel19"
@@ -3085,6 +3090,29 @@ Partial Class ConfigManager
         Me.Panel22.Name = "Panel22"
         Me.Panel22.Size = New System.Drawing.Size(1298, 10)
         Me.Panel22.TabIndex = 216
+        '
+        'Column58
+        '
+        Me.Column58.HeaderText = "Column58"
+        Me.Column58.Name = "Column58"
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(389, 19)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(75, 23)
+        Me.Button4.TabIndex = 2
+        Me.Button4.Text = "Button4"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(470, 20)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(75, 23)
+        Me.Button8.TabIndex = 3
+        Me.Button8.Text = "Button8"
+        Me.Button8.UseVisualStyleBackColor = True
         '
         'ConfigManager
         '
@@ -3468,4 +3496,7 @@ Partial Class ConfigManager
     Friend WithEvents Column41 As DataGridViewTextBoxColumn
     Friend WithEvents Column42 As DataGridViewTextBoxColumn
     Friend WithEvents Column43 As DataGridViewTextBoxColumn
+    Friend WithEvents Column58 As DataGridViewTextBoxColumn
+    Friend WithEvents Button8 As Button
+    Friend WithEvents Button4 As Button
 End Class

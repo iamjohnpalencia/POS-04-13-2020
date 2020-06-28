@@ -104,7 +104,7 @@ Public Class PendingOrders
                     .Label76.Text = SumOfColumnsToDecimal(.DataGridViewOrders, 3)
                     .TextBoxQTY.Text = 0
                     .Buttonholdoder.Enabled = True
-                    .ButtonPay.Enabled = True
+                    .ButtonPayMent.Enabled = True
                     .ButtonPendingOrders.Enabled = False
                 End With
                 messageboxappearance = False

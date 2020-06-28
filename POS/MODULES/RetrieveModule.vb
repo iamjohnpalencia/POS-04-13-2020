@@ -280,7 +280,7 @@ Module RetrieveModule
     End Function
     Public Sub retrieveformulaids()
         Try
-            sql = "SELECT product_id, product_sku, formula_id, product_category FROM `loc_admin_products` WHERE product_name = '" & POS.TextBoxNAME.Text & "'"
+            sql = "SELECT product_id, product_sku, formula_id, product_category, origin, server_inventory_id FROM `loc_admin_products` WHERE product_name = '" & POS.TextBoxNAME.Text & "'"
             cmd = New MySqlCommand
             With cmd
                 .CommandText = sql
@@ -291,9 +291,11 @@ Module RetrieveModule
                         Dim product_id = readerObj("product_id").ToString
                         Dim product_sku = readerObj("product_sku").ToString
                         Dim product_category = readerObj("product_category").ToString
+                        Dim origin = readerObj("origin").ToString
+                        Dim inventoryid = readerObj("server_inventory_id").ToString
                         With POS
                             .TextBoxFormulaID.Text = formula_id
-                            checkcriticallimit(formula_id:=formula_id, ID:=product_id, SKU:=product_sku, CAT:=product_category)
+                            checkcriticallimit(formula_id:=formula_id, ID:=product_id, SKU:=product_sku, CAT:=product_category, ORIGIN:=origin, INVID:=inventoryid)
                         End With
                     End While
                 End Using
@@ -306,7 +308,7 @@ Module RetrieveModule
     Dim DataAdapterCriticalLimit As MySqlDataAdapter
     Dim CmdCriticalLimit As MySqlCommand
     Dim ListOfIngredients As String
-    Public Sub checkcriticallimit(ByVal formula_id, ByVal ID, ByVal SKU, ByVal CAT)
+    Public Sub checkcriticallimit(ByVal formula_id, ByVal ID, ByVal SKU, ByVal CAT, ByVal ORIGIN, ByVal INVID)
         Try
             ListOfIngredients = ""
             sql = "SELECT product_ingredients, critical_limit, stock_primary, stock_secondary, stock_no_of_servings FROM `loc_pos_inventory` WHERE stock_primary <= critical_limit AND inventory_id IN (" & Trim(formula_id) & ");"
@@ -321,18 +323,18 @@ Module RetrieveModule
                 Dim criticalmessage = ListOfIngredients.Substring(0, ListOfIngredients.Length - 2)
                 Dim outofstock = MessageBox.Show("Item (" & criticalmessage & ") is out of stock, do you wish to continue?", "Out of Stock", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 If outofstock = DialogResult.Yes Then
-                    preventdgvordersdup(price:=POS.TextBoxPRICE.Text, name:=POS.TextBoxNAME.Text, ID:=ID, SKU:=SKU, CAT:=CAT)
-                    retrieveanddeduct(POS.TextBoxFormulaID.Text, Cat:=CAT)
+                    preventdgvordersdup(price:=POS.TextBoxPRICE.Text, name:=POS.TextBoxNAME.Text, ID:=ID, SKU:=SKU, CAT:=CAT, ORIGIN:=ORIGIN, INVID:=INVID)
+                    retrieveanddeduct(formulaID:=POS.TextBoxFormulaID.Text, Cat:=CAT, Origin:=ORIGIN)
                 End If
             Else
-                preventdgvordersdup(price:=POS.TextBoxPRICE.Text, name:=POS.TextBoxNAME.Text, ID:=ID, SKU:=SKU, CAT:=CAT)
-                retrieveanddeduct(POS.TextBoxFormulaID.Text, Cat:=CAT)
+                preventdgvordersdup(price:=POS.TextBoxPRICE.Text, name:=POS.TextBoxNAME.Text, ID:=ID, SKU:=SKU, CAT:=CAT, ORIGIN:=ORIGIN, INVID:=INVID)
+                retrieveanddeduct(formulaID:=POS.TextBoxFormulaID.Text, Cat:=CAT, Origin:=ORIGIN)
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Public Sub retrieveanddeduct(ByVal formulaID, ByVal Cat)
+    Public Sub retrieveanddeduct(ByVal formulaID, ByVal Cat, ByVal Origin)
         Try
             sql = "SELECT serving_value, formula_id, unit_cost FROM `loc_product_formula` WHERE formula_id IN (" & formulaID & ")"
             cmd = New MySqlCommand(sql, LocalhostConn())
@@ -385,6 +387,48 @@ Module RetrieveModule
                             End If
                         End If
                     End If
+                ElseIf Cat = "Others" Then
+                    If Origin = "Server" Then
+                        If DISABLESERVEROTHERSPRODUCT = False Then
+                            Dim test As Boolean = False
+                            For Each row In .DataGridViewInv.Rows
+                                If .TextBoxNAME.Text = row.Cells("Column10").Value Then
+                                    test = True
+                                    Exit For
+                                End If
+                            Next
+                            If test = False Then
+                                For Each row As DataRow In dt.Rows
+                                    If deleteitem = False Then
+                                        If .TextBoxQTY.Text <> 0 Then
+                                            servingtotal = Val(row("serving_value")) * Val(.TextBoxQTY.Text)
+                                            .DataGridViewInv.Rows.Add(servingtotal, row("formula_id"), .TextBoxQTY.Text, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxQTY.Text), row("unit_cost"), 0)
+                                        Else
+                                            servingtotal = Val(row("serving_value")) * Val(.TextBoxPressQTY.Text)
+                                            .DataGridViewInv.Rows.Add(servingtotal, row("formula_id"), .TextBoxPressQTY.Text, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxPressQTY.Text), row("unit_cost"), 0)
+                                        End If
+                                    End If
+                                Next row
+                            Else
+                                For i As Integer = 0 To .DataGridViewInv.Rows.Count - 1 Step +1
+                                    If .TextBoxNAME.Text = .DataGridViewInv.Rows(i).Cells(4).Value.ToString() Then
+                                        If enterpressorbuttonpress = True Then
+                                            .DataGridViewInv.Rows(i).Cells(2).Value = .TextBoxPressQTY.Text
+                                            .DataGridViewInv.Rows(i).Cells(0).Value = Val(.DataGridViewInv.Rows(i).Cells(2).Value) * Val(.DataGridViewInv.Rows(i).Cells(5).Value)
+                                            .DataGridViewInv.Rows(i).Cells(6).Value = Val(.DataGridViewInv.Rows(i).Cells(2).Value) * Val(.DataGridViewInv.Rows(i).Cells(7).Value)
+                                        Else
+                                            For a As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+                                                .DataGridViewInv.Rows(i).Cells(2).Value = .TextBoxPressQTY.Text
+                                                .DataGridViewInv.Rows(i).Cells(0).Value = Val(.TextBoxPressQTY.Text) * Val(.DataGridViewInv.Rows(i).Cells(5).Value)
+                                                .DataGridViewInv.Rows(i).Cells(6).Value = Val(.DataGridViewInv.Rows(i).Cells(2).Value) * Val(.DataGridViewInv.Rows(i).Cells(7).Value)
+                                            Next
+                                        End If
+                                    End If
+                                Next
+                            End If
+                            .TextBoxQTY.Text = 0
+                        End If
+                    End If
                 Else
                     Dim test As Boolean = False
                     For Each row In .DataGridViewInv.Rows
@@ -409,7 +453,6 @@ Module RetrieveModule
                         For i As Integer = 0 To .DataGridViewInv.Rows.Count - 1 Step +1
                             If .TextBoxNAME.Text = .DataGridViewInv.Rows(i).Cells(4).Value.ToString() Then
                                 If enterpressorbuttonpress = True Then
-                                    MsgBox("Here")
                                     .DataGridViewInv.Rows(i).Cells(2).Value = .TextBoxPressQTY.Text
                                     .DataGridViewInv.Rows(i).Cells(0).Value = Val(.DataGridViewInv.Rows(i).Cells(2).Value) * Val(.DataGridViewInv.Rows(i).Cells(5).Value)
                                     .DataGridViewInv.Rows(i).Cells(6).Value = Val(.DataGridViewInv.Rows(i).Cells(2).Value) * Val(.DataGridViewInv.Rows(i).Cells(7).Value)

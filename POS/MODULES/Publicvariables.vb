@@ -120,4 +120,7 @@ Module publicVariables
     Public IfConnectionIsConfigured As Boolean
     'Loading
     Public ValidDatabaseLocalConnection As Boolean = False
+
+    Public DISABLESERVEROTHERSPRODUCT As Boolean = False
+    Public DisallowedCharacters As String = "'~`{}^¨|°¬+[]^¨\/,;=?<>"
 End Module

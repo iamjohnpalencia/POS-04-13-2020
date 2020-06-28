@@ -704,6 +704,26 @@ Public Class ManageProducts
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
     End Sub
+
+    Private Sub TextBoxFROM_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxTO.KeyPress, TextBoxFROM.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub TextBoxPRCODE_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxPRICE.KeyPress, TextBoxPRCODE.KeyPress, TextBoxNAME.KeyPress, TextBoxCustomDesc.KeyPress, TextBoxBCODE.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     'ADD CUSTOM CATEGORY =================================================================================>
 End Class
 

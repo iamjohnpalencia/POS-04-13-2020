@@ -27,4 +27,14 @@
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         ButtonEnableability(TransactionType, True)
     End Sub
+
+    Private Sub TextBoxREFERENCE_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxREFERENCE.KeyPress, TextBoxFULLNAME.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 End Class

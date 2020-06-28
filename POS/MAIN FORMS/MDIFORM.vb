@@ -97,14 +97,20 @@
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
         'Dim newMDIchild As New SynctoCloud()
         'If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+
         'Else
-        '    btncolor(changecolor:=Button10)
-        '    btndefaut(defaultcolor:=Button10)
-        '    formclose(closeform:=SynctoCloud)
-        '    newMDIchild.MdiParent = Me
-        '    newMDIchild.ShowIcon = False
-        '    newMDIchild.Show()
+        '    If SyncIsOnProcess = True Then
+        '        SynctoCloud.WindowState = FormWindowState.Normal
+        '    Else
+        '        btncolor(changecolor:=Button10)
+        '        btndefaut(defaultcolor:=Button10)
+        '        formclose(closeform:=SynctoCloud)
+        '        newMDIchild.MdiParent = Me
+        '        newMDIchild.ShowIcon = False
+        '        newMDIchild.Show()
+        '    End If
         'End If
+
         btncolor(changecolor:=Button10)
         btndefaut(defaultcolor:=Button10)
         formclose(closeform:=SynctoCloud)

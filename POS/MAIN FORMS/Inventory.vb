@@ -245,7 +245,7 @@ Public Class Inventory
 
     Private Sub LoadReasonCategories()
         Try
-            GLOBAL_SELECT_ALL_FUNCTION("`loc_transfer_data`", "`transfer_id`, `transfer_cat`, `crew_id`, `created_at`, `created_by`, `updated_at`", DataGridViewReasonCategories)
+            GLOBAL_SELECT_ALL_FUNCTION("`loc_transfer_data` WHERE active = 1", "`transfer_id`, `transfer_cat`, `crew_id`, `created_at`, `created_by`, `updated_at`", DataGridViewReasonCategories)
             With DataGridViewReasonCategories
                 .Columns(0).Visible = False
                 .Columns(1).HeaderText = "Category"
@@ -262,6 +262,7 @@ Public Class Inventory
         Try
             loadpanelstockadjustment()
             LoadReasonCategories()
+            LoadReasonCategoriesDeactivated()
             PanelSTOCKADJUSTMENT.Location = New Point(ClientSize.Width / 2 - PanelSTOCKADJUSTMENT.Size.Width / 2, ClientSize.Height / 2 - PanelSTOCKADJUSTMENT.Size.Height / 2)
             PanelSTOCKADJUSTMENT.Anchor = AnchorStyles.None
             PanelSTOCKADJUSTMENT.Visible = True
@@ -366,8 +367,8 @@ Public Class Inventory
 
     Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
         Try
-            If DataGridViewStockAdjustment.SelectedRows.Count > 0 Then
-                Dim Ingredient = DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(1).Value
+
+            Dim Ingredient = DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(1).Value
                 If ComboBoxAction.Text <> "" Then
                     If TextboxIsEmpty(Panel23) Then
                         Dim Primary As Double = Double.Parse(TextBoxIPQuantity.Text) * Double.Parse(TextBoxFPrimaryVal.Text)
@@ -387,59 +388,57 @@ Public Class Inventory
                             InvServings = row("stock_no_of_servings")
                         Next
                         LocalhostConn.Close()
-                        If ComboBoxAction.Text = "ADD" Then
-                            Dim TotalPrimary As Double = Primary + InvPrimary
-                            Dim TotalSecondary As Double = Secondary + InvSecondary
-                            Dim TotalNoOfServings As Double = NoOfServings + InvServings
+                    If ComboBoxAction.Text = "ADD" Then
+                        Dim TotalPrimary As Double = Primary + InvPrimary
+                        Dim TotalSecondary As Double = Secondary + InvSecondary
+                        Dim TotalNoOfServings As Double = NoOfServings + InvServings
 
-                            SystemLogType = "NEW STOCK ADDED"
-                            SystemLogDesc = "Adding stock of: " & Ingredient & " Quantity(Primary): " & TextBoxIPQuantity.Text & " Reason: " & TextBoxIReason.Text
-                            Dim table = "loc_pos_inventory"
-                            Dim fields = "`stock_primary`=" & TotalPrimary & ",`stock_secondary`= " & TotalSecondary & " , `stock_no_of_servings`= " & TotalNoOfServings
-                            Dim where = "formula_id = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
-                            GLOBAL_FUNCTION_UPDATE(table, fields, where)
-                        ElseIf ComboBoxAction.Text = "TRANSFER" Then
+                        SystemLogType = "NEW STOCK ADDED"
+                        SystemLogDesc = "Adding stock of: " & Ingredient & " ,Quantity(Primary): " & TextBoxIPQuantity.Text & " ,Reason: " & TextBoxIReason.Text
+                        Dim table = "loc_pos_inventory"
+                        Dim fields = "`stock_primary`=" & TotalPrimary & ",`stock_secondary`= " & TotalSecondary & " , `stock_no_of_servings`= " & TotalNoOfServings
+                        Dim where = "formula_id = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
+                        GLOBAL_FUNCTION_UPDATE(table, fields, where)
+                    ElseIf ComboBoxAction.Text = "TRANSFER" Then
 
-                            Dim TotalPrimary As Double = InvPrimary - Primary
-                            Dim TotalSecondary As Double = InvSecondary - Secondary
-                            Dim TotalNoOfServings As Double = InvServings - NoOfServings
+                        Dim TotalPrimary As Double = InvPrimary - Primary
+                        Dim TotalSecondary As Double = InvSecondary - Secondary
+                        Dim TotalNoOfServings As Double = InvServings - NoOfServings
 
-                            SystemLogType = "STOCK TRANSFER"
-                            SystemLogDesc = "Transfer stock to: " & ComboBoxtransfer.Text & " Item: " & Ingredient & " Quantity(Primary): " & TextBoxIPQuantity.Text & " Reason: " & TextBoxIReason.Text
+                        SystemLogType = "STOCK TRANSFER"
+                        SystemLogDesc = "Transfer stock to: " & ComboBoxtransfer.Text & " ,Item: " & Ingredient & " ,Quantity(Primary): " & TextBoxIPQuantity.Text & " ,Reason: " & TextBoxIReason.Text
 
-                            Dim table = "loc_pos_inventory"
-                            Dim fields = "`stock_primary`=" & TotalPrimary & ",`stock_secondary`= " & TotalSecondary & " , `stock_no_of_servings`= " & TotalNoOfServings
-                            Dim where = "formula_id = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
-                            GLOBAL_FUNCTION_UPDATE(table, fields, where)
-                        ElseIf ComboBoxAction.Text = "DEDUCT" Then
-                            Dim TotalPrimary As Double = InvPrimary - Primary
-                            Dim TotalSecondary As Double = InvSecondary - Secondary
-                            Dim TotalNoOfServings As Double = InvServings - NoOfServings
+                        Dim table = "loc_pos_inventory"
+                        Dim fields = "`stock_primary`=" & TotalPrimary & ",`stock_secondary`= " & TotalSecondary & " , `stock_no_of_servings`= " & TotalNoOfServings
+                        Dim where = "formula_id = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
+                        GLOBAL_FUNCTION_UPDATE(table, fields, where)
+                    ElseIf ComboBoxAction.Text = "DEDUCT" Then
+                        Dim TotalPrimary As Double = InvPrimary - Primary
+                        Dim TotalSecondary As Double = InvSecondary - Secondary
+                        Dim TotalNoOfServings As Double = InvServings - NoOfServings
 
-                            SystemLogType = "STOCK REMOVAL"
-                            SystemLogDesc = "Removing stock of: " & Ingredient & " Quantity(Primary): " & TextBoxIPQuantity.Text & " Reason: (" & ComboBoxDeduction.Text & ") " & TextBoxIReason.Text
+                        SystemLogType = "STOCK REMOVAL"
+                        SystemLogDesc = "Removing stock of: " & Ingredient & " ,Quantity(Primary): " & TextBoxIPQuantity.Text & " ,Reason: (" & ComboBoxDeduction.Text & ") " & TextBoxIReason.Text
 
-                            Dim table = "loc_pos_inventory"
-                            Dim fields = "`stock_primary`=" & TotalPrimary & ",`stock_secondary`= " & TotalSecondary & " , `stock_no_of_servings`= " & TotalNoOfServings
-                            Dim where = "formula_id = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
-                            GLOBAL_FUNCTION_UPDATE(table, fields, where)
-                        End If
-                        GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-                        loadpanelstockadjustment()
-                        loadinventory()
-                        loadstockadjustmentreport(False)
-                        loadcriticalstocks()
-                        MDIFORM.LabelTotalAvailStock.Text = roundsum("stock_primary", "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", "P")
-                        MDIFORM.LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
+                        Dim table = "loc_pos_inventory"
+                        Dim fields = "`stock_primary`=" & TotalPrimary & ",`stock_secondary`= " & TotalSecondary & " , `stock_no_of_servings`= " & TotalNoOfServings
+                        Dim where = "formula_id = " & DataGridViewPanelStockAdjustment.SelectedRows(0).Cells(0).Value
+                        GLOBAL_FUNCTION_UPDATE(table, fields, where)
+                    End If
+                    GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+                    loadpanelstockadjustment()
+                    loadinventory()
+                    loadstockadjustmentreport(False)
+                    loadcriticalstocks()
+                    MDIFORM.LabelTotalAvailStock.Text = roundsum("stock_primary", "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", "P")
+                    MDIFORM.LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
                     Else
                         MessageBox.Show("Fill up all empty fields", "Empty Fields", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Else
                     MessageBox.Show("Select action first", "No Action Selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
-            Else
-                MessageBox.Show("Select inventory first", "No inventory selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -466,24 +465,45 @@ Public Class Inventory
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         PanelSTOCKADJUSTMENT.Visible = False
     End Sub
+    Dim AddOrUpdate As Boolean = False
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        AddOrUpdate = False
         PanelReasonCat.Visible = True
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         Try
             If TextBoxReasonsCat.Text <> "" Then
-                Dim sql = "INSERT INTO `loc_transfer_data`(`transfer_cat`, `crew_id`, `created_at`, `created_by`, `updated_at`, `active`) VALUES (@1,@2,@3,@4,@5,@6)"
-                cmd = New MySqlCommand(sql, LocalhostConn)
-                cmd.Parameters.Add("@1", MySqlDbType.Text).Value = TextBoxReasonsCat.Text
-                cmd.Parameters.Add("@2", MySqlDbType.Text).Value = ClientCrewID
-                cmd.Parameters.Add("@3", MySqlDbType.Text).Value = FullDate24HR()
-                cmd.Parameters.Add("@4", MySqlDbType.Text).Value = ClientCrewID
-                cmd.Parameters.Add("@5", MySqlDbType.Text).Value = FullDate24HR()
-                cmd.Parameters.Add("@6", MySqlDbType.Int64).Value = "1"
-                cmd.ExecuteNonQuery()
-                LoadReasonCategories()
-                PanelReasonCat.Visible = False
-                TextBoxReasonsCat.Clear()
+                If AddOrUpdate = False Then
+                    Dim sql = "INSERT INTO `loc_transfer_data`(`transfer_cat`, `crew_id`, `created_at`, `created_by`, `updated_at`, `active`) VALUES (@1,@2,@3,@4,@5,@6)"
+                    cmd = New MySqlCommand(sql, LocalhostConn)
+                    cmd.Parameters.Add("@1", MySqlDbType.Text).Value = TextBoxReasonsCat.Text
+                    cmd.Parameters.Add("@2", MySqlDbType.Text).Value = ClientCrewID
+                    cmd.Parameters.Add("@3", MySqlDbType.Text).Value = FullDate24HR()
+                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = ClientCrewID
+                    cmd.Parameters.Add("@5", MySqlDbType.Text).Value = FullDate24HR()
+                    cmd.Parameters.Add("@6", MySqlDbType.Int64).Value = "1"
+                    cmd.ExecuteNonQuery()
+                    LoadReasonCategories()
+                    PanelReasonCat.Visible = False
+                    TextBoxReasonsCat.Clear()
+                    GLOBAL_SYSTEM_LOGS("NEW CATEGORIES REASON", "Category Name: " & TextBoxReasonsCat.Text & " ,Added By: " & ClientCrewID)
+                    FillComboboxReason()
+                Else
+                    Dim sql = "UPDATE `loc_transfer_data` SET `transfer_cat`=@1, `crew_id`=@2, `created_at`=@3, `created_by`=@4, `updated_at`=@5, `active`=@6 WHERE transfer_id = " & DataGridViewReasonCategories.SelectedRows(0).Cells(0).Value
+                    cmd = New MySqlCommand(sql, LocalhostConn)
+                    cmd.Parameters.Add("@1", MySqlDbType.Text).Value = TextBoxReasonsCat.Text
+                    cmd.Parameters.Add("@2", MySqlDbType.Text).Value = ClientCrewID
+                    cmd.Parameters.Add("@3", MySqlDbType.Text).Value = FullDate24HR()
+                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = ClientCrewID
+                    cmd.Parameters.Add("@5", MySqlDbType.Text).Value = FullDate24HR()
+                    cmd.Parameters.Add("@6", MySqlDbType.Int64).Value = "0"
+                    cmd.ExecuteNonQuery()
+                    LoadReasonCategories()
+                    PanelReasonCat.Visible = False
+                    TextBoxReasonsCat.Clear()
+                    GLOBAL_SYSTEM_LOGS("UPDATE CATEGORIES REASON", "Category Name: " & TextBoxReasonsCat.Text & " ,Updated By: " & ClientCrewID)
+                    FillComboboxReason()
+                End If
             Else
                 MsgBox("Fill up required fields.")
             End If
@@ -493,5 +513,92 @@ Public Class Inventory
     End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles ButtonReasonCancel.Click
         PanelReasonCat.Visible = False
+    End Sub
+    Private Sub ButtonDeleteProducts_Click(sender As Object, e As EventArgs) Handles ButtonDeleteProducts.Click
+        Try
+            If DataGridViewReasonCategories.SelectedRows.Count > 0 Then
+                Dim msg = MessageBox.Show("Are you sure do you want to deactivate this category ?", "Deactivation", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                If msg = DialogResult.Yes Then
+                    Dim sql = "UPDATE loc_transfer_data SET active = 0, updated_at = '" & FullDate24HR() & "' WHERE transfer_id = " & DataGridViewReasonCategories.SelectedRows(0).Cells(0).Value
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                    cmd.ExecuteNonQuery()
+                    LoadReasonCategories()
+                    LoadReasonCategoriesDeactivated()
+                End If
+            Else
+                MsgBox("Select Category first")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        TextBoxReasonsCat.Text = DataGridViewReasonCategories.SelectedRows(0).Cells(1).Value
+        AddOrUpdate = True
+        PanelReasonCat.Visible = True
+    End Sub
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        PanelSTOCKADJUSTMENT.Visible = False
+    End Sub
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+        If DataGridViewDeactivatedReasonCat.SelectedRows.Count = 1 Then
+            Dim msg = MessageBox.Show("Are you sure do you want to activate this category ?", "Activation", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+            If msg = DialogResult.Yes Then
+                Dim sql = "UPDATE `loc_transfer_data` SET `active`=@1 , `updated_at`=@2 WHERE transfer_id = " & DataGridViewDeactivatedReasonCat.SelectedRows(0).Cells(0).Value
+                cmd = New MySqlCommand(sql, LocalhostConn)
+                cmd.Parameters.Add("@1", MySqlDbType.Text).Value = "1"
+                cmd.Parameters.Add("@2", MySqlDbType.Text).Value = FullDate24HR()
+                cmd.ExecuteNonQuery()
+                LoadReasonCategories()
+                LoadReasonCategoriesDeactivated()
+                PanelReasonCat.Visible = False
+                TextBoxReasonsCat.Clear()
+                GLOBAL_SYSTEM_LOGS("REASON CATEGORY ACTIVATED", "Category Name: " & TextBoxReasonsCat.Text & " ,Activated By: " & ClientCrewID)
+                FillComboboxReason()
+            End If
+        ElseIf DataGridViewDeactivatedReasonCat.selectedrows.Count > 1 Then
+            MsgBox("Select one category only.")
+        Else
+            MsgBox("Select category Category first")
+        End If
+    End Sub
+    Private Sub LoadReasonCategoriesDeactivated()
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION("`loc_transfer_data` WHERE active = 0", "`transfer_id`, `transfer_cat`, `crew_id`, `created_at`, `created_by`, `updated_at`", DataGridViewDeactivatedReasonCat)
+            With DataGridViewDeactivatedReasonCat
+                .Columns(0).Visible = False
+                .Columns(1).HeaderText = "Category"
+                .Columns(2).HeaderText = "Crew"
+                .Columns(3).HeaderText = "Date Created"
+                .Columns(4).HeaderText = "Created By"
+                .Columns(5).HeaderText = "Updated At"
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
+        PanelSTOCKADJUSTMENT.Visible = False
+    End Sub
+
+    Private Sub TextBoxIPQuantity_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxIReason.KeyPress, TextBoxIPQuantity.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub TextBoxEQuantity_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxEQuantity.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 End Class
