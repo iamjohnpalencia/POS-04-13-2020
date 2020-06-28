@@ -792,11 +792,6 @@ Public Class Reports
             cmd = New MySqlCommand(sql, LocalhostConn())
             cmd.ExecuteNonQuery()
             cmd.Dispose()
-
-            If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
-                ButtonZread.Enabled = False
-                Button6.Enabled = False
-            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

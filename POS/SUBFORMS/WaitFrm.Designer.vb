@@ -50,7 +50,7 @@ Partial Class WaitFrm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(7, 10)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(257, 18)

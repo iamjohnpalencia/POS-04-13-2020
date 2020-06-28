@@ -297,7 +297,7 @@ Partial Class SynctoCloud
         Me.Button2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Kelson Sans", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
         Me.Button2.Location = New System.Drawing.Point(0, 245)
         Me.Button2.Name = "Button2"
@@ -487,7 +487,7 @@ Partial Class SynctoCloud
         '
         Me.Label5.AutoSize = True
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Label5.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
         Me.Label5.Location = New System.Drawing.Point(486, 0)
         Me.Label5.Name = "Label5"
@@ -498,9 +498,9 @@ Partial Class SynctoCloud
         '
         Me.Label1.AutoSize = True
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(24, 0)
+        Me.Label1.Location = New System.Drawing.Point(26, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(0, 18)
         Me.Label1.TabIndex = 24
@@ -509,11 +509,11 @@ Partial Class SynctoCloud
         '
         Me.Label2.AutoSize = True
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label2.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(12, 0)
+        Me.Label2.Location = New System.Drawing.Point(13, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(12, 18)
+        Me.Label2.Size = New System.Drawing.Size(13, 18)
         Me.Label2.TabIndex = 26
         Me.Label2.Text = " "
         '
@@ -521,11 +521,11 @@ Partial Class SynctoCloud
         '
         Me.Label3.AutoSize = True
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label3.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
         Me.Label3.Location = New System.Drawing.Point(0, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(12, 18)
+        Me.Label3.Size = New System.Drawing.Size(13, 18)
         Me.Label3.TabIndex = 25
         Me.Label3.Text = " "
         '
@@ -533,7 +533,7 @@ Partial Class SynctoCloud
         '
         Me.Label4.AutoSize = True
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label4.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.White
         Me.Label4.Location = New System.Drawing.Point(0, 0)
         Me.Label4.Name = "Label4"
@@ -838,420 +838,420 @@ Partial Class SynctoCloud
         'Label49
         '
         Me.Label49.AutoSize = True
-        Me.Label49.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label49.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label49.Location = New System.Drawing.Point(445, 221)
         Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(14, 15)
+        Me.Label49.Size = New System.Drawing.Size(14, 14)
         Me.Label49.TabIndex = 44
         Me.Label49.Text = "0"
         '
         'Label48
         '
         Me.Label48.AutoSize = True
-        Me.Label48.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label48.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label48.Location = New System.Drawing.Point(192, 221)
         Me.Label48.Name = "Label48"
-        Me.Label48.Size = New System.Drawing.Size(169, 15)
+        Me.Label48.Size = New System.Drawing.Size(165, 14)
         Me.Label48.TabIndex = 43
         Me.Label48.Text = "Estimating Time. Please Wait"
         '
         'Label47
         '
         Me.Label47.AutoSize = True
-        Me.Label47.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label47.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label47.Location = New System.Drawing.Point(10, 221)
         Me.Label47.Name = "Label47"
-        Me.Label47.Size = New System.Drawing.Size(49, 15)
+        Me.Label47.Size = New System.Drawing.Size(48, 14)
         Me.Label47.TabIndex = 42
         Me.Label47.Text = "Deposit"
         '
         'Label46
         '
         Me.Label46.AutoSize = True
-        Me.Label46.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label46.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label46.Location = New System.Drawing.Point(445, 204)
         Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(14, 15)
+        Me.Label46.Size = New System.Drawing.Size(14, 14)
         Me.Label46.TabIndex = 41
         Me.Label46.Text = "0"
         '
         'Label45
         '
         Me.Label45.AutoSize = True
-        Me.Label45.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label45.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label45.Location = New System.Drawing.Point(192, 204)
         Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(169, 15)
+        Me.Label45.Size = New System.Drawing.Size(165, 14)
         Me.Label45.TabIndex = 40
         Me.Label45.Text = "Estimating Time. Please Wait"
         '
         'Label44
         '
         Me.Label44.AutoSize = True
-        Me.Label44.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label44.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label44.Location = New System.Drawing.Point(10, 204)
         Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(120, 15)
+        Me.Label44.Size = New System.Drawing.Size(119, 14)
         Me.Label44.TabIndex = 39
         Me.Label44.Text = "Mode of Transaction"
         '
         'Label41
         '
         Me.Label41.AutoSize = True
-        Me.Label41.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label41.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label41.Location = New System.Drawing.Point(445, 187)
         Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(14, 15)
+        Me.Label41.Size = New System.Drawing.Size(14, 14)
         Me.Label41.TabIndex = 38
         Me.Label41.Text = "0"
         '
         'Label42
         '
         Me.Label42.AutoSize = True
-        Me.Label42.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label42.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label42.Location = New System.Drawing.Point(192, 187)
         Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(169, 15)
+        Me.Label42.Size = New System.Drawing.Size(165, 14)
         Me.Label42.TabIndex = 37
         Me.Label42.Text = "Estimating Time. Please Wait"
         '
         'Label43
         '
         Me.Label43.AutoSize = True
-        Me.Label43.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label43.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label43.Location = New System.Drawing.Point(10, 187)
         Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(51, 15)
+        Me.Label43.Size = New System.Drawing.Size(49, 14)
         Me.Label43.TabIndex = 36
         Me.Label43.Text = "Returns"
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label14.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.Location = New System.Drawing.Point(445, 170)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(14, 15)
+        Me.Label14.Size = New System.Drawing.Size(14, 14)
         Me.Label14.TabIndex = 35
         Me.Label14.Text = "0"
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label15.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.Location = New System.Drawing.Point(192, 170)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(169, 15)
+        Me.Label15.Size = New System.Drawing.Size(165, 14)
         Me.Label15.TabIndex = 34
         Me.Label15.Text = "Estimating Time. Please Wait"
         '
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label36.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label36.Location = New System.Drawing.Point(10, 170)
         Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(51, 15)
+        Me.Label36.Size = New System.Drawing.Size(49, 14)
         Me.Label36.TabIndex = 33
         Me.Label36.Text = "Returns"
         '
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label40.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label40.Location = New System.Drawing.Point(445, 153)
         Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(14, 15)
+        Me.Label40.Size = New System.Drawing.Size(14, 14)
         Me.Label40.TabIndex = 32
         Me.Label40.Text = "0"
         '
         'Label39
         '
         Me.Label39.AutoSize = True
-        Me.Label39.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label39.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label39.Location = New System.Drawing.Point(445, 137)
         Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(14, 15)
+        Me.Label39.Size = New System.Drawing.Size(14, 14)
         Me.Label39.TabIndex = 31
         Me.Label39.Text = "0"
         '
         'Label38
         '
         Me.Label38.AutoSize = True
-        Me.Label38.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label38.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label38.Location = New System.Drawing.Point(445, 121)
         Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(14, 15)
+        Me.Label38.Size = New System.Drawing.Size(14, 14)
         Me.Label38.TabIndex = 30
         Me.Label38.Text = "0"
         '
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label37.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label37.Location = New System.Drawing.Point(445, 105)
         Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(14, 15)
+        Me.Label37.Size = New System.Drawing.Size(14, 14)
         Me.Label37.TabIndex = 29
         Me.Label37.Text = "0"
         '
         'Label35
         '
         Me.Label35.AutoSize = True
-        Me.Label35.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label35.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label35.Location = New System.Drawing.Point(445, 88)
         Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(14, 15)
+        Me.Label35.Size = New System.Drawing.Size(14, 14)
         Me.Label35.TabIndex = 27
         Me.Label35.Text = "0"
         '
         'Label34
         '
         Me.Label34.AutoSize = True
-        Me.Label34.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label34.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label34.Location = New System.Drawing.Point(445, 72)
         Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(14, 15)
+        Me.Label34.Size = New System.Drawing.Size(14, 14)
         Me.Label34.TabIndex = 26
         Me.Label34.Text = "0"
         '
         'Label33
         '
         Me.Label33.AutoSize = True
-        Me.Label33.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label33.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label33.Location = New System.Drawing.Point(445, 56)
         Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(14, 15)
+        Me.Label33.Size = New System.Drawing.Size(14, 14)
         Me.Label33.TabIndex = 25
         Me.Label33.Text = "0"
         '
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label32.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label32.Location = New System.Drawing.Point(445, 40)
         Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(14, 15)
+        Me.Label32.Size = New System.Drawing.Size(14, 14)
         Me.Label32.TabIndex = 24
         Me.Label32.Text = "0"
         '
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label31.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label31.Location = New System.Drawing.Point(445, 24)
         Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(14, 15)
+        Me.Label31.Size = New System.Drawing.Size(14, 14)
         Me.Label31.TabIndex = 23
         Me.Label31.Text = "0"
         '
         'Label30
         '
         Me.Label30.AutoSize = True
-        Me.Label30.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label30.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label30.Location = New System.Drawing.Point(445, 8)
         Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(14, 15)
+        Me.Label30.Size = New System.Drawing.Size(14, 14)
         Me.Label30.TabIndex = 22
         Me.Label30.Text = "0"
         '
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label29.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label29.Location = New System.Drawing.Point(192, 153)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(169, 15)
+        Me.Label29.Size = New System.Drawing.Size(165, 14)
         Me.Label29.TabIndex = 21
         Me.Label29.Text = "Estimating Time. Please Wait"
         '
         'Label28
         '
         Me.Label28.AutoSize = True
-        Me.Label28.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label28.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label28.Location = New System.Drawing.Point(192, 137)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(169, 15)
+        Me.Label28.Size = New System.Drawing.Size(165, 14)
         Me.Label28.TabIndex = 20
         Me.Label28.Text = "Estimating Time. Please Wait"
         '
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label27.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label27.Location = New System.Drawing.Point(192, 121)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(169, 15)
+        Me.Label27.Size = New System.Drawing.Size(165, 14)
         Me.Label27.TabIndex = 19
         Me.Label27.Text = "Estimating Time. Please Wait"
         '
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label26.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label26.Location = New System.Drawing.Point(192, 105)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(169, 15)
+        Me.Label26.Size = New System.Drawing.Size(165, 14)
         Me.Label26.TabIndex = 18
         Me.Label26.Text = "Estimating Time. Please Wait"
         '
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label25.Location = New System.Drawing.Point(10, 153)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(88, 15)
+        Me.Label25.Size = New System.Drawing.Size(87, 14)
         Me.Label25.TabIndex = 17
         Me.Label25.Text = "System Logs 4"
         '
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.Location = New System.Drawing.Point(10, 137)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(88, 15)
+        Me.Label24.Size = New System.Drawing.Size(87, 14)
         Me.Label24.TabIndex = 16
         Me.Label24.Text = "System Logs 3"
         '
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.Location = New System.Drawing.Point(10, 121)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(88, 15)
+        Me.Label23.Size = New System.Drawing.Size(87, 14)
         Me.Label23.TabIndex = 15
         Me.Label23.Text = "System Logs 2"
         '
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label22.Location = New System.Drawing.Point(10, 105)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(86, 15)
+        Me.Label22.Size = New System.Drawing.Size(87, 14)
         Me.Label22.TabIndex = 14
         Me.Label22.Text = "System Logs 1"
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label16.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.Location = New System.Drawing.Point(192, 88)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(169, 15)
+        Me.Label16.Size = New System.Drawing.Size(165, 14)
         Me.Label16.TabIndex = 12
         Me.Label16.Text = "Estimating Time. Please Wait"
         '
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label17.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.Location = New System.Drawing.Point(192, 72)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(169, 15)
+        Me.Label17.Size = New System.Drawing.Size(165, 14)
         Me.Label17.TabIndex = 11
         Me.Label17.Text = "Estimating Time. Please Wait"
         '
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label18.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.Location = New System.Drawing.Point(192, 56)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(169, 15)
+        Me.Label18.Size = New System.Drawing.Size(165, 14)
         Me.Label18.TabIndex = 10
         Me.Label18.Text = "Estimating Time. Please Wait"
         '
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label19.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.Location = New System.Drawing.Point(192, 40)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(169, 15)
+        Me.Label19.Size = New System.Drawing.Size(165, 14)
         Me.Label19.TabIndex = 9
         Me.Label19.Text = "Estimating Time. Please Wait"
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label20.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label20.Location = New System.Drawing.Point(192, 24)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(169, 15)
+        Me.Label20.Size = New System.Drawing.Size(165, 14)
         Me.Label20.TabIndex = 8
         Me.Label20.Text = "Estimating Time. Please Wait"
         '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label21.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.Location = New System.Drawing.Point(192, 8)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(169, 15)
+        Me.Label21.Size = New System.Drawing.Size(165, 14)
         Me.Label21.TabIndex = 7
         Me.Label21.Text = "Estimating Time. Please Wait"
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.Location = New System.Drawing.Point(10, 89)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(60, 15)
+        Me.Label13.Size = New System.Drawing.Size(58, 14)
         Me.Label13.TabIndex = 5
         Me.Label13.Text = "Accounts"
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.Location = New System.Drawing.Point(10, 72)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(96, 15)
+        Me.Label12.Size = New System.Drawing.Size(92, 14)
         Me.Label12.TabIndex = 4
         Me.Label12.Text = "Expense Details"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.Location = New System.Drawing.Point(10, 56)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(77, 15)
+        Me.Label11.Size = New System.Drawing.Size(75, 14)
         Me.Label11.TabIndex = 3
         Me.Label11.Text = "Expense List"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.Location = New System.Drawing.Point(10, 40)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(61, 15)
+        Me.Label10.Size = New System.Drawing.Size(60, 14)
         Me.Label10.TabIndex = 2
         Me.Label10.Text = "Inventory"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.Location = New System.Drawing.Point(10, 24)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(145, 15)
+        Me.Label9.Size = New System.Drawing.Size(137, 14)
         Me.Label9.TabIndex = 1
         Me.Label9.Text = "Daily Transaction Details"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(10, 8)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(104, 15)
+        Me.Label8.Size = New System.Drawing.Size(98, 14)
         Me.Label8.TabIndex = 0
         Me.Label8.Text = "Daily Transaction"
         '

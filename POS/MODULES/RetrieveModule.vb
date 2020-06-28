@@ -141,7 +141,7 @@ Module RetrieveModule
                         Else
                             .ForeColor = Color.Black
                         End If
-                        .Font = New Font("Kelson Sans Normal", 10)
+                        .Font = New Font("Tahoma", 10)
                         .BackgroundImage = Base64ToImage(row("product_image"))
                         .FlatStyle = FlatStyle.Flat
                         .FlatAppearance.BorderSize = 0
@@ -152,7 +152,7 @@ Module RetrieveModule
                         .Cursor = Cursors.Hand
                         With newlabel
                             .Text = buttonname
-                            .Font = New Font("Kelson Sans Normal", 10)
+                            .Font = New Font("Tahoma", 10)
                             .ForeColor = Color.White
                             .Width = 148
                             .Location = New Point(0, 100)
@@ -273,6 +273,7 @@ Module RetrieveModule
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             da.Fill(dttable)
+            datagridd.Font = New Font("Tahoma", 10)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -506,7 +507,7 @@ Module RetrieveModule
                 .AllowUserToOrderColumns = False
                 .AllowUserToResizeColumns = False
                 .AllowUserToResizeRows = False
-                .Font = New Font("Kelson Sans Normal", 10)
+                .Font = New Font("tahoma", 10)
                 .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
                 .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
                 .SelectionMode = DataGridViewSelectionMode.FullRowSelect
@@ -533,7 +534,7 @@ Module RetrieveModule
                 .AllowUserToOrderColumns = False
                 .AllowUserToResizeColumns = False
                 .AllowUserToResizeRows = False
-                .Font = New Font("Kelson Sans Normal", 10)
+                .Font = New Font("tahoma", 10)
                 .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
                 .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
                 .SelectionMode = DataGridViewSelectionMode.FullRowSelect

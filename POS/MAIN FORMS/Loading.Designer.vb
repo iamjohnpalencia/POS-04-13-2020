@@ -71,36 +71,36 @@ Partial Class Loading
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(385, 92)
+        Me.Panel1.Size = New System.Drawing.Size(385, 94)
         Me.Panel1.TabIndex = 21
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(359, 15)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(16, 14)
+        Me.Label3.Size = New System.Drawing.Size(19, 14)
         Me.Label3.TabIndex = 27
         Me.Label3.Text = "%"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(338, 15)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(13, 14)
+        Me.Label2.Size = New System.Drawing.Size(14, 14)
         Me.Label2.TabIndex = 26
         Me.Label2.Text = "0"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(48, 38)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(40, 14)
+        Me.Label1.Size = New System.Drawing.Size(42, 14)
         Me.Label1.TabIndex = 25
         Me.Label1.Text = "Label1"
         '
@@ -108,7 +108,7 @@ Partial Class Loading
         '
         Me.Panel23.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel23.Location = New System.Drawing.Point(0, 60)
+        Me.Panel23.Location = New System.Drawing.Point(0, 62)
         Me.Panel23.Name = "Panel23"
         Me.Panel23.Size = New System.Drawing.Size(383, 10)
         Me.Panel23.TabIndex = 22
@@ -119,7 +119,7 @@ Partial Class Loading
         Me.Panel24.Controls.Add(Me.Label4)
         Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel24.Location = New System.Drawing.Point(0, 70)
+        Me.Panel24.Location = New System.Drawing.Point(0, 72)
         Me.Panel24.Name = "Panel24"
         Me.Panel24.Size = New System.Drawing.Size(383, 20)
         Me.Panel24.TabIndex = 21
@@ -127,12 +127,12 @@ Partial Class Loading
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.White
         Me.Label4.Location = New System.Drawing.Point(3, 3)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(26, 14)
+        Me.Label4.Size = New System.Drawing.Size(33, 14)
         Me.Label4.TabIndex = 16
         Me.Label4.Text = "V1.0"
         '
@@ -148,12 +148,12 @@ Partial Class Loading
         'Label147
         '
         Me.Label147.AutoSize = True
-        Me.Label147.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label147.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label147.ForeColor = System.Drawing.Color.White
-        Me.Label147.Location = New System.Drawing.Point(20, 3)
+        Me.Label147.Location = New System.Drawing.Point(6, 3)
         Me.Label147.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label147.Name = "Label147"
-        Me.Label147.Size = New System.Drawing.Size(232, 14)
+        Me.Label147.Size = New System.Drawing.Size(251, 14)
         Me.Label147.TabIndex = 15
         Me.Label147.Text = "© 2019 - Innovention Food Asia Corporation"
         '
@@ -191,7 +191,7 @@ Partial Class Loading
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(385, 92)
+        Me.ClientSize = New System.Drawing.Size(385, 94)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Loading"

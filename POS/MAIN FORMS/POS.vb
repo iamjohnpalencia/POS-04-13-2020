@@ -32,7 +32,7 @@ Public Class POS
         Label76.Text = 0
         listviewproductsshow(where:="Simply Perfect")
         selectmax(whatform:=1)
-        DataGridViewOrders.Font = New Font("Kelson Sans Normal", 11.25)
+        DataGridViewOrders.Font = New Font("Tahoma", 11.25)
         Try
             sql = "SELECT category_name FROM loc_admin_category WHERE status = 1"
             cmd = New MySqlCommand(sql, LocalhostConn())
@@ -50,7 +50,7 @@ Public Class POS
                         .TextImageRelation = TextImageRelation.ImageBeforeText
                         .TextAlign = ContentAlignment.MiddleCenter
                         .ForeColor = Color.White
-                        .Font = New Font("Oswald", 11, FontStyle.Bold)
+                        .Font = New Font("Tahoma", 11, FontStyle.Bold)
                         .FlatStyle = FlatStyle.Flat
                         .FlatAppearance.BorderSize = 0
                         .Location = New Point(Location_control.X, Location_control.Y)

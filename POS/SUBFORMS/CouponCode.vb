@@ -94,10 +94,6 @@ Public Class CouponCode
                     VAT12PERCENT = Format(VAT12PERCENT, "0.00")
                     Dim TOTALAMOUNTDUE As Double = DISCOUNTAMOUNT - LESSVAT - LESSDISCOUNT + TOTALPRODUCT
                     With POS
-                        MsgBox(TOTALAMOUNTDUE)
-                        MsgBox(VATABLESALES)
-                        MsgBox(VATEXEMPTSALES)
-                        MsgBox(LESSVAT)
                         .GROSSSALE = GROSSSALES
                         .TOTALDISCOUNTEDAMOUNT = DISCOUNTAMOUNT
                         .VATEXEMPTSALES = VATEXEMPTSALES
@@ -105,7 +101,6 @@ Public Class CouponCode
                         .TOTALDISCOUNT = LESSDISCOUNT
                         .VATABLESALES = VATABLESALES
                         .VAT12PERCENT = VAT12PERCENT
-
                         .TOTALAMOUNTDUE = TOTALAMOUNTDUE
                         .TextBoxGRANDTOTAL.Text = TOTALAMOUNTDUE
                         .TextBoxDISCOUNT.Text = LESSDISCOUNT

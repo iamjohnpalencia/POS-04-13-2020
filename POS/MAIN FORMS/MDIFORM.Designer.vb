@@ -134,7 +134,7 @@ Partial Class MDIFORM
         Me.Button4.Dock = System.Windows.Forms.DockStyle.Top
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.Button4.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button4.ForeColor = System.Drawing.Color.Black
         Me.Button4.Image = CType(resources.GetObject("Button4.Image"), System.Drawing.Image)
         Me.Button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -154,7 +154,7 @@ Partial Class MDIFORM
         Me.Button1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.Black
         Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
         Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -174,7 +174,7 @@ Partial Class MDIFORM
         Me.Button12.Dock = System.Windows.Forms.DockStyle.Top
         Me.Button12.FlatAppearance.BorderSize = 0
         Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button12.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button12.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button12.ForeColor = System.Drawing.Color.Black
         Me.Button12.Image = CType(resources.GetObject("Button12.Image"), System.Drawing.Image)
         Me.Button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -194,7 +194,7 @@ Partial Class MDIFORM
         Me.Button8.Dock = System.Windows.Forms.DockStyle.Top
         Me.Button8.FlatAppearance.BorderSize = 0
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button8.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button8.ForeColor = System.Drawing.Color.Black
         Me.Button8.Image = CType(resources.GetObject("Button8.Image"), System.Drawing.Image)
         Me.Button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -214,7 +214,7 @@ Partial Class MDIFORM
         Me.Button10.Dock = System.Windows.Forms.DockStyle.Top
         Me.Button10.FlatAppearance.BorderSize = 0
         Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button10.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button10.ForeColor = System.Drawing.Color.Black
         Me.Button10.Image = CType(resources.GetObject("Button10.Image"), System.Drawing.Image)
         Me.Button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -234,7 +234,7 @@ Partial Class MDIFORM
         Me.Button3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button3.ForeColor = System.Drawing.Color.Black
         Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
         Me.Button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -254,7 +254,7 @@ Partial Class MDIFORM
         Me.Button6.Dock = System.Windows.Forms.DockStyle.Top
         Me.Button6.FlatAppearance.BorderSize = 0
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button6.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.Black
         Me.Button6.Image = CType(resources.GetObject("Button6.Image"), System.Drawing.Image)
         Me.Button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -274,7 +274,7 @@ Partial Class MDIFORM
         Me.Button5.Dock = System.Windows.Forms.DockStyle.Top
         Me.Button5.FlatAppearance.BorderSize = 0
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button5.ForeColor = System.Drawing.Color.Black
         Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
         Me.Button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -294,7 +294,7 @@ Partial Class MDIFORM
         Me.Button2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.Black
         Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
         Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -333,7 +333,7 @@ Partial Class MDIFORM
         Me.Button7.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Button7.FlatAppearance.BorderSize = 0
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.Button7.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button7.ForeColor = System.Drawing.Color.Black
         Me.Button7.Image = CType(resources.GetObject("Button7.Image"), System.Drawing.Image)
         Me.Button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -462,12 +462,12 @@ Partial Class MDIFORM
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.White
         Me.Label9.Location = New System.Drawing.Point(88, 4)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(241, 16)
+        Me.Label9.Size = New System.Drawing.Size(222, 13)
         Me.Label9.TabIndex = 16
         Me.Label9.Text = "© 2019 - Innovention Food Asia Corporation"
         '
@@ -517,7 +517,7 @@ Partial Class MDIFORM
         '
         Me.LabelTotalCrititems.AutoSize = True
         Me.LabelTotalCrititems.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LabelTotalCrititems.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.LabelTotalCrititems.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelTotalCrititems.ForeColor = System.Drawing.Color.White
         Me.LabelTotalCrititems.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.LabelTotalCrititems.Location = New System.Drawing.Point(69, 42)
@@ -531,13 +531,13 @@ Partial Class MDIFORM
         '
         Me.Label3.AutoSize = True
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label3.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
         Me.Label3.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Label3.Location = New System.Drawing.Point(69, 24)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(95, 18)
+        Me.Label3.Size = New System.Drawing.Size(92, 18)
         Me.Label3.TabIndex = 78
         Me.Label3.Text = "Critical Items"
         '
@@ -577,7 +577,7 @@ Partial Class MDIFORM
         '
         Me.LabelTotalProdLine.AutoSize = True
         Me.LabelTotalProdLine.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LabelTotalProdLine.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.LabelTotalProdLine.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelTotalProdLine.ForeColor = System.Drawing.Color.Black
         Me.LabelTotalProdLine.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.LabelTotalProdLine.Location = New System.Drawing.Point(69, 42)
@@ -591,13 +591,13 @@ Partial Class MDIFORM
         '
         Me.Label1.AutoSize = True
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
         Me.Label1.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Label1.Location = New System.Drawing.Point(69, 24)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(90, 18)
+        Me.Label1.Size = New System.Drawing.Size(87, 18)
         Me.Label1.TabIndex = 74
         Me.Label1.Text = "Product Line"
         '
@@ -648,10 +648,10 @@ Partial Class MDIFORM
         '
         Me.LabelTotalSales.AutoSize = True
         Me.LabelTotalSales.Dock = System.Windows.Forms.DockStyle.Left
-        Me.LabelTotalSales.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.LabelTotalSales.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelTotalSales.ForeColor = System.Drawing.Color.Black
         Me.LabelTotalSales.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.LabelTotalSales.Location = New System.Drawing.Point(18, 0)
+        Me.LabelTotalSales.Location = New System.Drawing.Point(16, 0)
         Me.LabelTotalSales.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelTotalSales.Name = "LabelTotalSales"
         Me.LabelTotalSales.Size = New System.Drawing.Size(16, 18)
@@ -662,13 +662,13 @@ Partial Class MDIFORM
         '
         Me.Label4.AutoSize = True
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label4.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
         Me.Label4.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Label4.Location = New System.Drawing.Point(0, 0)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(18, 18)
+        Me.Label4.Size = New System.Drawing.Size(16, 18)
         Me.Label4.TabIndex = 77
         Me.Label4.Text = "₱"
         '
@@ -676,13 +676,13 @@ Partial Class MDIFORM
         '
         Me.Label12.AutoSize = True
         Me.Label12.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label12.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.Label12.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.Black
         Me.Label12.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Label12.Location = New System.Drawing.Point(69, 24)
         Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(80, 18)
+        Me.Label12.Size = New System.Drawing.Size(76, 18)
         Me.Label12.TabIndex = 74
         Me.Label12.Text = "Daily Sales"
         '
@@ -723,7 +723,7 @@ Partial Class MDIFORM
         '
         Me.LabelTotalAvailStock.AutoSize = True
         Me.LabelTotalAvailStock.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LabelTotalAvailStock.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.LabelTotalAvailStock.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelTotalAvailStock.ForeColor = System.Drawing.Color.White
         Me.LabelTotalAvailStock.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.LabelTotalAvailStock.Location = New System.Drawing.Point(69, 42)
@@ -737,13 +737,13 @@ Partial Class MDIFORM
         '
         Me.Label6.AutoSize = True
         Me.Label6.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label6.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.Label6.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.White
         Me.Label6.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Label6.Location = New System.Drawing.Point(69, 24)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(114, 18)
+        Me.Label6.Size = New System.Drawing.Size(110, 18)
         Me.Label6.TabIndex = 74
         Me.Label6.Text = "Available Stocks"
         '

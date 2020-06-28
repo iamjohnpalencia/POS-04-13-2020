@@ -22,24 +22,24 @@ Partial Class SettingsForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -337,11 +337,11 @@ Partial Class SettingsForm
         Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Controls.Add(Me.TabPage6)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TabControl1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1014, 513)
+        Me.TabControl1.Size = New System.Drawing.Size(1039, 513)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
@@ -350,7 +350,7 @@ Partial Class SettingsForm
         Me.TabPage1.Location = New System.Drawing.Point(4, 28)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1006, 481)
+        Me.TabPage1.Size = New System.Drawing.Size(1031, 481)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -361,7 +361,7 @@ Partial Class SettingsForm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(3, 3)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1000, 475)
+        Me.Panel1.Size = New System.Drawing.Size(1025, 475)
         Me.Panel1.TabIndex = 0
         '
         'TabControl2
@@ -372,7 +372,7 @@ Partial Class SettingsForm
         Me.TabControl2.Location = New System.Drawing.Point(0, 0)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(1000, 475)
+        Me.TabControl2.Size = New System.Drawing.Size(1025, 475)
         Me.TabControl2.TabIndex = 0
         '
         'TabPage11
@@ -381,7 +381,7 @@ Partial Class SettingsForm
         Me.TabPage11.Location = New System.Drawing.Point(4, 28)
         Me.TabPage11.Name = "TabPage11"
         Me.TabPage11.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage11.Size = New System.Drawing.Size(992, 443)
+        Me.TabPage11.Size = New System.Drawing.Size(1017, 443)
         Me.TabPage11.TabIndex = 0
         Me.TabPage11.Text = "TabPage11"
         Me.TabPage11.UseVisualStyleBackColor = True
@@ -398,7 +398,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 1
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(986, 437)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1011, 437)
         Me.TableLayoutPanel3.TabIndex = 12
         '
         'TableLayoutPanel1
@@ -414,17 +414,17 @@ Partial Class SettingsForm
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(487, 431)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(499, 431)
         Me.TableLayoutPanel1.TabIndex = 5
         '
         'GroupBox3
         '
         Me.GroupBox3.Controls.Add(Me.Panel5)
         Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox3.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(481, 209)
+        Me.GroupBox3.Size = New System.Drawing.Size(493, 209)
         Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Local Database Connection"
@@ -446,16 +446,16 @@ Partial Class SettingsForm
         Me.Panel5.Controls.Add(Me.Label8)
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel5.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
-        Me.Panel5.Location = New System.Drawing.Point(3, 21)
+        Me.Panel5.Location = New System.Drawing.Point(3, 22)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(475, 185)
+        Me.Panel5.Size = New System.Drawing.Size(487, 184)
         Me.Panel5.TabIndex = 2
         '
         'Button6
         '
         Me.Button6.FlatAppearance.BorderSize = 0
-        Me.Button6.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Button6.Location = New System.Drawing.Point(90, 142)
+        Me.Button6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button6.Location = New System.Drawing.Point(97, 142)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(171, 23)
         Me.Button6.TabIndex = 14
@@ -465,8 +465,8 @@ Partial Class SettingsForm
         'ButtonTestLocCon
         '
         Me.ButtonTestLocCon.FlatAppearance.BorderSize = 0
-        Me.ButtonTestLocCon.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.ButtonTestLocCon.Location = New System.Drawing.Point(267, 142)
+        Me.ButtonTestLocCon.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonTestLocCon.Location = New System.Drawing.Point(274, 142)
         Me.ButtonTestLocCon.Name = "ButtonTestLocCon"
         Me.ButtonTestLocCon.Size = New System.Drawing.Size(167, 23)
         Me.ButtonTestLocCon.TabIndex = 11
@@ -476,8 +476,8 @@ Partial Class SettingsForm
         'TextBoxLocalServer
         '
         Me.TextBoxLocalServer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxLocalServer.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.TextBoxLocalServer.Location = New System.Drawing.Point(90, 30)
+        Me.TextBoxLocalServer.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxLocalServer.Location = New System.Drawing.Point(97, 30)
         Me.TextBoxLocalServer.Name = "TextBoxLocalServer"
         Me.TextBoxLocalServer.ReadOnly = True
         Me.TextBoxLocalServer.Size = New System.Drawing.Size(171, 23)
@@ -487,38 +487,38 @@ Partial Class SettingsForm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(9, 60)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(72, 15)
+        Me.Label6.Size = New System.Drawing.Size(76, 16)
         Me.Label6.TabIndex = 6
         Me.Label6.Text = "User Name:"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label9.Location = New System.Drawing.Point(267, 34)
+        Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(274, 34)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(33, 15)
+        Me.Label9.Size = New System.Drawing.Size(36, 16)
         Me.Label9.TabIndex = 9
         Me.Label9.Text = "Port:"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(9, 32)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(83, 15)
+        Me.Label4.Size = New System.Drawing.Size(88, 16)
         Me.Label4.TabIndex = 5
         Me.Label4.Text = "Server Name:"
         '
         'TextBoxLocalPort
         '
         Me.TextBoxLocalPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxLocalPort.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.TextBoxLocalPort.Location = New System.Drawing.Point(303, 30)
+        Me.TextBoxLocalPort.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxLocalPort.Location = New System.Drawing.Point(310, 30)
         Me.TextBoxLocalPort.Name = "TextBoxLocalPort"
         Me.TextBoxLocalPort.ReadOnly = True
         Me.TextBoxLocalPort.Size = New System.Drawing.Size(131, 23)
@@ -528,18 +528,18 @@ Partial Class SettingsForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(9, 88)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(65, 15)
+        Me.Label7.Size = New System.Drawing.Size(68, 16)
         Me.Label7.TabIndex = 7
         Me.Label7.Text = "Password:"
         '
         'TextBoxLocalDatabase
         '
         Me.TextBoxLocalDatabase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxLocalDatabase.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.TextBoxLocalDatabase.Location = New System.Drawing.Point(90, 114)
+        Me.TextBoxLocalDatabase.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxLocalDatabase.Location = New System.Drawing.Point(97, 114)
         Me.TextBoxLocalDatabase.Name = "TextBoxLocalDatabase"
         Me.TextBoxLocalDatabase.ReadOnly = True
         Me.TextBoxLocalDatabase.Size = New System.Drawing.Size(171, 23)
@@ -550,8 +550,8 @@ Partial Class SettingsForm
         'TextBoxLocalUsername
         '
         Me.TextBoxLocalUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxLocalUsername.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.TextBoxLocalUsername.Location = New System.Drawing.Point(90, 58)
+        Me.TextBoxLocalUsername.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxLocalUsername.Location = New System.Drawing.Point(97, 58)
         Me.TextBoxLocalUsername.Name = "TextBoxLocalUsername"
         Me.TextBoxLocalUsername.ReadOnly = True
         Me.TextBoxLocalUsername.Size = New System.Drawing.Size(171, 23)
@@ -562,8 +562,8 @@ Partial Class SettingsForm
         'TextBoxLocalPassword
         '
         Me.TextBoxLocalPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxLocalPassword.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.TextBoxLocalPassword.Location = New System.Drawing.Point(90, 86)
+        Me.TextBoxLocalPassword.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxLocalPassword.Location = New System.Drawing.Point(97, 86)
         Me.TextBoxLocalPassword.Name = "TextBoxLocalPassword"
         Me.TextBoxLocalPassword.ReadOnly = True
         Me.TextBoxLocalPassword.Size = New System.Drawing.Size(171, 23)
@@ -574,10 +574,10 @@ Partial Class SettingsForm
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label8.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(9, 116)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(57, 15)
+        Me.Label8.Size = New System.Drawing.Size(59, 16)
         Me.Label8.TabIndex = 8
         Me.Label8.Text = "Schema:"
         '
@@ -585,10 +585,10 @@ Partial Class SettingsForm
         '
         Me.GroupBox4.Controls.Add(Me.Panel2)
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox4.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox4.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox4.Location = New System.Drawing.Point(3, 218)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(481, 210)
+        Me.GroupBox4.Size = New System.Drawing.Size(493, 210)
         Me.GroupBox4.TabIndex = 1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Cloud Database Connection"
@@ -608,16 +608,16 @@ Partial Class SettingsForm
         Me.Panel2.Controls.Add(Me.TextBoxCloudPassword)
         Me.Panel2.Controls.Add(Me.Label15)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(3, 21)
+        Me.Panel2.Location = New System.Drawing.Point(3, 22)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(475, 186)
+        Me.Panel2.Size = New System.Drawing.Size(487, 185)
         Me.Panel2.TabIndex = 2
         '
         'Button5
         '
         Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Button5.Location = New System.Drawing.Point(90, 139)
+        Me.Button5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button5.Location = New System.Drawing.Point(97, 139)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(171, 23)
         Me.Button5.TabIndex = 13
@@ -627,8 +627,8 @@ Partial Class SettingsForm
         'ButtonTestCloudCon
         '
         Me.ButtonTestCloudCon.FlatAppearance.BorderSize = 0
-        Me.ButtonTestCloudCon.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.ButtonTestCloudCon.Location = New System.Drawing.Point(267, 139)
+        Me.ButtonTestCloudCon.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonTestCloudCon.Location = New System.Drawing.Point(274, 139)
         Me.ButtonTestCloudCon.Name = "ButtonTestCloudCon"
         Me.ButtonTestCloudCon.Size = New System.Drawing.Size(167, 23)
         Me.ButtonTestCloudCon.TabIndex = 12
@@ -638,8 +638,8 @@ Partial Class SettingsForm
         'TextBoxCloudServer
         '
         Me.TextBoxCloudServer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCloudServer.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.TextBoxCloudServer.Location = New System.Drawing.Point(90, 26)
+        Me.TextBoxCloudServer.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxCloudServer.Location = New System.Drawing.Point(97, 26)
         Me.TextBoxCloudServer.Name = "TextBoxCloudServer"
         Me.TextBoxCloudServer.ReadOnly = True
         Me.TextBoxCloudServer.Size = New System.Drawing.Size(171, 23)
@@ -649,38 +649,38 @@ Partial Class SettingsForm
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label10.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.Location = New System.Drawing.Point(9, 56)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(72, 15)
+        Me.Label10.Size = New System.Drawing.Size(76, 16)
         Me.Label10.TabIndex = 6
         Me.Label10.Text = "User Name:"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.Label11.Location = New System.Drawing.Point(267, 32)
+        Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(274, 32)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(33, 15)
+        Me.Label11.Size = New System.Drawing.Size(36, 16)
         Me.Label11.TabIndex = 9
         Me.Label11.Text = "Port:"
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.Location = New System.Drawing.Point(9, 32)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(83, 15)
+        Me.Label12.Size = New System.Drawing.Size(88, 16)
         Me.Label12.TabIndex = 5
         Me.Label12.Text = "Server Name:"
         '
         'TextBoxCloudPort
         '
         Me.TextBoxCloudPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCloudPort.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.TextBoxCloudPort.Location = New System.Drawing.Point(303, 26)
+        Me.TextBoxCloudPort.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxCloudPort.Location = New System.Drawing.Point(310, 26)
         Me.TextBoxCloudPort.Name = "TextBoxCloudPort"
         Me.TextBoxCloudPort.ReadOnly = True
         Me.TextBoxCloudPort.Size = New System.Drawing.Size(131, 23)
@@ -690,18 +690,18 @@ Partial Class SettingsForm
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label14.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.Location = New System.Drawing.Point(9, 84)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(65, 15)
+        Me.Label14.Size = New System.Drawing.Size(68, 16)
         Me.Label14.TabIndex = 7
         Me.Label14.Text = "Password:"
         '
         'TextBoxCloudDatabase
         '
         Me.TextBoxCloudDatabase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCloudDatabase.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.TextBoxCloudDatabase.Location = New System.Drawing.Point(90, 110)
+        Me.TextBoxCloudDatabase.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxCloudDatabase.Location = New System.Drawing.Point(97, 110)
         Me.TextBoxCloudDatabase.Name = "TextBoxCloudDatabase"
         Me.TextBoxCloudDatabase.ReadOnly = True
         Me.TextBoxCloudDatabase.Size = New System.Drawing.Size(171, 23)
@@ -712,8 +712,8 @@ Partial Class SettingsForm
         'TextBoxCloudUsername
         '
         Me.TextBoxCloudUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCloudUsername.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.TextBoxCloudUsername.Location = New System.Drawing.Point(90, 54)
+        Me.TextBoxCloudUsername.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxCloudUsername.Location = New System.Drawing.Point(97, 54)
         Me.TextBoxCloudUsername.Name = "TextBoxCloudUsername"
         Me.TextBoxCloudUsername.ReadOnly = True
         Me.TextBoxCloudUsername.Size = New System.Drawing.Size(171, 23)
@@ -724,8 +724,8 @@ Partial Class SettingsForm
         'TextBoxCloudPassword
         '
         Me.TextBoxCloudPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCloudPassword.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.TextBoxCloudPassword.Location = New System.Drawing.Point(90, 82)
+        Me.TextBoxCloudPassword.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxCloudPassword.Location = New System.Drawing.Point(97, 82)
         Me.TextBoxCloudPassword.Name = "TextBoxCloudPassword"
         Me.TextBoxCloudPassword.ReadOnly = True
         Me.TextBoxCloudPassword.Size = New System.Drawing.Size(171, 23)
@@ -736,10 +736,10 @@ Partial Class SettingsForm
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label15.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.Location = New System.Drawing.Point(9, 112)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(57, 15)
+        Me.Label15.Size = New System.Drawing.Size(59, 16)
         Me.Label15.TabIndex = 8
         Me.Label15.Text = "Schema:"
         '
@@ -751,23 +751,23 @@ Partial Class SettingsForm
         Me.TableLayoutPanel2.Controls.Add(Me.GroupBox2, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.GroupBox1, 0, 2)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(496, 3)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(508, 3)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 3
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(487, 431)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(500, 431)
         Me.TableLayoutPanel2.TabIndex = 10
         '
         'GroupBox6
         '
         Me.GroupBox6.Controls.Add(Me.Panel8)
         Me.GroupBox6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox6.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox6.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox6.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(481, 137)
+        Me.GroupBox6.Size = New System.Drawing.Size(494, 137)
         Me.GroupBox6.TabIndex = 4
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "System Database Option"
@@ -782,15 +782,15 @@ Partial Class SettingsForm
         Me.Panel8.Controls.Add(Me.Label65)
         Me.Panel8.Controls.Add(Me.Label66)
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel8.Location = New System.Drawing.Point(3, 21)
+        Me.Panel8.Location = New System.Drawing.Point(3, 22)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(475, 113)
+        Me.Panel8.Size = New System.Drawing.Size(488, 112)
         Me.Panel8.TabIndex = 0
         '
         'ButtonOptimizeDB
         '
-        Me.ButtonOptimizeDB.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.ButtonOptimizeDB.Location = New System.Drawing.Point(59, 84)
+        Me.ButtonOptimizeDB.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonOptimizeDB.Location = New System.Drawing.Point(64, 84)
         Me.ButtonOptimizeDB.Name = "ButtonOptimizeDB"
         Me.ButtonOptimizeDB.Size = New System.Drawing.Size(360, 23)
         Me.ButtonOptimizeDB.TabIndex = 30
@@ -799,8 +799,8 @@ Partial Class SettingsForm
         '
         'ButtonDatabaseReset
         '
-        Me.ButtonDatabaseReset.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.ButtonDatabaseReset.Location = New System.Drawing.Point(59, 60)
+        Me.ButtonDatabaseReset.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonDatabaseReset.Location = New System.Drawing.Point(64, 60)
         Me.ButtonDatabaseReset.Name = "ButtonDatabaseReset"
         Me.ButtonDatabaseReset.Size = New System.Drawing.Size(179, 23)
         Me.ButtonDatabaseReset.TabIndex = 29
@@ -809,8 +809,8 @@ Partial Class SettingsForm
         '
         'ButtonMaintenance
         '
-        Me.ButtonMaintenance.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.ButtonMaintenance.Location = New System.Drawing.Point(240, 60)
+        Me.ButtonMaintenance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonMaintenance.Location = New System.Drawing.Point(245, 60)
         Me.ButtonMaintenance.Name = "ButtonMaintenance"
         Me.ButtonMaintenance.Size = New System.Drawing.Size(179, 23)
         Me.ButtonMaintenance.TabIndex = 28
@@ -820,33 +820,33 @@ Partial Class SettingsForm
         'Label64
         '
         Me.Label64.AutoSize = True
-        Me.Label64.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label64.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label64.ForeColor = System.Drawing.Color.Black
         Me.Label64.Location = New System.Drawing.Point(79, 42)
         Me.Label64.Name = "Label64"
-        Me.Label64.Size = New System.Drawing.Size(331, 15)
+        Me.Label64.Size = New System.Drawing.Size(328, 14)
         Me.Label64.TabIndex = 18
         Me.Label64.Text = "*Repair - Repair the tables, Optimize - Optimize the tables."
         '
         'Label65
         '
         Me.Label65.AutoSize = True
-        Me.Label65.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label65.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label65.ForeColor = System.Drawing.Color.Black
         Me.Label65.Location = New System.Drawing.Point(6, 9)
         Me.Label65.Name = "Label65"
-        Me.Label65.Size = New System.Drawing.Size(462, 15)
+        Me.Label65.Size = New System.Drawing.Size(475, 14)
         Me.Label65.TabIndex = 17
         Me.Label65.Text = "*Database Reset deletes EVERYTHING you have input, changed, saved BE CAREFUL."
         '
         'Label66
         '
         Me.Label66.AutoSize = True
-        Me.Label66.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label66.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label66.ForeColor = System.Drawing.Color.Black
         Me.Label66.Location = New System.Drawing.Point(79, 27)
         Me.Label66.Name = "Label66"
-        Me.Label66.Size = New System.Drawing.Size(333, 15)
+        Me.Label66.Size = New System.Drawing.Size(341, 14)
         Me.Label66.TabIndex = 16
         Me.Label66.Text = "This acts as NEW DATABASE and you will have to start now."
         '
@@ -854,10 +854,10 @@ Partial Class SettingsForm
         '
         Me.GroupBox2.Controls.Add(Me.Panel7)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(3, 146)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(481, 137)
+        Me.GroupBox2.Size = New System.Drawing.Size(494, 137)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Manual System Backup"
@@ -869,22 +869,23 @@ Partial Class SettingsForm
         Me.Panel7.Controls.Add(Me.ButtonExport)
         Me.Panel7.Controls.Add(Me.Label61)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel7.Location = New System.Drawing.Point(3, 21)
+        Me.Panel7.Location = New System.Drawing.Point(3, 22)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(475, 113)
+        Me.Panel7.Size = New System.Drawing.Size(488, 112)
         Me.Panel7.TabIndex = 0
         '
         'TextBoxLocalRestorePath
         '
+        Me.TextBoxLocalRestorePath.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxLocalRestorePath.Location = New System.Drawing.Point(59, 33)
         Me.TextBoxLocalRestorePath.Name = "TextBoxLocalRestorePath"
         Me.TextBoxLocalRestorePath.ReadOnly = True
-        Me.TextBoxLocalRestorePath.Size = New System.Drawing.Size(363, 25)
+        Me.TextBoxLocalRestorePath.Size = New System.Drawing.Size(363, 26)
         Me.TextBoxLocalRestorePath.TabIndex = 28
         '
         'ButtonImport
         '
-        Me.ButtonImport.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ButtonImport.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonImport.Location = New System.Drawing.Point(59, 64)
         Me.ButtonImport.Name = "ButtonImport"
         Me.ButtonImport.Size = New System.Drawing.Size(179, 23)
@@ -894,7 +895,7 @@ Partial Class SettingsForm
         '
         'ButtonExport
         '
-        Me.ButtonExport.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ButtonExport.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonExport.Location = New System.Drawing.Point(243, 64)
         Me.ButtonExport.Name = "ButtonExport"
         Me.ButtonExport.Size = New System.Drawing.Size(179, 23)
@@ -905,11 +906,11 @@ Partial Class SettingsForm
         'Label61
         '
         Me.Label61.AutoSize = True
-        Me.Label61.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label61.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Label61.ForeColor = System.Drawing.Color.Black
         Me.Label61.Location = New System.Drawing.Point(79, 15)
         Me.Label61.Name = "Label61"
-        Me.Label61.Size = New System.Drawing.Size(295, 15)
+        Me.Label61.Size = New System.Drawing.Size(292, 14)
         Me.Label61.TabIndex = 25
         Me.Label61.Text = "*Manually backup system data and print it with you."
         '
@@ -917,10 +918,10 @@ Partial Class SettingsForm
         '
         Me.GroupBox1.Controls.Add(Me.Panel6)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(3, 289)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(481, 139)
+        Me.GroupBox1.Size = New System.Drawing.Size(494, 139)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Schedule Automatic System Backup"
@@ -930,19 +931,19 @@ Partial Class SettingsForm
         Me.Panel6.Controls.Add(Me.Label60)
         Me.Panel6.Controls.Add(Me.GroupBox5)
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel6.Location = New System.Drawing.Point(3, 21)
+        Me.Panel6.Location = New System.Drawing.Point(3, 22)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(475, 115)
+        Me.Panel6.Size = New System.Drawing.Size(488, 114)
         Me.Panel6.TabIndex = 0
         '
         'Label60
         '
         Me.Label60.AutoSize = True
-        Me.Label60.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label60.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Label60.ForeColor = System.Drawing.Color.Black
         Me.Label60.Location = New System.Drawing.Point(100, 35)
         Me.Label60.Name = "Label60"
-        Me.Label60.Size = New System.Drawing.Size(292, 15)
+        Me.Label60.Size = New System.Drawing.Size(283, 14)
         Me.Label60.TabIndex = 53
         Me.Label60.Text = "*Automatic create system backup in interval basis."
         '
@@ -952,7 +953,7 @@ Partial Class SettingsForm
         Me.GroupBox5.Controls.Add(Me.RadioButtonMonthly)
         Me.GroupBox5.Controls.Add(Me.RadioButtonWeekly)
         Me.GroupBox5.Controls.Add(Me.RadioButtonDaily)
-        Me.GroupBox5.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.GroupBox5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox5.Location = New System.Drawing.Point(82, 52)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(301, 47)
@@ -965,7 +966,7 @@ Partial Class SettingsForm
         Me.RadioButtonYearly.AutoSize = True
         Me.RadioButtonYearly.Location = New System.Drawing.Point(226, 18)
         Me.RadioButtonYearly.Name = "RadioButtonYearly"
-        Me.RadioButtonYearly.Size = New System.Drawing.Size(58, 19)
+        Me.RadioButtonYearly.Size = New System.Drawing.Size(61, 20)
         Me.RadioButtonYearly.TabIndex = 3
         Me.RadioButtonYearly.TabStop = True
         Me.RadioButtonYearly.Text = "Yearly"
@@ -976,7 +977,7 @@ Partial Class SettingsForm
         Me.RadioButtonMonthly.AutoSize = True
         Me.RadioButtonMonthly.Location = New System.Drawing.Point(155, 18)
         Me.RadioButtonMonthly.Name = "RadioButtonMonthly"
-        Me.RadioButtonMonthly.Size = New System.Drawing.Size(68, 19)
+        Me.RadioButtonMonthly.Size = New System.Drawing.Size(70, 20)
         Me.RadioButtonMonthly.TabIndex = 2
         Me.RadioButtonMonthly.TabStop = True
         Me.RadioButtonMonthly.Text = "Monthly"
@@ -987,7 +988,7 @@ Partial Class SettingsForm
         Me.RadioButtonWeekly.AutoSize = True
         Me.RadioButtonWeekly.Location = New System.Drawing.Point(88, 18)
         Me.RadioButtonWeekly.Name = "RadioButtonWeekly"
-        Me.RadioButtonWeekly.Size = New System.Drawing.Size(65, 19)
+        Me.RadioButtonWeekly.Size = New System.Drawing.Size(67, 20)
         Me.RadioButtonWeekly.TabIndex = 1
         Me.RadioButtonWeekly.TabStop = True
         Me.RadioButtonWeekly.Text = "Weekly"
@@ -998,7 +999,7 @@ Partial Class SettingsForm
         Me.RadioButtonDaily.AutoSize = True
         Me.RadioButtonDaily.Location = New System.Drawing.Point(32, 18)
         Me.RadioButtonDaily.Name = "RadioButtonDaily"
-        Me.RadioButtonDaily.Size = New System.Drawing.Size(52, 19)
+        Me.RadioButtonDaily.Size = New System.Drawing.Size(53, 20)
         Me.RadioButtonDaily.TabIndex = 0
         Me.RadioButtonDaily.TabStop = True
         Me.RadioButtonDaily.Text = "Daily"
@@ -1010,7 +1011,7 @@ Partial Class SettingsForm
         Me.TabPage12.Location = New System.Drawing.Point(4, 28)
         Me.TabPage12.Name = "TabPage12"
         Me.TabPage12.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage12.Size = New System.Drawing.Size(992, 443)
+        Me.TabPage12.Size = New System.Drawing.Size(1017, 443)
         Me.TabPage12.TabIndex = 1
         Me.TabPage12.Text = "TabPage12"
         Me.TabPage12.UseVisualStyleBackColor = True
@@ -1021,7 +1022,7 @@ Partial Class SettingsForm
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel10.Location = New System.Drawing.Point(3, 3)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(986, 437)
+        Me.Panel10.Size = New System.Drawing.Size(1011, 437)
         Me.Panel10.TabIndex = 0
         '
         'TableLayoutPanel9
@@ -1038,7 +1039,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel9.RowCount = 1
         Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel9.Size = New System.Drawing.Size(986, 437)
+        Me.TableLayoutPanel9.Size = New System.Drawing.Size(1011, 437)
         Me.TableLayoutPanel9.TabIndex = 282
         '
         'GroupBox12
@@ -1055,16 +1056,16 @@ Partial Class SettingsForm
         Me.GroupBox12.Controls.Add(Me.TextBoxSINumber)
         Me.GroupBox12.Controls.Add(Me.Label31)
         Me.GroupBox12.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox12.Location = New System.Drawing.Point(331, 3)
+        Me.GroupBox12.Location = New System.Drawing.Point(340, 3)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(322, 431)
+        Me.GroupBox12.Size = New System.Drawing.Size(331, 431)
         Me.GroupBox12.TabIndex = 296
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "Additional Settings"
         '
         'TextBoxExportPath
         '
-        Me.TextBoxExportPath.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxExportPath.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxExportPath.Location = New System.Drawing.Point(38, 40)
         Me.TextBoxExportPath.Name = "TextBoxExportPath"
         Me.TextBoxExportPath.ReadOnly = True
@@ -1074,26 +1075,26 @@ Partial Class SettingsForm
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label24.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.Location = New System.Drawing.Point(35, 155)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(76, 15)
+        Me.Label24.Size = New System.Drawing.Size(82, 16)
         Me.Label24.TabIndex = 292
         Me.Label24.Text = "Terminal No."
         '
         'Label56
         '
         Me.Label56.AutoSize = True
-        Me.Label56.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label56.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label56.Location = New System.Drawing.Point(35, 203)
         Me.Label56.Name = "Label56"
-        Me.Label56.Size = New System.Drawing.Size(70, 15)
+        Me.Label56.Size = New System.Drawing.Size(76, 16)
         Me.Label56.TabIndex = 285
         Me.Label56.Text = "Zero Rated:"
         '
         'TextBoxTerminalNo
         '
-        Me.TextBoxTerminalNo.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxTerminalNo.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxTerminalNo.Location = New System.Drawing.Point(38, 173)
         Me.TextBoxTerminalNo.Name = "TextBoxTerminalNo"
         Me.TextBoxTerminalNo.ReadOnly = True
@@ -1104,10 +1105,10 @@ Partial Class SettingsForm
         '
         Me.RadioButtonYES.AutoSize = True
         Me.RadioButtonYES.Enabled = False
-        Me.RadioButtonYES.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.RadioButtonYES.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadioButtonYES.Location = New System.Drawing.Point(173, 199)
         Me.RadioButtonYES.Name = "RadioButtonYES"
-        Me.RadioButtonYES.Size = New System.Drawing.Size(43, 19)
+        Me.RadioButtonYES.Size = New System.Drawing.Size(46, 20)
         Me.RadioButtonYES.TabIndex = 287
         Me.RadioButtonYES.TabStop = True
         Me.RadioButtonYES.Text = "Yes"
@@ -1116,20 +1117,20 @@ Partial Class SettingsForm
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label25.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label25.Location = New System.Drawing.Point(35, 108)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(113, 15)
+        Me.Label25.Size = New System.Drawing.Size(119, 16)
         Me.Label25.TabIndex = 290
         Me.Label25.Text = "SI Number Format:"
         '
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label26.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label26.Location = New System.Drawing.Point(35, 23)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(74, 15)
+        Me.Label26.Size = New System.Drawing.Size(78, 16)
         Me.Label26.TabIndex = 283
         Me.Label26.Text = "Export Path:"
         '
@@ -1137,10 +1138,10 @@ Partial Class SettingsForm
         '
         Me.RadioButtonNO.AutoSize = True
         Me.RadioButtonNO.Enabled = False
-        Me.RadioButtonNO.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.RadioButtonNO.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadioButtonNO.Location = New System.Drawing.Point(244, 199)
         Me.RadioButtonNO.Name = "RadioButtonNO"
-        Me.RadioButtonNO.Size = New System.Drawing.Size(39, 19)
+        Me.RadioButtonNO.Size = New System.Drawing.Size(41, 20)
         Me.RadioButtonNO.TabIndex = 288
         Me.RadioButtonNO.TabStop = True
         Me.RadioButtonNO.Text = "No"
@@ -1148,7 +1149,7 @@ Partial Class SettingsForm
         '
         'TextBoxTax
         '
-        Me.TextBoxTax.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxTax.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxTax.Location = New System.Drawing.Point(38, 82)
         Me.TextBoxTax.Name = "TextBoxTax"
         Me.TextBoxTax.ReadOnly = True
@@ -1157,7 +1158,7 @@ Partial Class SettingsForm
         '
         'TextBoxSINumber
         '
-        Me.TextBoxSINumber.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxSINumber.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxSINumber.Location = New System.Drawing.Point(38, 129)
         Me.TextBoxSINumber.Name = "TextBoxSINumber"
         Me.TextBoxSINumber.ReadOnly = True
@@ -1167,10 +1168,10 @@ Partial Class SettingsForm
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label31.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label31.Location = New System.Drawing.Point(35, 66)
         Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(27, 14)
+        Me.Label31.Size = New System.Drawing.Size(37, 16)
         Me.Label31.TabIndex = 286
         Me.Label31.Text = "TAX:"
         '
@@ -1197,7 +1198,7 @@ Partial Class SettingsForm
         Me.GroupBox11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox11.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(322, 431)
+        Me.GroupBox11.Size = New System.Drawing.Size(331, 431)
         Me.GroupBox11.TabIndex = 295
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "Developer Information"
@@ -1205,97 +1206,97 @@ Partial Class SettingsForm
         'Label79
         '
         Me.Label79.AutoSize = True
-        Me.Label79.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label79.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label79.Location = New System.Drawing.Point(38, 376)
         Me.Label79.Name = "Label79"
-        Me.Label79.Size = New System.Drawing.Size(65, 15)
+        Me.Label79.Size = New System.Drawing.Size(70, 16)
         Me.Label79.TabIndex = 271
         Me.Label79.Text = "Valid Until:"
         '
         'Label78
         '
         Me.Label78.AutoSize = True
-        Me.Label78.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label78.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label78.Location = New System.Drawing.Point(38, 332)
         Me.Label78.Name = "Label78"
-        Me.Label78.Size = New System.Drawing.Size(75, 15)
+        Me.Label78.Size = New System.Drawing.Size(80, 16)
         Me.Label78.TabIndex = 270
         Me.Label78.Text = "Date Issued:"
         '
         'Label77
         '
         Me.Label77.AutoSize = True
-        Me.Label77.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label77.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label77.Location = New System.Drawing.Point(38, 288)
         Me.Label77.Name = "Label77"
-        Me.Label77.Size = New System.Drawing.Size(51, 15)
+        Me.Label77.Size = New System.Drawing.Size(59, 16)
         Me.Label77.TabIndex = 269
         Me.Label77.Text = "PTU No.:"
         '
         'Label76
         '
         Me.Label76.AutoSize = True
-        Me.Label76.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label76.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label76.Location = New System.Drawing.Point(38, 243)
         Me.Label76.Name = "Label76"
-        Me.Label76.Size = New System.Drawing.Size(65, 15)
+        Me.Label76.Size = New System.Drawing.Size(70, 16)
         Me.Label76.TabIndex = 268
         Me.Label76.Text = "Valid Until:"
         '
         'Label75
         '
         Me.Label75.AutoSize = True
-        Me.Label75.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label75.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label75.Location = New System.Drawing.Point(38, 199)
         Me.Label75.Name = "Label75"
-        Me.Label75.Size = New System.Drawing.Size(75, 15)
+        Me.Label75.Size = New System.Drawing.Size(80, 16)
         Me.Label75.TabIndex = 267
         Me.Label75.Text = "Date Issued:"
         '
         'Label74
         '
         Me.Label74.AutoSize = True
-        Me.Label74.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label74.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label74.Location = New System.Drawing.Point(38, 155)
         Me.Label74.Name = "Label74"
-        Me.Label74.Size = New System.Drawing.Size(53, 15)
+        Me.Label74.Size = New System.Drawing.Size(58, 16)
         Me.Label74.TabIndex = 266
         Me.Label74.Text = "ACCR #:"
         '
         'Label73
         '
         Me.Label73.AutoSize = True
-        Me.Label73.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label73.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label73.Location = New System.Drawing.Point(38, 111)
         Me.Label73.Name = "Label73"
-        Me.Label73.Size = New System.Drawing.Size(71, 15)
+        Me.Label73.Size = New System.Drawing.Size(80, 16)
         Me.Label73.TabIndex = 265
         Me.Label73.Text = "Vat Reg Tin:"
         '
         'Label72
         '
         Me.Label72.AutoSize = True
-        Me.Label72.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label72.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label72.Location = New System.Drawing.Point(38, 67)
         Me.Label72.Name = "Label72"
-        Me.Label72.Size = New System.Drawing.Size(55, 15)
+        Me.Label72.Size = New System.Drawing.Size(59, 16)
         Me.Label72.TabIndex = 264
         Me.Label72.Text = "Address:"
         '
         'Label71
         '
         Me.Label71.AutoSize = True
-        Me.Label71.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label71.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label71.Location = New System.Drawing.Point(38, 23)
         Me.Label71.Name = "Label71"
-        Me.Label71.Size = New System.Drawing.Size(101, 15)
+        Me.Label71.Size = New System.Drawing.Size(103, 16)
         Me.Label71.TabIndex = 263
         Me.Label71.Text = "Company Name:"
         '
         'DateTimePickerPTUVU
         '
         Me.DateTimePickerPTUVU.Enabled = False
-        Me.DateTimePickerPTUVU.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.DateTimePickerPTUVU.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DateTimePickerPTUVU.Location = New System.Drawing.Point(41, 394)
         Me.DateTimePickerPTUVU.Name = "DateTimePickerPTUVU"
         Me.DateTimePickerPTUVU.Size = New System.Drawing.Size(245, 23)
@@ -1304,7 +1305,7 @@ Partial Class SettingsForm
         'DateTimePicker4PTUDI
         '
         Me.DateTimePicker4PTUDI.Enabled = False
-        Me.DateTimePicker4PTUDI.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.DateTimePicker4PTUDI.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DateTimePicker4PTUDI.Location = New System.Drawing.Point(41, 350)
         Me.DateTimePicker4PTUDI.Name = "DateTimePicker4PTUDI"
         Me.DateTimePicker4PTUDI.Size = New System.Drawing.Size(245, 23)
@@ -1313,7 +1314,7 @@ Partial Class SettingsForm
         'TextBoxDEVPTU
         '
         Me.TextBoxDEVPTU.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxDEVPTU.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxDEVPTU.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxDEVPTU.Location = New System.Drawing.Point(41, 306)
         Me.TextBoxDEVPTU.Name = "TextBoxDEVPTU"
         Me.TextBoxDEVPTU.ReadOnly = True
@@ -1323,7 +1324,7 @@ Partial Class SettingsForm
         'DateTimePicker2ACCRVU
         '
         Me.DateTimePicker2ACCRVU.Enabled = False
-        Me.DateTimePicker2ACCRVU.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.DateTimePicker2ACCRVU.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DateTimePicker2ACCRVU.Location = New System.Drawing.Point(41, 261)
         Me.DateTimePicker2ACCRVU.Name = "DateTimePicker2ACCRVU"
         Me.DateTimePicker2ACCRVU.Size = New System.Drawing.Size(245, 23)
@@ -1332,7 +1333,7 @@ Partial Class SettingsForm
         'DateTimePicker1ACCRDI
         '
         Me.DateTimePicker1ACCRDI.Enabled = False
-        Me.DateTimePicker1ACCRDI.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.DateTimePicker1ACCRDI.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DateTimePicker1ACCRDI.Location = New System.Drawing.Point(41, 217)
         Me.DateTimePicker1ACCRDI.Name = "DateTimePicker1ACCRDI"
         Me.DateTimePicker1ACCRDI.Size = New System.Drawing.Size(245, 23)
@@ -1341,7 +1342,7 @@ Partial Class SettingsForm
         'TextBoxDevAccr
         '
         Me.TextBoxDevAccr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxDevAccr.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxDevAccr.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxDevAccr.Location = New System.Drawing.Point(41, 173)
         Me.TextBoxDevAccr.Name = "TextBoxDevAccr"
         Me.TextBoxDevAccr.ReadOnly = True
@@ -1351,7 +1352,7 @@ Partial Class SettingsForm
         'TextBoxDevTIN
         '
         Me.TextBoxDevTIN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxDevTIN.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxDevTIN.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxDevTIN.Location = New System.Drawing.Point(41, 129)
         Me.TextBoxDevTIN.Name = "TextBoxDevTIN"
         Me.TextBoxDevTIN.ReadOnly = True
@@ -1361,7 +1362,7 @@ Partial Class SettingsForm
         'TextBoxDevAdd
         '
         Me.TextBoxDevAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxDevAdd.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxDevAdd.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxDevAdd.Location = New System.Drawing.Point(41, 85)
         Me.TextBoxDevAdd.Name = "TextBoxDevAdd"
         Me.TextBoxDevAdd.ReadOnly = True
@@ -1371,7 +1372,7 @@ Partial Class SettingsForm
         'TextBoxDevname
         '
         Me.TextBoxDevname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxDevname.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxDevname.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxDevname.Location = New System.Drawing.Point(41, 41)
         Me.TextBoxDevname.Name = "TextBoxDevname"
         Me.TextBoxDevname.ReadOnly = True
@@ -1384,7 +1385,7 @@ Partial Class SettingsForm
         Me.TabPage2.Location = New System.Drawing.Point(4, 28)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1006, 481)
+        Me.TabPage2.Size = New System.Drawing.Size(1031, 481)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -1395,7 +1396,7 @@ Partial Class SettingsForm
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(3, 3)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1000, 475)
+        Me.Panel3.Size = New System.Drawing.Size(1025, 475)
         Me.Panel3.TabIndex = 0
         '
         'TabControl3
@@ -1406,7 +1407,7 @@ Partial Class SettingsForm
         Me.TabControl3.Location = New System.Drawing.Point(0, 0)
         Me.TabControl3.Name = "TabControl3"
         Me.TabControl3.SelectedIndex = 0
-        Me.TabControl3.Size = New System.Drawing.Size(1000, 475)
+        Me.TabControl3.Size = New System.Drawing.Size(1025, 475)
         Me.TabControl3.TabIndex = 8
         '
         'TabPage7
@@ -1415,7 +1416,7 @@ Partial Class SettingsForm
         Me.TabPage7.Location = New System.Drawing.Point(4, 28)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(992, 443)
+        Me.TabPage7.Size = New System.Drawing.Size(1017, 443)
         Me.TabPage7.TabIndex = 0
         Me.TabPage7.Text = "TabPage7"
         Me.TabPage7.UseVisualStyleBackColor = True
@@ -1432,17 +1433,17 @@ Partial Class SettingsForm
         Me.TableLayoutPanel4.RowCount = 2
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(986, 437)
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(1011, 437)
         Me.TableLayoutPanel4.TabIndex = 7
         '
         'GroupBox7
         '
         Me.GroupBox7.Controls.Add(Me.DataGridViewPartners)
         Me.GroupBox7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox7.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox7.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox7.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(980, 361)
+        Me.GroupBox7.Size = New System.Drawing.Size(1005, 361)
         Me.GroupBox7.TabIndex = 164
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "Bank List"
@@ -1453,44 +1454,44 @@ Partial Class SettingsForm
         Me.DataGridViewPartners.AllowUserToDeleteRows = False
         Me.DataGridViewPartners.AllowUserToResizeColumns = False
         Me.DataGridViewPartners.AllowUserToResizeRows = False
-        DataGridViewCellStyle19.BackColor = System.Drawing.Color.White
-        Me.DataGridViewPartners.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        Me.DataGridViewPartners.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridViewPartners.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewPartners.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewPartners.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle20.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle20.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewPartners.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewPartners.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridViewPartners.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle21.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle21.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewPartners.DefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewPartners.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridViewPartners.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewPartners.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewPartners.EnableHeadersVisualStyles = False
-        Me.DataGridViewPartners.Location = New System.Drawing.Point(3, 21)
+        Me.DataGridViewPartners.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewPartners.Name = "DataGridViewPartners"
-        Me.DataGridViewPartners.Size = New System.Drawing.Size(974, 337)
+        Me.DataGridViewPartners.Size = New System.Drawing.Size(999, 336)
         Me.DataGridViewPartners.TabIndex = 5
         '
         'GroupBox9
         '
         Me.GroupBox9.Controls.Add(Me.Panel4)
         Me.GroupBox9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox9.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox9.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox9.Location = New System.Drawing.Point(3, 370)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(980, 64)
+        Me.GroupBox9.Size = New System.Drawing.Size(1005, 64)
         Me.GroupBox9.TabIndex = 166
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "Action"
@@ -1502,9 +1503,9 @@ Partial Class SettingsForm
         Me.Panel4.Controls.Add(Me.ButtonDeleteProducts)
         Me.Panel4.Controls.Add(Me.Button9)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel4.Location = New System.Drawing.Point(3, 21)
+        Me.Panel4.Location = New System.Drawing.Point(3, 22)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(974, 40)
+        Me.Panel4.Size = New System.Drawing.Size(999, 39)
         Me.Panel4.TabIndex = 6
         '
         'Button1
@@ -1514,11 +1515,11 @@ Partial Class SettingsForm
         Me.Button1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
         Me.Button1.Location = New System.Drawing.Point(0, 0)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(134, 40)
+        Me.Button1.Size = New System.Drawing.Size(134, 39)
         Me.Button1.TabIndex = 163
         Me.Button1.Text = "Set as Priority"
         Me.Button1.UseVisualStyleBackColor = False
@@ -1530,11 +1531,11 @@ Partial Class SettingsForm
         Me.Button8.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button8.FlatAppearance.BorderSize = 0
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button8.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button8.ForeColor = System.Drawing.Color.White
-        Me.Button8.Location = New System.Drawing.Point(572, 0)
+        Me.Button8.Location = New System.Drawing.Point(597, 0)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(134, 40)
+        Me.Button8.Size = New System.Drawing.Size(134, 39)
         Me.Button8.TabIndex = 160
         Me.Button8.Text = "Add Bank"
         Me.Button8.UseVisualStyleBackColor = False
@@ -1546,11 +1547,11 @@ Partial Class SettingsForm
         Me.ButtonDeleteProducts.Dock = System.Windows.Forms.DockStyle.Right
         Me.ButtonDeleteProducts.FlatAppearance.BorderSize = 0
         Me.ButtonDeleteProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonDeleteProducts.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonDeleteProducts.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonDeleteProducts.ForeColor = System.Drawing.Color.White
-        Me.ButtonDeleteProducts.Location = New System.Drawing.Point(706, 0)
+        Me.ButtonDeleteProducts.Location = New System.Drawing.Point(731, 0)
         Me.ButtonDeleteProducts.Name = "ButtonDeleteProducts"
-        Me.ButtonDeleteProducts.Size = New System.Drawing.Size(134, 40)
+        Me.ButtonDeleteProducts.Size = New System.Drawing.Size(134, 39)
         Me.ButtonDeleteProducts.TabIndex = 161
         Me.ButtonDeleteProducts.Text = "Deactivate"
         Me.ButtonDeleteProducts.UseVisualStyleBackColor = False
@@ -1562,11 +1563,11 @@ Partial Class SettingsForm
         Me.Button9.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button9.FlatAppearance.BorderSize = 0
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button9.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button9.ForeColor = System.Drawing.Color.White
-        Me.Button9.Location = New System.Drawing.Point(840, 0)
+        Me.Button9.Location = New System.Drawing.Point(865, 0)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(134, 40)
+        Me.Button9.Size = New System.Drawing.Size(134, 39)
         Me.Button9.TabIndex = 162
         Me.Button9.Text = "Edit"
         Me.Button9.UseVisualStyleBackColor = False
@@ -1574,10 +1575,10 @@ Partial Class SettingsForm
         'TabPage8
         '
         Me.TabPage8.Controls.Add(Me.TableLayoutPanel8)
-        Me.TabPage8.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage8.Location = New System.Drawing.Point(4, 28)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage8.Size = New System.Drawing.Size(992, 449)
+        Me.TabPage8.Size = New System.Drawing.Size(1017, 443)
         Me.TabPage8.TabIndex = 1
         Me.TabPage8.Text = "TabPage8"
         Me.TabPage8.UseVisualStyleBackColor = True
@@ -1594,17 +1595,17 @@ Partial Class SettingsForm
         Me.TableLayoutPanel8.RowCount = 2
         Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel8.Size = New System.Drawing.Size(986, 443)
+        Me.TableLayoutPanel8.Size = New System.Drawing.Size(1011, 437)
         Me.TableLayoutPanel8.TabIndex = 8
         '
         'GroupBox14
         '
         Me.GroupBox14.Controls.Add(Me.DataGridViewPartnersDeact)
         Me.GroupBox14.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox14.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox14.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox14.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Size = New System.Drawing.Size(980, 367)
+        Me.GroupBox14.Size = New System.Drawing.Size(1005, 361)
         Me.GroupBox14.TabIndex = 164
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "Deactivated Bank List"
@@ -1615,44 +1616,44 @@ Partial Class SettingsForm
         Me.DataGridViewPartnersDeact.AllowUserToDeleteRows = False
         Me.DataGridViewPartnersDeact.AllowUserToResizeColumns = False
         Me.DataGridViewPartnersDeact.AllowUserToResizeRows = False
-        DataGridViewCellStyle22.BackColor = System.Drawing.Color.White
-        Me.DataGridViewPartnersDeact.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle22
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
+        Me.DataGridViewPartnersDeact.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridViewPartnersDeact.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewPartnersDeact.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewPartnersDeact.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle23.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewPartnersDeact.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewPartnersDeact.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridViewPartnersDeact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle24.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle24.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewPartnersDeact.DefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewPartnersDeact.DefaultCellStyle = DataGridViewCellStyle6
         Me.DataGridViewPartnersDeact.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewPartnersDeact.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewPartnersDeact.EnableHeadersVisualStyles = False
-        Me.DataGridViewPartnersDeact.Location = New System.Drawing.Point(3, 21)
+        Me.DataGridViewPartnersDeact.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewPartnersDeact.Name = "DataGridViewPartnersDeact"
-        Me.DataGridViewPartnersDeact.Size = New System.Drawing.Size(974, 343)
+        Me.DataGridViewPartnersDeact.Size = New System.Drawing.Size(999, 336)
         Me.DataGridViewPartnersDeact.TabIndex = 6
         '
         'GroupBox15
         '
         Me.GroupBox15.Controls.Add(Me.Panel25)
         Me.GroupBox15.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox15.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        Me.GroupBox15.Location = New System.Drawing.Point(3, 376)
+        Me.GroupBox15.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox15.Location = New System.Drawing.Point(3, 370)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(980, 64)
+        Me.GroupBox15.Size = New System.Drawing.Size(1005, 64)
         Me.GroupBox15.TabIndex = 166
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "Action"
@@ -1661,9 +1662,9 @@ Partial Class SettingsForm
         '
         Me.Panel25.Controls.Add(Me.ButtonPTActivate)
         Me.Panel25.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel25.Location = New System.Drawing.Point(3, 21)
+        Me.Panel25.Location = New System.Drawing.Point(3, 22)
         Me.Panel25.Name = "Panel25"
-        Me.Panel25.Size = New System.Drawing.Size(974, 40)
+        Me.Panel25.Size = New System.Drawing.Size(999, 39)
         Me.Panel25.TabIndex = 6
         '
         'ButtonPTActivate
@@ -1673,11 +1674,11 @@ Partial Class SettingsForm
         Me.ButtonPTActivate.Dock = System.Windows.Forms.DockStyle.Left
         Me.ButtonPTActivate.FlatAppearance.BorderSize = 0
         Me.ButtonPTActivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonPTActivate.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonPTActivate.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonPTActivate.ForeColor = System.Drawing.Color.White
         Me.ButtonPTActivate.Location = New System.Drawing.Point(0, 0)
         Me.ButtonPTActivate.Name = "ButtonPTActivate"
-        Me.ButtonPTActivate.Size = New System.Drawing.Size(134, 40)
+        Me.ButtonPTActivate.Size = New System.Drawing.Size(134, 39)
         Me.ButtonPTActivate.TabIndex = 160
         Me.ButtonPTActivate.Text = "Activate"
         Me.ButtonPTActivate.UseVisualStyleBackColor = False
@@ -1692,7 +1693,7 @@ Partial Class SettingsForm
         Me.TabPage3.Location = New System.Drawing.Point(4, 28)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(1006, 481)
+        Me.TabPage3.Size = New System.Drawing.Size(1031, 481)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "TabPage3"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -1703,34 +1704,34 @@ Partial Class SettingsForm
         Me.DataGridViewFormula.AllowUserToDeleteRows = False
         Me.DataGridViewFormula.AllowUserToResizeColumns = False
         Me.DataGridViewFormula.AllowUserToResizeRows = False
-        DataGridViewCellStyle25.BackColor = System.Drawing.Color.White
-        Me.DataGridViewFormula.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle25
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
+        Me.DataGridViewFormula.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
         Me.DataGridViewFormula.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewFormula.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewFormula.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle26.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle26.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewFormula.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle26
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewFormula.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewFormula.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle27.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle27.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewFormula.DefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewFormula.DefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridViewFormula.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewFormula.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewFormula.EnableHeadersVisualStyles = False
         Me.DataGridViewFormula.Location = New System.Drawing.Point(7, 7)
         Me.DataGridViewFormula.Name = "DataGridViewFormula"
-        Me.DataGridViewFormula.Size = New System.Drawing.Size(992, 467)
+        Me.DataGridViewFormula.Size = New System.Drawing.Size(1017, 467)
         Me.DataGridViewFormula.TabIndex = 6
         '
         'Panel14
@@ -1744,7 +1745,7 @@ Partial Class SettingsForm
         'Panel13
         '
         Me.Panel13.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel13.Location = New System.Drawing.Point(999, 7)
+        Me.Panel13.Location = New System.Drawing.Point(1024, 7)
         Me.Panel13.Name = "Panel13"
         Me.Panel13.Size = New System.Drawing.Size(4, 467)
         Me.Panel13.TabIndex = 9
@@ -1754,7 +1755,7 @@ Partial Class SettingsForm
         Me.Panel12.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel12.Location = New System.Drawing.Point(3, 474)
         Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(1000, 4)
+        Me.Panel12.Size = New System.Drawing.Size(1025, 4)
         Me.Panel12.TabIndex = 8
         '
         'Panel9
@@ -1762,7 +1763,7 @@ Partial Class SettingsForm
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel9.Location = New System.Drawing.Point(3, 3)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(1000, 4)
+        Me.Panel9.Size = New System.Drawing.Size(1025, 4)
         Me.Panel9.TabIndex = 7
         '
         'TabPage4
@@ -1771,7 +1772,7 @@ Partial Class SettingsForm
         Me.TabPage4.Location = New System.Drawing.Point(4, 28)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(1006, 481)
+        Me.TabPage4.Size = New System.Drawing.Size(1031, 481)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TabPage4"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -1788,7 +1789,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel10.Name = "TableLayoutPanel10"
         Me.TableLayoutPanel10.RowCount = 1
         Me.TableLayoutPanel10.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel10.Size = New System.Drawing.Size(1000, 475)
+        Me.TableLayoutPanel10.Size = New System.Drawing.Size(1025, 475)
         Me.TableLayoutPanel10.TabIndex = 226
         '
         'TableLayoutPanel5
@@ -1803,7 +1804,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel5.RowCount = 2
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel5.Size = New System.Drawing.Size(644, 469)
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(660, 469)
         Me.TableLayoutPanel5.TabIndex = 0
         '
         'GroupBox8
@@ -1811,10 +1812,10 @@ Partial Class SettingsForm
         Me.GroupBox8.Controls.Add(Me.DataGridViewITEMRETURN1)
         Me.GroupBox8.Controls.Add(Me.Panel11)
         Me.GroupBox8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox8.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox8.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox8.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(638, 144)
+        Me.GroupBox8.Size = New System.Drawing.Size(654, 144)
         Me.GroupBox8.TabIndex = 0
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "Select Transaction"
@@ -1825,35 +1826,35 @@ Partial Class SettingsForm
         Me.DataGridViewITEMRETURN1.AllowUserToDeleteRows = False
         Me.DataGridViewITEMRETURN1.AllowUserToResizeColumns = False
         Me.DataGridViewITEMRETURN1.AllowUserToResizeRows = False
-        DataGridViewCellStyle28.BackColor = System.Drawing.Color.White
-        Me.DataGridViewITEMRETURN1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle10.BackColor = System.Drawing.Color.White
+        Me.DataGridViewITEMRETURN1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
         Me.DataGridViewITEMRETURN1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewITEMRETURN1.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewITEMRETURN1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle29.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewITEMRETURN1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewITEMRETURN1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridViewITEMRETURN1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle30.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle30.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewITEMRETURN1.DefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewITEMRETURN1.DefaultCellStyle = DataGridViewCellStyle12
         Me.DataGridViewITEMRETURN1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewITEMRETURN1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewITEMRETURN1.EnableHeadersVisualStyles = False
-        Me.DataGridViewITEMRETURN1.Location = New System.Drawing.Point(3, 48)
+        Me.DataGridViewITEMRETURN1.Location = New System.Drawing.Point(3, 49)
         Me.DataGridViewITEMRETURN1.Name = "DataGridViewITEMRETURN1"
         Me.DataGridViewITEMRETURN1.RowHeadersVisible = False
-        Me.DataGridViewITEMRETURN1.Size = New System.Drawing.Size(632, 93)
+        Me.DataGridViewITEMRETURN1.Size = New System.Drawing.Size(648, 92)
         Me.DataGridViewITEMRETURN1.TabIndex = 209
         '
         'Panel11
@@ -1861,14 +1862,14 @@ Partial Class SettingsForm
         Me.Panel11.Controls.Add(Me.TextBoxSearchTranNumber)
         Me.Panel11.Controls.Add(Me.Label1)
         Me.Panel11.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel11.Location = New System.Drawing.Point(3, 21)
+        Me.Panel11.Location = New System.Drawing.Point(3, 22)
         Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(632, 27)
+        Me.Panel11.Size = New System.Drawing.Size(648, 27)
         Me.Panel11.TabIndex = 0
         '
         'TextBoxSearchTranNumber
         '
-        Me.TextBoxSearchTranNumber.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxSearchTranNumber.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxSearchTranNumber.Location = New System.Drawing.Point(149, 2)
         Me.TextBoxSearchTranNumber.Name = "TextBoxSearchTranNumber"
         Me.TextBoxSearchTranNumber.Size = New System.Drawing.Size(481, 23)
@@ -1877,10 +1878,10 @@ Partial Class SettingsForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(3, 5)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(125, 15)
+        Me.Label1.Size = New System.Drawing.Size(129, 16)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Transaction Number:"
         '
@@ -1888,10 +1889,10 @@ Partial Class SettingsForm
         '
         Me.GroupBox10.Controls.Add(Me.FlowLayoutPanel1)
         Me.GroupBox10.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox10.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox10.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox10.Location = New System.Drawing.Point(3, 153)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(638, 313)
+        Me.GroupBox10.Size = New System.Drawing.Size(654, 313)
         Me.GroupBox10.TabIndex = 1
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "Items"
@@ -1900,9 +1901,9 @@ Partial Class SettingsForm
         '
         Me.FlowLayoutPanel1.AutoScroll = True
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 21)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 22)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(632, 289)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(648, 288)
         Me.FlowLayoutPanel1.TabIndex = 215
         '
         'Panel21
@@ -1914,9 +1915,9 @@ Partial Class SettingsForm
         Me.Panel21.Controls.Add(Me.Panel22)
         Me.Panel21.Controls.Add(Me.Panel15)
         Me.Panel21.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel21.Location = New System.Drawing.Point(653, 3)
+        Me.Panel21.Location = New System.Drawing.Point(669, 3)
         Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(344, 469)
+        Me.Panel21.Size = New System.Drawing.Size(353, 469)
         Me.Panel21.TabIndex = 225
         '
         'Panel18
@@ -1937,7 +1938,7 @@ Partial Class SettingsForm
         Me.Panel18.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
         Me.Panel18.Location = New System.Drawing.Point(0, 181)
         Me.Panel18.Name = "Panel18"
-        Me.Panel18.Size = New System.Drawing.Size(344, 288)
+        Me.Panel18.Size = New System.Drawing.Size(353, 288)
         Me.Panel18.TabIndex = 223
         '
         'TableLayoutPanel6
@@ -1967,11 +1968,11 @@ Partial Class SettingsForm
         '
         Me.Label19.AutoSize = True
         Me.Label19.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label19.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label19.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.ForeColor = System.Drawing.Color.Black
         Me.Label19.Location = New System.Drawing.Point(3, 0)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(51, 18)
+        Me.Label19.Size = New System.Drawing.Size(56, 18)
         Me.Label19.TabIndex = 222
         Me.Label19.Text = "Vatable:"
         '
@@ -1979,11 +1980,11 @@ Partial Class SettingsForm
         '
         Me.Label21.AutoSize = True
         Me.Label21.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label21.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label21.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.ForeColor = System.Drawing.Color.Black
         Me.Label21.Location = New System.Drawing.Point(3, 18)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(106, 18)
+        Me.Label21.Size = New System.Drawing.Size(113, 18)
         Me.Label21.TabIndex = 224
         Me.Label21.Text = "Vat Exempt Sales:"
         '
@@ -1991,11 +1992,11 @@ Partial Class SettingsForm
         '
         Me.LabelIRVAT.AutoSize = True
         Me.LabelIRVAT.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelIRVAT.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.LabelIRVAT.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelIRVAT.ForeColor = System.Drawing.Color.Black
-        Me.LabelIRVAT.Location = New System.Drawing.Point(193, 0)
+        Me.LabelIRVAT.Location = New System.Drawing.Point(192, 0)
         Me.LabelIRVAT.Name = "LabelIRVAT"
-        Me.LabelIRVAT.Size = New System.Drawing.Size(14, 18)
+        Me.LabelIRVAT.Size = New System.Drawing.Size(15, 18)
         Me.LabelIRVAT.TabIndex = 223
         Me.LabelIRVAT.Text = "0"
         '
@@ -2003,11 +2004,11 @@ Partial Class SettingsForm
         '
         Me.Label23.AutoSize = True
         Me.Label23.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label23.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label23.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.ForeColor = System.Drawing.Color.Black
         Me.Label23.Location = New System.Drawing.Point(3, 36)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(103, 18)
+        Me.Label23.Size = New System.Drawing.Size(111, 18)
         Me.Label23.TabIndex = 226
         Me.Label23.Text = "Zero Rated Sales:"
         '
@@ -2015,11 +2016,11 @@ Partial Class SettingsForm
         '
         Me.LabelIRVATEX.AutoSize = True
         Me.LabelIRVATEX.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelIRVATEX.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.LabelIRVATEX.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelIRVATEX.ForeColor = System.Drawing.Color.Black
-        Me.LabelIRVATEX.Location = New System.Drawing.Point(193, 18)
+        Me.LabelIRVATEX.Location = New System.Drawing.Point(192, 18)
         Me.LabelIRVATEX.Name = "LabelIRVATEX"
-        Me.LabelIRVATEX.Size = New System.Drawing.Size(14, 18)
+        Me.LabelIRVATEX.Size = New System.Drawing.Size(15, 18)
         Me.LabelIRVATEX.TabIndex = 225
         Me.LabelIRVATEX.Text = "0"
         '
@@ -2027,11 +2028,11 @@ Partial Class SettingsForm
         '
         Me.LabelIRINPUTVAT.AutoSize = True
         Me.LabelIRINPUTVAT.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelIRINPUTVAT.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.LabelIRINPUTVAT.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelIRINPUTVAT.ForeColor = System.Drawing.Color.Black
-        Me.LabelIRINPUTVAT.Location = New System.Drawing.Point(193, 54)
+        Me.LabelIRINPUTVAT.Location = New System.Drawing.Point(192, 54)
         Me.LabelIRINPUTVAT.Name = "LabelIRINPUTVAT"
-        Me.LabelIRINPUTVAT.Size = New System.Drawing.Size(14, 18)
+        Me.LabelIRINPUTVAT.Size = New System.Drawing.Size(15, 18)
         Me.LabelIRINPUTVAT.TabIndex = 231
         Me.LabelIRINPUTVAT.Text = "0"
         '
@@ -2039,11 +2040,11 @@ Partial Class SettingsForm
         '
         Me.Label27.AutoSize = True
         Me.Label27.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label27.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label27.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label27.ForeColor = System.Drawing.Color.Black
         Me.Label27.Location = New System.Drawing.Point(3, 54)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(27, 18)
+        Me.Label27.Size = New System.Drawing.Size(32, 18)
         Me.Label27.TabIndex = 230
         Me.Label27.Text = "Vat:"
         '
@@ -2051,22 +2052,22 @@ Partial Class SettingsForm
         '
         Me.LabelIRZERO.AutoSize = True
         Me.LabelIRZERO.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelIRZERO.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.LabelIRZERO.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelIRZERO.ForeColor = System.Drawing.Color.Black
-        Me.LabelIRZERO.Location = New System.Drawing.Point(193, 36)
+        Me.LabelIRZERO.Location = New System.Drawing.Point(192, 36)
         Me.LabelIRZERO.Name = "LabelIRZERO"
-        Me.LabelIRZERO.Size = New System.Drawing.Size(14, 18)
+        Me.LabelIRZERO.Size = New System.Drawing.Size(15, 18)
         Me.LabelIRZERO.TabIndex = 227
         Me.LabelIRZERO.Text = "0"
         '
         'LabelIRSUBTOTAL
         '
         Me.LabelIRSUBTOTAL.AutoSize = True
-        Me.LabelIRSUBTOTAL.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.LabelIRSUBTOTAL.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelIRSUBTOTAL.ForeColor = System.Drawing.Color.Black
         Me.LabelIRSUBTOTAL.Location = New System.Drawing.Point(226, 52)
         Me.LabelIRSUBTOTAL.Name = "LabelIRSUBTOTAL"
-        Me.LabelIRSUBTOTAL.Size = New System.Drawing.Size(25, 15)
+        Me.LabelIRSUBTOTAL.Size = New System.Drawing.Size(29, 16)
         Me.LabelIRSUBTOTAL.TabIndex = 215
         Me.LabelIRSUBTOTAL.Text = "N/A"
         '
@@ -2097,11 +2098,11 @@ Partial Class SettingsForm
         '
         Me.Label17.AutoSize = True
         Me.Label17.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label17.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label17.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.ForeColor = System.Drawing.Color.Black
         Me.Label17.Location = New System.Drawing.Point(3, 0)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(35, 18)
+        Me.Label17.Size = New System.Drawing.Size(42, 18)
         Me.Label17.TabIndex = 216
         Me.Label17.Text = "Total:"
         '
@@ -2109,11 +2110,11 @@ Partial Class SettingsForm
         '
         Me.LabelIRTOTAL.AutoSize = True
         Me.LabelIRTOTAL.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelIRTOTAL.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.LabelIRTOTAL.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelIRTOTAL.ForeColor = System.Drawing.Color.Black
-        Me.LabelIRTOTAL.Location = New System.Drawing.Point(193, 0)
+        Me.LabelIRTOTAL.Location = New System.Drawing.Point(192, 0)
         Me.LabelIRTOTAL.Name = "LabelIRTOTAL"
-        Me.LabelIRTOTAL.Size = New System.Drawing.Size(14, 18)
+        Me.LabelIRTOTAL.Size = New System.Drawing.Size(15, 18)
         Me.LabelIRTOTAL.TabIndex = 217
         Me.LabelIRTOTAL.Text = "0"
         '
@@ -2121,11 +2122,11 @@ Partial Class SettingsForm
         '
         Me.LabelIRCHANGE.AutoSize = True
         Me.LabelIRCHANGE.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelIRCHANGE.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.LabelIRCHANGE.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelIRCHANGE.ForeColor = System.Drawing.Color.Black
-        Me.LabelIRCHANGE.Location = New System.Drawing.Point(193, 36)
+        Me.LabelIRCHANGE.Location = New System.Drawing.Point(192, 36)
         Me.LabelIRCHANGE.Name = "LabelIRCHANGE"
-        Me.LabelIRCHANGE.Size = New System.Drawing.Size(14, 18)
+        Me.LabelIRCHANGE.Size = New System.Drawing.Size(15, 18)
         Me.LabelIRCHANGE.TabIndex = 221
         Me.LabelIRCHANGE.Text = "0"
         '
@@ -2133,11 +2134,11 @@ Partial Class SettingsForm
         '
         Me.Label28.AutoSize = True
         Me.Label28.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label28.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label28.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label28.ForeColor = System.Drawing.Color.Black
         Me.Label28.Location = New System.Drawing.Point(3, 18)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(38, 18)
+        Me.Label28.Size = New System.Drawing.Size(41, 18)
         Me.Label28.TabIndex = 218
         Me.Label28.Text = "Cash:"
         '
@@ -2145,11 +2146,11 @@ Partial Class SettingsForm
         '
         Me.Label29.AutoSize = True
         Me.Label29.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label29.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label29.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label29.ForeColor = System.Drawing.Color.Black
         Me.Label29.Location = New System.Drawing.Point(3, 36)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(54, 18)
+        Me.Label29.Size = New System.Drawing.Size(56, 18)
         Me.Label29.TabIndex = 220
         Me.Label29.Text = "Change:"
         '
@@ -2157,11 +2158,11 @@ Partial Class SettingsForm
         '
         Me.Label30.AutoSize = True
         Me.Label30.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label30.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label30.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label30.ForeColor = System.Drawing.Color.Black
         Me.Label30.Location = New System.Drawing.Point(3, 54)
         Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(60, 18)
+        Me.Label30.Size = New System.Drawing.Size(61, 18)
         Me.Label30.TabIndex = 228
         Me.Label30.Text = "Discount:"
         '
@@ -2169,11 +2170,11 @@ Partial Class SettingsForm
         '
         Me.LabelIRCASH.AutoSize = True
         Me.LabelIRCASH.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelIRCASH.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.LabelIRCASH.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelIRCASH.ForeColor = System.Drawing.Color.Black
-        Me.LabelIRCASH.Location = New System.Drawing.Point(193, 18)
+        Me.LabelIRCASH.Location = New System.Drawing.Point(192, 18)
         Me.LabelIRCASH.Name = "LabelIRCASH"
-        Me.LabelIRCASH.Size = New System.Drawing.Size(14, 18)
+        Me.LabelIRCASH.Size = New System.Drawing.Size(15, 18)
         Me.LabelIRCASH.TabIndex = 219
         Me.LabelIRCASH.Text = "0"
         '
@@ -2181,11 +2182,11 @@ Partial Class SettingsForm
         '
         Me.LabelIRDISC.AutoSize = True
         Me.LabelIRDISC.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelIRDISC.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.LabelIRDISC.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelIRDISC.ForeColor = System.Drawing.Color.Black
-        Me.LabelIRDISC.Location = New System.Drawing.Point(193, 54)
+        Me.LabelIRDISC.Location = New System.Drawing.Point(192, 54)
         Me.LabelIRDISC.Name = "LabelIRDISC"
-        Me.LabelIRDISC.Size = New System.Drawing.Size(14, 18)
+        Me.LabelIRDISC.Size = New System.Drawing.Size(15, 18)
         Me.LabelIRDISC.TabIndex = 229
         Me.LabelIRDISC.Text = "0"
         '
@@ -2195,11 +2196,11 @@ Partial Class SettingsForm
         Me.ButtonRefund.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ButtonRefund.FlatAppearance.BorderSize = 0
         Me.ButtonRefund.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonRefund.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ButtonRefund.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonRefund.ForeColor = System.Drawing.Color.White
         Me.ButtonRefund.Location = New System.Drawing.Point(0, 255)
         Me.ButtonRefund.Name = "ButtonRefund"
-        Me.ButtonRefund.Size = New System.Drawing.Size(344, 33)
+        Me.ButtonRefund.Size = New System.Drawing.Size(353, 33)
         Me.ButtonRefund.TabIndex = 239
         Me.ButtonRefund.Text = "REFUND"
         Me.ButtonRefund.UseVisualStyleBackColor = False
@@ -2207,33 +2208,33 @@ Partial Class SettingsForm
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label36.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label36.ForeColor = System.Drawing.Color.Black
         Me.Label36.Location = New System.Drawing.Point(42, 53)
         Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(88, 15)
+        Me.Label36.Size = New System.Drawing.Size(98, 16)
         Me.Label36.TabIndex = 214
         Me.Label36.Text = "Item Sub Total:"
         '
         'Label35
         '
         Me.Label35.AutoSize = True
-        Me.Label35.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label35.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label35.ForeColor = System.Drawing.Color.Black
         Me.Label35.Location = New System.Drawing.Point(42, 38)
         Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(105, 15)
+        Me.Label35.Size = New System.Drawing.Size(112, 16)
         Me.Label35.TabIndex = 232
         Me.Label35.Text = "Transaction Type:"
         '
         'LabelIRTYPE
         '
         Me.LabelIRTYPE.AutoSize = True
-        Me.LabelIRTYPE.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.LabelIRTYPE.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelIRTYPE.ForeColor = System.Drawing.Color.Black
         Me.LabelIRTYPE.Location = New System.Drawing.Point(226, 38)
         Me.LabelIRTYPE.Name = "LabelIRTYPE"
-        Me.LabelIRTYPE.Size = New System.Drawing.Size(25, 15)
+        Me.LabelIRTYPE.Size = New System.Drawing.Size(29, 16)
         Me.LabelIRTYPE.TabIndex = 233
         Me.LabelIRTYPE.Text = "N/A"
         '
@@ -2245,17 +2246,17 @@ Partial Class SettingsForm
         Me.Panel28.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel28.Location = New System.Drawing.Point(0, 0)
         Me.Panel28.Name = "Panel28"
-        Me.Panel28.Size = New System.Drawing.Size(344, 32)
+        Me.Panel28.Size = New System.Drawing.Size(353, 32)
         Me.Panel28.TabIndex = 211
         '
         'Label39
         '
         Me.Label39.AutoSize = True
-        Me.Label39.Font = New System.Drawing.Font("Kelson Sans", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label39.Font = New System.Drawing.Font("Tahoma", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label39.ForeColor = System.Drawing.Color.Black
         Me.Label39.Location = New System.Drawing.Point(3, 4)
         Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(134, 23)
+        Me.Label39.Size = New System.Drawing.Size(151, 23)
         Me.Label39.TabIndex = 234
         Me.Label39.Text = "Transaction #:"
         '
@@ -2273,38 +2274,41 @@ Partial Class SettingsForm
         'LabelIRTRANSNUM
         '
         Me.LabelIRTRANSNUM.AutoSize = True
-        Me.LabelIRTRANSNUM.Font = New System.Drawing.Font("Kelson Sans", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelIRTRANSNUM.Font = New System.Drawing.Font("Tahoma", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelIRTRANSNUM.ForeColor = System.Drawing.Color.Black
-        Me.LabelIRTRANSNUM.Location = New System.Drawing.Point(135, 4)
+        Me.LabelIRTRANSNUM.Location = New System.Drawing.Point(160, 4)
         Me.LabelIRTRANSNUM.Name = "LabelIRTRANSNUM"
-        Me.LabelIRTRANSNUM.Size = New System.Drawing.Size(40, 23)
+        Me.LabelIRTRANSNUM.Size = New System.Drawing.Size(49, 23)
         Me.LabelIRTRANSNUM.TabIndex = 235
         Me.LabelIRTRANSNUM.Text = "N/A"
         '
         'Label18
         '
         Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Tahoma", 8.25!)
         Me.Label18.Location = New System.Drawing.Point(30, 22)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(289, 14)
+        Me.Label18.Size = New System.Drawing.Size(289, 13)
         Me.Label18.TabIndex = 240
         Me.Label18.Text = "_______________________________________________"
         '
         'Label20
         '
         Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label20.Location = New System.Drawing.Point(30, 59)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(289, 14)
+        Me.Label20.Size = New System.Drawing.Size(289, 13)
         Me.Label20.TabIndex = 241
         Me.Label20.Text = "_______________________________________________"
         '
         'Label22
         '
         Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Tahoma", 8.25!)
         Me.Label22.Location = New System.Drawing.Point(30, 152)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(289, 14)
+        Me.Label22.Size = New System.Drawing.Size(289, 13)
         Me.Label22.TabIndex = 242
         Me.Label22.Text = "_______________________________________________"
         '
@@ -2316,17 +2320,17 @@ Partial Class SettingsForm
         Me.Panel17.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
         Me.Panel17.Location = New System.Drawing.Point(0, 154)
         Me.Panel17.Name = "Panel17"
-        Me.Panel17.Size = New System.Drawing.Size(344, 27)
+        Me.Panel17.Size = New System.Drawing.Size(353, 27)
         Me.Panel17.TabIndex = 223
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label16.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.ForeColor = System.Drawing.Color.White
         Me.Label16.Location = New System.Drawing.Point(5, 7)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(63, 15)
+        Me.Label16.Size = New System.Drawing.Size(63, 16)
         Me.Label16.TabIndex = 219
         Me.Label16.Text = "Summary"
         '
@@ -2336,16 +2340,16 @@ Partial Class SettingsForm
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel23.Location = New System.Drawing.Point(0, 134)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(344, 20)
+        Me.Panel23.Size = New System.Drawing.Size(353, 20)
         Me.Panel23.TabIndex = 222
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label13.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.Location = New System.Drawing.Point(5, 3)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(231, 15)
+        Me.Label13.Size = New System.Drawing.Size(240, 16)
         Me.Label13.TabIndex = 221
         Me.Label13.Text = "*Full refund available within 10 minutes."
         '
@@ -2357,17 +2361,17 @@ Partial Class SettingsForm
         Me.Panel16.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
         Me.Panel16.Location = New System.Drawing.Point(0, 107)
         Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(344, 27)
+        Me.Panel16.Size = New System.Drawing.Size(353, 27)
         Me.Panel16.TabIndex = 221
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
         Me.Label3.Location = New System.Drawing.Point(5, 6)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(81, 15)
+        Me.Label3.Size = New System.Drawing.Size(82, 16)
         Me.Label3.TabIndex = 219
         Me.Label3.Text = "Return Policy"
         '
@@ -2379,13 +2383,13 @@ Partial Class SettingsForm
         Me.Panel22.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel22.Location = New System.Drawing.Point(0, 27)
         Me.Panel22.Name = "Panel22"
-        Me.Panel22.Size = New System.Drawing.Size(344, 80)
+        Me.Panel22.Size = New System.Drawing.Size(353, 80)
         Me.Panel22.TabIndex = 0
         '
         'TextBoxIRREASON
         '
-        Me.TextBoxIRREASON.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        Me.TextBoxIRREASON.Location = New System.Drawing.Point(5, 5)
+        Me.TextBoxIRREASON.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxIRREASON.Location = New System.Drawing.Point(10, 5)
         Me.TextBoxIRREASON.Multiline = True
         Me.TextBoxIRREASON.Name = "TextBoxIRREASON"
         Me.TextBoxIRREASON.Size = New System.Drawing.Size(335, 53)
@@ -2394,10 +2398,10 @@ Partial Class SettingsForm
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(5, 62)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(182, 15)
+        Me.Label5.Size = New System.Drawing.Size(192, 16)
         Me.Label5.TabIndex = 218
         Me.Label5.Text = "*Your customers won't see this."
         '
@@ -2406,7 +2410,7 @@ Partial Class SettingsForm
         Me.LabelITEMRET.AutoSize = True
         Me.LabelITEMRET.Location = New System.Drawing.Point(233, 23)
         Me.LabelITEMRET.Name = "LabelITEMRET"
-        Me.LabelITEMRET.Size = New System.Drawing.Size(17, 19)
+        Me.LabelITEMRET.Size = New System.Drawing.Size(18, 19)
         Me.LabelITEMRET.TabIndex = 224
         Me.LabelITEMRET.Text = "0"
         '
@@ -2417,17 +2421,17 @@ Partial Class SettingsForm
         Me.Panel15.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel15.Location = New System.Drawing.Point(0, 0)
         Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(344, 27)
+        Me.Panel15.Size = New System.Drawing.Size(353, 27)
         Me.Panel15.TabIndex = 217
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Location = New System.Drawing.Point(4, 7)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(109, 15)
+        Me.Label2.Size = New System.Drawing.Size(111, 16)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "Reason for refund"
         '
@@ -2437,7 +2441,7 @@ Partial Class SettingsForm
         Me.TabPage5.Location = New System.Drawing.Point(4, 28)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(1006, 481)
+        Me.TabPage5.Size = New System.Drawing.Size(1031, 481)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "TabPage5"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -2454,7 +2458,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel11.RowCount = 2
         Me.TableLayoutPanel11.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel11.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel11.Size = New System.Drawing.Size(1000, 475)
+        Me.TableLayoutPanel11.Size = New System.Drawing.Size(1025, 475)
         Me.TableLayoutPanel11.TabIndex = 245
         '
         'GroupBox13
@@ -2463,10 +2467,10 @@ Partial Class SettingsForm
         Me.GroupBox13.Controls.Add(Me.GroupBox17)
         Me.GroupBox13.Controls.Add(Me.GroupBox19)
         Me.GroupBox13.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox13.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox13.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox13.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Size = New System.Drawing.Size(994, 399)
+        Me.GroupBox13.Size = New System.Drawing.Size(1019, 399)
         Me.GroupBox13.TabIndex = 164
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "Bank List"
@@ -2475,9 +2479,9 @@ Partial Class SettingsForm
         '
         Me.GroupBox18.Controls.Add(Me.DataGridView2)
         Me.GroupBox18.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox18.Location = New System.Drawing.Point(416, 21)
+        Me.GroupBox18.Location = New System.Drawing.Point(416, 22)
         Me.GroupBox18.Name = "GroupBox18"
-        Me.GroupBox18.Size = New System.Drawing.Size(575, 153)
+        Me.GroupBox18.Size = New System.Drawing.Size(600, 152)
         Me.GroupBox18.TabIndex = 10
         Me.GroupBox18.TabStop = False
         Me.GroupBox18.Text = "Coupon List"
@@ -2488,43 +2492,43 @@ Partial Class SettingsForm
         Me.DataGridView2.AllowUserToDeleteRows = False
         Me.DataGridView2.AllowUserToResizeColumns = False
         Me.DataGridView2.AllowUserToResizeRows = False
-        DataGridViewCellStyle31.BackColor = System.Drawing.Color.White
-        Me.DataGridView2.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle31
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.White
+        Me.DataGridView2.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
         Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView2.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle32.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle32.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView2.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle32
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView2.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle33.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle33.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle33
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle15
         Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridView2.EnableHeadersVisualStyles = False
-        Me.DataGridView2.Location = New System.Drawing.Point(3, 21)
+        Me.DataGridView2.Location = New System.Drawing.Point(3, 22)
         Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.Size = New System.Drawing.Size(569, 129)
+        Me.DataGridView2.Size = New System.Drawing.Size(594, 127)
         Me.DataGridView2.TabIndex = 8
         '
         'GroupBox17
         '
         Me.GroupBox17.Controls.Add(Me.DataGridViewCProductList)
         Me.GroupBox17.Dock = System.Windows.Forms.DockStyle.Left
-        Me.GroupBox17.Location = New System.Drawing.Point(3, 21)
+        Me.GroupBox17.Location = New System.Drawing.Point(3, 22)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(413, 153)
+        Me.GroupBox17.Size = New System.Drawing.Size(413, 152)
         Me.GroupBox17.TabIndex = 9
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "Product List"
@@ -2535,34 +2539,34 @@ Partial Class SettingsForm
         Me.DataGridViewCProductList.AllowUserToDeleteRows = False
         Me.DataGridViewCProductList.AllowUserToResizeColumns = False
         Me.DataGridViewCProductList.AllowUserToResizeRows = False
-        DataGridViewCellStyle34.BackColor = System.Drawing.Color.White
-        Me.DataGridViewCProductList.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle34
+        DataGridViewCellStyle16.BackColor = System.Drawing.Color.White
+        Me.DataGridViewCProductList.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle16
         Me.DataGridViewCProductList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewCProductList.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewCProductList.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle35.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle35.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle35.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewCProductList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle35
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle17.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewCProductList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle17
         Me.DataGridViewCProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle36.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle36.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        DataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewCProductList.DefaultCellStyle = DataGridViewCellStyle36
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle18.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewCProductList.DefaultCellStyle = DataGridViewCellStyle18
         Me.DataGridViewCProductList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewCProductList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewCProductList.EnableHeadersVisualStyles = False
-        Me.DataGridViewCProductList.Location = New System.Drawing.Point(3, 21)
+        Me.DataGridViewCProductList.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewCProductList.Name = "DataGridViewCProductList"
-        Me.DataGridViewCProductList.Size = New System.Drawing.Size(407, 129)
+        Me.DataGridViewCProductList.Size = New System.Drawing.Size(407, 127)
         Me.DataGridViewCProductList.TabIndex = 7
         '
         'GroupBox19
@@ -2571,7 +2575,7 @@ Partial Class SettingsForm
         Me.GroupBox19.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupBox19.Location = New System.Drawing.Point(3, 174)
         Me.GroupBox19.Name = "GroupBox19"
-        Me.GroupBox19.Size = New System.Drawing.Size(988, 222)
+        Me.GroupBox19.Size = New System.Drawing.Size(1013, 222)
         Me.GroupBox19.TabIndex = 11
         Me.GroupBox19.TabStop = False
         '
@@ -2600,10 +2604,10 @@ Partial Class SettingsForm
         Me.Panel19.Controls.Add(Me.Label38)
         Me.Panel19.Controls.Add(Me.Label44)
         Me.Panel19.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel19.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel19.Location = New System.Drawing.Point(3, 21)
+        Me.Panel19.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Panel19.Location = New System.Drawing.Point(3, 22)
         Me.Panel19.Name = "Panel19"
-        Me.Panel19.Size = New System.Drawing.Size(982, 198)
+        Me.Panel19.Size = New System.Drawing.Size(1007, 197)
         Me.Panel19.TabIndex = 8
         '
         'TextBoxCDesc
@@ -2628,7 +2632,7 @@ Partial Class SettingsForm
         Me.Label46.AutoSize = True
         Me.Label46.Location = New System.Drawing.Point(7, 14)
         Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(83, 14)
+        Me.Label46.Size = New System.Drawing.Size(88, 14)
         Me.Label46.TabIndex = 1
         Me.Label46.Text = "Coupon Name "
         '
@@ -2653,7 +2657,7 @@ Partial Class SettingsForm
         Me.Label32.AutoSize = True
         Me.Label32.Location = New System.Drawing.Point(7, 56)
         Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(66, 14)
+        Me.Label32.Size = New System.Drawing.Size(67, 14)
         Me.Label32.TabIndex = 1
         Me.Label32.Text = "Description"
         '
@@ -2662,7 +2666,7 @@ Partial Class SettingsForm
         Me.Label33.AutoSize = True
         Me.Label33.Location = New System.Drawing.Point(596, 141)
         Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(65, 14)
+        Me.Label33.Size = New System.Drawing.Size(69, 14)
         Me.Label33.TabIndex = 1
         Me.Label33.Text = "Expiry Date"
         '
@@ -2682,7 +2686,7 @@ Partial Class SettingsForm
         Me.Label37.AutoSize = True
         Me.Label37.Location = New System.Drawing.Point(596, 99)
         Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(77, 14)
+        Me.Label37.Size = New System.Drawing.Size(85, 14)
         Me.Label37.TabIndex = 1
         Me.Label37.Text = "Effective Date"
         '
@@ -2700,7 +2704,7 @@ Partial Class SettingsForm
         Me.Label40.AutoSize = True
         Me.Label40.Location = New System.Drawing.Point(596, 57)
         Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(74, 14)
+        Me.Label40.Size = New System.Drawing.Size(78, 14)
         Me.Label40.TabIndex = 1
         Me.Label40.Text = "Bundle Value"
         '
@@ -2718,7 +2722,7 @@ Partial Class SettingsForm
         Me.Label43.AutoSize = True
         Me.Label43.Location = New System.Drawing.Point(596, 14)
         Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(142, 14)
+        Me.Label43.Size = New System.Drawing.Size(156, 14)
         Me.Label43.TabIndex = 1
         Me.Label43.Text = "Bundle Promo (Product ID)"
         '
@@ -2736,7 +2740,7 @@ Partial Class SettingsForm
         Me.Label42.AutoSize = True
         Me.Label42.Location = New System.Drawing.Point(416, 57)
         Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(74, 14)
+        Me.Label42.Size = New System.Drawing.Size(78, 14)
         Me.Label42.TabIndex = 1
         Me.Label42.Text = "Bundle Value"
         '
@@ -2754,7 +2758,7 @@ Partial Class SettingsForm
         Me.Label34.AutoSize = True
         Me.Label34.Location = New System.Drawing.Point(236, 56)
         Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(88, 14)
+        Me.Label34.Size = New System.Drawing.Size(97, 14)
         Me.Label34.TabIndex = 1
         Me.Label34.Text = "Reference Value"
         '
@@ -2772,7 +2776,7 @@ Partial Class SettingsForm
         Me.Label45.AutoSize = True
         Me.Label45.Location = New System.Drawing.Point(236, 14)
         Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(83, 14)
+        Me.Label45.Size = New System.Drawing.Size(88, 14)
         Me.Label45.TabIndex = 1
         Me.Label45.Text = "Discount Value"
         '
@@ -2790,7 +2794,7 @@ Partial Class SettingsForm
         Me.Label38.AutoSize = True
         Me.Label38.Location = New System.Drawing.Point(236, 99)
         Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(79, 14)
+        Me.Label38.Size = New System.Drawing.Size(86, 14)
         Me.Label38.TabIndex = 1
         Me.Label38.Text = "Discount Type"
         '
@@ -2799,7 +2803,7 @@ Partial Class SettingsForm
         Me.Label44.AutoSize = True
         Me.Label44.Location = New System.Drawing.Point(416, 13)
         Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(121, 14)
+        Me.Label44.Size = New System.Drawing.Size(130, 14)
         Me.Label44.TabIndex = 1
         Me.Label44.Text = "Bundle (Base Product)"
         '
@@ -2807,10 +2811,10 @@ Partial Class SettingsForm
         '
         Me.GroupBox16.Controls.Add(Me.Panel24)
         Me.GroupBox16.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox16.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox16.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox16.Location = New System.Drawing.Point(3, 408)
         Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(994, 64)
+        Me.GroupBox16.Size = New System.Drawing.Size(1019, 64)
         Me.GroupBox16.TabIndex = 166
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "Action"
@@ -2821,9 +2825,9 @@ Partial Class SettingsForm
         Me.Panel24.Controls.Add(Me.Button15)
         Me.Panel24.Controls.Add(Me.Button16)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel24.Location = New System.Drawing.Point(3, 21)
+        Me.Panel24.Location = New System.Drawing.Point(3, 22)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(988, 40)
+        Me.Panel24.Size = New System.Drawing.Size(1013, 39)
         Me.Panel24.TabIndex = 6
         '
         'Button2
@@ -2833,11 +2837,11 @@ Partial Class SettingsForm
         Me.Button2.Dock = System.Windows.Forms.DockStyle.Left
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
         Me.Button2.Location = New System.Drawing.Point(0, 0)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(134, 40)
+        Me.Button2.Size = New System.Drawing.Size(134, 39)
         Me.Button2.TabIndex = 163
         Me.Button2.Text = "Help"
         Me.Button2.UseVisualStyleBackColor = False
@@ -2849,11 +2853,11 @@ Partial Class SettingsForm
         Me.Button15.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button15.FlatAppearance.BorderSize = 0
         Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button15.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button15.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button15.ForeColor = System.Drawing.Color.White
-        Me.Button15.Location = New System.Drawing.Point(720, 0)
+        Me.Button15.Location = New System.Drawing.Point(745, 0)
         Me.Button15.Name = "Button15"
-        Me.Button15.Size = New System.Drawing.Size(134, 40)
+        Me.Button15.Size = New System.Drawing.Size(134, 39)
         Me.Button15.TabIndex = 161
         Me.Button15.Text = "Save"
         Me.Button15.UseVisualStyleBackColor = False
@@ -2865,11 +2869,11 @@ Partial Class SettingsForm
         Me.Button16.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button16.FlatAppearance.BorderSize = 0
         Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button16.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button16.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button16.ForeColor = System.Drawing.Color.White
-        Me.Button16.Location = New System.Drawing.Point(854, 0)
+        Me.Button16.Location = New System.Drawing.Point(879, 0)
         Me.Button16.Name = "Button16"
-        Me.Button16.Size = New System.Drawing.Size(134, 40)
+        Me.Button16.Size = New System.Drawing.Size(134, 39)
         Me.Button16.TabIndex = 162
         Me.Button16.Text = "Reset"
         Me.Button16.UseVisualStyleBackColor = False
@@ -2880,7 +2884,7 @@ Partial Class SettingsForm
         Me.TabPage6.Location = New System.Drawing.Point(4, 28)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(1006, 481)
+        Me.TabPage6.Size = New System.Drawing.Size(1031, 481)
         Me.TabPage6.TabIndex = 5
         Me.TabPage6.Text = "TabPage6"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -2894,9 +2898,9 @@ Partial Class SettingsForm
         Me.Panel20.Controls.Add(Me.Label52)
         Me.Panel20.Controls.Add(Me.ProgressBar1)
         Me.Panel20.Controls.Add(Me.Label51)
-        Me.Panel20.Location = New System.Drawing.Point(287, 160)
+        Me.Panel20.Location = New System.Drawing.Point(318, 144)
         Me.Panel20.Name = "Panel20"
-        Me.Panel20.Size = New System.Drawing.Size(349, 156)
+        Me.Panel20.Size = New System.Drawing.Size(374, 156)
         Me.Panel20.TabIndex = 4
         '
         'Button13
@@ -2915,10 +2919,10 @@ Partial Class SettingsForm
         'Label52
         '
         Me.Label52.AutoSize = True
-        Me.Label52.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label52.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label52.Location = New System.Drawing.Point(16, 38)
         Me.Label52.Name = "Label52"
-        Me.Label52.Size = New System.Drawing.Size(89, 19)
+        Me.Label52.Size = New System.Drawing.Size(93, 19)
         Me.Label52.TabIndex = 3
         Me.Label52.Text = "2020-03-23"
         '
@@ -2932,10 +2936,10 @@ Partial Class SettingsForm
         'Label51
         '
         Me.Label51.AutoSize = True
-        Me.Label51.Font = New System.Drawing.Font("Kelson Sans Normal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label51.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label51.Location = New System.Drawing.Point(15, 10)
         Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(323, 25)
+        Me.Label51.Size = New System.Drawing.Size(344, 25)
         Me.Label51.TabIndex = 2
         Me.Label51.Text = "Your System is currently up to date"
         '
@@ -2947,7 +2951,7 @@ Partial Class SettingsForm
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1014, 513)
+        Me.ClientSize = New System.Drawing.Size(1039, 513)
         Me.Controls.Add(Me.TabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False

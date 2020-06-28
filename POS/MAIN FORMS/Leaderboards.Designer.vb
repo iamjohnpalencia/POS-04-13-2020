@@ -78,6 +78,11 @@ Partial Class Leaderboards
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.DataGridViewRecentSales = New System.Windows.Forms.DataGridView()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.DataGridViewRecentExpenses = New System.Windows.Forms.DataGridView()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
@@ -88,11 +93,6 @@ Partial Class Leaderboards
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel3.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -172,7 +172,7 @@ Partial Class Leaderboards
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(6, 8)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(68, 15)
+        Me.Label1.Size = New System.Drawing.Size(69, 16)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Dashboard"
         '
@@ -245,7 +245,7 @@ Partial Class Leaderboards
         Me.DatagridviewTOPSELLER.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
@@ -254,7 +254,7 @@ Partial Class Leaderboards
         Me.DatagridviewTOPSELLER.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText
@@ -283,7 +283,7 @@ Partial Class Leaderboards
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(6, 8)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(38, 15)
+        Me.Label2.Size = New System.Drawing.Size(39, 16)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Chart"
         '
@@ -387,7 +387,7 @@ Partial Class Leaderboards
         Me.RadioButtonLastYear.AutoSize = True
         Me.RadioButtonLastYear.Location = New System.Drawing.Point(32, 135)
         Me.RadioButtonLastYear.Name = "RadioButtonLastYear"
-        Me.RadioButtonLastYear.Size = New System.Drawing.Size(116, 19)
+        Me.RadioButtonLastYear.Size = New System.Drawing.Size(120, 20)
         Me.RadioButtonLastYear.TabIndex = 4
         Me.RadioButtonLastYear.Text = "Results last year"
         Me.RadioButtonLastYear.UseVisualStyleBackColor = True
@@ -398,7 +398,7 @@ Partial Class Leaderboards
         Me.RadioButtonWeek.Checked = True
         Me.RadioButtonWeek.Location = New System.Drawing.Point(32, 60)
         Me.RadioButtonWeek.Name = "RadioButtonWeek"
-        Me.RadioButtonWeek.Size = New System.Drawing.Size(129, 19)
+        Me.RadioButtonWeek.Size = New System.Drawing.Size(135, 20)
         Me.RadioButtonWeek.TabIndex = 2
         Me.RadioButtonWeek.TabStop = True
         Me.RadioButtonWeek.Text = "Results Last 7 days"
@@ -409,7 +409,7 @@ Partial Class Leaderboards
         Me.RadioButtonYear.AutoSize = True
         Me.RadioButtonYear.Location = New System.Drawing.Point(32, 110)
         Me.RadioButtonYear.Name = "RadioButtonYear"
-        Me.RadioButtonYear.Size = New System.Drawing.Size(116, 19)
+        Me.RadioButtonYear.Size = New System.Drawing.Size(120, 20)
         Me.RadioButtonYear.TabIndex = 3
         Me.RadioButtonYear.Text = "Results this year"
         Me.RadioButtonYear.UseVisualStyleBackColor = True
@@ -419,7 +419,7 @@ Partial Class Leaderboards
         Me.RadioButtonMonth.AutoSize = True
         Me.RadioButtonMonth.Location = New System.Drawing.Point(32, 85)
         Me.RadioButtonMonth.Name = "RadioButtonMonth"
-        Me.RadioButtonMonth.Size = New System.Drawing.Size(151, 19)
+        Me.RadioButtonMonth.Size = New System.Drawing.Size(156, 20)
         Me.RadioButtonMonth.TabIndex = 1
         Me.RadioButtonMonth.Text = "Results in Last 30 days"
         Me.RadioButtonMonth.UseVisualStyleBackColor = True
@@ -439,7 +439,7 @@ Partial Class Leaderboards
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(6, 8)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(100, 15)
+        Me.Label4.Size = New System.Drawing.Size(101, 16)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Recent Activities"
         '
@@ -482,10 +482,10 @@ Partial Class Leaderboards
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.DataGridViewRecentSales)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(654, 232)
+        Me.TabPage1.Size = New System.Drawing.Size(654, 231)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -502,7 +502,7 @@ Partial Class Leaderboards
         Me.DataGridViewRecentSales.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
         DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
@@ -512,7 +512,7 @@ Partial Class Leaderboards
         Me.DataGridViewRecentSales.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11})
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
         DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText
@@ -523,168 +523,8 @@ Partial Class Leaderboards
         Me.DataGridViewRecentSales.EnableHeadersVisualStyles = False
         Me.DataGridViewRecentSales.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewRecentSales.Name = "DataGridViewRecentSales"
-        Me.DataGridViewRecentSales.Size = New System.Drawing.Size(648, 226)
+        Me.DataGridViewRecentSales.Size = New System.Drawing.Size(648, 225)
         Me.DataGridViewRecentSales.TabIndex = 5
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.DataGridViewRecentExpenses)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(654, 234)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "TabPage2"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'DataGridViewRecentExpenses
-        '
-        Me.DataGridViewRecentExpenses.AllowUserToAddRows = False
-        Me.DataGridViewRecentExpenses.AllowUserToDeleteRows = False
-        Me.DataGridViewRecentExpenses.AllowUserToResizeColumns = False
-        Me.DataGridViewRecentExpenses.AllowUserToResizeRows = False
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
-        Me.DataGridViewRecentExpenses.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
-        Me.DataGridViewRecentExpenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridViewRecentExpenses.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewRecentExpenses.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
-        Me.DataGridViewRecentExpenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewRecentExpenses.DefaultCellStyle = DataGridViewCellStyle9
-        Me.DataGridViewRecentExpenses.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewRecentExpenses.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridViewRecentExpenses.EnableHeadersVisualStyles = False
-        Me.DataGridViewRecentExpenses.Location = New System.Drawing.Point(3, 3)
-        Me.DataGridViewRecentExpenses.Name = "DataGridViewRecentExpenses"
-        Me.DataGridViewRecentExpenses.Size = New System.Drawing.Size(648, 228)
-        Me.DataGridViewRecentExpenses.TabIndex = 5
-        '
-        'TabPage3
-        '
-        Me.TabPage3.Controls.Add(Me.DatagridviewTransfers)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(654, 234)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "TabPage3"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'DatagridviewTransfers
-        '
-        Me.DatagridviewTransfers.AllowUserToAddRows = False
-        Me.DatagridviewTransfers.AllowUserToDeleteRows = False
-        Me.DatagridviewTransfers.AllowUserToResizeColumns = False
-        Me.DatagridviewTransfers.AllowUserToResizeRows = False
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.White
-        Me.DatagridviewTransfers.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
-        Me.DatagridviewTransfers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DatagridviewTransfers.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DatagridviewTransfers.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
-        Me.DatagridviewTransfers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle12.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DatagridviewTransfers.DefaultCellStyle = DataGridViewCellStyle12
-        Me.DatagridviewTransfers.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DatagridviewTransfers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DatagridviewTransfers.EnableHeadersVisualStyles = False
-        Me.DatagridviewTransfers.Location = New System.Drawing.Point(3, 3)
-        Me.DatagridviewTransfers.Name = "DatagridviewTransfers"
-        Me.DatagridviewTransfers.Size = New System.Drawing.Size(648, 228)
-        Me.DatagridviewTransfers.TabIndex = 6
-        '
-        'TabPage4
-        '
-        Me.TabPage4.Controls.Add(Me.DatagridviewLogs)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(654, 234)
-        Me.TabPage4.TabIndex = 3
-        Me.TabPage4.Text = "TabPage4"
-        Me.TabPage4.UseVisualStyleBackColor = True
-        '
-        'DatagridviewLogs
-        '
-        Me.DatagridviewLogs.AllowUserToAddRows = False
-        Me.DatagridviewLogs.AllowUserToDeleteRows = False
-        Me.DatagridviewLogs.AllowUserToResizeColumns = False
-        Me.DatagridviewLogs.AllowUserToResizeRows = False
-        DataGridViewCellStyle13.BackColor = System.Drawing.Color.White
-        Me.DatagridviewLogs.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
-        Me.DatagridviewLogs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DatagridviewLogs.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle14.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DatagridviewLogs.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
-        Me.DatagridviewLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DatagridviewLogs.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column3, Me.Column4, Me.Column5, Me.Column6})
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle15.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
-        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DatagridviewLogs.DefaultCellStyle = DataGridViewCellStyle15
-        Me.DatagridviewLogs.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DatagridviewLogs.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DatagridviewLogs.EnableHeadersVisualStyles = False
-        Me.DatagridviewLogs.Location = New System.Drawing.Point(3, 3)
-        Me.DatagridviewLogs.Name = "DatagridviewLogs"
-        Me.DatagridviewLogs.RowHeadersVisible = False
-        Me.DatagridviewLogs.Size = New System.Drawing.Size(648, 228)
-        Me.DatagridviewLogs.TabIndex = 6
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Column3"
-        Me.Column3.Name = "Column3"
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "Column4"
-        Me.Column4.Name = "Column4"
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "Column5"
-        Me.Column5.Name = "Column5"
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "Column6"
-        Me.Column6.Name = "Column6"
         '
         'Column7
         '
@@ -711,6 +551,166 @@ Partial Class Leaderboards
         Me.Column11.HeaderText = "Column11"
         Me.Column11.Name = "Column11"
         '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.DataGridViewRecentExpenses)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(654, 231)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "TabPage2"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'DataGridViewRecentExpenses
+        '
+        Me.DataGridViewRecentExpenses.AllowUserToAddRows = False
+        Me.DataGridViewRecentExpenses.AllowUserToDeleteRows = False
+        Me.DataGridViewRecentExpenses.AllowUserToResizeColumns = False
+        Me.DataGridViewRecentExpenses.AllowUserToResizeRows = False
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
+        Me.DataGridViewRecentExpenses.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
+        Me.DataGridViewRecentExpenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewRecentExpenses.BackgroundColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewRecentExpenses.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
+        Me.DataGridViewRecentExpenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewRecentExpenses.DefaultCellStyle = DataGridViewCellStyle9
+        Me.DataGridViewRecentExpenses.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewRecentExpenses.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridViewRecentExpenses.EnableHeadersVisualStyles = False
+        Me.DataGridViewRecentExpenses.Location = New System.Drawing.Point(3, 3)
+        Me.DataGridViewRecentExpenses.Name = "DataGridViewRecentExpenses"
+        Me.DataGridViewRecentExpenses.Size = New System.Drawing.Size(648, 225)
+        Me.DataGridViewRecentExpenses.TabIndex = 5
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.DatagridviewTransfers)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(654, 231)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "TabPage3"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'DatagridviewTransfers
+        '
+        Me.DatagridviewTransfers.AllowUserToAddRows = False
+        Me.DatagridviewTransfers.AllowUserToDeleteRows = False
+        Me.DatagridviewTransfers.AllowUserToResizeColumns = False
+        Me.DatagridviewTransfers.AllowUserToResizeRows = False
+        DataGridViewCellStyle10.BackColor = System.Drawing.Color.White
+        Me.DatagridviewTransfers.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
+        Me.DatagridviewTransfers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DatagridviewTransfers.BackgroundColor = System.Drawing.Color.White
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DatagridviewTransfers.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
+        Me.DatagridviewTransfers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DatagridviewTransfers.DefaultCellStyle = DataGridViewCellStyle12
+        Me.DatagridviewTransfers.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DatagridviewTransfers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DatagridviewTransfers.EnableHeadersVisualStyles = False
+        Me.DatagridviewTransfers.Location = New System.Drawing.Point(3, 3)
+        Me.DatagridviewTransfers.Name = "DatagridviewTransfers"
+        Me.DatagridviewTransfers.Size = New System.Drawing.Size(648, 225)
+        Me.DatagridviewTransfers.TabIndex = 6
+        '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.DatagridviewLogs)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(654, 231)
+        Me.TabPage4.TabIndex = 3
+        Me.TabPage4.Text = "TabPage4"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'DatagridviewLogs
+        '
+        Me.DatagridviewLogs.AllowUserToAddRows = False
+        Me.DatagridviewLogs.AllowUserToDeleteRows = False
+        Me.DatagridviewLogs.AllowUserToResizeColumns = False
+        Me.DatagridviewLogs.AllowUserToResizeRows = False
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.White
+        Me.DatagridviewLogs.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
+        Me.DatagridviewLogs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DatagridviewLogs.BackgroundColor = System.Drawing.Color.White
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DatagridviewLogs.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
+        Me.DatagridviewLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DatagridviewLogs.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column3, Me.Column4, Me.Column5, Me.Column6})
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DatagridviewLogs.DefaultCellStyle = DataGridViewCellStyle15
+        Me.DatagridviewLogs.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DatagridviewLogs.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DatagridviewLogs.EnableHeadersVisualStyles = False
+        Me.DatagridviewLogs.Location = New System.Drawing.Point(3, 3)
+        Me.DatagridviewLogs.Name = "DatagridviewLogs"
+        Me.DatagridviewLogs.RowHeadersVisible = False
+        Me.DatagridviewLogs.Size = New System.Drawing.Size(648, 225)
+        Me.DatagridviewLogs.TabIndex = 6
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Column3"
+        Me.Column3.Name = "Column3"
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Column4"
+        Me.Column4.Name = "Column4"
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Column5"
+        Me.Column5.Name = "Column5"
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Column6"
+        Me.Column6.Name = "Column6"
+        '
         'Leaderboards
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -727,7 +727,7 @@ Partial Class Leaderboards
         Me.Controls.Add(Me.Panel8)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel4)
-        Me.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "Leaderboards"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent

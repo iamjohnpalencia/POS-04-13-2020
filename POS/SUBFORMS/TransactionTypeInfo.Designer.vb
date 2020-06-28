@@ -36,7 +36,7 @@ Partial Class TransactionTypeInfo
         '
         'TextBoxFULLNAME
         '
-        Me.TextBoxFULLNAME.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.TextBoxFULLNAME.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxFULLNAME.Location = New System.Drawing.Point(7, 27)
         Me.TextBoxFULLNAME.Name = "TextBoxFULLNAME"
         Me.TextBoxFULLNAME.Size = New System.Drawing.Size(360, 27)
@@ -44,7 +44,7 @@ Partial Class TransactionTypeInfo
         '
         'TextBoxREFERENCE
         '
-        Me.TextBoxREFERENCE.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.TextBoxREFERENCE.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxREFERENCE.Location = New System.Drawing.Point(7, 79)
         Me.TextBoxREFERENCE.Name = "TextBoxREFERENCE"
         Me.TextBoxREFERENCE.Size = New System.Drawing.Size(277, 27)
@@ -55,7 +55,7 @@ Partial Class TransactionTypeInfo
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.Button2.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
         Me.Button2.Location = New System.Drawing.Point(7, 112)
         Me.Button2.Name = "Button2"
@@ -67,20 +67,20 @@ Partial Class TransactionTypeInfo
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(3, 5)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(79, 19)
+        Me.Label1.Size = New System.Drawing.Size(80, 19)
         Me.Label1.TabIndex = 104
         Me.Label1.Text = "Full Name"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(3, 57)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(143, 19)
+        Me.Label2.Size = New System.Drawing.Size(140, 19)
         Me.Label2.TabIndex = 105
         Me.Label2.Text = "Reference Number"
         '
@@ -89,7 +89,7 @@ Partial Class TransactionTypeInfo
         Me.ButtonESC.BackColor = System.Drawing.Color.Firebrick
         Me.ButtonESC.FlatAppearance.BorderSize = 0
         Me.ButtonESC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonESC.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.ButtonESC.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonESC.ForeColor = System.Drawing.Color.White
         Me.ButtonESC.Location = New System.Drawing.Point(254, 112)
         Me.ButtonESC.Name = "ButtonESC"
@@ -100,7 +100,7 @@ Partial Class TransactionTypeInfo
         '
         'TextBoxMARKUP
         '
-        Me.TextBoxMARKUP.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.TextBoxMARKUP.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxMARKUP.Location = New System.Drawing.Point(289, 79)
         Me.TextBoxMARKUP.Name = "TextBoxMARKUP"
         Me.TextBoxMARKUP.ReadOnly = True
@@ -110,10 +110,10 @@ Partial Class TransactionTypeInfo
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(285, 57)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(64, 19)
+        Me.Label3.Size = New System.Drawing.Size(68, 19)
         Me.Label3.TabIndex = 108
         Me.Label3.Text = "Mark Up"
         '

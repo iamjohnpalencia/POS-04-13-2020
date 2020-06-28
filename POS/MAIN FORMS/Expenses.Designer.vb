@@ -101,7 +101,7 @@ Partial Class Expenses
         Me.GroupBox1.Controls.Add(Me.TextBoxQTY)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.GroupBox1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(390, 219)
@@ -112,7 +112,7 @@ Partial Class Expenses
         'TextBoxTOTAL
         '
         Me.TextBoxTOTAL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxTOTAL.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxTOTAL.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxTOTAL.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.TextBoxTOTAL.Location = New System.Drawing.Point(106, 154)
         Me.TextBoxTOTAL.Name = "TextBoxTOTAL"
@@ -122,7 +122,7 @@ Partial Class Expenses
         'TextBoxPRICE
         '
         Me.TextBoxPRICE.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxPRICE.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxPRICE.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxPRICE.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.TextBoxPRICE.Location = New System.Drawing.Point(106, 125)
         Me.TextBoxPRICE.Name = "TextBoxPRICE"
@@ -134,7 +134,7 @@ Partial Class Expenses
         Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
         Me.Button5.FlatAppearance.BorderSize = 0
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Button5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button5.ForeColor = System.Drawing.Color.White
         Me.Button5.Location = New System.Drawing.Point(295, 183)
         Me.Button5.Name = "Button5"
@@ -148,7 +148,7 @@ Partial Class Expenses
         Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Button4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button4.ForeColor = System.Drawing.Color.White
         Me.Button4.Location = New System.Drawing.Point(106, 183)
         Me.Button4.Name = "Button4"
@@ -160,7 +160,7 @@ Partial Class Expenses
         'TextBoxITEMINF
         '
         Me.TextBoxITEMINF.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxITEMINF.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxITEMINF.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxITEMINF.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.TextBoxITEMINF.Location = New System.Drawing.Point(106, 67)
         Me.TextBoxITEMINF.Name = "TextBoxITEMINF"
@@ -169,68 +169,68 @@ Partial Class Expenses
         '
         'ComboBoxType
         '
-        Me.ComboBoxType.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ComboBoxType.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxType.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.ComboBoxType.FormattingEnabled = True
         Me.ComboBoxType.Location = New System.Drawing.Point(106, 38)
         Me.ComboBoxType.Name = "ComboBoxType"
-        Me.ComboBoxType.Size = New System.Drawing.Size(278, 23)
+        Me.ComboBoxType.Size = New System.Drawing.Size(278, 24)
         Me.ComboBoxType.TabIndex = 32
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.Location = New System.Drawing.Point(11, 156)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(83, 15)
+        Me.Label9.Size = New System.Drawing.Size(90, 16)
         Me.Label9.TabIndex = 30
         Me.Label9.Text = "Total Amount:"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(11, 41)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(86, 15)
+        Me.Label6.Size = New System.Drawing.Size(92, 16)
         Me.Label6.TabIndex = 29
         Me.Label6.Text = "Expense Type:"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(11, 127)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(39, 15)
+        Me.Label4.Size = New System.Drawing.Size(41, 16)
         Me.Label4.TabIndex = 28
         Me.Label4.Text = "Price:"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(11, 98)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(57, 15)
+        Me.Label3.Size = New System.Drawing.Size(60, 16)
         Me.Label3.TabIndex = 27
         Me.Label3.Text = "Quantity:"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(11, 69)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(36, 15)
+        Me.Label1.Size = New System.Drawing.Size(39, 16)
         Me.Label1.TabIndex = 26
         Me.Label1.Text = "Item:"
         '
         'TextBoxQTY
         '
         Me.TextBoxQTY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxQTY.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxQTY.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxQTY.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.TextBoxQTY.Location = New System.Drawing.Point(106, 96)
         Me.TextBoxQTY.Name = "TextBoxQTY"
@@ -244,7 +244,7 @@ Partial Class Expenses
         Me.GroupBox2.Controls.Add(Me.Button1)
         Me.GroupBox2.Controls.Add(Me.TextBoxAttatchment)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(399, 3)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(244, 219)
@@ -270,7 +270,7 @@ Partial Class Expenses
         Me.Button1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Button1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
         Me.Button1.Location = New System.Drawing.Point(3, 183)
         Me.Button1.Name = "Button1"
@@ -301,10 +301,10 @@ Partial Class Expenses
         '
         'ToolStripStatusLabel1
         '
-        Me.ToolStripStatusLabel1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ToolStripStatusLabel1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStripStatusLabel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(44, 17)
         Me.ToolStripStatusLabel1.Text = "Status"
         '
         'ToolStripProgressBar1

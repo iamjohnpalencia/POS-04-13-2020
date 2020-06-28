@@ -1674,19 +1674,19 @@ Public Class ConfigManager
         End Try
     End Sub
 #Region "Test Insert"
-    Private Sub button734_click(sender As Object, e As EventArgs) Handles Button4.Click
-        InsertToProducts()
-        InsertToInventory()
-        InsertToCategories()
-        InsertToFormula()
-    End Sub
+    'Private Sub button734_click(sender As Object, e As EventArgs) Handles Button4.Click
+    '    InsertToProducts()
+    '    InsertToInventory()
+    '    InsertToCategories()
+    '    InsertToFormula()
+    'End Sub
 
-    Private Sub button8_click_123(sender As Object, e As EventArgs) Handles Button8.Click
-        GetCategories()
-        GetProducts()
-        GetInventory()
-        GetFormula()
-    End Sub
+    'Private Sub button8_click_123(sender As Object, e As EventArgs) Handles Button8.Click
+    '    GetCategories()
+    '    GetProducts()
+    '    GetInventory()
+    '    GetFormula()
+    'End Sub
 
 
 #End Region

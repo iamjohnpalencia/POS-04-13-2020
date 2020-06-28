@@ -38,7 +38,6 @@ Partial Class Login
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel25 = New System.Windows.Forms.Panel()
         Me.Label147 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -60,7 +59,7 @@ Partial Class Login
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(280, 324)
+        Me.Panel1.Size = New System.Drawing.Size(299, 324)
         Me.Panel1.TabIndex = 0
         '
         'Panel8
@@ -85,14 +84,14 @@ Partial Class Login
         Me.Panel8.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
         Me.Panel8.Location = New System.Drawing.Point(0, 0)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(278, 322)
+        Me.Panel8.Size = New System.Drawing.Size(297, 322)
         Me.Panel8.TabIndex = 82
         '
         'PictureBox2
         '
         Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox2.Location = New System.Drawing.Point(24, 238)
+        Me.PictureBox2.Location = New System.Drawing.Point(32, 238)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(41, 29)
         Me.PictureBox2.TabIndex = 228
@@ -101,23 +100,23 @@ Partial Class Login
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(67, 247)
+        Me.Label1.Location = New System.Drawing.Point(75, 247)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(190, 14)
+        Me.Label1.Size = New System.Drawing.Size(204, 14)
         Me.Label1.TabIndex = 227
         Me.Label1.Text = "Click refresh button to sync user(s)."
         '
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.LinkLabel2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LinkLabel2.ForeColor = System.Drawing.Color.Black
         Me.LinkLabel2.LinkColor = System.Drawing.Color.Firebrick
-        Me.LinkLabel2.Location = New System.Drawing.Point(227, 270)
+        Me.LinkLabel2.Location = New System.Drawing.Point(235, 270)
         Me.LinkLabel2.Name = "LinkLabel2"
-        Me.LinkLabel2.Size = New System.Drawing.Size(27, 15)
+        Me.LinkLabel2.Size = New System.Drawing.Size(28, 16)
         Me.LinkLabel2.TabIndex = 225
         Me.LinkLabel2.TabStop = True
         Me.LinkLabel2.Text = "Exit"
@@ -126,7 +125,7 @@ Partial Class Login
         '
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(68, 8)
+        Me.PictureBox1.Location = New System.Drawing.Point(79, 8)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(138, 96)
         Me.PictureBox1.TabIndex = 224
@@ -135,35 +134,35 @@ Partial Class Login
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.Label7.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(24, 157)
+        Me.Label7.Location = New System.Drawing.Point(32, 157)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(70, 18)
+        Me.Label7.Size = New System.Drawing.Size(69, 18)
         Me.Label7.TabIndex = 223
         Me.Label7.Text = "Password"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(24, 107)
+        Me.Label5.Location = New System.Drawing.Point(32, 107)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(76, 18)
+        Me.Label5.Size = New System.Drawing.Size(75, 18)
         Me.Label5.TabIndex = 222
         Me.Label5.Text = "Username"
         '
         'txtpassword
         '
         Me.txtpassword.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtpassword.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.txtpassword.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtpassword.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.txtpassword.Location = New System.Drawing.Point(27, 168)
+        Me.txtpassword.Location = New System.Drawing.Point(35, 168)
         Me.txtpassword.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtpassword.MaxLength = 15
         Me.txtpassword.Name = "txtpassword"
-        Me.txtpassword.Size = New System.Drawing.Size(229, 18)
+        Me.txtpassword.Size = New System.Drawing.Size(229, 19)
         Me.txtpassword.TabIndex = 65
         Me.txtpassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.txtpassword.UseSystemPasswordChar = True
@@ -171,13 +170,13 @@ Partial Class Login
         'txtusername
         '
         Me.txtusername.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtusername.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.txtusername.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtusername.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.txtusername.Location = New System.Drawing.Point(27, 118)
+        Me.txtusername.Location = New System.Drawing.Point(35, 118)
         Me.txtusername.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtusername.MaxLength = 15
         Me.txtusername.Name = "txtusername"
-        Me.txtusername.Size = New System.Drawing.Size(229, 18)
+        Me.txtusername.Size = New System.Drawing.Size(229, 19)
         Me.txtusername.TabIndex = 64
         Me.txtusername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -187,7 +186,7 @@ Partial Class Login
         Me.Label2.BackColor = System.Drawing.Color.White
         Me.Label2.Font = New System.Drawing.Font("Century Gothic", 9.75!)
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(21, 175)
+        Me.Label2.Location = New System.Drawing.Point(29, 175)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(239, 17)
@@ -200,7 +199,7 @@ Partial Class Login
         Me.Label6.BackColor = System.Drawing.Color.White
         Me.Label6.Font = New System.Drawing.Font("Century Gothic", 9.75!)
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(21, 125)
+        Me.Label6.Location = New System.Drawing.Point(29, 125)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(239, 17)
@@ -213,37 +212,24 @@ Partial Class Login
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel23.Location = New System.Drawing.Point(0, 292)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(278, 10)
+        Me.Panel23.Size = New System.Drawing.Size(297, 10)
         Me.Panel23.TabIndex = 219
         '
         'Panel24
         '
         Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Panel24.Controls.Add(Me.Label3)
         Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel24.Location = New System.Drawing.Point(0, 302)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(278, 20)
+        Me.Panel24.Size = New System.Drawing.Size(297, 20)
         Me.Panel24.TabIndex = 218
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Kelson Sans", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(3, 3)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(27, 13)
-        Me.Label3.TabIndex = 16
-        Me.Label3.Text = "V1.0"
         '
         'Panel25
         '
         Me.Panel25.Controls.Add(Me.Label147)
         Me.Panel25.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel25.Location = New System.Drawing.Point(22, 0)
+        Me.Panel25.Location = New System.Drawing.Point(41, 0)
         Me.Panel25.Name = "Panel25"
         Me.Panel25.Size = New System.Drawing.Size(256, 20)
         Me.Panel25.TabIndex = 0
@@ -251,35 +237,35 @@ Partial Class Login
         'Label147
         '
         Me.Label147.AutoSize = True
-        Me.Label147.Font = New System.Drawing.Font("Kelson Sans", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label147.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Label147.ForeColor = System.Drawing.Color.White
-        Me.Label147.Location = New System.Drawing.Point(30, 4)
+        Me.Label147.Location = New System.Drawing.Point(3, 3)
         Me.Label147.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label147.Name = "Label147"
-        Me.Label147.Size = New System.Drawing.Size(228, 13)
+        Me.Label147.Size = New System.Drawing.Size(251, 14)
         Me.Label147.TabIndex = 15
         Me.Label147.Text = "© 2019 - Innovention Food Asia Corporation"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(20, 270)
+        Me.Label4.Location = New System.Drawing.Point(28, 270)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(141, 15)
+        Me.Label4.Size = New System.Drawing.Size(141, 16)
         Me.Label4.TabIndex = 69
         Me.Label4.Text = "Dont have an account ?"
         '
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.LinkLabel1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LinkLabel1.ForeColor = System.Drawing.Color.Black
         Me.LinkLabel1.LinkColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.LinkLabel1.Location = New System.Drawing.Point(167, 270)
+        Me.LinkLabel1.Location = New System.Drawing.Point(175, 270)
         Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(50, 15)
+        Me.LinkLabel1.Size = New System.Drawing.Size(52, 16)
         Me.LinkLabel1.TabIndex = 68
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = "Sign Up"
@@ -289,9 +275,9 @@ Partial Class Login
         Me.ButttonLogin.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.ButttonLogin.FlatAppearance.BorderSize = 0
         Me.ButttonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButttonLogin.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.ButttonLogin.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButttonLogin.ForeColor = System.Drawing.Color.White
-        Me.ButttonLogin.Location = New System.Drawing.Point(23, 200)
+        Me.ButttonLogin.Location = New System.Drawing.Point(31, 200)
         Me.ButttonLogin.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ButttonLogin.Name = "ButttonLogin"
         Me.ButttonLogin.Size = New System.Drawing.Size(233, 35)
@@ -303,7 +289,7 @@ Partial Class Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(280, 324)
+        Me.ClientSize = New System.Drawing.Size(299, 324)
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Century Gothic", 11.25!)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -319,7 +305,6 @@ Partial Class Login
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel24.ResumeLayout(False)
-        Me.Panel24.PerformLayout()
         Me.Panel25.ResumeLayout(False)
         Me.Panel25.PerformLayout()
         Me.ResumeLayout(False)
@@ -336,7 +321,6 @@ Partial Class Login
     Friend WithEvents txtpassword As TextBox
     Friend WithEvents Panel23 As Panel
     Friend WithEvents Panel24 As Panel
-    Friend WithEvents Label3 As Label
     Friend WithEvents Panel25 As Panel
     Friend WithEvents Label147 As Label
     Friend WithEvents Label2 As Label

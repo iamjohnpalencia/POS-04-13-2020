@@ -260,9 +260,7 @@ Partial Class ConfigManager
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Panel19 = New System.Windows.Forms.Panel()
-        Me.Button8 = New System.Windows.Forms.Button()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.ProgressBar4 = New System.Windows.Forms.ProgressBar()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -398,11 +396,11 @@ Partial Class ConfigManager
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
         Me.Label1.Location = New System.Drawing.Point(3, 10)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(495, 42)
+        Me.Label1.Size = New System.Drawing.Size(596, 42)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "POS CONFIGURATION MANAGER"
         '
@@ -411,7 +409,7 @@ Partial Class ConfigManager
         Me.ButtonExit.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonExit.FlatAppearance.BorderSize = 0
         Me.ButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonExit.Font = New System.Drawing.Font("Kelson Sans Normal", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonExit.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonExit.ForeColor = System.Drawing.Color.White
         Me.ButtonExit.Location = New System.Drawing.Point(1253, 13)
         Me.ButtonExit.Name = "ButtonExit"
@@ -434,7 +432,7 @@ Partial Class ConfigManager
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TabControl1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(130, 81)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -457,7 +455,7 @@ Partial Class ConfigManager
         Me.TabControl2.Controls.Add(Me.TabPage3)
         Me.TabControl2.Controls.Add(Me.TabPage4)
         Me.TabControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl2.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TabControl2.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl2.Location = New System.Drawing.Point(3, 3)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
@@ -548,6 +546,7 @@ Partial Class ConfigManager
         Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Button9.FlatAppearance.BorderSize = 0
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button9.ForeColor = System.Drawing.Color.White
         Me.Button9.Location = New System.Drawing.Point(392, 53)
         Me.Button9.Name = "Button9"
@@ -579,11 +578,11 @@ Partial Class ConfigManager
         'LabelCloud
         '
         Me.LabelCloud.AutoSize = True
-        Me.LabelCloud.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelCloud.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelCloud.ForeColor = System.Drawing.Color.White
         Me.LabelCloud.Location = New System.Drawing.Point(0, 2)
         Me.LabelCloud.Name = "LabelCloud"
-        Me.LabelCloud.Size = New System.Drawing.Size(42, 15)
+        Me.LabelCloud.Size = New System.Drawing.Size(44, 16)
         Me.LabelCloud.TabIndex = 224
         Me.LabelCloud.Text = "Status"
         '
@@ -598,45 +597,50 @@ Partial Class ConfigManager
         'Label12
         '
         Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.Location = New System.Drawing.Point(318, 26)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(33, 15)
+        Me.Label12.Size = New System.Drawing.Size(36, 16)
         Me.Label12.TabIndex = 269
         Me.Label12.Text = "Port:"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(20, 113)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(57, 15)
+        Me.Label8.Size = New System.Drawing.Size(59, 16)
         Me.Label8.TabIndex = 268
         Me.Label8.Text = "Schema:"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.Location = New System.Drawing.Point(20, 84)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(65, 15)
+        Me.Label9.Size = New System.Drawing.Size(68, 16)
         Me.Label9.TabIndex = 267
         Me.Label9.Text = "Password:"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.Location = New System.Drawing.Point(20, 55)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(70, 15)
+        Me.Label10.Size = New System.Drawing.Size(71, 16)
         Me.Label10.TabIndex = 266
         Me.Label10.Text = "Username:"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.Location = New System.Drawing.Point(20, 26)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(47, 15)
+        Me.Label11.Size = New System.Drawing.Size(51, 16)
         Me.Label11.TabIndex = 265
         Me.Label11.Text = "Server:"
         '
@@ -645,6 +649,7 @@ Partial Class ConfigManager
         Me.ButtonSaveCloudConn.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonSaveCloudConn.FlatAppearance.BorderSize = 0
         Me.ButtonSaveCloudConn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSaveCloudConn.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonSaveCloudConn.ForeColor = System.Drawing.Color.White
         Me.ButtonSaveCloudConn.Location = New System.Drawing.Point(321, 111)
         Me.ButtonSaveCloudConn.Name = "ButtonSaveCloudConn"
@@ -658,6 +663,7 @@ Partial Class ConfigManager
         Me.ButtonTestCloudConn.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonTestCloudConn.FlatAppearance.BorderSize = 0
         Me.ButtonTestCloudConn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonTestCloudConn.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonTestCloudConn.ForeColor = System.Drawing.Color.White
         Me.ButtonTestCloudConn.Location = New System.Drawing.Point(321, 82)
         Me.ButtonTestCloudConn.Name = "ButtonTestCloudConn"
@@ -671,6 +677,7 @@ Partial Class ConfigManager
         Me.ButtonClearCloud.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonClearCloud.FlatAppearance.BorderSize = 0
         Me.ButtonClearCloud.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonClearCloud.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonClearCloud.ForeColor = System.Drawing.Color.White
         Me.ButtonClearCloud.Location = New System.Drawing.Point(321, 53)
         Me.ButtonClearCloud.Name = "ButtonClearCloud"
@@ -682,6 +689,7 @@ Partial Class ConfigManager
         'TextBoxCloudPort
         '
         Me.TextBoxCloudPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxCloudPort.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxCloudPort.Location = New System.Drawing.Point(357, 24)
         Me.TextBoxCloudPort.Name = "TextBoxCloudPort"
         Me.TextBoxCloudPort.Size = New System.Drawing.Size(100, 23)
@@ -691,6 +699,7 @@ Partial Class ConfigManager
         'TextBoxCloudDatabase
         '
         Me.TextBoxCloudDatabase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxCloudDatabase.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxCloudDatabase.Location = New System.Drawing.Point(105, 111)
         Me.TextBoxCloudDatabase.Name = "TextBoxCloudDatabase"
         Me.TextBoxCloudDatabase.Size = New System.Drawing.Size(186, 23)
@@ -701,6 +710,7 @@ Partial Class ConfigManager
         'TextBoxCloudPassword
         '
         Me.TextBoxCloudPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxCloudPassword.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxCloudPassword.Location = New System.Drawing.Point(105, 82)
         Me.TextBoxCloudPassword.Name = "TextBoxCloudPassword"
         Me.TextBoxCloudPassword.Size = New System.Drawing.Size(186, 23)
@@ -711,6 +721,7 @@ Partial Class ConfigManager
         'TextBoxCloudUsername
         '
         Me.TextBoxCloudUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxCloudUsername.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxCloudUsername.Location = New System.Drawing.Point(105, 53)
         Me.TextBoxCloudUsername.Name = "TextBoxCloudUsername"
         Me.TextBoxCloudUsername.Size = New System.Drawing.Size(186, 23)
@@ -721,6 +732,7 @@ Partial Class ConfigManager
         'TextBoxCloudServer
         '
         Me.TextBoxCloudServer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxCloudServer.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxCloudServer.Location = New System.Drawing.Point(105, 24)
         Me.TextBoxCloudServer.Name = "TextBoxCloudServer"
         Me.TextBoxCloudServer.Size = New System.Drawing.Size(186, 23)
@@ -769,6 +781,7 @@ Partial Class ConfigManager
         Me.ButtonEditLocal.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonEditLocal.FlatAppearance.BorderSize = 0
         Me.ButtonEditLocal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonEditLocal.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonEditLocal.ForeColor = System.Drawing.Color.White
         Me.ButtonEditLocal.Location = New System.Drawing.Point(392, 52)
         Me.ButtonEditLocal.Name = "ButtonEditLocal"
@@ -781,6 +794,7 @@ Partial Class ConfigManager
         '
         Me.ButtonSaveLocalCon.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonSaveLocalCon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSaveLocalCon.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonSaveLocalCon.ForeColor = System.Drawing.Color.White
         Me.ButtonSaveLocalCon.Location = New System.Drawing.Point(321, 111)
         Me.ButtonSaveLocalCon.Name = "ButtonSaveLocalCon"
@@ -794,6 +808,7 @@ Partial Class ConfigManager
         Me.ButtonTestLocConn.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonTestLocConn.FlatAppearance.BorderSize = 0
         Me.ButtonTestLocConn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonTestLocConn.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonTestLocConn.ForeColor = System.Drawing.Color.White
         Me.ButtonTestLocConn.Location = New System.Drawing.Point(321, 81)
         Me.ButtonTestLocConn.Name = "ButtonTestLocConn"
@@ -807,6 +822,7 @@ Partial Class ConfigManager
         Me.ButtonClearLocal.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonClearLocal.FlatAppearance.BorderSize = 0
         Me.ButtonClearLocal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonClearLocal.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonClearLocal.ForeColor = System.Drawing.Color.White
         Me.ButtonClearLocal.Location = New System.Drawing.Point(321, 52)
         Me.ButtonClearLocal.Name = "ButtonClearLocal"
@@ -818,42 +834,47 @@ Partial Class ConfigManager
         'Label7
         '
         Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(318, 27)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(33, 15)
+        Me.Label7.Size = New System.Drawing.Size(36, 16)
         Me.Label7.TabIndex = 260
         Me.Label7.Text = "Port:"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(20, 114)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(57, 15)
+        Me.Label6.Size = New System.Drawing.Size(59, 16)
         Me.Label6.TabIndex = 259
         Me.Label6.Text = "Schema:"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(20, 85)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(65, 15)
+        Me.Label5.Size = New System.Drawing.Size(68, 16)
         Me.Label5.TabIndex = 258
         Me.Label5.Text = "Password:"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(20, 56)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(70, 15)
+        Me.Label4.Size = New System.Drawing.Size(71, 16)
         Me.Label4.TabIndex = 257
         Me.Label4.Text = "Username:"
         '
         'TextBoxLocalPort
         '
         Me.TextBoxLocalPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxLocalPort.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxLocalPort.Location = New System.Drawing.Point(357, 23)
         Me.TextBoxLocalPort.Name = "TextBoxLocalPort"
         Me.TextBoxLocalPort.Size = New System.Drawing.Size(100, 23)
@@ -863,6 +884,7 @@ Partial Class ConfigManager
         'TextBoxLocalDatabase
         '
         Me.TextBoxLocalDatabase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxLocalDatabase.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxLocalDatabase.Location = New System.Drawing.Point(105, 111)
         Me.TextBoxLocalDatabase.Name = "TextBoxLocalDatabase"
         Me.TextBoxLocalDatabase.Size = New System.Drawing.Size(186, 23)
@@ -873,6 +895,7 @@ Partial Class ConfigManager
         'TextBoxLocalPassword
         '
         Me.TextBoxLocalPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxLocalPassword.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxLocalPassword.Location = New System.Drawing.Point(105, 82)
         Me.TextBoxLocalPassword.Name = "TextBoxLocalPassword"
         Me.TextBoxLocalPassword.Size = New System.Drawing.Size(186, 23)
@@ -883,6 +906,7 @@ Partial Class ConfigManager
         'TextBoxLocalUsername
         '
         Me.TextBoxLocalUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxLocalUsername.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxLocalUsername.Location = New System.Drawing.Point(105, 53)
         Me.TextBoxLocalUsername.Name = "TextBoxLocalUsername"
         Me.TextBoxLocalUsername.Size = New System.Drawing.Size(186, 23)
@@ -893,6 +917,7 @@ Partial Class ConfigManager
         'TextBoxLocalServer
         '
         Me.TextBoxLocalServer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxLocalServer.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxLocalServer.Location = New System.Drawing.Point(105, 24)
         Me.TextBoxLocalServer.Name = "TextBoxLocalServer"
         Me.TextBoxLocalServer.Size = New System.Drawing.Size(186, 23)
@@ -902,9 +927,10 @@ Partial Class ConfigManager
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(20, 27)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(47, 15)
+        Me.Label2.Size = New System.Drawing.Size(51, 16)
         Me.Label2.TabIndex = 251
         Me.Label2.Text = "Server:"
         '
@@ -931,11 +957,11 @@ Partial Class ConfigManager
         'LabelLocal
         '
         Me.LabelLocal.AutoSize = True
-        Me.LabelLocal.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelLocal.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelLocal.ForeColor = System.Drawing.Color.White
         Me.LabelLocal.Location = New System.Drawing.Point(0, 2)
         Me.LabelLocal.Name = "LabelLocal"
-        Me.LabelLocal.Size = New System.Drawing.Size(42, 15)
+        Me.LabelLocal.Size = New System.Drawing.Size(44, 16)
         Me.LabelLocal.TabIndex = 224
         Me.LabelLocal.Text = "Status"
         '
@@ -998,11 +1024,11 @@ Partial Class ConfigManager
         'Label60
         '
         Me.Label60.AutoSize = True
-        Me.Label60.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label60.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Label60.ForeColor = System.Drawing.Color.Black
         Me.Label60.Location = New System.Drawing.Point(109, 37)
         Me.Label60.Name = "Label60"
-        Me.Label60.Size = New System.Drawing.Size(292, 15)
+        Me.Label60.Size = New System.Drawing.Size(283, 14)
         Me.Label60.TabIndex = 53
         Me.Label60.Text = "*Automatic create system backup in interval basis."
         '
@@ -1012,7 +1038,7 @@ Partial Class ConfigManager
         Me.GroupBox7.Controls.Add(Me.RadioButtonMonthly)
         Me.GroupBox7.Controls.Add(Me.RadioButtonWeekly)
         Me.GroupBox7.Controls.Add(Me.RadioButtonDaily)
-        Me.GroupBox7.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.GroupBox7.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox7.Location = New System.Drawing.Point(12, 54)
         Me.GroupBox7.Name = "GroupBox7"
         Me.GroupBox7.Size = New System.Drawing.Size(474, 47)
@@ -1025,7 +1051,7 @@ Partial Class ConfigManager
         Me.RadioButtonYearly.AutoSize = True
         Me.RadioButtonYearly.Location = New System.Drawing.Point(397, 18)
         Me.RadioButtonYearly.Name = "RadioButtonYearly"
-        Me.RadioButtonYearly.Size = New System.Drawing.Size(58, 19)
+        Me.RadioButtonYearly.Size = New System.Drawing.Size(61, 20)
         Me.RadioButtonYearly.TabIndex = 3
         Me.RadioButtonYearly.TabStop = True
         Me.RadioButtonYearly.Text = "Yearly"
@@ -1036,7 +1062,7 @@ Partial Class ConfigManager
         Me.RadioButtonMonthly.AutoSize = True
         Me.RadioButtonMonthly.Location = New System.Drawing.Point(265, 18)
         Me.RadioButtonMonthly.Name = "RadioButtonMonthly"
-        Me.RadioButtonMonthly.Size = New System.Drawing.Size(68, 19)
+        Me.RadioButtonMonthly.Size = New System.Drawing.Size(70, 20)
         Me.RadioButtonMonthly.TabIndex = 2
         Me.RadioButtonMonthly.TabStop = True
         Me.RadioButtonMonthly.Text = "Monthly"
@@ -1047,7 +1073,7 @@ Partial Class ConfigManager
         Me.RadioButtonWeekly.AutoSize = True
         Me.RadioButtonWeekly.Location = New System.Drawing.Point(136, 18)
         Me.RadioButtonWeekly.Name = "RadioButtonWeekly"
-        Me.RadioButtonWeekly.Size = New System.Drawing.Size(65, 19)
+        Me.RadioButtonWeekly.Size = New System.Drawing.Size(67, 20)
         Me.RadioButtonWeekly.TabIndex = 1
         Me.RadioButtonWeekly.TabStop = True
         Me.RadioButtonWeekly.Text = "Weekly"
@@ -1058,7 +1084,7 @@ Partial Class ConfigManager
         Me.RadioButtonDaily.AutoSize = True
         Me.RadioButtonDaily.Location = New System.Drawing.Point(22, 18)
         Me.RadioButtonDaily.Name = "RadioButtonDaily"
-        Me.RadioButtonDaily.Size = New System.Drawing.Size(52, 19)
+        Me.RadioButtonDaily.Size = New System.Drawing.Size(53, 20)
         Me.RadioButtonDaily.TabIndex = 0
         Me.RadioButtonDaily.TabStop = True
         Me.RadioButtonDaily.Text = "Daily"
@@ -1130,7 +1156,7 @@ Partial Class ConfigManager
         Me.ButtonRepair.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ButtonRepair.FlatAppearance.BorderSize = 0
         Me.ButtonRepair.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonRepair.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ButtonRepair.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonRepair.ForeColor = System.Drawing.Color.White
         Me.ButtonRepair.Location = New System.Drawing.Point(0, 0)
         Me.ButtonRepair.Name = "ButtonRepair"
@@ -1154,7 +1180,7 @@ Partial Class ConfigManager
         Me.ButtonMaintenance.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ButtonMaintenance.FlatAppearance.BorderSize = 0
         Me.ButtonMaintenance.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonMaintenance.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ButtonMaintenance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonMaintenance.ForeColor = System.Drawing.Color.White
         Me.ButtonMaintenance.Location = New System.Drawing.Point(0, 0)
         Me.ButtonMaintenance.Name = "ButtonMaintenance"
@@ -1178,7 +1204,7 @@ Partial Class ConfigManager
         Me.ButtonDatabaseReset.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ButtonDatabaseReset.FlatAppearance.BorderSize = 0
         Me.ButtonDatabaseReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonDatabaseReset.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ButtonDatabaseReset.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonDatabaseReset.ForeColor = System.Drawing.Color.White
         Me.ButtonDatabaseReset.Location = New System.Drawing.Point(0, 0)
         Me.ButtonDatabaseReset.Name = "ButtonDatabaseReset"
@@ -1190,33 +1216,33 @@ Partial Class ConfigManager
         'Label64
         '
         Me.Label64.AutoSize = True
-        Me.Label64.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label64.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label64.ForeColor = System.Drawing.Color.Black
-        Me.Label64.Location = New System.Drawing.Point(54, 55)
+        Me.Label64.Location = New System.Drawing.Point(41, 55)
         Me.Label64.Name = "Label64"
-        Me.Label64.Size = New System.Drawing.Size(377, 15)
+        Me.Label64.Size = New System.Drawing.Size(364, 14)
         Me.Label64.TabIndex = 18
         Me.Label64.Text = "*Maintenance cleans clutters so your database will run efficiently."
         '
         'Label65
         '
         Me.Label65.AutoSize = True
-        Me.Label65.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label65.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label65.ForeColor = System.Drawing.Color.Black
-        Me.Label65.Location = New System.Drawing.Point(17, 19)
+        Me.Label65.Location = New System.Drawing.Point(4, 19)
         Me.Label65.Name = "Label65"
-        Me.Label65.Size = New System.Drawing.Size(462, 15)
+        Me.Label65.Size = New System.Drawing.Size(475, 14)
         Me.Label65.TabIndex = 17
         Me.Label65.Text = "*Database Reset deletes EVERYTHING you have input, changed, saved BE CAREFUL."
         '
         'Label66
         '
         Me.Label66.AutoSize = True
-        Me.Label66.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label66.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label66.ForeColor = System.Drawing.Color.Black
-        Me.Label66.Location = New System.Drawing.Point(79, 37)
+        Me.Label66.Location = New System.Drawing.Point(66, 37)
         Me.Label66.Name = "Label66"
-        Me.Label66.Size = New System.Drawing.Size(333, 15)
+        Me.Label66.Size = New System.Drawing.Size(341, 14)
         Me.Label66.TabIndex = 16
         Me.Label66.Text = "This acts as NEW DATABASE and you will have to start now."
         '
@@ -1281,7 +1307,7 @@ Partial Class ConfigManager
         Me.ButtonExport.Dock = System.Windows.Forms.DockStyle.Left
         Me.ButtonExport.FlatAppearance.BorderSize = 0
         Me.ButtonExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonExport.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ButtonExport.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonExport.ForeColor = System.Drawing.Color.White
         Me.ButtonExport.Location = New System.Drawing.Point(0, 0)
         Me.ButtonExport.Name = "ButtonExport"
@@ -1305,7 +1331,7 @@ Partial Class ConfigManager
         Me.ButtonImport.Dock = System.Windows.Forms.DockStyle.Right
         Me.ButtonImport.FlatAppearance.BorderSize = 0
         Me.ButtonImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonImport.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ButtonImport.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonImport.ForeColor = System.Drawing.Color.White
         Me.ButtonImport.Location = New System.Drawing.Point(63, 0)
         Me.ButtonImport.Name = "ButtonImport"
@@ -1317,11 +1343,11 @@ Partial Class ConfigManager
         'Label61
         '
         Me.Label61.AutoSize = True
-        Me.Label61.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label61.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label61.ForeColor = System.Drawing.Color.Black
         Me.Label61.Location = New System.Drawing.Point(106, 45)
         Me.Label61.Name = "Label61"
-        Me.Label61.Size = New System.Drawing.Size(295, 15)
+        Me.Label61.Size = New System.Drawing.Size(305, 16)
         Me.Label61.TabIndex = 25
         Me.Label61.Text = "*Manually backup system data and print it with you."
         '
@@ -1338,11 +1364,11 @@ Partial Class ConfigManager
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Kelson Sans", 24.0!, System.Drawing.FontStyle.Bold)
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
         Me.Label3.Location = New System.Drawing.Point(3, 5)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(357, 38)
+        Me.Label3.Size = New System.Drawing.Size(394, 39)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Database Configuration"
         '
@@ -1410,7 +1436,7 @@ Partial Class ConfigManager
         Me.ButtonEditDevSet.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonEditDevSet.FlatAppearance.BorderSize = 0
         Me.ButtonEditDevSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonEditDevSet.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonEditDevSet.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonEditDevSet.ForeColor = System.Drawing.Color.White
         Me.ButtonEditDevSet.Location = New System.Drawing.Point(221, 401)
         Me.ButtonEditDevSet.Name = "ButtonEditDevSet"
@@ -1424,7 +1450,7 @@ Partial Class ConfigManager
         Me.Button6.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Button6.FlatAppearance.BorderSize = 0
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.White
         Me.Button6.Location = New System.Drawing.Point(41, 401)
         Me.Button6.Name = "Button6"
@@ -1436,96 +1462,96 @@ Partial Class ConfigManager
         'Label79
         '
         Me.Label79.AutoSize = True
-        Me.Label79.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label79.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label79.Location = New System.Drawing.Point(38, 356)
         Me.Label79.Name = "Label79"
-        Me.Label79.Size = New System.Drawing.Size(61, 14)
+        Me.Label79.Size = New System.Drawing.Size(64, 14)
         Me.Label79.TabIndex = 271
         Me.Label79.Text = "Valid Until:"
         '
         'Label78
         '
         Me.Label78.AutoSize = True
-        Me.Label78.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label78.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label78.Location = New System.Drawing.Point(38, 314)
         Me.Label78.Name = "Label78"
-        Me.Label78.Size = New System.Drawing.Size(71, 14)
+        Me.Label78.Size = New System.Drawing.Size(76, 14)
         Me.Label78.TabIndex = 270
         Me.Label78.Text = "Date Issued:"
         '
         'Label77
         '
         Me.Label77.AutoSize = True
-        Me.Label77.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label77.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label77.Location = New System.Drawing.Point(38, 272)
         Me.Label77.Name = "Label77"
-        Me.Label77.Size = New System.Drawing.Size(46, 14)
+        Me.Label77.Size = New System.Drawing.Size(57, 14)
         Me.Label77.TabIndex = 269
         Me.Label77.Text = "PTU No.:"
         '
         'Label76
         '
         Me.Label76.AutoSize = True
-        Me.Label76.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label76.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label76.Location = New System.Drawing.Point(38, 230)
         Me.Label76.Name = "Label76"
-        Me.Label76.Size = New System.Drawing.Size(61, 14)
+        Me.Label76.Size = New System.Drawing.Size(64, 14)
         Me.Label76.TabIndex = 268
         Me.Label76.Text = "Valid Until:"
         '
         'Label75
         '
         Me.Label75.AutoSize = True
-        Me.Label75.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label75.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label75.Location = New System.Drawing.Point(38, 188)
         Me.Label75.Name = "Label75"
-        Me.Label75.Size = New System.Drawing.Size(71, 14)
+        Me.Label75.Size = New System.Drawing.Size(76, 14)
         Me.Label75.TabIndex = 267
         Me.Label75.Text = "Date Issued:"
         '
         'Label74
         '
         Me.Label74.AutoSize = True
-        Me.Label74.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label74.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label74.Location = New System.Drawing.Point(38, 149)
         Me.Label74.Name = "Label74"
-        Me.Label74.Size = New System.Drawing.Size(48, 14)
+        Me.Label74.Size = New System.Drawing.Size(53, 14)
         Me.Label74.TabIndex = 266
         Me.Label74.Text = "ACCR #:"
         '
         'Label73
         '
         Me.Label73.AutoSize = True
-        Me.Label73.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label73.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label73.Location = New System.Drawing.Point(38, 107)
         Me.Label73.Name = "Label73"
-        Me.Label73.Size = New System.Drawing.Size(64, 14)
+        Me.Label73.Size = New System.Drawing.Size(76, 14)
         Me.Label73.TabIndex = 265
         Me.Label73.Text = "Vat Reg Tin:"
         '
         'Label72
         '
         Me.Label72.AutoSize = True
-        Me.Label72.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label72.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label72.Location = New System.Drawing.Point(38, 65)
         Me.Label72.Name = "Label72"
-        Me.Label72.Size = New System.Drawing.Size(52, 14)
+        Me.Label72.Size = New System.Drawing.Size(54, 14)
         Me.Label72.TabIndex = 264
         Me.Label72.Text = "Address:"
         '
         'Label71
         '
         Me.Label71.AutoSize = True
-        Me.Label71.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label71.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label71.Location = New System.Drawing.Point(38, 23)
         Me.Label71.Name = "Label71"
-        Me.Label71.Size = New System.Drawing.Size(93, 14)
+        Me.Label71.Size = New System.Drawing.Size(96, 14)
         Me.Label71.TabIndex = 263
         Me.Label71.Text = "Company Name:"
         '
         'DateTimePickerPTUVU
         '
-        Me.DateTimePickerPTUVU.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.DateTimePickerPTUVU.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DateTimePickerPTUVU.Location = New System.Drawing.Point(41, 373)
         Me.DateTimePickerPTUVU.Name = "DateTimePickerPTUVU"
         Me.DateTimePickerPTUVU.Size = New System.Drawing.Size(245, 22)
@@ -1533,7 +1559,7 @@ Partial Class ConfigManager
         '
         'DateTimePicker4PTUDI
         '
-        Me.DateTimePicker4PTUDI.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.DateTimePicker4PTUDI.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DateTimePicker4PTUDI.Location = New System.Drawing.Point(41, 331)
         Me.DateTimePicker4PTUDI.Name = "DateTimePicker4PTUDI"
         Me.DateTimePicker4PTUDI.Size = New System.Drawing.Size(245, 22)
@@ -1542,7 +1568,7 @@ Partial Class ConfigManager
         'TextBoxDEVPTU
         '
         Me.TextBoxDEVPTU.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxDEVPTU.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBoxDEVPTU.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxDEVPTU.Location = New System.Drawing.Point(41, 289)
         Me.TextBoxDEVPTU.Name = "TextBoxDEVPTU"
         Me.TextBoxDEVPTU.Size = New System.Drawing.Size(245, 22)
@@ -1550,7 +1576,7 @@ Partial Class ConfigManager
         '
         'DateTimePicker2ACCRVU
         '
-        Me.DateTimePicker2ACCRVU.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.DateTimePicker2ACCRVU.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DateTimePicker2ACCRVU.Location = New System.Drawing.Point(41, 247)
         Me.DateTimePicker2ACCRVU.Name = "DateTimePicker2ACCRVU"
         Me.DateTimePicker2ACCRVU.Size = New System.Drawing.Size(245, 22)
@@ -1558,7 +1584,7 @@ Partial Class ConfigManager
         '
         'DateTimePicker1ACCRDI
         '
-        Me.DateTimePicker1ACCRDI.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.DateTimePicker1ACCRDI.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DateTimePicker1ACCRDI.Location = New System.Drawing.Point(41, 205)
         Me.DateTimePicker1ACCRDI.Name = "DateTimePicker1ACCRDI"
         Me.DateTimePicker1ACCRDI.Size = New System.Drawing.Size(245, 22)
@@ -1567,7 +1593,7 @@ Partial Class ConfigManager
         'TextBoxDevAccr
         '
         Me.TextBoxDevAccr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxDevAccr.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBoxDevAccr.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxDevAccr.Location = New System.Drawing.Point(41, 163)
         Me.TextBoxDevAccr.Name = "TextBoxDevAccr"
         Me.TextBoxDevAccr.Size = New System.Drawing.Size(245, 22)
@@ -1576,7 +1602,7 @@ Partial Class ConfigManager
         'TextBoxDevTIN
         '
         Me.TextBoxDevTIN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxDevTIN.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBoxDevTIN.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxDevTIN.Location = New System.Drawing.Point(41, 124)
         Me.TextBoxDevTIN.Name = "TextBoxDevTIN"
         Me.TextBoxDevTIN.Size = New System.Drawing.Size(245, 22)
@@ -1585,7 +1611,7 @@ Partial Class ConfigManager
         'TextBoxDevAdd
         '
         Me.TextBoxDevAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxDevAdd.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBoxDevAdd.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxDevAdd.Location = New System.Drawing.Point(41, 82)
         Me.TextBoxDevAdd.Name = "TextBoxDevAdd"
         Me.TextBoxDevAdd.Size = New System.Drawing.Size(245, 22)
@@ -1594,7 +1620,7 @@ Partial Class ConfigManager
         'TextBoxDevname
         '
         Me.TextBoxDevname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxDevname.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBoxDevname.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxDevname.Location = New System.Drawing.Point(41, 40)
         Me.TextBoxDevname.Name = "TextBoxDevname"
         Me.TextBoxDevname.Size = New System.Drawing.Size(245, 22)
@@ -1643,7 +1669,7 @@ Partial Class ConfigManager
         Me.ButtonEdit.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonEdit.FlatAppearance.BorderSize = 0
         Me.ButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonEdit.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonEdit.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonEdit.ForeColor = System.Drawing.Color.White
         Me.ButtonEdit.Location = New System.Drawing.Point(218, 196)
         Me.ButtonEdit.Name = "ButtonEdit"
@@ -1657,7 +1683,7 @@ Partial Class ConfigManager
         Me.ButtonGetExportPath.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonGetExportPath.FlatAppearance.BorderSize = 0
         Me.ButtonGetExportPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonGetExportPath.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonGetExportPath.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonGetExportPath.ForeColor = System.Drawing.Color.White
         Me.ButtonGetExportPath.Location = New System.Drawing.Point(238, 44)
         Me.ButtonGetExportPath.Name = "ButtonGetExportPath"
@@ -1671,7 +1697,7 @@ Partial Class ConfigManager
         Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button3.ForeColor = System.Drawing.Color.White
         Me.Button3.Location = New System.Drawing.Point(38, 196)
         Me.Button3.Name = "Button3"
@@ -1682,7 +1708,7 @@ Partial Class ConfigManager
         '
         'TextBoxExportPath
         '
-        Me.TextBoxExportPath.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBoxExportPath.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxExportPath.Location = New System.Drawing.Point(38, 44)
         Me.TextBoxExportPath.Name = "TextBoxExportPath"
         Me.TextBoxExportPath.Size = New System.Drawing.Size(200, 22)
@@ -1691,26 +1717,26 @@ Partial Class ConfigManager
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label17.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.Location = New System.Drawing.Point(35, 152)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(69, 14)
+        Me.Label17.Size = New System.Drawing.Size(76, 14)
         Me.Label17.TabIndex = 292
         Me.Label17.Text = "Terminal No."
         '
         'Label56
         '
         Me.Label56.AutoSize = True
-        Me.Label56.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label56.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label56.Location = New System.Drawing.Point(194, 69)
         Me.Label56.Name = "Label56"
-        Me.Label56.Size = New System.Drawing.Size(64, 14)
+        Me.Label56.Size = New System.Drawing.Size(72, 14)
         Me.Label56.TabIndex = 285
         Me.Label56.Text = "Zero Rated:"
         '
         'TextBoxTerminalNo
         '
-        Me.TextBoxTerminalNo.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBoxTerminalNo.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxTerminalNo.Location = New System.Drawing.Point(38, 168)
         Me.TextBoxTerminalNo.Name = "TextBoxTerminalNo"
         Me.TextBoxTerminalNo.Size = New System.Drawing.Size(245, 22)
@@ -1719,10 +1745,10 @@ Partial Class ConfigManager
         'RadioButtonYES
         '
         Me.RadioButtonYES.AutoSize = True
-        Me.RadioButtonYES.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.RadioButtonYES.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadioButtonYES.Location = New System.Drawing.Point(197, 87)
         Me.RadioButtonYES.Name = "RadioButtonYES"
-        Me.RadioButtonYES.Size = New System.Drawing.Size(42, 18)
+        Me.RadioButtonYES.Size = New System.Drawing.Size(45, 18)
         Me.RadioButtonYES.TabIndex = 287
         Me.RadioButtonYES.TabStop = True
         Me.RadioButtonYES.Text = "Yes"
@@ -1731,30 +1757,30 @@ Partial Class ConfigManager
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label18.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.Location = New System.Drawing.Point(35, 111)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(105, 14)
+        Me.Label18.Size = New System.Drawing.Size(111, 14)
         Me.Label18.TabIndex = 290
         Me.Label18.Text = "SI Number Format:"
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label20.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label20.Location = New System.Drawing.Point(35, 27)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(68, 14)
+        Me.Label20.Size = New System.Drawing.Size(76, 14)
         Me.Label20.TabIndex = 283
         Me.Label20.Text = "Export Path:"
         '
         'RadioButtonNO
         '
         Me.RadioButtonNO.AutoSize = True
-        Me.RadioButtonNO.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.RadioButtonNO.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadioButtonNO.Location = New System.Drawing.Point(245, 87)
         Me.RadioButtonNO.Name = "RadioButtonNO"
-        Me.RadioButtonNO.Size = New System.Drawing.Size(38, 18)
+        Me.RadioButtonNO.Size = New System.Drawing.Size(40, 18)
         Me.RadioButtonNO.TabIndex = 288
         Me.RadioButtonNO.TabStop = True
         Me.RadioButtonNO.Text = "No"
@@ -1762,7 +1788,7 @@ Partial Class ConfigManager
         '
         'TextBoxTax
         '
-        Me.TextBoxTax.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBoxTax.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxTax.Location = New System.Drawing.Point(38, 86)
         Me.TextBoxTax.Name = "TextBoxTax"
         Me.TextBoxTax.Size = New System.Drawing.Size(153, 22)
@@ -1770,7 +1796,7 @@ Partial Class ConfigManager
         '
         'TextBoxSINumber
         '
-        Me.TextBoxSINumber.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBoxSINumber.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxSINumber.Location = New System.Drawing.Point(38, 126)
         Me.TextBoxSINumber.Name = "TextBoxSINumber"
         Me.TextBoxSINumber.Size = New System.Drawing.Size(245, 22)
@@ -1779,10 +1805,10 @@ Partial Class ConfigManager
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label19.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.Location = New System.Drawing.Point(35, 69)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(27, 14)
+        Me.Label19.Size = New System.Drawing.Size(34, 14)
         Me.Label19.TabIndex = 286
         Me.Label19.Text = "TAX:"
         '
@@ -1799,11 +1825,11 @@ Partial Class ConfigManager
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Kelson Sans", 24.0!, System.Drawing.FontStyle.Bold)
+        Me.Label13.Font = New System.Drawing.Font("Tahoma", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.Black
         Me.Label13.Location = New System.Drawing.Point(3, 5)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(296, 38)
+        Me.Label13.Size = New System.Drawing.Size(321, 39)
         Me.Label13.TabIndex = 4
         Me.Label13.Text = "Additional Settings"
         '
@@ -1921,7 +1947,7 @@ Partial Class ConfigManager
         '
         Me.TextBoxBrandname.BackColor = System.Drawing.Color.White
         Me.TextBoxBrandname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxBrandname.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxBrandname.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxBrandname.Location = New System.Drawing.Point(117, 6)
         Me.TextBoxBrandname.Name = "TextBoxBrandname"
         Me.TextBoxBrandname.ReadOnly = True
@@ -1933,7 +1959,7 @@ Partial Class ConfigManager
         '
         Me.TextBoxMIN.BackColor = System.Drawing.Color.White
         Me.TextBoxMIN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxMIN.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxMIN.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxMIN.Location = New System.Drawing.Point(311, 223)
         Me.TextBoxMIN.Multiline = True
         Me.TextBoxMIN.Name = "TextBoxMIN"
@@ -1946,7 +1972,7 @@ Partial Class ConfigManager
         '
         Me.TextBoxLocation.BackColor = System.Drawing.Color.White
         Me.TextBoxLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxLocation.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxLocation.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxLocation.Location = New System.Drawing.Point(117, 35)
         Me.TextBoxLocation.Name = "TextBoxLocation"
         Me.TextBoxLocation.ReadOnly = True
@@ -1958,7 +1984,7 @@ Partial Class ConfigManager
         '
         Me.TextBoxAddress.BackColor = System.Drawing.Color.White
         Me.TextBoxAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxAddress.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxAddress.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxAddress.Location = New System.Drawing.Point(117, 64)
         Me.TextBoxAddress.Multiline = True
         Me.TextBoxAddress.Name = "TextBoxAddress"
@@ -1970,40 +1996,40 @@ Partial Class ConfigManager
         'Label67
         '
         Me.Label67.AutoSize = True
-        Me.Label67.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label67.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label67.Location = New System.Drawing.Point(240, 226)
         Me.Label67.Name = "Label67"
-        Me.Label67.Size = New System.Drawing.Size(28, 15)
+        Me.Label67.Size = New System.Drawing.Size(35, 16)
         Me.Label67.TabIndex = 271
         Me.Label67.Text = "MIN:"
         '
         'Label52
         '
         Me.Label52.AutoSize = True
-        Me.Label52.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label52.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label52.Location = New System.Drawing.Point(22, 112)
         Me.Label52.Name = "Label52"
-        Me.Label52.Size = New System.Drawing.Size(76, 15)
+        Me.Label52.Size = New System.Drawing.Size(79, 16)
         Me.Label52.TabIndex = 261
         Me.Label52.Text = "Municipality:"
         '
         'Label50
         '
         Me.Label50.AutoSize = True
-        Me.Label50.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label50.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label50.Location = New System.Drawing.Point(22, 141)
         Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(76, 15)
+        Me.Label50.Size = New System.Drawing.Size(80, 16)
         Me.Label50.TabIndex = 259
         Me.Label50.Text = "Postal Code:"
         '
         'Label54
         '
         Me.Label54.AutoSize = True
-        Me.Label54.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label54.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label54.Location = New System.Drawing.Point(22, 170)
         Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(71, 15)
+        Me.Label54.Size = New System.Drawing.Size(80, 16)
         Me.Label54.TabIndex = 263
         Me.Label54.Text = "Vat Reg Tin:"
         '
@@ -2011,7 +2037,7 @@ Partial Class ConfigManager
         '
         Me.TextBoxMSN.BackColor = System.Drawing.Color.White
         Me.TextBoxMSN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxMSN.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxMSN.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxMSN.Location = New System.Drawing.Point(117, 224)
         Me.TextBoxMSN.Name = "TextBoxMSN"
         Me.TextBoxMSN.ReadOnly = True
@@ -2023,7 +2049,7 @@ Partial Class ConfigManager
         '
         Me.TextBoxPostalCode.BackColor = System.Drawing.Color.White
         Me.TextBoxPostalCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxPostalCode.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxPostalCode.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxPostalCode.Location = New System.Drawing.Point(117, 139)
         Me.TextBoxPostalCode.Name = "TextBoxPostalCode"
         Me.TextBoxPostalCode.ReadOnly = True
@@ -2034,50 +2060,50 @@ Partial Class ConfigManager
         'Label55
         '
         Me.Label55.AutoSize = True
-        Me.Label55.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label55.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label55.Location = New System.Drawing.Point(240, 139)
         Me.Label55.Name = "Label55"
-        Me.Label55.Size = New System.Drawing.Size(47, 15)
+        Me.Label55.Size = New System.Drawing.Size(58, 16)
         Me.Label55.TabIndex = 264
         Me.Label55.Text = "Tel. No.:"
         '
         'Label48
         '
         Me.Label48.AutoSize = True
-        Me.Label48.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label48.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label48.Location = New System.Drawing.Point(22, 8)
         Me.Label48.Name = "Label48"
-        Me.Label48.Size = New System.Drawing.Size(80, 15)
+        Me.Label48.Size = New System.Drawing.Size(83, 16)
         Me.Label48.TabIndex = 257
         Me.Label48.Text = "Brand Name:"
         '
         'Label49
         '
         Me.Label49.AutoSize = True
-        Me.Label49.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label49.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label49.Location = New System.Drawing.Point(22, 37)
         Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(59, 15)
+        Me.Label49.Size = New System.Drawing.Size(60, 16)
         Me.Label49.TabIndex = 258
         Me.Label49.Text = "Location:"
         '
         'Label53
         '
         Me.Label53.AutoSize = True
-        Me.Label53.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label53.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label53.Location = New System.Drawing.Point(240, 112)
         Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(60, 15)
+        Me.Label53.Size = New System.Drawing.Size(61, 16)
         Me.Label53.TabIndex = 262
         Me.Label53.Text = "Province:"
         '
         'Label51
         '
         Me.Label51.AutoSize = True
-        Me.Label51.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label51.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label51.Location = New System.Drawing.Point(22, 66)
         Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(55, 15)
+        Me.Label51.Size = New System.Drawing.Size(59, 16)
         Me.Label51.TabIndex = 260
         Me.Label51.Text = "Address:"
         '
@@ -2085,7 +2111,7 @@ Partial Class ConfigManager
         '
         Me.TextBoxMun.BackColor = System.Drawing.Color.White
         Me.TextBoxMun.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxMun.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxMun.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxMun.Location = New System.Drawing.Point(117, 110)
         Me.TextBoxMun.Name = "TextBoxMun"
         Me.TextBoxMun.ReadOnly = True
@@ -2096,10 +2122,10 @@ Partial Class ConfigManager
         'Label68
         '
         Me.Label68.AutoSize = True
-        Me.Label68.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label68.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label68.Location = New System.Drawing.Point(22, 226)
         Me.Label68.Name = "Label68"
-        Me.Label68.Size = New System.Drawing.Size(32, 15)
+        Me.Label68.Size = New System.Drawing.Size(39, 16)
         Me.Label68.TabIndex = 270
         Me.Label68.Text = "MSN:"
         '
@@ -2107,7 +2133,7 @@ Partial Class ConfigManager
         '
         Me.TextBoxProv.BackColor = System.Drawing.Color.White
         Me.TextBoxProv.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxProv.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxProv.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxProv.Location = New System.Drawing.Point(311, 110)
         Me.TextBoxProv.Name = "TextBoxProv"
         Me.TextBoxProv.ReadOnly = True
@@ -2119,7 +2145,7 @@ Partial Class ConfigManager
         '
         Me.TextBoxTIN.BackColor = System.Drawing.Color.White
         Me.TextBoxTIN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxTIN.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxTIN.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxTIN.Location = New System.Drawing.Point(117, 168)
         Me.TextBoxTIN.Multiline = True
         Me.TextBoxTIN.Name = "TextBoxTIN"
@@ -2132,7 +2158,7 @@ Partial Class ConfigManager
         '
         Me.TextBoxPTUN.BackColor = System.Drawing.Color.White
         Me.TextBoxPTUN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxPTUN.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxPTUN.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxPTUN.Location = New System.Drawing.Point(117, 196)
         Me.TextBoxPTUN.Multiline = True
         Me.TextBoxPTUN.Name = "TextBoxPTUN"
@@ -2145,7 +2171,7 @@ Partial Class ConfigManager
         '
         Me.TextBoxTEL.BackColor = System.Drawing.Color.White
         Me.TextBoxTEL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxTEL.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.TextBoxTEL.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxTEL.Location = New System.Drawing.Point(311, 137)
         Me.TextBoxTEL.Multiline = True
         Me.TextBoxTEL.Name = "TextBoxTEL"
@@ -2157,10 +2183,10 @@ Partial Class ConfigManager
         'Label62
         '
         Me.Label62.AutoSize = True
-        Me.Label62.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label62.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label62.Location = New System.Drawing.Point(22, 198)
         Me.Label62.Name = "Label62"
-        Me.Label62.Size = New System.Drawing.Size(38, 15)
+        Me.Label62.Size = New System.Drawing.Size(44, 16)
         Me.Label62.TabIndex = 267
         Me.Label62.Text = "PTUN:"
         '
@@ -2188,11 +2214,11 @@ Partial Class ConfigManager
         '
         Me.LabelAccCheck.AutoSize = True
         Me.LabelAccCheck.Dock = System.Windows.Forms.DockStyle.Left
-        Me.LabelAccCheck.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.LabelAccCheck.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelAccCheck.ForeColor = System.Drawing.Color.White
         Me.LabelAccCheck.Location = New System.Drawing.Point(0, 0)
         Me.LabelAccCheck.Name = "LabelAccCheck"
-        Me.LabelAccCheck.Size = New System.Drawing.Size(41, 14)
+        Me.LabelAccCheck.Size = New System.Drawing.Size(42, 14)
         Me.LabelAccCheck.TabIndex = 224
         Me.LabelAccCheck.Text = "Status"
         '
@@ -2236,6 +2262,7 @@ Partial Class ConfigManager
         Me.Button7.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Button7.FlatAppearance.BorderSize = 0
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button7.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button7.ForeColor = System.Drawing.Color.White
         Me.Button7.Location = New System.Drawing.Point(316, 78)
         Me.Button7.Name = "Button7"
@@ -2249,6 +2276,7 @@ Partial Class ConfigManager
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
         Me.Button1.Location = New System.Drawing.Point(117, 78)
         Me.Button1.Name = "Button1"
@@ -2260,23 +2288,26 @@ Partial Class ConfigManager
         'Label16
         '
         Me.Label16.AutoSize = True
+        Me.Label16.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.Location = New System.Drawing.Point(22, 52)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(65, 15)
+        Me.Label16.Size = New System.Drawing.Size(68, 16)
         Me.Label16.TabIndex = 3
         Me.Label16.Text = "Password:"
         '
         'Label15
         '
         Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.Location = New System.Drawing.Point(22, 23)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(70, 15)
+        Me.Label15.Size = New System.Drawing.Size(71, 16)
         Me.Label15.TabIndex = 2
         Me.Label15.Text = "Username:"
         '
         'TextBoxFrancPass
         '
+        Me.TextBoxFrancPass.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxFrancPass.Location = New System.Drawing.Point(117, 49)
         Me.TextBoxFrancPass.Name = "TextBoxFrancPass"
         Me.TextBoxFrancPass.Size = New System.Drawing.Size(311, 23)
@@ -2285,6 +2316,7 @@ Partial Class ConfigManager
         '
         'TextBoxFrancUser
         '
+        Me.TextBoxFrancUser.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxFrancUser.Location = New System.Drawing.Point(117, 20)
         Me.TextBoxFrancUser.Name = "TextBoxFrancUser"
         Me.TextBoxFrancUser.Size = New System.Drawing.Size(311, 23)
@@ -2348,6 +2380,7 @@ Partial Class ConfigManager
         Me.Button2.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
         Me.Button2.Location = New System.Drawing.Point(297, 0)
         Me.Button2.Name = "Button2"
@@ -2369,11 +2402,11 @@ Partial Class ConfigManager
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Kelson Sans", 24.0!, System.Drawing.FontStyle.Bold)
+        Me.Label14.Font = New System.Drawing.Font("Tahoma", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.Black
         Me.Label14.Location = New System.Drawing.Point(3, 5)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(380, 38)
+        Me.Label14.Size = New System.Drawing.Size(411, 39)
         Me.Label14.TabIndex = 4
         Me.Label14.Text = "Setup Franchisee's Store"
         '
@@ -2764,11 +2797,11 @@ Partial Class ConfigManager
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label22.ForeColor = System.Drawing.Color.White
         Me.Label22.Location = New System.Drawing.Point(0, 2)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(42, 15)
+        Me.Label22.Size = New System.Drawing.Size(44, 16)
         Me.Label22.TabIndex = 224
         Me.Label22.Text = "Status"
         '
@@ -2855,43 +2888,23 @@ Partial Class ConfigManager
         'Panel19
         '
         Me.Panel19.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel19.Controls.Add(Me.Button8)
         Me.Panel19.Controls.Add(Me.Label21)
-        Me.Panel19.Controls.Add(Me.Button4)
         Me.Panel19.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel19.Location = New System.Drawing.Point(3, 3)
         Me.Panel19.Name = "Panel19"
         Me.Panel19.Size = New System.Drawing.Size(1010, 49)
         Me.Panel19.TabIndex = 35
         '
-        'Button8
-        '
-        Me.Button8.Location = New System.Drawing.Point(470, 20)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(75, 23)
-        Me.Button8.TabIndex = 3
-        Me.Button8.Text = "Button8"
-        Me.Button8.UseVisualStyleBackColor = True
-        '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Kelson Sans", 24.0!, System.Drawing.FontStyle.Bold)
+        Me.Label21.Font = New System.Drawing.Font("Tahoma", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.ForeColor = System.Drawing.Color.Black
         Me.Label21.Location = New System.Drawing.Point(3, 5)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(279, 38)
+        Me.Label21.Size = New System.Drawing.Size(306, 39)
         Me.Label21.TabIndex = 4
         Me.Label21.Text = "System Activation"
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(389, 19)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 2
-        Me.Button4.Text = "Button4"
-        Me.Button4.UseVisualStyleBackColor = True
         '
         'ProgressBar4
         '
@@ -3497,6 +3510,4 @@ Partial Class ConfigManager
     Friend WithEvents Column42 As DataGridViewTextBoxColumn
     Friend WithEvents Column43 As DataGridViewTextBoxColumn
     Friend WithEvents Column58 As DataGridViewTextBoxColumn
-    Friend WithEvents Button8 As Button
-    Friend WithEvents Button4 As Button
 End Class

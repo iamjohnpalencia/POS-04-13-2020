@@ -4,9 +4,11 @@
         POS.BringToFront()
     End Sub
     Private Sub PaymentForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TextBoxMONEY.Focus()
-        TextBoxTransactionType.Text = transactionmode
         TopMost = True
+
+        TextBoxTransactionType.Text = TRANSACTIONMODE
+        TextBoxMONEY.Focus()
+        TextBoxMONEY.Focus()
     End Sub
     Private Sub TextBoxMONEY_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBoxMONEY.KeyDown
         If e.KeyCode = Keys.F9 Then

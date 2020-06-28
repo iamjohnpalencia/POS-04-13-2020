@@ -65,7 +65,7 @@ Partial Class TransactionType
         Me.ButtonOthers.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonOthers.FlatAppearance.BorderSize = 0
         Me.ButtonOthers.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonOthers.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.ButtonOthers.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonOthers.ForeColor = System.Drawing.Color.White
         Me.ButtonOthers.Location = New System.Drawing.Point(7, 225)
         Me.ButtonOthers.Name = "ButtonOthers"
@@ -79,7 +79,7 @@ Partial Class TransactionType
         Me.ButtonFoodP.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonFoodP.FlatAppearance.BorderSize = 0
         Me.ButtonFoodP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonFoodP.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.ButtonFoodP.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonFoodP.ForeColor = System.Drawing.Color.White
         Me.ButtonFoodP.Location = New System.Drawing.Point(218, 180)
         Me.ButtonFoodP.Name = "ButtonFoodP"
@@ -93,7 +93,7 @@ Partial Class TransactionType
         Me.ButtonRepEx.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonRepEx.FlatAppearance.BorderSize = 0
         Me.ButtonRepEx.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonRepEx.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.ButtonRepEx.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonRepEx.ForeColor = System.Drawing.Color.White
         Me.ButtonRepEx.Location = New System.Drawing.Point(7, 180)
         Me.ButtonRepEx.Name = "ButtonRepEx"
@@ -107,7 +107,7 @@ Partial Class TransactionType
         Me.ButtonPayMaya.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonPayMaya.FlatAppearance.BorderSize = 0
         Me.ButtonPayMaya.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonPayMaya.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.ButtonPayMaya.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonPayMaya.ForeColor = System.Drawing.Color.White
         Me.ButtonPayMaya.Location = New System.Drawing.Point(7, 135)
         Me.ButtonPayMaya.Name = "ButtonPayMaya"
@@ -121,7 +121,7 @@ Partial Class TransactionType
         Me.ButtonCashalo.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonCashalo.FlatAppearance.BorderSize = 0
         Me.ButtonCashalo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonCashalo.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.ButtonCashalo.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonCashalo.ForeColor = System.Drawing.Color.White
         Me.ButtonCashalo.Location = New System.Drawing.Point(218, 135)
         Me.ButtonCashalo.Name = "ButtonCashalo"
@@ -135,7 +135,7 @@ Partial Class TransactionType
         Me.ButtonGcash.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonGcash.FlatAppearance.BorderSize = 0
         Me.ButtonGcash.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonGcash.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.ButtonGcash.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonGcash.ForeColor = System.Drawing.Color.White
         Me.ButtonGcash.Location = New System.Drawing.Point(7, 90)
         Me.ButtonGcash.Name = "ButtonGcash"
@@ -149,7 +149,7 @@ Partial Class TransactionType
         Me.ButtonGrab.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonGrab.FlatAppearance.BorderSize = 0
         Me.ButtonGrab.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonGrab.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.ButtonGrab.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonGrab.ForeColor = System.Drawing.Color.White
         Me.ButtonGrab.Location = New System.Drawing.Point(218, 90)
         Me.ButtonGrab.Name = "ButtonGrab"
@@ -163,7 +163,7 @@ Partial Class TransactionType
         Me.ButtonRegistered.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonRegistered.FlatAppearance.BorderSize = 0
         Me.ButtonRegistered.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonRegistered.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.ButtonRegistered.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonRegistered.ForeColor = System.Drawing.Color.White
         Me.ButtonRegistered.Location = New System.Drawing.Point(218, 45)
         Me.ButtonRegistered.Name = "ButtonRegistered"
@@ -177,7 +177,7 @@ Partial Class TransactionType
         Me.ButtonWalkIn.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonWalkIn.FlatAppearance.BorderSize = 0
         Me.ButtonWalkIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonWalkIn.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.ButtonWalkIn.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonWalkIn.ForeColor = System.Drawing.Color.White
         Me.ButtonWalkIn.Location = New System.Drawing.Point(7, 45)
         Me.ButtonWalkIn.Name = "ButtonWalkIn"
@@ -189,10 +189,10 @@ Partial Class TransactionType
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(48, 6)
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(22, 7)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(337, 35)
+        Me.Label1.Size = New System.Drawing.Size(384, 35)
         Me.Label1.TabIndex = 100
         Me.Label1.Text = "SELECT TRANSACTION TYPE"
         '
@@ -201,7 +201,7 @@ Partial Class TransactionType
         Me.ButtonCancel.BackColor = System.Drawing.Color.Firebrick
         Me.ButtonCancel.FlatAppearance.BorderSize = 0
         Me.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonCancel.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.ButtonCancel.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonCancel.ForeColor = System.Drawing.Color.White
         Me.ButtonCancel.Location = New System.Drawing.Point(218, 225)
         Me.ButtonCancel.Name = "ButtonCancel"
