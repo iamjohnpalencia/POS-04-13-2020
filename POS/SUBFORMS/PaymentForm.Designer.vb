@@ -83,7 +83,7 @@ Partial Class PaymentForm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(372, 481)
+        Me.Panel1.Size = New System.Drawing.Size(372, 477)
         Me.Panel1.TabIndex = 0
         '
         'Button2
@@ -94,7 +94,7 @@ Partial Class PaymentForm
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.Button2.Location = New System.Drawing.Point(183, 187)
+        Me.Button2.Location = New System.Drawing.Point(181, 187)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(180, 51)
         Me.Button2.TabIndex = 111
@@ -109,7 +109,7 @@ Partial Class PaymentForm
         Me.ButtonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonClear.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonClear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonClear.Location = New System.Drawing.Point(11, 187)
+        Me.ButtonClear.Location = New System.Drawing.Point(9, 187)
         Me.ButtonClear.Name = "ButtonClear"
         Me.ButtonClear.Size = New System.Drawing.Size(166, 51)
         Me.ButtonClear.TabIndex = 110
@@ -122,7 +122,7 @@ Partial Class PaymentForm
         Me.TextBoxTransactionType.Enabled = False
         Me.TextBoxTransactionType.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxTransactionType.ForeColor = System.Drawing.Color.DimGray
-        Me.TextBoxTransactionType.Location = New System.Drawing.Point(11, 91)
+        Me.TextBoxTransactionType.Location = New System.Drawing.Point(9, 91)
         Me.TextBoxTransactionType.Name = "TextBoxTransactionType"
         Me.TextBoxTransactionType.ReadOnly = True
         Me.TextBoxTransactionType.Size = New System.Drawing.Size(352, 27)
@@ -137,7 +137,7 @@ Partial Class PaymentForm
         Me.ButtonNo00.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo00.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonNo00.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo00.Location = New System.Drawing.Point(183, 415)
+        Me.ButtonNo00.Location = New System.Drawing.Point(181, 415)
         Me.ButtonNo00.Name = "ButtonNo00"
         Me.ButtonNo00.Size = New System.Drawing.Size(80, 51)
         Me.ButtonNo00.TabIndex = 82
@@ -152,7 +152,7 @@ Partial Class PaymentForm
         Me.Buttondot.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Buttondot.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.Buttondot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.Buttondot.Location = New System.Drawing.Point(11, 415)
+        Me.Buttondot.Location = New System.Drawing.Point(9, 415)
         Me.Buttondot.Name = "Buttondot"
         Me.Buttondot.Size = New System.Drawing.Size(80, 51)
         Me.Buttondot.TabIndex = 84
@@ -163,7 +163,7 @@ Partial Class PaymentForm
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        Me.Label4.Location = New System.Drawing.Point(8, 67)
+        Me.Label4.Location = New System.Drawing.Point(6, 67)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(114, 18)
         Me.Label4.TabIndex = 108
@@ -173,7 +173,7 @@ Partial Class PaymentForm
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        Me.Label3.Location = New System.Drawing.Point(266, 121)
+        Me.Label3.Location = New System.Drawing.Point(264, 121)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(58, 18)
         Me.Label3.TabIndex = 107
@@ -187,7 +187,7 @@ Partial Class PaymentForm
         Me.ButtonNo0.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo0.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonNo0.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo0.Location = New System.Drawing.Point(97, 415)
+        Me.ButtonNo0.Location = New System.Drawing.Point(95, 415)
         Me.ButtonNo0.Name = "ButtonNo0"
         Me.ButtonNo0.Size = New System.Drawing.Size(80, 51)
         Me.ButtonNo0.TabIndex = 81
@@ -198,7 +198,7 @@ Partial Class PaymentForm
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        Me.Label2.Location = New System.Drawing.Point(8, 7)
+        Me.Label2.Location = New System.Drawing.Point(6, 7)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(115, 18)
         Me.Label2.TabIndex = 106
@@ -212,7 +212,7 @@ Partial Class PaymentForm
         Me.ButtonNo3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo3.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonNo3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo3.Location = New System.Drawing.Point(183, 358)
+        Me.ButtonNo3.Location = New System.Drawing.Point(181, 358)
         Me.ButtonNo3.Name = "ButtonNo3"
         Me.ButtonNo3.Size = New System.Drawing.Size(80, 51)
         Me.ButtonNo3.TabIndex = 80
@@ -227,7 +227,7 @@ Partial Class PaymentForm
         Me.ButtonNo2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo2.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonNo2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo2.Location = New System.Drawing.Point(97, 358)
+        Me.ButtonNo2.Location = New System.Drawing.Point(95, 358)
         Me.ButtonNo2.Name = "ButtonNo2"
         Me.ButtonNo2.Size = New System.Drawing.Size(80, 51)
         Me.ButtonNo2.TabIndex = 79
@@ -238,7 +238,7 @@ Partial Class PaymentForm
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        Me.Label1.Location = New System.Drawing.Point(8, 121)
+        Me.Label1.Location = New System.Drawing.Point(6, 121)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(122, 18)
         Me.Label1.TabIndex = 105
@@ -252,7 +252,7 @@ Partial Class PaymentForm
         Me.ButtonNo1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo1.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonNo1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo1.Location = New System.Drawing.Point(11, 358)
+        Me.ButtonNo1.Location = New System.Drawing.Point(9, 358)
         Me.ButtonNo1.Name = "ButtonNo1"
         Me.ButtonNo1.Size = New System.Drawing.Size(80, 51)
         Me.ButtonNo1.TabIndex = 78
@@ -266,9 +266,9 @@ Partial Class PaymentForm
         Me.ButtonESC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonESC.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
         Me.ButtonESC.ForeColor = System.Drawing.Color.White
-        Me.ButtonESC.Location = New System.Drawing.Point(269, 418)
+        Me.ButtonESC.Location = New System.Drawing.Point(267, 415)
         Me.ButtonESC.Name = "ButtonESC"
-        Me.ButtonESC.Size = New System.Drawing.Size(94, 48)
+        Me.ButtonESC.Size = New System.Drawing.Size(94, 51)
         Me.ButtonESC.TabIndex = 98
         Me.ButtonESC.Text = "Cancel"
         Me.ButtonESC.UseVisualStyleBackColor = False
@@ -281,7 +281,7 @@ Partial Class PaymentForm
         Me.ButtonNo5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo5.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonNo5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo5.Location = New System.Drawing.Point(97, 301)
+        Me.ButtonNo5.Location = New System.Drawing.Point(95, 301)
         Me.ButtonNo5.Name = "ButtonNo5"
         Me.ButtonNo5.Size = New System.Drawing.Size(80, 51)
         Me.ButtonNo5.TabIndex = 76
@@ -296,7 +296,7 @@ Partial Class PaymentForm
         Me.ButtonNo6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo6.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonNo6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo6.Location = New System.Drawing.Point(183, 301)
+        Me.ButtonNo6.Location = New System.Drawing.Point(181, 301)
         Me.ButtonNo6.Name = "ButtonNo6"
         Me.ButtonNo6.Size = New System.Drawing.Size(80, 51)
         Me.ButtonNo6.TabIndex = 74
@@ -310,7 +310,7 @@ Partial Class PaymentForm
         Me.ButtonSubmitPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonSubmitPayment.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
         Me.ButtonSubmitPayment.ForeColor = System.Drawing.Color.White
-        Me.ButtonSubmitPayment.Location = New System.Drawing.Point(269, 244)
+        Me.ButtonSubmitPayment.Location = New System.Drawing.Point(267, 244)
         Me.ButtonSubmitPayment.Name = "ButtonSubmitPayment"
         Me.ButtonSubmitPayment.Size = New System.Drawing.Size(94, 165)
         Me.ButtonSubmitPayment.TabIndex = 97
@@ -325,7 +325,7 @@ Partial Class PaymentForm
         Me.ButtonNo4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo4.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonNo4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo4.Location = New System.Drawing.Point(11, 301)
+        Me.ButtonNo4.Location = New System.Drawing.Point(9, 301)
         Me.ButtonNo4.Name = "ButtonNo4"
         Me.ButtonNo4.Size = New System.Drawing.Size(80, 51)
         Me.ButtonNo4.TabIndex = 75
@@ -338,7 +338,7 @@ Partial Class PaymentForm
         Me.TextBoxCHANGE.Enabled = False
         Me.TextBoxCHANGE.Font = New System.Drawing.Font("Kelson Sans", 18.0!, System.Drawing.FontStyle.Bold)
         Me.TextBoxCHANGE.ForeColor = System.Drawing.Color.DimGray
-        Me.TextBoxCHANGE.Location = New System.Drawing.Point(233, 145)
+        Me.TextBoxCHANGE.Location = New System.Drawing.Point(231, 145)
         Me.TextBoxCHANGE.Name = "TextBoxCHANGE"
         Me.TextBoxCHANGE.ReadOnly = True
         Me.TextBoxCHANGE.Size = New System.Drawing.Size(130, 36)
@@ -353,7 +353,7 @@ Partial Class PaymentForm
         Me.ButtonNo8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo8.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonNo8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo8.Location = New System.Drawing.Point(97, 244)
+        Me.ButtonNo8.Location = New System.Drawing.Point(95, 244)
         Me.ButtonNo8.Name = "ButtonNo8"
         Me.ButtonNo8.Size = New System.Drawing.Size(80, 51)
         Me.ButtonNo8.TabIndex = 73
@@ -368,7 +368,7 @@ Partial Class PaymentForm
         Me.ButtonNo9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo9.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonNo9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo9.Location = New System.Drawing.Point(183, 244)
+        Me.ButtonNo9.Location = New System.Drawing.Point(181, 244)
         Me.ButtonNo9.Name = "ButtonNo9"
         Me.ButtonNo9.Size = New System.Drawing.Size(80, 51)
         Me.ButtonNo9.TabIndex = 77
@@ -381,7 +381,7 @@ Partial Class PaymentForm
         Me.TextBoxTOTALPAY.Enabled = False
         Me.TextBoxTOTALPAY.Font = New System.Drawing.Font("Kelson Sans", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxTOTALPAY.ForeColor = System.Drawing.Color.DimGray
-        Me.TextBoxTOTALPAY.Location = New System.Drawing.Point(11, 28)
+        Me.TextBoxTOTALPAY.Location = New System.Drawing.Point(9, 28)
         Me.TextBoxTOTALPAY.Name = "TextBoxTOTALPAY"
         Me.TextBoxTOTALPAY.ReadOnly = True
         Me.TextBoxTOTALPAY.Size = New System.Drawing.Size(352, 36)
@@ -396,7 +396,7 @@ Partial Class PaymentForm
         Me.ButtonNo7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo7.Font = New System.Drawing.Font("Kelson Sans Normal", 12.0!)
         Me.ButtonNo7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo7.Location = New System.Drawing.Point(11, 244)
+        Me.ButtonNo7.Location = New System.Drawing.Point(9, 244)
         Me.ButtonNo7.Name = "ButtonNo7"
         Me.ButtonNo7.Size = New System.Drawing.Size(80, 51)
         Me.ButtonNo7.TabIndex = 72
@@ -408,7 +408,7 @@ Partial Class PaymentForm
         Me.TextBoxMONEY.BackColor = System.Drawing.Color.White
         Me.TextBoxMONEY.Font = New System.Drawing.Font("Kelson Sans", 18.0!, System.Drawing.FontStyle.Bold)
         Me.TextBoxMONEY.ForeColor = System.Drawing.Color.DimGray
-        Me.TextBoxMONEY.Location = New System.Drawing.Point(11, 145)
+        Me.TextBoxMONEY.Location = New System.Drawing.Point(9, 145)
         Me.TextBoxMONEY.MaxLength = 10
         Me.TextBoxMONEY.Name = "TextBoxMONEY"
         Me.TextBoxMONEY.Size = New System.Drawing.Size(216, 36)
@@ -419,7 +419,7 @@ Partial Class PaymentForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(372, 481)
+        Me.ClientSize = New System.Drawing.Size(372, 477)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "PaymentForm"

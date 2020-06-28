@@ -521,7 +521,7 @@ Public Class Reports
             Dim TotalDiscount = sum("totaldiscount", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' ")
             Dim begORNm = returnselect("transaction_number", "`loc_daily_transaction` WHERE date(zreading) = CURRENT_DATE Limit 1")
             Dim EndORNumber = Format(Now, "yyddMMHHmmssyy")
-            Dim DailySales = GrossSale - LessVat - TotalDiscount
+
             Dim ReturnsTotal = sum("total", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
             Dim ReturnsExchange = sum("quantity", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
             Dim OLDgrandtotal = sum("total", "loc_daily_transaction_details WHERE zreading <> '" & ZreadDateFormat & "' ")
@@ -539,7 +539,8 @@ Public Class Reports
             Dim CashInDrawer = BegBalance + Val(NEWgrandtotal) - Val(totalExpenses)
             Dim CashTotal = CashInDrawer
             'Select Case sum(CAST(log_description As Decimal(10, 2))) As CashierBal FROM `loc_system_logs` WHERE log_type In ('BG-1','BG-2','BG-3','BG-4')
-            Dim NetSales = GrossSale - LessVat - TotalDiscount
+            Dim DailySales = GrossSale - LessVat - TotalDiscount
+            Dim NetSales = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' ")
             CenterTextDisplay(sender, e, ClientBrand.ToUpper, brandfont, 10)
             '============================================================================================================================
             CenterTextDisplay(sender, e, "Opt by : Innovention Food Asia Co.", font, 21)
@@ -579,9 +580,9 @@ Public Class Reports
             RightToLeftDisplay(sender, e, 250, "ZERO RATED SALES", NUMBERFORMAT(zeroratedsales), font)
             RightToLeftDisplay(sender, e, 260, "VAT EXEMPT SALES", NUMBERFORMAT(VatExempt), font)
             RightToLeftDisplay(sender, e, 270, "LESS DISC (VE)", NUMBERFORMAT(TotalDiscount), font)
-            RightToLeftDisplay(sender, e, 280, "NET SALES", NUMBERFORMAT(NetSales), font)
+            RightToLeftDisplay(sender, e, 280, "NET SALES", NUMBERFORMAT(DailySales), font)
             '============================================================================================================================
-            RightToLeftDisplay(sender, e, 295, "CASH TOTAL", NUMBERFORMAT(CashTotal), font)
+            RightToLeftDisplay(sender, e, 295, "CASH TOTAL", NUMBERFORMAT(DailySales), font)
             RightToLeftDisplay(sender, e, 305, "CREDIT CARD", "N/A", font)
             RightToLeftDisplay(sender, e, 315, "DEBIT CARD", "N/A", font)
             RightToLeftDisplay(sender, e, 325, "MISC/CHEQUES", "N/A", font)
@@ -610,7 +611,7 @@ Public Class Reports
             RightToLeftDisplay(sender, e, 545, "BEGINNING OR NO.", begORNm, font)
             RightToLeftDisplay(sender, e, 555, "END OR NO.", EndORNumber, font)
             '============================================================================================================================
-            RightToLeftDisplay(sender, e, 570, "CURRENT TOTAL SALES", NUMBERFORMAT(DailySales), font)
+            RightToLeftDisplay(sender, e, 570, "CURRENT TOTAL SALES", NUMBERFORMAT(NetSales), font)
             RightToLeftDisplay(sender, e, 580, "OLD GRAND TOTAL", NUMBERFORMAT(OLDgrandtotal), font)
             RightToLeftDisplay(sender, e, 590, "NEW GRAND TOTAL", NUMBERFORMAT(NEWgrandtotal), font)
             'RightToLeftDisplay(sender, e, 575, "RETURNS EXCHANGE", "3000.00", Font)
