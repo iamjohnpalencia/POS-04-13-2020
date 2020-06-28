@@ -51,8 +51,8 @@ Partial Class BegBalance
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.DataGridViewZreadInventory = New System.Windows.Forms.DataGridView()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridViewZreadInventory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -255,7 +255,7 @@ Partial Class BegBalance
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(0, 551)
+        Me.Button1.Location = New System.Drawing.Point(0, 266)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(338, 33)
         Me.Button1.TabIndex = 24
@@ -337,7 +337,7 @@ Partial Class BegBalance
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(340, 586)
+        Me.Panel1.Size = New System.Drawing.Size(340, 301)
         Me.Panel1.TabIndex = 237
         '
         'Label15
@@ -374,7 +374,7 @@ Partial Class BegBalance
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(340, 586)
+        Me.ClientSize = New System.Drawing.Size(340, 301)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "BegBalance"
