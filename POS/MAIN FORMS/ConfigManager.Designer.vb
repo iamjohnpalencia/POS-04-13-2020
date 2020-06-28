@@ -235,6 +235,7 @@ Partial Class ConfigManager
         Me.Column32 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column34 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column58 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewINVENTORY = New System.Windows.Forms.DataGridView()
         Me.Column35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -259,7 +260,9 @@ Partial Class ConfigManager
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Panel19 = New System.Windows.Forms.Panel()
+        Me.Button8 = New System.Windows.Forms.Button()
         Me.Label21 = New System.Windows.Forms.Label()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.ProgressBar4 = New System.Windows.Forms.ProgressBar()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -296,9 +299,6 @@ Partial Class ConfigManager
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel22 = New System.Windows.Forms.Panel()
-        Me.Column58 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -2250,9 +2250,9 @@ Partial Class ConfigManager
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(177, 78)
+        Me.Button1.Location = New System.Drawing.Point(117, 78)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(133, 23)
+        Me.Button1.Size = New System.Drawing.Size(193, 23)
         Me.Button1.TabIndex = 4
         Me.Button1.Text = "Validate Account"
         Me.Button1.UseVisualStyleBackColor = False
@@ -2651,6 +2651,11 @@ Partial Class ConfigManager
         Me.Column34.HeaderText = "Column34"
         Me.Column34.Name = "Column34"
         '
+        'Column58
+        '
+        Me.Column58.HeaderText = "Column58"
+        Me.Column58.Name = "Column58"
+        '
         'GroupBox15
         '
         Me.GroupBox15.Controls.Add(Me.DataGridViewINVENTORY)
@@ -2859,6 +2864,15 @@ Partial Class ConfigManager
         Me.Panel19.Size = New System.Drawing.Size(1010, 49)
         Me.Panel19.TabIndex = 35
         '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(470, 20)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(75, 23)
+        Me.Button8.TabIndex = 3
+        Me.Button8.Text = "Button8"
+        Me.Button8.UseVisualStyleBackColor = True
+        '
         'Label21
         '
         Me.Label21.AutoSize = True
@@ -2869,6 +2883,15 @@ Partial Class ConfigManager
         Me.Label21.Size = New System.Drawing.Size(279, 38)
         Me.Label21.TabIndex = 4
         Me.Label21.Text = "System Activation"
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(389, 19)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(75, 23)
+        Me.Button4.TabIndex = 2
+        Me.Button4.Text = "Button4"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'ProgressBar4
         '
@@ -3090,29 +3113,6 @@ Partial Class ConfigManager
         Me.Panel22.Name = "Panel22"
         Me.Panel22.Size = New System.Drawing.Size(1298, 10)
         Me.Panel22.TabIndex = 216
-        '
-        'Column58
-        '
-        Me.Column58.HeaderText = "Column58"
-        Me.Column58.Name = "Column58"
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(389, 19)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 2
-        Me.Button4.Text = "Button4"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Button8
-        '
-        Me.Button8.Location = New System.Drawing.Point(470, 20)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(75, 23)
-        Me.Button8.TabIndex = 3
-        Me.Button8.Text = "Button8"
-        Me.Button8.UseVisualStyleBackColor = True
         '
         'ConfigManager
         '

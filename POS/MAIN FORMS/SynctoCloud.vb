@@ -489,7 +489,7 @@ Public Class SynctoCloud
                     Label1.Text = "Synced 0 of 0"
                 End If
                 Label5.Text = "Synchronization Failed"
-                MsgBox("Internet connection lost")
+                MsgBox("An error occured")
                 Button1.Enabled = True
                 Button2.Enabled = True
                 GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "State: Unsuccessful, Time End : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
@@ -714,29 +714,23 @@ Public Class SynctoCloud
             Label11.Text = "Syncing Expense List"
             With DataGridViewEXP
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_expense_list(`loc_expense_id`
-                                                                         , `crew_id`
-                                                                         , `expense_number`
-                                                                         , `total_amount`
-                                                                         , `paid_amount`
-                                                                         , `unpaid_amount`
-                                                                         , `store_id`
-                                                                         , `guid`
-                                                                         , `created_at`
-                                                                         , `active`, `zreading`) 
-                                             VALUES (@loc_expense_id, @crew_id, @expense_number
-                                             , @total_amount, @paid_amount, @unpaid_amount, @store_id, @guid, @date, @active, @zreading)", server)
-                    cmd.Parameters.Add("@loc_expense_id", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
-                    cmd.Parameters.Add("@crew_id", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-                    cmd.Parameters.Add("@expense_number", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                    cmd.Parameters.Add("@total_amount", MySqlDbType.Decimal).Value = .Rows(i).Cells(3).Value.ToString()
-                    cmd.Parameters.Add("@paid_amount", MySqlDbType.Decimal).Value = .Rows(i).Cells(4).Value.ToString()
-                    cmd.Parameters.Add("@unpaid_amount", MySqlDbType.Decimal).Value = .Rows(i).Cells(5).Value.ToString()
-                    cmd.Parameters.Add("@store_id", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
-                    cmd.Parameters.Add("@guid", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
-                    cmd.Parameters.Add("@date", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
-                    cmd.Parameters.Add("@active", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
-                    cmd.Parameters.Add("@zreading", MySqlDbType.Int64).Value = .Rows(i).Cells(10).Value.ToString()
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_expense_list(`loc_expense_id`, `crew_id`, `expense_number`, `total_amount`, `paid_amount`, `unpaid_amount`, `store_id`, `guid`, `created_at`, `active`, `zreading`) 
+                                             VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11)", server)
+
+                    cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                    cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+
+                    cmd.Parameters.Add("@4", MySqlDbType.Decimal).Value = .Rows(i).Cells(3).Value.ToString()
+                    cmd.Parameters.Add("@5", MySqlDbType.Decimal).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@6", MySqlDbType.Decimal).Value = .Rows(i).Cells(5).Value.ToString()
+
+                    cmd.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
+                    cmd.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
+
+                    cmd.Parameters.Add("@9", MySqlDbType.Text).Value = .Rows(i).Cells(8).Value.ToString()
+                    cmd.Parameters.Add("@10", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
+                    cmd.Parameters.Add("@11", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
                     Label33.Text = Val(Label33.Text) + 1
