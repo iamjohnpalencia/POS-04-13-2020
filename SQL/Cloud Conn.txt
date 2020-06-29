@@ -1,14 +1,5 @@
-SERVER:
-gator3218.hostgator.com
-
-USERNAME:
-johnpale_testuse
-
-PASSWORD:
-password2019
-
-DATABASE:
-johnpale_postest
-
-PORT:
-3306
+server=gator3218.hostgator.com
+user id=johnpale_testuse
+password=password2019
+database=johnpale_postest
+port=3306

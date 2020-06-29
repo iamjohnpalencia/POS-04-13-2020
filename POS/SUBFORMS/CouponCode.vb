@@ -150,6 +150,7 @@ Public Class CouponCode
                 CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                 MsgBox("Applied")
             Else
+                TOTALDISCOUNT = GROSSSALES
                 TOTALAMOUNTDUE = 0
                 VATABLESALES = Format(TOTALAMOUNTDUE / Tax, "0.00")
                 VAT12PERCENT = Format(VATABLESALES * S_Tax, "0.00")

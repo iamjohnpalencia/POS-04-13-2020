@@ -35,7 +35,8 @@ Partial Class ConfigManager
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.Button9 = New System.Windows.Forms.Button()
+        Me.ButtonImportCloudConn = New System.Windows.Forms.Button()
+        Me.ButtonEditCloud = New System.Windows.Forms.Button()
         Me.Panel10 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
         Me.LabelCloud = New System.Windows.Forms.Label()
@@ -111,7 +112,7 @@ Partial Class ConfigManager
         Me.TableLayoutPanel8 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox11 = New System.Windows.Forms.GroupBox()
         Me.ButtonEditDevSet = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
+        Me.ButtonSaveDevSettings = New System.Windows.Forms.Button()
         Me.Label79 = New System.Windows.Forms.Label()
         Me.Label78 = New System.Windows.Forms.Label()
         Me.Label77 = New System.Windows.Forms.Label()
@@ -132,9 +133,9 @@ Partial Class ConfigManager
         Me.TextBoxDevname = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel9 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
-        Me.ButtonEdit = New System.Windows.Forms.Button()
+        Me.ButtonEditAddSettings = New System.Windows.Forms.Button()
         Me.ButtonGetExportPath = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.ButtonSaveAddSettings = New System.Windows.Forms.Button()
         Me.TextBoxExportPath = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label56 = New System.Windows.Forms.Label()
@@ -183,8 +184,8 @@ Partial Class ConfigManager
         Me.ProgressBar3 = New System.Windows.Forms.ProgressBar()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Panel14 = New System.Windows.Forms.Panel()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ButtonEditAccount = New System.Windows.Forms.Button()
+        Me.ButtonValidateAccount = New System.Windows.Forms.Button()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.TextBoxFrancPass = New System.Windows.Forms.TextBox()
@@ -193,7 +194,7 @@ Partial Class ConfigManager
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.DataGridViewOutlets = New System.Windows.Forms.DataGridView()
         Me.Panel17 = New System.Windows.Forms.Panel()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.ButtonSelectOutlet = New System.Windows.Forms.Button()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
@@ -254,11 +255,10 @@ Partial Class ConfigManager
         Me.Label22 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel11 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox12 = New System.Windows.Forms.GroupBox()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.ButtonActivate = New System.Windows.Forms.Button()
         Me.ProgressBar5 = New System.Windows.Forms.ProgressBar()
         Me.TextBoxProdKey = New System.Windows.Forms.TextBox()
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Panel19 = New System.Windows.Forms.Panel()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.ProgressBar4 = New System.Windows.Forms.ProgressBar()
@@ -297,6 +297,7 @@ Partial Class ConfigManager
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel22 = New System.Windows.Forms.Panel()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -518,7 +519,8 @@ Partial Class ConfigManager
         'Panel9
         '
         Me.Panel9.AutoScroll = True
-        Me.Panel9.Controls.Add(Me.Button9)
+        Me.Panel9.Controls.Add(Me.ButtonImportCloudConn)
+        Me.Panel9.Controls.Add(Me.ButtonEditCloud)
         Me.Panel9.Controls.Add(Me.Panel10)
         Me.Panel9.Controls.Add(Me.Panel24)
         Me.Panel9.Controls.Add(Me.Label12)
@@ -541,19 +543,33 @@ Partial Class ConfigManager
         Me.Panel9.Size = New System.Drawing.Size(487, 210)
         Me.Panel9.TabIndex = 1
         '
-        'Button9
+        'ButtonImportCloudConn
         '
-        Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Button9.FlatAppearance.BorderSize = 0
-        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button9.ForeColor = System.Drawing.Color.White
-        Me.Button9.Location = New System.Drawing.Point(392, 53)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(65, 23)
-        Me.Button9.TabIndex = 272
-        Me.Button9.Text = "Edit"
-        Me.Button9.UseVisualStyleBackColor = False
+        Me.ButtonImportCloudConn.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ButtonImportCloudConn.FlatAppearance.BorderSize = 0
+        Me.ButtonImportCloudConn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonImportCloudConn.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonImportCloudConn.ForeColor = System.Drawing.Color.White
+        Me.ButtonImportCloudConn.Location = New System.Drawing.Point(105, 140)
+        Me.ButtonImportCloudConn.Name = "ButtonImportCloudConn"
+        Me.ButtonImportCloudConn.Size = New System.Drawing.Size(92, 23)
+        Me.ButtonImportCloudConn.TabIndex = 273
+        Me.ButtonImportCloudConn.Text = "Import"
+        Me.ButtonImportCloudConn.UseVisualStyleBackColor = False
+        '
+        'ButtonEditCloud
+        '
+        Me.ButtonEditCloud.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonEditCloud.FlatAppearance.BorderSize = 0
+        Me.ButtonEditCloud.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonEditCloud.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonEditCloud.ForeColor = System.Drawing.Color.White
+        Me.ButtonEditCloud.Location = New System.Drawing.Point(392, 53)
+        Me.ButtonEditCloud.Name = "ButtonEditCloud"
+        Me.ButtonEditCloud.Size = New System.Drawing.Size(65, 23)
+        Me.ButtonEditCloud.TabIndex = 272
+        Me.ButtonEditCloud.Text = "Edit"
+        Me.ButtonEditCloud.UseVisualStyleBackColor = False
         '
         'Panel10
         '
@@ -1404,7 +1420,7 @@ Partial Class ConfigManager
         'GroupBox11
         '
         Me.GroupBox11.Controls.Add(Me.ButtonEditDevSet)
-        Me.GroupBox11.Controls.Add(Me.Button6)
+        Me.GroupBox11.Controls.Add(Me.ButtonSaveDevSettings)
         Me.GroupBox11.Controls.Add(Me.Label79)
         Me.GroupBox11.Controls.Add(Me.Label78)
         Me.GroupBox11.Controls.Add(Me.Label77)
@@ -1445,19 +1461,19 @@ Partial Class ConfigManager
         Me.ButtonEditDevSet.Text = "Edit"
         Me.ButtonEditDevSet.UseVisualStyleBackColor = False
         '
-        'Button6
+        'ButtonSaveDevSettings
         '
-        Me.Button6.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Button6.FlatAppearance.BorderSize = 0
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(41, 401)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(174, 23)
-        Me.Button6.TabIndex = 272
-        Me.Button6.Text = "Save"
-        Me.Button6.UseVisualStyleBackColor = False
+        Me.ButtonSaveDevSettings.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ButtonSaveDevSettings.FlatAppearance.BorderSize = 0
+        Me.ButtonSaveDevSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSaveDevSettings.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonSaveDevSettings.ForeColor = System.Drawing.Color.White
+        Me.ButtonSaveDevSettings.Location = New System.Drawing.Point(41, 401)
+        Me.ButtonSaveDevSettings.Name = "ButtonSaveDevSettings"
+        Me.ButtonSaveDevSettings.Size = New System.Drawing.Size(174, 23)
+        Me.ButtonSaveDevSettings.TabIndex = 272
+        Me.ButtonSaveDevSettings.Text = "Save"
+        Me.ButtonSaveDevSettings.UseVisualStyleBackColor = False
         '
         'Label79
         '
@@ -1642,9 +1658,9 @@ Partial Class ConfigManager
         '
         'GroupBox10
         '
-        Me.GroupBox10.Controls.Add(Me.ButtonEdit)
+        Me.GroupBox10.Controls.Add(Me.ButtonEditAddSettings)
         Me.GroupBox10.Controls.Add(Me.ButtonGetExportPath)
-        Me.GroupBox10.Controls.Add(Me.Button3)
+        Me.GroupBox10.Controls.Add(Me.ButtonSaveAddSettings)
         Me.GroupBox10.Controls.Add(Me.TextBoxExportPath)
         Me.GroupBox10.Controls.Add(Me.Label17)
         Me.GroupBox10.Controls.Add(Me.Label56)
@@ -1664,19 +1680,19 @@ Partial Class ConfigManager
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "Additional Settings"
         '
-        'ButtonEdit
+        'ButtonEditAddSettings
         '
-        Me.ButtonEdit.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.ButtonEdit.FlatAppearance.BorderSize = 0
-        Me.ButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonEdit.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonEdit.ForeColor = System.Drawing.Color.White
-        Me.ButtonEdit.Location = New System.Drawing.Point(218, 196)
-        Me.ButtonEdit.Name = "ButtonEdit"
-        Me.ButtonEdit.Size = New System.Drawing.Size(65, 23)
-        Me.ButtonEdit.TabIndex = 294
-        Me.ButtonEdit.Text = "Edit"
-        Me.ButtonEdit.UseVisualStyleBackColor = False
+        Me.ButtonEditAddSettings.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonEditAddSettings.FlatAppearance.BorderSize = 0
+        Me.ButtonEditAddSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonEditAddSettings.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonEditAddSettings.ForeColor = System.Drawing.Color.White
+        Me.ButtonEditAddSettings.Location = New System.Drawing.Point(218, 196)
+        Me.ButtonEditAddSettings.Name = "ButtonEditAddSettings"
+        Me.ButtonEditAddSettings.Size = New System.Drawing.Size(65, 23)
+        Me.ButtonEditAddSettings.TabIndex = 294
+        Me.ButtonEditAddSettings.Text = "Edit"
+        Me.ButtonEditAddSettings.UseVisualStyleBackColor = False
         '
         'ButtonGetExportPath
         '
@@ -1692,19 +1708,19 @@ Partial Class ConfigManager
         Me.ButtonGetExportPath.Text = "..."
         Me.ButtonGetExportPath.UseVisualStyleBackColor = False
         '
-        'Button3
+        'ButtonSaveAddSettings
         '
-        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(38, 196)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(174, 23)
-        Me.Button3.TabIndex = 293
-        Me.Button3.Text = "Save"
-        Me.Button3.UseVisualStyleBackColor = False
+        Me.ButtonSaveAddSettings.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ButtonSaveAddSettings.FlatAppearance.BorderSize = 0
+        Me.ButtonSaveAddSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSaveAddSettings.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonSaveAddSettings.ForeColor = System.Drawing.Color.White
+        Me.ButtonSaveAddSettings.Location = New System.Drawing.Point(38, 196)
+        Me.ButtonSaveAddSettings.Name = "ButtonSaveAddSettings"
+        Me.ButtonSaveAddSettings.Size = New System.Drawing.Size(174, 23)
+        Me.ButtonSaveAddSettings.TabIndex = 293
+        Me.ButtonSaveAddSettings.Text = "Save"
+        Me.ButtonSaveAddSettings.UseVisualStyleBackColor = False
         '
         'TextBoxExportPath
         '
@@ -2244,8 +2260,8 @@ Partial Class ConfigManager
         'Panel14
         '
         Me.Panel14.AutoScroll = True
-        Me.Panel14.Controls.Add(Me.Button7)
-        Me.Panel14.Controls.Add(Me.Button1)
+        Me.Panel14.Controls.Add(Me.ButtonEditAccount)
+        Me.Panel14.Controls.Add(Me.ButtonValidateAccount)
         Me.Panel14.Controls.Add(Me.Label16)
         Me.Panel14.Controls.Add(Me.Label15)
         Me.Panel14.Controls.Add(Me.TextBoxFrancPass)
@@ -2257,33 +2273,33 @@ Partial Class ConfigManager
         Me.Panel14.Size = New System.Drawing.Size(487, 118)
         Me.Panel14.TabIndex = 0
         '
-        'Button7
+        'ButtonEditAccount
         '
-        Me.Button7.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Button7.FlatAppearance.BorderSize = 0
-        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button7.ForeColor = System.Drawing.Color.White
-        Me.Button7.Location = New System.Drawing.Point(316, 78)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(112, 23)
-        Me.Button7.TabIndex = 5
-        Me.Button7.Text = "Edit"
-        Me.Button7.UseVisualStyleBackColor = False
+        Me.ButtonEditAccount.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonEditAccount.FlatAppearance.BorderSize = 0
+        Me.ButtonEditAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonEditAccount.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonEditAccount.ForeColor = System.Drawing.Color.White
+        Me.ButtonEditAccount.Location = New System.Drawing.Point(316, 78)
+        Me.ButtonEditAccount.Name = "ButtonEditAccount"
+        Me.ButtonEditAccount.Size = New System.Drawing.Size(112, 23)
+        Me.ButtonEditAccount.TabIndex = 5
+        Me.ButtonEditAccount.Text = "Edit"
+        Me.ButtonEditAccount.UseVisualStyleBackColor = False
         '
-        'Button1
+        'ButtonValidateAccount
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(117, 78)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(193, 23)
-        Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Validate Account"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.ButtonValidateAccount.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ButtonValidateAccount.FlatAppearance.BorderSize = 0
+        Me.ButtonValidateAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonValidateAccount.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonValidateAccount.ForeColor = System.Drawing.Color.White
+        Me.ButtonValidateAccount.Location = New System.Drawing.Point(117, 78)
+        Me.ButtonValidateAccount.Name = "ButtonValidateAccount"
+        Me.ButtonValidateAccount.Size = New System.Drawing.Size(193, 23)
+        Me.ButtonValidateAccount.TabIndex = 4
+        Me.ButtonValidateAccount.Text = "Validate Account"
+        Me.ButtonValidateAccount.UseVisualStyleBackColor = False
         '
         'Label16
         '
@@ -2367,27 +2383,27 @@ Partial Class ConfigManager
         'Panel17
         '
         Me.Panel17.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Panel17.Controls.Add(Me.Button2)
+        Me.Panel17.Controls.Add(Me.ButtonSelectOutlet)
         Me.Panel17.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel17.Location = New System.Drawing.Point(0, 427)
         Me.Panel17.Name = "Panel17"
         Me.Panel17.Size = New System.Drawing.Size(493, 30)
         Me.Panel17.TabIndex = 241
         '
-        'Button2
+        'ButtonSelectOutlet
         '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Button2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(297, 0)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(196, 30)
-        Me.Button2.TabIndex = 212
-        Me.Button2.Text = "Select Outlet"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.ButtonSelectOutlet.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ButtonSelectOutlet.Dock = System.Windows.Forms.DockStyle.Right
+        Me.ButtonSelectOutlet.FlatAppearance.BorderSize = 0
+        Me.ButtonSelectOutlet.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSelectOutlet.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonSelectOutlet.ForeColor = System.Drawing.Color.White
+        Me.ButtonSelectOutlet.Location = New System.Drawing.Point(297, 0)
+        Me.ButtonSelectOutlet.Name = "ButtonSelectOutlet"
+        Me.ButtonSelectOutlet.Size = New System.Drawing.Size(196, 30)
+        Me.ButtonSelectOutlet.TabIndex = 212
+        Me.ButtonSelectOutlet.Text = "Select Outlet"
+        Me.ButtonSelectOutlet.UseVisualStyleBackColor = False
         '
         'Panel13
         '
@@ -2822,7 +2838,7 @@ Partial Class ConfigManager
         '
         'GroupBox12
         '
-        Me.GroupBox12.Controls.Add(Me.Button5)
+        Me.GroupBox12.Controls.Add(Me.ButtonActivate)
         Me.GroupBox12.Controls.Add(Me.ProgressBar5)
         Me.GroupBox12.Controls.Add(Me.TextBoxProdKey)
         Me.GroupBox12.Dock = System.Windows.Forms.DockStyle.Fill
@@ -2833,19 +2849,19 @@ Partial Class ConfigManager
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "Serial Key"
         '
-        'Button5
+        'ButtonActivate
         '
-        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Button5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.ForeColor = System.Drawing.Color.Black
-        Me.Button5.Location = New System.Drawing.Point(3, 56)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(487, 32)
-        Me.Button5.TabIndex = 36
-        Me.Button5.Text = "Activate"
-        Me.Button5.UseVisualStyleBackColor = False
+        Me.ButtonActivate.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ButtonActivate.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ButtonActivate.FlatAppearance.BorderSize = 0
+        Me.ButtonActivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonActivate.ForeColor = System.Drawing.Color.Black
+        Me.ButtonActivate.Location = New System.Drawing.Point(3, 56)
+        Me.ButtonActivate.Name = "ButtonActivate"
+        Me.ButtonActivate.Size = New System.Drawing.Size(487, 32)
+        Me.ButtonActivate.TabIndex = 36
+        Me.ButtonActivate.Text = "Activate"
+        Me.ButtonActivate.UseVisualStyleBackColor = False
         '
         'ProgressBar5
         '
@@ -2866,7 +2882,7 @@ Partial Class ConfigManager
         '
         'GroupBox13
         '
-        Me.GroupBox13.Controls.Add(Me.RichTextBox1)
+        Me.GroupBox13.Controls.Add(Me.TextBox1)
         Me.GroupBox13.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox13.Location = New System.Drawing.Point(3, 123)
         Me.GroupBox13.Name = "GroupBox13"
@@ -2874,16 +2890,6 @@ Partial Class ConfigManager
         Me.GroupBox13.TabIndex = 39
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "Logs"
-        '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RichTextBox1.Location = New System.Drawing.Point(3, 23)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.ReadOnly = True
-        Me.RichTextBox1.Size = New System.Drawing.Size(487, 331)
-        Me.RichTextBox1.TabIndex = 0
-        Me.RichTextBox1.Text = ""
         '
         'Panel19
         '
@@ -3127,6 +3133,17 @@ Partial Class ConfigManager
         Me.Panel22.Size = New System.Drawing.Size(1298, 10)
         Me.Panel22.TabIndex = 216
         '
+        'TextBox1
+        '
+        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox1.Location = New System.Drawing.Point(3, 23)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox1.Size = New System.Drawing.Size(487, 331)
+        Me.TextBox1.TabIndex = 41
+        '
         'ConfigManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3225,6 +3242,7 @@ Partial Class ConfigManager
         Me.GroupBox12.ResumeLayout(False)
         Me.GroupBox12.PerformLayout()
         Me.GroupBox13.ResumeLayout(False)
+        Me.GroupBox13.PerformLayout()
         Me.Panel19.ResumeLayout(False)
         Me.Panel19.PerformLayout()
         Me.Panel4.ResumeLayout(False)
@@ -3342,7 +3360,7 @@ Partial Class ConfigManager
     Friend WithEvents Label15 As Label
     Friend WithEvents TextBoxFrancPass As TextBox
     Friend WithEvents TextBoxFrancUser As TextBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents ButtonValidateAccount As Button
     Friend WithEvents BackgroundWorker3 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Panel39 As Panel
     Friend WithEvents LabelAccCheck As Label
@@ -3390,9 +3408,9 @@ Partial Class ConfigManager
     Friend WithEvents Column16 As DataGridViewTextBoxColumn
     Friend WithEvents Column17 As DataGridViewTextBoxColumn
     Friend WithEvents Panel17 As Panel
-    Friend WithEvents Button2 As Button
+    Friend WithEvents ButtonSelectOutlet As Button
     Friend WithEvents GroupBox10 As GroupBox
-    Friend WithEvents Button3 As Button
+    Friend WithEvents ButtonSaveAddSettings As Button
     Friend WithEvents TextBoxExportPath As TextBox
     Friend WithEvents Label17 As Label
     Friend WithEvents Label56 As Label
@@ -3409,7 +3427,7 @@ Partial Class ConfigManager
     Friend WithEvents BackgroundWorkerLOAD As System.ComponentModel.BackgroundWorker
     Friend WithEvents ProgressBar4 As ProgressBar
     Friend WithEvents GroupBox11 As GroupBox
-    Friend WithEvents Button6 As Button
+    Friend WithEvents ButtonSaveDevSettings As Button
     Friend WithEvents Label79 As Label
     Friend WithEvents Label78 As Label
     Friend WithEvents Label77 As Label
@@ -3435,11 +3453,10 @@ Partial Class ConfigManager
     Friend WithEvents Label21 As Label
     Friend WithEvents GroupBox12 As GroupBox
     Friend WithEvents TextBoxProdKey As TextBox
-    Friend WithEvents Button5 As Button
+    Friend WithEvents ButtonActivate As Button
     Friend WithEvents BackgroundWorkerACTIVATION As System.ComponentModel.BackgroundWorker
     Friend WithEvents ProgressBar5 As ProgressBar
     Friend WithEvents GroupBox13 As GroupBox
-    Friend WithEvents RichTextBox1 As RichTextBox
     Friend WithEvents GroupBox14 As GroupBox
     Friend WithEvents DataGridViewCATEGORIES As DataGridView
     Friend WithEvents DataGridViewFORMULA As DataGridView
@@ -3489,11 +3506,11 @@ Partial Class ConfigManager
     Friend WithEvents Column54 As DataGridViewTextBoxColumn
     Friend WithEvents Column55 As DataGridViewTextBoxColumn
     Friend WithEvents Column56 As DataGridViewTextBoxColumn
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button9 As Button
+    Friend WithEvents ButtonEditAccount As Button
+    Friend WithEvents ButtonEditCloud As Button
     Friend WithEvents ButtonEditLocal As Button
     Friend WithEvents ButtonEditDevSet As Button
-    Friend WithEvents ButtonEdit As Button
+    Friend WithEvents ButtonEditAddSettings As Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel25 As Panel
     Friend WithEvents Panel12 As Panel
@@ -3510,4 +3527,6 @@ Partial Class ConfigManager
     Friend WithEvents Column42 As DataGridViewTextBoxColumn
     Friend WithEvents Column43 As DataGridViewTextBoxColumn
     Friend WithEvents Column58 As DataGridViewTextBoxColumn
+    Friend WithEvents ButtonImportCloudConn As Button
+    Friend WithEvents TextBox1 As TextBox
 End Class

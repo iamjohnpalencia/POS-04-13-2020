@@ -542,6 +542,9 @@ Public Class Reports
 
             'Select Case sum(CAST(log_description As Decimal(10, 2))) As CashierBal FROM `loc_system_logs` WHERE log_type In ('BG-1','BG-2','BG-3','BG-4')
             Dim DailySales = GrossSale - LessVat - TotalDiscount
+            MsgBox(GrossSale)
+            MsgBox(LessVat)
+            MsgBox(TotalDiscount)
             Dim NetSales = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' ")
             Dim CashInDrawer = DailySales + BeginningBalance - totalExpenses
             Dim CashTotal = CashInDrawer
