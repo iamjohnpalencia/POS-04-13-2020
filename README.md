@@ -327,3 +327,9 @@ june 28 07:30 AM to 3:00 PM
 	* Kelson sans font to tahoma font 
 	* Project testing	
 	* Function for adding stock to famous batter, tuna garlic ranch spread, hawaiian spread
+	
+june 30 8:00 PM to 12:21 AM 
+
+	* Configuration manager optimization
+	* Configuration manager new function for importing cloud server's connection
+	
