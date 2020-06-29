@@ -187,15 +187,15 @@ Public Class SettingsForm
         Try
             fields = "`transaction_number`, `amounttendered`, `totaldiscount`, `change`, `crew_id`, `vatablesales`, `vatexemptsales`, `zeroratedsales`, `lessvat`, `transaction_type`"
             If justload = True Then
-                table = "`loc_daily_transaction` WHERE Date(created_at) = Date(CURDATE()) And `active` = 1 ORDER BY `transaction_id` DESC"
+                table = "`loc_daily_transaction` WHERE Date(created_at) = '" & S_Zreading & "' And `active` = 1 ORDER BY `transaction_id` DESC"
                 GLOBAL_SELECT_ALL_FUNCTION(table, fields, DataGridViewITEMRETURN1)
             Else
                 If String.IsNullOrWhiteSpace(TextBoxSearchTranNumber.Text) Then
                     FlowLayoutPanel1.Controls.Clear()
-                    GLOBAL_SELECT_ALL_FUNCTION(table:="`loc_daily_transaction` WHERE Date(created_at) = Date(CURDATE()) And `active` = 1 ORDER BY `transaction_id` DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
+                    GLOBAL_SELECT_ALL_FUNCTION(table:="`loc_daily_transaction` WHERE Date(created_at) = '" & S_Zreading & "' And `active` = 1 ORDER BY `transaction_id` DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
                 Else
                     FlowLayoutPanel1.Controls.Clear()
-                    GLOBAL_SELECT_ALL_FUNCTION(table:="`loc_daily_transaction` WHERE `transaction_number` Like '%" & TextBoxSearchTranNumber.Text & "%'  AND date(created_at) = date(CURDATE()) AND `active` = 1 ORDER BY `transaction_id` DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
+                    GLOBAL_SELECT_ALL_FUNCTION(table:="`loc_daily_transaction` WHERE `transaction_number` Like '%" & TextBoxSearchTranNumber.Text & "%'  AND date(created_at) = '" & S_Zreading & "' AND `active` = 1 ORDER BY `transaction_id` DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
                 End If
 
             End If
