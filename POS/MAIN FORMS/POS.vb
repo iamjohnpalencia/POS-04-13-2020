@@ -212,8 +212,10 @@ Public Class POS
                     MessageBox.Show("Z-read", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
                     Enabled = False
-                    PaymentForm.TextBoxTOTALPAY.Text = TextBoxGRANDTOTAL.Text
                     PaymentForm.Show()
+                    Application.DoEvents()
+                    PaymentForm.textboxmoney.Focus
+                    PaymentForm.TextBoxTOTALPAY.Text = TextBoxGRANDTOTAL.Text
                     PaymentForm.Focus()
                 End If
             End If

@@ -785,7 +785,6 @@ Public Class Reports
             printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
             PrintPreviewDialogXread.Document = printdocXread
             PrintPreviewDialogXread.ShowDialog()
-
             XZreadingInventory(S_Zreading)
             S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
             sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"

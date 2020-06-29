@@ -360,24 +360,30 @@ Public Class SettingsForm
     End Sub
     Private Sub ButtonRefund_Click(sender As Object, e As EventArgs) Handles ButtonRefund.Click
         Try
-            Dim transaction_num As String = DataGridViewITEMRETURN1.SelectedRows(0).Cells(0).Value.ToString
-            If String.IsNullOrWhiteSpace(TextBoxIRREASON.Text) Then
-                MessageBox.Show("Reason for refund is required!", "Refund", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Else
-                sql = "SELECT * FROM loc_daily_transaction WHERE date(created_at) = date(CURDATE()) AND created_at >= Now() - INTERVAL 10 MINUTE AND transaction_number = '" & transaction_num & "'"
-                cmd = New MySqlCommand(sql, LocalhostConn())
-                da = New MySqlDataAdapter(cmd)
-                dt = New DataTable
-                da.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    Dim refund As Integer = MessageBox.Show("Are you sure do you want to refund this transaction?", "Return and Refund", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                    If refund = DialogResult.Yes Then
-                        INSERTRETURNS(transaction_num)
-                    End If
+
+            If DataGridViewITEMRETURN1.Rows.Count > 0 Then
+                Dim transaction_num As String = DataGridViewITEMRETURN1.SelectedRows(0).Cells(0).Value.ToString
+                If String.IsNullOrWhiteSpace(TextBoxIRREASON.Text) Then
+                    MessageBox.Show("Reason for refund is required!", "Refund", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
-                    MessageBox.Show("This transaction is non refundable or exceed's the given period of time.", "Refund", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    sql = "SELECT * FROM loc_daily_transaction WHERE date(created_at) = date(CURDATE()) AND created_at >= Now() - INTERVAL 10 MINUTE AND transaction_number = '" & transaction_num & "'"
+                    cmd = New MySqlCommand(sql, LocalhostConn())
+                    da = New MySqlDataAdapter(cmd)
+                    dt = New DataTable
+                    da.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Dim refund As Integer = MessageBox.Show("Are you sure do you want to refund this transaction?", "Return and Refund", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                        If refund = DialogResult.Yes Then
+                            INSERTRETURNS(transaction_num)
+                        End If
+                    Else
+                        MessageBox.Show("This transaction is non refundable or exceed's the given period of time.", "Refund", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
                 End If
+            Else
+                MsgBox("Create transaction first")
             End If
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
