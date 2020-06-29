@@ -180,52 +180,52 @@ May 24 9:00 AM to 5:00 PM
 
 may 25 11:00 AM to 3:00 PM
 
-* Debugging
+	* Debugging
 
 may 26 9:00 AM to 1:00 PM
 
-* Debugging
+	* Debugging
 
 may 27 6:00 PM to 10:00 PM
 
-* zreading data
+	* zreading data
 
 may 28 9:00 PM to 1:00 PM
 
-* Leaderboards for/ Dashboard
+	* Leaderboards for/ Dashboard
 
 june 08 11:00 AM to 7:00 PM
 
-* Coupon(Bundle Fix(1))
-* Coupon(Bundle Fix(2))
+	* Coupon(Bundle Fix(1))
+	* Coupon(Bundle Fix(2))
 
 june 09 10:00 AM to 2:00 PM
 
-* Coupon(Bundle Fix(3) %)
+	* Coupon(Bundle Fix(3) %)
 
 june 10 4:00 PM to 8:00 PM
 
-* Database Reset
-* POS registration
+	* Database Reset
+	* POS registration
 	
 June 11 6:00 PM to 10:00 PM
 
-* Dashboard Layout
-* Fixing DatagridviewStock Focus after refreshing data(Undone)
+	* Dashboard Layout
+	* Fixing DatagridviewStock Focus after refreshing data(Undone)
 
 June 14 4:00 PM to 8:00 PM
 
-* Dashboard Sales Bug
-* Coupons Bug	
-* Reports Amount Due bug
+	* Dashboard Sales Bug
+	* Coupons Bug	
+	* Reports Amount Due bug
 
 June 15 4:00 PM to 8:00 PM
 	
-* Debugging 
+	* Debugging 
 
 June 16 7:00 AM to 12:00 PM
 
-* Settings form
+	* Settings form
 	* Database Repair
 	* Database optimization
 	* Database Export/ import
@@ -273,3 +273,57 @@ june 24 8:30 am to 12:30
 	* Reports Form
 		* Print view adjustments
 
+june 25 7:00 AM to 1:00 AM
+
+	* stock_quantity,stock_total column in loc_pos_inventory table changes to stock_primary, stock_secondary
+		* inventory form
+		* Auth form
+		* MDI form
+		* partners form
+		* pos form
+		* Registration form
+		* Settings form 
+		* Sync to cloud form
+		* Add bank 
+		* Add expenses 
+		* Coupon Code
+		* Depositslipt
+		* Hold Order
+		* Refund
+		* Users Setings
+	* new column for loc_pos_inventory servings
+	* Inventory design
+		* Stock Datagridview changes
+	* changes in addmodule, retrieve module
+	
+june 26 07:30 AM to 3:00 PM
+
+	* Config manager Changes
+	* Loadig form Changes
+	* Reports Form Changes
+	* Fixed sync to cloud function
+	* Beg balance Changes
+	* Export new pos.db
+
+june 27 07:30 AM to 3:00 PM
+
+	* Loading form optimization
+	* Sync form expense list bug fixed
+	* Login form
+		* Catch for no internet connection in fetching user account
+	* Inventory (add/deduction)
+	
+june 28 07:30 AM to 3:00 PM
+
+	* Config manager changes
+	* Inventory form changes
+	* login form changes
+	* Reasons category panel
+		* Add new form for reasons category
+		* Add
+		* Deactivate
+		* Activate Category
+	* Add new function for fetching products update
+	* Kelson sans font to tahoma font 
+	* Project testing	
+	* Function for adding stock to famous batter, tuna garlic ranch spread, hawaiian spread
