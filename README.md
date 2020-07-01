@@ -335,7 +335,7 @@ june 30 4:00 PM to 12:21 AM
 	* Configuration manager new function for importing cloud server's connection
 	* System debugging
 
-July 1 7:00 AM to 2:06 AM
+July 1 7:00 AM to 3:06 AM
 
 	* Function for deducting main inventory stocks form sub inventory stocks
 	* Disable adding of stock to sub inventories
