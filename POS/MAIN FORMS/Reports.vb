@@ -750,15 +750,19 @@ Public Class Reports
             printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
             PrintPreviewDialogXread.Document = printdocXread
             PrintPreviewDialogXread.ShowDialog()
+
             Dim datenow = Format(Now(), "yyyy-MM-dd")
             GLOBAL_SYSTEM_LOGS("Z-READ", ClientCrewID & ", Z Reading for : " & datenow)
+
             sql = "UPDATE loc_settings SET S_Zreading = '" & datenow & "'"
             cmd = New MySqlCommand(sql, LocalhostConn())
             cmd.ExecuteNonQuery()
             cmd.Dispose()
-            XZreadingInventory(S_Zreading)
+
             S_Zreading = Format(Now(), "yyyy-MM-dd")
+            XZreadingInventory(S_Zreading)
             ButtonZread.Enabled = False
+            Button7.PerformClick()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -783,22 +787,33 @@ Public Class Reports
 
     Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
         Try
+            'Printing Zread report
+            '============================================================================
             XreadOrZread = "Z-READ"
             ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
             printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
             PrintPreviewDialogXread.Document = printdocXread
             PrintPreviewDialogXread.ShowDialog()
-            XZreadingInventory(S_Zreading)
+            'Changing and saving zread date
+            '============================================================================
             S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
             sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
             cmd = New MySqlCommand(sql, LocalhostConn())
             cmd.ExecuteNonQuery()
             cmd.Dispose()
+            LocalhostConn.close
+            'Checking of zread date
+            XZreadingInventory(S_Zreading)
+            '============================================================================
+            If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
+                ButtonZread.Enabled = False
+                Button6.Enabled = False
+            End If
+            Button7.PerformClick()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
-
     Private Sub FillDatagridZreadInv(searchdate As Boolean)
         Try
             table = "loc_zread_inventory I INNER JOIN loc_product_formula F ON F.formula_id = I.formula_id "

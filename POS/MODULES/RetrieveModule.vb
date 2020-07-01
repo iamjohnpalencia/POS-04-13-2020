@@ -273,7 +273,18 @@ Module RetrieveModule
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             da.Fill(dttable)
-            datagridd.Font = New Font("Tahoma", 10)
+            With datagridd
+                .RowHeadersVisible = False
+                .AllowUserToAddRows = False
+                .AllowUserToDeleteRows = False
+                .AllowUserToOrderColumns = False
+                .AllowUserToResizeColumns = False
+                .AllowUserToResizeRows = False
+                .Font = New Font("tahoma", 10)
+                .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+                .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+                .SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

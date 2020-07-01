@@ -255,9 +255,9 @@ Partial Class BegBalance
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(0, 358)
+        Me.Button1.Location = New System.Drawing.Point(0, 703)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(343, 33)
+        Me.Button1.Size = New System.Drawing.Size(867, 33)
         Me.Button1.TabIndex = 24
         Me.Button1.Text = "SUBMIT"
         Me.Button1.UseVisualStyleBackColor = False
@@ -337,7 +337,7 @@ Partial Class BegBalance
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(345, 393)
+        Me.Panel1.Size = New System.Drawing.Size(869, 738)
         Me.Panel1.TabIndex = 237
         '
         'Label15
@@ -363,10 +363,10 @@ Partial Class BegBalance
         'DataGridViewZreadInventory
         '
         Me.DataGridViewZreadInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewZreadInventory.Location = New System.Drawing.Point(20, 386)
+        Me.DataGridViewZreadInventory.Location = New System.Drawing.Point(409, 417)
         Me.DataGridViewZreadInventory.Name = "DataGridViewZreadInventory"
         Me.DataGridViewZreadInventory.ReadOnly = True
-        Me.DataGridViewZreadInventory.Size = New System.Drawing.Size(303, 66)
+        Me.DataGridViewZreadInventory.Size = New System.Drawing.Size(303, 199)
         Me.DataGridViewZreadInventory.TabIndex = 239
         '
         'BegBalance
@@ -374,7 +374,7 @@ Partial Class BegBalance
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(345, 393)
+        Me.ClientSize = New System.Drawing.Size(869, 738)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "BegBalance"

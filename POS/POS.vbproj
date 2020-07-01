@@ -362,6 +362,12 @@
     <Compile Include="SUBFORMS\TransactionType.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SUBFORMS\Updates.Designer.vb">
+      <DependentUpon>Updates.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\Updates.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SUBFORMS\UserSettings.Designer.vb">
       <DependentUpon>UserSettings.vb</DependentUpon>
     </Compile>
@@ -492,6 +498,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\TransactionType.resx">
       <DependentUpon>TransactionType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\Updates.resx">
+      <DependentUpon>Updates.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\UserSettings.resx">
       <DependentUpon>UserSettings.vb</DependentUpon>

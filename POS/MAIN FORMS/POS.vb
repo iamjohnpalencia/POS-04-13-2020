@@ -999,6 +999,7 @@ Public Class POS
             VATABLESALES = 0
             VAT12PERCENT = 0
             CouponLine = 10
+            DISABLESERVEROTHERSPRODUCT = False
         Else
             MsgBox("Select Transaction First!")
         End If
@@ -1259,6 +1260,7 @@ Public Class POS
     Dim UPDATEPRODUCTONLY As Boolean = False
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         UPDATEPRODUCTONLY = True
+        Button3.Enabled = False
         BackgroundWorker2.WorkerReportsProgress = True
         BackgroundWorker2.WorkerSupportsCancellation = True
         BackgroundWorker2.RunWorkerAsync()
@@ -1683,26 +1685,33 @@ Public Class POS
                 For Each t In THREADLISTUPDATE
                     t.Join()
                 Next
-                If ServerCloudCon.state = ConnectionState.Open Then
-                    If UPDATEPRODUCTONLY = False Then
-                        thread = New Thread(AddressOf Function1)
-                        thread.Start()
-                        THREADLISTUPDATE.Add(thread)
-                        thread = New Thread(AddressOf Function2)
-                        thread.Start()
-                        THREADLISTUPDATE.Add(thread)
-                        thread = New Thread(AddressOf Function3)
-                        thread.Start()
-                        THREADLISTUPDATE.Add(thread)
-                        thread = New Thread(AddressOf Function4)
-                        thread.Start()
-                        THREADLISTUPDATE.Add(thread)
+                If CheckForInternetConnection() = True Then
+
+                    If ServerCloudCon.state = ConnectionState.Open Then
+                        If UPDATEPRODUCTONLY = False Then
+                            thread = New Thread(AddressOf Function1)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf Function2)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf Function3)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf Function4)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                        Else
+                            thread = New Thread(AddressOf Function2)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                        End If
                     Else
-                        thread = New Thread(AddressOf Function2)
-                        thread.Start()
-                        THREADLISTUPDATE.Add(thread)
                     End If
+                Else
+                    MsgBox("Internet connection is not available. Please try again")
                 End If
+
                 For Each t In THREADLISTUPDATE
                     t.Join()
                 Next
