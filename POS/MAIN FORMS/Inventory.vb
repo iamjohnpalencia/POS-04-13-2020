@@ -71,7 +71,7 @@ Public Class Inventory
     Private Sub loadpanelstockadjustment()
         Try
             fields = "`formula_id`, `product_ingredients`, ROUND(stock_primary,0) AS P, `stock_secondary`, ROUND(stock_no_of_servings,0) AS S"
-            GLOBAL_SELECT_ALL_FUNCTION("`loc_pos_inventory` WHERE `stock_status` = 1 AND `store_id` = " & ClientStoreID, fields, DataGridViewPanelStockAdjustment)
+            GLOBAL_SELECT_ALL_FUNCTION("`loc_pos_inventory` WHERE `main_inventory_id` = 0 AND `stock_status` = 1 AND `store_id` = " & ClientStoreID, fields, DataGridViewPanelStockAdjustment)
             With DataGridViewPanelStockAdjustment
                 .Columns(0).Visible = False
                 .Columns(1).HeaderText = "Ingredient"
@@ -85,7 +85,7 @@ Public Class Inventory
     End Sub
     Sub loadcomboboxingredients()
         Try
-            Dim sql = "SELECT product_ingredients FROM loc_pos_inventory"
+            Dim sql = "SELECT product_ingredients FROM loc_pos_inventory WHERE main_inventory_id = 0"
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable

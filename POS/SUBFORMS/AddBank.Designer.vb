@@ -30,11 +30,11 @@ Partial Class AddBank
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
         Me.Label2.ForeColor = System.Drawing.Color.Black
         Me.Label2.Location = New System.Drawing.Point(9, 15)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(69, 14)
+        Me.Label2.Size = New System.Drawing.Size(75, 15)
         Me.Label2.TabIndex = 168
         Me.Label2.Text = "Bank Name:"
         '
@@ -44,7 +44,7 @@ Partial Class AddBank
         Me.Button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button11.FlatAppearance.BorderSize = 0
         Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button11.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
         Me.Button11.ForeColor = System.Drawing.Color.White
         Me.Button11.Location = New System.Drawing.Point(12, 40)
         Me.Button11.Name = "Button11"
@@ -55,10 +55,10 @@ Partial Class AddBank
         '
         'TextBoxBankName
         '
-        Me.TextBoxBankName.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.TextBoxBankName.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
         Me.TextBoxBankName.Location = New System.Drawing.Point(94, 12)
         Me.TextBoxBankName.Name = "TextBoxBankName"
-        Me.TextBoxBankName.Size = New System.Drawing.Size(214, 22)
+        Me.TextBoxBankName.Size = New System.Drawing.Size(214, 21)
         Me.TextBoxBankName.TabIndex = 166
         '
         'AddBank

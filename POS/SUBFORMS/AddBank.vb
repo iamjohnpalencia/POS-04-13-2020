@@ -21,4 +21,13 @@
     Private Sub AddBank_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         SettingsForm.Enabled = True
     End Sub
+    Private Sub TextBoxBankName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxBankName.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 End Class

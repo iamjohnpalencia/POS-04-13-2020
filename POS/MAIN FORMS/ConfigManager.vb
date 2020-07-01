@@ -94,8 +94,6 @@ Public Class ConfigManager
         My.Settings.LocalConnectionPath = CompletePath
         My.Settings.Save()
         MsgBox("Saved")
-        'MsgBox(My.Settings.LocalConnectionPath)
-        'MsgBox(My.Settings.LocalConnectionString)
     End Sub
     Private Sub ButtonTestLocConn_Click(sender As Object, e As EventArgs) Handles ButtonTestLocConn.Click
         TextboxEnableability(Panel5, False)
@@ -258,7 +256,7 @@ Public Class ConfigManager
                 If System.IO.File.Exists(My.Settings.LocalConnectionPath) Then
                     Dim EXPORTPATH = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\Innovention"
                     sql = "SELECT `A_Tax`, `A_SIFormat`, `A_Terminal_No`, `A_ZeroRated` FROM admin_settings_org WHERE settings_id = 1"
-                    Dim cmd As MySqlCommand = New MySqlCommand(sql, ServerCloudCon)
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
                     Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
                     da.Fill(dt)
@@ -286,7 +284,7 @@ Public Class ConfigManager
         Try
             If ValidCloudConnection = True And ValidLocalConnection = True Then
                 sql = "SELECT `Dev_Company_Name`, `Dev_Address`, `Dev_Tin`, `Dev_Accr_No`, `Dev_Accr_Date_Issued`, `Dev_Accr_Valid_Until`, `Dev_PTU_No`, `Dev_PTU_Date_Issued`, `Dev_PTU_Valid_Until` FROM admin_settings_org WHERE settings_id = 1"
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, ServerCloudCon)
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
@@ -1047,6 +1045,9 @@ Public Class ConfigManager
                     For Each t In threadListActivation
                         t.Join()
                     Next
+
+                End If
+                If i = 20 Then
                     If ValidProductKey = True Then
                         ThreadActivation = New Thread(AddressOf adminserialkey)
                         ThreadActivation.Start()
@@ -1054,39 +1055,55 @@ Public Class ConfigManager
                         For Each t In threadListActivation
                             t.Join()
                         Next
+
+                    End If
+                End If
+                If i = 40 Then
+                    If ValidProductKey = True Then
                         ThreadActivation = New Thread(AddressOf adminoutlets)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
                         For Each t In threadListActivation
                             t.Join()
                         Next
+                    End If
+
+                End If
+                If i = 60 Then
+                    If ValidProductKey = True Then
                         ThreadActivation = New Thread(AddressOf insertintocloud)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
                         For Each t In threadListActivation
                             t.Join()
                         Next
+                    End If
+
+                End If
+                If i = 80 Then
+                    If ValidProductKey = True Then
                         ThreadActivation = New Thread(AddressOf insertintolocaloutlets)
                         ThreadActivation.Start()
                         threadListActivation.Add(ThreadActivation)
                         For Each t In threadListActivation
                             t.Join()
                         Next
-                        ThreadActivation = New Thread(AddressOf InsertLocalMasterList)
-                        ThreadActivation.Start()
-                        threadListActivation.Add(ThreadActivation)
-                        For Each t In threadListActivation
-                            t.Join()
-                        Next
-                        '===================================================
                     End If
+                End If
+                If i = 100 Then
+                    ThreadActivation = New Thread(AddressOf InsertLocalMasterList)
+                    ThreadActivation.Start()
+                    threadListActivation.Add(ThreadActivation)
+                    For Each t In threadListActivation
+                        t.Join()
+                    Next
                 End If
             Next
             For Each t In threadListActivation
                 t.Join()
             Next
         Catch ex As Exception
-            'MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub BackgroundWorkerACTIVATION_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorkerACTIVATION.ProgressChanged
@@ -1246,45 +1263,60 @@ Public Class ConfigManager
         End Try
         Return dt
     End Function
+
+    Private Sub FillDgvProd()
+        Try
+            DataGridViewPRODUCTS.DataSource = DtCount
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Dim threadLISTINSERPROD As List(Of Thread) = New List(Of Thread)
     Private Sub BackgroundWorker5_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker5.DoWork
         Try
             For i = 0 To 100
-
-                Label22.Text = "Please Wait " & i & " %"
+                Label22.Text = "Please wait " & i & " %"
                 BackgroundWorker5.ReportProgress(i)
                 Thread.Sleep(20)
                 If i = 0 Then
-
                     ThreadActivationCategory = New Thread(AddressOf GetCategories)
                     ThreadActivationCategory.Start()
                     threadListActivationCategory.Add(ThreadActivationCategory)
-
-                    ThreadActivationProduct = New Thread(AddressOf GetProducts)
-                    ThreadActivationProduct.Start()
-                    threadListActivationProduct.Add(ThreadActivationProduct)
-
-                    ThreadActivationInventory = New Thread(AddressOf GetInventory)
-                    ThreadActivationInventory.Start()
-                    threadListActivationInventory.Add(ThreadActivationInventory)
-
-                    ThreadActivationFormula = New Thread(AddressOf GetFormula)
-                    ThreadActivationFormula.Start()
-                    threadListActivationFormula.Add(ThreadActivationFormula)
-
                     For Each t In threadListActivationCategory
                         t.Join()
                     Next
+                End If
+                If i = 10 Then
+                    ThreadActivationProduct = New Thread(AddressOf GetProducts)
+                    ThreadActivationProduct.Start()
+                    threadListActivationProduct.Add(ThreadActivationProduct)
                     For Each t In threadListActivationProduct
                         t.Join()
                     Next
+                End If
+                If i = 20 Then
+                    ThreadActivationInventory = New Thread(AddressOf GetInventory)
+                    ThreadActivationInventory.Start()
+                    threadListActivationInventory.Add(ThreadActivationInventory)
                     For Each t In threadListActivationInventory
                         t.Join()
                     Next
+                End If
+                If i = 30 Then
+                    ThreadActivationFormula = New Thread(AddressOf GetFormula)
+                    ThreadActivationFormula.Start()
+                    threadListActivationFormula.Add(ThreadActivationFormula)
                     For Each t In threadListActivationFormula
                         t.Join()
                     Next
-
+                End If
+                If i = 40 Then
+                    thread1 = New System.Threading.Thread(AddressOf FillDgvProd)
+                    thread1.Start()
+                    threadLISTINSERPROD.Add(thread1)
+                    For Each t In threadLISTINSERPROD
+                        t.Join()
+                    Next
                     thread1 = New System.Threading.Thread(AddressOf InsertToProducts)
                     thread1.Start()
                     threadLISTINSERPROD.Add(thread1)
@@ -1383,8 +1415,6 @@ Public Class ConfigManager
         file = My.Computer.FileSystem.OpenTextFileWriter(logPath & "\configmanagerslogs.txt", True)
         file.WriteLine(TextBox1.Text)
         file.Close()
-
-
         Close()
         Loading.Show()
     End Sub
@@ -1403,19 +1433,62 @@ Public Class ConfigManager
             'MsgBox(ex.ToString)
         End Try
     End Sub
-    Public Sub GetProducts()
+    Dim DtCount As DataTable
+    Private Sub GetProducts()
         Try
-            TextBox1.Text += FullDate24HR() & " :    Getting cloud server's products data." & vbNewLine
-            table = "admin_products_org"
-            fields = "*"
-            Dim DatatableProd = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewPRODUCTS)
-            For Each row As DataRow In DatatableProd.Rows
-                DataGridViewPRODUCTS.Rows.Add(row("product_id"), row("product_sku"), row("product_name"), row("formula_id"), row("product_barcode"), row("product_category"), row("product_price"), row("product_desc"), row("product_image"), row("product_status"), row("origin"), row("date_modified"), row("inventory_id"))
-            Next
-            TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of products data)" & vbNewLine
+            Try
+                TextBox1.Text += FullDate24HR() & " :    Getting cloud server's products data." & vbNewLine
+                Dim Connection As MySqlConnection = TestCloudConnection()
+                Dim SqlCount = "SELECT COUNT(product_id) FROM admin_products_org"
+                Dim CmdCount As MySqlCommand = New MySqlCommand(SqlCount, Connection)
+                Dim result As Integer = CmdCount.ExecuteScalar
+                DtCount = New DataTable
+                DtCount.Columns.Add("product_id")
+                DtCount.Columns.Add("product_sku")
+                DtCount.Columns.Add("product_name")
+                DtCount.Columns.Add("formula_id")
+                DtCount.Columns.Add("product_barcode")
+                DtCount.Columns.Add("product_category")
+                DtCount.Columns.Add("product_price")
+                DtCount.Columns.Add("product_desc")
+                DtCount.Columns.Add("product_image")
+                DtCount.Columns.Add("product_status")
+                DtCount.Columns.Add("origin")
+                DtCount.Columns.Add("date_modified")
+                DtCount.Columns.Add("inventory_id")
+                Dim DaCount As MySqlDataAdapter
+                Dim FillDt As DataTable = New DataTable
+                For a = 1 To result
+                    Dim Query As String = "SELECT * FROM admin_products_org WHERE product_id = " & a
+                    cmd = New MySqlCommand(Query, Connection)
+                    DaCount = New MySqlDataAdapter(cmd)
+                    FillDt = New DataTable
+                    DaCount.Fill(FillDt)
+                    For i As Integer = 0 To FillDt.Rows.Count - 1 Step +1
+                        Dim Prod As DataRow = DtCount.NewRow
+                        Prod("product_id") = FillDt(i)(0)
+                        Prod("product_sku") = FillDt(i)(1)
+                        Prod("product_name") = FillDt(i)(2)
+                        Prod("formula_id") = FillDt(i)(3)
+                        Prod("product_barcode") = FillDt(i)(4)
+                        Prod("product_category") = FillDt(i)(5)
+                        Prod("product_price") = FillDt(i)(6)
+                        Prod("product_desc") = FillDt(i)(7)
+                        Prod("product_image") = FillDt(i)(8)
+                        Prod("product_status") = FillDt(i)(9)
+                        Prod("origin") = FillDt(i)(10)
+                        Prod("date_modified") = FillDt(i)(11)
+                        Prod("inventory_id") = FillDt(i)(12)
+                        DtCount.Rows.Add(Prod)
+                    Next
+                Next
+                TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of products data)" & vbNewLine
+            Catch ex As Exception
+                TextBox1.Text += FullDate24HR() & " :    Failed(Fetching of products data)" & vbNewLine
+                MsgBox(ex.ToString)
+            End Try
         Catch ex As Exception
-            TextBox1.Text += FullDate24HR() & " :    Failed(Fetching of products data)" & vbNewLine
-            'MsgBox(ex.ToString)
+            MsgBox(ex.ToString)
         End Try
     End Sub
     Public Sub GetInventory()
@@ -1425,7 +1498,7 @@ Public Class ConfigManager
             fields = "*"
             Dim DatatableInv = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewINVENTORY)
             For Each row As DataRow In DatatableInv.Rows
-                DataGridViewINVENTORY.Rows.Add(row("inventory_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_primary"), row("stock_secondary"), row("stock_no_of_servings"), row("stock_status"), row("critical_limit"), row("date_modified"))
+                DataGridViewINVENTORY.Rows.Add(row("inventory_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_primary"), row("stock_secondary"), row("stock_no_of_servings"), row("stock_status"), row("critical_limit"), row("date_modified"), row("main_inventory_id"))
             Next
             TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of inventories data)" & vbNewLine
         Catch ex As Exception
@@ -1487,8 +1560,8 @@ Public Class ConfigManager
             With DataGridViewINVENTORY
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmdlocal = New MySqlCommand("INSERT INTO loc_pos_inventory(`server_inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `server_date_modified`, `store_id`, `guid`, `created_at`, `crew_id`, `synced`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14)", TestLocalConnection())
+                    cmdlocal = New MySqlCommand("INSERT INTO loc_pos_inventory(`server_inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `server_date_modified`, `store_id`, `guid`, `created_at`, `crew_id`, `synced`, `main_inventory_id`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15)", TestLocalConnection())
                     cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1504,6 +1577,7 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@12", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value
                     cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = "0"
                     cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
+                    cmdlocal.Parameters.Add("@15", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With
@@ -1737,7 +1811,6 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
-
 
 #Region "Test Insert"
     'Private Sub button734_click(sender As Object, e As EventArgs) Handles Button4.Click

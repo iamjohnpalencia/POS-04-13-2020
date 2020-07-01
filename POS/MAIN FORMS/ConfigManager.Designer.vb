@@ -224,19 +224,6 @@ Partial Class ConfigManager
         Me.Column56 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewPRODUCTS = New System.Windows.Forms.DataGridView()
-        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column31 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column32 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column34 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column58 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewINVENTORY = New System.Windows.Forms.DataGridView()
         Me.Column35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -259,6 +246,7 @@ Partial Class ConfigManager
         Me.ProgressBar5 = New System.Windows.Forms.ProgressBar()
         Me.TextBoxProdKey = New System.Windows.Forms.TextBox()
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Panel19 = New System.Windows.Forms.Panel()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.ProgressBar4 = New System.Windows.Forms.ProgressBar()
@@ -297,7 +285,8 @@ Partial Class ConfigManager
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel22 = New System.Windows.Forms.Panel()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.BackgroundWorker6 = New System.ComponentModel.BackgroundWorker()
+        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -537,7 +526,7 @@ Partial Class ConfigManager
         Me.Panel9.Controls.Add(Me.TextBoxCloudUsername)
         Me.Panel9.Controls.Add(Me.TextBoxCloudServer)
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel9.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Panel9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.Panel9.Location = New System.Drawing.Point(3, 23)
         Me.Panel9.Name = "Panel9"
         Me.Panel9.Size = New System.Drawing.Size(487, 210)
@@ -786,7 +775,7 @@ Partial Class ConfigManager
         Me.Panel5.Controls.Add(Me.Panel26)
         Me.Panel5.Controls.Add(Me.Panel29)
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel5.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Panel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.Panel5.Location = New System.Drawing.Point(3, 23)
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(487, 209)
@@ -1953,7 +1942,7 @@ Partial Class ConfigManager
         Me.Panel15.Controls.Add(Me.Panel38)
         Me.Panel15.Controls.Add(Me.Panel39)
         Me.Panel15.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel15.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Panel15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.Panel15.Location = New System.Drawing.Point(3, 23)
         Me.Panel15.Name = "Panel15"
         Me.Panel15.Size = New System.Drawing.Size(487, 301)
@@ -2267,7 +2256,7 @@ Partial Class ConfigManager
         Me.Panel14.Controls.Add(Me.TextBoxFrancPass)
         Me.Panel14.Controls.Add(Me.TextBoxFrancUser)
         Me.Panel14.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel14.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Panel14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.Panel14.Location = New System.Drawing.Point(3, 23)
         Me.Panel14.Name = "Panel14"
         Me.Panel14.Size = New System.Drawing.Size(487, 118)
@@ -2355,7 +2344,7 @@ Partial Class ConfigManager
         Me.Panel16.Controls.Add(Me.DataGridViewOutlets)
         Me.Panel16.Controls.Add(Me.Panel17)
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel16.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Panel16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.Panel16.Location = New System.Drawing.Point(3, 23)
         Me.Panel16.Name = "Panel16"
         Me.Panel16.Size = New System.Drawing.Size(493, 457)
@@ -2633,77 +2622,11 @@ Partial Class ConfigManager
         Me.DataGridViewPRODUCTS.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewPRODUCTS.ColumnHeadersVisible = False
-        Me.DataGridViewPRODUCTS.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column23, Me.Column24, Me.Column25, Me.Column26, Me.Column27, Me.Column28, Me.Column29, Me.Column30, Me.Column31, Me.Column32, Me.Column33, Me.Column34, Me.Column58})
         Me.DataGridViewPRODUCTS.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewPRODUCTS.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewPRODUCTS.Name = "DataGridViewPRODUCTS"
         Me.DataGridViewPRODUCTS.Size = New System.Drawing.Size(487, 70)
         Me.DataGridViewPRODUCTS.TabIndex = 66
-        '
-        'Column23
-        '
-        Me.Column23.HeaderText = "Column23"
-        Me.Column23.Name = "Column23"
-        '
-        'Column24
-        '
-        Me.Column24.HeaderText = "Column24"
-        Me.Column24.Name = "Column24"
-        '
-        'Column25
-        '
-        Me.Column25.HeaderText = "Column25"
-        Me.Column25.Name = "Column25"
-        '
-        'Column26
-        '
-        Me.Column26.HeaderText = "Column26"
-        Me.Column26.Name = "Column26"
-        '
-        'Column27
-        '
-        Me.Column27.HeaderText = "Column27"
-        Me.Column27.Name = "Column27"
-        '
-        'Column28
-        '
-        Me.Column28.HeaderText = "Column28"
-        Me.Column28.Name = "Column28"
-        '
-        'Column29
-        '
-        Me.Column29.HeaderText = "Column29"
-        Me.Column29.Name = "Column29"
-        '
-        'Column30
-        '
-        Me.Column30.HeaderText = "Column30"
-        Me.Column30.Name = "Column30"
-        '
-        'Column31
-        '
-        Me.Column31.HeaderText = "Column31"
-        Me.Column31.Name = "Column31"
-        '
-        'Column32
-        '
-        Me.Column32.HeaderText = "Column32"
-        Me.Column32.Name = "Column32"
-        '
-        'Column33
-        '
-        Me.Column33.HeaderText = "Column33"
-        Me.Column33.Name = "Column33"
-        '
-        'Column34
-        '
-        Me.Column34.HeaderText = "Column34"
-        Me.Column34.Name = "Column34"
-        '
-        'Column58
-        '
-        Me.Column58.HeaderText = "Column58"
-        Me.Column58.Name = "Column58"
         '
         'GroupBox15
         '
@@ -2725,7 +2648,7 @@ Partial Class ConfigManager
         Me.DataGridViewINVENTORY.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewINVENTORY.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewINVENTORY.ColumnHeadersVisible = False
-        Me.DataGridViewINVENTORY.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column35, Me.Column57, Me.Column36, Me.Column37, Me.Column38, Me.Column39, Me.Column40, Me.Column41, Me.Column42, Me.Column43})
+        Me.DataGridViewINVENTORY.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column35, Me.Column57, Me.Column36, Me.Column37, Me.Column38, Me.Column39, Me.Column40, Me.Column41, Me.Column42, Me.Column43, Me.Column23})
         Me.DataGridViewINVENTORY.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewINVENTORY.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewINVENTORY.Name = "DataGridViewINVENTORY"
@@ -2890,6 +2813,17 @@ Partial Class ConfigManager
         Me.GroupBox13.TabIndex = 39
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "Logs"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox1.Location = New System.Drawing.Point(3, 23)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox1.Size = New System.Drawing.Size(487, 331)
+        Me.TextBox1.TabIndex = 41
         '
         'Panel19
         '
@@ -3133,16 +3067,10 @@ Partial Class ConfigManager
         Me.Panel22.Size = New System.Drawing.Size(1298, 10)
         Me.Panel22.TabIndex = 216
         '
-        'TextBox1
+        'Column23
         '
-        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox1.Location = New System.Drawing.Point(3, 23)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox1.Size = New System.Drawing.Size(487, 331)
-        Me.TextBox1.TabIndex = 41
+        Me.Column23.HeaderText = "Column23"
+        Me.Column23.Name = "Column23"
         '
         'ConfigManager
         '
@@ -3481,18 +3409,6 @@ Partial Class ConfigManager
     Friend WithEvents Column20 As DataGridViewTextBoxColumn
     Friend WithEvents Column21 As DataGridViewTextBoxColumn
     Friend WithEvents Column22 As DataGridViewTextBoxColumn
-    Friend WithEvents Column23 As DataGridViewTextBoxColumn
-    Friend WithEvents Column24 As DataGridViewTextBoxColumn
-    Friend WithEvents Column25 As DataGridViewTextBoxColumn
-    Friend WithEvents Column26 As DataGridViewTextBoxColumn
-    Friend WithEvents Column27 As DataGridViewTextBoxColumn
-    Friend WithEvents Column28 As DataGridViewTextBoxColumn
-    Friend WithEvents Column29 As DataGridViewTextBoxColumn
-    Friend WithEvents Column30 As DataGridViewTextBoxColumn
-    Friend WithEvents Column31 As DataGridViewTextBoxColumn
-    Friend WithEvents Column32 As DataGridViewTextBoxColumn
-    Friend WithEvents Column33 As DataGridViewTextBoxColumn
-    Friend WithEvents Column34 As DataGridViewTextBoxColumn
     Friend WithEvents Column44 As DataGridViewTextBoxColumn
     Friend WithEvents Column45 As DataGridViewTextBoxColumn
     Friend WithEvents Column46 As DataGridViewTextBoxColumn
@@ -3526,7 +3442,8 @@ Partial Class ConfigManager
     Friend WithEvents Column41 As DataGridViewTextBoxColumn
     Friend WithEvents Column42 As DataGridViewTextBoxColumn
     Friend WithEvents Column43 As DataGridViewTextBoxColumn
-    Friend WithEvents Column58 As DataGridViewTextBoxColumn
     Friend WithEvents ButtonImportCloudConn As Button
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents BackgroundWorker6 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Column23 As DataGridViewTextBoxColumn
 End Class

@@ -52,74 +52,12 @@ Public Class BegBalance
         Dim message As String = GetMonthName(Format(Now(), "yyyy-MM-dd")) & " " & Format(Now(), "dd yyyy") & vbNewLine & Format(Now(), "hh:mm tt")
         'MessageBox.Show(message, "Set Cash Datetime:", MessageBoxButtons.OK, MessageBoxIcon.Information)
         'Settings.Button8.Visible = False
-
-        'If INSERTZREADINVENTORY = True Then
-        '    XZreadingInventory(S_Zreading)
-        'End If
         Me.Close()
     End Sub
     Private Sub BegBalance_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         POS.Enabled = True
     End Sub
-    Dim INSERTZREADINVENTORY As Boolean = False
     Private Sub BegBalance_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ComboBox1.SelectedIndex = 0
-        Try
-            Dim SQL = "SELECT * FROM `loc_zread_inventory` WHERE zreading = '" & S_Zreading & "'"
-            Dim Cmd As MySqlCommand = New MySqlCommand(SQL, LocalhostConn)
-            Dim Da As MySqlDataAdapter = New MySqlDataAdapter(Cmd)
-            Dim Dt As DataTable = New DataTable
-            Da.Fill(Dt)
-            If Dt.Rows.Count = 0 Then
-                'FillZreadInv()
-                INSERTZREADINVENTORY = True
-            Else
-                INSERTZREADINVENTORY = False
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
     End Sub
-    'Private Sub FillZreadInv()
-    '    Try
-    '        GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
-    '    Catch ex As Exception
-    '        MsgBox(ex.ToString)
-    '    End Try
-    'End Sub
-    'Private Sub XZreadingInventory(zreaddate)
-    '    Try
-    '        Dim Fields As String = "`inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `guid`, `created_at`, `crew_id`, `synced`, `server_date_modified`, `server_inventory_id`, `zreading`"
-    '        Dim cmd As MySqlCommand
-    '        With DataGridViewZreadInventory
-    '            For i As Integer = 0 To .Rows.Count - 1 Step +1
-    '                cmd = New MySqlCommand("INSERT INTO loc_zread_inventory (" & Fields & ") VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17)", LocalhostConn)
-    '                cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString
-    '                cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString
-    '                cmd.Parameters.Add("@3", MySqlDbType.Int64).Value = .Rows(i).Cells(2).Value.ToString
-    '                cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString
-    '                cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString
-    '                cmd.Parameters.Add("@6", MySqlDbType.Double).Value = .Rows(i).Cells(5).Value.ToString
-    '                cmd.Parameters.Add("@7", MySqlDbType.Double).Value = .Rows(i).Cells(6).Value.ToString
-    '                cmd.Parameters.Add("@8", MySqlDbType.Double).Value = .Rows(i).Cells(7).Value.ToString
-    '                cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString
-    '                cmd.Parameters.Add("@10", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString
-    '                cmd.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString
-    '                cmd.Parameters.Add("@12", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value.ToString
-    '                cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString
-    '                cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = .Rows(i).Cells(13).Value.ToString
-    '                cmd.Parameters.Add("@15", MySqlDbType.Text).Value = .Rows(i).Cells(14).Value.ToString
-    '                cmd.Parameters.Add("@16", MySqlDbType.Int64).Value = .Rows(i).Cells(15).Value.ToString
-    '                cmd.Parameters.Add("@17", MySqlDbType.Text).Value = S_Zreading
-    '                cmd.ExecuteNonQuery()
-    '            Next
-    '        End With
-    '    Catch ex As Exception
-    '        MsgBox(ex.ToString)
-    '    End Try
-    'End Sub
-
-    'Private Sub Button2_Click(sender As Object, e As EventArgs)
-    '    XZreadingInventory(S_Zreading)
-    'End Sub
 End Class

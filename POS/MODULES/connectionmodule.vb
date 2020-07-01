@@ -112,6 +112,7 @@ Module connectionModule
                     LocalConnectionString = ConnStr2
                     objReader.Close()
                     My.Settings.LocalConnectionPath = path2
+                    My.Settings.LocalConnectionString = ConnStr2
                     My.Settings.Save()
                 End If
             End If

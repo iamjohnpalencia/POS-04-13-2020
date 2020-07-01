@@ -57,24 +57,24 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property LocalConnectionPath() As String
-            Get
-                Return CType(Me("LocalConnectionPath"),String)
-            End Get
-            Set
-                Me("LocalConnectionPath") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property LocalConnectionString() As String
             Get
                 Return CType(Me("LocalConnectionString"),String)
             End Get
             Set
                 Me("LocalConnectionString") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property LocalConnectionPath() As String
+            Get
+                Return CType(Me("LocalConnectionPath"),String)
+            End Get
+            Set
+                Me("LocalConnectionPath") = value
             End Set
         End Property
     End Class

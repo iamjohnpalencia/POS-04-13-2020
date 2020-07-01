@@ -38,14 +38,18 @@ Public Class ManageProducts
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If DataGridViewClientProducts.SelectedRows.Count = 1 Then
-            DataGridViewClientProducts.Enabled = False
-            Label11.Text = "EDIT PRODUCT"
-            ButtonCustomProducts.Text = "Update"
-            ButtonCustomProducts.BackColor = Color.FromArgb(221, 114, 46)
-            PanelAddCustomProducts.Top = (Me.Height - PanelAddCustomProducts.Height) / 4
-            PanelAddCustomProducts.Left = (Me.Width - PanelAddCustomProducts.Width) / 3
-            PanelAddCustomProducts.Visible = True
-            fillcustomproducts(True)
+            If DataGridViewClientProducts.SelectedRows(0).Cells(7).Value.ToString = "Server" Then
+                MsgBox("Products from server is not editable")
+            Else
+                DataGridViewClientProducts.Enabled = False
+                Label11.Text = "EDIT PRODUCT"
+                ButtonCustomProducts.Text = "Update"
+                ButtonCustomProducts.BackColor = Color.FromArgb(221, 114, 46)
+                PanelAddCustomProducts.Top = (Me.Height - PanelAddCustomProducts.Height) / 4
+                PanelAddCustomProducts.Left = (Me.Width - PanelAddCustomProducts.Width) / 3
+                PanelAddCustomProducts.Visible = True
+                fillcustomproducts(True)
+            End If
         End If
     End Sub
     Private Sub OfdImage_FileOk(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk

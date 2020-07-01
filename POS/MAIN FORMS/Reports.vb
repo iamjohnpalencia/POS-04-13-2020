@@ -542,9 +542,6 @@ Public Class Reports
 
             'Select Case sum(CAST(log_description As Decimal(10, 2))) As CashierBal FROM `loc_system_logs` WHERE log_type In ('BG-1','BG-2','BG-3','BG-4')
             Dim DailySales = GrossSale - LessVat - TotalDiscount
-            MsgBox(GrossSale)
-            MsgBox(LessVat)
-            MsgBox(TotalDiscount)
             Dim NetSales = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' ")
             Dim CashInDrawer = DailySales + BeginningBalance - totalExpenses
             Dim CashTotal = CashInDrawer
@@ -643,14 +640,32 @@ Public Class Reports
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonZread.Click
         Try
-            Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If result = DialogResult.Yes Then
-                BackgroundWorker2.WorkerReportsProgress = True
-                BackgroundWorker2.WorkerSupportsCancellation = True
-                BackgroundWorker2.RunWorkerAsync()
-            Else
-                MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            'Fill dgv inv
+            GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
+            'Update inventory
+            MainInventorySub()
+            'Fill again
+            GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
+            'Print zread
+            XreadOrZread = "Z-READ"
+            ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
+            printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
+            PrintPreviewDialogXread.Document = printdocXread
+            PrintPreviewDialogXread.ShowDialog()
+            'Update Zread
+            S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
+            sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
+            cmd = New MySqlCommand(sql, LocalhostConn())
+            cmd.ExecuteNonQuery()
+            cmd.Dispose()
+            LocalhostConn.close
+            'Insert to local zread inv
+            XZreadingInventory(S_Zreading)
+            If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
+                ButtonZread.Enabled = False
+                Button6.Enabled = False
             End If
+            Button7.PerformClick()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -669,22 +684,6 @@ Public Class Reports
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub FillZreadInv()
-        Try
-            GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-    'Private Sub InsertZreadInv()
-    '    Try
-    '        S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
-    '        XZreadingInventory(S_Zreading)
-    '    Catch ex As Exception
-    '        MsgBox(ex.ToString)
-    '    End Try
-    'End Sub
-
     Private Sub XZreadingInventory(zreaddate)
         Try
             Dim Fields As String = "`inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `guid`, `created_at`, `crew_id`, `synced`, `server_date_modified`, `server_inventory_id`, `zreading`"
@@ -716,33 +715,10 @@ Public Class Reports
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub pdoc_PrintInventory(sender As Object, e As Printing.PrintPageEventArgs) Handles printdocInventory.PrintPage
-        Try
-            ReceiptHeader(sender, e)
 
-
-        Catch ex As Exception
-
-        End Try
-    End Sub
     Dim threadlist As List(Of Thread) = New List(Of Thread)
     Dim thread1 As Thread
-    Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        Try
-            For i = 0 To 100
-                If i = 0 Then
-                    thread1 = New Thread(AddressOf FillZreadInv)
-                    thread1.Start()
-                    threadlist.Add(thread1)
-                End If
-                For Each t In threadlist
-                    t.Join()
-                Next
-            Next
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
+
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Try
             XreadOrZread = "Z-READ"
@@ -768,48 +744,9 @@ Public Class Reports
         End Try
     End Sub
 
-    Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
-        Try
-            For i = 0 To 100
-                If i = 0 Then
-                    thread1 = New Thread(AddressOf FillZreadInv)
-                    thread1.Start()
-                    threadlist.Add(thread1)
-                End If
-                For Each t In threadlist
-                    t.Join()
-                Next
-            Next
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-
     Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
         Try
-            'Printing Zread report
-            '============================================================================
-            XreadOrZread = "Z-READ"
-            ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
-            printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 800)
-            PrintPreviewDialogXread.Document = printdocXread
-            PrintPreviewDialogXread.ShowDialog()
-            'Changing and saving zread date
-            '============================================================================
-            S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
-            sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
-            cmd = New MySqlCommand(sql, LocalhostConn())
-            cmd.ExecuteNonQuery()
-            cmd.Dispose()
-            LocalhostConn.close
-            'Checking of zread date
-            XZreadingInventory(S_Zreading)
-            '============================================================================
-            If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
-                ButtonZread.Enabled = False
-                Button6.Enabled = False
-            End If
-            Button7.PerformClick()
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -819,7 +756,7 @@ Public Class Reports
             table = "loc_zread_inventory I INNER JOIN loc_product_formula F ON F.formula_id = I.formula_id "
             fields = "I.product_ingredients as Ingredients, CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
             If searchdate = False Then
-                where = "zreading = date(CURRENT_DATE())"
+                where = "zreading = '" & S_Zreading & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewZreadInvData, errormessage:="", fields:=fields, successmessage:="", where:=where)
             Else
                 where = "zreading = '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "'"
@@ -831,5 +768,75 @@ Public Class Reports
     End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         FillDatagridZreadInv(True)
+    End Sub
+
+    Private Sub MainInventorySub()
+        Try
+            With DataGridViewZreadInventory
+                Dim MainInvId As Integer = 0
+                Dim SubInvId As Integer = 0
+
+
+                Dim MICommand As MySqlCommand
+                Dim MIDa As MySqlDataAdapter
+                Dim MiDt As DataTable
+
+                Dim MPrimary As Double = 0
+                Dim MSecondary As Double = 0
+                Dim MNoOfServings As Double = 0
+
+                Dim ZPrimary As Double = 0
+                Dim ZSecondary As Double = 0
+                Dim ZNoOfServings As Double = 0
+
+                Dim TPrimary As Double = 0
+                Dim TSecondary As Double = 0
+                Dim TNoOfServings As Double = 0
+
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    MainInvId = .Rows(i).Cells(16).Value
+                    SubInvId = .Rows(i).Cells(0).Value
+                    If MainInvId <> 0 Then
+                        Dim MIQuery As String = ""
+                        'Get main product stock
+                        MIQuery = "SELECT stock_primary, stock_secondary, stock_no_of_servings FROM loc_pos_inventory WHERE inventory_id = " & MainInvId
+                        MICommand = New MySqlCommand(MIQuery, LocalhostConn)
+                        MIDa = New MySqlDataAdapter(MICommand)
+                        MiDt = New DataTable
+                        MIDa.Fill(MiDt)
+                        For Each row As DataRow In MiDt.Rows
+                            MPrimary = row("stock_primary")
+                            MSecondary = row("stock_secondary")
+                            MNoOfServings = row("stock_no_of_servings")
+                        Next
+                        'Get sub product value : 5 stock_primary, 6 stock_secondary , 7 stock_no_of_servings
+                        ZPrimary = .Rows(i).Cells(5).Value
+                        ZSecondary = .Rows(i).Cells(6).Value
+                        ZNoOfServings = .Rows(i).Cells(7).Value
+                        'Total inventory : Main - Sub = Total zread inv
+
+                        TPrimary = MPrimary - Math.Abs(ZPrimary)
+                        TSecondary = MSecondary - Math.Abs(ZSecondary)
+                        TNoOfServings = MNoOfServings - Math.Abs(ZNoOfServings)
+                        'Update Main inventory 
+
+                        Dim MIQuery1 = "Update loc_pos_inventory SET stock_primary = @1, stock_secondary = @2, stock_no_of_servings = @3 WHERE inventory_id = " & MainInvId
+                        Dim MICommand1 = New MySqlCommand(MIQuery1, LocalhostConn)
+                        MICommand1.Parameters.Add("@1", MySqlDbType.Double).Value = TPrimary
+                        MICommand1.Parameters.Add("@2", MySqlDbType.Double).Value = TSecondary
+                        MICommand1.Parameters.Add("@3", MySqlDbType.Double).Value = TNoOfServings
+                        MICommand1.ExecuteNonQuery()
+                        'Update Sub inventory 
+                        Dim MIQuery2 = "Update loc_pos_inventory SET stock_primary = 0, stock_secondary = 0, stock_no_of_servings = 0 WHERE inventory_id = " & SubInvId
+                        Dim MICommand2 = New MySqlCommand(MIQuery2, LocalhostConn)
+                        MICommand2.ExecuteNonQuery()
+                        MICommand2.Dispose()
+                        LocalhostConn.close()
+                    End If
+                Next
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 End Class
