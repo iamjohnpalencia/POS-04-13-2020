@@ -3178,7 +3178,7 @@ Partial Class SettingsForm
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(346, 227)
+        Me.ProgressBar1.Location = New System.Drawing.Point(374, 244)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.Size = New System.Drawing.Size(287, 23)
         Me.ProgressBar1.TabIndex = 3
@@ -3186,7 +3186,7 @@ Partial Class SettingsForm
         'LabelCheckingUpdates
         '
         Me.LabelCheckingUpdates.AutoSize = True
-        Me.LabelCheckingUpdates.Location = New System.Drawing.Point(342, 165)
+        Me.LabelCheckingUpdates.Location = New System.Drawing.Point(370, 182)
         Me.LabelCheckingUpdates.Name = "LabelCheckingUpdates"
         Me.LabelCheckingUpdates.Size = New System.Drawing.Size(291, 19)
         Me.LabelCheckingUpdates.TabIndex = 2
@@ -3197,7 +3197,7 @@ Partial Class SettingsForm
         Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(346, 187)
+        Me.Button3.Location = New System.Drawing.Point(374, 204)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(287, 34)
         Me.Button3.TabIndex = 1
@@ -3208,7 +3208,7 @@ Partial Class SettingsForm
         '
         Me.Label47.AutoSize = True
         Me.Label47.Font = New System.Drawing.Font("Tahoma", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label47.Location = New System.Drawing.Point(340, 132)
+        Me.Label47.Location = New System.Drawing.Point(368, 149)
         Me.Label47.Name = "Label47"
         Me.Label47.Size = New System.Drawing.Size(157, 33)
         Me.Label47.TabIndex = 0

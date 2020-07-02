@@ -1,5 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class TakeOut
+    Dim BAGORSYRUP As Boolean = False
     Private Sub TakeOut_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         POS.Enabled = True
     End Sub
@@ -200,5 +201,189 @@ Public Class TakeOut
 
     Private Sub ButtonTakeOut_Click(sender As Object, e As EventArgs) Handles ButtonTakeOut.Click
         DInventory()
+    End Sub
+
+    Private Sub buttonpressedenter(ByVal btntext As String)
+        Try
+            If BAGORSYRUP = False Then
+                TextBoxWaffleBag.Select()
+                If Val(TextBoxWaffleBag.Text) <> 0 Then
+                    TextBoxWaffleBag.Text += btntext
+                Else
+                    TextBoxWaffleBag.Text = btntext
+                End If
+            Else
+                TextBoxSugarSyrup.Select()
+                If Val(TextBoxSugarSyrup.Text) <> 0 Then
+                    TextBoxSugarSyrup.Text += btntext
+                Else
+                    TextBoxSugarSyrup.Text = btntext
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub ButtonNo9_Click(sender As Object, e As EventArgs) Handles ButtonNo9.Click
+        If TextBoxWaffleBag.Focus = True Then
+            If TextBoxWaffleBag.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo9.Text)
+            End If
+        ElseIf TextBoxSugarSyrup.Focus = True Then
+            If TextBoxSugarSyrup.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo9.Text)
+            End If
+        End If
+    End Sub
+    Private Sub ButtonNo8_Click(sender As Object, e As EventArgs) Handles ButtonNo8.Click
+        If TextBoxWaffleBag.Focus = True Then
+            If TextBoxWaffleBag.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo8.Text)
+            End If
+        ElseIf TextBoxSugarSyrup.Focus = True Then
+            If TextBoxSugarSyrup.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo8.Text)
+            End If
+        End If
+    End Sub
+    Private Sub ButtonNo7_Click(sender As Object, e As EventArgs) Handles ButtonNo7.Click
+        If TextBoxWaffleBag.Focus = True Then
+            If TextBoxWaffleBag.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo7.Text)
+            End If
+        ElseIf TextBoxSugarSyrup.Focus = True Then
+            If TextBoxSugarSyrup.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo7.Text)
+            End If
+        End If
+    End Sub
+    Private Sub ButtonNo6_Click(sender As Object, e As EventArgs) Handles ButtonNo6.Click
+        If TextBoxWaffleBag.Focus = True Then
+            If TextBoxWaffleBag.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo6.Text)
+            End If
+        ElseIf TextBoxSugarSyrup.Focus = True Then
+            If TextBoxSugarSyrup.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo6.Text)
+            End If
+        End If
+    End Sub
+    Private Sub ButtonNo5_Click(sender As Object, e As EventArgs) Handles ButtonNo5.Click
+        If TextBoxWaffleBag.Focus = True Then
+            If TextBoxWaffleBag.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo5.Text)
+            End If
+        ElseIf TextBoxSugarSyrup.Focus = True Then
+            If TextBoxSugarSyrup.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo5.Text)
+            End If
+        End If
+    End Sub
+    Private Sub ButtonNo4_Click(sender As Object, e As EventArgs) Handles ButtonNo4.Click
+        If TextBoxWaffleBag.Focus = True Then
+            If TextBoxWaffleBag.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo4.Text)
+            End If
+        ElseIf TextBoxSugarSyrup.Focus = True Then
+            If TextBoxSugarSyrup.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo4.Text)
+            End If
+        End If
+    End Sub
+    Private Sub ButtonNo3_Click(sender As Object, e As EventArgs) Handles ButtonNo3.Click
+        If TextBoxWaffleBag.Focus = True Then
+            If TextBoxWaffleBag.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo3.Text)
+            End If
+        ElseIf TextBoxSugarSyrup.Focus = True Then
+            If TextBoxSugarSyrup.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo3.Text)
+            End If
+        End If
+    End Sub
+    Private Sub ButtonNo2_Click(sender As Object, e As EventArgs) Handles ButtonNo2.Click
+        If TextBoxWaffleBag.Focus = True Then
+            If TextBoxWaffleBag.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo2.Text)
+            End If
+        ElseIf TextBoxSugarSyrup.Focus = True Then
+            If TextBoxSugarSyrup.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo2.Text)
+            End If
+        End If
+    End Sub
+    Private Sub ButtonNo1_Click(sender As Object, e As EventArgs) Handles ButtonNo1.Click
+        If TextBoxWaffleBag.Focus = True Then
+            If TextBoxWaffleBag.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo1.Text)
+            End If
+        ElseIf TextBoxSugarSyrup.Focus = True Then
+            If TextBoxSugarSyrup.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo1.Text)
+            End If
+        End If
+    End Sub
+    Private Sub ButtonNo0_Click(sender As Object, e As EventArgs) Handles ButtonNo0.Click
+        If TextBoxWaffleBag.Focus = True Then
+            If TextBoxWaffleBag.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo0.Text)
+            End If
+        ElseIf TextBoxSugarSyrup.Focus = True Then
+            If TextBoxSugarSyrup.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo0.Text)
+            End If
+        End If
+    End Sub
+    Private Sub ButtonNo00_Click(sender As Object, e As EventArgs) Handles ButtonNo00.Click
+        If TextBoxWaffleBag.Focus = True Then
+            If TextBoxWaffleBag.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo00.Text)
+            End If
+        ElseIf TextBoxSugarSyrup.Focus = True Then
+            If TextBoxSugarSyrup.Text.Length > 6 Then
+            Else
+                buttonpressedenter(btntext:=ButtonNo00.Text)
+            End If
+        End If
+    End Sub
+
+    Private Sub TakeOut_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub TextBoxWaffleBag_Click(sender As Object, e As EventArgs) Handles TextBoxWaffleBag.Click
+        BAGORSYRUP = False
+    End Sub
+
+    Private Sub TextBoxSugarSyrup_Click(sender As Object, e As EventArgs) Handles TextBoxSugarSyrup.Click
+        BAGORSYRUP = True
+    End Sub
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        If BAGORSYRUP = False Then
+            TextBoxWaffleBag.Text = 0
+        Else
+            TextBoxSugarSyrup.Text = 0
+        End If
     End Sub
 End Class

@@ -1038,6 +1038,22 @@ Public Class SettingsForm
     End Sub
     Dim thread As Thread
     Dim THREADLISTUPDATE As List(Of Thread) = New List(Of Thread)
+
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
+        Try
+            If POS.POSISUPDATING = False Then
+                BackgroundWorker1.WorkerReportsProgress = True
+                BackgroundWorker1.WorkerSupportsCancellation = True
+                BackgroundWorker1.RunWorkerAsync()
+                Button3.Enabled = False
+                LabelCheckingUpdates.Text = "Checking for updates."
+            Else
+                MsgBox("Updates is still on process please wait.")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
             If ValidDatabaseLocalConnection Then
@@ -1073,6 +1089,7 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
         End Try
     End Sub
+
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Try
             DataGridView2.DataSource = FillDatagridProduct
@@ -1712,21 +1729,7 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
-        Try
-            If POS.POSISUPDATING = False Then
-                BackgroundWorker1.WorkerReportsProgress = True
-                BackgroundWorker1.WorkerSupportsCancellation = True
-                BackgroundWorker1.RunWorkerAsync()
-                Button3.Enabled = False
-                LabelCheckingUpdates.Text = "Checking for updates."
-            Else
-                MsgBox("Updates is still on process please wait.")
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
+
 #End Region
 #End Region
 End Class

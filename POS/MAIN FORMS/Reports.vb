@@ -633,7 +633,6 @@ Public Class Reports
             SimpleTextDisplay(sender, e, "=============", font, 0, 680)
             SimpleTextDisplay(sender, e, "Net Sales", font, 0, 690)
 
-
             Dim ADDONS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Add-Ons'")
             Dim BLENDS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Famous Blends'")
             Dim COMBO = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Combo'")
@@ -649,6 +648,8 @@ Public Class Reports
             RightDisplay(sender, e, 670, PREMIUM, font, 20, 0)
             RightDisplay(sender, e, 680, SAVORY, font, 20, 0)
             RightDisplay(sender, e, 690, SIMPERF, font, 20, 0)
+
+
 
             '============================================================================================================================
             'SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 600)
