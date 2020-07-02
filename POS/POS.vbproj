@@ -215,12 +215,6 @@
     <Compile Include="SUBFORMS\BegBalance.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SUBFORMS\ConfigurationSettings.Designer.vb">
-      <DependentUpon>ConfigurationSettings.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SUBFORMS\ConfigurationSettings.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="SUBFORMS\ExpenseImage.Designer.vb">
       <DependentUpon>ExpenseImage.vb</DependentUpon>
     </Compile>
@@ -231,6 +225,12 @@
       <DependentUpon>ReasonCat.vb</DependentUpon>
     </Compile>
     <Compile Include="SUBFORMS\ReasonCat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\TakeOut.Designer.vb">
+      <DependentUpon>TakeOut.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\TakeOut.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SUBFORMS\TransactionTypeInfo.Designer.vb">
@@ -430,14 +430,14 @@
     <EmbeddedResource Include="SUBFORMS\BegBalance.resx">
       <DependentUpon>BegBalance.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SUBFORMS\ConfigurationSettings.resx">
-      <DependentUpon>ConfigurationSettings.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\ExpenseImage.resx">
       <DependentUpon>ExpenseImage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\ReasonCat.resx">
       <DependentUpon>ReasonCat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\TakeOut.resx">
+      <DependentUpon>TakeOut.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\TransactionTypeInfo.resx">
       <DependentUpon>TransactionTypeInfo.vb</DependentUpon>

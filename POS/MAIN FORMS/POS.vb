@@ -33,6 +33,16 @@ Public Class POS
         listviewproductsshow(where:="Simply Perfect")
         selectmax(whatform:=1)
         DataGridViewOrders.Font = New Font("Tahoma", 11.25)
+        LoadCategory()
+        DataGridViewOrders.CellBorderStyle = DataGridViewCellBorderStyle.None
+        Enabled = False
+        BegBalance.Show()
+        BegBalance.TopMost = True
+        BackgroundWorker2.WorkerReportsProgress = True
+        BackgroundWorker2.WorkerSupportsCancellation = True
+        BackgroundWorker2.RunWorkerAsync()
+    End Sub
+    Private Sub LoadCategory()
         Try
             sql = "SELECT category_name FROM loc_admin_category WHERE status = 1"
             cmd = New MySqlCommand(sql, LocalhostConn())
@@ -50,7 +60,7 @@ Public Class POS
                         .TextImageRelation = TextImageRelation.ImageBeforeText
                         .TextAlign = ContentAlignment.MiddleCenter
                         .ForeColor = Color.White
-                        .Font = New Font("Tahoma", 11, FontStyle.Bold)
+                        .Font = New Font("Tahoma", 9, FontStyle.Bold)
                         .FlatStyle = FlatStyle.Flat
                         .FlatAppearance.BorderSize = 0
                         .Location = New Point(Location_control.X, Location_control.Y)
@@ -66,13 +76,6 @@ Public Class POS
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-        DataGridViewOrders.CellBorderStyle = DataGridViewCellBorderStyle.None
-        Enabled = False
-        BegBalance.Show()
-        BegBalance.TopMost = True
-        BackgroundWorker2.WorkerReportsProgress = True
-        BackgroundWorker2.WorkerSupportsCancellation = True
-        BackgroundWorker2.RunWorkerAsync()
     End Sub
     Private Sub new_Button_click(ByVal sender As Object, ByVal e As EventArgs)
         'NEW BUTTON ON CLICK EVENT 
@@ -169,7 +172,6 @@ Public Class POS
                                         End If
                                     End If
                                 End If
-
                             Next
                         Else
                             MsgBox("Select item first", vbInformation)
@@ -356,8 +358,8 @@ Public Class POS
             End If
             If DataGridViewOrders.Rows.Count > 0 Then
                 ButtonPayMent.Enabled = True
-                Buttonholdoder.Enabled = True
                 ButtonPendingOrders.Enabled = False
+                Buttonholdoder.Enabled = True
             Else
                 DISABLESERVEROTHERSPRODUCT = False
                 Panel3.Enabled = True
@@ -433,20 +435,9 @@ Public Class POS
         End If
     End Sub
     Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim message = MessageBox.Show("Do you want to add Extra packaging?", "Extra packaging", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-        If message = DialogResult.Yes Then
-            Try
-                table = "loc_pos_inventory"
-                fields = "stock_primary = stock_primary - 1, stock_secondary = stock_secondary - 1"
-                where = "product_ingredients = 'Extra Packaging'"
-                GLOBAL_FUNCTION_UPDATE(table, fields, where)
-                SystemLogType = "PACKAGING"
-                SystemLogDesc = "Crew : " & ClientCrewID
-                GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-            Catch ex As Exception
-                MsgBox(ex.ToString)
-            End Try
-        End If
+        Enabled = False
+        TakeOut.Show()
+
     End Sub
 #Region "Button Functions"
     Private Sub POS_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
@@ -723,7 +714,7 @@ Public Class POS
                     Dim ServingValue As Double = 0
                     Dim TotalPrimary As Double = 0
                     TotalQuantity = .Rows(i).Cells(2).Value
-                    TotalServingValue = .Rows(i).Cells(0).Value
+                    TotalServingValue = Double.Parse(.Rows(i).Cells(0).Value.ToString)
                     Query = "SELECT `secondary_value` FROM `loc_product_formula` WHERE formula_id = " & .Rows(i).Cells(1).Value
                     SqlCommand = New MySqlCommand(Query, LocalhostConn)
                     SqlAdapter = New MySqlDataAdapter(SqlCommand)
@@ -741,7 +732,7 @@ Public Class POS
                         stock_secondary = row("stock_secondary")
                     Next
                     Secondary = stock_secondary - TotalServingValue
-                    ServingValue = Secondary / .Rows(i).Cells(5).Value
+                    ServingValue = Secondary / Double.Parse(.Rows(i).Cells(5).Value.ToString)
                     TotalPrimary = Secondary / secondary_value
                     Query = "UPDATE loc_pos_inventory SET `stock_secondary` = " & Secondary & " , `stock_no_of_servings` = " & ServingValue & " , `stock_primary` = " & TotalPrimary & " WHERE `formula_id` = " & .Rows(i).Cells(1).Value
                     SqlCommand = New MySqlCommand(Query, LocalhostConn())
@@ -791,7 +782,7 @@ Public Class POS
             For i As Integer = 0 To DataGridViewOrders.Rows.Count - 1 Step +1
                 Dim totalcostofgoods As Decimal
                 Dim table As String = "loc_daily_transaction_details"
-                Dim fields As String = "(`product_id`,`product_sku`,`product_name`,`quantity`,`price`,`total`,`crew_id`,`transaction_number`,`active`,`created_at`,`guid`,`store_id`,`synced`,`total_cost_of_goods`,`product_category`,`zreading`)"
+                Dim fields As String = "(`product_id`,`product_sku`,`product_name`,`quantity`,`price`,`total`,`crew_id`,`transaction_number`,`active`,`created_at`,`guid`,`store_id`,`synced`,`total_cost_of_goods`,`product_category`,`zreading`,`transaction_type`)"
                 For a As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
                     If DataGridViewInv.Rows(a).Cells(4).Value = DataGridViewOrders.Rows(i).Cells(0).Value Then
                         totalcostofgoods += DataGridViewInv.Rows(a).Cells(6).Value
@@ -812,7 +803,8 @@ Public Class POS
                             , 'Unsynced'
                             , " & totalcostofgoods & "
                             , '" & DataGridViewOrders.Rows(i).Cells(7).Value & "'
-                            , '" & S_Zreading & "')"
+                            , '" & S_Zreading & "'
+                            , '" & TRANSACTIONMODE & "')"
                 GLOBAL_INSERT_FUNCTION(table, fields, value)
                 totalcostofgoods = 0
             Next
@@ -1038,7 +1030,7 @@ Public Class POS
                     SimpleTextDisplay(sender, e, CouponName & "(" & DISCOUNTTYPE & ")", font, 0, a)
                     SimpleTextDisplay(sender, e, CouponDesc, font, 0, a + 10)
                     a += 40 + CouponLine
-                    RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & CouponTotal, font)
+                    RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & CouponTotal, font, 0, 0)
                 Else
                     a += 120
                 End If
@@ -1049,16 +1041,16 @@ Public Class POS
                     Dim cash = String.Format("{0:n2}", aNumber)
                     Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
                     Dim change = String.Format("{0:n2}", aNumber1)
-                    RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & totalDisplay, font2)
-                    RightToLeftDisplay(sender, e, a + 15, "CASH:", "P" & cash, font1)
-                    RightToLeftDisplay(sender, e, a + 25, "CHANGE:", "P" & change, font1)
+                    RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & totalDisplay, font2, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 15, "CASH:", "P" & cash, font1, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 25, "CHANGE:", "P" & change, font1, 0, 0)
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 23)
-                    RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & VATABLESALES, font)
-                    RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & "0.00", font)
-                    RightToLeftDisplay(sender, e, a + 72, "     Zero Rated Sales", "    " & "0.00", font)
-                    RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & VAT12PERCENT, font)
-                    RightToLeftDisplay(sender, e, a + 92, "     Less Vat", "    " & "0.00" & "-", font)
-                    RightToLeftDisplay(sender, e, a + 102, "     Total", "    " & totalDisplay, font)
+                    RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & VATABLESALES, font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & "0.00", font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 72, "     Zero Rated Sales", "    " & "0.00", font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & VAT12PERCENT, font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 92, "     Less Vat", "    " & "0.00" & "-", font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 102, "     Total", "    " & totalDisplay, font, 0, 0)
                     a += 4
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 92)
                     a += 1
@@ -1079,25 +1071,25 @@ Public Class POS
                     Dim aNumber As Double = TEXTBOXMONEYVALUE
                     Dim cash = String.Format("{0:n2}", aNumber)
                     Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-                    RightToLeftDisplay(sender, e, a, "SUB TOTAL:", "P" & TextBoxSUBTOTAL.Text, font1)
-                    RightToLeftDisplay(sender, e, a + 10, "DISCOUNT:", TOTALDISCOUNT & "-", font1)
-                    RightToLeftDisplay(sender, e, a + 20, "AMOUNT DUE:", "P" & TOTALAMOUNTDUE, font2)
-                    RightToLeftDisplay(sender, e, a + 30, "CASH:", "P" & cash, font1)
-                    RightToLeftDisplay(sender, e, a + 40, "CHANGE:", "P" & change, font1)
+                    RightToLeftDisplay(sender, e, a, "SUB TOTAL:", "P" & TextBoxSUBTOTAL.Text, font1, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 10, "DISCOUNT:", TOTALDISCOUNT & "-", font1, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 20, "AMOUNT DUE:", "P" & TOTALAMOUNTDUE, font2, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 30, "CASH:", "P" & cash, font1, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 40, "CHANGE:", "P" & change, font1, 0, 0)
                     If S_ZeroRated = "0" Then
                         SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 37)
-                        RightToLeftDisplay(sender, e, a + 65, "     Vatable", "    " & VATABLESALES, font)
+                        RightToLeftDisplay(sender, e, a + 65, "     Vatable", "    " & VATABLESALES, font, 0, 0)
                         If DISCOUNTTYPE = "Percentage" Then
-                            RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & VATEXEMPTSALES, font)
+                            RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & VATEXEMPTSALES, font, 0, 0)
                         Else
-                            RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & "0.00", font)
+                            RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & "0.00", font, 0, 0)
                         End If
-                        RightToLeftDisplay(sender, e, a + 85, "     Zero Rated Sales", "    " & "0.00", font)
-                        RightToLeftDisplay(sender, e, a + 95, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & VAT12PERCENT, font)
+                        RightToLeftDisplay(sender, e, a + 85, "     Zero Rated Sales", "    " & "0.00", font, 0, 0)
+                        RightToLeftDisplay(sender, e, a + 95, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & VAT12PERCENT, font, 0, 0)
                         If DISCOUNTTYPE = "Percentage" Then
-                            RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & LESSVAT & "-", font)
+                            RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & LESSVAT & "-", font, 0, 0)
                         Else
-                            RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & "0.00" & "-", font)
+                            RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & "0.00" & "-", font, 0, 0)
                         End If
 
                         SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 101)
@@ -1117,11 +1109,11 @@ Public Class POS
                         ReceiptFooter(sender, e, a)
                     Else
                         SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 47)
-                        RightToLeftDisplay(sender, e, a + 72, "     Vatable", "    " & "0.00", font)
-                        RightToLeftDisplay(sender, e, a + 82, "     Vat Exempt Sales", "    " & Val(TextBoxGRANDTOTAL.Text), font)
-                        RightToLeftDisplay(sender, e, a + 92, "     Zero Rated Sales", "    " & "0.00", font)
-                        RightToLeftDisplay(sender, e, a + 102, "    VAT", "    " & "0.00", font)
-                        RightToLeftDisplay(sender, e, a + 112, "     Less Vat", "    " & LESSVAT & "-", font)
+                        RightToLeftDisplay(sender, e, a + 72, "     Vatable", "    " & "0.00", font, 0, 0)
+                        RightToLeftDisplay(sender, e, a + 82, "     Vat Exempt Sales", "    " & Val(TextBoxGRANDTOTAL.Text), font, 0, 0)
+                        RightToLeftDisplay(sender, e, a + 92, "     Zero Rated Sales", "    " & "0.00", font, 0, 0)
+                        RightToLeftDisplay(sender, e, a + 102, "    VAT", "    " & "0.00", font, 0, 0)
+                        RightToLeftDisplay(sender, e, a + 112, "     Less Vat", "    " & LESSVAT & "-", font, 0, 0)
                         SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 102)
                         SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 110)
                         SimpleTextDisplay(sender, e, "Total Item(s): " & Qty, font, 0, a + 120)
@@ -1269,7 +1261,6 @@ Public Class POS
             Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
             Dim DtCheck As DataTable = New DataTable
             DaCheck.Fill(DtCheck)
-
             Dim cmdserver As MySqlCommand
             Dim daserver As MySqlDataAdapter
             Dim dtserver As DataTable
@@ -1281,7 +1272,6 @@ Public Class POS
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                     DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11).ToString, dtserver(i)(2).ToString)
-
                 Next
             Else
                 Dim Ids As String = ""
@@ -1300,8 +1290,7 @@ Public Class POS
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                         If LoadProductLocal(i)(0) <> dtserver(i)(11).ToString Then
-                            DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11).ToString, dtserver(i)(2).ToString)
-
+                            DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11).ToString, dtserver(i)(12).ToString)
                         End If
                     Next
                     Dim sql2 = "SELECT `product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `inventory_id` FROM admin_products_org WHERE product_id NOT IN (" & Ids & ")"
@@ -1311,18 +1300,162 @@ Public Class POS
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                         If LoadProductLocal(i)(0) <> dtserver(i)(11).ToString Then
-                            DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11).ToString, dtserver(i)(2).ToString)
-
+                            DataGridView2.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11).ToString, dtserver(i)(12).ToString)
                         End If
                     Next
                 End If
             End If
-
-
         Catch ex As Exception
-
             BackgroundWorker2.CancelAsync()
             'If table doesnt have data
+        End Try
+    End Sub
+    Dim FillDatagridProduct As DataTable
+    Private Sub GetProducts()
+        Try
+            FillDatagridProduct = New DataTable
+            FillDatagridProduct.Columns.Add("product_id")
+            FillDatagridProduct.Columns.Add("product_sku")
+            FillDatagridProduct.Columns.Add("product_name")
+            FillDatagridProduct.Columns.Add("formula_id")
+            FillDatagridProduct.Columns.Add("product_barcode")
+            FillDatagridProduct.Columns.Add("product_category")
+            FillDatagridProduct.Columns.Add("product_price")
+            FillDatagridProduct.Columns.Add("product_desc")
+            FillDatagridProduct.Columns.Add("product_image")
+            FillDatagridProduct.Columns.Add("product_status")
+            FillDatagridProduct.Columns.Add("origin")
+            FillDatagridProduct.Columns.Add("date_modified")
+            FillDatagridProduct.Columns.Add("inventory_id")
+
+            Dim Query = "SELECT * FROM loc_admin_products"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
+            Dim DtCheck As DataTable = New DataTable
+            DaCheck.Fill(DtCheck)
+            If DtCheck.Rows.Count < 1 Then
+                GetAllProducts()
+            Else
+                Dim DtCount As DataTable
+                Dim Connection As MySqlConnection = ServerCloudCon()
+                Dim SqlCount = "SELECT COUNT(product_id) FROM admin_products_org"
+                Dim CmdCount As MySqlCommand = New MySqlCommand(SqlCount, Connection)
+                Dim result As Integer = CmdCount.ExecuteScalar
+                Dim DaCount As MySqlDataAdapter
+                Dim FillDt As DataTable = New DataTable
+
+                For a = 1 To result
+                    Dim Query1 As String = "SELECT date_modified FROM loc_admin_products WHERE product_id = " & a
+                    Dim cmd As MySqlCommand = New MySqlCommand(Query1, LocalhostConn)
+                    DaCount = New MySqlDataAdapter(cmd)
+                    FillDt = New DataTable
+                    DaCount.Fill(FillDt)
+                    Dim Prod As DataRow = FillDatagridProduct.NewRow
+                    If FillDt.Rows.Count > 0 Then
+                        'Exist then check for update
+                        Query1 = "SELECT * FROM admin_products_org WHERE product_id = " & a
+                        cmd = New MySqlCommand(Query1, Connection)
+                        DaCount = New MySqlDataAdapter(cmd)
+                        DtCount = New DataTable
+                        DaCount.Fill(DtCount)
+                        If FillDt(0)(0).ToString <> DtCount(0)(11) Then
+                            Prod("product_id") = DtCount(0)(0)
+                            Prod("product_sku") = DtCount(0)(1)
+                            Prod("product_name") = DtCount(0)(2)
+                            Prod("formula_id") = DtCount(0)(3)
+                            Prod("product_barcode") = DtCount(0)(4)
+                            Prod("product_category") = DtCount(0)(5)
+                            Prod("product_price") = DtCount(0)(6)
+                            Prod("product_desc") = DtCount(0)(7)
+                            Prod("product_image") = DtCount(0)(8)
+                            Prod("product_status") = DtCount(0)(9)
+                            Prod("origin") = DtCount(0)(10)
+                            Prod("date_modified") = DtCount(0)(11)
+                            Prod("inventory_id") = DtCount(0)(12)
+                            FillDatagridProduct.Rows.Add(Prod)
+                        End If
+                    Else
+                        'Insert new product
+                        Query1 = "SELECT * FROM admin_products_org WHERE product_id = " & a
+                        cmd = New MySqlCommand(Query1, Connection)
+                        DaCount = New MySqlDataAdapter(cmd)
+                        DtCount = New DataTable
+                        DaCount.Fill(DtCount)
+                        Prod("product_id") = DtCount(0)(0)
+                        Prod("product_sku") = DtCount(0)(1)
+                        Prod("product_name") = DtCount(0)(2)
+                        Prod("formula_id") = DtCount(0)(3)
+                        Prod("product_barcode") = DtCount(0)(4)
+                        Prod("product_category") = DtCount(0)(5)
+                        Prod("product_price") = DtCount(0)(6)
+                        Prod("product_desc") = DtCount(0)(7)
+                        Prod("product_image") = DtCount(0)(8)
+                        Prod("product_status") = DtCount(0)(9)
+                        Prod("origin") = DtCount(0)(10)
+                        Prod("date_modified") = DtCount(0)(11)
+                        Prod("inventory_id") = DtCount(0)(12)
+                        FillDatagridProduct.Rows.Add(Prod)
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub GetAllProducts()
+        Try
+            Try
+                Dim DatatableProducts As DataTable
+                Dim Connection As MySqlConnection = ServerCloudCon()
+                Dim SqlCount = "SELECT COUNT(product_id) FROM admin_products_org"
+                Dim CmdCount As MySqlCommand = New MySqlCommand(SqlCount, Connection)
+                Dim result As Integer = CmdCount.ExecuteScalar
+
+                DatatableProducts = New DataTable
+                DatatableProducts.Columns.Add("product_id")
+                DatatableProducts.Columns.Add("product_sku")
+                DatatableProducts.Columns.Add("product_name")
+                DatatableProducts.Columns.Add("formula_id")
+                DatatableProducts.Columns.Add("product_barcode")
+                DatatableProducts.Columns.Add("product_category")
+                DatatableProducts.Columns.Add("product_price")
+                DatatableProducts.Columns.Add("product_desc")
+                DatatableProducts.Columns.Add("product_image")
+                DatatableProducts.Columns.Add("product_status")
+                DatatableProducts.Columns.Add("origin")
+                DatatableProducts.Columns.Add("date_modified")
+                DatatableProducts.Columns.Add("inventory_id")
+                Dim DaCount As MySqlDataAdapter
+                Dim FillDt As DataTable = New DataTable
+                For a = 1 To result
+                    Dim Query As String = "SELECT * FROM admin_products_org WHERE product_id = " & a
+                    cmd = New MySqlCommand(Query, Connection)
+                    DaCount = New MySqlDataAdapter(cmd)
+                    FillDt = New DataTable
+                    DaCount.Fill(FillDt)
+                    For i As Integer = 0 To FillDt.Rows.Count - 1 Step +1
+                        Dim Prod As DataRow = DatatableProducts.NewRow
+                        Prod("product_id") = FillDt(i)(0)
+                        Prod("product_sku") = FillDt(i)(1)
+                        Prod("product_name") = FillDt(i)(2)
+                        Prod("formula_id") = FillDt(i)(3)
+                        Prod("product_barcode") = FillDt(i)(4)
+                        Prod("product_category") = FillDt(i)(5)
+                        Prod("product_price") = FillDt(i)(6)
+                        Prod("product_desc") = FillDt(i)(7)
+                        Prod("product_image") = FillDt(i)(8)
+                        Prod("product_status") = FillDt(i)(9)
+                        Prod("origin") = FillDt(i)(10)
+                        Prod("date_modified") = FillDt(i)(11)
+                        Prod("inventory_id") = FillDt(i)(12)
+                        DatatableProducts.Rows.Add(Prod)
+                    Next
+                Next
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+            End Try
+        Catch ex As Exception
+            MsgBox(ex.ToString)
         End Try
     End Sub
 
@@ -1495,6 +1628,7 @@ Public Class POS
             'If table doesnt have data
         End Try
     End Sub
+    Public POSISUPDATING As Boolean = False
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
         Try
             If ValidDatabaseLocalConnection Then
@@ -1507,10 +1641,14 @@ Public Class POS
                 If CheckForInternetConnection() = True Then
                     If ServerCloudCon.state = ConnectionState.Open Then
                         If UPDATEPRODUCTONLY = False Then
+                            POSISUPDATING = True
                             thread = New Thread(AddressOf Function1)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
-                            thread = New Thread(AddressOf Function2)
+                            'thread = New Thread(AddressOf Function2)
+                            'thread.Start()
+                            'THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf GetProducts)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
                             thread = New Thread(AddressOf Function3)
@@ -1520,7 +1658,10 @@ Public Class POS
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
                         Else
-                            thread = New Thread(AddressOf Function2)
+                            'thread = New Thread(AddressOf Function2)
+                            'thread.Start()
+                            'THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf GetProducts)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
                         End If
@@ -1540,8 +1681,10 @@ Public Class POS
     End Sub
     Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
         Try
+            DataGridView2.DataSource = FillDatagridProduct
             Button3.Enabled = True
             UPDATEPRODUCTONLY = False
+            POSISUPDATING = False
             If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Then
                 Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 If updatemessage = DialogResult.Yes Then
@@ -1551,6 +1694,7 @@ Public Class POS
                     InstallUpdatesProducts()
                     listviewproductsshow(where:="Simply Perfect")
                     LabelCheckingUpdates.Text = "Update Completed."
+
                 Else
                     LabelCheckingUpdates.Text = "Completed."
                 End If
@@ -1733,6 +1877,7 @@ Public Class POS
                         cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.Parameters.Add("@12", MySqlDbType.Text).Value = .Rows(i).Cells(12).Value.ToString()
+
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientGuid
                         cmdlocal.Parameters.Add("@14", MySqlDbType.Int64).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
@@ -1754,6 +1899,7 @@ Public Class POS
                         cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.Parameters.Add("@12", MySqlDbType.Text).Value = .Rows(i).Cells(12).Value.ToString()
+
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientGuid
                         cmdlocal.Parameters.Add("@14", MySqlDbType.Int64).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"

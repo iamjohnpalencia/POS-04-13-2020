@@ -164,6 +164,7 @@ Module RetrieveModule
                     End With
                     .PanelProducts.Controls.Add(new_Button_product)
                     AddHandler new_Button_product.Click, AddressOf new_product_button_click
+
                 Next
             End With
         Catch ex As Exception

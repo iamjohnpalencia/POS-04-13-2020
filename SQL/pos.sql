@@ -223,7 +223,8 @@ CREATE TABLE `loc_daily_transaction_details` (
   `total_cost_of_goods` decimal(11,2) NOT NULL,
   `product_category` varchar(255) NOT NULL,
   `zreading` text NOT NULL,
-  `synced` varchar(255) NOT NULL
+  `synced` varchar(255) NOT NULL,
+  `transaction_type` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

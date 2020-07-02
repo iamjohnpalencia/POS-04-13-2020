@@ -245,9 +245,6 @@ Module publicfunctions
                                 Else
                                     .DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, .TextBoxQTY.Text, .TextBoxPRICE.Text, .TextBoxQTY.Text * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString, .DataGridViewOrders.SelectedRows(0).Cells(9).Value)
                                 End If
-                                .ButtonPayMent.Enabled = True
-                                .Buttonholdoder.Enabled = True
-                                .ButtonPendingOrders.Enabled = False
                             End If
                         Else
                             MsgBox("Select product first")
@@ -359,12 +356,17 @@ Module publicfunctions
                                 End If
                             End If
                         Next
-                        .ButtonPayMent.Enabled = True
-                        .Buttonholdoder.Enabled = True
-                        .ButtonPendingOrders.Enabled = False
                     End If
                 End If
-
+                If .DataGridViewOrders.Rows.Count > 0 Then
+                    .ButtonPayMent.Enabled = True
+                    .Buttonholdoder.Enabled = True
+                    .ButtonPendingOrders.Enabled = False
+                Else
+                    .ButtonPayMent.Enabled = False
+                    .Buttonholdoder.Enabled = False
+                    .ButtonPendingOrders.Enabled = True
+                End If
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -572,10 +574,15 @@ Module publicfunctions
         End With
         Return ReturnRowIndex
     End Function
-    Public Sub RightToLeftDisplay(sender As Object, e As PrintPageEventArgs, position As Integer, lefttext As String, righttext As String, myfont As Font)
+    Public Sub RightToLeftDisplay(sender As Object, e As PrintPageEventArgs, position As Integer, lefttext As String, righttext As String, myfont As Font, wth As Single, frompoint As Single)
         Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-        Dim rect3 As RectangleF = New RectangleF(10.0F, position, 173.0F, 100.0F)
+        Dim rect3 As RectangleF = New RectangleF(10.0F + frompoint, position, 173.0F + wth, 100.0F)
         e.Graphics.DrawString(lefttext, myfont, Brushes.Black, rect3)
+        e.Graphics.DrawString(righttext, myfont, Brushes.Black, rect3, format)
+    End Sub
+    Public Sub RightDisplay(sender As Object, e As PrintPageEventArgs, position As Integer, righttext As String, myfont As Font, wth As Single, frompoint As Single)
+        Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
+        Dim rect3 As RectangleF = New RectangleF(10.0F + frompoint, position, 120.0F + wth, 100.0F)
         e.Graphics.DrawString(righttext, myfont, Brushes.Black, rect3, format)
     End Sub
     Public Sub CenterTextDisplay(sender As Object, e As PrintPageEventArgs, myText As String, myFont As Font, myPosition As Integer)
