@@ -630,6 +630,8 @@ Public Class Reports
             SimpleTextDisplay(sender, e, "PREMIUM LINE", font, 0, 650)
             SimpleTextDisplay(sender, e, "SAVORY", font, 0, 660)
             SimpleTextDisplay(sender, e, "SIMPY PERFECT", font, 0, 670)
+            SimpleTextDisplay(sender, e, "=============", font, 0, 680)
+            SimpleTextDisplay(sender, e, "Net Sales", font, 0, 690)
 
 
             Dim ADDONS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Add-Ons'")

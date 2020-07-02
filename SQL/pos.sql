@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2020 at 08:48 AM
+-- Generation Time: Jul 03, 2020 at 12:20 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -46,6 +46,7 @@ CREATE TABLE `admin_masterlist` (
 --
 -- Dumping data for table `admin_masterlist`
 --
+
 
 -- --------------------------------------------------------
 
@@ -157,8 +158,6 @@ CREATE TABLE `loc_coupon_data` (
 -- Dumping data for table `loc_coupon_data`
 --
 
-INSERT INTO `loc_coupon_data` (`id`, `transaction_number`, `coupon_name`, `coupon_desc`, `coupon_type`, `coupon_line`, `coupon_total`) VALUES
-(1, '20280608082120', '', '', 'N/A', '10', '0');
 
 -- --------------------------------------------------------
 
@@ -198,7 +197,6 @@ CREATE TABLE `loc_daily_transaction` (
 -- Dumping data for table `loc_daily_transaction`
 --
 
-
 -- --------------------------------------------------------
 
 --
@@ -223,8 +221,8 @@ CREATE TABLE `loc_daily_transaction_details` (
   `total_cost_of_goods` decimal(11,2) NOT NULL,
   `product_category` varchar(255) NOT NULL,
   `zreading` text NOT NULL,
-  `synced` varchar(255) NOT NULL,
-  `transaction_type` text NOT NULL
+  `transaction_type` text NOT NULL,
+  `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -410,6 +408,7 @@ CREATE TABLE `loc_inv_temp_data` (
 -- Dumping data for table `loc_inv_temp_data`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -488,12 +487,14 @@ CREATE TABLE `loc_pos_inventory` (
   `crew_id` varchar(50) NOT NULL,
   `synced` varchar(255) NOT NULL,
   `server_date_modified` text NOT NULL,
-  `server_inventory_id` int(11) NOT NULL
+  `server_inventory_id` int(11) NOT NULL,
+  `main_inventory_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_pos_inventory`
 --
+
 
 -- --------------------------------------------------------
 
@@ -526,6 +527,7 @@ CREATE TABLE `loc_product_formula` (
 --
 -- Dumping data for table `loc_product_formula`
 --
+
 
 -- --------------------------------------------------------
 
@@ -583,7 +585,6 @@ CREATE TABLE `loc_settings` (
 --
 -- Dumping data for table `loc_settings`
 --
-
 
 -- --------------------------------------------------------
 
@@ -661,11 +662,6 @@ CREATE TABLE `loc_transfer_data` (
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `loc_transfer_data`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -708,7 +704,6 @@ CREATE TABLE `loc_users` (
 --
 -- Dumping data for table `loc_users`
 --
-
 
 -- --------------------------------------------------------
 
@@ -1193,7 +1188,7 @@ ALTER TABLE `loc_transaction_mode_details`
 -- AUTO_INCREMENT for table `loc_transfer_data`
 --
 ALTER TABLE `loc_transfer_data`
-  MODIFY `transfer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `transfer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `loc_update_logs`
