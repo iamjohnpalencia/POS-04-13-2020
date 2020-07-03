@@ -424,16 +424,15 @@ Public Class POS
         CouponApplied = False
     End Sub
     Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles ButtonTransactionMode.Click
-        'If ButtonTransactionMode.Text = "Transaction Type" Then
-        '    Enabled = False
-        '    TransactionType.Show()
-        'Else
-        '    ButtonCancel.PerformClick()
-        '    ButtonPayMent.Text = "Checkout"
-        '    ButtonTransactionMode.Text = "Transaction Type"
-        '    Panel3.Enabled = True
-        'End If
-        InstallUpdatesFormula()
+        If ButtonTransactionMode.Text = "Transaction Type" Then
+            Enabled = False
+            TransactionType.Show()
+        Else
+            ButtonCancel.PerformClick()
+            ButtonPayMent.Text = "Checkout"
+            ButtonTransactionMode.Text = "Transaction Type"
+            Panel3.Enabled = True
+        End If
     End Sub
     Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
         Enabled = False
