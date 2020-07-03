@@ -59,6 +59,46 @@ Public Class SettingsForm
             End If
         End If
     End Sub
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Try
+            If POS.POSISUPDATING = False Then
+                Timer1.Start()
+                DataGridView5.Rows.Clear()
+                Dim Products = count("product_id", "loc_admin_products")
+                Dim Category = count("category_id", "loc_admin_category")
+                Dim Inventory = count("inventory_id", "loc_pos_inventory")
+                Dim Formula = count("formula_id", "loc_product_formula")
+                DataGridView5.Rows.Add(Products)
+                DataGridView5.Rows.Add(Category)
+                DataGridView5.Rows.Add(Inventory)
+                DataGridView5.Rows.Add(Formula)
+                LabelCountAllRows.Text = SumOfColumnsToInt(DataGridView5, 0)
+                LabelCheckingUpdates.Text = "Checking for updates."
+                ProgressBar1.Maximum = Val(LabelCountAllRows.Text)
+                ProgressBar1.Value = 0
+                BackgroundWorker1.WorkerReportsProgress = True
+                BackgroundWorker1.WorkerSupportsCancellation = True
+                BackgroundWorker1.RunWorkerAsync()
+                Button4.Enabled = False
+            Else
+                MsgBox("Updates is still on process please wait.")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        If LabelCheckingUpdates.Text = "Checking for updates." Then
+            LabelCheckingUpdates.Text = "Checking for updates.."
+        ElseIf LabelCheckingUpdates.Text = "Checking for updates.." Then
+            LabelCheckingUpdates.Text = "Checking for updates..."
+        ElseIf LabelCheckingUpdates.Text = "Checking for updates..." Then
+            LabelCheckingUpdates.Text = "Checking for updates"
+        ElseIf LabelCheckingUpdates.Text = "Checking for updates" Then
+            LabelCheckingUpdates.Text = "Checking for updates."
+        End If
+    End Sub
 #Region "Partners"
 
     Public Sub LoadPartners()
@@ -186,7 +226,6 @@ Public Class SettingsForm
     End Sub
 #End Region
 #Region "Returns"
-
     Private Sub rowindex()
         LabelITEMRET.Text = DataGridViewITEMRETURN1.CurrentCell.RowIndex
     End Sub
@@ -204,7 +243,6 @@ Public Class SettingsForm
                     FlowLayoutPanel1.Controls.Clear()
                     GLOBAL_SELECT_ALL_FUNCTION(table:="`loc_daily_transaction` WHERE `transaction_number` Like '%" & TextBoxSearchTranNumber.Text & "%'  AND date(created_at) = '" & S_Zreading & "' AND `active` = 1 ORDER BY `transaction_id` DESC", datagrid:=DataGridViewITEMRETURN1, fields:=fields)
                 End If
-
             End If
             With DataGridViewITEMRETURN1
                 .Columns(0).HeaderText = "Reference #"
@@ -1106,6 +1144,7 @@ Public Class SettingsForm
             End If
             MsgBox("Complete")
             My.Settings.Save()
+            Timer1.Stop()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1300,26 +1339,26 @@ Public Class SettingsForm
     Private Sub GetAllProducts()
         Try
             Try
-                Dim DatatableProducts As DataTable
+                'Dim DatatableProducts As DataTable
                 Dim Connection As MySqlConnection = ServerCloudCon()
                 Dim SqlCount = "SELECT COUNT(product_id) FROM admin_products_org"
                 Dim CmdCount As MySqlCommand = New MySqlCommand(SqlCount, Connection)
                 Dim result As Integer = CmdCount.ExecuteScalar
 
-                DatatableProducts = New DataTable
-                DatatableProducts.Columns.Add("product_id")
-                DatatableProducts.Columns.Add("product_sku")
-                DatatableProducts.Columns.Add("product_name")
-                DatatableProducts.Columns.Add("formula_id")
-                DatatableProducts.Columns.Add("product_barcode")
-                DatatableProducts.Columns.Add("product_category")
-                DatatableProducts.Columns.Add("product_price")
-                DatatableProducts.Columns.Add("product_desc")
-                DatatableProducts.Columns.Add("product_image")
-                DatatableProducts.Columns.Add("product_status")
-                DatatableProducts.Columns.Add("origin")
-                DatatableProducts.Columns.Add("date_modified")
-                DatatableProducts.Columns.Add("inventory_id")
+                FillDatagridProduct = New DataTable
+                FillDatagridProduct.Columns.Add("product_id")
+                FillDatagridProduct.Columns.Add("product_sku")
+                FillDatagridProduct.Columns.Add("product_name")
+                FillDatagridProduct.Columns.Add("formula_id")
+                FillDatagridProduct.Columns.Add("product_barcode")
+                FillDatagridProduct.Columns.Add("product_category")
+                FillDatagridProduct.Columns.Add("product_price")
+                FillDatagridProduct.Columns.Add("product_desc")
+                FillDatagridProduct.Columns.Add("product_image")
+                FillDatagridProduct.Columns.Add("product_status")
+                FillDatagridProduct.Columns.Add("origin")
+                FillDatagridProduct.Columns.Add("date_modified")
+                FillDatagridProduct.Columns.Add("inventory_id")
                 Dim DaCount As MySqlDataAdapter
                 Dim FillDt As DataTable = New DataTable
                 For a = 1 To result
@@ -1329,7 +1368,7 @@ Public Class SettingsForm
                     FillDt = New DataTable
                     DaCount.Fill(FillDt)
                     For i As Integer = 0 To FillDt.Rows.Count - 1 Step +1
-                        Dim Prod As DataRow = DatatableProducts.NewRow
+                        Dim Prod As DataRow = FillDatagridProduct.NewRow
                         Prod("product_id") = FillDt(i)(0)
                         Prod("product_sku") = FillDt(i)(1)
                         Prod("product_name") = FillDt(i)(2)
@@ -1343,7 +1382,7 @@ Public Class SettingsForm
                         Prod("origin") = FillDt(i)(10)
                         Prod("date_modified") = FillDt(i)(11)
                         Prod("inventory_id") = FillDt(i)(12)
-                        DatatableProducts.Rows.Add(Prod)
+                        FillDatagridProduct.Rows.Add(Prod)
                     Next
                 Next
             Catch ex As Exception
@@ -1748,44 +1787,5 @@ Public Class SettingsForm
     End Sub
 #End Region
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Try
-            If POS.POSISUPDATING = False Then
-                Timer1.Start()
-                DataGridView5.Rows.Clear()
-                Dim Products = count("product_id", "loc_admin_products")
-                Dim Category = count("category_id", "loc_admin_category")
-                Dim Inventory = count("inventory_id", "loc_pos_inventory")
-                Dim Formula = count("formula_id", "loc_product_formula")
-                DataGridView5.Rows.Add(Products)
-                DataGridView5.Rows.Add(Category)
-                DataGridView5.Rows.Add(Inventory)
-                DataGridView5.Rows.Add(Formula)
-                LabelCountAllRows.Text = SumOfColumnsToInt(DataGridView5, 0)
-                LabelCheckingUpdates.Text = "Checking for updates."
-                ProgressBar1.Maximum = Val(LabelCountAllRows.Text)
-                ProgressBar1.Value = 0
-                BackgroundWorker1.WorkerReportsProgress = True
-                BackgroundWorker1.WorkerSupportsCancellation = True
-                BackgroundWorker1.RunWorkerAsync()
-                Button4.Enabled = False
-            Else
-                MsgBox("Updates is still on process please wait.")
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        If LabelCheckingUpdates.Text = "Checking for updates." Then
-            LabelCheckingUpdates.Text = "Checking for updates.."
-        ElseIf LabelCheckingUpdates.Text = "Checking for updates.." Then
-            LabelCheckingUpdates.Text = "Checking for updates..."
-        ElseIf LabelCheckingUpdates.Text = "Checking for updates..." Then
-            LabelCheckingUpdates.Text = "Checking for updates"
-        ElseIf LabelCheckingUpdates.Text = "Checking for updates" Then
-            LabelCheckingUpdates.Text = "Checking for updates."
-        End If
-    End Sub
 End Class

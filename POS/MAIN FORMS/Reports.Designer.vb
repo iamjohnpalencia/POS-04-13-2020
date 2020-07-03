@@ -152,9 +152,9 @@ Partial Class Reports
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewZreadInvData = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewZreadInventory = New System.Windows.Forms.DataGridView()
         Me.Panel20 = New System.Windows.Forms.Panel()
         Me.Label19 = New System.Windows.Forms.Label()
+        Me.DataGridViewZreadInventory = New System.Windows.Forms.DataGridView()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.DateTimePicker17 = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
@@ -169,11 +169,9 @@ Partial Class Reports
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBoxCustomerID = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.pdoc = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -221,8 +219,8 @@ Partial Class Reports
         Me.TableLayoutPanel4.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         CType(Me.DataGridViewZreadInvData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewZreadInventory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel20.SuspendLayout()
+        CType(Me.DataGridViewZreadInventory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox9.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -1554,16 +1552,6 @@ Partial Class Reports
         Me.DataGridViewZreadInvData.Size = New System.Drawing.Size(1103, 328)
         Me.DataGridViewZreadInvData.TabIndex = 7
         '
-        'DataGridViewZreadInventory
-        '
-        Me.DataGridViewZreadInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewZreadInventory.Location = New System.Drawing.Point(522, 5)
-        Me.DataGridViewZreadInventory.Name = "DataGridViewZreadInventory"
-        Me.DataGridViewZreadInventory.ReadOnly = True
-        Me.DataGridViewZreadInventory.Size = New System.Drawing.Size(528, 23)
-        Me.DataGridViewZreadInventory.TabIndex = 3
-        Me.DataGridViewZreadInventory.Visible = False
-        '
         'Panel20
         '
         Me.Panel20.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -1586,6 +1574,16 @@ Partial Class Reports
         Me.Label19.Size = New System.Drawing.Size(84, 14)
         Me.Label19.TabIndex = 18
         Me.Label19.Text = "Filter By Date "
+        '
+        'DataGridViewZreadInventory
+        '
+        Me.DataGridViewZreadInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewZreadInventory.Location = New System.Drawing.Point(522, 5)
+        Me.DataGridViewZreadInventory.Name = "DataGridViewZreadInventory"
+        Me.DataGridViewZreadInventory.ReadOnly = True
+        Me.DataGridViewZreadInventory.Size = New System.Drawing.Size(528, 23)
+        Me.DataGridViewZreadInventory.TabIndex = 3
+        Me.DataGridViewZreadInventory.Visible = False
         '
         'Button7
         '
@@ -1747,19 +1745,9 @@ Partial Class Reports
         Me.TextBox1.TabIndex = 185
         Me.TextBox1.Visible = False
         '
-        'BackgroundWorker1
-        '
-        Me.BackgroundWorker1.WorkerReportsProgress = True
-        Me.BackgroundWorker1.WorkerSupportsCancellation = True
-        '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'BackgroundWorker2
-        '
-        Me.BackgroundWorker2.WorkerReportsProgress = True
-        Me.BackgroundWorker2.WorkerSupportsCancellation = True
         '
         'Reports
         '
@@ -1832,9 +1820,9 @@ Partial Class Reports
         Me.TableLayoutPanel4.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
         CType(Me.DataGridViewZreadInvData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewZreadInventory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel20.ResumeLayout(False)
         Me.Panel20.PerformLayout()
+        CType(Me.DataGridViewZreadInventory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox9.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
@@ -1855,7 +1843,6 @@ Partial Class Reports
     Friend WithEvents DataGridViewSysLog As DataGridView
     Friend WithEvents Panel7 As Panel
     Friend WithEvents Label1 As Label
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents TextBoxCustomerID As TextBox
@@ -1949,7 +1936,6 @@ Partial Class Reports
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
-    Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
     Friend WithEvents GroupBox7 As GroupBox
     Friend WithEvents Panel20 As Panel

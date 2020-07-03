@@ -1406,36 +1406,35 @@ Public Class POS
     Private Sub GetAllProducts()
         Try
             Try
-                Dim DatatableProducts As DataTable
                 Dim Connection As MySqlConnection = ServerCloudCon()
                 Dim SqlCount = "SELECT COUNT(product_id) FROM admin_products_org"
                 Dim CmdCount As MySqlCommand = New MySqlCommand(SqlCount, Connection)
                 Dim result As Integer = CmdCount.ExecuteScalar
-
-                DatatableProducts = New DataTable
-                DatatableProducts.Columns.Add("product_id")
-                DatatableProducts.Columns.Add("product_sku")
-                DatatableProducts.Columns.Add("product_name")
-                DatatableProducts.Columns.Add("formula_id")
-                DatatableProducts.Columns.Add("product_barcode")
-                DatatableProducts.Columns.Add("product_category")
-                DatatableProducts.Columns.Add("product_price")
-                DatatableProducts.Columns.Add("product_desc")
-                DatatableProducts.Columns.Add("product_image")
-                DatatableProducts.Columns.Add("product_status")
-                DatatableProducts.Columns.Add("origin")
-                DatatableProducts.Columns.Add("date_modified")
-                DatatableProducts.Columns.Add("inventory_id")
+                Dim Cmd As MySqlCommand
+                FillDatagridProduct = New DataTable
+                FillDatagridProduct.Columns.Add("product_id")
+                FillDatagridProduct.Columns.Add("product_sku")
+                FillDatagridProduct.Columns.Add("product_name")
+                FillDatagridProduct.Columns.Add("formula_id")
+                FillDatagridProduct.Columns.Add("product_barcode")
+                FillDatagridProduct.Columns.Add("product_category")
+                FillDatagridProduct.Columns.Add("product_price")
+                FillDatagridProduct.Columns.Add("product_desc")
+                FillDatagridProduct.Columns.Add("product_image")
+                FillDatagridProduct.Columns.Add("product_status")
+                FillDatagridProduct.Columns.Add("origin")
+                FillDatagridProduct.Columns.Add("date_modified")
+                FillDatagridProduct.Columns.Add("inventory_id")
                 Dim DaCount As MySqlDataAdapter
                 Dim FillDt As DataTable = New DataTable
                 For a = 1 To result
                     Dim Query As String = "SELECT * FROM admin_products_org WHERE product_id = " & a
-                    cmd = New MySqlCommand(Query, Connection)
-                    DaCount = New MySqlDataAdapter(cmd)
+                    Cmd = New MySqlCommand(Query, Connection)
+                    DaCount = New MySqlDataAdapter(Cmd)
                     FillDt = New DataTable
                     DaCount.Fill(FillDt)
                     For i As Integer = 0 To FillDt.Rows.Count - 1 Step +1
-                        Dim Prod As DataRow = DatatableProducts.NewRow
+                        Dim Prod As DataRow = FillDatagridProduct.NewRow
                         Prod("product_id") = FillDt(i)(0)
                         Prod("product_sku") = FillDt(i)(1)
                         Prod("product_name") = FillDt(i)(2)
@@ -1449,7 +1448,7 @@ Public Class POS
                         Prod("origin") = FillDt(i)(10)
                         Prod("date_modified") = FillDt(i)(11)
                         Prod("inventory_id") = FillDt(i)(12)
-                        DatatableProducts.Rows.Add(Prod)
+                        FillDatagridProduct.Rows.Add(Prod)
                     Next
                 Next
             Catch ex As Exception
@@ -1683,6 +1682,7 @@ Public Class POS
     Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
         Try
             DataGridView2.DataSource = FillDatagridProduct
+
             Button3.Enabled = True
             UPDATEPRODUCTONLY = False
             POSISUPDATING = False
@@ -1760,7 +1760,6 @@ Public Class POS
                         cmdlocal.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                         cmdlocal.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                         cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
-                        MsgBox(.Rows(i).Cells(7).Value.ToString())
                         cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
                         cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value
@@ -1792,7 +1791,6 @@ Public Class POS
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
                         cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
-                        MsgBox(.Rows(i).Cells(7).Value.ToString())
                     End If
                 Next
             End With

@@ -697,9 +697,29 @@ Public Class Reports
         Try
             Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
-                BackgroundWorker1.WorkerReportsProgress = True
-                BackgroundWorker1.WorkerSupportsCancellation = True
-                BackgroundWorker1.RunWorkerAsync()
+                Try
+                    XreadOrZread = "Z-READ"
+                    ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
+                    printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 800)
+                    PrintPreviewDialogXread.Document = printdocXread
+                    PrintPreviewDialogXread.ShowDialog()
+
+                    Dim datenow = Format(Now(), "yyyy-MM-dd")
+                    GLOBAL_SYSTEM_LOGS("Z-READ", ClientCrewID & ", Z Reading for : " & datenow)
+
+                    sql = "UPDATE loc_settings SET S_Zreading = '" & datenow & "'"
+                    cmd = New MySqlCommand(sql, LocalhostConn())
+                    cmd.ExecuteNonQuery()
+                    cmd.Dispose()
+
+                    S_Zreading = Format(Now(), "yyyy-MM-dd")
+                    XZreadingInventory(S_Zreading)
+                    ButtonZread.Enabled = False
+                    Button7.PerformClick()
+                Catch ex As Exception
+                    MsgBox(ex.ToString)
+                End Try
+
             Else
                 MessageBox.Show("This will continue your yesterday's record ...", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
@@ -742,38 +762,7 @@ Public Class Reports
     Dim threadlist As List(Of Thread) = New List(Of Thread)
     Dim thread1 As Thread
 
-    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
-        Try
-            XreadOrZread = "Z-READ"
-            ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
-            printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 800)
-            PrintPreviewDialogXread.Document = printdocXread
-            PrintPreviewDialogXread.ShowDialog()
 
-            Dim datenow = Format(Now(), "yyyy-MM-dd")
-            GLOBAL_SYSTEM_LOGS("Z-READ", ClientCrewID & ", Z Reading for : " & datenow)
-
-            sql = "UPDATE loc_settings SET S_Zreading = '" & datenow & "'"
-            cmd = New MySqlCommand(sql, LocalhostConn())
-            cmd.ExecuteNonQuery()
-            cmd.Dispose()
-
-            S_Zreading = Format(Now(), "yyyy-MM-dd")
-            XZreadingInventory(S_Zreading)
-            ButtonZread.Enabled = False
-            Button7.PerformClick()
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-
-    Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
-        Try
-
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
     Private Sub FillDatagridZreadInv(searchdate As Boolean)
         Try
             table = "loc_zread_inventory I INNER JOIN loc_product_formula F ON F.formula_id = I.formula_id "
