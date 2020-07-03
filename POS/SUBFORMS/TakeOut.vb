@@ -381,9 +381,13 @@ Public Class TakeOut
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If BAGORSYRUP = False Then
-            TextBoxWaffleBag.Text = 0
+            If TextBoxWaffleBag.Text.Count > 0 Then
+                TextBoxWaffleBag.Text = TextBoxWaffleBag.Text.Remove(TextBoxWaffleBag.Text.Count - 1)
+            End If
         Else
-            TextBoxSugarSyrup.Text = 0
+            If TextBoxSugarSyrup.Text.Count > 0 Then
+                TextBoxSugarSyrup.Text = TextBoxSugarSyrup.Text.Remove(TextBoxSugarSyrup.Text.Count - 1)
+            End If
         End If
     End Sub
 End Class

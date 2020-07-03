@@ -248,4 +248,11 @@
             ButtonClear.PerformClick()
         End If
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        If TextBoxMONEY.Text.Count > 0 Then
+            TextBoxMONEY.Text = TextBoxMONEY.Text.Remove(TextBoxMONEY.Text.Count - 1)
+        End If
+
+    End Sub
 End Class

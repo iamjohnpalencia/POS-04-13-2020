@@ -424,15 +424,16 @@ Public Class POS
         CouponApplied = False
     End Sub
     Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles ButtonTransactionMode.Click
-        If ButtonTransactionMode.Text = "Transaction Type" Then
-            Enabled = False
-            TransactionType.Show()
-        Else
-            ButtonCancel.PerformClick()
-            ButtonPayMent.Text = "Checkout"
-            ButtonTransactionMode.Text = "Transaction Type"
-            Panel3.Enabled = True
-        End If
+        'If ButtonTransactionMode.Text = "Transaction Type" Then
+        '    Enabled = False
+        '    TransactionType.Show()
+        'Else
+        '    ButtonCancel.PerformClick()
+        '    ButtonPayMent.Text = "Checkout"
+        '    ButtonTransactionMode.Text = "Transaction Type"
+        '    Panel3.Enabled = True
+        'End If
+        InstallUpdatesFormula()
     End Sub
     Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
         Enabled = False
@@ -1750,6 +1751,7 @@ Public Class POS
                         Dim sqlinsert = "INSERT INTO loc_product_formula (`server_formula_id`,`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`, `store_id`, `guid`, `crew_id`, `server_date_modified`) VALUES
                                         (@0 ,@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11 , @12 , @13 , @14, @15, @16)"
                         cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
+
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1758,9 +1760,10 @@ Public Class POS
                         cmdlocal.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                         cmdlocal.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                         cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
+                        MsgBox(.Rows(i).Cells(7).Value.ToString())
                         cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
-                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value
                         cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientStoreID
@@ -1769,7 +1772,7 @@ Public Class POS
                         cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
                     Else
-                        Dim sqlupdate = "UPDATE `loc_product_formula` SET `server_formula_id`= @0,`product_ingredients`= @1,`primary_unit`= @2,`primary_value`= @3,`secondary_unit`= @4,`secondary_value`=@5,`serving_unit`=@6,`serving_value`=@,`no_servings`=@8,`status`=@9,`date_modified`=@10,`unit_cost`=@11,`origin`=@12,`store_id`=@13,`guid`=@14,`server_date_modified`=@15 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
+                        Dim sqlupdate = "UPDATE `loc_product_formula` SET `server_formula_id`= @0,`product_ingredients`= @1,`primary_unit`= @2,`primary_value`= @3,`secondary_unit`= @4,`secondary_value`=@5,`serving_unit`=@6,`serving_value`=@7,`no_servings`=@8,`status`=@9,`date_modified`=@10,`unit_cost`=@11,`origin`=@12,`store_id`=@13,`guid`=@14,`server_date_modified`=@15 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
                         cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
@@ -1781,14 +1784,15 @@ Public Class POS
                         cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                         cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
-                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value
                         cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = ClientGuid
-                        cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
+                        cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
-                        cmdlocal.ExecuteNonQuery()
+                        MsgBox(.Rows(i).Cells(7).Value.ToString())
                     End If
                 Next
             End With

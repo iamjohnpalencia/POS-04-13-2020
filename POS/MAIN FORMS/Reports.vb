@@ -148,27 +148,29 @@ Public Class Reports
                 where = " zreading >= '" & Format(DateTimePicker1.Value, "yyyy-MM-dd") & "' and zreading <= '" & Format(DateTimePicker2.Value, "yyyy-MM-dd") & "' AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDaily, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
-            'With DataGridViewDaily
-            '    .Columns(0).Visible = False
-            '    .Columns(1).HeaderCell.Value = "Date and Time"
-            '    .Columns(2).HeaderCell.Value = "Ref. #"
-            '    .Columns(2).Width = 100
-            '    .Columns(3).HeaderCell.Value = "Crew"
-            '    .Columns(4).HeaderCell.Value = "Cash"
-            '    .Columns(5).HeaderCell.Value = "Change"
-            '    .Columns(6).Visible = False
-            '    .Columns(7).HeaderCell.Value = "Discount"
-            '    .Columns(8).HeaderCell.Value = "Amt. due"
-            '    .Columns(9).HeaderCell.Value = "Vat Exempt"
-            '    .Columns(10).HeaderCell.Value = "TRN. Type"
-            '    .Columns(11).Visible = False
-            '    .Columns(12).Visible = False
-            '    .Columns.Item(4).DefaultCellStyle.Format = "n2"
-            '    .Columns.Item(5).DefaultCellStyle.Format = "n2"
-            '    For Each row As DataRow In dt.Rows
-            '        row("crew_id") = GLOBAL_SELECT_FUNCTION_RETURN(table:="loc_users", fields:="full_name", returnvalrow:="full_name", values:="uniq_id ='" & row("crew_id") & "'")
-            '    Next
-            'End With
+            With DataGridViewDaily
+                .Columns(12).Visible = False
+                .Columns(14).Visible = False
+                '    .Columns(0).Visible = False
+                '    .Columns(1).HeaderCell.Value = "Date and Time"
+                '    .Columns(2).HeaderCell.Value = "Ref. #"
+                '    .Columns(2).Width = 100
+                '    .Columns(3).HeaderCell.Value = "Crew"
+                '    .Columns(4).HeaderCell.Value = "Cash"
+                '    .Columns(5).HeaderCell.Value = "Change"
+                '    .Columns(6).Visible = False
+                '    .Columns(7).HeaderCell.Value = "Discount"
+                '    .Columns(8).HeaderCell.Value = "Amt. due"
+                '    .Columns(9).HeaderCell.Value = "Vat Exempt"
+                '    .Columns(10).HeaderCell.Value = "TRN. Type"
+                '    .Columns(11).Visible = False
+                '    .Columns(12).Visible = False
+                '    .Columns.Item(4).DefaultCellStyle.Format = "n2"
+                '    .Columns.Item(5).DefaultCellStyle.Format = "n2"
+                '    For Each row As DataRow In dt.Rows
+                '        row("crew_id") = GLOBAL_SELECT_FUNCTION_RETURN(table:="loc_users", fields:="full_name", returnvalrow:="full_name", values:="uniq_id ='" & row("crew_id") & "'")
+                '    Next
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

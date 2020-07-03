@@ -77,6 +77,18 @@ Namespace My
                 Me("LocalConnectionPath") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property Updatedatetime() As String
+            Get
+                Return CType(Me("Updatedatetime"),String)
+            End Get
+            Set
+                Me("Updatedatetime") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

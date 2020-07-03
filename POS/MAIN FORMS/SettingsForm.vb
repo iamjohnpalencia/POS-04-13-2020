@@ -51,6 +51,12 @@ Public Class SettingsForm
                 loaddatagrid2()
                 Coupons = True
             End If
+        ElseIf TabControl1.SelectedIndex = 5 Then
+            If My.Settings.Updatedatetime = "" Then
+                LabelCheckingUpdates.Text = "last Checked: 2020-06-01 11:12:30"
+            Else
+                LabelCheckingUpdates.Text = "last Checked: " & My.Settings.Updatedatetime
+            End If
         End If
     End Sub
 #Region "Partners"
@@ -1038,22 +1044,6 @@ Public Class SettingsForm
     End Sub
     Dim thread As Thread
     Dim THREADLISTUPDATE As List(Of Thread) = New List(Of Thread)
-
-    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
-        Try
-            If POS.POSISUPDATING = False Then
-                BackgroundWorker1.WorkerReportsProgress = True
-                BackgroundWorker1.WorkerSupportsCancellation = True
-                BackgroundWorker1.RunWorkerAsync()
-                Button3.Enabled = False
-                LabelCheckingUpdates.Text = "Checking for updates."
-            Else
-                MsgBox("Updates is still on process please wait.")
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
             If ValidDatabaseLocalConnection Then
@@ -1092,8 +1082,9 @@ Public Class SettingsForm
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Try
+            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checked " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
             DataGridView2.DataSource = FillDatagridProduct
-            Button3.Enabled = True
+            Button4.Enabled = True
             UPDATEPRODUCTONLY = False
             If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Then
                 Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
@@ -1103,13 +1094,18 @@ Public Class SettingsForm
                     InstallUpdatesCategory()
                     InstallUpdatesProducts()
                     listviewproductsshow(where:="Simply Perfect")
-                    LabelCheckingUpdates.Text = "Update Completed."
+                    LabelCheckingUpdates.Text = "Update Completed : " & FullDate24HR()
+                    My.Settings.Updatedatetime = FullDate24HR()
                 Else
                     LabelCheckingUpdates.Text = "Completed."
+                    My.Settings.Updatedatetime = FullDate24HR()
                 End If
             Else
                 LabelCheckingUpdates.Text = "Complete Checking! No updates found."
+                My.Settings.Updatedatetime = FullDate24HR()
             End If
+            MsgBox("Complete")
+            My.Settings.Save()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1178,8 +1174,12 @@ Public Class SettingsForm
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                         If LoadCategoryLocal(i)(0).ToString <> dtserver(i)(3).ToString Then
+                            ProgressBar1.Value += 1
+                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                             DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5))
-
+                        Else
+                            ProgressBar1.Value += 1
+                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                         End If
                     Next
                     Dim sql2 = "SELECT `category_id`, `category_name`, `brand_name`, `updated_at`, `origin`, `status` FROM admin_category WHERE category_id NOT IN (" & Ids & ")"
@@ -1188,10 +1188,9 @@ Public Class SettingsForm
                     dtserver = New DataTable
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                        If LoadCategoryLocal(i)(0) <> dtserver(i)(3) Then
-                            DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5))
-
-                        End If
+                        ProgressBar1.Value += 1
+                        LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
+                        DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5))
                     Next
                 End If
             End If
@@ -1239,6 +1238,8 @@ Public Class SettingsForm
                 Dim FillDt As DataTable = New DataTable
 
                 For a = 1 To result
+                    ProgressBar1.Value += 1
+                    LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                     Dim Query1 As String = "SELECT date_modified FROM loc_admin_products WHERE product_id = " & a
                     Dim cmd As MySqlCommand = New MySqlCommand(Query1, LocalhostConn)
                     DaCount = New MySqlDataAdapter(cmd)
@@ -1416,8 +1417,12 @@ Public Class SettingsForm
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                         If LoadFormulaLocal(i)(0).ToString <> dtserver(i)(10).ToString Then
+                            ProgressBar1.Value += 1
+                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                             DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10).ToString, dtserver(i)(11), dtserver(i)(12))
-
+                        Else
+                            ProgressBar1.Value += 1
+                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                         End If
                     Next
                     Dim sql2 = "SELECT `formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE formula_id NOT IN (" & Ids & ") "
@@ -1427,8 +1432,9 @@ Public Class SettingsForm
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                         If LoadFormulaLocal(i)(0).ToString <> dtserver(i)(10) Then
+                            ProgressBar1.Value += 1
+                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                             DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10).ToString, dtserver(i)(11), dtserver(i)(12))
-
                         End If
                     Next
                 End If
@@ -1501,7 +1507,12 @@ Public Class SettingsForm
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                         If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(9).ToString Then
+                            ProgressBar1.Value += 1
+                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                             DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString, dtserver(i)(10).ToString)
+                        Else
+                            ProgressBar1.Value += 1
+                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                         End If
                     Next
                     Dim sql2 = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`,`main_inventory_id` FROM admin_pos_inventory_org WHERE inventory_id NOT IN (" & Ids & ")"
@@ -1511,8 +1522,9 @@ Public Class SettingsForm
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                         If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(9) Then
+                            ProgressBar1.Value += 1
+                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                             DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString, dtserver(i)(10).ToString)
-
                         End If
                     Next
                 End If
@@ -1522,6 +1534,11 @@ Public Class SettingsForm
             'If table doesnt have data
         End Try
     End Sub
+
+
+#End Region
+#End Region
+#Region "Install Updates"
     Private Sub InstallUpdatesCategory()
         Try
             Dim cmdlocal As MySqlCommand
@@ -1586,7 +1603,7 @@ Public Class SettingsForm
                         cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
                     Else
-                        Dim sqlupdate = "UPDATE `loc_product_formula` SET `server_formula_id`= @0,`product_ingredients`= @1,`primary_unit`= @2,`primary_value`= @3,`secondary_unit`= @4,`secondary_value`=@5,`serving_unit`=@6,`serving_value`=@,`no_servings`=@8,`status`=@9,`date_modified`=@10,`unit_cost`=@11,`origin`=@12,`store_id`=@13,`guid`=@14,`server_date_modified`=@15 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
+                        Dim sqlupdate = "UPDATE `loc_product_formula` SET `server_formula_id`= @0,`product_ingredients`= @1,`primary_unit`= @2,`primary_value`= @3,`secondary_unit`= @4,`secondary_value`=@5,`serving_unit`=@6,`serving_value`=@7,`no_servings`=@8,`status`=@9,`date_modified`=@10,`unit_cost`=@11,`origin`=@12,`store_id`=@13,`guid`=@14,`server_date_modified`=@15 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
                         cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
@@ -1729,7 +1746,46 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
         End Try
     End Sub
+#End Region
 
-#End Region
-#End Region
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Try
+            If POS.POSISUPDATING = False Then
+                Timer1.Start()
+                DataGridView5.Rows.Clear()
+                Dim Products = count("product_id", "loc_admin_products")
+                Dim Category = count("category_id", "loc_admin_category")
+                Dim Inventory = count("inventory_id", "loc_pos_inventory")
+                Dim Formula = count("formula_id", "loc_product_formula")
+                DataGridView5.Rows.Add(Products)
+                DataGridView5.Rows.Add(Category)
+                DataGridView5.Rows.Add(Inventory)
+                DataGridView5.Rows.Add(Formula)
+                LabelCountAllRows.Text = SumOfColumnsToInt(DataGridView5, 0)
+                LabelCheckingUpdates.Text = "Checking for updates."
+                ProgressBar1.Maximum = Val(LabelCountAllRows.Text)
+                ProgressBar1.Value = 0
+                BackgroundWorker1.WorkerReportsProgress = True
+                BackgroundWorker1.WorkerSupportsCancellation = True
+                BackgroundWorker1.RunWorkerAsync()
+                Button4.Enabled = False
+            Else
+                MsgBox("Updates is still on process please wait.")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        If LabelCheckingUpdates.Text = "Checking for updates." Then
+            LabelCheckingUpdates.Text = "Checking for updates.."
+        ElseIf LabelCheckingUpdates.Text = "Checking for updates.." Then
+            LabelCheckingUpdates.Text = "Checking for updates..."
+        ElseIf LabelCheckingUpdates.Text = "Checking for updates..." Then
+            LabelCheckingUpdates.Text = "Checking for updates"
+        ElseIf LabelCheckingUpdates.Text = "Checking for updates" Then
+            LabelCheckingUpdates.Text = "Checking for updates."
+        End If
+    End Sub
 End Class
