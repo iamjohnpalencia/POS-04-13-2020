@@ -214,7 +214,7 @@ Public Class SettingsForm
 #End Region
 #Region "Formula"
     Public Sub loadformula()
-        fields = "`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, ROUND(`no_servings`,0) as noofservings"
+        fields = "`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, ROUND(`serving_value`,0) as servval, ROUND(`no_servings`,0) as noofservings"
         GLOBAL_SELECT_ALL_FUNCTION(table:="loc_product_formula WHERE status = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", datagrid:=DataGridViewFormula, fields:=fields)
         With DataGridViewFormula
             .Columns(0).HeaderText = "Ingredients"
