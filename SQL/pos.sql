@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2020 at 12:20 AM
+-- Generation Time: Jul 05, 2020 at 01:25 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -83,6 +83,7 @@ CREATE TABLE `admin_outlets` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -102,6 +103,7 @@ CREATE TABLE `loc_admin_category` (
 --
 -- Dumping data for table `loc_admin_category`
 --
+
 
 
 -- --------------------------------------------------------
@@ -129,7 +131,8 @@ CREATE TABLE `loc_admin_products` (
   `crew_id` varchar(50) NOT NULL,
   `synced` varchar(50) NOT NULL,
   `server_product_id` int(11) NOT NULL,
-  `server_inventory_id` int(11) NOT NULL
+  `server_inventory_id` int(11) NOT NULL,
+  `price_change` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -196,7 +199,6 @@ CREATE TABLE `loc_daily_transaction` (
 --
 -- Dumping data for table `loc_daily_transaction`
 --
-
 -- --------------------------------------------------------
 
 --
@@ -344,6 +346,7 @@ CREATE TABLE `loc_fm_stock` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -407,6 +410,7 @@ CREATE TABLE `loc_inv_temp_data` (
 --
 -- Dumping data for table `loc_inv_temp_data`
 --
+
 
 
 -- --------------------------------------------------------
@@ -499,6 +503,31 @@ CREATE TABLE `loc_pos_inventory` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `loc_price_request_change`
+--
+
+DROP TABLE IF EXISTS `loc_price_request_change`;
+CREATE TABLE `loc_price_request_change` (
+  `request_id` int(11) NOT NULL,
+  `server_product_id` text NOT NULL,
+  `request_price` text NOT NULL,
+  `created_at` text NOT NULL,
+  `active` text NOT NULL,
+  `store_id` text NOT NULL,
+  `crew_id` text NOT NULL,
+  `guid` text NOT NULL,
+  `synced` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `loc_price_request_change`
+--
+
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `loc_product_formula`
 --
 
@@ -585,6 +614,7 @@ CREATE TABLE `loc_settings` (
 --
 -- Dumping data for table `loc_settings`
 --
+
 
 -- --------------------------------------------------------
 
@@ -705,6 +735,7 @@ CREATE TABLE `loc_users` (
 -- Dumping data for table `loc_users`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -736,6 +767,7 @@ CREATE TABLE `loc_zread_inventory` (
 --
 -- Dumping data for table `loc_zread_inventory`
 --
+
 
 
 -- --------------------------------------------------------
@@ -971,6 +1003,12 @@ ALTER TABLE `loc_pos_inventory`
   ADD PRIMARY KEY (`inventory_id`);
 
 --
+-- Indexes for table `loc_price_request_change`
+--
+ALTER TABLE `loc_price_request_change`
+  ADD PRIMARY KEY (`request_id`);
+
+--
 -- Indexes for table `loc_product_formula`
 --
 ALTER TABLE `loc_product_formula`
@@ -1153,6 +1191,12 @@ ALTER TABLE `loc_pending_orders`
 --
 ALTER TABLE `loc_pos_inventory`
   MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `loc_price_request_change`
+--
+ALTER TABLE `loc_price_request_change`
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `loc_product_formula`

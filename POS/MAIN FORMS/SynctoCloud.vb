@@ -265,6 +265,17 @@ Public Class SynctoCloud
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Private Sub fillpricerequestchange()
+        Try
+            Dim fields = "*"
+            Dim table = "loc_price_request_change WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            GLOBAL_SELECT_ALL_FUNCTION(table, fields, DataGridViewPriceChangeRequest)
+            gettablesize(tablename:="loc_price_request_change")
+            countrows(tablename:=table)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 
     Private Sub countrows(ByVal tablename As String)
         Try
@@ -315,6 +326,7 @@ Public Class SynctoCloud
             filldatagridproducts()
             filldatagridmodeoftransaction()
             filldatagriddepositslip()
+            fillpricerequestchange()
             totalrow = SumOfColumnsToInt(DataGridView2, 0)
             Label3.Text = totalrow
             Button1.Enabled = False
@@ -356,6 +368,7 @@ Public Class SynctoCloud
     Dim threadListMODEOFTRANSACTION As List(Of Thread) = New List(Of Thread)
     Dim threadListLocDeposit As List(Of Thread) = New List(Of Thread)
     Dim threadListloadData As List(Of Thread) = New List(Of Thread)
+    Dim threadListPRICEREQUEST As List(Of Thread) = New List(Of Thread)
     Dim thread1 As Thread
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
@@ -421,6 +434,13 @@ Public Class SynctoCloud
                 thread1.Start()
                 threadListLocDeposit.Add(thread1)
 
+                thread1 = New Thread(AddressOf insertpricerequest)
+                thread1.Start()
+                threadListPRICEREQUEST.Add(thread1)
+
+                For Each t In threadListPRICEREQUEST
+                    t.Join()
+                Next
                 For Each t In threadListLOCTRAN
                     t.Join()
                 Next
@@ -520,9 +540,8 @@ Public Class SynctoCloud
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
+            LabelDTransac.Text = "Syncing Daily Transaction"
             With DataGridViewTRAN
-                Label8.Text = "Syncing Daily Transaction"
-                messageboxappearance = False
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO `Triggers_admin_daily_transaction`(`loc_transaction_id`, `transaction_number`, `grosssales`, `totaldiscount`, `amounttendered`, `change`, `amountdue`, `vatablesales`, `vatexemptsales`, `zeroratedsales`, `vatpercentage`, `lessvat`, `transaction_type`, `discount_type`, `totaldiscountedamount`, `si_number`, `crew_id`, `guid`, `active`, `store_id`, `created_at`, `shift`, `zreading`)
                                              VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17,@18,@19,@20,@21,@22,@23)", server)
@@ -552,7 +571,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@23", MySqlDbType.Text).Value = .Rows(i).Cells(22).Value.ToString()
 
                     Label7.Text = Val(Label7.Text + 1)
-                    Label30.Text = Val(Label30.Text) + 1
+                    LabelDTransacItem.Text = Val(LabelDTransacItem.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -568,8 +587,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label8.Text = "Synced Daily Transaction"
-                Label21.Text = Label6.Text & " Seconds"
+                LabelDTransac.Text = "Synced Daily Transaction"
+                LabelDTransacTime.Text = Label6.Text & " Seconds"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -590,7 +609,7 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Label9.Text = "Syncing Transaction Details"
+            LabelDTransactD.Text = "Syncing Transaction Details"
             With DataGridViewTRANDET
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_daily_transaction_details(`loc_details_id`, `product_id`, `product_sku`, `product_name`, `quantity`, `price`, `total`, `crew_id`
@@ -615,7 +634,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@a16", MySqlDbType.VarChar).Value = .Rows(i).Cells(16).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
-                    Label31.Text = Val(Label31.Text) + 1
+                    LabelDTransactDItem.Text = Val(LabelDTransactDItem.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -632,8 +651,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label9.Text = "Synced Transaction Details"
-                Label20.Text = Label6.Text & " Seconds"
+                LabelDTransactD.Text = "Synced Transaction Details"
+                LabelDTransactDTime.Text = Label6.Text & " Seconds"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -655,7 +674,7 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Label10.Text = "Syncing Inventory"
+            LabelINV.Text = "Syncing Inventory"
             With DataGridViewINV
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmdupdateinventory = New MySqlCommand("UPDATE admin_pos_inventory SET stock_primary = " & .Rows(i).Cells(6).Value & " , stock_secondary = " & .Rows(i).Cells(7).Value & " , stock_no_of_servings = " & .Rows(i).Cells(8).Value & " WHERE store_id =" & ClientStoreID & " AND guid = '" & ClientGuid & "' AND loc_inventory_id = " & .Rows(i).Cells(0).Value, server)
@@ -675,7 +694,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                     With cmd
                         Label7.Text = Val(Label7.Text + 1)
-                        Label32.Text = Val(Label32.Text) + 1
+                        LabelINVItem.Text = Val(LabelINVItem.Text) + 1
                         ProgressBar1.Value = CInt(Label7.Text)
                         'POS.ProgressBar1.Value = Val(Label7.Text)
                         Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -690,8 +709,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label10.Text = "Synced Inventories"
-                Label19.Text = Label6.Text & " Seconds"
+                LabelINV.Text = "Synced Inventories"
+                LabelINVTime.Text = Label6.Text & " Seconds"
             End With
         Catch ex As Exception
             Unsuccessful = True
@@ -712,7 +731,7 @@ Public Class SynctoCloud
             local.Open()
 
 
-            Label11.Text = "Syncing Expense List"
+            LabelEXP.Text = "Syncing Expense List"
             With DataGridViewEXP
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_expense_list(`loc_expense_id`, `crew_id`, `expense_number`, `total_amount`, `paid_amount`, `unpaid_amount`, `store_id`, `guid`, `created_at`, `active`, `zreading`) 
@@ -734,7 +753,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@11", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
-                    Label33.Text = Val(Label33.Text) + 1
+                    LabelEXPItem.Text = Val(LabelEXPItem.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -750,8 +769,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label11.Text = "Synced Expense List"
-                Label18.Text = Label6.Text & " Seconds"
+                LabelEXP.Text = "Synced Expense List"
+                LabelEXPTime.Text = Label6.Text & " Seconds"
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -774,7 +793,7 @@ Public Class SynctoCloud
             local.Open()
 
 
-            Label12.Text = "Syncing Expense Details"
+            LabelEXPD.Text = "Syncing Expense Details"
             With DataGridViewEXPDET
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_expense_details(`loc_details_id`
@@ -809,7 +828,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@zreading", MySqlDbType.LongText).Value = .Rows(i).Cells(13).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
-                    Label34.Text = Val(Label34.Text) + 1
+                    LabelEXPDItem.Text = Val(LabelEXPDItem.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -825,8 +844,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label12.Text = "Synced Expense Details"
-                Label17.Text = Label6.Text & " Seconds"
+                LabelEXPD.Text = "Synced Expense Details"
+                LabelEXPDTime.Text = Label6.Text & " Seconds"
             End With
             'truncatetable(tablename:="loc_expense_details")
         Catch ex As Exception
@@ -850,7 +869,7 @@ Public Class SynctoCloud
             local.Open()
 
 
-            Label13.Text = "Syncing Accounts"
+            LabelACC.Text = "Syncing Accounts"
             With DataGridViewLocusers
                 messageboxappearance = False
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -874,7 +893,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = .Rows(i).Cells(14).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
-                    Label35.Text = Val(Label35.Text) + 1
+                    LabelACCItem.Text = Val(LabelACCItem.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -890,8 +909,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label13.Text = "Synced Accounts"
-                Label16.Text = Label6.Text & " Seconds"
+                LabelACC.Text = "Synced Accounts"
+                LabelACCTime.Text = Label6.Text & " Seconds"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -912,7 +931,7 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Label22.Text = "Syncing Systemlogs 1"
+            LabelSYS1.Text = "Syncing Systemlogs 1"
             With DataGridViewSYSLOG1
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
@@ -927,7 +946,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
-                    Label37.Text = Val(Label37.Text) + 1
+                    LabelSYS1Item.Text = Val(LabelSYS1Item.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -943,8 +962,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label22.Text = "Synced Systemlogs 1"
-                Label26.Text = Label6.Text & " Seconds"
+                LabelSYS1.Text = "Synced Systemlogs 1"
+                LabelSYS1Time.Text = Label6.Text & " Seconds"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -965,7 +984,7 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Label23.Text = "Syncing Systemlogs 2"
+            LabelSYS2.Text = "Syncing Systemlogs 2"
             With DataGridViewSYSLOG2
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
@@ -980,7 +999,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
-                    Label38.Text = Val(Label38.Text) + 1
+                    LabelSYS2Item.Text = Val(LabelSYS2Item.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -996,8 +1015,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label23.Text = "Synced Systemlogs 2"
-                Label27.Text = Label6.Text & " Seconds"
+                LabelSYS2.Text = "Synced Systemlogs 2"
+                LabelSYS2Time.Text = Label6.Text & " Seconds"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1018,7 +1037,7 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Label24.Text = "Syncing Systemlogs 3"
+            LabelSYS3.Text = "Syncing Systemlogs 3"
             With DataGridViewSYSLOG3
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
@@ -1033,7 +1052,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
-                    Label39.Text = Val(Label39.Text) + 1
+                    LabelSYS3Item.Text = Val(LabelSYS3Item.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -1049,8 +1068,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label24.Text = "Synced Systemlogs 3"
-                Label28.Text = Label6.Text & " Seconds"
+                LabelSYS3.Text = "Synced Systemlogs 3"
+                LabelSYS3Time.Text = Label6.Text & " Seconds"
             End With
         Catch ex As Exception
             Unsuccessful = True
@@ -1071,7 +1090,7 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Label25.Text = "Syncing Systemlogs 4"
+            LabelSYS4.Text = "Syncing Systemlogs 4"
             With DataGridViewSYSLOG4
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
@@ -1086,7 +1105,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
-                    Label40.Text = Val(Label40.Text) + 1
+                    LabelSYS4Item.Text = Val(LabelSYS4Item.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -1102,8 +1121,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label25.Text = "Synced Systemlogs 4"
-                Label29.Text = Label6.Text & " Seconds"
+                LabelSYS4.Text = "Synced Systemlogs 4"
+                LabelSYS4Time.Text = Label6.Text & " Seconds"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1124,7 +1143,7 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Label36.Text = "Syncing Refund Details"
+            LabelRET.Text = "Syncing Refund Details"
             With DataGridViewRetrefdetails
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_refund_return_details( `loc_refret_id`, `transaction_number`, `crew_id`, `reason`, `total`, `guid`, `store_id`, `datereturned`, `zreading`)
@@ -1140,7 +1159,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@8", MySqlDbType.LongText).Value = .Rows(i).Cells(8).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
-                    Label14.Text = Val(Label14.Text) + 1
+                    LabelRETItem.Text = Val(LabelRETItem.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -1156,8 +1175,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label36.Text = "Synced Refund Details"
-                Label15.Text = Label6.Text & " Seconds"
+                LabelRET.Text = "Synced Refund Details"
+                LabelRETTime.Text = Label6.Text & " Seconds"
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1179,7 +1198,7 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Label43.Text = "Syncing Local Products"
+            LabelCPROD.Text = "Syncing Local Products"
             With DataGridViewCUSTOMPRODUCTS
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_products( `loc_product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `store_id`, `crew_id`)
@@ -1201,7 +1220,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = .Rows(i).Cells(14).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
-                    Label41.Text = Val(Label41.Text) + 1
+                    LabelCPRODItem.Text = Val(LabelCPRODItem.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -1217,8 +1236,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label43.Text = "Synced Local Products"
-                Label42.Text = Label6.Text & " Seconds"
+                LabelCPROD.Text = "Synced Local Products"
+                LabelCPRODTime.Text = Label6.Text & " Seconds"
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1240,7 +1259,7 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Label44.Text = "Syncing Mode of Transaction"
+            LabelMODET.Text = "Syncing Mode of Transaction"
             With DataGridViewMODEOFTRANSACTION
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_transaction_mode_details(`loc_mode_id`, `transaction_type`, `transaction_number`, `full_name`, `reference`, `markup`, `created_at`, `status`, `store_id`, `guid`)
@@ -1258,7 +1277,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
-                    Label46.Text = Val(Label46.Text) + 1
+                    LabelMODETItem.Text = Val(LabelMODETItem.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -1274,8 +1293,8 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label44.Text = "Synced Mode of Transaction"
-                Label45.Text = Label6.Text & " Seconds"
+                LabelMODET.Text = "Synced Mode of Transaction"
+                LabelMODETTime.Text = Label6.Text & " Seconds"
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1297,7 +1316,7 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Label47.Text = "Syncing Deposit Details"
+            LabelDEPOSIT.Text = "Syncing Deposit Details"
             With DataGridViewDepositSlip
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_deposit_slip_details( `loc_dep_id`, `name`, `crew_id`, `transaction_number`, `amount`, `bank`, `transaction_date`, `store_id`, `guid`, `created_at`)
@@ -1315,7 +1334,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@9", MySqlDbType.Timestamp).Value = .Rows(i).Cells(9).Value.ToString()
                     '====================================================================
                     Label7.Text = Val(Label7.Text + 1)
-                    Label49.Text = Val(Label49.Text) + 1
+                    LabelDEPOSITItem.Text = Val(LabelDEPOSITItem.Text) + 1
                     ProgressBar1.Value = CInt(Label7.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
                     Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
@@ -1331,8 +1350,65 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Label47.Text = "Synced  Deposit Details"
-                Label48.Text = Label6.Text & " Seconds"
+                LabelDEPOSIT.Text = "Synced  Deposit Details"
+                LabelDEPOSITTime.Text = Label6.Text & " Seconds"
+            End With
+            'truncatetable(tablename:="loc_expense_list")
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            Unsuccessful = True
+            BackgroundWorker1.CancelAsync()
+        End Try
+    End Sub
+
+    Private Sub insertpricerequest()
+        Try
+            Dim cmd As MySqlCommand
+            Dim cmdloc As MySqlCommand
+
+            Dim server As MySqlConnection = New MySqlConnection
+            server.ConnectionString = CloudConnectionString
+            server.Open()
+
+            Dim local As MySqlConnection = New MySqlConnection
+            local.ConnectionString = LocalConnectionString
+            local.Open()
+
+            LabelPRICEREQ.Text = "Syncing Price Request"
+            With DataGridViewPriceChangeRequest
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_price_request(`loc_request_id`, `server_product_id`, `request_price`, `created_at`, `active`, `store_id`, `crew_id`, `guid`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
+
+                    cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                    cmd.Parameters.Add("@1", MySqlDbType.Text).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmd.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString()
+                    cmd.Parameters.Add("@3", MySqlDbType.Text).Value = .Rows(i).Cells(3).Value.ToString()
+                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@5", MySqlDbType.Text).Value = .Rows(i).Cells(5).Value.ToString()
+                    cmd.Parameters.Add("@6", MySqlDbType.Text).Value = .Rows(i).Cells(6).Value.ToString()
+                    cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
+
+                    '====================================================================
+                    Label7.Text = Val(Label7.Text + 1)
+                    LabelPRICEREQItem.Text = Val(LabelPRICEREQItem.Text) + 1
+                    ProgressBar1.Value = CInt(Label7.Text)
+                    'POS.ProgressBar1.Value = Val(Label7.Text)
+                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    '====================================================================
+                    cmd.ExecuteNonQuery()
+                    table = " loc_price_request_change "
+                    where = " request_id = " & .Rows(i).Cells(0).Value.ToString & ""
+                    fields = " `synced`='Synced' "
+                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+                    cmdloc = New MySqlCommand(sql, local)
+                    cmdloc.ExecuteNonQuery()
+                    '====================================================================
+                Next
+                server.Close()
+                local.Close()
+                LabelPRICEREQ.Text = "Synced Price Request Change"
+                LabelPRICEREQTime.Text = Label6.Text & " Seconds"
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception

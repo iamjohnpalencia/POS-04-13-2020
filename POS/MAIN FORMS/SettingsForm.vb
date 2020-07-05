@@ -61,27 +61,32 @@ Public Class SettingsForm
     End Sub
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Try
-            If POS.POSISUPDATING = False Then
-                Timer1.Start()
-                DataGridView5.Rows.Clear()
-                Dim Products = count("product_id", "loc_admin_products")
-                Dim Category = count("category_id", "loc_admin_category")
-                Dim Inventory = count("inventory_id", "loc_pos_inventory")
-                Dim Formula = count("formula_id", "loc_product_formula")
-                DataGridView5.Rows.Add(Products)
-                DataGridView5.Rows.Add(Category)
-                DataGridView5.Rows.Add(Inventory)
-                DataGridView5.Rows.Add(Formula)
-                LabelCountAllRows.Text = SumOfColumnsToInt(DataGridView5, 0)
-                LabelCheckingUpdates.Text = "Checking for updates."
-                ProgressBar1.Maximum = Val(LabelCountAllRows.Text)
-                ProgressBar1.Value = 0
-                BackgroundWorker1.WorkerReportsProgress = True
-                BackgroundWorker1.WorkerSupportsCancellation = True
-                BackgroundWorker1.RunWorkerAsync()
-                Button4.Enabled = False
+            If CheckForInternetConnection() = True Then
+
+                If POS.POSISUPDATING = False Then
+                    Timer1.Start()
+                    DataGridView5.Rows.Clear()
+                    Dim Products = count("product_id", "loc_admin_products")
+                    Dim Category = count("category_id", "loc_admin_category")
+                    Dim Inventory = count("inventory_id", "loc_pos_inventory")
+                    Dim Formula = count("formula_id", "loc_product_formula")
+                    DataGridView5.Rows.Add(Products)
+                    DataGridView5.Rows.Add(Category)
+                    DataGridView5.Rows.Add(Inventory)
+                    DataGridView5.Rows.Add(Formula)
+                    LabelCountAllRows.Text = SumOfColumnsToInt(DataGridView5, 0)
+                    LabelCheckingUpdates.Text = "Checking for updates."
+                    ProgressBar1.Maximum = Val(LabelCountAllRows.Text)
+                    ProgressBar1.Value = 0
+                    BackgroundWorker1.WorkerReportsProgress = True
+                    BackgroundWorker1.WorkerSupportsCancellation = True
+                    BackgroundWorker1.RunWorkerAsync()
+                    Button4.Enabled = False
+                Else
+                    MsgBox("Updates is still on process please wait.")
+                End If
             Else
-                MsgBox("Updates is still on process please wait.")
+                MsgBox("Internet connection is not available")
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1050,12 +1055,17 @@ Public Class SettingsForm
 
     Private Sub ButtonTestCloudCon_Click(sender As Object, e As EventArgs) Handles ButtonTestCloudCon.Click
         Try
-            Dim Con = TestDBConnection(TextBoxCloudServer.Text, TextBoxCloudUsername.Text, TextBoxCloudPassword.Text, TextBoxCloudDatabase.Text, TextBoxCloudPort.Text)
-            If Con.State = ConnectionState.Open Then
-                MsgBox("Connected successfully!")
+            If CheckForInternetConnection() = True Then
+                Dim Con = TestDBConnection(TextBoxCloudServer.Text, TextBoxCloudUsername.Text, TextBoxCloudPassword.Text, TextBoxCloudDatabase.Text, TextBoxCloudPort.Text)
+                If Con.State = ConnectionState.Open Then
+                    MessageBox.Show("Connected Successfully", "Connected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    MessageBox.Show("Cannot connect to server", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             Else
-                MsgBox("Cannot connect to server.")
+                MessageBox.Show("No internet connection available", "No internet connection", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1093,6 +1103,12 @@ Public Class SettingsForm
                 Next
                 If CheckForInternetConnection() = True Then
                     If ServerCloudCon.state = ConnectionState.Open Then
+                        thread = New Thread(AddressOf CheckPriceChanges)
+                        thread.Start()
+                        THREADLISTUPDATE.Add(thread)
+                        For Each t In THREADLISTUPDATE
+                            t.Join()
+                        Next
                         thread = New Thread(AddressOf Function1)
                         thread.Start()
                         THREADLISTUPDATE.Add(thread)
@@ -1120,6 +1136,9 @@ Public Class SettingsForm
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Try
+            If PRICECHANGE = True Then
+                listviewproductsshow(where:="Simply Perfect")
+            End If
             LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checked " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
             DataGridView2.DataSource = FillDatagridProduct
             Button4.Enabled = True
@@ -1151,6 +1170,36 @@ Public Class SettingsForm
     End Sub
 #End Region
 #Region "Updates"
+#Region "Price Change"
+    Dim PRICECHANGE As Boolean = False
+    Private Sub CheckPriceChanges()
+        Try
+            Dim Query = "SELECT * FROM admin_price_request WHERE store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND synced = 'Unsynced'"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ServerCloudCon)
+            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
+            Dim DtCheck As DataTable = New DataTable
+            DaCheck.Fill(DtCheck)
+            For i As Integer = 0 To DtCheck.Rows.Count - 1 Step +1
+                Dim sql = "UPDATE loc_admin_products SET product_price = " & DtCheck(i)(3) & ", price_change = 1 WHERE server_product_id = " & DtCheck(i)(2) & ""
+                CmdCheck = New MySqlCommand(sql, LocalhostConn)
+                CmdCheck.ExecuteNonQuery()
+                Dim sql2 = "UPDATE loc_price_request_change SET active = " & DtCheck(i)(5) & " WHERE request_id = " & DtCheck(i)(0) & ""
+                CmdCheck = New MySqlCommand(sql2, LocalhostConn)
+                CmdCheck.ExecuteNonQuery()
+                Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & DtCheck(i)(0) & ""
+                CmdCheck = New MySqlCommand(sq3, ServerCloudCon)
+                CmdCheck.ExecuteNonQuery()
+            Next
+            If DtCheck.Rows.Count > 0 Then
+                PRICECHANGE = True
+            Else
+                PRICECHANGE = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+#End Region
 #Region "Categories Update"
     Private Function LoadCategoryLocal() As DataTable
         Dim cmdlocal As MySqlCommand

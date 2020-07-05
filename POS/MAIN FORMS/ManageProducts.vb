@@ -9,9 +9,11 @@ Public Class ManageProducts
         TabControl1.TabPages(0).Text = "Product List"
         TabControl1.TabPages(1).Text = "Custom Product List(Approved)"
         TabControl1.TabPages(2).Text = "Custom Product List(Unapproved)"
+        TabControl1.TabPages(3).Text = "Price Change"
         serverloadproducts()
         clientloadproducts()
         clientloadproductsunapproved()
+        LoadPriceChange()
         'loadindexdgv()
     End Sub
     'Public Sub loadindexdgv()
@@ -162,7 +164,7 @@ Public Class ManageProducts
     Public Sub serverloadproducts()
         Try
             table = "loc_admin_products"
-            fields = "product_id, product_sku, product_name  , product_barcode, product_category, product_price, product_status, origin"
+            fields = "product_id, product_sku, product_name  , product_barcode, product_category, product_price, product_status, origin, server_product_id"
             where = "product_category <> 'Others' AND product_status = 1"
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewServerProducts, errormessage:="", successmessage:="", fields:=fields, where:=where)
             For Each row In dt.Rows
@@ -227,6 +229,39 @@ Public Class ManageProducts
                 .Columns(7).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
                 .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub LoadPriceChange()
+        Try
+            Dim PriceChange = AsDatatable("loc_price_request_change", "*", DataGridViewPriceChange)
+            For Each row As DataRow In PriceChange.Rows
+                Dim sql = "SELECT product_name FROM loc_admin_products WHERE server_product_id = " & row("server_product_id")
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                Dim Productname = dt(0)(0)
+                Dim Active
+                If row("active") = 1 Then
+                    Active = "Waiting For Approval"
+                ElseIf row("active") = 2 Then
+                    Active = "Approved"
+                Else
+                    Active = "Disapproved"
+                End If
+                DataGridViewPriceChange.Rows.Add(Productname, row("request_price"), row("created_at"), Active)
+            Next
+            With DataGridViewPriceChange
+                .Columns(0).HeaderText = "Product Name"
+                .Columns(1).HeaderText = "Price Requested"
+                .Columns(2).HeaderText = "Date Created"
+                .Columns(3).HeaderText = "Status"
+
+            End With
+            ' DataGridViewPriceChange
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -706,14 +741,36 @@ Public Class ManageProducts
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+        PriceRequest()
+        LoadPriceChange()
     End Sub
-
+    Private Sub PriceRequest()
+        Try
+            If Trim(TextBoxTO.Text) <> "" Then
+                Dim server_product_id = DataGridViewServerProducts.SelectedRows(0).Cells(8).Value
+                Dim sql = "INSERT INTO loc_price_request_change(`server_product_id`, `request_price`, `created_at`, `active`, `store_id`, `crew_id`, `guid`, `synced`) VALUES (@1, @2, @3, @4 ,@5 ,@6, @7, @8)"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                cmd.Parameters.Add("@1", MySqlDbType.Text).Value = server_product_id
+                cmd.Parameters.Add("@2", MySqlDbType.Text).Value = TextBoxTO.Text
+                cmd.Parameters.Add("@3", MySqlDbType.Text).Value = FullDate24HR()
+                cmd.Parameters.Add("@4", MySqlDbType.Text).Value = 1
+                cmd.Parameters.Add("@5", MySqlDbType.Text).Value = ClientStoreID
+                cmd.Parameters.Add("@6", MySqlDbType.Text).Value = ClientCrewID
+                cmd.Parameters.Add("@7", MySqlDbType.Text).Value = ClientGuid
+                cmd.Parameters.Add("@8", MySqlDbType.Text).Value = "Unsynced"
+                cmd.ExecuteNonQuery()
+                MsgBox("Complete. Please wait for the admin approval")
+                Panel5.Visible = False
+            Else
+                MsgBox("Fill up all required fields")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Private Sub TextBoxFROM_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxTO.KeyPress, TextBoxFROM.KeyPress
         Try
-            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
-                e.Handled = True
-            End If
+            Numeric(sender, e)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

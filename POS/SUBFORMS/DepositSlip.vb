@@ -54,9 +54,7 @@ Public Class DepositSlip
     End Sub
     Private Sub TextBoxNAME_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxTRANNUM.KeyPress, TextBoxNAME.KeyPress, TextBoxAMT.KeyPress
         Try
-            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
-                e.Handled = True
-            End If
+            Numeric(sender, e)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

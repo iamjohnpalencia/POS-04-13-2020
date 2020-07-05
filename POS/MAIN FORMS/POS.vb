@@ -1159,6 +1159,33 @@ Public Class POS
         End Try
         Return dtlocal
     End Function
+    Private Sub CheckPriceChanges()
+        Try
+            Dim Query = "SELECT * FROM admin_price_request WHERE store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND synced = 'Unsynced' AND active = 2"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ServerCloudCon)
+            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
+            Dim DtCheck As DataTable = New DataTable
+            DaCheck.Fill(DtCheck)
+            For i As Integer = 0 To DtCheck.Rows.Count - 1 Step +1
+                Dim sql = "UPDATE loc_admin_products SET product_price = " & DtCheck(i)(3) & ", price_change = 1 WHERE server_product_id = " & DtCheck(i)(2) & ""
+                CmdCheck = New MySqlCommand(sql, LocalhostConn)
+                CmdCheck.ExecuteNonQuery()
+                Dim sql2 = "UPDATE loc_price_request_change SET active = " & DtCheck(i)(5) & " WHERE request_id = " & DtCheck(i)(0) & ""
+                CmdCheck = New MySqlCommand(sql2, LocalhostConn)
+                CmdCheck.ExecuteNonQuery()
+                Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & DtCheck(i)(0) & ""
+                CmdCheck = New MySqlCommand(sq3, ServerCloudCon)
+                CmdCheck.ExecuteNonQuery()
+            Next
+            If DtCheck.Rows.Count > 0 Then
+                PRICECHANGE = True
+            Else
+                PRICECHANGE = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Private Sub Function1()
         Try
             Dim Query = "SELECT * FROM loc_admin_category"
@@ -1224,12 +1251,16 @@ Public Class POS
 #Region "Products Update"
     Dim UPDATEPRODUCTONLY As Boolean = False
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        UPDATEPRODUCTONLY = True
-        Button3.Enabled = False
-        BackgroundWorker2.WorkerReportsProgress = True
-        BackgroundWorker2.WorkerSupportsCancellation = True
-        BackgroundWorker2.RunWorkerAsync()
-        LabelCheckingUpdates.Text = "Checking for updates."
+        If CheckForInternetConnection() = True Then
+            UPDATEPRODUCTONLY = True
+            Button3.Enabled = False
+            BackgroundWorker2.WorkerReportsProgress = True
+            BackgroundWorker2.WorkerSupportsCancellation = True
+            BackgroundWorker2.RunWorkerAsync()
+            LabelCheckingUpdates.Text = "Checking for updates."
+        Else
+            MsgBox("Internet connection is not available")
+        End If
     End Sub
     Private Function LoadProductLocal() As DataTable
         Dim cmdlocal As MySqlCommand
@@ -1336,6 +1367,7 @@ Public Class POS
             If DtCheck.Rows.Count < 1 Then
                 GetAllProducts()
             Else
+
                 Dim DtCount As DataTable
                 Dim Connection As MySqlConnection = ServerCloudCon()
                 Dim SqlCount = "SELECT COUNT(product_id) FROM admin_products_org"
@@ -1345,13 +1377,14 @@ Public Class POS
                 Dim FillDt As DataTable = New DataTable
 
                 For a = 1 To result
-                    Dim Query1 As String = "SELECT date_modified FROM loc_admin_products WHERE product_id = " & a
+                    Dim Query1 As String = "SELECT date_modified, price_change FROM loc_admin_products WHERE product_id = " & a
                     Dim cmd As MySqlCommand = New MySqlCommand(Query1, LocalhostConn)
                     DaCount = New MySqlDataAdapter(cmd)
                     FillDt = New DataTable
                     DaCount.Fill(FillDt)
                     Dim Prod As DataRow = FillDatagridProduct.NewRow
                     If FillDt.Rows.Count > 0 Then
+                        Dim PriceChange = FillDt(0)(1)
                         'Exist then check for update
                         Query1 = "SELECT * FROM admin_products_org WHERE product_id = " & a
                         cmd = New MySqlCommand(Query1, Connection)
@@ -1365,7 +1398,16 @@ Public Class POS
                             Prod("formula_id") = DtCount(0)(3)
                             Prod("product_barcode") = DtCount(0)(4)
                             Prod("product_category") = DtCount(0)(5)
-                            Prod("product_price") = DtCount(0)(6)
+                            If FillDt(0)(1) = 1 Then
+                                Dim sql2 = "SELECT product_price FROM loc_admin_products WHERE product_id = " & a
+                                Dim cmd2 As MySqlCommand = New MySqlCommand(sql2, LocalhostConn)
+                                Dim da2 As MySqlDataAdapter = New MySqlDataAdapter(cmd2)
+                                Dim dt2 As DataTable = New DataTable
+                                da2.Fill(dt2)
+                                Prod("product_price") = dt2(0)(0)
+                            Else
+                                Prod("product_price") = DtCount(0)(6)
+                            End If
                             Prod("product_desc") = DtCount(0)(7)
                             Prod("product_image") = DtCount(0)(8)
                             Prod("product_status") = DtCount(0)(9)
@@ -1628,6 +1670,7 @@ Public Class POS
         End Try
     End Sub
     Public POSISUPDATING As Boolean = False
+    Dim PRICECHANGE As Boolean = False
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
         Try
             If ValidDatabaseLocalConnection Then
@@ -1641,12 +1684,16 @@ Public Class POS
                     If ServerCloudCon.state = ConnectionState.Open Then
                         If UPDATEPRODUCTONLY = False Then
                             POSISUPDATING = True
+                            thread = New Thread(AddressOf CheckPriceChanges)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+
+                            For Each t In THREADLISTUPDATE
+                                t.Join()
+                            Next
                             thread = New Thread(AddressOf Function1)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
-                            'thread = New Thread(AddressOf Function2)
-                            'thread.Start()
-                            'THREADLISTUPDATE.Add(thread)
                             thread = New Thread(AddressOf GetProducts)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
@@ -1657,17 +1704,18 @@ Public Class POS
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
                         Else
-                            'thread = New Thread(AddressOf Function2)
-                            'thread.Start()
-                            'THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf CheckPriceChanges)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+                            For Each t In THREADLISTUPDATE
+                                t.Join()
+                            Next
                             thread = New Thread(AddressOf GetProducts)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
                         End If
                     Else
                     End If
-                Else
-                    MsgBox("Internet connection is not available. Please try again")
                 End If
 
                 For Each t In THREADLISTUPDATE
@@ -1680,27 +1728,36 @@ Public Class POS
     End Sub
     Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
         Try
-            DataGridView2.DataSource = FillDatagridProduct
-
-            Button3.Enabled = True
-            UPDATEPRODUCTONLY = False
-            POSISUPDATING = False
-            If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Then
-                Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                If updatemessage = DialogResult.Yes Then
-                    InstallUpdatesFormula()
-                    InstallUpdatesInventory()
-                    InstallUpdatesCategory()
-                    InstallUpdatesProducts()
-                    listviewproductsshow(where:="Simply Perfect")
-                    LabelCheckingUpdates.Text = "Update Completed."
-
+            If PRICECHANGE = True Then
+                listviewproductsshow(where:="Simply Perfect")
+                MsgBox("Product price changes approved")
+            End If
+            PRICECHANGE = False
+            If CheckForInternetConnection() = True Then
+                DataGridView2.DataSource = FillDatagridProduct
+                Button3.Enabled = True
+                UPDATEPRODUCTONLY = False
+                POSISUPDATING = False
+                If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Then
+                    Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                    If updatemessage = DialogResult.Yes Then
+                        InstallUpdatesFormula()
+                        InstallUpdatesInventory()
+                        InstallUpdatesCategory()
+                        InstallUpdatesProducts()
+                        listviewproductsshow(where:="Simply Perfect")
+                        LabelCheckingUpdates.Text = "Update Completed."
+                    Else
+                        LabelCheckingUpdates.Text = "Completed."
+                    End If
                 Else
-                    LabelCheckingUpdates.Text = "Completed."
+                    LabelCheckingUpdates.Text = "Complete Checking! No updates found."
                 End If
             Else
-                LabelCheckingUpdates.Text = "Complete Checking! No updates found."
+                Button3.Enabled = True
+                LabelCheckingUpdates.Text = "Internet connection is not available."
             End If
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
