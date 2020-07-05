@@ -367,7 +367,5 @@ july 5 12:00 PM to 8:00 PM
 
 	* Product Formula ids
 	* Price Request
-	* Manage Product
-
-
-* Manage Product
+	* Manage Product Form : New tab for price request
+	* Localwebpannel new page for approving/disapproving price request
