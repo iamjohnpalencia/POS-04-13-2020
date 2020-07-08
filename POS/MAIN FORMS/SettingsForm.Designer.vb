@@ -295,6 +295,8 @@ Partial Class SettingsForm
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.LabelNewRows = New System.Windows.Forms.Label()
+        Me.Label48 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -2924,6 +2926,8 @@ Partial Class SettingsForm
         '
         'TabPage6
         '
+        Me.TabPage6.Controls.Add(Me.Label48)
+        Me.TabPage6.Controls.Add(Me.LabelNewRows)
         Me.TabPage6.Controls.Add(Me.LabelCountAllRows)
         Me.TabPage6.Controls.Add(Me.Button4)
         Me.TabPage6.Controls.Add(Me.DataGridView5)
@@ -3274,6 +3278,24 @@ Partial Class SettingsForm
         'Timer1
         '
         Me.Timer1.Interval = 1000
+        '
+        'LabelNewRows
+        '
+        Me.LabelNewRows.AutoSize = True
+        Me.LabelNewRows.Location = New System.Drawing.Point(609, 292)
+        Me.LabelNewRows.Name = "LabelNewRows"
+        Me.LabelNewRows.Size = New System.Drawing.Size(52, 19)
+        Me.LabelNewRows.TabIndex = 74
+        Me.LabelNewRows.Text = "Status"
+        '
+        'Label48
+        '
+        Me.Label48.AutoSize = True
+        Me.Label48.Location = New System.Drawing.Point(370, 292)
+        Me.Label48.Name = "Label48"
+        Me.Label48.Size = New System.Drawing.Size(141, 19)
+        Me.Label48.TabIndex = 75
+        Me.Label48.Text = "Getting New Items"
         '
         'SettingsForm
         '
@@ -3640,4 +3662,6 @@ Partial Class SettingsForm
     Friend WithEvents DataGridView5 As DataGridView
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents LabelCountAllRows As Label
+    Friend WithEvents LabelNewRows As Label
+    Friend WithEvents Label48 As Label
 End Class

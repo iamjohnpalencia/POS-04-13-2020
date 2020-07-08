@@ -60,9 +60,9 @@ Public Class Reports
             table = "`loc_system_logs`"
             fields = "`log_type`, `log_description`, `log_date_time`"
             If searchdate = False Then
-                where = " WHERE date(log_date_time) = CURRENT_DATE() AND log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                where = " WHERE date(log_date_time) = CURRENT_DATE() AND log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ORDER BY log_date_time DESC"
             Else
-                where = " WHERE log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND date(log_date_time) >= '" & Format(DateTimePicker9.Value, "yyyy-MM-dd") & "' AND date(log_date_time) <= '" & Format(DateTimePicker10.Value, "yyyy-MM-dd") & "'"
+                where = " WHERE log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND date(log_date_time) >= '" & Format(DateTimePicker9.Value, "yyyy-MM-dd") & "' AND date(log_date_time) <= '" & Format(DateTimePicker10.Value, "yyyy-MM-dd") & "' ORDER BY  log_date_time DESC"
             End If
             With DataGridViewSysLog
                 .Columns(0).HeaderText = "Type"
@@ -656,7 +656,7 @@ Public Class Reports
             '============================================================================================================================
             'SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 600)
             '============================================================================================================================
-            'CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 605)
+            CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 730)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

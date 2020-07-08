@@ -181,6 +181,7 @@
         Try
             iflogout = False
             Me.Close()
+            SynctoCloud.Close()
         Catch ex As Exception
             Dispose()
             MsgBox(ex.ToString)

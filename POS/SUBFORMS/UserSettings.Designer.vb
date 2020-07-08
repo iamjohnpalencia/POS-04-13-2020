@@ -22,9 +22,9 @@ Partial Class UserSettings
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Panel15 = New System.Windows.Forms.Panel()
@@ -38,25 +38,23 @@ Partial Class UserSettings
         Me.Button3 = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.ButtonUser = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.RadioButtonFEMALE = New System.Windows.Forms.RadioButton()
-        Me.RadioButtonMALE = New System.Windows.Forms.RadioButton()
-        Me.TextBoxCONTACT = New System.Windows.Forms.TextBox()
-        Me.TextBoxCONPASS = New System.Windows.Forms.TextBox()
-        Me.TextBoxPASS = New System.Windows.Forms.TextBox()
-        Me.TextBoxEMAIL = New System.Windows.Forms.TextBox()
-        Me.TextBoxUSERNAME = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.RadioButtonMALE = New System.Windows.Forms.RadioButton()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.TextBoxFULLNAME = New System.Windows.Forms.TextBox()
-        Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.TextBoxUSERNAME = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TextBoxEMAIL = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TextBoxPASS = New System.Windows.Forms.TextBox()
+        Me.TextBoxCONPASS = New System.Windows.Forms.TextBox()
+        Me.TextBoxCONTACT = New System.Windows.Forms.TextBox()
         Me.DataGridViewUserSettings = New System.Windows.Forms.DataGridView()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Button5 = New System.Windows.Forms.Button()
@@ -67,8 +65,7 @@ Partial Class UserSettings
         Me.Panel4.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel6.SuspendLayout()
-        Me.Panel9.SuspendLayout()
-        Me.Panel7.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridViewUserSettings, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -104,11 +101,11 @@ Partial Class UserSettings
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold)
         Me.Label1.ForeColor = System.Drawing.Color.Black
         Me.Label1.Location = New System.Drawing.Point(15, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(157, 25)
+        Me.Label1.Size = New System.Drawing.Size(182, 25)
         Me.Label1.TabIndex = 72
         Me.Label1.Text = "USER SETTINGS"
         '
@@ -209,39 +206,66 @@ Partial Class UserSettings
         'Panel6
         '
         Me.Panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel6.Controls.Add(Me.ButtonUser)
-        Me.Panel6.Controls.Add(Me.Label8)
-        Me.Panel6.Controls.Add(Me.Label7)
-        Me.Panel6.Controls.Add(Me.Label6)
-        Me.Panel6.Controls.Add(Me.Label5)
-        Me.Panel6.Controls.Add(Me.Label4)
-        Me.Panel6.Controls.Add(Me.RadioButtonFEMALE)
-        Me.Panel6.Controls.Add(Me.RadioButtonMALE)
-        Me.Panel6.Controls.Add(Me.TextBoxCONTACT)
-        Me.Panel6.Controls.Add(Me.TextBoxCONPASS)
-        Me.Panel6.Controls.Add(Me.TextBoxPASS)
-        Me.Panel6.Controls.Add(Me.TextBoxEMAIL)
-        Me.Panel6.Controls.Add(Me.TextBoxUSERNAME)
-        Me.Panel6.Controls.Add(Me.Label2)
-        Me.Panel6.Controls.Add(Me.TextBoxFULLNAME)
-        Me.Panel6.Controls.Add(Me.Panel9)
+        Me.Panel6.Controls.Add(Me.GroupBox1)
         Me.Panel6.Location = New System.Drawing.Point(293, 64)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(418, 311)
         Me.Panel6.TabIndex = 6
         Me.Panel6.Visible = False
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Button4)
+        Me.GroupBox1.Controls.Add(Me.ButtonUser)
+        Me.GroupBox1.Controls.Add(Me.Label8)
+        Me.GroupBox1.Controls.Add(Me.RadioButtonFEMALE)
+        Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Controls.Add(Me.RadioButtonMALE)
+        Me.GroupBox1.Controls.Add(Me.Label7)
+        Me.GroupBox1.Controls.Add(Me.TextBoxFULLNAME)
+        Me.GroupBox1.Controls.Add(Me.Label6)
+        Me.GroupBox1.Controls.Add(Me.TextBoxUSERNAME)
+        Me.GroupBox1.Controls.Add(Me.Label5)
+        Me.GroupBox1.Controls.Add(Me.TextBoxEMAIL)
+        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Controls.Add(Me.TextBoxPASS)
+        Me.GroupBox1.Controls.Add(Me.TextBoxCONPASS)
+        Me.GroupBox1.Controls.Add(Me.TextBoxCONTACT)
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(416, 309)
+        Me.GroupBox1.TabIndex = 7
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Add User"
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.Button4.ForeColor = System.Drawing.Color.White
+        Me.Button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button4.Location = New System.Drawing.Point(270, 248)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(134, 37)
+        Me.Button4.TabIndex = 184
+        Me.Button4.Text = "Cancel"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
         'ButtonUser
         '
-        Me.ButtonUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonUser.FlatAppearance.BorderSize = 0
         Me.ButtonUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonUser.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonUser.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonUser.ForeColor = System.Drawing.Color.White
-        Me.ButtonUser.Location = New System.Drawing.Point(132, 257)
+        Me.ButtonUser.Location = New System.Drawing.Point(129, 248)
         Me.ButtonUser.Name = "ButtonUser"
-        Me.ButtonUser.Size = New System.Drawing.Size(271, 36)
+        Me.ButtonUser.Size = New System.Drawing.Size(134, 37)
         Me.ButtonUser.TabIndex = 158
         Me.ButtonUser.Text = "Add User"
         Me.ButtonUser.UseVisualStyleBackColor = False
@@ -250,69 +274,39 @@ Partial Class UserSettings
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(13, 114)
+        Me.Label8.Location = New System.Drawing.Point(10, 106)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(39, 16)
         Me.Label8.TabIndex = 107
         Me.Label8.Text = "Email"
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(13, 201)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(100, 16)
-        Me.Label7.TabIndex = 106
-        Me.Label7.Text = "Contact Number"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(13, 172)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(112, 16)
-        Me.Label6.TabIndex = 105
-        Me.Label6.Text = "Confirm Password"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(13, 143)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(63, 16)
-        Me.Label5.TabIndex = 104
-        Me.Label5.Text = "Password"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(13, 85)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(66, 16)
-        Me.Label4.TabIndex = 103
-        Me.Label4.Text = "Username"
-        '
         'RadioButtonFEMALE
         '
         Me.RadioButtonFEMALE.AutoSize = True
         Me.RadioButtonFEMALE.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonFEMALE.Location = New System.Drawing.Point(330, 230)
+        Me.RadioButtonFEMALE.Location = New System.Drawing.Point(189, 222)
         Me.RadioButtonFEMALE.Name = "RadioButtonFEMALE"
         Me.RadioButtonFEMALE.Size = New System.Drawing.Size(68, 20)
         Me.RadioButtonFEMALE.TabIndex = 102
         Me.RadioButtonFEMALE.Text = "Female"
         Me.RadioButtonFEMALE.UseVisualStyleBackColor = True
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(10, 48)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(65, 16)
+        Me.Label2.TabIndex = 95
+        Me.Label2.Text = "Full Name"
+        '
         'RadioButtonMALE
         '
         Me.RadioButtonMALE.AutoSize = True
         Me.RadioButtonMALE.Checked = True
         Me.RadioButtonMALE.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonMALE.Location = New System.Drawing.Point(132, 230)
+        Me.RadioButtonMALE.Location = New System.Drawing.Point(130, 222)
         Me.RadioButtonMALE.Name = "RadioButtonMALE"
         Me.RadioButtonMALE.Size = New System.Drawing.Size(53, 20)
         Me.RadioButtonMALE.TabIndex = 101
@@ -320,112 +314,95 @@ Partial Class UserSettings
         Me.RadioButtonMALE.Text = "Male"
         Me.RadioButtonMALE.UseVisualStyleBackColor = True
         '
-        'TextBoxCONTACT
+        'Label7
         '
-        Me.TextBoxCONTACT.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxCONTACT.Location = New System.Drawing.Point(132, 201)
-        Me.TextBoxCONTACT.Name = "TextBoxCONTACT"
-        Me.TextBoxCONTACT.Size = New System.Drawing.Size(271, 23)
-        Me.TextBoxCONTACT.TabIndex = 100
-        '
-        'TextBoxCONPASS
-        '
-        Me.TextBoxCONPASS.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxCONPASS.Location = New System.Drawing.Point(132, 172)
-        Me.TextBoxCONPASS.Name = "TextBoxCONPASS"
-        Me.TextBoxCONPASS.Size = New System.Drawing.Size(271, 23)
-        Me.TextBoxCONPASS.TabIndex = 99
-        Me.TextBoxCONPASS.UseSystemPasswordChar = True
-        '
-        'TextBoxPASS
-        '
-        Me.TextBoxPASS.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxPASS.Location = New System.Drawing.Point(132, 143)
-        Me.TextBoxPASS.Name = "TextBoxPASS"
-        Me.TextBoxPASS.Size = New System.Drawing.Size(271, 23)
-        Me.TextBoxPASS.TabIndex = 98
-        Me.TextBoxPASS.UseSystemPasswordChar = True
-        '
-        'TextBoxEMAIL
-        '
-        Me.TextBoxEMAIL.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxEMAIL.Location = New System.Drawing.Point(132, 114)
-        Me.TextBoxEMAIL.Name = "TextBoxEMAIL"
-        Me.TextBoxEMAIL.Size = New System.Drawing.Size(271, 23)
-        Me.TextBoxEMAIL.TabIndex = 97
-        '
-        'TextBoxUSERNAME
-        '
-        Me.TextBoxUSERNAME.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxUSERNAME.Location = New System.Drawing.Point(132, 85)
-        Me.TextBoxUSERNAME.Name = "TextBoxUSERNAME"
-        Me.TextBoxUSERNAME.Size = New System.Drawing.Size(271, 23)
-        Me.TextBoxUSERNAME.TabIndex = 96
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(13, 56)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(65, 16)
-        Me.Label2.TabIndex = 95
-        Me.Label2.Text = "Full Name"
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(10, 193)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(100, 16)
+        Me.Label7.TabIndex = 106
+        Me.Label7.Text = "Contact Number"
         '
         'TextBoxFULLNAME
         '
         Me.TextBoxFULLNAME.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxFULLNAME.Location = New System.Drawing.Point(132, 56)
+        Me.TextBoxFULLNAME.Location = New System.Drawing.Point(129, 48)
         Me.TextBoxFULLNAME.Name = "TextBoxFULLNAME"
-        Me.TextBoxFULLNAME.Size = New System.Drawing.Size(271, 23)
+        Me.TextBoxFULLNAME.Size = New System.Drawing.Size(275, 23)
         Me.TextBoxFULLNAME.TabIndex = 94
         '
-        'Panel9
+        'Label6
         '
-        Me.Panel9.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.Panel9.Controls.Add(Me.Panel7)
-        Me.Panel9.Controls.Add(Me.Label3)
-        Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel9.Location = New System.Drawing.Point(0, 0)
-        Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(416, 41)
-        Me.Panel9.TabIndex = 93
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(10, 164)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(112, 16)
+        Me.Label6.TabIndex = 105
+        Me.Label6.Text = "Confirm Password"
         '
-        'Panel7
+        'TextBoxUSERNAME
         '
-        Me.Panel7.Controls.Add(Me.Button4)
-        Me.Panel7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel7.Location = New System.Drawing.Point(303, 0)
-        Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(113, 41)
-        Me.Panel7.TabIndex = 184
+        Me.TextBoxUSERNAME.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxUSERNAME.Location = New System.Drawing.Point(129, 77)
+        Me.TextBoxUSERNAME.Name = "TextBoxUSERNAME"
+        Me.TextBoxUSERNAME.Size = New System.Drawing.Size(275, 23)
+        Me.TextBoxUSERNAME.TabIndex = 96
         '
-        'Button4
+        'Label5
         '
-        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
-        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button4.Location = New System.Drawing.Point(69, 3)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(40, 30)
-        Me.Button4.TabIndex = 184
-        Me.Button4.Text = "X"
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(10, 135)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(63, 16)
+        Me.Label5.TabIndex = 104
+        Me.Label5.Text = "Password"
         '
-        'Label3
+        'TextBoxEMAIL
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(136, 3)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(150, 35)
-        Me.Label3.TabIndex = 153
-        Me.Label3.Text = "ADD USER"
+        Me.TextBoxEMAIL.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxEMAIL.Location = New System.Drawing.Point(129, 106)
+        Me.TextBoxEMAIL.Name = "TextBoxEMAIL"
+        Me.TextBoxEMAIL.Size = New System.Drawing.Size(275, 23)
+        Me.TextBoxEMAIL.TabIndex = 97
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(10, 77)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(66, 16)
+        Me.Label4.TabIndex = 103
+        Me.Label4.Text = "Username"
+        '
+        'TextBoxPASS
+        '
+        Me.TextBoxPASS.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxPASS.Location = New System.Drawing.Point(129, 135)
+        Me.TextBoxPASS.Name = "TextBoxPASS"
+        Me.TextBoxPASS.Size = New System.Drawing.Size(275, 23)
+        Me.TextBoxPASS.TabIndex = 98
+        Me.TextBoxPASS.UseSystemPasswordChar = True
+        '
+        'TextBoxCONPASS
+        '
+        Me.TextBoxCONPASS.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxCONPASS.Location = New System.Drawing.Point(129, 164)
+        Me.TextBoxCONPASS.Name = "TextBoxCONPASS"
+        Me.TextBoxCONPASS.Size = New System.Drawing.Size(275, 23)
+        Me.TextBoxCONPASS.TabIndex = 99
+        Me.TextBoxCONPASS.UseSystemPasswordChar = True
+        '
+        'TextBoxCONTACT
+        '
+        Me.TextBoxCONTACT.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxCONTACT.Location = New System.Drawing.Point(129, 193)
+        Me.TextBoxCONTACT.Name = "TextBoxCONTACT"
+        Me.TextBoxCONTACT.Size = New System.Drawing.Size(275, 23)
+        Me.TextBoxCONTACT.TabIndex = 100
         '
         'DataGridViewUserSettings
         '
@@ -433,27 +410,27 @@ Partial Class UserSettings
         Me.DataGridViewUserSettings.AllowUserToDeleteRows = False
         Me.DataGridViewUserSettings.AllowUserToResizeColumns = False
         Me.DataGridViewUserSettings.AllowUserToResizeRows = False
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
-        Me.DataGridViewUserSettings.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        Me.DataGridViewUserSettings.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridViewUserSettings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewUserSettings.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewUserSettings.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewUserSettings.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridViewUserSettings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewUserSettings.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewUserSettings.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridViewUserSettings.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewUserSettings.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewUserSettings.EnableHeadersVisualStyles = False
@@ -552,10 +529,8 @@ Partial Class UserSettings
         Me.Panel4.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.Panel6.ResumeLayout(False)
-        Me.Panel6.PerformLayout()
-        Me.Panel9.ResumeLayout(False)
-        Me.Panel9.PerformLayout()
-        Me.Panel7.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         CType(Me.DataGridViewUserSettings, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
@@ -581,10 +556,7 @@ Partial Class UserSettings
     Friend WithEvents ButtonDeleteProducts As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents Panel6 As Panel
-    Friend WithEvents Panel9 As Panel
-    Friend WithEvents Panel7 As Panel
     Friend WithEvents Button4 As Button
-    Friend WithEvents Label3 As Label
     Friend WithEvents TextBoxFULLNAME As TextBox
     Friend WithEvents RadioButtonFEMALE As RadioButton
     Friend WithEvents RadioButtonMALE As RadioButton
@@ -600,4 +572,5 @@ Partial Class UserSettings
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents ButtonUser As Button
+    Friend WithEvents GroupBox1 As GroupBox
 End Class

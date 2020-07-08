@@ -31,9 +31,9 @@ Public Class ManageProducts
     '    End If
     'End Sub
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        Label11.Text = "ADD PRODUCT"
+        GroupBox2.Text = "Add Product"
         ButtonCustomProducts.Text = "Submit"
-        ButtonCustomProducts.BackColor = Color.FromArgb(84, 177, 140)
+        'ButtonCustomProducts.BackColor = Color.FromArgb(84, 177, 140)
         PanelAddCustomProducts.Top = (Me.Height - PanelAddCustomProducts.Height) / 4
         PanelAddCustomProducts.Left = (Me.Width - PanelAddCustomProducts.Width) / 3
         PanelAddCustomProducts.Visible = True
@@ -44,7 +44,7 @@ Public Class ManageProducts
                 MsgBox("Products from server is not editable")
             Else
                 DataGridViewClientProducts.Enabled = False
-                Label11.Text = "EDIT PRODUCT"
+                GroupBox2.Text = "Edit Product"
                 ButtonCustomProducts.Text = "Update"
                 ButtonCustomProducts.BackColor = Color.FromArgb(221, 114, 46)
                 PanelAddCustomProducts.Top = (Me.Height - PanelAddCustomProducts.Height) / 4
@@ -106,9 +106,6 @@ Public Class ManageProducts
                 MsgBox(ex.ToString)
             End Try
         End If
-    End Sub
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        MDIFORM.Button2.PerformClick()
     End Sub
     Public Sub fillcustomproducts(ByVal iftrueorfalse As Boolean)
         If iftrueorfalse = True Then
@@ -187,12 +184,7 @@ Public Class ManageProducts
                 .Columns(2).Width = 200
                 .Columns(4).Width = 150
                 .Columns.Item(5).DefaultCellStyle.Format = "n2"
-                .Columns(5).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                .Columns(6).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
-                .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-                .Columns(7).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
-                .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(8).Visible = False
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -714,7 +706,7 @@ Public Class ManageProducts
     End Sub
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
         If DataGridViewUNAPPROVED.SelectedRows.Count = 1 Then
-            Label18.Text = "EDIT PRODUCT"
+            'Label18.Text = "EDIT PRODUCT"
             Button10.Text = "Update"
             Button10.BackColor = Color.FromArgb(221, 114, 46)
             Panel10.Top = (Me.Height - Panel10.Height) / 4

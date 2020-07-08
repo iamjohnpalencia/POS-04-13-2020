@@ -38,9 +38,9 @@ Public Class POS
         Enabled = False
         BegBalance.Show()
         BegBalance.TopMost = True
-        BackgroundWorker2.WorkerReportsProgress = True
-        BackgroundWorker2.WorkerSupportsCancellation = True
-        BackgroundWorker2.RunWorkerAsync()
+        'BackgroundWorker2.WorkerReportsProgress = True
+        'BackgroundWorker2.WorkerSupportsCancellation = True
+        'BackgroundWorker2.RunWorkerAsync()
     End Sub
     Private Sub LoadCategory()
         Try
@@ -329,6 +329,8 @@ Public Class POS
     End Sub
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
         Try
+            ButtonCDISC.PerformClick()
+
             If DataGridViewOrders.Rows.Count > 0 Then
                 datas = DataGridViewOrders.SelectedRows(0).Cells(4).Value.ToString()
                 For x As Integer = DataGridViewInv.Rows.Count - 1 To 0 Step -1
@@ -1367,7 +1369,6 @@ Public Class POS
             If DtCheck.Rows.Count < 1 Then
                 GetAllProducts()
             Else
-
                 Dim DtCount As DataTable
                 Dim Connection As MySqlConnection = ServerCloudCon()
                 Dim SqlCount = "SELECT COUNT(product_id) FROM admin_products_org"
@@ -1441,65 +1442,60 @@ Public Class POS
                 Next
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            BackgroundWorker2.CancelAsync()
         End Try
     End Sub
     Private Sub GetAllProducts()
         Try
-            Try
-                Dim Connection As MySqlConnection = ServerCloudCon()
-                Dim SqlCount = "SELECT COUNT(product_id) FROM admin_products_org"
-                Dim CmdCount As MySqlCommand = New MySqlCommand(SqlCount, Connection)
-                Dim result As Integer = CmdCount.ExecuteScalar
-                Dim Cmd As MySqlCommand
-                FillDatagridProduct = New DataTable
-                FillDatagridProduct.Columns.Add("product_id")
-                FillDatagridProduct.Columns.Add("product_sku")
-                FillDatagridProduct.Columns.Add("product_name")
-                FillDatagridProduct.Columns.Add("formula_id")
-                FillDatagridProduct.Columns.Add("product_barcode")
-                FillDatagridProduct.Columns.Add("product_category")
-                FillDatagridProduct.Columns.Add("product_price")
-                FillDatagridProduct.Columns.Add("product_desc")
-                FillDatagridProduct.Columns.Add("product_image")
-                FillDatagridProduct.Columns.Add("product_status")
-                FillDatagridProduct.Columns.Add("origin")
-                FillDatagridProduct.Columns.Add("date_modified")
-                FillDatagridProduct.Columns.Add("inventory_id")
-                Dim DaCount As MySqlDataAdapter
-                Dim FillDt As DataTable = New DataTable
-                For a = 1 To result
-                    Dim Query As String = "SELECT * FROM admin_products_org WHERE product_id = " & a
-                    Cmd = New MySqlCommand(Query, Connection)
-                    DaCount = New MySqlDataAdapter(Cmd)
-                    FillDt = New DataTable
-                    DaCount.Fill(FillDt)
-                    For i As Integer = 0 To FillDt.Rows.Count - 1 Step +1
-                        Dim Prod As DataRow = FillDatagridProduct.NewRow
-                        Prod("product_id") = FillDt(i)(0)
-                        Prod("product_sku") = FillDt(i)(1)
-                        Prod("product_name") = FillDt(i)(2)
-                        Prod("formula_id") = FillDt(i)(3)
-                        Prod("product_barcode") = FillDt(i)(4)
-                        Prod("product_category") = FillDt(i)(5)
-                        Prod("product_price") = FillDt(i)(6)
-                        Prod("product_desc") = FillDt(i)(7)
-                        Prod("product_image") = FillDt(i)(8)
-                        Prod("product_status") = FillDt(i)(9)
-                        Prod("origin") = FillDt(i)(10)
-                        Prod("date_modified") = FillDt(i)(11)
-                        Prod("inventory_id") = FillDt(i)(12)
-                        FillDatagridProduct.Rows.Add(Prod)
-                    Next
+            Dim Connection As MySqlConnection = ServerCloudCon()
+            Dim SqlCount = "SELECT COUNT(product_id) FROM admin_products_org"
+            Dim CmdCount As MySqlCommand = New MySqlCommand(SqlCount, Connection)
+            Dim result As Integer = CmdCount.ExecuteScalar
+            Dim Cmd As MySqlCommand
+            FillDatagridProduct = New DataTable
+            FillDatagridProduct.Columns.Add("product_id")
+            FillDatagridProduct.Columns.Add("product_sku")
+            FillDatagridProduct.Columns.Add("product_name")
+            FillDatagridProduct.Columns.Add("formula_id")
+            FillDatagridProduct.Columns.Add("product_barcode")
+            FillDatagridProduct.Columns.Add("product_category")
+            FillDatagridProduct.Columns.Add("product_price")
+            FillDatagridProduct.Columns.Add("product_desc")
+            FillDatagridProduct.Columns.Add("product_image")
+            FillDatagridProduct.Columns.Add("product_status")
+            FillDatagridProduct.Columns.Add("origin")
+            FillDatagridProduct.Columns.Add("date_modified")
+            FillDatagridProduct.Columns.Add("inventory_id")
+            Dim DaCount As MySqlDataAdapter
+            Dim FillDt As DataTable = New DataTable
+            For a = 1 To result
+                Dim Query As String = "SELECT * FROM admin_products_org WHERE product_id = " & a
+                Cmd = New MySqlCommand(Query, Connection)
+                DaCount = New MySqlDataAdapter(Cmd)
+                FillDt = New DataTable
+                DaCount.Fill(FillDt)
+                For i As Integer = 0 To FillDt.Rows.Count - 1 Step +1
+                    Dim Prod As DataRow = FillDatagridProduct.NewRow
+                    Prod("product_id") = FillDt(i)(0)
+                    Prod("product_sku") = FillDt(i)(1)
+                    Prod("product_name") = FillDt(i)(2)
+                    Prod("formula_id") = FillDt(i)(3)
+                    Prod("product_barcode") = FillDt(i)(4)
+                    Prod("product_category") = FillDt(i)(5)
+                    Prod("product_price") = FillDt(i)(6)
+                    Prod("product_desc") = FillDt(i)(7)
+                    Prod("product_image") = FillDt(i)(8)
+                    Prod("product_status") = FillDt(i)(9)
+                    Prod("origin") = FillDt(i)(10)
+                    Prod("date_modified") = FillDt(i)(11)
+                    Prod("inventory_id") = FillDt(i)(12)
+                    FillDatagridProduct.Rows.Add(Prod)
                 Next
-            Catch ex As Exception
-                MsgBox(ex.ToString)
-            End Try
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
     End Sub
-
 #End Region
 #Region "Formulas Update"
     Private Function LoadFormulaLocal() As DataTable
@@ -1532,7 +1528,6 @@ Public Class POS
             Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
             Dim DtCheck As DataTable = New DataTable
             DaCheck.Fill(DtCheck)
-
             Dim cmdserver As MySqlCommand
             Dim daserver As MySqlDataAdapter
             Dim dtserver As DataTable
@@ -1544,7 +1539,6 @@ Public Class POS
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                     DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10).ToString, dtserver(i)(11), dtserver(i)(12))
-
                 Next
             Else
                 Dim Ids As String = ""
@@ -1564,7 +1558,6 @@ Public Class POS
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                         If LoadFormulaLocal(i)(0).ToString <> dtserver(i)(10).ToString Then
                             DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10).ToString, dtserver(i)(11), dtserver(i)(12))
-
                         End If
                     Next
                     Dim sql2 = "SELECT `formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE formula_id NOT IN (" & Ids & ") "
@@ -1575,7 +1568,6 @@ Public Class POS
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                         If LoadFormulaLocal(i)(0).ToString <> dtserver(i)(10) Then
                             DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10).ToString, dtserver(i)(11), dtserver(i)(12))
-
                         End If
                     Next
                 End If

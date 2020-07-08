@@ -2,11 +2,9 @@
 Module Addmodule
     Public Sub GLOBAL_SYSTEM_LOGS(ByVal logtype As String, ByVal logdesc As String)
         Try
-            messageboxappearance = False
             If ClientCrewID = "" Then
                 ClientCrewID = 0
             End If
-            messageboxappearance = False
             table = "loc_system_logs"
             fields = "(`log_type`,`crew_id`,`log_description`, `log_store`, `guid`, `loc_systemlog_id`, `synced`, `zreading`, `log_date_time`)"
             value = "('" & logtype & "'

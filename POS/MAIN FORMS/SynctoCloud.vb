@@ -26,11 +26,18 @@ Public Class SynctoCloud
     End Sub
     Private Sub SynctoCloud_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
-            If BackgroundWorker1.IsBusy Then
+
+            If SyncIsOnProcess = True Then
                 e.Cancel = True
             Else
+                GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "State: Canceled, Time End : " & FullDate24HR() & " Canceled by : " & returnfullname(ClientCrewID))
                 e.Cancel = False
             End If
+            'If BackgroundWorker1.IsBusy Then
+            '    e.Cancel = True
+            'Else
+            '    e.Cancel = False
+            'End If
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -339,18 +346,34 @@ Public Class SynctoCloud
         LoadData()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        If ValidCloudConnection = True Then
-            'Button1.PerformClick()
-            GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "Start : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
-            BackgroundWorker1.WorkerSupportsCancellation = True
-            BackgroundWorker1.WorkerReportsProgress = True
-            BackgroundWorker1.RunWorkerAsync()
-            Timer1.Start()
-            Button2.Enabled = False
-            SyncIsOnProcess = True
+        If Button2.Text = "SYNC" Then
+            If ValidCloudConnection = True Then
+                'Button1.PerformClick()
+                GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "Start : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
+                BackgroundWorker1.WorkerSupportsCancellation = True
+                BackgroundWorker1.WorkerReportsProgress = True
+                BackgroundWorker1.RunWorkerAsync()
+                Timer1.Start()
+                SyncIsOnProcess = True
+                Button2.Text = "CANCEL SYNC"
+            Else
+                MsgBox("Cloud connection is not valid.")
+            End If
         Else
-            MsgBox("Cloud connection is not valid.")
+            Dim msg = MessageBox.Show("Are you sure do you want to cancel sync ?", "Cancel Sync", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+            If msg = DialogResult.Yes Then
+                SyncIsOnProcess = False
+                BackgroundWorker1.CancelAsync()
+                WorkerCanceled = True
+                Label1.Visible = False
+                Label2.Visible = False
+                Label3.Visible = False
+                Label8.Visible = True
+                Button2.Enabled = False
+                Timer2.Start()
+            End If
         End If
+
     End Sub
     Dim threadListLOCTRAN As List(Of Thread) = New List(Of Thread)
     Dim threadListLOCTD1 As List(Of Thread) = New List(Of Thread)
@@ -370,6 +393,8 @@ Public Class SynctoCloud
     Dim threadListloadData As List(Of Thread) = New List(Of Thread)
     Dim threadListPRICEREQUEST As List(Of Thread) = New List(Of Thread)
     Dim thread1 As Thread
+
+    Dim WorkerCanceled As Boolean = False
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
             If CheckForInternetConnection() = True Then
@@ -440,56 +465,153 @@ Public Class SynctoCloud
 
                 For Each t In threadListPRICEREQUEST
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCTRAN
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCTD1
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCTD2
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCINV
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCEXP
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCEXPD
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCTUSER
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCSYSLOG1
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCSYSLOG2
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCSYSLOG3
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCSYSLOG4
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCREFRET
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLOCPRODUCT
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
 
                 For Each t In threadListMODEOFTRANSACTION
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 For Each t In threadListLocDeposit
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
             Else
                 Unsuccessful = True
             End If
+
 
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -514,17 +636,26 @@ Public Class SynctoCloud
                 Button2.Enabled = True
                 GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "State: Unsuccessful, Time End : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
             Else
-                SyncIsOnProcess = False
-                Timer1.Enabled = False
-                Label1.Text = "Synced " & Label3.Text & " of " & Label3.Text
-                Label5.Text = "Successfully Synchronized "
-                Dim sync = MessageBox.Show("Synchronization Complete", "Sync", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                If sync = DialogResult.OK Then
-                    Me.Close()
-                    Button1.Enabled = True
-                    Button2.Enabled = True
+                If WorkerCanceled = True Then
+                    MsgBox("Canceled")
                 End If
-                GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "State: Successful, Time End : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
+                If e.Cancelled Then
+
+                    Close()
+                Else
+                    SyncIsOnProcess = False
+                    Timer1.Enabled = False
+                    Label1.Text = "Synced " & Label3.Text & " of " & Label3.Text
+                    Label5.Text = "Successfully Synchronized "
+                    Dim sync = MessageBox.Show("Synchronization Complete", "Sync", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    If sync = DialogResult.OK Then
+                        Me.Close()
+                        Button1.Enabled = True
+                        Button2.Enabled = True
+                    End If
+                    GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "State: Successful, Time End : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
+                End If
+
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -543,47 +674,51 @@ Public Class SynctoCloud
             LabelDTransac.Text = "Syncing Daily Transaction"
             With DataGridViewTRAN
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO `Triggers_admin_daily_transaction`(`loc_transaction_id`, `transaction_number`, `grosssales`, `totaldiscount`, `amounttendered`, `change`, `amountdue`, `vatablesales`, `vatexemptsales`, `zeroratedsales`, `vatpercentage`, `lessvat`, `transaction_type`, `discount_type`, `totaldiscountedamount`, `si_number`, `crew_id`, `guid`, `active`, `store_id`, `created_at`, `shift`, `zreading`)
                                              VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17,@18,@19,@20,@21,@22,@23)", server)
 
-                    cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
-                    cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-                    cmd.Parameters.Add("@3", MySqlDbType.Decimal).Value = .Rows(i).Cells(2).Value.ToString()
-                    cmd.Parameters.Add("@4", MySqlDbType.Decimal).Value = .Rows(i).Cells(3).Value.ToString()
-                    cmd.Parameters.Add("@5", MySqlDbType.Decimal).Value = .Rows(i).Cells(4).Value.ToString()
-                    cmd.Parameters.Add("@6", MySqlDbType.Decimal).Value = .Rows(i).Cells(5).Value.ToString()
-                    cmd.Parameters.Add("@7", MySqlDbType.Decimal).Value = .Rows(i).Cells(6).Value.ToString()
-                    cmd.Parameters.Add("@8", MySqlDbType.Decimal).Value = .Rows(i).Cells(7).Value.ToString()
-                    cmd.Parameters.Add("@9", MySqlDbType.Decimal).Value = .Rows(i).Cells(8).Value.ToString()
-                    cmd.Parameters.Add("@10", MySqlDbType.Decimal).Value = .Rows(i).Cells(9).Value.ToString()
-                    cmd.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(10).Value.ToString()
-                    cmd.Parameters.Add("@12", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
-                    cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
-                    cmd.Parameters.Add("@14", MySqlDbType.Text).Value = .Rows(i).Cells(13).Value.ToString()
-                    cmd.Parameters.Add("@15", MySqlDbType.Decimal).Value = .Rows(i).Cells(14).Value.ToString()
-                    cmd.Parameters.Add("@16", MySqlDbType.Int64).Value = .Rows(i).Cells(15).Value.ToString()
-                    cmd.Parameters.Add("@17", MySqlDbType.VarChar).Value = .Rows(i).Cells(16).Value.ToString()
-                    cmd.Parameters.Add("@18", MySqlDbType.VarChar).Value = .Rows(i).Cells(17).Value.ToString()
-                    cmd.Parameters.Add("@19", MySqlDbType.VarChar).Value = .Rows(i).Cells(18).Value.ToString()
-                    cmd.Parameters.Add("@20", MySqlDbType.VarChar).Value = .Rows(i).Cells(19).Value.ToString()
-                    cmd.Parameters.Add("@21", MySqlDbType.Text).Value = .Rows(i).Cells(20).Value.ToString()
-                    cmd.Parameters.Add("@22", MySqlDbType.VarChar).Value = .Rows(i).Cells(21).Value.ToString()
-                    cmd.Parameters.Add("@23", MySqlDbType.Text).Value = .Rows(i).Cells(22).Value.ToString()
+                        cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                        cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                        cmd.Parameters.Add("@3", MySqlDbType.Decimal).Value = .Rows(i).Cells(2).Value.ToString()
+                        cmd.Parameters.Add("@4", MySqlDbType.Decimal).Value = .Rows(i).Cells(3).Value.ToString()
+                        cmd.Parameters.Add("@5", MySqlDbType.Decimal).Value = .Rows(i).Cells(4).Value.ToString()
+                        cmd.Parameters.Add("@6", MySqlDbType.Decimal).Value = .Rows(i).Cells(5).Value.ToString()
+                        cmd.Parameters.Add("@7", MySqlDbType.Decimal).Value = .Rows(i).Cells(6).Value.ToString()
+                        cmd.Parameters.Add("@8", MySqlDbType.Decimal).Value = .Rows(i).Cells(7).Value.ToString()
+                        cmd.Parameters.Add("@9", MySqlDbType.Decimal).Value = .Rows(i).Cells(8).Value.ToString()
+                        cmd.Parameters.Add("@10", MySqlDbType.Decimal).Value = .Rows(i).Cells(9).Value.ToString()
+                        cmd.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmd.Parameters.Add("@12", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
+                        cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
+                        cmd.Parameters.Add("@14", MySqlDbType.Text).Value = .Rows(i).Cells(13).Value.ToString()
+                        cmd.Parameters.Add("@15", MySqlDbType.Decimal).Value = .Rows(i).Cells(14).Value.ToString()
+                        cmd.Parameters.Add("@16", MySqlDbType.Int64).Value = .Rows(i).Cells(15).Value.ToString()
+                        cmd.Parameters.Add("@17", MySqlDbType.VarChar).Value = .Rows(i).Cells(16).Value.ToString()
+                        cmd.Parameters.Add("@18", MySqlDbType.VarChar).Value = .Rows(i).Cells(17).Value.ToString()
+                        cmd.Parameters.Add("@19", MySqlDbType.VarChar).Value = .Rows(i).Cells(18).Value.ToString()
+                        cmd.Parameters.Add("@20", MySqlDbType.VarChar).Value = .Rows(i).Cells(19).Value.ToString()
+                        cmd.Parameters.Add("@21", MySqlDbType.Text).Value = .Rows(i).Cells(20).Value.ToString()
+                        cmd.Parameters.Add("@22", MySqlDbType.VarChar).Value = .Rows(i).Cells(21).Value.ToString()
+                        cmd.Parameters.Add("@23", MySqlDbType.Text).Value = .Rows(i).Cells(22).Value.ToString()
 
-                    Label7.Text = Val(Label7.Text + 1)
-                    LabelDTransacItem.Text = Val(LabelDTransacItem.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
-                    'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
-                    cmd.ExecuteNonQuery()
-                    '====================================================================
-                    table = " loc_daily_transaction "
-                    where = " transaction_number = '" & .Rows(i).Cells(1).Value.ToString & "'"
-                    fields = "`synced`='Synced' "
-                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
-                    cmdloc = New MySqlCommand(sql, local)
-                    cmdloc.ExecuteNonQuery()
-                    '====================================================================
+                        Label7.Text = Val(Label7.Text + 1)
+                        LabelDTransacItem.Text = Val(LabelDTransacItem.Text) + 1
+                        ProgressBar1.Value = CInt(Label7.Text)
+                        'POS.ProgressBar1.Value = Val(Label7.Text)
+                        Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                        cmd.ExecuteNonQuery()
+                        '====================================================================
+                        table = " loc_daily_transaction "
+                        where = " transaction_number = '" & .Rows(i).Cells(1).Value.ToString & "'"
+                        fields = "`synced`='Synced' "
+                        sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+                        cmdloc = New MySqlCommand(sql, local)
+                        cmdloc.ExecuteNonQuery()
+                        '====================================================================
+
                 Next
                 server.Close()
                 local.Close()
@@ -612,6 +747,9 @@ Public Class SynctoCloud
             LabelDTransactD.Text = "Syncing Transaction Details"
             With DataGridViewTRANDET
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_daily_transaction_details(`loc_details_id`, `product_id`, `product_sku`, `product_name`, `quantity`, `price`, `total`, `crew_id`
                                             , `transaction_number`, `active`, `created_at`, `guid`, `store_id`, `total_cost_of_goods`, `product_category` , `zreading`, `transaction_type`) 
                     VALUES (@a0, @a1, @a2, @a3, @a4, @a5, @a6, @a7, @a8, @a9, @a10, @a11, @a12, @a13, @a14, @a15, @a16)", server)
@@ -677,6 +815,9 @@ Public Class SynctoCloud
             LabelINV.Text = "Syncing Inventory"
             With DataGridViewINV
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmdupdateinventory = New MySqlCommand("UPDATE admin_pos_inventory SET stock_primary = " & .Rows(i).Cells(6).Value & " , stock_secondary = " & .Rows(i).Cells(7).Value & " , stock_no_of_servings = " & .Rows(i).Cells(8).Value & " WHERE store_id =" & ClientStoreID & " AND guid = '" & ClientGuid & "' AND loc_inventory_id = " & .Rows(i).Cells(0).Value, server)
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_pos_inventory( `loc_inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `guid`, `date`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11)", server)
@@ -734,6 +875,9 @@ Public Class SynctoCloud
             LabelEXP.Text = "Syncing Expense List"
             With DataGridViewEXP
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_expense_list(`loc_expense_id`, `crew_id`, `expense_number`, `total_amount`, `paid_amount`, `unpaid_amount`, `store_id`, `guid`, `created_at`, `active`, `zreading`) 
                                              VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11)", server)
 
@@ -796,6 +940,9 @@ Public Class SynctoCloud
             LabelEXPD.Text = "Syncing Expense Details"
             With DataGridViewEXPDET
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_expense_details(`loc_details_id`
                                                                             , `expense_number`
                                                                             , `expense_type`
@@ -873,6 +1020,9 @@ Public Class SynctoCloud
             With DataGridViewLocusers
                 messageboxappearance = False
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmdupdateinventory = New MySqlCommand("UPDATE loc_users SET full_name = '" & .Rows(i).Cells(2).Value & "' , username = '" & .Rows(i).Cells(3).Value & "' , email = '" & .Rows(i).Cells(6).Value & "' , password = '" & .Rows(i).Cells(4).Value & "' , contact_number = '" & .Rows(i).Cells(5).Value & "' WHERE uniq_id = '" & .Rows(i).Cells(14).Value & "' AND guid = '" & ClientGuid & "' AND store_id = '" & ClientStoreID & "'", server)
                     cmd = New MySqlCommand("INSERT INTO Triggers_loc_users (`loc_user_id`, `user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `created_at`, `updated_at`, `active`, `guid`, `store_id`, `uniq_id`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14)", server)
@@ -934,6 +1084,9 @@ Public Class SynctoCloud
             LabelSYS1.Text = "Syncing Systemlogs 1"
             With DataGridViewSYSLOG1
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
                     VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
@@ -987,6 +1140,9 @@ Public Class SynctoCloud
             LabelSYS2.Text = "Syncing Systemlogs 2"
             With DataGridViewSYSLOG2
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
                     VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
@@ -1040,6 +1196,9 @@ Public Class SynctoCloud
             LabelSYS3.Text = "Syncing Systemlogs 3"
             With DataGridViewSYSLOG3
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
                     VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
@@ -1093,6 +1252,9 @@ Public Class SynctoCloud
             LabelSYS4.Text = "Syncing Systemlogs 4"
             With DataGridViewSYSLOG4
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
                     VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
@@ -1146,6 +1308,9 @@ Public Class SynctoCloud
             LabelRET.Text = "Syncing Refund Details"
             With DataGridViewRetrefdetails
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_refund_return_details( `loc_refret_id`, `transaction_number`, `crew_id`, `reason`, `total`, `guid`, `store_id`, `datereturned`, `zreading`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
@@ -1201,6 +1366,9 @@ Public Class SynctoCloud
             LabelCPROD.Text = "Syncing Local Products"
             With DataGridViewCUSTOMPRODUCTS
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_products( `loc_product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `store_id`, `crew_id`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
@@ -1262,6 +1430,9 @@ Public Class SynctoCloud
             LabelMODET.Text = "Syncing Mode of Transaction"
             With DataGridViewMODEOFTRANSACTION
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_transaction_mode_details(`loc_mode_id`, `transaction_type`, `transaction_number`, `full_name`, `reference`, `markup`, `created_at`, `status`, `store_id`, `guid`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
@@ -1319,6 +1490,9 @@ Public Class SynctoCloud
             LabelDEPOSIT.Text = "Syncing Deposit Details"
             With DataGridViewDepositSlip
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_deposit_slip_details( `loc_dep_id`, `name`, `crew_id`, `transaction_number`, `amount`, `bank`, `transaction_date`, `store_id`, `guid`, `created_at`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
@@ -1377,6 +1551,9 @@ Public Class SynctoCloud
             LabelPRICEREQ.Text = "Syncing Price Request"
             With DataGridViewPriceChangeRequest
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_price_request(`loc_request_id`, `server_product_id`, `request_price`, `created_at`, `active`, `store_id`, `crew_id`, `guid`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
 
@@ -1407,9 +1584,9 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                LabelPRICEREQ.Text = "Synced Price Request Change"
-                LabelPRICEREQTime.Text = Label6.Text & " Seconds"
             End With
+            LabelPRICEREQ.Text = "Synced Price Request Change"
+            LabelPRICEREQTime.Text = Label6.Text & " Seconds"
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1418,7 +1595,18 @@ Public Class SynctoCloud
         End Try
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) 
+    Private Sub Button4_Click(sender As Object, e As EventArgs)
         Me.WindowState = FormWindowState.Minimized
+    End Sub
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        If Label8.Text = "Cancelling Sync." Then
+            Label8.Text = "Cancelling Sync.."
+        ElseIf Label8.Text = "Cancelling Sync.." Then
+            Label8.Text = "Cancelling Sync..."
+        ElseIf Label8.Text = "Cancelling Sync..." Then
+            Label8.Text = "Cancelling Sync...."
+        ElseIf Label8.Text = "Cancelling Sync...." Then
+            Label8.Text = "Cancelling Sync."
+        End If
     End Sub
 End Class

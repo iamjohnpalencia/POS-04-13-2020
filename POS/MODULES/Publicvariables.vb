@@ -122,5 +122,5 @@ Module publicVariables
     Public ValidDatabaseLocalConnection As Boolean = False
 
     Public DISABLESERVEROTHERSPRODUCT As Boolean = False
-    Public DisallowedCharacters As String = "'~`{}^¨|°¬+[]^¨\/,;=?<>"
+    Public DisallowedCharacters As String = "'~`{}^¨|°¬+[]^¨\/,;=?<>" & """"
 End Module

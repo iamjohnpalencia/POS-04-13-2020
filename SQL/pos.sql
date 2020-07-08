@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2020 at 01:25 PM
+-- Generation Time: Jul 08, 2020 at 03:27 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -48,6 +48,7 @@ CREATE TABLE `admin_masterlist` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -81,7 +82,6 @@ CREATE TABLE `admin_outlets` (
 --
 -- Dumping data for table `admin_outlets`
 --
-
 
 
 -- --------------------------------------------------------
@@ -162,6 +162,7 @@ CREATE TABLE `loc_coupon_data` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -199,6 +200,8 @@ CREATE TABLE `loc_daily_transaction` (
 --
 -- Dumping data for table `loc_daily_transaction`
 --
+
+
 -- --------------------------------------------------------
 
 --
@@ -230,6 +233,7 @@ CREATE TABLE `loc_daily_transaction_details` (
 --
 -- Dumping data for table `loc_daily_transaction_details`
 --
+
 
 
 -- --------------------------------------------------------
@@ -412,7 +416,6 @@ CREATE TABLE `loc_inv_temp_data` (
 --
 
 
-
 -- --------------------------------------------------------
 
 --
@@ -519,12 +522,6 @@ CREATE TABLE `loc_price_request_change` (
   `synced` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `loc_price_request_change`
---
-
-
-
 -- --------------------------------------------------------
 
 --
@@ -556,6 +553,7 @@ CREATE TABLE `loc_product_formula` (
 --
 -- Dumping data for table `loc_product_formula`
 --
+
 
 
 -- --------------------------------------------------------
@@ -614,8 +612,6 @@ CREATE TABLE `loc_settings` (
 --
 -- Dumping data for table `loc_settings`
 --
-
-
 -- --------------------------------------------------------
 
 --
@@ -652,6 +648,7 @@ CREATE TABLE `loc_system_logs` (
 --
 -- Dumping data for table `loc_system_logs`
 --
+
 
 
 -- --------------------------------------------------------
@@ -801,8 +798,8 @@ INSERT INTO `tbcoupon` (`ID`, `Couponname_`, `Desc_`, `Discountvalue_`, `Referen
 (2, '100 OFF GC - Chinese New Year', '100 OFF Gift Certificate for the celebration of Chinese New Year', '100', '', 'Fix-1', '', '', '', '', '25/01/2020', '31/01/2020'),
 (3, '50 OFF on your next waffle', '50 OFF on your next waffle if you buy with minimum amount of 500', '50', '500', 'Fix-2', '', '', '', '', '01/01/2020', '31/01/2020'),
 (4, 'Free Choco Waffle', 'Free Choco Waffle if you buy Peanut Butter waffle', '', '', 'Bundle-1(Fix)', '5', '1', '3', '1', '01/01/2020', '31/12/2020'),
-(5, '10 OFF ON DRINKS', 'P10 OFF on Drinks if you buy 2 choco waffles\r\n', '10', '', 'Bundle-2(Fix)', '3', '2', '37,36', '1', '01/01/2020', '31/12/2020'),
-(6, '10% OFF ON YOUR 3RD WAFFLE', '10% OFF for the 3rd Waffle if you buy 2 Perfect Combination Waffle', '10', '', 'Bundle-3(%)', '2,13,14,15,16,17,18,19,20,21,22,23,24,25,26', '2', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35', '1', '01/01/2020', '31/12/2020');
+(5, '10 OFF ON DRINKS', 'P10 OFF on Drinks if you buy 2 choco waffles\r\n', '10', '', 'Bundle-2(Fix)', '3', '2', '37,36,60,61,66,79', '1', '01/01/2020', '31/12/2020'),
+(6, '10% OFF ON YOUR 3RD WAFFLE', '10% OFF for the 3rd Waffle if you buy 2 Perfect Combination Waffle', '10', '', 'Bundle-3(%)', '2,13,14,15,16,17,18,19,20,21,22,23,24,25,26,67,68,69,70,71,72,73,74,75', '2', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,62,63,67,68,69,70,71,72,73,74,75,76,77,78,80,81', '1', '01/01/2020', '31/12/2020');
 
 -- --------------------------------------------------------
 
@@ -874,7 +871,6 @@ CREATE TABLE `triggers_loc_users` (
 --
 -- Dumping data for table `triggers_loc_users`
 --
-
 
 --
 -- Triggers `triggers_loc_users`

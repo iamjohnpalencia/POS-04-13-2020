@@ -127,12 +127,6 @@
     <Compile Include="MAIN FORMS\ConfigManager.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MAIN FORMS\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN FORMS\Form1.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="MAIN FORMS\Partners.Designer.vb">
       <DependentUpon>Partners.vb</DependentUpon>
     </Compile>
@@ -387,9 +381,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MAIN FORMS\ConfigManager.resx">
       <DependentUpon>ConfigManager.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MAIN FORMS\Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MAIN FORMS\Partners.resx">
       <DependentUpon>Partners.vb</DependentUpon>

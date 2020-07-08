@@ -165,8 +165,6 @@ Partial Class Inventory
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Button8 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -214,7 +212,6 @@ Partial Class Inventory
         Me.Panel21.SuspendLayout()
         Me.Panel16.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel6
@@ -614,7 +611,7 @@ Partial Class Inventory
         Me.Panel23.Controls.Add(Me.TextBoxISecondaryTotal)
         Me.Panel23.Controls.Add(Me.TextBoxIPrimaryVal)
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel23.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Panel23.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.Panel23.Location = New System.Drawing.Point(635, 22)
         Me.Panel23.Name = "Panel23"
         Me.Panel23.Size = New System.Drawing.Size(365, 362)
@@ -906,10 +903,10 @@ Partial Class Inventory
         'TabPage8
         '
         Me.TabPage8.Controls.Add(Me.TabControl4)
-        Me.TabPage8.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage8.Location = New System.Drawing.Point(4, 25)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage8.Size = New System.Drawing.Size(1015, 470)
+        Me.TabPage8.Size = New System.Drawing.Size(1015, 469)
         Me.TabPage8.TabIndex = 1
         Me.TabPage8.Text = "TabPage8"
         Me.TabPage8.UseVisualStyleBackColor = True
@@ -922,7 +919,7 @@ Partial Class Inventory
         Me.TabControl4.Location = New System.Drawing.Point(3, 3)
         Me.TabControl4.Name = "TabControl4"
         Me.TabControl4.SelectedIndex = 0
-        Me.TabControl4.Size = New System.Drawing.Size(1009, 464)
+        Me.TabControl4.Size = New System.Drawing.Size(1009, 463)
         Me.TabControl4.TabIndex = 122
         '
         'TabPage9
@@ -931,7 +928,7 @@ Partial Class Inventory
         Me.TabPage9.Location = New System.Drawing.Point(4, 25)
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage9.Size = New System.Drawing.Size(1001, 435)
+        Me.TabPage9.Size = New System.Drawing.Size(1001, 434)
         Me.TabPage9.TabIndex = 0
         Me.TabPage9.Text = "TabPage9"
         Me.TabPage9.UseVisualStyleBackColor = True
@@ -948,7 +945,7 @@ Partial Class Inventory
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(995, 429)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(995, 428)
         Me.TableLayoutPanel1.TabIndex = 121
         '
         'GroupBox1
@@ -956,10 +953,10 @@ Partial Class Inventory
         Me.GroupBox1.Controls.Add(Me.PanelReasonCat)
         Me.GroupBox1.Controls.Add(Me.DataGridViewReasonCategories)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(989, 353)
+        Me.GroupBox1.Size = New System.Drawing.Size(989, 352)
         Me.GroupBox1.TabIndex = 164
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Reason (Categories/Active)"
@@ -982,7 +979,7 @@ Partial Class Inventory
         Me.ButtonReasonCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
         Me.ButtonReasonCancel.FlatAppearance.BorderSize = 0
         Me.ButtonReasonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonReasonCancel.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.ButtonReasonCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.ButtonReasonCancel.ForeColor = System.Drawing.Color.White
         Me.ButtonReasonCancel.Location = New System.Drawing.Point(375, 24)
         Me.ButtonReasonCancel.Name = "ButtonReasonCancel"
@@ -996,7 +993,7 @@ Partial Class Inventory
         Me.Button6.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.Button6.FlatAppearance.BorderSize = 0
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.Button6.ForeColor = System.Drawing.Color.White
         Me.Button6.Location = New System.Drawing.Point(295, 24)
         Me.Button6.Name = "Button6"
@@ -1008,10 +1005,10 @@ Partial Class Inventory
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.Label14.Location = New System.Drawing.Point(7, 6)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(58, 15)
+        Me.Label14.Size = New System.Drawing.Size(63, 16)
         Me.Label14.TabIndex = 9
         Me.Label14.Text = "Category"
         '
@@ -1019,7 +1016,7 @@ Partial Class Inventory
         '
         Me.TextBoxReasonsCat.Location = New System.Drawing.Point(9, 24)
         Me.TextBoxReasonsCat.Name = "TextBoxReasonsCat"
-        Me.TextBoxReasonsCat.Size = New System.Drawing.Size(280, 25)
+        Me.TextBoxReasonsCat.Size = New System.Drawing.Size(280, 24)
         Me.TextBoxReasonsCat.TabIndex = 0
         '
         'DataGridViewReasonCategories
@@ -1034,7 +1031,7 @@ Partial Class Inventory
         Me.DataGridViewReasonCategories.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle14.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
         DataGridViewCellStyle14.ForeColor = System.Drawing.Color.White
         DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
@@ -1043,7 +1040,7 @@ Partial Class Inventory
         Me.DataGridViewReasonCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle15.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
         DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
         DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText
@@ -1052,7 +1049,7 @@ Partial Class Inventory
         Me.DataGridViewReasonCategories.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewReasonCategories.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewReasonCategories.EnableHeadersVisualStyles = False
-        Me.DataGridViewReasonCategories.Location = New System.Drawing.Point(3, 21)
+        Me.DataGridViewReasonCategories.Location = New System.Drawing.Point(3, 20)
         Me.DataGridViewReasonCategories.Name = "DataGridViewReasonCategories"
         Me.DataGridViewReasonCategories.Size = New System.Drawing.Size(983, 329)
         Me.DataGridViewReasonCategories.TabIndex = 116
@@ -1061,8 +1058,8 @@ Partial Class Inventory
         '
         Me.GroupBox2.Controls.Add(Me.Panel20)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 362)
+        Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 361)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(989, 64)
         Me.GroupBox2.TabIndex = 166
@@ -1076,9 +1073,9 @@ Partial Class Inventory
         Me.Panel20.Controls.Add(Me.Button9)
         Me.Panel20.Controls.Add(Me.Button4)
         Me.Panel20.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel20.Location = New System.Drawing.Point(3, 21)
+        Me.Panel20.Location = New System.Drawing.Point(3, 20)
         Me.Panel20.Name = "Panel20"
-        Me.Panel20.Size = New System.Drawing.Size(983, 40)
+        Me.Panel20.Size = New System.Drawing.Size(983, 41)
         Me.Panel20.TabIndex = 6
         '
         'Button5
@@ -1088,11 +1085,11 @@ Partial Class Inventory
         Me.Button5.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button5.FlatAppearance.BorderSize = 0
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
         Me.Button5.ForeColor = System.Drawing.Color.White
         Me.Button5.Location = New System.Drawing.Point(515, 0)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(156, 40)
+        Me.Button5.Size = New System.Drawing.Size(156, 41)
         Me.Button5.TabIndex = 163
         Me.Button5.Text = "Add Bank"
         Me.Button5.UseVisualStyleBackColor = False
@@ -1104,11 +1101,11 @@ Partial Class Inventory
         Me.ButtonDeleteProducts.Dock = System.Windows.Forms.DockStyle.Right
         Me.ButtonDeleteProducts.FlatAppearance.BorderSize = 0
         Me.ButtonDeleteProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonDeleteProducts.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.ButtonDeleteProducts.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
         Me.ButtonDeleteProducts.ForeColor = System.Drawing.Color.White
         Me.ButtonDeleteProducts.Location = New System.Drawing.Point(671, 0)
         Me.ButtonDeleteProducts.Name = "ButtonDeleteProducts"
-        Me.ButtonDeleteProducts.Size = New System.Drawing.Size(156, 40)
+        Me.ButtonDeleteProducts.Size = New System.Drawing.Size(156, 41)
         Me.ButtonDeleteProducts.TabIndex = 164
         Me.ButtonDeleteProducts.Text = "Deactivate"
         Me.ButtonDeleteProducts.UseVisualStyleBackColor = False
@@ -1120,11 +1117,11 @@ Partial Class Inventory
         Me.Button9.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button9.FlatAppearance.BorderSize = 0
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
         Me.Button9.ForeColor = System.Drawing.Color.White
         Me.Button9.Location = New System.Drawing.Point(827, 0)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(156, 40)
+        Me.Button9.Size = New System.Drawing.Size(156, 41)
         Me.Button9.TabIndex = 165
         Me.Button9.Text = "Edit"
         Me.Button9.UseVisualStyleBackColor = False
@@ -1135,11 +1132,11 @@ Partial Class Inventory
         Me.Button4.Dock = System.Windows.Forms.DockStyle.Left
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
         Me.Button4.ForeColor = System.Drawing.Color.White
         Me.Button4.Location = New System.Drawing.Point(0, 0)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(156, 40)
+        Me.Button4.Size = New System.Drawing.Size(156, 41)
         Me.Button4.TabIndex = 115
         Me.Button4.Text = "Cancel"
         Me.Button4.UseVisualStyleBackColor = False
@@ -1174,7 +1171,7 @@ Partial Class Inventory
         '
         Me.GroupBox3.Controls.Add(Me.DataGridViewDeactivatedReasonCat)
         Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox3.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
         Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(989, 356)
@@ -1194,7 +1191,7 @@ Partial Class Inventory
         Me.DataGridViewDeactivatedReasonCat.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle17.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
         DataGridViewCellStyle17.ForeColor = System.Drawing.Color.White
         DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
@@ -1203,7 +1200,7 @@ Partial Class Inventory
         Me.DataGridViewDeactivatedReasonCat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle18.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle18.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
         DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
         DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText
@@ -1212,16 +1209,16 @@ Partial Class Inventory
         Me.DataGridViewDeactivatedReasonCat.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewDeactivatedReasonCat.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewDeactivatedReasonCat.EnableHeadersVisualStyles = False
-        Me.DataGridViewDeactivatedReasonCat.Location = New System.Drawing.Point(3, 21)
+        Me.DataGridViewDeactivatedReasonCat.Location = New System.Drawing.Point(3, 20)
         Me.DataGridViewDeactivatedReasonCat.Name = "DataGridViewDeactivatedReasonCat"
-        Me.DataGridViewDeactivatedReasonCat.Size = New System.Drawing.Size(983, 332)
+        Me.DataGridViewDeactivatedReasonCat.Size = New System.Drawing.Size(983, 333)
         Me.DataGridViewDeactivatedReasonCat.TabIndex = 116
         '
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.Panel19)
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox4.Font = New System.Drawing.Font("Kelson Sans Normal", 11.25!)
+        Me.GroupBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
         Me.GroupBox4.Location = New System.Drawing.Point(3, 365)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(989, 64)
@@ -1234,9 +1231,9 @@ Partial Class Inventory
         Me.Panel19.Controls.Add(Me.Button11)
         Me.Panel19.Controls.Add(Me.Button14)
         Me.Panel19.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel19.Location = New System.Drawing.Point(3, 21)
+        Me.Panel19.Location = New System.Drawing.Point(3, 20)
         Me.Panel19.Name = "Panel19"
-        Me.Panel19.Size = New System.Drawing.Size(983, 40)
+        Me.Panel19.Size = New System.Drawing.Size(983, 41)
         Me.Panel19.TabIndex = 6
         '
         'Button11
@@ -1246,11 +1243,11 @@ Partial Class Inventory
         Me.Button11.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button11.FlatAppearance.BorderSize = 0
         Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button11.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
         Me.Button11.ForeColor = System.Drawing.Color.White
         Me.Button11.Location = New System.Drawing.Point(827, 0)
         Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(156, 40)
+        Me.Button11.Size = New System.Drawing.Size(156, 41)
         Me.Button11.TabIndex = 163
         Me.Button11.Text = "Activate"
         Me.Button11.UseVisualStyleBackColor = False
@@ -1261,11 +1258,11 @@ Partial Class Inventory
         Me.Button14.Dock = System.Windows.Forms.DockStyle.Left
         Me.Button14.FlatAppearance.BorderSize = 0
         Me.Button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button14.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Button14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
         Me.Button14.ForeColor = System.Drawing.Color.White
         Me.Button14.Location = New System.Drawing.Point(0, 0)
         Me.Button14.Name = "Button14"
-        Me.Button14.Size = New System.Drawing.Size(156, 40)
+        Me.Button14.Size = New System.Drawing.Size(156, 41)
         Me.Button14.TabIndex = 115
         Me.Button14.Text = "Cancel"
         Me.Button14.UseVisualStyleBackColor = False
@@ -1477,11 +1474,11 @@ Partial Class Inventory
         '
         'TextBox1
         '
-        Me.TextBox1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.Location = New System.Drawing.Point(405, 165)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(160, 23)
+        Me.TextBox1.Size = New System.Drawing.Size(160, 22)
         Me.TextBox1.TabIndex = 53
         Me.TextBox1.Visible = False
         '
@@ -1751,38 +1748,12 @@ Partial Class Inventory
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1245, 42)
         Me.Panel1.TabIndex = 15
-        '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Me.Button8)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel3.Location = New System.Drawing.Point(1132, 0)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(113, 42)
-        Me.Panel3.TabIndex = 184
-        '
-        'Button8
-        '
-        Me.Button8.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
-        Me.Button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button8.FlatAppearance.BorderSize = 0
-        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button8.ForeColor = System.Drawing.Color.White
-        Me.Button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button8.Location = New System.Drawing.Point(70, 3)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(40, 30)
-        Me.Button8.TabIndex = 182
-        Me.Button8.Text = "X"
-        Me.Button8.UseVisualStyleBackColor = False
         '
         'Label2
         '
@@ -1858,7 +1829,6 @@ Partial Class Inventory
         Me.Panel16.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1882,8 +1852,6 @@ Partial Class Inventory
     Friend WithEvents TabPage5 As TabPage
     Friend WithEvents Panel14 As Panel
     Friend WithEvents Label2 As Label
-    Friend WithEvents Panel3 As Panel
-    Friend WithEvents Button8 As Button
     Friend WithEvents TabControl2 As TabControl
     Friend WithEvents TabPage7 As TabPage
     Friend WithEvents DataGridViewStockAdjustment As DataGridView

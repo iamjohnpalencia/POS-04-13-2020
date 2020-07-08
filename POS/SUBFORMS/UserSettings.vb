@@ -14,7 +14,7 @@ Public Class UserSettings
         Panel6.Top = (Me.Height - Panel6.Height) / 4
         Panel6.Left = (Me.Width - Panel6.Width) / 3
         Panel6.Visible = True
-        Label3.Text = "ADD USER"
+        GroupBox1.Text = "ADD USER"
         ButtonUser.Text = "Add User"
         TextBoxCONPASS.Enabled = True
     End Sub
@@ -49,10 +49,6 @@ Public Class UserSettings
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
-        MDIFORM.Button2.PerformClick()
-    End Sub
-
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Panel6.Visible = False
         ClearTextBox(Me)
@@ -170,7 +166,7 @@ Public Class UserSettings
         edituser()
     End Sub
     Private Sub edituser()
-        Label3.Text = "EDIT USER"
+        GroupBox1.Text = "EDIT USER"
         userid = DataGridViewUserSettings.SelectedRows(0).Cells(14).Value.ToString()
         TextBoxCONPASS.Enabled = False
         Try

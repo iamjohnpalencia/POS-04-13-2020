@@ -70,14 +70,17 @@ Public Class SettingsForm
                     Dim Category = count("category_id", "loc_admin_category")
                     Dim Inventory = count("inventory_id", "loc_pos_inventory")
                     Dim Formula = count("formula_id", "loc_product_formula")
+
                     DataGridView5.Rows.Add(Products)
                     DataGridView5.Rows.Add(Category)
                     DataGridView5.Rows.Add(Inventory)
                     DataGridView5.Rows.Add(Formula)
+
                     LabelCountAllRows.Text = SumOfColumnsToInt(DataGridView5, 0)
                     LabelCheckingUpdates.Text = "Checking for updates."
                     ProgressBar1.Maximum = Val(LabelCountAllRows.Text)
                     ProgressBar1.Value = 0
+                    LabelNewRows.Text = 0
                     BackgroundWorker1.WorkerReportsProgress = True
                     BackgroundWorker1.WorkerSupportsCancellation = True
                     BackgroundWorker1.RunWorkerAsync()
@@ -1242,8 +1245,8 @@ Public Class SettingsForm
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                    LabelNewRows.Text += 1
                     DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5))
-
                 Next
             Else
                 Dim Ids As String = ""
@@ -1411,6 +1414,7 @@ Public Class SettingsForm
                 Dim DaCount As MySqlDataAdapter
                 Dim FillDt As DataTable = New DataTable
                 For a = 1 To result
+                    LabelNewRows.Text += 1
                     Dim Query As String = "SELECT * FROM admin_products_org WHERE product_id = " & a
                     cmd = New MySqlCommand(Query, Connection)
                     DaCount = New MySqlDataAdapter(cmd)
@@ -1485,6 +1489,7 @@ Public Class SettingsForm
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                    LabelNewRows.Text += 1
                     DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10).ToString, dtserver(i)(11), dtserver(i)(12))
 
                 Next
@@ -1575,6 +1580,7 @@ Public Class SettingsForm
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                    LabelNewRows.Text += 1
                     DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString, dtserver(i)(10).ToString)
 
                 Next

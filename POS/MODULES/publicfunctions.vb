@@ -283,7 +283,7 @@ Module publicfunctions
                         If hastextboxqty = False Then
                             If CAT = "Famous Blends" Then
                                 DISABLESERVEROTHERSPRODUCT = True
-                                .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS", "OTHERS", INVID)
+                                .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS", INVID)
                             ElseIf CAT = "Others" Then
                                 If ORIGIN = "Server" Then
                                     If DISABLESERVEROTHERSPRODUCT = False Then
@@ -299,7 +299,7 @@ Module publicfunctions
                                         MsgBox("Remove product first.")
                                     End If
                                 Else
-                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID)
+                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, INVID)
                                     .ButtonTransactionMode.Enabled = True
                                     .ButtonPayMent.Enabled = True
                                     .Buttonholdoder.Enabled = True
@@ -308,13 +308,13 @@ Module publicfunctions
                                 End If
                             Else
                                 DISABLESERVEROTHERSPRODUCT = True
-                                .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", "OTHERS", INVID)
+                                .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID)
                             End If
                         Else
                             If CAT = "Famous Blends" Then
-                                .DataGridViewOrders.Rows.Add(name, .TextBoxQTY.Text, .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS", "OTHERS", INVID)
+                                .DataGridViewOrders.Rows.Add(name, .TextBoxQTY.Text, .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS", INVID)
                             ElseIf CAT = "Others" Then
-                                .DataGridViewOrders.Rows.Add(name, .TextBoxQTY.Text, .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", "OTHERS", INVID)
+                                .DataGridViewOrders.Rows.Add(name, .TextBoxQTY.Text, .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID)
                                 If ORIGIN = "Server" Then
                                     .ButtonTransactionMode.Enabled = True
                                     .ButtonPayMent.Enabled = True
