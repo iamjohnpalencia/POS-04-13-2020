@@ -274,7 +274,7 @@ june 24 8:30 am to 12:30
 	* Reports Form
 		* Print view adjustments
 
-june 25 7:00 AM to 1:00 AM
+june 25 7:00 AM to 5:00 PM
 
 	* stock_quantity,stock_total column in loc_pos_inventory table changes to stock_primary, stock_secondary
 		* inventory form
@@ -292,10 +292,7 @@ june 25 7:00 AM to 1:00 AM
 		* Hold Order
 		* Refund
 		* Users Setings
-	* new column for loc_pos_inventory servings
-	* Inventory design
-		* Stock Datagridview changes
-	* changes in addmodule, retrieve module
+
 	
 june 26 07:30 AM to 3:00 PM
 
@@ -335,16 +332,14 @@ june 30 4:00 PM to 12:21 AM
 	* Configuration manager new function for importing cloud server's connection
 	* System debugging
 
-July 1 7:00 AM to 2:06 AM
+July 1 7:00 AM to 5:00 PM
 
 	* Function for deducting main inventory stocks form sub inventory stocks
 	* Disable adding of stock to sub inventories
 	* Function for handling connection time out(Products Table)
 	* Removing of excess datatable in updates function
 	* Changing connection of default settings (Additional settings/ Developer settings)
-	* New column added(main_inventory_id) to loc.pos.inventory table, admin.pos.inventory.org table
-	* Fetching and inserting function adjustment for new column
-	* System debugging
+
 
 July 2 10:20 AM to 6:13 PM 
 
@@ -363,9 +358,36 @@ july 3 6:00 AM to 2:00 PM
 	* Function for update all necessary table
 	* Catch for no internet connection while testing cloud connection in settings form
 
+june 4 8:00 am to 4:00 pm
+
+	* new column for loc_pos_inventory servings
+	* Inventory design
+		* Stock Datagridview changes
+	* changes in addmodule, retrieve module
+
 july 5 12:00 PM to 8:00 PM
 
 	* Product Formula ids
 	* Price Request
 	* Manage Product Form : New tab for price request
 	* Localwebpannel new page for approving/disapproving price request
+
+july 6 8:00 AM to 12:00 PM
+
+ 	* New column added(main_inventory_id) to loc.pos.inventory table, admin.pos.inventory.org table
+	* Fetching and inserting function adjustment for new column
+	* System debugging
+
+july 7 9:30 AM to 1:30 PM
+
+	* Manage product form design
+	* updating script
+	* debugging
+
+july 8 9:00 AM to 1:00 pm
+
+	* updating script
+	* sync form debugging
+	* coupons computation
+	* debugging
+
