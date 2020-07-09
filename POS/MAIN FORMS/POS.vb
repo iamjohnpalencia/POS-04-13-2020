@@ -725,6 +725,7 @@ Public Class POS
                     For Each row As DataRow In SqlDt.Rows
                         secondary_value = row("secondary_value")
                     Next
+
                     Query = "SELECT `stock_secondary` FROM `loc_pos_inventory` WHERE formula_id = " & .Rows(i).Cells(1).Value
                     SqlCommand = New MySqlCommand(Query, LocalhostConn)
                     SqlAdapter = New MySqlDataAdapter(SqlCommand)
@@ -733,12 +734,14 @@ Public Class POS
                     For Each row As DataRow In SqlDt.Rows
                         stock_secondary = row("stock_secondary")
                     Next
+
                     Secondary = stock_secondary - TotalServingValue
                     ServingValue = Secondary / Double.Parse(.Rows(i).Cells(5).Value.ToString)
                     TotalPrimary = Secondary / secondary_value
                     Query = "UPDATE loc_pos_inventory SET `stock_secondary` = " & Secondary & " , `stock_no_of_servings` = " & ServingValue & " , `stock_primary` = " & TotalPrimary & " WHERE `formula_id` = " & .Rows(i).Cells(1).Value
                     SqlCommand = New MySqlCommand(Query, LocalhostConn())
                     SqlCommand.ExecuteNonQuery()
+                    LocalhostConn.close()
                 Next
 
             End With

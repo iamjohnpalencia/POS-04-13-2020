@@ -203,11 +203,11 @@ Module RetrieveModule
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
             full_name = dt(0)(0)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        Finally
             LocalhostConn.close()
             da.Dispose()
+            cmd.Dispose()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
         End Try
         Return full_name
     End Function
