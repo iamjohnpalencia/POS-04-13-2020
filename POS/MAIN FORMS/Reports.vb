@@ -539,9 +539,9 @@ Public Class Reports
             Dim zeroratedsales = sum("zeroratedsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "'")
             Dim vatablesales = sum("vatablesales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in'")
             Dim DepositSlip = sum("amount", "loc_deposit WHERE date(transaction_date) = '" & ZreadDateFormat & "' ")
-            Dim TotalVat = LessVat
-            Dim BegBalance = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ORDER by log_date_time DESC LIMIT 1")
 
+            Dim BegBalance = sum("CAST(log_description AS DECIMAL(10,2))", "loc_system_logs WHERE log_type IN ('BG-1','BG-2','BG-3','BG-4') AND zreading = '" & ZreadDateFormat & "' ORDER by log_date_time DESC LIMIT 1")
+            Dim vat12percent = sum("vatpercentage", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in'")
 
             'Select Case sum(CAST(log_description As Decimal(10, 2))) As CashierBal FROM `loc_system_logs` WHERE log_type In ('BG-1','BG-2','BG-3','BG-4')
             Dim DailySales = GrossSale - LessVat - TotalDiscount
@@ -576,13 +576,13 @@ Public Class Reports
             '============================================================================================================================
             RightToLeftDisplay(sender, e, 140, "TERMINAL N0.", S_Terminal_No, font, 20, 0)
             RightToLeftDisplay(sender, e, 155, "GROSS", NUMBERFORMAT(GrossSale), font, 20, 0)
-            RightToLeftDisplay(sender, e, 165, "LESS VAT (VE)", TotalVat, font, 20, 0)
+            RightToLeftDisplay(sender, e, 165, "LESS VAT (VE)", LessVat, font, 20, 0)
             RightToLeftDisplay(sender, e, 175, "LESS VAT DIPLOMAT", "0", font, 20, 0)
             RightToLeftDisplay(sender, e, 185, "LESS VAT (OTHER)", "0", font, 20, 0)
             RightToLeftDisplay(sender, e, 195, "ADD VAT", "0", font, 20, 0)
             RightToLeftDisplay(sender, e, 205, "DAILY SALES", NUMBERFORMAT(DailySales), font, 20, 0)
             '============================================================================================================================
-            RightToLeftDisplay(sender, e, 220, "VAT AMOUNT", NUMBERFORMAT(TotalVat), font, 20, 0)
+            RightToLeftDisplay(sender, e, 220, "VAT AMOUNT", NUMBERFORMAT(vat12percent), font, 20, 0)
             RightToLeftDisplay(sender, e, 230, "LOCAL GOV'T TAX", "0", font, 20, 0)
             RightToLeftDisplay(sender, e, 240, "VATABLE SALES", NUMBERFORMAT(vatablesales), font, 20, 0)
             RightToLeftDisplay(sender, e, 250, "ZERO RATED SALES", NUMBERFORMAT(zeroratedsales), font, 20, 0)
