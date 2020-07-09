@@ -43,7 +43,7 @@ Public Class SynctoCloud
         End Try
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        Label6.Text = Val(Label6.Text) + 1
+        LabelTime.Text = Val(LabelTime.Text) + 1
         'If CountStart = True Then
         'End If
     End Sub
@@ -296,12 +296,16 @@ Public Class SynctoCloud
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+        Finally
+            LocalhostConn.close
+            cmd.Dispose()
+            da.Dispose()
         End Try
     End Sub
     Private Sub gettablesize(ByVal tablename As String)
         Try
             Dim sql = "SELECT table_name AS `Table`, round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` FROM information_schema.TABLES WHERE table_schema = 'pos' AND table_name = '" & tablename & "'"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
@@ -310,6 +314,10 @@ Public Class SynctoCloud
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+        Finally
+            LocalhostConn.close
+            cmd.Dispose()
+            da.Dispose()
         End Try
     End Sub
 #End Region
@@ -317,7 +325,7 @@ Public Class SynctoCloud
         Try
             Label1.Text = ""
             Label2.Text = ""
-            Label3.Text = ""
+            LabelTTLRowtoSync.Text = ""
             Label5.Text = ""
             filldatagridtransaction()
             filldatagridtransactiondetails1()
@@ -335,7 +343,7 @@ Public Class SynctoCloud
             filldatagriddepositslip()
             fillpricerequestchange()
             totalrow = SumOfColumnsToInt(DataGridView2, 0)
-            Label3.Text = totalrow
+            LabelTTLRowtoSync.Text = totalrow
             Button1.Enabled = False
             Label2.Text = "Item(s)"
         Catch ex As Exception
@@ -367,7 +375,7 @@ Public Class SynctoCloud
                 WorkerCanceled = True
                 Label1.Visible = False
                 Label2.Visible = False
-                Label3.Visible = False
+                LabelTTLRowtoSync.Visible = False
                 Label8.Visible = True
                 Button2.Enabled = False
                 Timer2.Start()
@@ -405,7 +413,7 @@ Public Class SynctoCloud
                 For Each t In threadListloadData
                     t.Join()
                 Next
-                ProgressBar1.Maximum = Val(Label3.Text)
+                ProgressBar1.Maximum = Val(LabelTTLRowtoSync.Text)
                 'POS.ProgressBar1.Maximum = Val(Label7.Text)
                 '  ============================================================================transaction
                 thread1 = New Thread(AddressOf insertlocaldailytransaction)
@@ -621,12 +629,12 @@ Public Class SynctoCloud
         Try
             If Unsuccessful = True Then
                 ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
-                ProgressBar1.Maximum = Val(Label3.Text)
+                ProgressBar1.Maximum = Val(LabelTTLRowtoSync.Text)
                 'POS.ProgressBar1.Maximum = Val(Label3.Text)
-                If Label7.Text <> "0" Then
-                    Label1.Text = "Synced " & Label7.Text & " of " & Label3.Text & " "
+                If LabelRowtoSync.Text <> "0" Then
+                    Label1.Text = "Synced " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                 Else
-                    Label3.Text = "0"
+                    LabelTTLRowtoSync.Text = "0"
                     Label2.Text = "Item(s)"
                     Label1.Text = "Synced 0 of 0"
                 End If
@@ -645,7 +653,7 @@ Public Class SynctoCloud
                 Else
                     SyncIsOnProcess = False
                     Timer1.Enabled = False
-                    Label1.Text = "Synced " & Label3.Text & " of " & Label3.Text
+                    Label1.Text = "Synced " & LabelTTLRowtoSync.Text & " of " & LabelTTLRowtoSync.Text
                     Label5.Text = "Successfully Synchronized "
                     Dim sync = MessageBox.Show("Synchronization Complete", "Sync", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If sync = DialogResult.OK Then
@@ -680,50 +688,51 @@ Public Class SynctoCloud
                     cmd = New MySqlCommand("INSERT INTO `Triggers_admin_daily_transaction`(`loc_transaction_id`, `transaction_number`, `grosssales`, `totaldiscount`, `amounttendered`, `change`, `amountdue`, `vatablesales`, `vatexemptsales`, `zeroratedsales`, `vatpercentage`, `lessvat`, `transaction_type`, `discount_type`, `totaldiscountedamount`, `si_number`, `crew_id`, `guid`, `active`, `store_id`, `created_at`, `shift`, `zreading`)
                                              VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17,@18,@19,@20,@21,@22,@23)", server)
 
-                        cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
-                        cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-                        cmd.Parameters.Add("@3", MySqlDbType.Decimal).Value = .Rows(i).Cells(2).Value.ToString()
-                        cmd.Parameters.Add("@4", MySqlDbType.Decimal).Value = .Rows(i).Cells(3).Value.ToString()
-                        cmd.Parameters.Add("@5", MySqlDbType.Decimal).Value = .Rows(i).Cells(4).Value.ToString()
-                        cmd.Parameters.Add("@6", MySqlDbType.Decimal).Value = .Rows(i).Cells(5).Value.ToString()
-                        cmd.Parameters.Add("@7", MySqlDbType.Decimal).Value = .Rows(i).Cells(6).Value.ToString()
-                        cmd.Parameters.Add("@8", MySqlDbType.Decimal).Value = .Rows(i).Cells(7).Value.ToString()
-                        cmd.Parameters.Add("@9", MySqlDbType.Decimal).Value = .Rows(i).Cells(8).Value.ToString()
-                        cmd.Parameters.Add("@10", MySqlDbType.Decimal).Value = .Rows(i).Cells(9).Value.ToString()
-                        cmd.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(10).Value.ToString()
-                        cmd.Parameters.Add("@12", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
-                        cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
-                        cmd.Parameters.Add("@14", MySqlDbType.Text).Value = .Rows(i).Cells(13).Value.ToString()
-                        cmd.Parameters.Add("@15", MySqlDbType.Decimal).Value = .Rows(i).Cells(14).Value.ToString()
-                        cmd.Parameters.Add("@16", MySqlDbType.Int64).Value = .Rows(i).Cells(15).Value.ToString()
-                        cmd.Parameters.Add("@17", MySqlDbType.VarChar).Value = .Rows(i).Cells(16).Value.ToString()
-                        cmd.Parameters.Add("@18", MySqlDbType.VarChar).Value = .Rows(i).Cells(17).Value.ToString()
-                        cmd.Parameters.Add("@19", MySqlDbType.VarChar).Value = .Rows(i).Cells(18).Value.ToString()
-                        cmd.Parameters.Add("@20", MySqlDbType.VarChar).Value = .Rows(i).Cells(19).Value.ToString()
-                        cmd.Parameters.Add("@21", MySqlDbType.Text).Value = .Rows(i).Cells(20).Value.ToString()
-                        cmd.Parameters.Add("@22", MySqlDbType.VarChar).Value = .Rows(i).Cells(21).Value.ToString()
-                        cmd.Parameters.Add("@23", MySqlDbType.Text).Value = .Rows(i).Cells(22).Value.ToString()
+                    cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                    cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmd.Parameters.Add("@3", MySqlDbType.Decimal).Value = .Rows(i).Cells(2).Value.ToString()
+                    cmd.Parameters.Add("@4", MySqlDbType.Decimal).Value = .Rows(i).Cells(3).Value.ToString()
+                    cmd.Parameters.Add("@5", MySqlDbType.Decimal).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@6", MySqlDbType.Decimal).Value = .Rows(i).Cells(5).Value.ToString()
+                    cmd.Parameters.Add("@7", MySqlDbType.Decimal).Value = .Rows(i).Cells(6).Value.ToString()
+                    cmd.Parameters.Add("@8", MySqlDbType.Decimal).Value = .Rows(i).Cells(7).Value.ToString()
+                    cmd.Parameters.Add("@9", MySqlDbType.Decimal).Value = .Rows(i).Cells(8).Value.ToString()
+                    cmd.Parameters.Add("@10", MySqlDbType.Decimal).Value = .Rows(i).Cells(9).Value.ToString()
+                    cmd.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(10).Value.ToString()
+                    cmd.Parameters.Add("@12", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
+                    cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
+                    cmd.Parameters.Add("@14", MySqlDbType.Text).Value = .Rows(i).Cells(13).Value.ToString()
+                    cmd.Parameters.Add("@15", MySqlDbType.Decimal).Value = .Rows(i).Cells(14).Value.ToString()
+                    cmd.Parameters.Add("@16", MySqlDbType.Int64).Value = .Rows(i).Cells(15).Value.ToString()
+                    cmd.Parameters.Add("@17", MySqlDbType.VarChar).Value = .Rows(i).Cells(16).Value.ToString()
+                    cmd.Parameters.Add("@18", MySqlDbType.VarChar).Value = .Rows(i).Cells(17).Value.ToString()
+                    cmd.Parameters.Add("@19", MySqlDbType.VarChar).Value = .Rows(i).Cells(18).Value.ToString()
+                    cmd.Parameters.Add("@20", MySqlDbType.VarChar).Value = .Rows(i).Cells(19).Value.ToString()
+                    cmd.Parameters.Add("@21", MySqlDbType.Text).Value = .Rows(i).Cells(20).Value.ToString()
+                    cmd.Parameters.Add("@22", MySqlDbType.VarChar).Value = .Rows(i).Cells(21).Value.ToString()
+                    cmd.Parameters.Add("@23", MySqlDbType.Text).Value = .Rows(i).Cells(22).Value.ToString()
 
-                        Label7.Text = Val(Label7.Text + 1)
-                        LabelDTransacItem.Text = Val(LabelDTransacItem.Text) + 1
-                        ProgressBar1.Value = CInt(Label7.Text)
-                        'POS.ProgressBar1.Value = Val(Label7.Text)
-                        Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
-                        cmd.ExecuteNonQuery()
-                        '====================================================================
-                        table = " loc_daily_transaction "
-                        where = " transaction_number = '" & .Rows(i).Cells(1).Value.ToString & "'"
-                        fields = "`synced`='Synced' "
-                        sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
-                        cmdloc = New MySqlCommand(sql, local)
-                        cmdloc.ExecuteNonQuery()
-                        '====================================================================
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
+                    LabelDTransacItem.Text = Val(LabelDTransacItem.Text) + 1
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
+                    'POS.ProgressBar1.Value = Val(Label7.Text)
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
+                    cmd.ExecuteNonQuery()
+                    '====================================================================
+                    table = " loc_daily_transaction "
+                    where = " transaction_number = '" & .Rows(i).Cells(1).Value.ToString & "'"
+                    fields = "`synced`='Synced' "
+                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+                    cmdloc = New MySqlCommand(sql, local)
+                    cmdloc.ExecuteNonQuery()
+                    '====================================================================
 
                 Next
                 server.Close()
                 local.Close()
+
                 LabelDTransac.Text = "Synced Daily Transaction"
-                LabelDTransacTime.Text = Label6.Text & " Seconds"
+                LabelDTransacTime.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -771,11 +780,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@a15", MySqlDbType.VarChar).Value = .Rows(i).Cells(15).Value.ToString()
                     cmd.Parameters.Add("@a16", MySqlDbType.VarChar).Value = .Rows(i).Cells(16).Value.ToString()
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelDTransactDItem.Text = Val(LabelDTransactDItem.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     cmd.ExecuteNonQuery()
                     '====================================================================
                     table = " loc_daily_transaction_details "
@@ -790,7 +799,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelDTransactD.Text = "Synced Transaction Details"
-                LabelDTransactDTime.Text = Label6.Text & " Seconds"
+                LabelDTransactDTime.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -834,11 +843,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                     cmd.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                     With cmd
-                        Label7.Text = Val(Label7.Text + 1)
+                        LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                         LabelINVItem.Text = Val(LabelINVItem.Text) + 1
-                        ProgressBar1.Value = CInt(Label7.Text)
+                        ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                         'POS.ProgressBar1.Value = Val(Label7.Text)
-                        Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                        Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                         .ExecuteNonQuery()
                         With cmdupdateinventory
                             .ExecuteNonQuery()
@@ -851,7 +860,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelINV.Text = "Synced Inventories"
-                LabelINVTime.Text = Label6.Text & " Seconds"
+                LabelINVTime.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
             Unsuccessful = True
@@ -896,11 +905,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@10", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
                     cmd.Parameters.Add("@11", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString()
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelEXPItem.Text = Val(LabelEXPItem.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     '====================================================================
                     cmd.ExecuteNonQuery()
                     table = " loc_expense_list "
@@ -914,7 +923,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelEXP.Text = "Synced Expense List"
-                LabelEXPTime.Text = Label6.Text & " Seconds"
+                LabelEXPTime.Text = LabelTime.Text & " Seconds"
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -974,11 +983,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@active", MySqlDbType.Int64).Value = .Rows(i).Cells(12).Value.ToString()
                     cmd.Parameters.Add("@zreading", MySqlDbType.LongText).Value = .Rows(i).Cells(13).Value.ToString()
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelEXPDItem.Text = Val(LabelEXPDItem.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     cmd.ExecuteNonQuery()
                     '====================================================================
                     table = " loc_expense_details "
@@ -992,7 +1001,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelEXPD.Text = "Synced Expense Details"
-                LabelEXPDTime.Text = Label6.Text & " Seconds"
+                LabelEXPDTime.Text = LabelTime.Text & " Seconds"
             End With
             'truncatetable(tablename:="loc_expense_details")
         Catch ex As Exception
@@ -1042,11 +1051,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(13).Value.ToString()
                     cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = .Rows(i).Cells(14).Value.ToString()
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelACCItem.Text = Val(LabelACCItem.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     cmd.ExecuteNonQuery()
                     cmdupdateinventory.ExecuteNonQuery()
                     '====================================================================
@@ -1060,7 +1069,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelACC.Text = "Synced Accounts"
-                LabelACCTime.Text = Label6.Text & " Seconds"
+                LabelACCTime.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1098,11 +1107,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelSYS1Item.Text = Val(LabelSYS1Item.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     cmd.ExecuteNonQuery()
                     '====================================================================
                     table = " loc_system_logs "
@@ -1116,7 +1125,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelSYS1.Text = "Synced Systemlogs 1"
-                LabelSYS1Time.Text = Label6.Text & " Seconds"
+                LabelSYS1Time.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1154,11 +1163,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelSYS2Item.Text = Val(LabelSYS2Item.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     cmd.ExecuteNonQuery()
                     '====================================================================
                     table = " loc_system_logs "
@@ -1172,7 +1181,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelSYS2.Text = "Synced Systemlogs 2"
-                LabelSYS2Time.Text = Label6.Text & " Seconds"
+                LabelSYS2Time.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1210,11 +1219,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelSYS3Item.Text = Val(LabelSYS3Item.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     cmd.ExecuteNonQuery()
                     '====================================================================
                     table = " loc_system_logs "
@@ -1228,7 +1237,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelSYS3.Text = "Synced Systemlogs 3"
-                LabelSYS3Time.Text = Label6.Text & " Seconds"
+                LabelSYS3Time.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
             Unsuccessful = True
@@ -1266,11 +1275,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelSYS4Item.Text = Val(LabelSYS4Item.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     cmd.ExecuteNonQuery()
                     '====================================================================
                     table = " loc_system_logs "
@@ -1284,7 +1293,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelSYS4.Text = "Synced Systemlogs 4"
-                LabelSYS4Time.Text = Label6.Text & " Seconds"
+                LabelSYS4Time.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1323,11 +1332,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                     cmd.Parameters.Add("@8", MySqlDbType.LongText).Value = .Rows(i).Cells(8).Value.ToString()
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelRETItem.Text = Val(LabelRETItem.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     '====================================================================
                     cmd.ExecuteNonQuery()
                     table = " loc_refund_return_details "
@@ -1341,7 +1350,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelRET.Text = "Synced Refund Details"
-                LabelRETTime.Text = Label6.Text & " Seconds"
+                LabelRETTime.Text = LabelTime.Text & " Seconds"
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1387,11 +1396,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@13", MySqlDbType.Int64).Value = .Rows(i).Cells(13).Value.ToString()
                     cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = .Rows(i).Cells(14).Value.ToString()
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelCPRODItem.Text = Val(LabelCPRODItem.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     '====================================================================
                     cmd.ExecuteNonQuery()
                     table = " loc_admin_products "
@@ -1405,7 +1414,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelCPROD.Text = "Synced Local Products"
-                LabelCPRODTime.Text = Label6.Text & " Seconds"
+                LabelCPRODTime.Text = LabelTime.Text & " Seconds"
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1447,11 +1456,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                     cmd.Parameters.Add("@9", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelMODETItem.Text = Val(LabelMODETItem.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     '====================================================================
                     cmd.ExecuteNonQuery()
                     table = " loc_transaction_mode_details "
@@ -1465,7 +1474,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelMODET.Text = "Synced Mode of Transaction"
-                LabelMODETTime.Text = Label6.Text & " Seconds"
+                LabelMODETTime.Text = LabelTime.Text & " Seconds"
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1507,11 +1516,11 @@ Public Class SynctoCloud
 
                     cmd.Parameters.Add("@9", MySqlDbType.Timestamp).Value = .Rows(i).Cells(9).Value.ToString()
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelDEPOSITItem.Text = Val(LabelDEPOSITItem.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     '====================================================================
                     cmd.ExecuteNonQuery()
                     table = " loc_deposit "
@@ -1525,7 +1534,7 @@ Public Class SynctoCloud
                 server.Close()
                 local.Close()
                 LabelDEPOSIT.Text = "Synced  Deposit Details"
-                LabelDEPOSITTime.Text = Label6.Text & " Seconds"
+                LabelDEPOSITTime.Text = LabelTime.Text & " Seconds"
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1567,11 +1576,11 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
 
                     '====================================================================
-                    Label7.Text = Val(Label7.Text + 1)
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelPRICEREQItem.Text = Val(LabelPRICEREQItem.Text) + 1
-                    ProgressBar1.Value = CInt(Label7.Text)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
                     'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & Label7.Text & " of " & Label3.Text & " "
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     '====================================================================
                     cmd.ExecuteNonQuery()
                     table = " loc_price_request_change "
@@ -1586,7 +1595,7 @@ Public Class SynctoCloud
                 local.Close()
             End With
             LabelPRICEREQ.Text = "Synced Price Request Change"
-            LabelPRICEREQTime.Text = Label6.Text & " Seconds"
+            LabelPRICEREQTime.Text = LabelTime.Text & " Seconds"
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
             MsgBox(ex.ToString)

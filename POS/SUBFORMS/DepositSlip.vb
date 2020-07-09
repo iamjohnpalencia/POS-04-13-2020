@@ -52,9 +52,18 @@ Public Class DepositSlip
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub TextBoxNAME_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxTRANNUM.KeyPress, TextBoxNAME.KeyPress, TextBoxAMT.KeyPress
+    Private Sub TextBoxNAME_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxAMT.KeyPress
         Try
             Numeric(sender, e)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub TextBoxNAME_KeyPress_1(sender As Object, e As KeyPressEventArgs) Handles TextBoxTRANNUM.KeyPress, TextBoxNAME.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

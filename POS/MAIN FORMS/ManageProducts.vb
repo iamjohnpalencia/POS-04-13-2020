@@ -298,18 +298,22 @@ Public Class ManageProducts
         Try
             messageboxappearance = False
             table = "loc_product_formula"
-            fields = "(`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `store_id`, `guid`)"
+            fields = "(`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `store_id`, `guid`, `date_modified`, `crew_id`, `origin`, `server_date_modified`)"
             value = "('" & TextBoxNAME.Text & "'
                 , 'piece(s)'
                 , " & 1 & "
-                , 'N/A'
-                , " & 0 & "
+                , 'piece(s)'
+                , " & 1 & "
                 , 'piece(s)'
                 , " & 1 & "
                 , " & 1 & "
                 , " & 0 & "
                 , '" & ClientStoreID & "'
-                , '" & ClientGuid & "')"
+                , '" & ClientGuid & "'
+                , '" & FullDate24HR() & "'
+                , '" & ClientCrewID & "'
+                , 'Local'
+                , '" & FullDate24HR() & "')"
             GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
         Catch ex As Exception
             MsgBox("Error 2.0")
@@ -320,7 +324,7 @@ Public Class ManageProducts
         Try
             messageboxappearance = False
             table = "loc_pos_inventory"
-            fields = "(`store_id`, `formula_id`, `product_ingredients`, `stock_status`, `guid`, `created_at`, `synced`, `critical_limit`)"
+            fields = "(`store_id`, `formula_id`, `product_ingredients`, `stock_status`, `guid`, `created_at`, `synced`, `critical_limit`, `server_date_modified, `crew_id`)"
             value = "('" & ClientStoreID & "'
                     , " & selectmaxformula(whatid:="formula_id", fromtable:="loc_product_formula", flds:="formula_id") & "
                     , '" & Me.TextBoxNAME.Text & "' 
@@ -328,7 +332,10 @@ Public Class ManageProducts
                     , '" & ClientGuid & "'
                     , '" & FullDate24HR() & "'
                     , 'Unsynced'
-                    , '" & 10 & "')"
+                    , '" & 10 & "'
+                    , '" & 10 & "'
+                    , '" & FullDate24HR() & "'
+                    , '" & ClientCrewID & "')"
             successmessage = "Successfully Added!"
             errormessage = "error manageproducts(loc_admin_products)"
             GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)

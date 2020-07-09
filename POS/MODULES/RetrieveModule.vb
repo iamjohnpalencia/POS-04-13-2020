@@ -114,6 +114,9 @@ Module RetrieveModule
     'FUNCTION LOADING EXPENCES / POS ==================================================================================== 
     Public Sub listviewproductsshow(ByVal where As String)
         Try
+            Dim cmd As MySqlCommand
+            Dim da As MySqlDataAdapter
+            Dim dt As DataTable
             If where = "Others" Then
                 cmd = New MySqlCommand("SELECT product_id, product_name, product_image, product_price, formula_id FROM loc_admin_products WHERE product_category ='" & where & "' AND product_status = 1 AND store_id = " & ClientStoreID, LocalhostConn())
             Else
@@ -164,12 +167,13 @@ Module RetrieveModule
                     End With
                     .PanelProducts.Controls.Add(new_Button_product)
                     AddHandler new_Button_product.Click, AddressOf new_product_button_click
-
                 Next
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
+            LocalhostConn.close()
+            da.Dispose()
             cmd.Dispose()
         End Try
     End Sub
@@ -197,19 +201,20 @@ Module RetrieveModule
         cmd.Dispose()
     End Function
     Public Function returnfullname(ByVal where As String)
+        Dim FullName As String = ""
         Try
             Dim cmd As MySqlCommand = New MySqlCommand("SELECT full_name FROM loc_users WHERE uniq_id = '" + where + "' ", LocalhostConn)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
-            full_name = dt(0)(0)
+            FullName = dt(0)(0).ToString
             LocalhostConn.close()
             da.Dispose()
             cmd.Dispose()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-        Return full_name
+        Return FullName
     End Function
     Dim valuetoreturn
     Dim MyLocalConnection As MySqlConnection
@@ -246,26 +251,6 @@ Module RetrieveModule
         End Try
         Return valuetoreturn
     End Function
-    Public Function returnuserid(ByVal full_name As String) As String
-        Try
-            sql = "Select uniq_id FROM loc_users WHERE full_name = '" & full_name & "'"
-            cmd = New MySqlCommand
-            With cmd
-                .CommandText = sql
-                .Connection = LocalhostConn()
-                'This will loop through all returned records 
-                Using readerObj As MySqlDataReader = cmd.ExecuteReader
-                    While readerObj.Read
-                        fullname = readerObj("uniq_id")
-                        'handle returned value before next loop here
-                    End While
-                End Using
-            End With
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        Return fullname
-    End Function
     Public Function AsDatatable(table, fields, datagridd) As DataTable
         datagridd.rows.clear
         Dim dttable As DataTable = New DataTable
@@ -288,6 +273,10 @@ Module RetrieveModule
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+        Finally
+            LocalhostConn.close
+            cmd.Dispose()
+            da.Dispose()
         End Try
         Return dttable
     End Function
@@ -315,6 +304,9 @@ Module RetrieveModule
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+        Finally
+            LocalhostConn.close
+            cmd.Dispose()
         End Try
     End Sub
     Dim DataTableCriticalLimit As New DataTable
@@ -345,6 +337,10 @@ Module RetrieveModule
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+        Finally
+            DataAdapterCriticalLimit.Dispose()
+            CmdCriticalLimit.Dispose()
+            LocalhostConn.close
         End Try
     End Sub
     Public Sub retrieveanddeduct(ByVal formulaID, ByVal Cat, ByVal Origin)
@@ -505,7 +501,7 @@ Module RetrieveModule
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION(ByVal table As String, ByVal fields As String, ByRef datagrid As DataGridView)
         Try
-            sql = "SELECT " + fields + " FROM " + table
+            Dim sql As String = "SELECT " + fields + " FROM " + table
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             dt = New DataTable
@@ -528,6 +524,8 @@ Module RetrieveModule
             MsgBox(ex.ToString)
         Finally
             LocalhostConn.close
+            cmd.Dispose()
+            da.Dispose()
         End Try
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION_WHERE(ByVal table As String, ByVal fields As String, ByVal where As String, ByVal successmessage As String, ByVal errormessage As String, ByRef datagrid As DataGridView)
