@@ -384,7 +384,7 @@ july 7 9:30 AM to 4:30 PM
 	* updating script
 	* debugging
 
-july 8 9:00 AM to $:00 pm
+july 8 9:00 AM to 4:00 pm
 
 	* updating script
 	* sync form debugging
