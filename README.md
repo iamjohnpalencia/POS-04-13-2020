@@ -264,7 +264,7 @@ june 23 7:00 AM - 3:00 PM
 
 	* Debugging
 
-june 24 8:30 am to 12:30
+june 24 8:30 am to 12:30 am
 
 	* Coupon Code Form
 		* Senior Citizen adjustments
@@ -372,19 +372,19 @@ july 5 12:00 PM to 8:00 PM
 	* Manage Product Form : New tab for price request
 	* Localwebpannel new page for approving/disapproving price request
 
-july 6 8:00 AM to 12:00 PM
+july 6 8:00 AM to 4:00 PM
 
  	* New column added(main_inventory_id) to loc.pos.inventory table, admin.pos.inventory.org table
 	* Fetching and inserting function adjustment for new column
 	* System debugging
 
-july 7 9:30 AM to 1:30 PM
+july 7 9:30 AM to 4:30 PM
 
 	* Manage product form design
 	* updating script
 	* debugging
 
-july 8 9:00 AM to 1:00 pm
+july 8 9:00 AM to $:00 pm
 
 	* updating script
 	* sync form debugging
