@@ -271,7 +271,7 @@ Public Class Reports
     Public Sub viewtransactiondetails(ByVal transaction_number As String)
         Try
             table = "`loc_daily_transaction_details`"
-            fields = "`product_name`, `quantity`, `price`, `total`, `product_category`"
+            fields = "`product_name`, `quantity`, `price`, `total`, `product_category`, `upgraded`"
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewTransactionDetails, errormessage:="", fields:=fields, successmessage:="", where:=" transaction_number = '" & transaction_number & "'")
             'With DataGridViewTransactionDetails
             '    .Columns(0).HeaderCell.Value = "Product Name"
@@ -391,7 +391,7 @@ Public Class Reports
         Try
             Dim totalDisplay = Format(DataGridViewDaily.SelectedRows(0).Cells(8).Value, "##,##0.00")
             a = 0
-            Dim fontaddon As New Font("Tahoma", 5)
+            Dim fontaddon As New Font("Tahoma", 5, FontStyle.Italic)
             Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
             Dim font2 As New Font("Tahoma", 7, FontStyle.Bold)
             Dim font As New Font("Tahoma", 6)
@@ -403,16 +403,18 @@ Public Class Reports
                 Dim rect1st As RectangleF = New RectangleF(10.0F, 115 + abc, 173.0F, 100.0F)
                 Dim price = Format(DataGridViewTransactionDetails.Rows(i).Cells(3).Value, "##,##0.00")
 
-                '=========================================================================================================================================================
                 If DataGridViewTransactionDetails.Rows(i).Cells(4).Value.ToString = "Add-Ons" Then
-                    e.Graphics.DrawString("     @" & DataGridViewTransactionDetails.Rows(i).Cells(1).Value & " " & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, fontAddon, Brushes.Black, rect1st)
+                    RightToLeftDisplay(sender, e, abc + 115, "     @" & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, font, 0, 0)
                 Else
-                    e.Graphics.DrawString(DataGridViewTransactionDetails.Rows(i).Cells(1).Value & " " & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, font, Brushes.Black, rect1st)
+                    RightToLeftDisplay(sender, e, abc + 115, DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, font, 0, 0)
+                    If DataGridViewTransactionDetails.Rows(i).Cells(5).Value > 0 Then
+                        abc += 10
+                        a += 10
+                        RightToLeftDisplay(sender, e, abc + 115, "     + UPGRADE BRWN " & DataGridViewTransactionDetails.Rows(i).Cells(5).Value, "", fontaddon, 0, 0)
+                    End If
                 End If
-                e.Graphics.DrawString(price, font, Brushes.Black, rect1st, format1st)
                 a += 10
                 abc += 10
-                '=========================================================================================================================================================
             Next
             With DataGridViewDaily
                 Dim b As Integer = .SelectedRows(0).Cells(14).Value
@@ -632,8 +634,8 @@ Public Class Reports
             SimpleTextDisplay(sender, e, "PREMIUM LINE", font, 0, 650)
             SimpleTextDisplay(sender, e, "SAVORY", font, 0, 660)
             SimpleTextDisplay(sender, e, "SIMPY PERFECT", font, 0, 670)
-            SimpleTextDisplay(sender, e, "=============", font, 0, 680)
-            SimpleTextDisplay(sender, e, "Net Sales", font, 0, 690)
+            SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 680)
+            SimpleTextDisplay(sender, e, "NET SALES", font, 0, 690)
 
             Dim ADDONS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Add-Ons'")
             Dim BLENDS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Famous Blends'")
@@ -650,8 +652,6 @@ Public Class Reports
             RightDisplay(sender, e, 670, PREMIUM, font, 20, 0)
             RightDisplay(sender, e, 680, SAVORY, font, 20, 0)
             RightDisplay(sender, e, 690, SIMPERF, font, 20, 0)
-
-
 
             '============================================================================================================================
             'SimpleTextDisplay(sender, e, "----------------------------------------", font, 0, 600)

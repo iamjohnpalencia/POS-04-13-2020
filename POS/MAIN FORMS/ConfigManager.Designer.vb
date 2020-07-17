@@ -147,6 +147,13 @@ Partial Class ConfigManager
         Me.TextBoxTax = New System.Windows.Forms.TextBox()
         Me.TextBoxSINumber = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
+        Me.GroupBox19 = New System.Windows.Forms.GroupBox()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.TextBoxBROWNIEPRICE = New System.Windows.Forms.TextBox()
+        Me.TextBoxBROWNIEID = New System.Windows.Forms.TextBox()
+        Me.TextBoxBATTERID = New System.Windows.Forms.TextBox()
         Me.Panel11 = New System.Windows.Forms.Panel()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -236,6 +243,7 @@ Partial Class ConfigManager
         Me.Column41 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column42 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column43 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel20 = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.ProgressBar6 = New System.Windows.Forms.ProgressBar()
@@ -286,7 +294,6 @@ Partial Class ConfigManager
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel22 = New System.Windows.Forms.Panel()
         Me.BackgroundWorker6 = New System.ComponentModel.BackgroundWorker()
-        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -324,6 +331,7 @@ Partial Class ConfigManager
         Me.GroupBox11.SuspendLayout()
         Me.TableLayoutPanel9.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
+        Me.GroupBox19.SuspendLayout()
         Me.Panel11.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabControl3.SuspendLayout()
@@ -1636,6 +1644,7 @@ Partial Class ConfigManager
         Me.TableLayoutPanel9.ColumnCount = 1
         Me.TableLayoutPanel9.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel9.Controls.Add(Me.GroupBox10, 0, 0)
+        Me.TableLayoutPanel9.Controls.Add(Me.GroupBox19, 0, 1)
         Me.TableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel9.Location = New System.Drawing.Point(339, 3)
         Me.TableLayoutPanel9.Name = "TableLayoutPanel9"
@@ -1813,9 +1822,85 @@ Partial Class ConfigManager
         Me.Label19.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.Location = New System.Drawing.Point(35, 69)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(34, 14)
+        Me.Label19.Size = New System.Drawing.Size(31, 14)
         Me.Label19.TabIndex = 286
-        Me.Label19.Text = "TAX:"
+        Me.Label19.Text = "Tax:"
+        '
+        'GroupBox19
+        '
+        Me.GroupBox19.Controls.Add(Me.Label25)
+        Me.GroupBox19.Controls.Add(Me.Label24)
+        Me.GroupBox19.Controls.Add(Me.Label23)
+        Me.GroupBox19.Controls.Add(Me.TextBoxBROWNIEPRICE)
+        Me.GroupBox19.Controls.Add(Me.TextBoxBROWNIEID)
+        Me.GroupBox19.Controls.Add(Me.TextBoxBATTERID)
+        Me.GroupBox19.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox19.Location = New System.Drawing.Point(3, 244)
+        Me.GroupBox19.Name = "GroupBox19"
+        Me.GroupBox19.Size = New System.Drawing.Size(324, 236)
+        Me.GroupBox19.TabIndex = 294
+        Me.GroupBox19.TabStop = False
+        Me.GroupBox19.Text = "Default id references"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.Location = New System.Drawing.Point(40, 142)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(159, 14)
+        Me.Label25.TabIndex = 286
+        Me.Label25.Text = "Browmie Mix Upgrade Price:"
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.Location = New System.Drawing.Point(40, 98)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(92, 14)
+        Me.Label24.TabIndex = 285
+        Me.Label24.Text = "Brownie Mix ID:"
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.Location = New System.Drawing.Point(37, 56)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(106, 14)
+        Me.Label23.TabIndex = 284
+        Me.Label23.Text = "Famous Batter ID:"
+        '
+        'TextBoxBROWNIEPRICE
+        '
+        Me.TextBoxBROWNIEPRICE.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxBROWNIEPRICE.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxBROWNIEPRICE.Location = New System.Drawing.Point(38, 159)
+        Me.TextBoxBROWNIEPRICE.Name = "TextBoxBROWNIEPRICE"
+        Me.TextBoxBROWNIEPRICE.ReadOnly = True
+        Me.TextBoxBROWNIEPRICE.Size = New System.Drawing.Size(245, 22)
+        Me.TextBoxBROWNIEPRICE.TabIndex = 257
+        '
+        'TextBoxBROWNIEID
+        '
+        Me.TextBoxBROWNIEID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxBROWNIEID.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxBROWNIEID.Location = New System.Drawing.Point(38, 115)
+        Me.TextBoxBROWNIEID.Name = "TextBoxBROWNIEID"
+        Me.TextBoxBROWNIEID.ReadOnly = True
+        Me.TextBoxBROWNIEID.Size = New System.Drawing.Size(245, 22)
+        Me.TextBoxBROWNIEID.TabIndex = 256
+        '
+        'TextBoxBATTERID
+        '
+        Me.TextBoxBATTERID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxBATTERID.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxBATTERID.Location = New System.Drawing.Point(38, 73)
+        Me.TextBoxBATTERID.Name = "TextBoxBATTERID"
+        Me.TextBoxBATTERID.ReadOnly = True
+        Me.TextBoxBATTERID.Size = New System.Drawing.Size(247, 22)
+        Me.TextBoxBATTERID.TabIndex = 255
         '
         'Panel11
         '
@@ -2705,6 +2790,11 @@ Partial Class ConfigManager
         Me.Column43.HeaderText = "Column43"
         Me.Column43.Name = "Column43"
         '
+        'Column23
+        '
+        Me.Column23.HeaderText = "Column23"
+        Me.Column23.Name = "Column23"
+        '
         'Panel20
         '
         Me.Panel20.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -3067,11 +3157,6 @@ Partial Class ConfigManager
         Me.Panel22.Size = New System.Drawing.Size(1298, 10)
         Me.Panel22.TabIndex = 216
         '
-        'Column23
-        '
-        Me.Column23.HeaderText = "Column23"
-        Me.Column23.Name = "Column23"
-        '
         'ConfigManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3132,6 +3217,8 @@ Partial Class ConfigManager
         Me.TableLayoutPanel9.ResumeLayout(False)
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox10.PerformLayout()
+        Me.GroupBox19.ResumeLayout(False)
+        Me.GroupBox19.PerformLayout()
         Me.Panel11.ResumeLayout(False)
         Me.Panel11.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
@@ -3446,4 +3533,11 @@ Partial Class ConfigManager
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents BackgroundWorker6 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Column23 As DataGridViewTextBoxColumn
+    Friend WithEvents GroupBox19 As GroupBox
+    Friend WithEvents Label25 As Label
+    Friend WithEvents Label24 As Label
+    Friend WithEvents Label23 As Label
+    Friend WithEvents TextBoxBROWNIEPRICE As TextBox
+    Friend WithEvents TextBoxBROWNIEID As TextBox
+    Friend WithEvents TextBoxBATTERID As TextBox
 End Class

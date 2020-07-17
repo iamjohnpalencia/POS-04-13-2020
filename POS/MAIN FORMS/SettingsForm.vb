@@ -1671,7 +1671,7 @@ Public Class SettingsForm
             Dim cmdlocal As MySqlCommand
             With DataGridView3
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    Dim sql = "SELECT formula_id FROM loc_product_formula WHERE formula_id = " & .Rows(i).Cells(0).Value
+                    Dim sql = "SELECT formula_id FROM loc_product_formula WHERE server_formula_id = " & .Rows(i).Cells(0).Value
                     cmdlocal = New MySqlCommand(sql, LocalhostConn())
                     Dim result As Integer = cmdlocal.ExecuteScalar
                     If result = 0 Then
@@ -1729,7 +1729,7 @@ Public Class SettingsForm
             Dim cmdlocal As MySqlCommand
             With DataGridView4
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    Dim sql = "SELECT inventory_id FROM loc_pos_inventory WHERE inventory_id = " & .Rows(i).Cells(0).Value
+                    Dim sql = "SELECT inventory_id FROM loc_pos_inventory WHERE server_inventory_id = " & .Rows(i).Cells(0).Value
                     cmdlocal = New MySqlCommand(sql, LocalhostConn())
                     Dim result As Integer = cmdlocal.ExecuteScalar
                     If result = 0 Then
@@ -1785,7 +1785,7 @@ Public Class SettingsForm
             Dim cmdlocal As MySqlCommand
             With DataGridView2
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    Dim sql = "SELECT product_id FROM loc_admin_products WHERE product_id = " & .Rows(i).Cells(0).Value
+                    Dim sql = "SELECT product_id FROM loc_admin_products WHERE server_product_id = " & .Rows(i).Cells(0).Value
                     cmdlocal = New MySqlCommand(sql, LocalhostConn())
                     Dim result As Integer = cmdlocal.ExecuteScalar
                     If result = 0 Then

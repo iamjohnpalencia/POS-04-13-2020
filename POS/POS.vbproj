@@ -139,6 +139,7 @@
     <Compile Include="MAIN FORMS\SettingsForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MODULES\POSMODULE.vb" />
     <Compile Include="SUBFORMS\AddBank.Designer.vb">
       <DependentUpon>AddBank.vb</DependentUpon>
     </Compile>

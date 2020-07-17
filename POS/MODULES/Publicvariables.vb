@@ -36,7 +36,7 @@ Module publicVariables
     Public posandpendingenter As Boolean = False
     Public productprice As Integer
     Public deleteitem As Boolean = False
-    Public enterpressorbuttonpress As Boolean = False
+
     Public qtyisgreaterthanstock As Boolean = False
     Public hastextboxqty As Boolean = False
     Public productID
@@ -72,6 +72,7 @@ Module publicVariables
     Public ClientMIN As String
     Public ClientMSN As String
     Public ClientPTUN As String
+
     '==CONNECTION STRINGS
     Public LocalConnectionString As String
     Public CloudConnectionString As String
@@ -84,6 +85,9 @@ Module publicVariables
     Public S_Terminal_No As String
     Public S_ZeroRated As String
     Public S_Zreading
+    Public S_Batter As String
+    Public S_Brownie_Mix As String
+    Public S_Upgrade_Price As String
     '=============================================================================================================
     'btn click refresh
     Public btnperformclick As Boolean = False

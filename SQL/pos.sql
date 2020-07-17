@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2020 at 03:27 PM
+-- Generation Time: Jul 16, 2020 at 06:38 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -46,7 +46,6 @@ CREATE TABLE `admin_masterlist` (
 --
 -- Dumping data for table `admin_masterlist`
 --
-
 
 
 -- --------------------------------------------------------
@@ -105,7 +104,6 @@ CREATE TABLE `loc_admin_category` (
 --
 
 
-
 -- --------------------------------------------------------
 
 --
@@ -140,6 +138,7 @@ CREATE TABLE `loc_admin_products` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -160,7 +159,6 @@ CREATE TABLE `loc_coupon_data` (
 --
 -- Dumping data for table `loc_coupon_data`
 --
-
 
 
 -- --------------------------------------------------------
@@ -227,13 +225,13 @@ CREATE TABLE `loc_daily_transaction_details` (
   `product_category` varchar(255) NOT NULL,
   `zreading` text NOT NULL,
   `transaction_type` text NOT NULL,
+  `upgraded` int(11) NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_daily_transaction_details`
 --
-
 
 
 -- --------------------------------------------------------
@@ -348,8 +346,6 @@ CREATE TABLE `loc_fm_stock` (
 --
 -- Dumping data for table `loc_fm_stock`
 --
-
-
 
 -- --------------------------------------------------------
 
@@ -555,7 +551,6 @@ CREATE TABLE `loc_product_formula` (
 --
 
 
-
 -- --------------------------------------------------------
 
 --
@@ -606,12 +601,17 @@ CREATE TABLE `loc_settings` (
   `Dev_PTU_Valid_Until` text NOT NULL,
   `S_Zreading` text NOT NULL,
   `S_BackupInterval` text NOT NULL,
-  `S_BackupDate` text NOT NULL
+  `S_BackupDate` text NOT NULL,
+  `S_Batter` text NOT NULL,
+  `S_Brownie_Mix` text NOT NULL,
+  `S_Upgrade_Price_Add` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loc_settings`
 --
+
+
 -- --------------------------------------------------------
 
 --
@@ -648,7 +648,6 @@ CREATE TABLE `loc_system_logs` (
 --
 -- Dumping data for table `loc_system_logs`
 --
-
 
 
 -- --------------------------------------------------------
@@ -688,6 +687,11 @@ CREATE TABLE `loc_transfer_data` (
   `updated_at` text NOT NULL,
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `loc_transfer_data`
+--
+
 
 -- --------------------------------------------------------
 
@@ -764,7 +768,6 @@ CREATE TABLE `loc_zread_inventory` (
 --
 -- Dumping data for table `loc_zread_inventory`
 --
-
 
 
 -- --------------------------------------------------------
@@ -1264,7 +1267,7 @@ ALTER TABLE `triggers_loc_admin_products`
 -- AUTO_INCREMENT for table `triggers_loc_users`
 --
 ALTER TABLE `triggers_loc_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
