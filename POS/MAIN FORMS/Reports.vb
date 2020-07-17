@@ -391,10 +391,11 @@ Public Class Reports
         Try
             Dim totalDisplay = Format(DataGridViewDaily.SelectedRows(0).Cells(8).Value, "##,##0.00")
             a = 0
-            Dim fontaddon As New Font("Tahoma", 5, FontStyle.Italic)
+            Dim fontupgrade As New Font("Tahoma", 5, FontStyle.Italic)
             Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
             Dim font2 As New Font("Tahoma", 7, FontStyle.Bold)
             Dim font As New Font("Tahoma", 6)
+            Dim fontaddon As New Font("Tahoma", 5)
             ReceiptHeader(sender, e)
             Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
             Dim abc As Integer = 0
@@ -404,13 +405,13 @@ Public Class Reports
                 Dim price = Format(DataGridViewTransactionDetails.Rows(i).Cells(3).Value, "##,##0.00")
 
                 If DataGridViewTransactionDetails.Rows(i).Cells(4).Value.ToString = "Add-Ons" Then
-                    RightToLeftDisplay(sender, e, abc + 115, "     @" & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, font, 0, 0)
+                    RightToLeftDisplay(sender, e, abc + 115, "     @" & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, fontaddon, 0, 0)
                 Else
                     RightToLeftDisplay(sender, e, abc + 115, DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, font, 0, 0)
                     If DataGridViewTransactionDetails.Rows(i).Cells(5).Value > 0 Then
                         abc += 10
                         a += 10
-                        RightToLeftDisplay(sender, e, abc + 115, "     + UPGRADE BRWN " & DataGridViewTransactionDetails.Rows(i).Cells(5).Value, "", fontaddon, 0, 0)
+                        RightToLeftDisplay(sender, e, abc + 115, "     + UPGRADE BRWN " & DataGridViewTransactionDetails.Rows(i).Cells(5).Value, "", fontupgrade, 0, 0)
                     End If
                 End If
                 a += 10

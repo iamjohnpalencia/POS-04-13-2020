@@ -1049,10 +1049,11 @@ Public Class POS
             With Me
                 a = 0
                 ' Microsoft Sans Serif, 8.25pt
-                Dim fontaddon As New Font("Tahoma", 5, FontStyle.Italic)
+                Dim fontupgrade As New Font("Tahoma", 5, FontStyle.Italic)
                 Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
                 Dim font2 As New Font("Tahoma", 7, FontStyle.Bold)
                 Dim font As New Font("Tahoma", 6)
+                Dim fontaddon As New Font("Tahoma", 5)
                 ReceiptHeader(sender, e)
                 Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
                 Dim abc As Integer = 0
@@ -1061,13 +1062,13 @@ Public Class POS
                     Dim price = Format(.DataGridViewOrders.Rows(i).Cells(3).Value, "##,##0.00")
 
                     If DataGridViewOrders.Rows(i).Cells(7).Value.ToString = "Add-Ons" Then
-                        RightToLeftDisplay(sender, e, abc + 115, "     @" & .DataGridViewOrders.Rows(i).Cells(0).Value, price, font, 0, 0)
+                        RightToLeftDisplay(sender, e, abc + 115, "     @" & .DataGridViewOrders.Rows(i).Cells(0).Value, price, fontaddon, 0, 0)
                     Else
                         RightToLeftDisplay(sender, e, abc + 115, .DataGridViewOrders.Rows(i).Cells(0).Value, price, font, 0, 0)
                         If DataGridViewOrders.Rows(i).Cells(11).Value > 0 Then
                             abc += 10
                             .a += 10
-                            RightToLeftDisplay(sender, e, abc + 115, "     + UPGRADE BRWN " & DataGridViewOrders.Rows(i).Cells(11).Value, "", fontaddon, 0, 0)
+                            RightToLeftDisplay(sender, e, abc + 115, "     + UPGRADE BRWN " & DataGridViewOrders.Rows(i).Cells(11).Value, "", fontupgrade, 0, 0)
 
                         End If
                     End If
