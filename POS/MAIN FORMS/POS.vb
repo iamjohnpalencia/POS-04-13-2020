@@ -710,7 +710,12 @@ Public Class POS
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If .Rows(i).Cells(9).Value.ToString = "WAFFLE" Then
                         If HighestWafflesPrice < .Rows(i).Cells(2).Value Then
-                            HighestWafflesPrice = .Rows(i).Cells(2).Value
+                            If .Rows(i).Cells(11).Value > 0 Then
+                                Dim addprice = .Rows(i).Cells(11).Value * S_Upgrade_Price
+                                HighestWafflesPrice = .Rows(i).Cells(2).Value + addprice
+                            Else
+                                HighestWafflesPrice = .Rows(i).Cells(2).Value
+                            End If
                         End If
                     Else
                         If HighestDrinksPrice < .Rows(i).Cells(2).Value Then

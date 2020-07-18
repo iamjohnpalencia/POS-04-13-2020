@@ -21,9 +21,16 @@ Public Class CouponCode
         CouponDesc = ""
         CouponLine = 10
         CouponTotal = 0
-        For i As Integer = 0 To POS.DataGridViewOrders.Rows.Count - 1 Step +1
-            POS.DataGridViewOrders.Rows(i).Cells(3).Value = POS.DataGridViewOrders.Rows(i).Cells(1).Value * POS.DataGridViewOrders.Rows(i).Cells(2).Value
-        Next
+        With POS
+            For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
+                If .DataGridViewOrders.Rows(i).Cells(11).Value > 0 Then
+                    Dim priceadd = .DataGridViewOrders.Rows(i).Cells(11).Value * S_Upgrade_Price
+                    .DataGridViewOrders.Rows(i).Cells(3).Value = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value + priceadd
+                Else
+                    .DataGridViewOrders.Rows(i).Cells(3).Value = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value
+                End If
+            Next
+        End With
     End Sub
     Private Sub ButtonSubmit_Click(sender As Object, e As EventArgs) Handles ButtonSubmit.Click
         Try
