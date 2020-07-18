@@ -153,7 +153,7 @@ Public Class POS
                     If TextBoxQTY.Text <> 0 Then
                         If DataGridViewOrders.Rows.Count > 0 Then
                             DataGridViewOrders.SelectedRows(0).Cells(1).Value = Val(TextBoxQTY.Text)
-                            If DataGridViewOrders.SelectedRows(0).Cells(11).Value <> 0 Then
+                            If DataGridViewOrders.SelectedRows(0).Cells(11).Value > 0 Then
                                 Dim priceadd = DataGridViewOrders.SelectedRows(0).Cells(11).Value * S_Upgrade_Price
                                 DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * DataGridViewOrders.SelectedRows(0).Cells(2).Value + priceadd
                             Else

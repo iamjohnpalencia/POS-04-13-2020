@@ -212,28 +212,65 @@ Module POSMODULE
                             End If
                         Else
                             If CAT = "Famous Blends" Then
-                                .DataGridViewOrders.Rows.Add(name, .TextBoxQTY.Text, .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS", INVID, 0, ORIGIN)
+                                DISABLESERVEROTHERSPRODUCT = True
+                                .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS", INVID, 0, ORIGIN)
                             ElseIf CAT = "Others" Then
                                 If ORIGIN = "Server" Then
-                                    .ButtonTransactionMode.Enabled = True
-                                    .ButtonPayMent.Enabled = True
-                                    .ButtonTransactionMode.Text = "Cancel"
-                                    .ButtonPayMent.Text = "Mix"
-                                    .Buttonholdoder.Enabled = False
-                                    .ButtonPendingOrders.Enabled = False
-                                    .Panel3.Enabled = False
+                                    If DISABLESERVEROTHERSPRODUCT = False Then
+                                        For Each row In .DataGridViewOrders.Rows
+                                            If row.Cells("Column42").Value = "Local" Then
+                                                HASOTHERSLOCALPRODUCT = True
+                                                Exit For
+                                            End If
+                                        Next
+                                        If HASOTHERSLOCALPRODUCT = False Then
+                                            .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID, 0, ORIGIN)
+                                            .ButtonTransactionMode.Enabled = True
+                                            .ButtonPayMent.Enabled = True
+                                            .ButtonTransactionMode.Text = "Cancel"
+                                            .ButtonPayMent.Text = "Mix"
+                                            .Buttonholdoder.Enabled = False
+                                            .ButtonPendingOrders.Enabled = False
+                                            .Panel3.Enabled = False
+                                            .ButtonWaffleUpgrade.Enabled = False
+                                            .WaffleUpgrade = False
+                                            .ButtonWaffleUpgrade.Text = "Waffle Upgrade"
+                                        Else
+                                            MsgBox("Remove product first")
+                                        End If
+                                    Else
+                                        MsgBox("Remove product first")
+                                    End If
                                 Else
-                                    .ButtonTransactionMode.Enabled = True
-                                    .ButtonPayMent.Enabled = True
-                                    .Buttonholdoder.Enabled = True
-                                    .ButtonPendingOrders.Enabled = False
-                                    .Panel3.Enabled = False
+                                    For Each row In .DataGridViewOrders.Rows
+                                        If row.Cells("Column42").Value = "Server" Then
+                                            If row.cells("Column19").value = "OTHERS" Then
+                                                HASOTHERSSERVERPRODUCT = True
+                                            Else
+                                                HASOTHERSSERVERPRODUCT = False
+                                            End If
+                                            Exit For
+                                        End If
+                                    Next
+                                    If HASOTHERSSERVERPRODUCT = False Then
+                                        .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID, 0, ORIGIN)
+                                        .ButtonTransactionMode.Enabled = True
+                                        .ButtonPayMent.Enabled = True
+                                        .Buttonholdoder.Enabled = True
+                                        .ButtonPendingOrders.Enabled = False
+                                        .WaffleUpgrade = False
+                                        .ButtonWaffleUpgrade.Text = "Waffle Upgrade"
+                                    Else
+                                        MsgBox("Remove ingredient first")
+                                    End If
                                 End If
                             Else
+                                DISABLESERVEROTHERSPRODUCT = True
                                 If POS.WaffleUpgrade = True Then
-                                    .DataGridViewOrders.Rows.Add(name, .TextBoxQTY.Text, .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, .TextBoxQTY.Text, ORIGIN)
+                                    Dim priceadd = Val(.TextBoxQTY.Text) * S_Upgrade_Price
+                                    .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text) + priceadd, .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, Val(.TextBoxQTY.Text), ORIGIN)
                                 Else
-                                    .DataGridViewOrders.Rows.Add(name, .TextBoxQTY.Text, .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, 0, ORIGIN)
+                                    .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, 0, ORIGIN)
                                 End If
                             End If
                         End If
