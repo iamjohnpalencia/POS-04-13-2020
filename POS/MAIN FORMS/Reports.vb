@@ -407,7 +407,7 @@ Public Class Reports
                 If DataGridViewTransactionDetails.Rows(i).Cells(4).Value.ToString = "Add-Ons" Then
                     RightToLeftDisplay(sender, e, abc + 115, "     @" & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, fontaddon, 0, 0)
                 Else
-                    RightToLeftDisplay(sender, e, abc + 115, DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, font, 0, 0)
+                    RightToLeftDisplay(sender, e, abc + 115, DataGridViewTransactionDetails.Rows(i).Cells(1).Value & " " & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, font, 0, 0)
                     If DataGridViewTransactionDetails.Rows(i).Cells(5).Value > 0 Then
                         abc += 10
                         a += 10
@@ -851,5 +851,12 @@ Public Class Reports
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
+    End Sub
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        Dim sql = "TRUNCATE `loc_daily_transaction` ; TRUNCATE `loc_daily_transaction_details` "
+        Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+        cmd.ExecuteNonQuery()
+        reportsdailytransaction(False)
+        DataGridViewTransactionDetails.DataSource = Nothing
     End Sub
 End Class

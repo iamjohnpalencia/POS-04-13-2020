@@ -689,4 +689,11 @@ Public Class Inventory
             MsgBox(ex.ToString)
         End Try
     End Sub
+
+    Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles Button7.Click
+        Dim sql = "UPDATE loc_pos_inventory SET stock_primary = 0, stock_secondary = 0,  stock_no_of_servings = 0"
+        Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+        cmd.ExecuteNonQuery()
+        loadinventory()
+    End Sub
 End Class

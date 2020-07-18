@@ -1082,7 +1082,7 @@ Public Class POS
                     If DataGridViewOrders.Rows(i).Cells(7).Value.ToString = "Add-Ons" Then
                         RightToLeftDisplay(sender, e, abc + 115, "     @" & .DataGridViewOrders.Rows(i).Cells(0).Value, price, fontaddon, 0, 0)
                     Else
-                        RightToLeftDisplay(sender, e, abc + 115, .DataGridViewOrders.Rows(i).Cells(0).Value, price, font, 0, 0)
+                        RightToLeftDisplay(sender, e, abc + 115, .DataGridViewOrders.Rows(i).Cells(1).Value & " " & DataGridViewOrders.Rows(i).Cells(0).Value, price, font, 0, 0)
                         If DataGridViewOrders.Rows(i).Cells(11).Value > 0 Then
                             abc += 10
                             .a += 10

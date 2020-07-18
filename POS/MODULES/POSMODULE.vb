@@ -104,8 +104,8 @@ Module POSMODULE
                                 MsgBox("Select product")
                             ElseIf .DataGridViewOrders.SelectedRows(0).Cells(7).Value = "Others" Then
                                 MsgBox("Add-Ons are exclusive for fbw waffles only")
-                            ElseIf .DataGridViewOrders.SelectedRows(0).Cells(9).Value = "DRINKS" Then
-                                MsgBox("Add-Ons are exclusive for fbw waffles only")
+                                'ElseIf .DataGridViewOrders.SelectedRows(0).Cells(9).Value = "DRINKS" Then
+                                '    MsgBox("Add-Ons are exclusive for fbw waffles only")
                             Else
                                 ThisIsMyInventoryID = .TextBoxINC.Text
                                 If hastextboxqty = False Then
@@ -240,8 +240,6 @@ Module POSMODULE
                         .TextBoxPressQTY.Text = 1
                         .ButtonPayMent.Enabled = True
                     Else
-                        .WaffleUpgrade = False
-                        .ButtonWaffleUpgrade.Text = "Waffle Upgrade"
                         For i As Integer = 0 To POS.DataGridViewOrders.Rows.Count - 1 Step +1
                             If .DataGridViewOrders.Rows(i).Cells(0).Value.ToString() = name Then
                                 .TextBoxPressQTY.Text = drasd
