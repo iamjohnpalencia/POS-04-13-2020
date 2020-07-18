@@ -19,7 +19,7 @@ Module connectionModule
         End Try
         Return localconn
     End Function
-    Public Function LocalhostConn()
+    Public Function LocalhostConn() As MySqlConnection
         Dim localconnection As MySqlConnection
         localconnection = New MySqlConnection
         Try

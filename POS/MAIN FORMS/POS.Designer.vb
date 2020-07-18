@@ -1771,46 +1771,55 @@ Partial Class POS
         '
         Me.Column9.HeaderText = "Column9"
         Me.Column9.Name = "Column9"
+        Me.Column9.Visible = False
         '
         'Column12
         '
         Me.Column12.HeaderText = "ColumnPRID"
         Me.Column12.Name = "Column12"
+        Me.Column12.Visible = False
         '
         'Column13
         '
         Me.Column13.HeaderText = "ColumnSKU"
         Me.Column13.Name = "Column13"
+        Me.Column13.Visible = False
         '
         'Column16
         '
         Me.Column16.HeaderText = "ColumnCAT"
         Me.Column16.Name = "Column16"
+        Me.Column16.Visible = False
         '
         'Column17
         '
         Me.Column17.HeaderText = "ColumnCATOF"
         Me.Column17.Name = "Column17"
+        Me.Column17.Visible = False
         '
         'Column19
         '
         Me.Column19.HeaderText = "ColumnSumID"
         Me.Column19.Name = "Column19"
+        Me.Column19.Visible = False
         '
         'Column43
         '
         Me.Column43.HeaderText = "ColumnInvID"
         Me.Column43.Name = "Column43"
+        Me.Column43.Visible = False
         '
         'Column20
         '
         Me.Column20.HeaderText = "Upgrade"
         Me.Column20.Name = "Column20"
+        Me.Column20.Visible = False
         '
         'Column42
         '
         Me.Column42.HeaderText = "Origin"
         Me.Column42.Name = "Column42"
+        Me.Column42.Visible = False
         '
         'POS
         '

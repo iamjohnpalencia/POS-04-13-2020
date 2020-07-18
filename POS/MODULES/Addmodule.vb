@@ -24,14 +24,16 @@ Module Addmodule
     Dim result As Integer
     Public Sub GLOBAL_INSERT_FUNCTION(ByVal table As String, ByVal fields As String, ByVal values As String)
         Try
+            If LocalhostConn.State <> ConnectionState.Open Then
+                LocalhostConn.Open()
+            End If
             Dim Query As String = "INSERT INTO " + table + fields + " VALUES " + values
             Dim cmd As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
             cmd.ExecuteNonQuery()
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        Finally
             LocalhostConn.close
             cmd.Dispose()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
         End Try
     End Sub
 End Module
