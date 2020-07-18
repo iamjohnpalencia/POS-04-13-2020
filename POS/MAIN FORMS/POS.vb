@@ -729,12 +729,14 @@ Public Class POS
 #Region "Transaction Process"
     Dim secondary_value As Double = 0
     Dim stock_secondary As Double = 0
+
     Private Sub UpdateInventory()
+        Dim SqlCommand As MySqlCommand
+        Dim SqlAdapter As MySqlDataAdapter
+        Dim SqlDt As DataTable
+        Dim UpdateInventoryCon As MySqlConnection = LocalhostConn()
         Try
             Dim Query As String = ""
-            Dim SqlCommand As MySqlCommand
-            Dim SqlAdapter As MySqlDataAdapter
-            Dim SqlDt As DataTable
             With DataGridViewInv
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     Dim TotalQuantity As Double = 0
@@ -749,7 +751,7 @@ Public Class POS
                     Else
                         Query = "SELECT `secondary_value` FROM `loc_product_formula` WHERE server_formula_id = " & .Rows(i).Cells(1).Value
                     End If
-                    SqlCommand = New MySqlCommand(Query, LocalhostConn)
+                    SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
                     SqlAdapter = New MySqlDataAdapter(SqlCommand)
                     SqlDt = New DataTable
                     SqlAdapter.Fill(SqlDt)
@@ -761,7 +763,7 @@ Public Class POS
                     Else
                         Query = "SELECT `stock_secondary` FROM `loc_pos_inventory` WHERE inventory_id = " & .Rows(i).Cells(1).Value
                     End If
-                    SqlCommand = New MySqlCommand(Query, LocalhostConn)
+                    SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
                     SqlAdapter = New MySqlDataAdapter(SqlCommand)
                     SqlDt = New DataTable
                     SqlAdapter.Fill(SqlDt)
@@ -776,12 +778,10 @@ Public Class POS
                     Else
                         Query = "UPDATE loc_pos_inventory SET `stock_secondary` = " & Secondary & " , `stock_no_of_servings` = " & ServingValue & " , `stock_primary` = " & TotalPrimary & " WHERE `inventory_id` = " & .Rows(i).Cells(1).Value
                     End If
-                    SqlCommand = New MySqlCommand(Query, LocalhostConn())
+                    SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
                     SqlCommand.ExecuteNonQuery()
-                    LocalhostConn.close()
-                    SqlAdapter.Dispose()
-                    SqlCommand.Dispose()
                 Next
+                UpdateInventoryCon.Close()
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
