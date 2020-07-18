@@ -809,9 +809,9 @@ Public Class POS
     Private Sub InsertDailyTransaction()
         Try
             Dim table As String = "loc_daily_transaction"
-            Dim fields As String = "(`transaction_number`, `amounttendered`, `totaldiscount`, `change`, `amountdue`, `vatablesales`, `vatexemptsales`, `zeroratedsales`
+            Dim fields As String = " (`transaction_number`, `amounttendered`, `totaldiscount`, `change`, `amountdue`, `vatablesales`, `vatexemptsales`, `zeroratedsales`
                      , `lessvat`, `si_number`, `crew_id`, `guid`, `active`, `store_id`, `created_at`, `transaction_type`, `shift`, `zreading`, `synced`
-                     , `discount_type`, `vatpercentage`, `grosssales`, `totaldiscountedamount`)"
+                     , `discount_type`, `vatpercentage`, `grosssales`, `totaldiscountedamount`) "
             Dim value As String = "('" & TextBoxMAXID.Text & "'," & TEXTBOXMONEYVALUE & "," & TOTALDISCOUNT & "," & TEXTBOXCHANGEVALUE & "," & SUPERAMOUNTDUE & "," & VATABLESALES & "
                      ," & VATEXEMPTSALES & "," & ZERORATEDSALES & "," & LESSVAT & "," & SINumber & ",'" & ClientCrewID & "','" & ClientGuid & "','" & ACTIVE & "','" & ClientStoreID & "'
                      ,'" & INSERTTHISDATE & "','" & TRANSACTIONMODE & "','" & Shift & "','" & S_Zreading & "','Unsynced','" & DISCOUNTTYPE & "'," & VAT12PERCENT & "," & GROSSSALE & "," & TOTALDISCOUNTEDAMOUNT & ")"
@@ -931,23 +931,41 @@ Public Class POS
                         thread = New Thread(AddressOf InsertFMStock)
                         thread.Start()
                         THREADLIST.Add(thread)
+                        For Each t In THREADLIST
+                            t.Join()
+                        Next
                         thread = New Thread(AddressOf UpdateInventory)
                         thread.Start()
                         THREADLIST.Add(thread)
+                        For Each t In THREADLIST
+                            t.Join()
+                        Next
                         thread = New Thread(AddressOf InsertDailyTransaction)
                         thread.Start()
                         THREADLIST.Add(thread)
+                        For Each t In THREADLIST
+                            t.Join()
+                        Next
                         thread = New Thread(AddressOf InsertDailyDetails)
                         thread.Start()
                         THREADLIST.Add(thread)
+                        For Each t In THREADLIST
+                            t.Join()
+                        Next
                         If modeoftransaction = True Then
                             thread = New Thread(AddressOf InsertModeofTransaction)
                             thread.Start()
                             THREADLIST.Add(thread)
+                            For Each t In THREADLIST
+                                t.Join()
+                            Next
                         End If
                         thread = New Thread(AddressOf InsertCouponData)
                         thread.Start()
                         THREADLIST.Add(thread)
+                        For Each t In THREADLIST
+                            t.Join()
+                        Next
                     End If
                     Thread.Sleep(10)
                 Next
