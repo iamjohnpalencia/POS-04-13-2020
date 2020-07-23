@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2020 at 10:13 AM
+-- Generation Time: Jul 23, 2020 at 01:11 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -218,6 +218,7 @@ CREATE TABLE `loc_daily_transaction_details` (
   `zreading` text NOT NULL,
   `transaction_type` text NOT NULL,
   `upgraded` int(11) NOT NULL,
+  `addontype` text NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
