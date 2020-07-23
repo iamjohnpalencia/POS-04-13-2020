@@ -1490,6 +1490,7 @@ Public Class ConfigManager
                 DtCount.Columns.Add("origin")
                 DtCount.Columns.Add("date_modified")
                 DtCount.Columns.Add("inventory_id")
+                DtCount.Columns.Add("addontype")
                 Dim DaCount As MySqlDataAdapter
                 Dim FillDt As DataTable = New DataTable
                 For a = 1 To result
@@ -1513,6 +1514,7 @@ Public Class ConfigManager
                         Prod("origin") = FillDt(i)(10)
                         Prod("date_modified") = FillDt(i)(11)
                         Prod("inventory_id") = FillDt(i)(12)
+                        Prod("addontype") = FillDt(i)(13)
                         DtCount.Rows.Add(Prod)
                     Next
                 Next
@@ -1561,8 +1563,8 @@ Public Class ConfigManager
             With DataGridViewPRODUCTS
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmdlocal = New MySqlCommand("INSERT INTO loc_admin_products(`server_product_id`,`product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `server_inventory_id`, `guid`, `store_id`, `synced`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15)", TestLocalConnection())
+                    cmdlocal = New MySqlCommand("INSERT INTO loc_admin_products(`server_product_id`,`product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `server_inventory_id`, `guid`, `store_id`, `synced`, `addontype`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15 ,@16)", TestLocalConnection())
                     cmdlocal.Parameters.Add("@0", MySqlDbType.Int32).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1579,6 +1581,8 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = UserGUID
                     cmdlocal.Parameters.Add("@14", MySqlDbType.Int32).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
                     cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "Synced"
+                    cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = .Rows(i).Cells(13).Value
+
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With

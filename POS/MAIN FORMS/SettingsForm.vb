@@ -413,16 +413,15 @@ Public Class SettingsForm
     End Sub
     Private Sub ButtonRefund_Click(sender As Object, e As EventArgs) Handles ButtonRefund.Click
         Try
-
             If DataGridViewITEMRETURN1.Rows.Count > 0 Then
                 Dim transaction_num As String = DataGridViewITEMRETURN1.SelectedRows(0).Cells(0).Value.ToString
                 If String.IsNullOrWhiteSpace(TextBoxIRREASON.Text) Then
                     MessageBox.Show("Reason for refund is required!", "Refund", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
                     sql = "SELECT * FROM loc_daily_transaction WHERE date(created_at) = date(CURDATE()) AND created_at >= Now() - INTERVAL 10 MINUTE AND transaction_number = '" & transaction_num & "'"
-                    cmd = New MySqlCommand(sql, LocalhostConn())
-                    da = New MySqlDataAdapter(cmd)
-                    dt = New DataTable
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                    Dim dt As DataTable = New DataTable
                     da.Fill(dt)
                     If dt.Rows.Count > 0 Then
                         Dim refund As Integer = MessageBox.Show("Are you sure do you want to refund this transaction?", "Return and Refund", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
@@ -1483,7 +1482,7 @@ Public Class SettingsForm
             Dim daserver As MySqlDataAdapter
             Dim dtserver As DataTable
             If DtCheck.Rows.Count < 1 Then
-                Dim sql = "SELECT `formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org"
+                Dim sql = "SELECT `server_formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org"
                 cmdserver = New MySqlCommand(sql, ServerCloudCon())
                 daserver = New MySqlDataAdapter(cmdserver)
                 dtserver = New DataTable
@@ -1503,7 +1502,7 @@ Public Class SettingsForm
                             Ids += "," & LoadFormulaLocal(i)(1) & ""
                         End If
                     Next
-                    Dim sql = "SELECT `formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE formula_id  IN (" & Ids & ") "
+                    Dim sql = "SELECT `server_formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE server_formula_id  IN (" & Ids & ") "
                     cmdserver = New MySqlCommand(sql, ServerCloudCon())
                     daserver = New MySqlDataAdapter(cmdserver)
                     dtserver = New DataTable
@@ -1518,7 +1517,7 @@ Public Class SettingsForm
                             LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                         End If
                     Next
-                    Dim sql2 = "SELECT `formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE formula_id NOT IN (" & Ids & ") "
+                    Dim sql2 = "SELECT `server_formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE server_formula_id NOT IN (" & Ids & ") "
                     cmdserver = New MySqlCommand(sql2, ServerCloudCon())
                     daserver = New MySqlDataAdapter(cmdserver)
                     dtserver = New DataTable
@@ -1574,14 +1573,14 @@ Public Class SettingsForm
             Dim daserver As MySqlDataAdapter
             Dim dtserver As DataTable
             If DtCheck.Rows.Count < 1 Then
-                Dim sql = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`, `main_inventory_id` FROM admin_pos_inventory_org"
+                Dim sql = "SELECT `server_inventory_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`, `main_inventory_id` FROM admin_pos_inventory_org"
                 cmdserver = New MySqlCommand(sql, ServerCloudCon())
                 daserver = New MySqlDataAdapter(cmdserver)
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                     LabelNewRows.Text += 1
-                    DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString, dtserver(i)(10).ToString)
+                    DataGridView4.Rows.Add(dtserver(i)(0), 0, dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
 
                 Next
             Else
@@ -1594,7 +1593,7 @@ Public Class SettingsForm
                             Ids += "," & LoadInventoryLocal(i)(1) & ""
                         End If
                     Next
-                    Dim sql = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`,`main_inventory_id` FROM admin_pos_inventory_org WHERE inventory_id IN (" & Ids & ")"
+                    Dim sql = "SELECT `server_inventory_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`,`main_inventory_id` FROM admin_pos_inventory_org WHERE server_inventory_id IN (" & Ids & ")"
                     cmdserver = New MySqlCommand(sql, ServerCloudCon())
                     daserver = New MySqlDataAdapter(cmdserver)
                     dtserver = New DataTable
@@ -1603,13 +1602,13 @@ Public Class SettingsForm
                         If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(9).ToString Then
                             ProgressBar1.Value += 1
                             LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
-                            DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString, dtserver(i)(10).ToString)
+                            DataGridView4.Rows.Add(dtserver(i)(0), 0, dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
                         Else
                             ProgressBar1.Value += 1
                             LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                         End If
                     Next
-                    Dim sql2 = "SELECT `inventory_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`,`main_inventory_id` FROM admin_pos_inventory_org WHERE inventory_id NOT IN (" & Ids & ")"
+                    Dim sql2 = "SELECT `server_inventory_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`,`main_inventory_id` FROM admin_pos_inventory_org WHERE server_inventory_id NOT IN (" & Ids & ")"
                     cmdserver = New MySqlCommand(sql2, ServerCloudCon())
                     daserver = New MySqlDataAdapter(cmdserver)
                     dtserver = New DataTable
@@ -1618,7 +1617,7 @@ Public Class SettingsForm
                         If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(9) Then
                             ProgressBar1.Value += 1
                             LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
-                            DataGridView4.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString, dtserver(i)(10).ToString)
+                            DataGridView4.Rows.Add(dtserver(i)(0), 0, dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
                         End If
                     Next
                 End If
