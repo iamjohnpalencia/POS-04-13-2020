@@ -271,7 +271,7 @@ Public Class Reports
     Public Sub viewtransactiondetails(ByVal transaction_number As String)
         Try
             table = "`loc_daily_transaction_details`"
-            fields = "`product_name`, `quantity`, `price`, `total`, `product_category`, `upgraded`"
+            fields = "`product_name`, `quantity`, `price`, `total`, `product_category`, `upgraded`, `addontype`"
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewTransactionDetails, errormessage:="", fields:=fields, successmessage:="", where:=" transaction_number = '" & transaction_number & "'")
             'With DataGridViewTransactionDetails
             '    .Columns(0).HeaderCell.Value = "Product Name"
@@ -404,7 +404,11 @@ Public Class Reports
                 Dim price = Format(DataGridViewTransactionDetails.Rows(i).Cells(3).Value, "##,##0.00")
 
                 If DataGridViewTransactionDetails.Rows(i).Cells(4).Value.ToString = "Add-Ons" Then
-                    RightToLeftDisplay(sender, e, abc + 115, "     @" & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, fontaddon, 0, 0)
+                    If DataGridViewTransactionDetails.Rows(i).Cells(6).Value.ToString = "Classic" Then
+                        RightToLeftDisplay(sender, e, abc + 115, "     @" & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, fontaddon, 0, 0)
+                    Else
+                        RightToLeftDisplay(sender, e, abc + 115, DataGridViewTransactionDetails.Rows(i).Cells(1).Value & " " & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, font, 0, 0)
+                    End If
                 Else
                     RightToLeftDisplay(sender, e, abc + 115, DataGridViewTransactionDetails.Rows(i).Cells(1).Value & " " & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, font, 0, 0)
                     If DataGridViewTransactionDetails.Rows(i).Cells(5).Value > 0 Then

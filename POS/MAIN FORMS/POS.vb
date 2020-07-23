@@ -830,7 +830,7 @@ Public Class POS
             For i As Integer = 0 To DataGridViewOrders.Rows.Count - 1 Step +1
                 Dim totalcostofgoods As Decimal
                 Dim table As String = "loc_daily_transaction_details"
-                Dim fields As String = "(`product_id`,`product_sku`,`product_name`,`quantity`,`price`,`total`,`crew_id`,`transaction_number`,`active`,`created_at`,`guid`,`store_id`,`synced`,`total_cost_of_goods`,`product_category`,`zreading`,`transaction_type`,`upgraded`)"
+                Dim fields As String = "(`product_id`,`product_sku`,`product_name`,`quantity`,`price`,`total`,`crew_id`,`transaction_number`,`active`,`created_at`,`guid`,`store_id`,`synced`,`total_cost_of_goods`,`product_category`,`zreading`,`transaction_type`,`upgraded`,`addontype`)"
                 For a As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
                     If DataGridViewInv.Rows(a).Cells(4).Value = DataGridViewOrders.Rows(i).Cells(0).Value Then
                         totalcostofgoods += DataGridViewInv.Rows(a).Cells(6).Value
@@ -853,7 +853,8 @@ Public Class POS
                             , '" & DataGridViewOrders.Rows(i).Cells(7).Value & "'
                             , '" & S_Zreading & "'
                             , '" & TRANSACTIONMODE & "'
-                            , " & DataGridViewOrders.Rows(i).Cells(11).Value & ")"
+                            , " & DataGridViewOrders.Rows(i).Cells(11).Value & "
+                            , '" & DataGridViewOrders.Rows(i).Cells(13).Value & "')"
                 GLOBAL_INSERT_FUNCTION(table, fields, value)
                 totalcostofgoods = 0
             Next
@@ -933,44 +934,44 @@ Public Class POS
                     BackgroundWorker1.ReportProgress(i)
                     If i = 0 Then
                         .Label1.Text = "Transaction is processing. Please wait."
-                        'thread = New Thread(AddressOf InsertFMStock)
-                        'thread.Start()
-                        'THREADLIST.Add(thread)
-                        'For Each t In THREADLIST
-                        '    t.Join()
-                        'Next
-                        'thread = New Thread(AddressOf UpdateInventory)
-                        'thread.Start()
-                        'THREADLIST.Add(thread)
-                        'For Each t In THREADLIST
-                        '    t.Join()
-                        'Next
-                        'thread = New Thread(AddressOf InsertDailyTransaction)
-                        'thread.Start()
-                        'THREADLIST.Add(thread)
-                        'For Each t In THREADLIST
-                        '    t.Join()
-                        'Next
-                        'thread = New Thread(AddressOf InsertDailyDetails)
-                        'thread.Start()
-                        'THREADLIST.Add(thread)
-                        'For Each t In THREADLIST
-                        '    t.Join()
-                        'Next
-                        'If modeoftransaction = True Then
-                        '    thread = New Thread(AddressOf InsertModeofTransaction)
-                        '    thread.Start()
-                        '    THREADLIST.Add(thread)
-                        '    For Each t In THREADLIST
-                        '        t.Join()
-                        '    Next
-                        'End If
-                        'thread = New Thread(AddressOf InsertCouponData)
-                        'thread.Start()
-                        'THREADLIST.Add(thread)
-                        'For Each t In THREADLIST
-                        '    t.Join()
-                        'Next
+                        thread = New Thread(AddressOf InsertFMStock)
+                        thread.Start()
+                        THREADLIST.Add(thread)
+                        For Each t In THREADLIST
+                            t.Join()
+                        Next
+                        thread = New Thread(AddressOf UpdateInventory)
+                        thread.Start()
+                        THREADLIST.Add(thread)
+                        For Each t In THREADLIST
+                            t.Join()
+                        Next
+                        thread = New Thread(AddressOf InsertDailyTransaction)
+                        thread.Start()
+                        THREADLIST.Add(thread)
+                        For Each t In THREADLIST
+                            t.Join()
+                        Next
+                        thread = New Thread(AddressOf InsertDailyDetails)
+                        thread.Start()
+                        THREADLIST.Add(thread)
+                        For Each t In THREADLIST
+                            t.Join()
+                        Next
+                        If modeoftransaction = True Then
+                            thread = New Thread(AddressOf InsertModeofTransaction)
+                            thread.Start()
+                            THREADLIST.Add(thread)
+                            For Each t In THREADLIST
+                                t.Join()
+                            Next
+                        End If
+                        thread = New Thread(AddressOf InsertCouponData)
+                        thread.Start()
+                        THREADLIST.Add(thread)
+                        For Each t In THREADLIST
+                            t.Join()
+                        Next
                     End If
                     Thread.Sleep(10)
                 Next
@@ -1084,7 +1085,11 @@ Public Class POS
                     Dim price = Format(.DataGridViewOrders.Rows(i).Cells(3).Value, "##,##0.00")
 
                     If DataGridViewOrders.Rows(i).Cells(7).Value.ToString = "Add-Ons" Then
-                        RightToLeftDisplay(sender, e, abc + 115, "     @" & .DataGridViewOrders.Rows(i).Cells(0).Value, price, fontaddon, 0, 0)
+                        If DataGridViewOrders.Rows(i).Cells(13).Value.ToString = "Classic" Then
+                            RightToLeftDisplay(sender, e, abc + 115, "     @" & .DataGridViewOrders.Rows(i).Cells(0).Value, price, fontaddon, 0, 0)
+                        Else
+                            RightToLeftDisplay(sender, e, abc + 115, .DataGridViewOrders.Rows(i).Cells(1).Value & " " & DataGridViewOrders.Rows(i).Cells(0).Value, price, font, 0, 0)
+                        End If
                     Else
                         RightToLeftDisplay(sender, e, abc + 115, .DataGridViewOrders.Rows(i).Cells(1).Value & " " & DataGridViewOrders.Rows(i).Cells(0).Value, price, font, 0, 0)
                         If DataGridViewOrders.Rows(i).Cells(11).Value > 0 Then
@@ -1575,8 +1580,7 @@ Public Class POS
                 End If
             End If
         Catch ex As Exception
-            'BackgroundWorker2.CancelAsync()
-            MsgBox(ex.ToString)
+            BackgroundWorker2.CancelAsync()
             'If table doesnt have data
         End Try
     End Sub
@@ -1659,7 +1663,7 @@ Public Class POS
                 End If
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            BackgroundWorker2.CancelAsync()
             'If table doesnt have data
         End Try
     End Sub

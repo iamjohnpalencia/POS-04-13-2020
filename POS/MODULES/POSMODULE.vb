@@ -33,7 +33,7 @@ Module POSMODULE
     End Sub
     Public Sub retrieveformulaids()
         Try
-            sql = "SELECT product_id, product_sku, formula_id, product_category, origin, server_inventory_id FROM `loc_admin_products` WHERE product_name = '" & POS.TextBoxNAME.Text & "'"
+            sql = "SELECT product_id, product_sku, formula_id, product_category, origin, server_inventory_id, addontype FROM `loc_admin_products` WHERE product_name = '" & POS.TextBoxNAME.Text & "'"
             cmd = New MySqlCommand
             With cmd
                 .CommandText = sql
@@ -46,6 +46,7 @@ Module POSMODULE
                         Dim product_category = readerObj("product_category").ToString
                         Dim origin = readerObj("origin").ToString
                         Dim inventoryid = readerObj("server_inventory_id").ToString
+                        Dim addontype = readerObj("addontype").ToString
                         With POS
                             If POS.WaffleUpgrade = True Then
                                 Dim formulaId As String = ""
@@ -67,7 +68,7 @@ Module POSMODULE
                                 formula_id = formulaId.Substring(0, formulaId.Length - 1)
                             End If
                             .TextBoxFormulaID.Text = formula_id
-                            checkcriticallimit(formula_id:=formula_id, ID:=product_id, SKU:=product_sku, CAT:=product_category, ORIGIN:=origin, INVID:=inventoryid)
+                            checkcriticallimit(formula_id:=formula_id, ID:=product_id, SKU:=product_sku, CAT:=product_category, ORIGIN:=origin, INVID:=inventoryid, addontype:=addontype)
                         End With
                     End While
                 End Using
@@ -81,7 +82,7 @@ Module POSMODULE
     End Sub
     Public HASOTHERSLOCALPRODUCT As Boolean = False
     Public HASOTHERSSERVERPRODUCT As Boolean = False
-    Public Sub preventdgvordersdup(ByVal price, ByVal name, ByVal ID, ByVal SKU, ByVal CAT, ByVal ORIGIN, ByVal INVID)
+    Public Sub preventdgvordersdup(ByVal price, ByVal name, ByVal ID, ByVal SKU, ByVal CAT, ByVal ORIGIN, ByVal INVID, ByVal addontype)
         Try
             With POS
                 .TextBoxPRICE.Text = Val(price)
@@ -90,37 +91,79 @@ Module POSMODULE
                     .ButtonClickCount += 1
                     .TextBoxINC.Text = POS.ButtonClickCount
                     Dim test2 As Boolean = False
-                    For Each row In .DataGridViewOrders.Rows
-                        If .TextBoxNAME.Text = row.Cells("Column1").value Then
-                            If row.Cells("Column17").value = .DataGridViewOrders.SelectedRows(0).Cells(5).Value Then
+                    If addontype = "Classic" Then
+                        For Each row In .DataGridViewOrders.Rows
+                            If .TextBoxNAME.Text = row.Cells("Column1").value Then
+                                If row.Cells("Column17").value = .DataGridViewOrders.SelectedRows(0).Cells(5).Value Then
+                                    test2 = True
+                                    Exit For
+                                End If
+                            End If
+                        Next
+                    Else
+                        For Each row In .DataGridViewOrders.Rows
+                            If .TextBoxNAME.Text = row.Cells("Column1").value Then
                                 test2 = True
                                 Exit For
                             End If
-                        End If
-                    Next
+                        Next
+                    End If
                     If test2 = False Then
                         If .DataGridViewOrders.Rows.Count > 0 Then
-                            If .DataGridViewOrders.SelectedRows(0).Cells(7).Value = "Add-Ons" Then
-                                MsgBox("Select product")
-                            ElseIf .DataGridViewOrders.SelectedRows(0).Cells(7).Value = "Others" Then
-                                MsgBox("Add-Ons are exclusive for fbw waffles only")
-                                'ElseIf .DataGridViewOrders.SelectedRows(0).Cells(9).Value = "DRINKS" Then
-                                '    MsgBox("Add-Ons are exclusive for fbw waffles only")
+                            If addontype = "Classic" Then
+                                If .DataGridViewOrders.SelectedRows(0).Cells(7).Value = "Add-Ons" Then
+                                    MsgBox("Select product")
+                                ElseIf .DataGridViewOrders.SelectedRows(0).Cells(7).Value = "Others" Then
+                                    MsgBox("Add-Ons are exclusive for fbw waffles only")
+                                    'ElseIf .DataGridViewOrders.SelectedRows(0).Cells(9).Value = "DRINKS" Then
+                                    '    MsgBox("Add-Ons are exclusive for fbw waffles only")
+                                Else
+                                    ThisIsMyInventoryID = .TextBoxINC.Text
+                                    If hastextboxqty = False Then
+                                        .DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString, .DataGridViewOrders.SelectedRows(0).Cells(9).Value, INVID, 0, ORIGIN, addontype)
+                                    Else
+                                        .DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, .TextBoxQTY.Text, .TextBoxPRICE.Text, .TextBoxQTY.Text * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString, .DataGridViewOrders.SelectedRows(0).Cells(9).Value, INVID, .TextBoxQTY.Text, ORIGIN, addontype)
+                                    End If
+                                End If
                             Else
                                 ThisIsMyInventoryID = .TextBoxINC.Text
                                 If hastextboxqty = False Then
-                                    .DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString, .DataGridViewOrders.SelectedRows(0).Cells(9).Value, INVID, 0, ORIGIN)
+                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "AOPREMIUM", INVID, 0, ORIGIN, addontype)
                                 Else
-                                    .DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, .TextBoxQTY.Text, .TextBoxPRICE.Text, .TextBoxQTY.Text * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString, .DataGridViewOrders.SelectedRows(0).Cells(9).Value, INVID, .TextBoxQTY.Text, ORIGIN)
+                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "AOPREMIUM", INVID, 0, ORIGIN, addontype)
                                 End If
                             End If
                         Else
-                            MsgBox("Select product first")
+                            If addontype = "Classic" Then
+                                MsgBox("Select product first")
+                            Else
+                                ThisIsMyInventoryID = .TextBoxINC.Text
+                                If hastextboxqty = False Then
+                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "AOPREMIUM", INVID, 0, ORIGIN, addontype)
+                                Else
+                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "AOPREMIUM", INVID, 0, ORIGIN, addontype)
+                                End If
+                            End If
                         End If
                     Else
                         For i As Integer = 0 To POS.DataGridViewOrders.Rows.Count - 1 Step +1
                             If .TextBoxNAME.Text = .DataGridViewOrders.Rows(i).Cells(0).Value.ToString() Then
-                                If .DataGridViewOrders.SelectedRows(0).Cells(5).Value = .DataGridViewOrders.Rows(i).Cells(8).Value Then
+                                If addontype = "Classic" Then
+                                    If .DataGridViewOrders.SelectedRows(0).Cells(5).Value = .DataGridViewOrders.Rows(i).Cells(8).Value Then
+                                        If hastextboxqty = False Then
+                                            .DataGridViewOrders.Rows(i).Cells(1).Value = .DataGridViewOrders.Rows(i).Cells(1).Value + 1
+                                            .DataGridViewOrders.Rows(i).Cells(3).Value = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value
+                                            ThisIsMyInventoryID = .DataGridViewOrders.Rows(i).Cells(4).Value
+                                        Else
+                                            .DataGridViewOrders.Rows(i).Cells(1).Value = .TextBoxQTY.Text
+                                            .DataGridViewOrders.Rows(i).Cells(3).Value = .TextBoxQTY.Text * .DataGridViewOrders.Rows(i).Cells(2).Value
+                                            ThisIsMyInventoryID = .DataGridViewOrders.Rows(i).Cells(4).Value
+                                        End If
+                                        .ButtonPayMent.Enabled = True
+                                        .Buttonholdoder.Enabled = True
+                                        .ButtonPendingOrders.Enabled = False
+                                    End If
+                                Else
                                     If hastextboxqty = False Then
                                         .DataGridViewOrders.Rows(i).Cells(1).Value = .DataGridViewOrders.Rows(i).Cells(1).Value + 1
                                         .DataGridViewOrders.Rows(i).Cells(3).Value = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value
@@ -151,7 +194,7 @@ Module POSMODULE
                         If hastextboxqty = False Then
                             If CAT = "Famous Blends" Then
                                 DISABLESERVEROTHERSPRODUCT = True
-                                .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS", INVID, 0, ORIGIN)
+                                .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS", INVID, 0, ORIGIN, addontype)
                             ElseIf CAT = "Others" Then
                                 If ORIGIN = "Server" Then
                                     If DISABLESERVEROTHERSPRODUCT = False Then
@@ -162,7 +205,7 @@ Module POSMODULE
                                             End If
                                         Next
                                         If HASOTHERSLOCALPRODUCT = False Then
-                                            .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID, 0, ORIGIN)
+                                            .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID, 0, ORIGIN, addontype)
                                             .ButtonTransactionMode.Enabled = True
                                             .ButtonPayMent.Enabled = True
                                             .ButtonTransactionMode.Text = "Cancel"
@@ -191,7 +234,7 @@ Module POSMODULE
                                         End If
                                     Next
                                     If HASOTHERSSERVERPRODUCT = False Then
-                                        .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID, 0, ORIGIN)
+                                        .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID, 0, ORIGIN, addontype)
                                         .ButtonTransactionMode.Enabled = True
                                         .ButtonPayMent.Enabled = True
                                         .Buttonholdoder.Enabled = True
@@ -205,15 +248,15 @@ Module POSMODULE
                             Else
                                 DISABLESERVEROTHERSPRODUCT = True
                                 If POS.WaffleUpgrade = True Then
-                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text + Val(S_Upgrade_Price)), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, 1, ORIGIN)
+                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text + Val(S_Upgrade_Price)), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, 1, ORIGIN, addontype)
                                 Else
-                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, 0, ORIGIN)
+                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, 0, ORIGIN, addontype)
                                 End If
                             End If
                         Else
                             If CAT = "Famous Blends" Then
                                 DISABLESERVEROTHERSPRODUCT = True
-                                .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS", INVID, 0, ORIGIN)
+                                .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "DRINKS", INVID, 0, ORIGIN, addontype)
                             ElseIf CAT = "Others" Then
                                 If ORIGIN = "Server" Then
                                     If DISABLESERVEROTHERSPRODUCT = False Then
@@ -224,7 +267,7 @@ Module POSMODULE
                                             End If
                                         Next
                                         If HASOTHERSLOCALPRODUCT = False Then
-                                            .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID, 0, ORIGIN)
+                                            .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID, 0, ORIGIN, addontype)
                                             .ButtonTransactionMode.Enabled = True
                                             .ButtonPayMent.Enabled = True
                                             .ButtonTransactionMode.Text = "Cancel"
@@ -253,7 +296,7 @@ Module POSMODULE
                                         End If
                                     Next
                                     If HASOTHERSSERVERPRODUCT = False Then
-                                        .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID, 0, ORIGIN)
+                                        .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "OTHERS", INVID, 0, ORIGIN, addontype)
                                         .ButtonTransactionMode.Enabled = True
                                         .ButtonPayMent.Enabled = True
                                         .Buttonholdoder.Enabled = True
@@ -268,9 +311,9 @@ Module POSMODULE
                                 DISABLESERVEROTHERSPRODUCT = True
                                 If POS.WaffleUpgrade = True Then
                                     Dim priceadd = Val(.TextBoxQTY.Text) * S_Upgrade_Price
-                                    .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text) + priceadd, .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, Val(.TextBoxQTY.Text), ORIGIN)
+                                    .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text) + priceadd, .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, Val(.TextBoxQTY.Text), ORIGIN, addontype)
                                 Else
-                                    .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, 0, ORIGIN)
+                                    .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, 0, ORIGIN, addontype)
                                 End If
                             End If
                         End If
@@ -335,7 +378,7 @@ Module POSMODULE
     Dim DataAdapterCriticalLimit As MySqlDataAdapter
     Dim CmdCriticalLimit As MySqlCommand
     Dim ListOfIngredients As String
-    Public Sub checkcriticallimit(ByVal formula_id, ByVal ID, ByVal SKU, ByVal CAT, ByVal ORIGIN, ByVal INVID)
+    Public Sub checkcriticallimit(ByVal formula_id, ByVal ID, ByVal SKU, ByVal CAT, ByVal ORIGIN, ByVal INVID, ByVal addontype)
         Try
             ListOfIngredients = ""
             sql = "SELECT product_ingredients, critical_limit, stock_primary, stock_secondary, stock_no_of_servings FROM `loc_pos_inventory` WHERE stock_primary <= critical_limit AND server_inventory_id IN (" & Trim(formula_id) & ");"
@@ -350,22 +393,22 @@ Module POSMODULE
                 Dim criticalmessage = ListOfIngredients.Substring(0, ListOfIngredients.Length - 2)
                 Dim outofstock = MessageBox.Show("Item (" & criticalmessage & ") is out of stock, do you wish to continue?", "Out of Stock", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 If outofstock = DialogResult.Yes Then
-                    preventdgvordersdup(price:=POS.TextBoxPRICE.Text, name:=POS.TextBoxNAME.Text, ID:=ID, SKU:=SKU, CAT:=CAT, ORIGIN:=ORIGIN, INVID:=INVID)
-                    retrieveanddeduct(formulaID:=POS.TextBoxFormulaID.Text, Cat:=CAT, Origin:=ORIGIN)
+                    preventdgvordersdup(price:=POS.TextBoxPRICE.Text, name:=POS.TextBoxNAME.Text, ID:=ID, SKU:=SKU, CAT:=CAT, ORIGIN:=ORIGIN, INVID:=INVID, addontype:=addontype)
+                    retrieveanddeduct(formulaID:=POS.TextBoxFormulaID.Text, Cat:=CAT, Origin:=ORIGIN, addontype:=addontype)
                 End If
             Else
-                preventdgvordersdup(price:=POS.TextBoxPRICE.Text, name:=POS.TextBoxNAME.Text, ID:=ID, SKU:=SKU, CAT:=CAT, ORIGIN:=ORIGIN, INVID:=INVID)
-                retrieveanddeduct(formulaID:=POS.TextBoxFormulaID.Text, Cat:=CAT, Origin:=ORIGIN)
+                preventdgvordersdup(price:=POS.TextBoxPRICE.Text, name:=POS.TextBoxNAME.Text, ID:=ID, SKU:=SKU, CAT:=CAT, ORIGIN:=ORIGIN, INVID:=INVID, addontype:=addontype)
+                retrieveanddeduct(formulaID:=POS.TextBoxFormulaID.Text, Cat:=CAT, Origin:=ORIGIN, addontype:=addontype)
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
             DataAdapterCriticalLimit.Dispose()
             CmdCriticalLimit.Dispose()
-            LocalhostConn.close
+            LocalhostConn.Close()
         End Try
     End Sub
-    Public Sub retrieveanddeduct(ByVal formulaID, ByVal Cat, ByVal Origin)
+    Public Sub retrieveanddeduct(ByVal formulaID, ByVal Cat, ByVal Origin, ByVal addontype)
         Try
             If Origin = "Server" Then
                 sql = "SELECT serving_value, server_formula_id, unit_cost FROM `loc_product_formula` WHERE server_formula_id IN (" & formulaID & ")"
@@ -378,10 +421,11 @@ Module POSMODULE
             da.Fill(dt)
             With POS
                 If Cat = "Add-Ons" Then
-                    If .DataGridViewOrders.Rows.Count > 0 Then
-                        If .DataGridViewOrders.SelectedRows(0).Cells(7).Value <> "Add-Ons" Then
-                            Dim ID = .DataGridViewOrders.SelectedRows(0).Cells(5).Value
-                            Dim test As Boolean = False
+                    Dim ID = ""
+                    Dim test As Boolean = False
+                    If addontype = "Classic" Then
+                        If .DataGridViewOrders.Rows.Count > 0 Then
+                            ID = .DataGridViewOrders.SelectedRows(0).Cells(5).Value
                             For Each row In .DataGridViewInv.Rows
                                 If .TextBoxNAME.Text = row.Cells("Column10").Value Then
                                     If .DataGridViewOrders.SelectedRows(0).Cells(5).Value = row.cells("Column18").value Then
@@ -390,42 +434,84 @@ Module POSMODULE
                                     End If
                                 End If
                             Next
-
-                            If test = False Then
-                                For Each row As DataRow In dt.Rows
-                                    If deleteitem = False Then
-                                        If .TextBoxQTY.Text <> 0 Then
-                                            servingtotal = Val(row("serving_value")) * Val(.TextBoxQTY.Text)
-                                            If Origin = "Server" Then
-                                                .DataGridViewInv.Rows.Add(servingtotal, row("server_formula_id"), .TextBoxQTY.Text, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxQTY.Text), row("unit_cost"), ID, Origin)
-                                            Else
-                                                .DataGridViewInv.Rows.Add(servingtotal, row("formula_id"), .TextBoxQTY.Text, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxQTY.Text), row("unit_cost"), ID, Origin)
-                                            End If
-                                        Else
-                                            If .DataGridViewOrders.Rows.Count > 0 Then
+                        End If
+                    Else
+                        For Each row In .DataGridViewInv.Rows
+                            If .TextBoxNAME.Text = row.Cells("Column10").Value Then
+                                test = True
+                                Exit For
+                            End If
+                        Next
+                    End If
+                    If test = False Then
+                        If addontype = "Classic" Then
+                            If .DataGridViewOrders.Rows.Count > 0 Then
+                                If .DataGridViewOrders.SelectedRows(0).Cells(7).Value.ToString <> "Add-Ons" Then
+                                    For Each row As DataRow In dt.Rows
+                                        If deleteitem = False Then
+                                            If .TextBoxQTY.Text <> 0 Then
+                                                servingtotal = Val(row("serving_value")) * Val(.TextBoxQTY.Text)
                                                 If Origin = "Server" Then
-                                                    .DataGridViewInv.Rows.Add(row("serving_value"), row("server_formula_id"), 1, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxPressQTY.Text), row("unit_cost"), ID, Origin)
+                                                    .DataGridViewInv.Rows.Add(servingtotal, row("server_formula_id"), .TextBoxQTY.Text, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxQTY.Text), row("unit_cost"), ID, Origin)
                                                 Else
-                                                    .DataGridViewInv.Rows.Add(row("serving_value"), row("formula_id"), 1, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxPressQTY.Text), row("unit_cost"), ID, Origin)
+                                                    .DataGridViewInv.Rows.Add(servingtotal, row("formula_id"), .TextBoxQTY.Text, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxQTY.Text), row("unit_cost"), ID, Origin)
+                                                End If
+                                            Else
+                                                If .DataGridViewOrders.Rows.Count > 0 Then
+                                                    If Origin = "Server" Then
+                                                        .DataGridViewInv.Rows.Add(row("serving_value"), row("server_formula_id"), 1, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxPressQTY.Text), row("unit_cost"), ID, Origin)
+                                                    Else
+                                                        .DataGridViewInv.Rows.Add(row("serving_value"), row("formula_id"), 1, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxPressQTY.Text), row("unit_cost"), ID, Origin)
 
+                                                    End If
                                                 End If
                                             End If
                                         End If
-                                    End If
-                                Next row
-                            Else
-                                For i As Integer = 0 To .DataGridViewInv.Rows.Count - 1 Step +1
-                                    If .TextBoxNAME.Text = .DataGridViewInv.Rows(i).Cells(4).Value.ToString Then
-                                        If .DataGridViewOrders.SelectedRows(0).Cells(5).Value = .DataGridViewInv.Rows(i).Cells(8).Value Then
-                                            .DataGridViewInv.Rows(i).Cells(2).Value = .DataGridViewInv.Rows(i).Cells(2).Value + 1
-                                            .DataGridViewInv.Rows(i).Cells(0).Value = .DataGridViewInv.Rows(i).Cells(2).Value * .DataGridViewInv.Rows(i).Cells(5).Value
-                                            .DataGridViewInv.Rows(i).Cells(6).Value = Val(.DataGridViewInv.Rows(i).Cells(2).Value) * Val(.DataGridViewInv.Rows(i).Cells(7).Value)
+                                    Next row
+                                End If
+                            End If
+                        Else
+                            'Premium
+                            For Each row As DataRow In dt.Rows
+                                If deleteitem = False Then
+                                    If .TextBoxQTY.Text <> 0 Then
+                                        servingtotal = Val(row("serving_value")) * Val(.TextBoxQTY.Text)
+                                        If Origin = "Server" Then
+                                            .DataGridViewInv.Rows.Add(servingtotal, row("server_formula_id"), .TextBoxQTY.Text, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxQTY.Text), row("unit_cost"), 0, Origin)
+                                        Else
+                                            .DataGridViewInv.Rows.Add(servingtotal, row("formula_id"), .TextBoxQTY.Text, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxQTY.Text), row("unit_cost"), 0, Origin)
+                                        End If
+                                    Else
+                                        If .DataGridViewOrders.Rows.Count > 0 Then
+                                            If Origin = "Server" Then
+                                                .DataGridViewInv.Rows.Add(row("serving_value"), row("server_formula_id"), 1, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxPressQTY.Text), row("unit_cost"), 0, Origin)
+                                            Else
+                                                .DataGridViewInv.Rows.Add(row("serving_value"), row("formula_id"), 1, .TextBoxINC.Text, .TextBoxNAME.Text, row("serving_value"), row("unit_cost") * Val(.TextBoxPressQTY.Text), row("unit_cost"), 0, Origin)
+
+                                            End If
                                         End If
                                     End If
-                                Next
-                            End If
+                                End If
+                            Next row
                         End If
+                    Else
+                        For i As Integer = 0 To .DataGridViewInv.Rows.Count - 1 Step +1
+                            If .TextBoxNAME.Text = .DataGridViewInv.Rows(i).Cells(4).Value.ToString Then
+                                If addontype = "Classic" Then
+                                    If .DataGridViewOrders.SelectedRows(0).Cells(5).Value = .DataGridViewInv.Rows(i).Cells(8).Value Then
+                                        .DataGridViewInv.Rows(i).Cells(2).Value = .DataGridViewInv.Rows(i).Cells(2).Value + 1
+                                        .DataGridViewInv.Rows(i).Cells(0).Value = .DataGridViewInv.Rows(i).Cells(2).Value * .DataGridViewInv.Rows(i).Cells(5).Value
+                                        .DataGridViewInv.Rows(i).Cells(6).Value = Val(.DataGridViewInv.Rows(i).Cells(2).Value) * Val(.DataGridViewInv.Rows(i).Cells(7).Value)
+                                    End If
+                                Else
+                                    .DataGridViewInv.Rows(i).Cells(2).Value = .DataGridViewInv.Rows(i).Cells(2).Value + 1
+                                    .DataGridViewInv.Rows(i).Cells(0).Value = .DataGridViewInv.Rows(i).Cells(2).Value * .DataGridViewInv.Rows(i).Cells(5).Value
+                                    .DataGridViewInv.Rows(i).Cells(6).Value = Val(.DataGridViewInv.Rows(i).Cells(2).Value) * Val(.DataGridViewInv.Rows(i).Cells(7).Value)
+                                End If
+                            End If
+                        Next
                     End If
+
                 ElseIf Cat = "Others" Then
                     If Origin = "Server" Then
                         If DISABLESERVEROTHERSPRODUCT = False Then
