@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2020 at 06:38 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.7
+-- Generation Time: Jul 23, 2020 at 10:13 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,6 +26,28 @@ USE `pos`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin_coupon`
+--
+
+DROP TABLE IF EXISTS `admin_coupon`;
+CREATE TABLE `admin_coupon` (
+  `coupon_id` int(11) NOT NULL,
+  `coupon_code` varchar(10) NOT NULL,
+  `coupon_name` varchar(50) NOT NULL,
+  `coupon_val` int(11) NOT NULL,
+  `coupon_desc` varchar(50) NOT NULL,
+  `discount_type` varchar(50) NOT NULL,
+  `effective_date` varchar(255) NOT NULL,
+  `expiry_date` varchar(255) NOT NULL,
+  `created_at` date NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `origin` varchar(20) NOT NULL,
+  `active` tinyint(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `admin_masterlist`
 --
 
@@ -42,11 +64,6 @@ CREATE TABLE `admin_masterlist` (
   `created_at` text NOT NULL,
   `client_store_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_masterlist`
---
-
 
 -- --------------------------------------------------------
 
@@ -78,11 +95,6 @@ CREATE TABLE `admin_outlets` (
   `PTUN` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `admin_outlets`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -98,11 +110,6 @@ CREATE TABLE `loc_admin_category` (
   `origin` varchar(50) NOT NULL,
   `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `loc_admin_category`
---
-
 
 -- --------------------------------------------------------
 
@@ -130,14 +137,9 @@ CREATE TABLE `loc_admin_products` (
   `synced` varchar(50) NOT NULL,
   `server_product_id` int(11) NOT NULL,
   `server_inventory_id` int(11) NOT NULL,
-  `price_change` int(11) NOT NULL
+  `price_change` int(11) NOT NULL,
+  `addontype` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `loc_admin_products`
---
-
-
 
 -- --------------------------------------------------------
 
@@ -155,11 +157,6 @@ CREATE TABLE `loc_coupon_data` (
   `coupon_line` text NOT NULL,
   `coupon_total` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `loc_coupon_data`
---
-
 
 -- --------------------------------------------------------
 
@@ -195,11 +192,6 @@ CREATE TABLE `loc_daily_transaction` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `loc_daily_transaction`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -228,11 +220,6 @@ CREATE TABLE `loc_daily_transaction_details` (
   `upgraded` int(11) NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `loc_daily_transaction_details`
---
-
 
 -- --------------------------------------------------------
 
@@ -343,10 +330,6 @@ CREATE TABLE `loc_fm_stock` (
   `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `loc_fm_stock`
---
-
 -- --------------------------------------------------------
 
 --
@@ -406,11 +389,6 @@ CREATE TABLE `loc_inv_temp_data` (
   `guid` varchar(255) NOT NULL,
   `created_at` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `loc_inv_temp_data`
---
-
 
 -- --------------------------------------------------------
 
@@ -494,11 +472,6 @@ CREATE TABLE `loc_pos_inventory` (
   `main_inventory_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `loc_pos_inventory`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -546,10 +519,32 @@ CREATE TABLE `loc_product_formula` (
   `server_date_modified` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `loc_product_formula`
+-- Table structure for table `loc_promo_coupon_list`
 --
 
+DROP TABLE IF EXISTS `loc_promo_coupon_list`;
+CREATE TABLE `loc_promo_coupon_list` (
+  `coupon_id` int(11) NOT NULL,
+  `coupon_code` varchar(10) NOT NULL,
+  `coupon_name` varchar(255) NOT NULL,
+  `coupon_desc` varchar(255) NOT NULL,
+  `reference_value` varchar(255) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `coupon_type` varchar(255) NOT NULL,
+  `discount_value` decimal(11,2) NOT NULL,
+  `productbundle` varchar(255) NOT NULL,
+  `product_id` varchar(255) NOT NULL,
+  `min_spend` int(11) NOT NULL,
+  `max_spend` int(11) NOT NULL,
+  `origin` varchar(20) NOT NULL,
+  `active` tinyint(2) NOT NULL,
+  `guid` varchar(255) NOT NULL,
+  `store_id` varchar(11) NOT NULL,
+  `created_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -607,11 +602,6 @@ CREATE TABLE `loc_settings` (
   `S_Upgrade_Price_Add` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `loc_settings`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -644,11 +634,6 @@ CREATE TABLE `loc_system_logs` (
   `zreading` varchar(255) NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `loc_system_logs`
---
-
 
 -- --------------------------------------------------------
 
@@ -688,10 +673,18 @@ CREATE TABLE `loc_transfer_data` (
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `loc_transfer_data`
+-- Table structure for table `loc_updates`
 --
 
+DROP TABLE IF EXISTS `loc_updates`;
+CREATE TABLE `loc_updates` (
+  `up_id` int(11) NOT NULL,
+  `up_version` varchar(255) NOT NULL,
+  `up_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -732,11 +725,6 @@ CREATE TABLE `loc_users` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `loc_users`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -764,11 +752,6 @@ CREATE TABLE `loc_zread_inventory` (
   `server_inventory_id` int(11) NOT NULL,
   `zreading` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `loc_zread_inventory`
---
-
 
 -- --------------------------------------------------------
 
@@ -803,6 +786,21 @@ INSERT INTO `tbcoupon` (`ID`, `Couponname_`, `Desc_`, `Discountvalue_`, `Referen
 (4, 'Free Choco Waffle', 'Free Choco Waffle if you buy Peanut Butter waffle', '', '', 'Bundle-1(Fix)', '5', '1', '3', '1', '01/01/2020', '31/12/2020'),
 (5, '10 OFF ON DRINKS', 'P10 OFF on Drinks if you buy 2 choco waffles\r\n', '10', '', 'Bundle-2(Fix)', '3', '2', '37,36,60,61,66,79', '1', '01/01/2020', '31/12/2020'),
 (6, '10% OFF ON YOUR 3RD WAFFLE', '10% OFF for the 3rd Waffle if you buy 2 Perfect Combination Waffle', '10', '', 'Bundle-3(%)', '2,13,14,15,16,17,18,19,20,21,22,23,24,25,26,67,68,69,70,71,72,73,74,75', '2', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,62,63,67,68,69,70,71,72,73,74,75,76,77,78,80,81', '1', '01/01/2020', '31/12/2020');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `testcoupon`
+--
+
+DROP TABLE IF EXISTS `testcoupon`;
+CREATE TABLE `testcoupon` (
+  `coupon_id` int(11) NOT NULL,
+  `coupon_type` varchar(255) NOT NULL,
+  `coupon_desc` text NOT NULL,
+  `coupon_reference_val` int(11) NOT NULL,
+  `coupon_disc_val` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -872,10 +870,6 @@ CREATE TABLE `triggers_loc_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `triggers_loc_users`
---
-
---
 -- Triggers `triggers_loc_users`
 --
 DROP TRIGGER IF EXISTS `Copy_To_Loc_Users`;
@@ -892,6 +886,12 @@ DELIMITER ;
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin_coupon`
+--
+ALTER TABLE `admin_coupon`
+  ADD PRIMARY KEY (`coupon_id`);
 
 --
 -- Indexes for table `admin_masterlist`
@@ -1014,6 +1014,12 @@ ALTER TABLE `loc_product_formula`
   ADD PRIMARY KEY (`formula_id`);
 
 --
+-- Indexes for table `loc_promo_coupon_list`
+--
+ALTER TABLE `loc_promo_coupon_list`
+  ADD PRIMARY KEY (`coupon_id`);
+
+--
 -- Indexes for table `loc_refund_return_details`
 --
 ALTER TABLE `loc_refund_return_details`
@@ -1044,6 +1050,12 @@ ALTER TABLE `loc_transfer_data`
   ADD PRIMARY KEY (`transfer_id`);
 
 --
+-- Indexes for table `loc_updates`
+--
+ALTER TABLE `loc_updates`
+  ADD PRIMARY KEY (`up_id`);
+
+--
 -- Indexes for table `loc_update_logs`
 --
 ALTER TABLE `loc_update_logs`
@@ -1068,6 +1080,12 @@ ALTER TABLE `tbcoupon`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `testcoupon`
+--
+ALTER TABLE `testcoupon`
+  ADD PRIMARY KEY (`coupon_id`);
+
+--
 -- Indexes for table `triggers_loc_admin_products`
 --
 ALTER TABLE `triggers_loc_admin_products`
@@ -1082,6 +1100,12 @@ ALTER TABLE `triggers_loc_users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin_coupon`
+--
+ALTER TABLE `admin_coupon`
+  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `admin_masterlist`
@@ -1204,6 +1228,12 @@ ALTER TABLE `loc_product_formula`
   MODIFY `formula_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `loc_promo_coupon_list`
+--
+ALTER TABLE `loc_promo_coupon_list`
+  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `loc_refund_return_details`
 --
 ALTER TABLE `loc_refund_return_details`
@@ -1234,6 +1264,12 @@ ALTER TABLE `loc_transfer_data`
   MODIFY `transfer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `loc_updates`
+--
+ALTER TABLE `loc_updates`
+  MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `loc_update_logs`
 --
 ALTER TABLE `loc_update_logs`
@@ -1256,6 +1292,12 @@ ALTER TABLE `loc_zread_inventory`
 --
 ALTER TABLE `tbcoupon`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `testcoupon`
+--
+ALTER TABLE `testcoupon`
+  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `triggers_loc_admin_products`
