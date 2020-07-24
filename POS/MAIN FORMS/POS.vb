@@ -864,6 +864,7 @@ Public Class POS
     End Sub
     Private Sub InsertModeofTransaction()
         Try
+
             Dim table As String = "loc_transaction_mode_details"
             Dim fields As String = "(`transaction_type`, `transaction_number`, `fullname`, `reference`, `markup`, `status`, `synced`, `store_id`, `guid`, `created_at`)"
             Dim value As String = "( '" & TRANSACTIONMODE & "'
@@ -876,7 +877,7 @@ Public Class POS
                             , '" & ClientStoreID & "'
                             , '" & ClientGuid & "'
                             , '" & FullDate24HR() & "')"
-            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
+                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
             ButtonClickCount = 0
         Catch ex As Exception
             MsgBox(ex.ToString)

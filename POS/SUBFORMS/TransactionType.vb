@@ -7,6 +7,7 @@
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonWalkIn.Click
         TransactionType(ButtonWalkIn)
+        modeoftransaction = False
         If Application.OpenForms().OfType(Of TransactionTypeInfo).Any Then
             TransactionTypeInfo.Close()
         End If
@@ -14,6 +15,7 @@
     End Sub
     Private Sub ButtonRegistered_Click(sender As Object, e As EventArgs) Handles ButtonRegistered.Click
         TransactionType(ButtonRegistered)
+        modeoftransaction = False
         If Application.OpenForms().OfType(Of TransactionTypeInfo).Any Then
             TransactionTypeInfo.Close()
         End If
@@ -26,7 +28,7 @@
         TransactionTypeInfo.Show()
     End Sub
     Private Sub ButtonGrab_Click(sender As Object, e As EventArgs) Handles ButtonGrab.Click
-        modeoftransaction = True
+        modeoftransaction = False
         TransactionType(ButtonGrab)
         ButtonCancel.Enabled = False
         TransactionTypeInfo.Show()

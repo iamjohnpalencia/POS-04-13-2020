@@ -17,9 +17,9 @@
             TEXTBOXFULLNAMEVALUE = TextBoxFULLNAME.Text
             TEXTBOXREFERENCEVALUE = TextBoxREFERENCE.Text
             TEXTBOXMARKUPVALUE = TextBoxMARKUP.Text
-            MsgBox(TEXTBOXFULLNAMEVALUE)
-            MsgBox(TEXTBOXREFERENCEVALUE)
-            MsgBox(TEXTBOXMARKUPVALUE)
+            'MsgBox(TEXTBOXFULLNAMEVALUE)
+            'MsgBox(TEXTBOXREFERENCEVALUE)
+            'MsgBox(TEXTBOXMARKUPVALUE)
             Close()
             TransactionType.Close()
         End If

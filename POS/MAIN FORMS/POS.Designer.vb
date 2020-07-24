@@ -92,11 +92,11 @@ Partial Class POS
         Me.ButtonApplyCoupon = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.DataGridViewOrders = New System.Windows.Forms.DataGridView()
         Me.Panel27 = New System.Windows.Forms.Panel()
         Me.Panel30 = New System.Windows.Forms.Panel()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label76 = New System.Windows.Forms.Label()
-        Me.DataGridViewOrders = New System.Windows.Forms.DataGridView()
         Me.Panel28 = New System.Windows.Forms.Panel()
         Me.ButtonCDISC = New System.Windows.Forms.Button()
         Me.Panel31 = New System.Windows.Forms.Panel()
@@ -198,9 +198,9 @@ Partial Class POS
         Me.Panel20.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel11.SuspendLayout()
+        CType(Me.DataGridViewOrders, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel27.SuspendLayout()
         Me.Panel30.SuspendLayout()
-        CType(Me.DataGridViewOrders, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel28.SuspendLayout()
         Me.Panel31.SuspendLayout()
         Me.Panel9.SuspendLayout()
@@ -926,6 +926,30 @@ Partial Class POS
         Me.Panel11.Size = New System.Drawing.Size(359, 697)
         Me.Panel11.TabIndex = 60
         '
+        'DataGridViewOrders
+        '
+        Me.DataGridViewOrders.AllowUserToAddRows = False
+        Me.DataGridViewOrders.AllowUserToDeleteRows = False
+        Me.DataGridViewOrders.AllowUserToResizeColumns = False
+        Me.DataGridViewOrders.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridViewOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewOrders.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewOrders.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DataGridViewOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewOrders.ColumnHeadersVisible = False
+        Me.DataGridViewOrders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column9, Me.Column12, Me.Column13, Me.Column16, Me.Column17, Me.Column19, Me.Column43, Me.Column20, Me.Column42, Me.Column45})
+        Me.DataGridViewOrders.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewOrders.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridViewOrders.Location = New System.Drawing.Point(10, 64)
+        Me.DataGridViewOrders.Name = "DataGridViewOrders"
+        Me.DataGridViewOrders.RowHeadersVisible = False
+        Me.DataGridViewOrders.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.DataGridViewOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridViewOrders.Size = New System.Drawing.Size(339, 302)
+        Me.DataGridViewOrders.TabIndex = 66
+        '
         'Panel27
         '
         Me.Panel27.BackColor = System.Drawing.Color.SlateGray
@@ -969,30 +993,6 @@ Partial Class POS
         Me.Label76.Size = New System.Drawing.Size(18, 19)
         Me.Label76.TabIndex = 58
         Me.Label76.Text = "0"
-        '
-        'DataGridViewOrders
-        '
-        Me.DataGridViewOrders.AllowUserToAddRows = False
-        Me.DataGridViewOrders.AllowUserToDeleteRows = False
-        Me.DataGridViewOrders.AllowUserToResizeColumns = False
-        Me.DataGridViewOrders.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridViewOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridViewOrders.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridViewOrders.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.DataGridViewOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewOrders.ColumnHeadersVisible = False
-        Me.DataGridViewOrders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column9, Me.Column12, Me.Column13, Me.Column16, Me.Column17, Me.Column19, Me.Column43, Me.Column20, Me.Column42, Me.Column45})
-        Me.DataGridViewOrders.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewOrders.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridViewOrders.Location = New System.Drawing.Point(10, 64)
-        Me.DataGridViewOrders.Name = "DataGridViewOrders"
-        Me.DataGridViewOrders.RowHeadersVisible = False
-        Me.DataGridViewOrders.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.DataGridViewOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewOrders.Size = New System.Drawing.Size(339, 302)
-        Me.DataGridViewOrders.TabIndex = 66
         '
         'Panel28
         '
@@ -1772,51 +1772,61 @@ Partial Class POS
         '
         Me.Column9.HeaderText = "Column9"
         Me.Column9.Name = "Column9"
+        Me.Column9.Visible = False
         '
         'Column12
         '
         Me.Column12.HeaderText = "ColumnPRID"
         Me.Column12.Name = "Column12"
+        Me.Column12.Visible = False
         '
         'Column13
         '
         Me.Column13.HeaderText = "ColumnSKU"
         Me.Column13.Name = "Column13"
+        Me.Column13.Visible = False
         '
         'Column16
         '
         Me.Column16.HeaderText = "ColumnCAT"
         Me.Column16.Name = "Column16"
+        Me.Column16.Visible = False
         '
         'Column17
         '
         Me.Column17.HeaderText = "ColumnCATOF"
         Me.Column17.Name = "Column17"
+        Me.Column17.Visible = False
         '
         'Column19
         '
         Me.Column19.HeaderText = "ColumnSumID"
         Me.Column19.Name = "Column19"
+        Me.Column19.Visible = False
         '
         'Column43
         '
         Me.Column43.HeaderText = "ColumnInvID"
         Me.Column43.Name = "Column43"
+        Me.Column43.Visible = False
         '
         'Column20
         '
         Me.Column20.HeaderText = "Upgrade"
         Me.Column20.Name = "Column20"
+        Me.Column20.Visible = False
         '
         'Column42
         '
         Me.Column42.HeaderText = "Origin"
         Me.Column42.Name = "Column42"
+        Me.Column42.Visible = False
         '
         'Column45
         '
         Me.Column45.HeaderText = "addontype"
         Me.Column45.Name = "Column45"
+        Me.Column45.Visible = False
         '
         'POS
         '
@@ -1860,10 +1870,10 @@ Partial Class POS
         Me.Panel20.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel11.ResumeLayout(False)
+        CType(Me.DataGridViewOrders, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel27.ResumeLayout(False)
         Me.Panel30.ResumeLayout(False)
         Me.Panel30.PerformLayout()
-        CType(Me.DataGridViewOrders, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel28.ResumeLayout(False)
         Me.Panel31.ResumeLayout(False)
         Me.Panel31.PerformLayout()
