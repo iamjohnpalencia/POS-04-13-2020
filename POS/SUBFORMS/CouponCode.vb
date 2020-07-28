@@ -22,6 +22,9 @@ Public Class CouponCode
         CouponLine = 10
         CouponTotal = 0
         SeniorGCDiscount = False
+        SENIORDETAILSBOOL = False
+        SeniorDetailsID = ""
+        SeniorDetailsName = ""
         With POS
             For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
                 If .DataGridViewOrders.Rows(i).Cells(11).Value > 0 Then
@@ -47,19 +50,19 @@ Public Class CouponCode
             ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Percentage" Then
                 couponpercentage()
             ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Fix-1" Then
-                MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
+                ' MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
                 couponfix1()
             ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Fix-2" Then
-                MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
+                '  MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
                 couponfix2()
             ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Bundle-1(Fix)" Then
-                MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
+                ' MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
                 couponbundle1()
             ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Bundle-2(Fix)" Then
-                MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
+                '   MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
                 couponbundle2()
             ElseIf Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString = "Bundle-3(%)" Then
-                MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
+                '  MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
                 couponbundle3()
             End If
             With POS
@@ -121,7 +124,9 @@ Public Class CouponCode
             End If
             CouponApplied = True
             CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-
+            SENIORDETAILSBOOL = True
+            SeniorDetails.Show()
+            Enabled = False
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -171,7 +176,7 @@ Public Class CouponCode
             Else
                 If SeniorGCDiscount = False Then
                     CouponDefault()
-                    TOTALDISCOUNT = TOTALDISCOUNT + GROSSSALES
+                    TOTALDISCOUNT = GROSSSALES
                     TOTALAMOUNTDUE = 0
                     VATABLESALES = Format(GROSSSALES / Tax, "0.00")
                     VAT12PERCENT = Format(VATABLESALES * S_Tax, "0.00")
@@ -191,20 +196,13 @@ Public Class CouponCode
                     CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                     MsgBox("Applied")
                 Else
-                    TOTALDISCOUNT = GROSSSALES
-                    TOTALAMOUNTDUE = 0
-                    VATABLESALES = Format(GROSSSALES / Tax, "0.00")
-                    VAT12PERCENT = Format(VATABLESALES * S_Tax, "0.00")
-                    .GROSSSALE = GROSSSALES
-                    .TOTALDISCOUNTEDAMOUNT = GROSSSALES
-                    .TOTALDISCOUNT = TOTALDISCOUNT
-                    .VATABLESALES = VATABLESALES
-                    .VAT12PERCENT = VAT12PERCENT
-                    .TOTALAMOUNTDUE = TOTALAMOUNTDUE
-                    .TextBoxGRANDTOTAL.Text = TOTALAMOUNTDUE
-                    .TextBoxDISCOUNT.Text = TOTALDISCOUNT
-                    MsgBox("Applied")
+                    .TextBoxDISCOUNT.Text = GROSSSALES
+                    .TOTALDISCOUNT = GROSSSALES
+                    .TOTALAMOUNTDUE = 0
+                    .TextBoxGRANDTOTAL.Text = 0
+                    CouponTotal = GROSSSALES
                     .SeniorGC = True
+                    MsgBox("Applied")
                 End If
             End If
         End With

@@ -898,6 +898,24 @@ Public Class POS
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Private Sub InsertSeniorDetails()
+        Try
+            Dim table As String = "loc_senior_details"
+            Dim fields As String = "(`transaction_number`, `senior_id`, `senior_name`, `active`, `crew_id`, `store_id`, `guid`, `date_created`, `synced`)"
+            Dim value As String = "( '" & TextBoxMAXID.Text & "'
+                      , '" & SeniorDetailsID & "'
+                      , '" & SeniorDetailsName & "'
+                      , '" & 1 & "'
+                      , '" & ClientCrewID & "'
+                      , '" & ClientStoreID & "'
+                      , '" & ClientGuid & "'
+                      , '" & FullDate24HR() & "'
+                      , 'Unsynced')"
+            GLOBAL_INSERT_FUNCTION(table, fields, value)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 #End Region
     Dim INSERTTHISDATE
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
@@ -961,6 +979,15 @@ Public Class POS
                         Next
                         If modeoftransaction = True Then
                             thread = New Thread(AddressOf InsertModeofTransaction)
+                            thread.Start()
+                            THREADLIST.Add(thread)
+                            For Each t In THREADLIST
+                                t.Join()
+                            Next
+
+                        End If
+                        If SENIORDETAILSBOOL = True Then
+                            thread = New Thread(AddressOf InsertSeniorDetails)
                             thread.Start()
                             THREADLIST.Add(thread)
                             For Each t In THREADLIST
@@ -1063,6 +1090,9 @@ Public Class POS
             DISABLESERVEROTHERSPRODUCT = False
             WaffleUpgrade = False
             ButtonWaffleUpgrade.Text = "Brownie Upgrade"
+            SENIORDETAILSBOOL = False
+            SeniorDetailsID = ""
+            SeniorDetailsName = ""
         Else
             MsgBox("Select Transaction First!")
         End If
@@ -1806,7 +1836,6 @@ Public Class POS
                         Dim sqlinsert = "INSERT INTO loc_product_formula (`server_formula_id`,`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`, `store_id`, `guid`, `crew_id`, `server_date_modified`) VALUES
                                         (@0 ,@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11 , @12 , @13 , @14, @15, @16)"
                         cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
-
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1823,10 +1852,10 @@ Public Class POS
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = ClientGuid
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
-                        cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
                     Else
-                        Dim sqlupdate = "UPDATE `loc_product_formula` SET `server_formula_id`= @0,`product_ingredients`= @1,`primary_unit`= @2,`primary_value`= @3,`secondary_unit`= @4,`secondary_value`=@5,`serving_unit`=@6,`serving_value`=@7,`no_servings`=@8,`status`=@9,`date_modified`=@10,`unit_cost`=@11,`origin`=@12,`store_id`=@13,`guid`=@14,`server_date_modified`=@15 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
+                        Dim sqlupdate = "UPDATE `loc_product_formula` SET `server_formula_id`= @0,`product_ingredients`= @1,`primary_unit`= @2,`primary_value`= @3,`secondary_unit`= @4,`secondary_value`=@5,`serving_unit`=@6,`serving_value`=@7,`no_servings`=@8,`status`=@9,`date_modified`=@10,`unit_cost`=@11,`origin`=@12,`store_id`=@13,`guid`=@14,`crew_id`=@15,`server_date_modified`=@16 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
                         cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
@@ -1844,7 +1873,7 @@ Public Class POS
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = ClientGuid
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
-                        cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
                     End If
                 Next

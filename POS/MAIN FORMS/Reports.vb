@@ -398,7 +398,14 @@ Public Class Reports
             ReceiptHeader(sender, e)
             Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
             Dim abc As Integer = 0
-
+            Try
+                Dim Query1 As String = "SELECT senior_name FROM loc_senior_details WHERE transaction_number = '" & DataGridViewDaily.SelectedRows(0).Cells(0).Value & "'"
+                Dim CmdQ As MySqlCommand = New MySqlCommand(Query1, LocalhostConn)
+                Dim result = CmdQ.ExecuteScalar()
+                SimpleTextDisplay(sender, e, result, font, 30, 45)
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+            End Try
             For i As Integer = 0 To DataGridViewTransactionDetails.Rows.Count - 1 Step +1
                 Dim rect1st As RectangleF = New RectangleF(10.0F, 115 + abc, 173.0F, 100.0F)
                 Dim price = Format(DataGridViewTransactionDetails.Rows(i).Cells(3).Value, "##,##0.00")
@@ -709,23 +716,31 @@ Public Class Reports
             Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
                 Try
+                    'Fill dgv inv
+                    GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
+                    'Update inventory
+                    MainInventorySub()
+                    'Fill again
+                    GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
+                    'Print zread
                     XreadOrZread = "Z-READ"
                     ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
                     printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 800)
                     PrintPreviewDialogXread.Document = printdocXread
                     PrintPreviewDialogXread.ShowDialog()
-
-                    Dim datenow = Format(Now(), "yyyy-MM-dd")
-                    GLOBAL_SYSTEM_LOGS("Z-READ", ClientCrewID & ", Z Reading for : " & datenow)
-
-                    sql = "UPDATE loc_settings SET S_Zreading = '" & datenow & "'"
+                    'Update Zread
+                    S_Zreading = Format(Now, "yyyy-MM-dd")
+                    sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
                     cmd = New MySqlCommand(sql, LocalhostConn())
                     cmd.ExecuteNonQuery()
                     cmd.Dispose()
-
-                    S_Zreading = Format(Now(), "yyyy-MM-dd")
+                    LocalhostConn.Close()
+                    'Insert to local zread inv
                     XZreadingInventory(S_Zreading)
-                    ButtonZread.Enabled = False
+                    If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
+                        ButtonZread.Enabled = False
+                        Button6.Enabled = False
+                    End If
                     Button7.PerformClick()
                 Catch ex As Exception
                     MsgBox(ex.ToString)

@@ -127,4 +127,8 @@ Module publicVariables
 
     Public DISABLESERVEROTHERSPRODUCT As Boolean = False
     Public DisallowedCharacters As String = "'~`{}^¨|°¬+[]^¨\/,;=?<>" & """"
+
+    Public SENIORDETAILSBOOL As Boolean = False
+    Public SeniorDetailsID As String
+    Public SeniorDetailsName As String
 End Module

@@ -83,7 +83,7 @@ Partial Class Auth
         '
         Me.Panel3.Controls.Add(Me.Label1)
         Me.Panel3.Controls.Add(Me.Label4)
-        Me.Panel3.Location = New System.Drawing.Point(48, 38)
+        Me.Panel3.Location = New System.Drawing.Point(46, 38)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(220, 26)
         Me.Panel3.TabIndex = 229
@@ -92,11 +92,11 @@ Partial Class Auth
         '
         Me.Label1.AutoSize = True
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label1.Font = New System.Drawing.Font("Kelson Sans Normal", 8.999999!)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
         Me.Label1.ForeColor = System.Drawing.Color.Red
         Me.Label1.Location = New System.Drawing.Point(134, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(0, 14)
+        Me.Label1.Size = New System.Drawing.Size(0, 15)
         Me.Label1.TabIndex = 228
         '
         'Label4
@@ -124,7 +124,7 @@ Partial Class Auth
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(228, 15)
+        Me.Label2.Location = New System.Drawing.Point(225, 15)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(14, 14)
         Me.Label2.TabIndex = 226
@@ -132,16 +132,16 @@ Partial Class Auth
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(51, 10)
+        Me.ProgressBar1.Location = New System.Drawing.Point(46, 10)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(173, 25)
+        Me.ProgressBar1.Size = New System.Drawing.Size(178, 25)
         Me.ProgressBar1.TabIndex = 219
         '
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(-82, -52)
+        Me.PictureBox1.Location = New System.Drawing.Point(-84, -52)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(465, 158)
         Me.PictureBox1.TabIndex = 224

@@ -29,7 +29,7 @@ Public Class SettingsForm
         If TabControl1.SelectedIndex = 1 Then
             If Partners = False Then
                 TabControl3.TabPages(0).Text = "Available Partners"
-                TabControl3.TabPages(1).Text = "Deactivated Parners"
+                TabControl3.TabPages(1).Text = "Deactivated Partners"
                 LoadPartners()
                 LoadPartnersDeact()
                 Partners = True
@@ -1568,7 +1568,6 @@ Public Class SettingsForm
             Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
             Dim DtCheck As DataTable = New DataTable
             DaCheck.Fill(DtCheck)
-
             Dim cmdserver As MySqlCommand
             Dim daserver As MySqlDataAdapter
             Dim dtserver As DataTable
@@ -1581,7 +1580,6 @@ Public Class SettingsForm
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                     LabelNewRows.Text += 1
                     DataGridView4.Rows.Add(dtserver(i)(0), 0, dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
-
                 Next
             Else
                 Dim Ids As String = ""
@@ -1599,7 +1597,7 @@ Public Class SettingsForm
                     dtserver = New DataTable
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                        If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(9).ToString Then
+                        If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(8).ToString Then
                             ProgressBar1.Value += 1
                             LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                             DataGridView4.Rows.Add(dtserver(i)(0), 0, dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
@@ -1614,7 +1612,7 @@ Public Class SettingsForm
                     dtserver = New DataTable
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                        If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(9) Then
+                        If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(8) Then
                             ProgressBar1.Value += 1
                             LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                             DataGridView4.Rows.Add(dtserver(i)(0), 0, dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
@@ -1687,16 +1685,16 @@ Public Class SettingsForm
                         cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                         cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
-                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value
                         cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = ClientGuid
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
-                        cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
                     Else
-                        Dim sqlupdate = "UPDATE `loc_product_formula` SET `server_formula_id`= @0,`product_ingredients`= @1,`primary_unit`= @2,`primary_value`= @3,`secondary_unit`= @4,`secondary_value`=@5,`serving_unit`=@6,`serving_value`=@7,`no_servings`=@8,`status`=@9,`date_modified`=@10,`unit_cost`=@11,`origin`=@12,`store_id`=@13,`guid`=@14,`server_date_modified`=@15 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
+                        Dim sqlupdate = "UPDATE `loc_product_formula` SET `server_formula_id`= @0,`product_ingredients`= @1,`primary_unit`= @2,`primary_value`= @3,`secondary_unit`= @4,`secondary_value`=@5,`serving_unit`=@6,`serving_value`=@7,`no_servings`=@8,`status`=@9,`date_modified`=@10,`unit_cost`=@11,`origin`=@12,`store_id`=@13,`guid`=@14, `crew_id`=@15,`server_date_modified`=@16 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
                         cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
@@ -1708,13 +1706,13 @@ Public Class SettingsForm
                         cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = .Rows(i).Cells(7).Value.ToString()
                         cmdlocal.Parameters.Add("@8", MySqlDbType.VarChar).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString()
-                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value
                         cmdlocal.Parameters.Add("@11", MySqlDbType.Decimal).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = ClientGuid
-                        cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
-                        cmdlocal.ExecuteNonQuery()
+                        cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
+                        cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
                     End If
                 Next

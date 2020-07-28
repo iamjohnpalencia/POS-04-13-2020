@@ -433,6 +433,9 @@ Module publicfunctions
         CenterTextDisplay(sender, e, getmunicipality & ", " & getprovince, font, 41)
         CenterTextDisplay(sender, e, "TEL. NO.: " & ClientTel, font, 51)
         SimpleTextDisplay(sender, e, "Name:", font, 0, 50)
+        If SENIORDETAILSBOOL = True Then
+            SimpleTextDisplay(sender, e, SeniorDetailsName, font, 30, 45)
+        End If
         e.Graphics.DrawLine(Pens.Black, 40, 77, 180, 77)
         SimpleTextDisplay(sender, e, "Tin:", font, 0, 60)
         e.Graphics.DrawLine(Pens.Black, 28, 87, 180, 87)

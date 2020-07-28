@@ -16,13 +16,11 @@ Module POSMODULE
                     hastextboxqty = False
                     retrieveformulaids()
                     .Label76.Text = SumOfColumnsToDecimal(.DataGridViewOrders, 3)
-                    '.TextBoxPressTotal.Text = Val(price) * Val(.TextBoxPressQTY.Text)
                     .Label11.Focus()
                 Else
                     hastextboxqty = True
                     retrieveformulaids()
                     .Label76.Text = SumOfColumnsToDecimal(.DataGridViewOrders, 3)
-                    '.TextBoxPressTotal.Text = Val(price) * Val(.TextBoxPressQTY.Text)
                     .Label11.Focus()
                 End If
                 'End If
@@ -66,6 +64,7 @@ Module POSMODULE
                                     End If
                                 Next
                                 formula_id = formulaId.Substring(0, formulaId.Length - 1)
+
                             End If
                             .TextBoxFormulaID.Text = formula_id
                             checkcriticallimit(formula_id:=formula_id, ID:=product_id, SKU:=product_sku, CAT:=product_category, ORIGIN:=origin, INVID:=inventoryid, addontype:=addontype)
@@ -115,8 +114,6 @@ Module POSMODULE
                                     MsgBox("Select product")
                                 ElseIf .DataGridViewOrders.SelectedRows(0).Cells(7).Value = "Others" Then
                                     MsgBox("Add-Ons are exclusive for fbw waffles only")
-                                    'ElseIf .DataGridViewOrders.SelectedRows(0).Cells(9).Value = "DRINKS" Then
-                                    '    MsgBox("Add-Ons are exclusive for fbw waffles only")
                                 Else
                                     ThisIsMyInventoryID = .TextBoxINC.Text
                                     If hastextboxqty = False Then
@@ -410,15 +407,52 @@ Module POSMODULE
     End Sub
     Public Sub retrieveanddeduct(ByVal formulaID, ByVal Cat, ByVal Origin, ByVal addontype)
         Try
+            Dim dt As DataTable = New DataTable
             If Origin = "Server" Then
-                sql = "SELECT serving_value, server_formula_id, unit_cost FROM `loc_product_formula` WHERE server_formula_id IN (" & formulaID & ")"
+                dt = New DataTable
+                dt.Columns.Add("serving_value")
+                dt.Columns.Add("server_formula_id")
+                dt.Columns.Add("unit_cost")
+
+                Dim splitformulaID As String = formulaID
+                Dim words As String() = splitformulaID.Split(New Char() {","c})
+                Dim word As String
+                For Each word In words
+                    sql = "SELECT serving_value, server_formula_id, unit_cost FROM `loc_product_formula` WHERE server_formula_id = " & word
+                    cmd = New MySqlCommand(sql, LocalhostConn)
+                    da = New MySqlDataAdapter(cmd)
+                    Dim dtfill As DataTable = New DataTable
+                    da.Fill(dtfill)
+                    Dim FRID As DataRow = dt.NewRow
+                    FRID("serving_value") = dtfill(0)(0)
+                    FRID("server_formula_id") = dtfill(0)(1)
+                    FRID("unit_cost") = dtfill(0)(2)
+                    dt.Rows.Add(FRID)
+                    LocalhostConn.Close()
+                Next
             Else
-                sql = "SELECT serving_value, formula_id, unit_cost FROM `loc_product_formula` WHERE server_formula_id IN (" & formulaID & ")"
+                dt = New DataTable
+                dt.Columns.Add("serving_value")
+                dt.Columns.Add("formula_id")
+                dt.Columns.Add("unit_cost")
+
+                Dim splitformulaID As String = formulaID
+                Dim words As String() = splitformulaID.Split(New Char() {","c})
+                Dim word As String
+                For Each word In words
+                    sql = "SELECT serving_value, formula_id, unit_cost FROM `loc_product_formula` WHERE server_formula_id " & word
+                    cmd = New MySqlCommand(sql, LocalhostConn)
+                    da = New MySqlDataAdapter(cmd)
+                    Dim dtfill As DataTable = New DataTable
+                    da.Fill(dtfill)
+                    Dim FRID As DataRow = dt.NewRow
+                    FRID("serving_value") = dtfill(0)(0)
+                    FRID("formula_id") = dtfill(0)(1)
+                    FRID("unit_cost") = dtfill(0)(2)
+                    dt.Rows.Add(FRID)
+                    LocalhostConn.Close()
+                Next
             End If
-            cmd = New MySqlCommand(sql, LocalhostConn())
-            da = New MySqlDataAdapter(cmd)
-            dt = New DataTable
-            da.Fill(dt)
             With POS
                 If Cat = "Add-Ons" Then
                     Dim ID = ""
@@ -717,10 +751,10 @@ Module POSMODULE
                                 Dim query = "SELECT serving_value, server_formula_id, unit_cost FROM `loc_product_formula` WHERE server_formula_id = " & S_Batter
                                 Dim cmd As MySqlCommand = New MySqlCommand(query, LocalhostConn)
                                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
-                                Dim dt As DataTable = New DataTable
-                                da.Fill(dt)
+                                Dim dt1 As DataTable = New DataTable
+                                da.Fill(dt1)
                                 If Val(.TextBoxQTY.Text) <> 0 Then
-                                    .DataGridViewInv.Rows.Add(dt(0)(0), dt(0)(1), Val(.TextBoxQTY.Text), .TextBoxINC.Text, .TextBoxNAME.Text, dt(0)(0), dt(0)(2) * Val(.TextBoxQTY.Text), dt(0)(2), 0, Origin)
+                                    .DataGridViewInv.Rows.Add(dt1(0)(0), dt1(0)(1), Val(.TextBoxQTY.Text), .TextBoxINC.Text, .TextBoxNAME.Text, dt1(0)(0), dt1(0)(2) * Val(.TextBoxQTY.Text), dt1(0)(2), 0, Origin)
                                     For Each row As DataGridViewRow In .DataGridViewInv.Rows
                                         MsgBox(row.Cells("Column6").Value)
                                         If row.Cells("Column6").Value <> S_Brownie_Mix Then
@@ -732,7 +766,7 @@ Module POSMODULE
                                         End If
                                     Next
                                 Else
-                                    .DataGridViewInv.Rows.Add(dt(0)(0), dt(0)(1), 1, .TextBoxINC.Text, .TextBoxNAME.Text, dt(0)(0), dt(0)(2) * 1, dt(0)(2), 0, Origin)
+                                    .DataGridViewInv.Rows.Add(dt1(0)(0), dt1(0)(1), 1, .TextBoxINC.Text, .TextBoxNAME.Text, dt1(0)(0), dt1(0)(2) * 1, dt1(0)(2), 0, Origin)
                                     For Each row As DataGridViewRow In .DataGridViewInv.Rows
                                         If row.Cells("Column6").Value <> S_Brownie_Mix Then
                                             If row.Cells("Column6").Value <> S_Batter Then

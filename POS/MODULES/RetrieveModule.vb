@@ -186,7 +186,6 @@ Module RetrieveModule
         ElseIf whatform = 3 Then
             Registration.TextBoxMAXID.Text = Format(Now, "yydd-MMHH-mmssyy")
         End If
-        cmd.Dispose()
     End Sub
     Dim formulaid
     Public Function selectmaxformula(ByVal whatid As String, ByVal fromtable As String, ByVal flds As String)

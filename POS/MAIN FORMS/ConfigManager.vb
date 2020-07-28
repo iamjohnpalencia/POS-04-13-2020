@@ -1321,14 +1321,6 @@ Public Class ConfigManager
                     Next
                 End If
                 If i = 10 Then
-                    ThreadActivationProduct = New Thread(AddressOf GetProducts)
-                    ThreadActivationProduct.Start()
-                    threadListActivationProduct.Add(ThreadActivationProduct)
-                    For Each t In threadListActivationProduct
-                        t.Join()
-                    Next
-                End If
-                If i = 20 Then
                     ThreadActivationInventory = New Thread(AddressOf GetInventory)
                     ThreadActivationInventory.Start()
                     threadListActivationInventory.Add(ThreadActivationInventory)
@@ -1336,11 +1328,19 @@ Public Class ConfigManager
                         t.Join()
                     Next
                 End If
-                If i = 30 Then
+                If i = 20 Then
                     ThreadActivationFormula = New Thread(AddressOf GetFormula)
                     ThreadActivationFormula.Start()
                     threadListActivationFormula.Add(ThreadActivationFormula)
                     For Each t In threadListActivationFormula
+                        t.Join()
+                    Next
+                End If
+                If i = 30 Then
+                    ThreadActivationProduct = New Thread(AddressOf GetProducts)
+                    ThreadActivationProduct.Start()
+                    threadListActivationProduct.Add(ThreadActivationProduct)
+                    For Each t In threadListActivationProduct
                         t.Join()
                     Next
                 End If

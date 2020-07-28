@@ -222,6 +222,12 @@
     <Compile Include="SUBFORMS\ReasonCat.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SUBFORMS\SeniorDetails.Designer.vb">
+      <DependentUpon>SeniorDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\SeniorDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SUBFORMS\TakeOut.Designer.vb">
       <DependentUpon>TakeOut.vb</DependentUpon>
     </Compile>
@@ -427,6 +433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\ReasonCat.resx">
       <DependentUpon>ReasonCat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\SeniorDetails.resx">
+      <DependentUpon>SeniorDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\TakeOut.resx">
       <DependentUpon>TakeOut.vb</DependentUpon>

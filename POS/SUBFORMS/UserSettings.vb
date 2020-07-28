@@ -159,11 +159,15 @@ Public Class UserSettings
         End If
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        ButtonUser.Text = "Update"
-        Panel6.Top = (Me.Height - Panel6.Height) / 4
-        Panel6.Left = (Me.Width - Panel6.Width) / 3
-        Panel6.Visible = True
-        edituser()
+        If ClientRole = "Head Crew" Then
+            ButtonUser.Text = "Update"
+            Panel6.Top = (Me.Height - Panel6.Height) / 4
+            Panel6.Left = (Me.Width - Panel6.Width) / 3
+            Panel6.Visible = True
+            edituser()
+        Else
+            MsgBox("You do not have permission to perform this task" & vbNewLine & "Please contact your administrator for help.")
+        End If
     End Sub
     Private Sub edituser()
         GroupBox1.Text = "EDIT USER"
@@ -194,7 +198,11 @@ Public Class UserSettings
     End Sub
 
     Private Sub ButtonDeleteProducts_Click(sender As Object, e As EventArgs) Handles ButtonDeleteProducts.Click
-        deactivateuser()
+        If ClientRole = "Head Crew" Then
+            deactivateuser()
+        Else
+            MsgBox("You do not have permission to perform this task" & vbNewLine & "Please contact your administrator for help.")
+        End If
     End Sub
     Private Sub deactivateuser()
         userid = DataGridViewUserSettings.SelectedRows(0).Cells(0).Value.ToString()

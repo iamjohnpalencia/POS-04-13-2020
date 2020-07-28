@@ -8,6 +8,7 @@
         End If
     End Sub
     Private Sub ButtonESC_Click(sender As Object, e As EventArgs) Handles ButtonESC.Click
+
         Me.Close()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -17,9 +18,6 @@
             TEXTBOXFULLNAMEVALUE = TextBoxFULLNAME.Text
             TEXTBOXREFERENCEVALUE = TextBoxREFERENCE.Text
             TEXTBOXMARKUPVALUE = TextBoxMARKUP.Text
-            'MsgBox(TEXTBOXFULLNAMEVALUE)
-            'MsgBox(TEXTBOXREFERENCEVALUE)
-            'MsgBox(TEXTBOXMARKUPVALUE)
             Close()
             TransactionType.Close()
         End If

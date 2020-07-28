@@ -4,6 +4,7 @@
     End Sub
     Private Sub ButtonESC_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
         Me.Close()
+        ButtonWalkIn.PerformClick()
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonWalkIn.Click
         TransactionType(ButtonWalkIn)
