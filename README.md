@@ -390,4 +390,99 @@ july 8 9:00 AM to 4:00 pm
 	* sync form debugging
 	* coupons computation
 	* debugging
+	
+july 9 12:00 PM to 8:00 PM
+	
+	* debugging
+	* pos loc_daily_transaction_details bug fixed
+	* senior discount bug fixed
+
+july 10 1:00 PM to 9:00 PM
+
+	* system debugging
+
+july 11 9:00 AM to 5:00 PM
+
+	* system debugging
+
+july 13 8:00 AM to 4:00 PM
+
+	* brownie upgrade function
+	* Stock in receiving entry QUERY
+	* Critical stock QUERY
+	* Stock Adjustment QUERY
+	* Stock Adjustment TAB names
+
+july 14 4:00 PM to 12:00 AM
+
+	* Formula and inventory references fixed
+	* Add new column in datagridviewinv for origin reference
+	* Localwebpanel Query for CRUD of inventory/formula
+	* New Column for brownie mix additional price , famousbatter and brownie mix id reference
+	* brownie upgrade function
+
+july 15 3:00 PM to 11:00 PM
+
+	* pos transaction type bug
+	* system debugging
+	* local web panel debugging
+	* brownie upgrade function debugging
+	* Catch for brownie upgrade in
+		* preventdgvordersdup function
+	 	* retrieveanddeduct function
+
+july 16 2:00 PM to 10:00 PM
+
+	* system debugging
+	* local web panel new page for price change
+	* server column name c
+	* brownie upgrade function debugging
+	* new column for pos form datagridview orders for upgrade reference
+	* inventory query bug
+		* Stock inventory both tab fixed
+	* Manage products form restriction for editing servers other category products
+	
+
+July 17 5:00 PM To 1:00 PM
+
+	* Function for waffle upgrade
+	* new insert statement for waffle upgrade reference
+	* new column of loc_daily_transaction_details for waffle upgrade reference
+	* Configuration manager debugging
+	* Database script update (Local/Server)
+	* brownie upgrade function debugging	
+
+july 23 
+
+	* Local web panel
+		* Premium Add-Ons(New Product Modal/ Edit product Page)
+		* Dropdown data bug fixed
+		* query adjustment
+	* New column for premium fillings reference(products table both servers)
+	* db script update
+	* new column for POS form datagridview orders for premium fillings reference
+	* print view line adjustment for Premium Fillings(POS and REPORTS form)
+	* new variable for addon type
+		* retrieveformulaids function
+		* preventdgvordersdup function
+	 	* checkcriticallimit function
+	* Catch for add on type in
+		* retrieveformulaids function
+		* preventdgvordersdup function
+	 	* checkcriticallimit function
+	* Combo products
+
+july 24
+
+	* Cashless report in zread and xreading
+	* transaction type bug fixed
+	* tab control name
+	* variables for cashless reports queries
+	* zread and xread query adjustment for Grab
+	* configuration manager adjustment for filling datagridview orders
+	* dashboard datagridview properties
+	
+
+	
+
 
