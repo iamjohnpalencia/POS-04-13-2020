@@ -690,7 +690,7 @@ Public Class Reports
             'Print zread
             XreadOrZread = "Z-READ"
             ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
-            printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 800)
+            printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 1000)
             PrintPreviewDialogXread.Document = printdocXread
             PrintPreviewDialogXread.ShowDialog()
             'Update Zread
@@ -725,7 +725,7 @@ Public Class Reports
                     'Print zread
                     XreadOrZread = "Z-READ"
                     ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
-                    printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 800)
+                    printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 1000)
                     PrintPreviewDialogXread.Document = printdocXread
                     PrintPreviewDialogXread.ShowDialog()
                     'Update Zread
