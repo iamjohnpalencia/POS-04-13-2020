@@ -28,7 +28,7 @@ Partial Class TransactionType
         Me.ButtonFoodP = New System.Windows.Forms.Button()
         Me.ButtonRepEx = New System.Windows.Forms.Button()
         Me.ButtonPayMaya = New System.Windows.Forms.Button()
-        Me.ButtonCashalo = New System.Windows.Forms.Button()
+        Me.Buttonlalafood = New System.Windows.Forms.Button()
         Me.ButtonGcash = New System.Windows.Forms.Button()
         Me.ButtonGrab = New System.Windows.Forms.Button()
         Me.ButtonRegistered = New System.Windows.Forms.Button()
@@ -47,7 +47,7 @@ Partial Class TransactionType
         Me.Panel1.Controls.Add(Me.ButtonFoodP)
         Me.Panel1.Controls.Add(Me.ButtonRepEx)
         Me.Panel1.Controls.Add(Me.ButtonPayMaya)
-        Me.Panel1.Controls.Add(Me.ButtonCashalo)
+        Me.Panel1.Controls.Add(Me.Buttonlalafood)
         Me.Panel1.Controls.Add(Me.ButtonGcash)
         Me.Panel1.Controls.Add(Me.ButtonGrab)
         Me.Panel1.Controls.Add(Me.ButtonRegistered)
@@ -116,19 +116,19 @@ Partial Class TransactionType
         Me.ButtonPayMaya.Text = "Paymaya"
         Me.ButtonPayMaya.UseVisualStyleBackColor = False
         '
-        'ButtonCashalo
+        'Buttonlalafood
         '
-        Me.ButtonCashalo.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.ButtonCashalo.FlatAppearance.BorderSize = 0
-        Me.ButtonCashalo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonCashalo.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonCashalo.ForeColor = System.Drawing.Color.White
-        Me.ButtonCashalo.Location = New System.Drawing.Point(218, 135)
-        Me.ButtonCashalo.Name = "ButtonCashalo"
-        Me.ButtonCashalo.Size = New System.Drawing.Size(207, 41)
-        Me.ButtonCashalo.TabIndex = 105
-        Me.ButtonCashalo.Text = "Cashalo"
-        Me.ButtonCashalo.UseVisualStyleBackColor = False
+        Me.Buttonlalafood.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Buttonlalafood.FlatAppearance.BorderSize = 0
+        Me.Buttonlalafood.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Buttonlalafood.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Buttonlalafood.ForeColor = System.Drawing.Color.White
+        Me.Buttonlalafood.Location = New System.Drawing.Point(218, 135)
+        Me.Buttonlalafood.Name = "Buttonlalafood"
+        Me.Buttonlalafood.Size = New System.Drawing.Size(207, 41)
+        Me.Buttonlalafood.TabIndex = 105
+        Me.Buttonlalafood.Text = "Lalafood"
+        Me.Buttonlalafood.UseVisualStyleBackColor = False
         '
         'ButtonGcash
         '
@@ -232,7 +232,7 @@ Partial Class TransactionType
     Friend WithEvents Label1 As Label
     Friend WithEvents ButtonRepEx As Button
     Friend WithEvents ButtonPayMaya As Button
-    Friend WithEvents ButtonCashalo As Button
+    Friend WithEvents Buttonlalafood As Button
     Friend WithEvents ButtonGcash As Button
     Friend WithEvents ButtonGrab As Button
     Friend WithEvents ButtonRegistered As Button

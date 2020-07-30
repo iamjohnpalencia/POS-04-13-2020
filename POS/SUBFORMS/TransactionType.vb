@@ -40,9 +40,9 @@
         ButtonCancel.Enabled = False
         TransactionTypeInfo.Show()
     End Sub
-    Private Sub ButtonCashalo_Click(sender As Object, e As EventArgs) Handles ButtonCashalo.Click
+    Private Sub ButtonCashalo_Click(sender As Object, e As EventArgs) Handles Buttonlalafood.Click
         modeoftransaction = True
-        TransactionType(ButtonCashalo)
+        TransactionType(Buttonlalafood)
         ButtonCancel.Enabled = False
         TransactionTypeInfo.Show()
     End Sub
