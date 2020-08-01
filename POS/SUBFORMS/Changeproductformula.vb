@@ -8,6 +8,8 @@ Public Class Changeproductformula
     End Sub
     Private Sub Changeproductformula_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadProducts()
+        Dim arg = New DataGridViewCellEventArgs(0, 0)
+        DataGridViewProducts_CellClick(sender, arg)
     End Sub
     Private Sub LoadProducts()
         Try
