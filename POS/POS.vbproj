@@ -210,6 +210,12 @@
     <Compile Include="SUBFORMS\BegBalance.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SUBFORMS\Changeproductformula.Designer.vb">
+      <DependentUpon>Changeproductformula.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\Changeproductformula.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SUBFORMS\ExpenseImage.Designer.vb">
       <DependentUpon>ExpenseImage.vb</DependentUpon>
     </Compile>
@@ -220,6 +226,12 @@
       <DependentUpon>ReasonCat.vb</DependentUpon>
     </Compile>
     <Compile Include="SUBFORMS\ReasonCat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\SelectNewFormula.Designer.vb">
+      <DependentUpon>SelectNewFormula.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\SelectNewFormula.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SUBFORMS\SeniorDetails.Designer.vb">
@@ -428,11 +440,17 @@
     <EmbeddedResource Include="SUBFORMS\BegBalance.resx">
       <DependentUpon>BegBalance.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\Changeproductformula.resx">
+      <DependentUpon>Changeproductformula.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\ExpenseImage.resx">
       <DependentUpon>ExpenseImage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\ReasonCat.resx">
       <DependentUpon>ReasonCat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\SelectNewFormula.resx">
+      <DependentUpon>SelectNewFormula.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\SeniorDetails.resx">
       <DependentUpon>SeniorDetails.vb</DependentUpon>

@@ -1838,6 +1838,8 @@ Public Class SettingsForm
         End Try
     End Sub
 #End Region
-
-
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
+        Enabled = False
+        Changeproductformula.Show()
+    End Sub
 End Class
