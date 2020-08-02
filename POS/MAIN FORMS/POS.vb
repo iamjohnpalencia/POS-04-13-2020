@@ -1774,7 +1774,11 @@ Public Class POS
                         InstallUpdatesInventory()
                         InstallUpdatesCategory()
                         InstallUpdatesProducts()
-                        listviewproductsshow(where:="Simply Perfect")
+                        For Each btn As Button In Panel3.Controls.OfType(Of Button)()
+                            If btn.Text = "Simply Perfect" Then
+                                btn.PerformClick()
+                            End If
+                        Next
                         LabelCheckingUpdates.Text = "Update Completed."
                     Else
                         LabelCheckingUpdates.Text = "Completed."
