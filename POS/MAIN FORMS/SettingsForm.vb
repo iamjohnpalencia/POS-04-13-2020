@@ -468,7 +468,23 @@ Public Class SettingsForm
 #End Region
 #Region "Coupons"
     Private Sub ComboBox1_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxCType.TextChanged
-        If ComboBoxCType.Text = "Percentage" Then
+        If ComboBoxCType.Text = "Percentage(w/o vat)" Then
+            TextBoxCDVal.Enabled = True
+            TextBoxCRefVal.Enabled = False
+            TextBoxCBBP.Enabled = False
+            TextBoxCBV.Enabled = False
+            TextBoxCBP.Enabled = False
+            TextBoxCBundVal.Enabled = False
+            For Each a In Panel19.Controls
+                If TypeOf a Is TextBox Then
+                    If a.Enabled = False Then
+                        a.Text = "N/A"
+                    ElseIf a.Enabled = True Then
+                        a.Text = ""
+                    End If
+                End If
+            Next
+        ElseIf ComboBoxCType.Text = "Percentage(w/ vat)" Then
             TextBoxCDVal.Enabled = True
             TextBoxCRefVal.Enabled = False
             TextBoxCBBP.Enabled = False

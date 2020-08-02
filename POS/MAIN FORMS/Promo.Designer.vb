@@ -204,7 +204,7 @@ Partial Class Promo
         Me.ComboBox1.BackColor = System.Drawing.SystemColors.InactiveBorder
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"Percentage", "Fix-1", "Fix-2", "Bundle-1(Fix)", "Bundle-2(Fix)", "Bundle-3(%)"})
+        Me.ComboBox1.Items.AddRange(New Object() {"Percentage(w/o vat)", "Percentage(w/ vat)", "Fix-1", "Fix-2", "Bundle-1(Fix)", "Bundle-2(Fix)", "Bundle-3(%)"})
         Me.ComboBox1.Location = New System.Drawing.Point(186, 118)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(175, 25)

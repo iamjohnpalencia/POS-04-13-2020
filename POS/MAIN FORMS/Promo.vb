@@ -164,7 +164,7 @@ Public Class Promo
         'mysqlcon = New MySqlConnection
         'mysqlcon.ConnectionString = cs2
 
-        If ComboBox1.Text = "Percentage" Then
+        If ComboBox1.Text = "Percentage(w/o vat)" Then
             If TextBox1.Text = Trim(String.Empty) Then
                 TextBox1.Focus()
                 Exit Sub
@@ -368,7 +368,7 @@ Public Class Promo
     End Sub
 
     Private Sub ComboBox1_TextChanged(sender As Object, e As EventArgs) Handles ComboBox1.TextChanged
-        If ComboBox1.Text = "Percentage" Then
+        If ComboBox1.Text = "Percentage(without vat)" Then
             TextBox3.Enabled = True
             TextBox4.Enabled = False
             TextBox5.Enabled = False

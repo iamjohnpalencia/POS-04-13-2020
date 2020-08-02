@@ -1187,7 +1187,7 @@ Public Class POS
                     If S_ZeroRated = "0" Then
                         SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 37)
                         RightToLeftDisplay(sender, e, a + 65, "     Vatable", "    " & VATABLESALES, font, 0, 0)
-                        If DISCOUNTTYPE = "Percentage" Then
+                        If DISCOUNTTYPE = "Percentage(w/o vat)" Then
                             RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & VATEXEMPTSALES, font, 0, 0)
                         Else
                             If SeniorGC = False Then
@@ -1198,7 +1198,7 @@ Public Class POS
                         End If
                         RightToLeftDisplay(sender, e, a + 85, "     Zero Rated Sales", "    " & "0.00", font, 0, 0)
                         RightToLeftDisplay(sender, e, a + 95, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & VAT12PERCENT, font, 0, 0)
-                        If DISCOUNTTYPE = "Percentage" Then
+                        If DISCOUNTTYPE = "Percentage(w/o vat)" Then
                             RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & LESSVAT & "-", font, 0, 0)
                         Else
                             If SeniorGC = False Then
