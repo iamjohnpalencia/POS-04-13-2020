@@ -33,10 +33,15 @@ Public Class POS
             Label11.Focus()
             Timer1.Start()
             Label76.Text = 0
-            listviewproductsshow(where:="Simply Perfect")
+            'listviewproductsshow(where:="Simply Perfect")
             selectmax(whatform:=1)
             DataGridViewOrders.Font = New Font("Tahoma", 11.25)
             LoadCategory()
+            For Each btn As Button In Panel3.Controls.OfType(Of Button)()
+                If btn.Text = "Simply Perfect" Then
+                    btn.PerformClick()
+                End If
+            Next
             DataGridViewOrders.CellBorderStyle = DataGridViewCellBorderStyle.None
             Enabled = False
             BegBalance.Show()

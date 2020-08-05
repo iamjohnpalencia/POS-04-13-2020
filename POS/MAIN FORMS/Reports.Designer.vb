@@ -63,6 +63,7 @@ Partial Class Reports
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.DataGridViewDaily = New System.Windows.Forms.DataGridView()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Button8 = New System.Windows.Forms.Button()
         Me.ButtonSearchDailyTransaction = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
@@ -172,7 +173,8 @@ Partial Class Reports
         Me.pdoc = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.Button8 = New System.Windows.Forms.Button()
+        Me.Panel27 = New System.Windows.Forms.Panel()
+        Me.ButtonPrintSales = New System.Windows.Forms.Button()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -225,6 +227,7 @@ Partial Class Reports
         Me.GroupBox9.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.Panel27.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel6
@@ -321,6 +324,15 @@ Partial Class Reports
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(1117, 37)
         Me.Panel4.TabIndex = 5
+        '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(801, 3)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(138, 29)
+        Me.Button8.TabIndex = 8
+        Me.Button8.Text = "Reset Sales"
+        Me.Button8.UseVisualStyleBackColor = True
         '
         'ButtonSearchDailyTransaction
         '
@@ -693,6 +705,7 @@ Partial Class Reports
         '
         Me.Panel16.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel16.Controls.Add(Me.Panel27)
         Me.Panel16.Controls.Add(Me.ButtonSearchTotalDailySales)
         Me.Panel16.Controls.Add(Me.DateTimePicker3)
         Me.Panel16.Controls.Add(Me.Label6)
@@ -1751,14 +1764,23 @@ Partial Class Reports
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Button8
+        'Panel27
         '
-        Me.Button8.Location = New System.Drawing.Point(801, 3)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(138, 29)
-        Me.Button8.TabIndex = 8
-        Me.Button8.Text = "Reset Sales"
-        Me.Button8.UseVisualStyleBackColor = True
+        Me.Panel27.Controls.Add(Me.ButtonPrintSales)
+        Me.Panel27.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel27.Location = New System.Drawing.Point(970, 0)
+        Me.Panel27.Name = "Panel27"
+        Me.Panel27.Size = New System.Drawing.Size(145, 35)
+        Me.Panel27.TabIndex = 14
+        '
+        'ButtonPrintSales
+        '
+        Me.ButtonPrintSales.Location = New System.Drawing.Point(4, 3)
+        Me.ButtonPrintSales.Name = "ButtonPrintSales"
+        Me.ButtonPrintSales.Size = New System.Drawing.Size(138, 29)
+        Me.ButtonPrintSales.TabIndex = 1
+        Me.ButtonPrintSales.Text = "Print"
+        Me.ButtonPrintSales.UseVisualStyleBackColor = True
         '
         'Reports
         '
@@ -1838,6 +1860,7 @@ Partial Class Reports
         Me.Panel3.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.Panel27.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1957,4 +1980,6 @@ Partial Class Reports
     Friend WithEvents DateTimePicker17 As DateTimePicker
     Friend WithEvents DataGridViewZreadInvData As DataGridView
     Friend WithEvents Button8 As Button
+    Friend WithEvents Panel27 As Panel
+    Friend WithEvents ButtonPrintSales As Button
 End Class

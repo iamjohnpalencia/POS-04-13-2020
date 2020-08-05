@@ -1,41 +1,47 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports System.Drawing.Printing
 Public Class Inventory
     Dim boolinventory As Boolean = False
     Dim prodid As String
     Dim tbl As String
     Dim flds As String
     Private Sub Inventory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TabControl1.TabPages(0).Text = "Stock Inventory"
-        TabControl1.TabPages(1).Text = "Critical Stock"
-        TabControl1.TabPages(2).Text = "Fast Moving Stock"
-        TabControl1.TabPages(3).Text = "Stock Adjustment"
-        TabControl1.TabPages(4).Text = "Stock in (Receiving) Entry"
+        Try
+            TabControl1.TabPages(0).Text = "Stock Inventory"
+            TabControl1.TabPages(1).Text = "Critical Stock"
+            TabControl1.TabPages(2).Text = "Fast Moving Stock"
+            TabControl1.TabPages(3).Text = "Stock Adjustment"
+            TabControl1.TabPages(4).Text = "Stock in (Receiving) Entry"
 
-        TabControl2.TabPages(0).Text = "Product Ingredients(Server)"
-        TabControl2.TabPages(1).Text = "Product Ingredients(Local)"
+            TabControl2.TabPages(0).Text = "Product Ingredients(Server)"
+            TabControl2.TabPages(1).Text = "Product Ingredients(Local)"
 
-        TabControl5.TabPages(0).Text = "Approved"
-        TabControl5.TabPages(1).Text = "Waiting for approval"
+            TabControl5.TabPages(0).Text = "Approved"
+            TabControl5.TabPages(1).Text = "Waiting for approval"
 
-        TabControl3.TabPages(0).Text = "Stock Adjustment (Add/Deduct/Transfer)"
-        TabControl3.TabPages(1).Text = "Stock Adjustment (Settings)"
+            TabControl3.TabPages(0).Text = "Stock Adjustment (Add/Deduct/Transfer)"
+            TabControl3.TabPages(1).Text = "Stock Adjustment (Settings)"
 
-        TabControl4.TabPages(0).Text = "Active"
-        TabControl4.TabPages(1).Text = "Deactivated"
-        loadinventory()
-        loadcriticalstocks()
-        loadstockadjustmentreport(False)
-        loadfastmovingstock()
-        loadstockentry()
-        loadcomboboxingredients()
-        loadinventorycustom()
-        loadinventorycustomdisapp()
+            TabControl4.TabPages(0).Text = "Active"
+            TabControl4.TabPages(1).Text = "Deactivated"
+            loadinventory()
+            loadcriticalstocks()
+            loadstockadjustmentreport(False)
+            loadfastmovingstock()
+            loadstockentry()
+            loadcomboboxingredients()
+            loadinventorycustom()
+            loadinventorycustomdisapp()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Sub loadinventory()
         Try
-            fields = "I.product_ingredients as Ingredients, CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
+            fields = "I.product_ingredients as Ingredients, i.sku , CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_pos_inventory I INNER JOIN loc_product_formula F ON F.server_formula_id = I.server_inventory_id ", datagrid:=DataGridViewINVVIEW, errormessage:="", successmessage:="", fields:=fields, where:=" I.stock_status = 1 AND I.store_id = " & ClientStoreID)
             With DataGridViewINVVIEW
+                .Columns(1).HeaderCell.Value = "SKU"
                 .Columns(3).HeaderCell.Value = "No. of Servings"
                 .Columns(4).HeaderCell.Value = "Status"
                 .Columns(5).HeaderCell.Value = "Critical Limit"
@@ -695,5 +701,50 @@ Public Class Inventory
         Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
         cmd.ExecuteNonQuery()
         loadinventory()
+    End Sub
+    Private WithEvents printdoc As PrintDocument = New PrintDocument
+    Private PrintPreviewDialog1 As New PrintPreviewDialog
+    Dim b = 0
+    Dim a = 0
+    Private Sub ButtonPrintCurInv_Click(sender As Object, e As EventArgs) Handles ButtonPrintCurInv.Click
+        Try
+            a = 100
+            b = 0
+            For i As Integer = 0 To DataGridViewINVVIEW.Rows.Count - 1 Step +1
+                b += 10
+            Next
+            printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 300 + b)
+            PrintPreviewDialog1.Document = printdoc
+            PrintPreviewDialog1.ShowDialog()
+            ' printdoc.Print()
+        Catch exp As Exception
+            MessageBox.Show("An error occurred while trying to load the " &
+                "document for Print Preview. Make sure you currently have " &
+                "access to a printer. A printer must be localconnected and " &
+                "accessible for Print Preview to work.", Me.Text,
+                 MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub pdoc_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles printdoc.PrintPage
+        Try
+            Dim font As New Font("Tahoma", 5)
+            Dim font1 As New Font("Tahoma", 5, FontStyle.Bold)
+
+            ReceiptHeader(sender, e)
+            SimpleTextDisplay(sender, e, "INGREDIENTS", font1, 0, a)
+            SimpleTextDisplay(sender, e, "PRIMARY", font1, 70, a)
+            SimpleTextDisplay(sender, e, "SERVINGS", font1, 140, a)
+            a += 20
+            For i As Integer = 0 To DataGridViewINVVIEW.Rows.Count - 1 Step +1
+                SimpleTextDisplay(sender, e, DataGridViewINVVIEW.Rows(i).Cells(1).Value, font, 0, a)
+                SimpleTextDisplay(sender, e, DataGridViewINVVIEW.Rows(i).Cells(2).Value, font, 70, a)
+                SimpleTextDisplay(sender, e, DataGridViewINVVIEW.Rows(i).Cells(3).Value, font, 140, a)
+                a += 10
+            Next
+            CenterTextDisplay(sender, e, "*************************************", font, a + 30)
+            CenterTextDisplay(sender, e, Format(Now(), "yyyy-MM-dd HH:mm:ss"), font, a + 50)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 End Class

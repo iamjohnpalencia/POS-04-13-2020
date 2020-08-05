@@ -394,6 +394,12 @@ Module publicfunctions
         e.Graphics.DrawString(lefttext, myfont, Brushes.Black, rect3)
         e.Graphics.DrawString(righttext, myfont, Brushes.Black, rect3, format)
     End Sub
+    Public Sub RightDisplay(sender As Object, e As PrintPageEventArgs, position As Integer, lefttext As String, righttext As String, myfont As Font, wth As Single, frompoint As Single)
+        Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
+        Dim rect3 As RectangleF = New RectangleF(10.0F + frompoint, position, 0 + wth, 0)
+        e.Graphics.DrawString(lefttext, myfont, Brushes.Black, rect3)
+        e.Graphics.DrawString(righttext, myfont, Brushes.Black, rect3, format)
+    End Sub
     Public Sub RightDisplay(sender As Object, e As PrintPageEventArgs, position As Integer, righttext As String, myfont As Font, wth As Single, frompoint As Single)
         Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
         Dim rect3 As RectangleF = New RectangleF(10.0F + frompoint, position, 120.0F + wth, 100.0F)

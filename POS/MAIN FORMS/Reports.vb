@@ -886,4 +886,51 @@ Public Class Reports
         reportsdailytransaction(False)
         DataGridViewTransactionDetails.DataSource = Nothing
     End Sub
+    Private WithEvents printsales As PrintDocument = New PrintDocument
+    Private previewsales As New PrintPreviewDialog
+    Dim loopb = 0
+    Dim loopa = 0
+    Dim PrintSalesDatatable As DataTable
+    Private Sub ButtonPrintSales_Click(sender As Object, e As EventArgs) Handles ButtonPrintSales.Click
+        Try
+            loopa = 100
+            loopb = 0
+            Dim sql = "SELECT  product_sku , SUM(quantity), SUM(total) FROM loc_daily_transaction_details WHERE zreading >= '" & Format(DateTimePicker3.Value, "yyyy-MM-dd") & "' AND zreading <= '" & Format(DateTimePicker4.Value, "yyyy-MM-dd") & "' AND active = 1  AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' GROUP BY product_name"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            PrintSalesDatatable = New DataTable
+            da.Fill(PrintSalesDatatable)
+            For i As Integer = 0 To PrintSalesDatatable.Rows.Count - 1 Step +1
+                loopb += 10
+            Next
+            printsales.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 300 + loopb)
+            previewsales.Document = printsales
+            previewsales.ShowDialog()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub printsales_printdoc(sender As Object, e As Printing.PrintPageEventArgs) Handles printsales.PrintPage
+        Try
+            Dim font As New Font("Tahoma", 5)
+            Dim font1 As New Font("Tahoma", 5, FontStyle.Bold)
+
+            ReceiptHeader(sender, e)
+            SimpleTextDisplay(sender, e, "PRODUCT CODE", font1, 0, loopa)
+            SimpleTextDisplay(sender, e, "QUANTITY", font1, 70, loopa)
+            SimpleTextDisplay(sender, e, "TOTAL SALES", font1, 120, loopa)
+
+            loopa += 20
+            For i As Integer = 0 To PrintSalesDatatable.Rows.Count - 1 Step +1
+                SimpleTextDisplay(sender, e, PrintSalesDatatable(i)(0), font, 0, loopa)
+                RightDisplay(sender, e, loopa + 20, "", PrintSalesDatatable(i)(1), font, 80, 0)
+                RightDisplay(sender, e, loopa + 20, "", PrintSalesDatatable(i)(2), font, 170, 0)
+                loopa += 10
+            Next
+            CenterTextDisplay(sender, e, "*************************************", font, loopa + 30)
+            CenterTextDisplay(sender, e, Format(Now(), "yyyy-MM-dd HH:mm:ss"), font, loopa + 50)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 End Class
