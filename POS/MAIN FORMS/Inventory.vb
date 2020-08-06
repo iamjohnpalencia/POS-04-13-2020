@@ -39,7 +39,7 @@ Public Class Inventory
     Sub loadinventory()
         Try
             fields = "I.product_ingredients as Ingredients, i.sku , CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
-            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_pos_inventory I INNER JOIN loc_product_formula F ON F.server_formula_id = I.server_inventory_id ", datagrid:=DataGridViewINVVIEW, errormessage:="", successmessage:="", fields:=fields, where:=" I.stock_status = 1 AND I.store_id = " & ClientStoreID)
+            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_pos_inventory I INNER JOIN loc_product_formula F ON F.server_formula_id = I.server_inventory_id ", datagrid:=DataGridViewINVVIEW, errormessage:="", successmessage:="", fields:=fields, where:=" I.stock_status = 1 AND I.store_id = " & ClientStoreID & " ORDER BY I.product_ingredients ASC")
             With DataGridViewINVVIEW
                 .Columns(1).HeaderCell.Value = "SKU"
                 .Columns(3).HeaderCell.Value = "No. of Servings"
@@ -112,7 +112,7 @@ Public Class Inventory
     Private Sub loadpanelstockadjustment()
         Try
             fields = "`formula_id`, `product_ingredients`, ROUND(stock_primary,0) AS P, `stock_secondary`, ROUND(stock_no_of_servings,0) AS S, `server_inventory_id`"
-            GLOBAL_SELECT_ALL_FUNCTION("`loc_pos_inventory` WHERE `main_inventory_id` = 0 AND `stock_status` = 1 AND `store_id` = " & ClientStoreID, fields, DataGridViewPanelStockAdjustment)
+            GLOBAL_SELECT_ALL_FUNCTION("`loc_pos_inventory` WHERE `main_inventory_id` = 0 AND `stock_status` = 1 AND `store_id` = " & ClientStoreID & " ORDER BY product_ingredients ASC", fields, DataGridViewPanelStockAdjustment)
             With DataGridViewPanelStockAdjustment
                 .Columns(0).Visible = False
                 .Columns(1).HeaderText = "Ingredient"
@@ -127,7 +127,7 @@ Public Class Inventory
     End Sub
     Sub loadcomboboxingredients()
         Try
-            Dim sql = "SELECT product_ingredients FROM loc_pos_inventory WHERE main_inventory_id = 0 AND stock_status = 1"
+            Dim sql = "SELECT product_ingredients FROM loc_pos_inventory WHERE main_inventory_id = 0 AND stock_status = 1 ORDER BY product_ingredients ASC"
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
