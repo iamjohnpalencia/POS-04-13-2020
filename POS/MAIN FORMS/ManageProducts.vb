@@ -634,13 +634,13 @@ Public Class ManageProducts
                     If deactivation = DialogResult.Yes Then
                         Try
 
-                            sql = "DELETE FROM `loc_admin_products` WHERE product_id =" & productid
+                            sql = "UPDATE `loc_admin_products` SET product_status = 0  WHERE product_id =" & productid
                             cmd = New MySqlCommand(sql, LocalhostConn)
                             result = cmd.ExecuteNonQuery()
-                            sql = "DELETE FROM `loc_pos_inventory` WHERE formula_id = " & formula_id
+                            sql = "UPDATE `loc_pos_inventory` SET stock_status = 0  WHERE formula_id = " & formula_id
                             cmd = New MySqlCommand(sql, LocalhostConn)
                             result = cmd.ExecuteNonQuery()
-                            sql = "DELETE FROM `loc_product_formula` WHERE formula_id = " & formula_id
+                            sql = "UPDATE `loc_product_formula` SET status = 0 WHERE formula_id = " & formula_id
                             cmd = New MySqlCommand(sql, LocalhostConn)
                             result = cmd.ExecuteNonQuery()
                             If result = 1 Then
@@ -669,14 +669,14 @@ Public Class ManageProducts
                     Dim deactivation = MessageBox.Show("Are you sure you want to deactivate ( " & customproductname & " ) product?", "Deactivation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
                     If deactivation = DialogResult.Yes Then
                         Try
-                            sql = "DELETE FROM `loc_admin_products`WHERE product_id =" & productid
+                            sql = "UPDATE `loc_admin_products` SET product_status = 0  WHERE product_id =" & productid
                             cmd = New MySqlCommand(sql, LocalhostConn)
                             result = cmd.ExecuteNonQuery()
-                            sql = "DELETE FROM `loc_pos_inventory` WHERE formula_id = " & formula_id
+                            sql = "UPDATE `loc_pos_inventory` SET stock_status = 0  WHERE formula_id = " & formula_id
                             cmd = New MySqlCommand
                             cmd = New MySqlCommand(sql, LocalhostConn)
                             result = cmd.ExecuteNonQuery()
-                            sql = "DELETE FROM `loc_product_formula` WHERE formula_id = " & formula_id
+                            sql = "UPDATE `loc_product_formula` SET status = 0 WHERE formula_id = " & formula_id
                             cmd = New MySqlCommand(sql, LocalhostConn)
                             result = cmd.ExecuteNonQuery()
                             If result = 1 Then

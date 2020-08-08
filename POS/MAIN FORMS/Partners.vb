@@ -1,5 +1,4 @@
 ﻿Imports MySql.Data.MySqlClient
-
 Public Class Partners
     Dim AddOrEdit As Boolean
     Private Sub Partners_Load(sender As Object, e As EventArgs) Handles MyBase.Load

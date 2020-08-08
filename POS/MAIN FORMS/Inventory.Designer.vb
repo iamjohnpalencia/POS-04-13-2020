@@ -59,6 +59,8 @@ Partial Class Inventory
         Me.TabPage7 = New System.Windows.Forms.TabPage()
         Me.DataGridViewINVVIEW = New System.Windows.Forms.DataGridView()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel22 = New System.Windows.Forms.Panel()
+        Me.ButtonPrintCurInv = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
         Me.TabControl5 = New System.Windows.Forms.TabControl()
@@ -181,8 +183,6 @@ Partial Class Inventory
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.ButtonPrintCurInv = New System.Windows.Forms.Button()
-        Me.Panel22 = New System.Windows.Forms.Panel()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -190,6 +190,7 @@ Partial Class Inventory
         Me.TabPage7.SuspendLayout()
         CType(Me.DataGridViewINVVIEW, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        Me.Panel22.SuspendLayout()
         Me.TabPage11.SuspendLayout()
         Me.TabControl5.SuspendLayout()
         Me.TabPage12.SuspendLayout()
@@ -236,7 +237,6 @@ Partial Class Inventory
         Me.Panel21.SuspendLayout()
         Me.Panel16.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        Me.Panel22.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel6
@@ -348,6 +348,24 @@ Partial Class Inventory
         Me.Panel2.Size = New System.Drawing.Size(1177, 37)
         Me.Panel2.TabIndex = 1
         '
+        'Panel22
+        '
+        Me.Panel22.Controls.Add(Me.ButtonPrintCurInv)
+        Me.Panel22.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel22.Location = New System.Drawing.Point(1030, 0)
+        Me.Panel22.Name = "Panel22"
+        Me.Panel22.Size = New System.Drawing.Size(145, 35)
+        Me.Panel22.TabIndex = 2
+        '
+        'ButtonPrintCurInv
+        '
+        Me.ButtonPrintCurInv.Location = New System.Drawing.Point(4, 3)
+        Me.ButtonPrintCurInv.Name = "ButtonPrintCurInv"
+        Me.ButtonPrintCurInv.Size = New System.Drawing.Size(138, 29)
+        Me.ButtonPrintCurInv.TabIndex = 1
+        Me.ButtonPrintCurInv.Text = "Print"
+        Me.ButtonPrintCurInv.UseVisualStyleBackColor = True
+        '
         'Button7
         '
         Me.Button7.Location = New System.Drawing.Point(3, 3)
@@ -360,10 +378,10 @@ Partial Class Inventory
         'TabPage11
         '
         Me.TabPage11.Controls.Add(Me.TabControl5)
-        Me.TabPage11.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage11.Location = New System.Drawing.Point(4, 28)
         Me.TabPage11.Name = "TabPage11"
         Me.TabPage11.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage11.Size = New System.Drawing.Size(1183, 589)
+        Me.TabPage11.Size = New System.Drawing.Size(1183, 583)
         Me.TabPage11.TabIndex = 1
         Me.TabPage11.Text = "TabPage11"
         Me.TabPage11.UseVisualStyleBackColor = True
@@ -376,7 +394,7 @@ Partial Class Inventory
         Me.TabControl5.Location = New System.Drawing.Point(3, 3)
         Me.TabControl5.Name = "TabControl5"
         Me.TabControl5.SelectedIndex = 0
-        Me.TabControl5.Size = New System.Drawing.Size(1177, 583)
+        Me.TabControl5.Size = New System.Drawing.Size(1177, 577)
         Me.TabControl5.TabIndex = 4
         '
         'TabPage12
@@ -386,7 +404,7 @@ Partial Class Inventory
         Me.TabPage12.Location = New System.Drawing.Point(4, 28)
         Me.TabPage12.Name = "TabPage12"
         Me.TabPage12.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage12.Size = New System.Drawing.Size(1169, 551)
+        Me.TabPage12.Size = New System.Drawing.Size(1169, 545)
         Me.TabPage12.TabIndex = 0
         Me.TabPage12.Text = "TabPage12"
         Me.TabPage12.UseVisualStyleBackColor = True
@@ -423,7 +441,7 @@ Partial Class Inventory
         Me.DataGridViewCustomInvApproved.EnableHeadersVisualStyles = False
         Me.DataGridViewCustomInvApproved.Location = New System.Drawing.Point(3, 40)
         Me.DataGridViewCustomInvApproved.Name = "DataGridViewCustomInvApproved"
-        Me.DataGridViewCustomInvApproved.Size = New System.Drawing.Size(1163, 508)
+        Me.DataGridViewCustomInvApproved.Size = New System.Drawing.Size(1163, 502)
         Me.DataGridViewCustomInvApproved.TabIndex = 3
         '
         'Panel3
@@ -1938,24 +1956,6 @@ Partial Class Inventory
         Me.Label2.TabIndex = 153
         Me.Label2.Text = "INVENTORY"
         '
-        'ButtonPrintCurInv
-        '
-        Me.ButtonPrintCurInv.Location = New System.Drawing.Point(4, 3)
-        Me.ButtonPrintCurInv.Name = "ButtonPrintCurInv"
-        Me.ButtonPrintCurInv.Size = New System.Drawing.Size(138, 29)
-        Me.ButtonPrintCurInv.TabIndex = 1
-        Me.ButtonPrintCurInv.Text = "Print"
-        Me.ButtonPrintCurInv.UseVisualStyleBackColor = True
-        '
-        'Panel22
-        '
-        Me.Panel22.Controls.Add(Me.ButtonPrintCurInv)
-        Me.Panel22.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel22.Location = New System.Drawing.Point(1030, 0)
-        Me.Panel22.Name = "Panel22"
-        Me.Panel22.Size = New System.Drawing.Size(145, 35)
-        Me.Panel22.TabIndex = 2
-        '
         'Inventory
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1973,6 +1973,7 @@ Partial Class Inventory
         Me.TabPage7.ResumeLayout(False)
         CType(Me.DataGridViewINVVIEW, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
+        Me.Panel22.ResumeLayout(False)
         Me.TabPage11.ResumeLayout(False)
         Me.TabControl5.ResumeLayout(False)
         Me.TabPage12.ResumeLayout(False)
@@ -2026,7 +2027,6 @@ Partial Class Inventory
         Me.Panel16.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        Me.Panel22.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

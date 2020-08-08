@@ -232,9 +232,14 @@ Public Class Inventory
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub SelectFormulaEntry(FormulaID)
+    Private Sub SelectFormulaEntry(FormulaID, Origin)
         Try
-            Dim sql As String = "SELECT `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings` FROM loc_product_formula WHERE formula_id = " & FormulaID
+            Dim sql As String = ""
+            If Origin = "Local" Then
+                sql = "SELECT `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings` FROM loc_product_formula WHERE formula_id = " & FormulaID
+            ElseIf Origin = "Server" Then
+                sql = "SELECT `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings` FROM loc_product_formula WHERE server_formula_id = " & FormulaID
+            End If
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
@@ -414,7 +419,7 @@ Public Class Inventory
     Private Sub ComboBoxDESC_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxDESC.SelectedIndexChanged
         'selectingredients()
         Try
-            Dim sql = "SELECT inventory_id, stock_primary, stock_secondary FROM loc_pos_inventory WHERE product_ingredients = '" & ComboBoxDESC.Text & "'"
+            Dim sql = "SELECT inventory_id, stock_primary, stock_secondary, origin FROM loc_pos_inventory WHERE product_ingredients = '" & ComboBoxDESC.Text & "'"
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
@@ -423,7 +428,7 @@ Public Class Inventory
             TextBoxEPrimary.Text = dt(0)(1)
             TextBoxESecondary.Text = dt(0)(2)
             TextBox1.Text = dt(0)(0)
-            SelectFormulaEntry(inventory_id)
+            SelectFormulaEntry(inventory_id, dt(0)(3))
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

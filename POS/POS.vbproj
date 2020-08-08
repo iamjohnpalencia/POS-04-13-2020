@@ -276,12 +276,6 @@
     <Compile Include="MAIN FORMS\Login.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MAIN FORMS\Promo.Designer.vb">
-      <DependentUpon>Promo.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN FORMS\Promo.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="MAIN FORMS\Inventory.Designer.vb">
       <DependentUpon>Inventory.vb</DependentUpon>
     </Compile>
@@ -475,9 +469,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MAIN FORMS\POS.resx">
       <DependentUpon>POS.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MAIN FORMS\Promo.resx">
-      <DependentUpon>Promo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MAIN FORMS\Inventory.resx">
       <DependentUpon>Inventory.vb</DependentUpon>
