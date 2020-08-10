@@ -701,7 +701,7 @@ Public Class Reports
             cmd = New MySqlCommand(sql, LocalhostConn())
             cmd.ExecuteNonQuery()
             cmd.Dispose()
-            LocalhostConn.close
+            LocalhostConn.Close()
             'Insert to local zread inv
             XZreadingInventory(S_Zreading)
             If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
@@ -757,11 +757,13 @@ Public Class Reports
     End Sub
     Private Sub XZreadingInventory(zreaddate)
         Try
+            Dim Con As MySqlConnection = New MySqlConnection
+            Con = LocalhostConn()
             Dim Fields As String = "`inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `guid`, `created_at`, `crew_id`, `synced`, `server_date_modified`, `server_inventory_id`, `zreading`"
             Dim cmd As MySqlCommand
             With DataGridViewZreadInventory
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmd = New MySqlCommand("INSERT INTO loc_zread_inventory (" & Fields & ") VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17)", LocalhostConn)
+                    cmd = New MySqlCommand("INSERT INTO loc_zread_inventory (" & Fields & ") VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17)", Con)
                     cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString
                     cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString
                     cmd.Parameters.Add("@3", MySqlDbType.Int64).Value = .Rows(i).Cells(2).Value.ToString
@@ -781,6 +783,7 @@ Public Class Reports
                     cmd.Parameters.Add("@17", MySqlDbType.Text).Value = S_Zreading
                     cmd.ExecuteNonQuery()
                 Next
+                Con.Close()
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -923,8 +926,8 @@ Public Class Reports
             loopa += 20
             For i As Integer = 0 To PrintSalesDatatable.Rows.Count - 1 Step +1
                 SimpleTextDisplay(sender, e, PrintSalesDatatable(i)(0), font, 0, loopa)
-                RightDisplay(sender, e, loopa + 20, "", PrintSalesDatatable(i)(1), font, 80, 0)
-                RightDisplay(sender, e, loopa + 20, "", PrintSalesDatatable(i)(2), font, 170, 0)
+                RightDisplay1(sender, e, loopa + 20, "", PrintSalesDatatable(i)(1), font, 80, 0)
+                RightDisplay1(sender, e, loopa + 20, "", PrintSalesDatatable(i)(2), font, 170, 0)
                 loopa += 10
             Next
             CenterTextDisplay(sender, e, "*************************************", font, loopa + 30)

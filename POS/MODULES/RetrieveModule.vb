@@ -279,22 +279,6 @@ Module RetrieveModule
         End Try
         Return dttable
     End Function
-
-    Public Sub GLOBAL_SELECT_ALL_FUNCTION_CLOUD(tbl As String, flds As String, datagrid As DataGridView)
-        Try
-            sql = "SELECT " & flds & " FROM " & table
-            cmd = New MySqlCommand(sql, ServerCloudCon())
-            da = New MySqlDataAdapter(cmd)
-            dt = New DataTable
-            da.Fill(dt)
-            datagrid.DataSource = dt
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        Finally
-            cloudconn.Close()
-            da.Dispose()
-        End Try
-    End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION(ByVal table As String, ByVal fields As String, ByRef datagrid As DataGridView)
         Try
             Dim sql As String = "SELECT " + fields + " FROM " + table

@@ -232,7 +232,7 @@ Partial Class Addexpense
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.StatusStrip1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 452)
         Me.StatusStrip1.Name = "StatusStrip1"

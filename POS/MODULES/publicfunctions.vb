@@ -224,50 +224,7 @@ Module publicfunctions
         Dim iMonth As Integer = Month(dat)
         GetMonthName = MonthName(iMonth)
     End Function
-    Public Function FullDateFormat(datetoformat, stringformat)
-        Try
-            Dim Strdate = Format(CDate(datetoformat), stringformat)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        Return datetoformat
-    End Function
-    Public Function returndateformatfulldate(datetoformat As String)
-        Try
-            MsgBox(datetoformat)
-            Dim iDate As String = datetoformat
-            Dim oDate As DateTime = Convert.ToDateTime(iDate)
-            dateformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00")
-            '& " " & oDate.Hour.ToString("#00") & ":" & oDate.Minute.ToString("#00") & ":" & oDate.Second.ToString("#00")
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        Return dateformat
-    End Function
-    Public Function returndateformat(datetoformat As String)
-        Dim returnthisformat As Object = ""
-        Try
-            Dim iDate As String = datetoformat
-            Dim oDate As DateTime = Convert.ToDateTime(iDate)
-            returnthisformat = oDate.Year & "-" & oDate.Month.ToString("#00") & "-" & oDate.Day.ToString("#00")
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        Return returnthisformat
-    End Function
-    Public Function Dateandtimeformat(getstring As String, format As String, returnthisformat As String)
-        Dim dateString
-        Dim result As DateTime
-        Dim provider As CultureInfo = CultureInfo.InvariantCulture
-        dateString = getstring
-        Try
-            result = DateTime.ParseExact(dateString, format, provider)
-            dateformat = result.ToString(returnthisformat)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-        Return dateformat
-    End Function
+
     Public resetinventory As Boolean
     Public Function FirstDayOfMonth(ByVal sourceDate As DateTime) As DateTime
         Return New DateTime(sourceDate.Year, sourceDate.Month, 1)
@@ -327,25 +284,7 @@ Module publicfunctions
         BeginningBalance = 0
         EndingBalance = 0
     End Sub
-    Public Sub checkif1stdayofthemonth()
-        Try
-            If LocalConnectionIsOnOrValid = True Then
-                Dim firstday = Format(FirstDayOfMonth(Date.Now), "yyyy-MM-dd")
-                sql = "SELECT * FROM loc_inv_temp_data WHERE date_created = '" & firstday & "'"
-                cmd = New MySqlCommand(sql, LocalhostConn())
-                da = New MySqlDataAdapter(cmd)
-                dt = New DataTable
-                da.Fill(dt)
-                If dt.Rows.Count = 0 Then
-                    resetinventory = True
-                Else
-                    resetinventory = False
-                End If
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
+
     Dim total
     Public Function SumOfColumnsToDecimal(ByVal datagrid As DataGridView, ByVal celltocompute As Integer)
         With datagrid
@@ -394,7 +333,7 @@ Module publicfunctions
         e.Graphics.DrawString(lefttext, myfont, Brushes.Black, rect3)
         e.Graphics.DrawString(righttext, myfont, Brushes.Black, rect3, format)
     End Sub
-    Public Sub RightDisplay(sender As Object, e As PrintPageEventArgs, position As Integer, lefttext As String, righttext As String, myfont As Font, wth As Single, frompoint As Single)
+    Public Sub RightDisplay1(sender As Object, e As PrintPageEventArgs, position As Integer, lefttext As String, righttext As String, myfont As Font, wth As Single, frompoint As Single)
         Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
         Dim rect3 As RectangleF = New RectangleF(10.0F + frompoint, position, 0 + wth, 0)
         e.Graphics.DrawString(lefttext, myfont, Brushes.Black, rect3)
