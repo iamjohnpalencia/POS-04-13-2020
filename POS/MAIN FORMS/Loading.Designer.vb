@@ -31,7 +31,7 @@ Partial Class Loading
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.LabelVersion = New System.Windows.Forms.Label()
         Me.Panel25 = New System.Windows.Forms.Panel()
         Me.Label147 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -116,7 +116,7 @@ Partial Class Loading
         'Panel24
         '
         Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Panel24.Controls.Add(Me.Label4)
+        Me.Panel24.Controls.Add(Me.LabelVersion)
         Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel24.Location = New System.Drawing.Point(0, 72)
@@ -124,17 +124,17 @@ Partial Class Loading
         Me.Panel24.Size = New System.Drawing.Size(383, 20)
         Me.Panel24.TabIndex = 21
         '
-        'Label4
+        'LabelVersion
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(3, 3)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(33, 14)
-        Me.Label4.TabIndex = 16
-        Me.Label4.Text = "V1.0"
+        Me.LabelVersion.AutoSize = True
+        Me.LabelVersion.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelVersion.ForeColor = System.Drawing.Color.White
+        Me.LabelVersion.Location = New System.Drawing.Point(3, 3)
+        Me.LabelVersion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelVersion.Name = "LabelVersion"
+        Me.LabelVersion.Size = New System.Drawing.Size(33, 14)
+        Me.LabelVersion.TabIndex = 16
+        Me.LabelVersion.Text = "V1.0"
         '
         'Panel25
         '
@@ -219,7 +219,7 @@ Partial Class Loading
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label4 As Label
+    Friend WithEvents LabelVersion As Label
     Friend WithEvents DataGridViewRESULT As DataGridView
     Friend WithEvents Label3 As Label
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker

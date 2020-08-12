@@ -233,6 +233,18 @@ Partial Class ConfigManager
         Me.DataGridViewPRODUCTS = New System.Windows.Forms.DataGridView()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewINVENTORY = New System.Windows.Forms.DataGridView()
+        Me.Column35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column57 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column36 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column37 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column38 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column39 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column40 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column41 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column42 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column43 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel20 = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.ProgressBar6 = New System.Windows.Forms.ProgressBar()
@@ -283,18 +295,6 @@ Partial Class ConfigManager
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel22 = New System.Windows.Forms.Panel()
         Me.BackgroundWorker6 = New System.ComponentModel.BackgroundWorker()
-        Me.Column35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column57 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column36 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column37 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column38 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column39 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column40 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column41 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column42 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column43 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -2741,6 +2741,66 @@ Partial Class ConfigManager
         Me.DataGridViewINVENTORY.Size = New System.Drawing.Size(487, 70)
         Me.DataGridViewINVENTORY.TabIndex = 67
         '
+        'Column35
+        '
+        Me.Column35.HeaderText = "Column35"
+        Me.Column35.Name = "Column35"
+        '
+        'Column57
+        '
+        Me.Column57.HeaderText = "Column57"
+        Me.Column57.Name = "Column57"
+        '
+        'Column36
+        '
+        Me.Column36.HeaderText = "Column36"
+        Me.Column36.Name = "Column36"
+        '
+        'Column37
+        '
+        Me.Column37.HeaderText = "Column37"
+        Me.Column37.Name = "Column37"
+        '
+        'Column38
+        '
+        Me.Column38.HeaderText = "Column38"
+        Me.Column38.Name = "Column38"
+        '
+        'Column39
+        '
+        Me.Column39.HeaderText = "Column39"
+        Me.Column39.Name = "Column39"
+        '
+        'Column40
+        '
+        Me.Column40.HeaderText = "Column40"
+        Me.Column40.Name = "Column40"
+        '
+        'Column41
+        '
+        Me.Column41.HeaderText = "Column41"
+        Me.Column41.Name = "Column41"
+        '
+        'Column42
+        '
+        Me.Column42.HeaderText = "Column42"
+        Me.Column42.Name = "Column42"
+        '
+        'Column43
+        '
+        Me.Column43.HeaderText = "Column43"
+        Me.Column43.Name = "Column43"
+        '
+        'Column23
+        '
+        Me.Column23.HeaderText = "Column23"
+        Me.Column23.Name = "Column23"
+        '
+        'Column24
+        '
+        Me.Column24.HeaderText = "Column24"
+        Me.Column24.Name = "Column24"
+        '
         'Panel20
         '
         Me.Panel20.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -3102,66 +3162,6 @@ Partial Class ConfigManager
         Me.Panel22.Name = "Panel22"
         Me.Panel22.Size = New System.Drawing.Size(1298, 10)
         Me.Panel22.TabIndex = 216
-        '
-        'Column35
-        '
-        Me.Column35.HeaderText = "Column35"
-        Me.Column35.Name = "Column35"
-        '
-        'Column57
-        '
-        Me.Column57.HeaderText = "Column57"
-        Me.Column57.Name = "Column57"
-        '
-        'Column36
-        '
-        Me.Column36.HeaderText = "Column36"
-        Me.Column36.Name = "Column36"
-        '
-        'Column37
-        '
-        Me.Column37.HeaderText = "Column37"
-        Me.Column37.Name = "Column37"
-        '
-        'Column38
-        '
-        Me.Column38.HeaderText = "Column38"
-        Me.Column38.Name = "Column38"
-        '
-        'Column39
-        '
-        Me.Column39.HeaderText = "Column39"
-        Me.Column39.Name = "Column39"
-        '
-        'Column40
-        '
-        Me.Column40.HeaderText = "Column40"
-        Me.Column40.Name = "Column40"
-        '
-        'Column41
-        '
-        Me.Column41.HeaderText = "Column41"
-        Me.Column41.Name = "Column41"
-        '
-        'Column42
-        '
-        Me.Column42.HeaderText = "Column42"
-        Me.Column42.Name = "Column42"
-        '
-        'Column43
-        '
-        Me.Column43.HeaderText = "Column43"
-        Me.Column43.Name = "Column43"
-        '
-        'Column23
-        '
-        Me.Column23.HeaderText = "Column23"
-        Me.Column23.Name = "Column23"
-        '
-        'Column24
-        '
-        Me.Column24.HeaderText = "Column24"
-        Me.Column24.Name = "Column24"
         '
         'ConfigManager
         '

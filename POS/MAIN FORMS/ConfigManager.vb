@@ -16,7 +16,7 @@ Public Class ConfigManager
     Dim Autobackup As Boolean = False
     Dim ConfirmAdditionalSettings As Boolean = False
     Dim ConfirmDevInfoSettings As Boolean = False
-
+    Dim POSVersion As String = ""
     Dim LOCALCONNDATA As Boolean = False
     Dim CLOUDCONDATA As Boolean = False
     Private Sub ConfigManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -268,7 +268,7 @@ Public Class ConfigManager
             If ValidCloudConnection = True And ValidLocalConnection = True Then
                 If System.IO.File.Exists(My.Settings.LocalConnectionPath) Then
                     Dim EXPORTPATH = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\Innovention"
-                    sql = "SELECT `A_Tax`, `A_SIFormat`, `A_Terminal_No`, `A_ZeroRated`, `S_Batter`, `S_Brownie_Mix`, `S_Upgrade_Price_Add` FROM admin_settings_org WHERE settings_id = 1"
+                    sql = "SELECT `A_Tax`, `A_SIFormat`, `A_Terminal_No`, `A_ZeroRated`, `S_Batter`, `S_Brownie_Mix`, `S_Upgrade_Price_Add` , `S_Update_Version` FROM admin_settings_org WHERE settings_id = 1"
                     Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
                     Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
@@ -286,6 +286,9 @@ Public Class ConfigManager
                         TextBoxBATTERID.Text = dt(0)(4)
                         TextBoxBROWNIEID.Text = dt(0)(5)
                         TextBoxBROWNIEPRICE.Text = dt(0)(6)
+                        My.Settings.Version = dt(0)(7)
+                        My.Settings.Save()
+                        POSVersion = dt(0)(7)
                         ConfirmAdditionalSettings = True
                     Else
                         ConfirmAdditionalSettings = False
@@ -795,7 +798,7 @@ Public Class ConfigManager
             If TextboxIsEmpty(GroupBox10) = True Then
                 If ValidLocalConnection = True Then
                     Dim table = "loc_settings"
-                    Dim fields = "A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add"
+                    Dim fields = "A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add, S_Update_Version"
                     Dim where = "settings_id = 1"
                     Dim sql = "Select " & fields & " FROM " & table & " WHERE " & where
                     Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
@@ -826,7 +829,8 @@ Public Class ConfigManager
                      ,'" & Format(Now(), "yyyy-MM-dd") & "'
                      ,'" & Trim(TextBoxBATTERID.Text) & "'
                      ,'" & Trim(TextBoxBROWNIEID.Text) & "'
-                     ,'" & Trim(TextBoxBROWNIEPRICE.Text) & "')"
+                     ,'" & Trim(TextBoxBROWNIEPRICE.Text) & "'
+                     ,'" & POSVersion & "')"
 
                         sql = "INSERT INTO " & table & " " & fields2 & " VALUES " & value
                         cmd = New MySqlCommand(sql, TestLocalConnection)
@@ -1002,6 +1006,7 @@ Public Class ConfigManager
                                     If AccountExist = True Then
                                         If FranchiseeStoreValidation = True Then
                                             If Not String.IsNullOrWhiteSpace(TextBoxProdKey.Text) Then
+
                                                 TextboxEnableability(GroupBox12, False)
                                                 ButtonEnableability(GroupBox12, False)
                                                 BackgroundWorkerACTIVATION.WorkerReportsProgress = True

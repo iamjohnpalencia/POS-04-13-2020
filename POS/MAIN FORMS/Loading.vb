@@ -22,6 +22,7 @@ Public Class Loading
     Dim if1stdayofthemonth
     Private Sub Loadme()
         Try
+            LabelVersion.Text = My.Settings.Version
             CheckForIllegalCrossThreadCalls = False
             Label1.Text = "Initializing component..."
             strHostName = Dns.GetHostName()
