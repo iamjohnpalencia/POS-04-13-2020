@@ -85,6 +85,11 @@ Partial Class Leaderboards
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.DataGridViewRecentExpenses = New System.Windows.Forms.DataGridView()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.DatagridviewTransfers = New System.Windows.Forms.DataGridView()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
@@ -582,6 +587,7 @@ Partial Class Leaderboards
         DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewRecentExpenses.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewRecentExpenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewRecentExpenses.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column12, Me.Column13, Me.Column14, Me.Column15, Me.Column16})
         DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -597,6 +603,31 @@ Partial Class Leaderboards
         Me.DataGridViewRecentExpenses.Name = "DataGridViewRecentExpenses"
         Me.DataGridViewRecentExpenses.Size = New System.Drawing.Size(648, 228)
         Me.DataGridViewRecentExpenses.TabIndex = 5
+        '
+        'Column12
+        '
+        Me.Column12.HeaderText = "Expense Number"
+        Me.Column12.Name = "Column12"
+        '
+        'Column13
+        '
+        Me.Column13.HeaderText = "Date Created"
+        Me.Column13.Name = "Column13"
+        '
+        'Column14
+        '
+        Me.Column14.HeaderText = "Crew"
+        Me.Column14.Name = "Column14"
+        '
+        'Column15
+        '
+        Me.Column15.HeaderText = "Total "
+        Me.Column15.Name = "Column15"
+        '
+        'Column16
+        '
+        Me.Column16.HeaderText = "Status"
+        Me.Column16.Name = "Column16"
         '
         'TabPage3
         '
@@ -694,22 +725,22 @@ Partial Class Leaderboards
         '
         'Column3
         '
-        Me.Column3.HeaderText = "Column3"
+        Me.Column3.HeaderText = "Log Type"
         Me.Column3.Name = "Column3"
         '
         'Column4
         '
-        Me.Column4.HeaderText = "Column4"
+        Me.Column4.HeaderText = "Description"
         Me.Column4.Name = "Column4"
         '
         'Column5
         '
-        Me.Column5.HeaderText = "Column5"
+        Me.Column5.HeaderText = "Crew"
         Me.Column5.Name = "Column5"
         '
         'Column6
         '
-        Me.Column6.HeaderText = "Column6"
+        Me.Column6.HeaderText = "Date"
         Me.Column6.Name = "Column6"
         '
         'Leaderboards
@@ -805,13 +836,18 @@ Partial Class Leaderboards
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents GroupBox5 As GroupBox
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As DataGridViewTextBoxColumn
-    Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
     Friend WithEvents Column8 As DataGridViewTextBoxColumn
     Friend WithEvents Column9 As DataGridViewTextBoxColumn
     Friend WithEvents Column10 As DataGridViewTextBoxColumn
     Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column12 As DataGridViewTextBoxColumn
+    Friend WithEvents Column13 As DataGridViewTextBoxColumn
+    Friend WithEvents Column14 As DataGridViewTextBoxColumn
+    Friend WithEvents Column15 As DataGridViewTextBoxColumn
+    Friend WithEvents Column16 As DataGridViewTextBoxColumn
 End Class

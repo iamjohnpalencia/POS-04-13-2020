@@ -103,8 +103,18 @@ Public Class Leaderboards
     End Sub
     Private Sub LoadExpenses()
         Try
-            GLOBAL_SELECT_ALL_FUNCTION("loc_expense_list GROUP BY expense_id DESC LIMIT 10", "expense_number  , created_at AS datetime , crew_id , total_amount, active", DataGridViewRecentExpenses)
-
+            Dim ExepenseReport = AsDatatable("loc_expense_list GROUP BY expense_id DESC LIMIT 10", "expense_number , created_at AS datetime , crew_id , total_amount, active", DataGridViewRecentExpenses)
+            Dim rowActive
+            For Each row As DataRow In ExepenseReport.Rows
+                If row("active") = 1 Then
+                    rowActive = "Active"
+                ElseIf row("active") = 2 Then
+                    rowActive = "Returned"
+                Else
+                    rowActive = "N/A"
+                End If
+                DataGridViewRecentExpenses.Rows.Add(row("expense_number"), row("datetime"), row("crew_id"), row("total_amount"), rowActive)
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

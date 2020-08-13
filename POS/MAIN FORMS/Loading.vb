@@ -124,7 +124,7 @@ Public Class Loading
     Private Sub LoadSettings()
         Try
             If LocalConnectionIsOnOrValid = True Then
-                Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix , S_Upgrade_Price_Add , S_BackupInterval, S_BackupDate FROM loc_settings WHERE settings_id = 1"
+                Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix , S_Upgrade_Price_Add , S_BackupInterval, S_BackupDate , S_Update_Version FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
@@ -147,6 +147,9 @@ Public Class Loading
                                             S_Upgrade_Price = row("S_Upgrade_Price_Add")
                                             S_Backup_Interval = row("S_BackupInterval")
                                             S_Backup_Date = row("S_BackupDate")
+                                            My.Settings.Version = row("S_Update_Version")
+                                            My.Settings.Save()
+                                            LabelVersion.Text = row("S_Update_Version")
                                         End If
                                     End If
                                 End If
