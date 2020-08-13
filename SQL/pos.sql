@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2020 at 08:51 AM
+-- Generation Time: Aug 13, 2020 at 09:36 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -48,6 +48,7 @@ CREATE TABLE `admin_masterlist` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -82,6 +83,7 @@ CREATE TABLE `admin_outlets` (
 -- Dumping data for table `admin_outlets`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -101,7 +103,6 @@ CREATE TABLE `loc_admin_category` (
 --
 -- Dumping data for table `loc_admin_category`
 --
-
 
 
 -- --------------------------------------------------------
@@ -157,12 +158,6 @@ CREATE TABLE `loc_coupon_data` (
   `coupon_total` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `loc_coupon_data`
---
-
-
-
 -- --------------------------------------------------------
 
 --
@@ -197,11 +192,6 @@ CREATE TABLE `loc_daily_transaction` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `loc_daily_transaction`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -231,11 +221,6 @@ CREATE TABLE `loc_daily_transaction_details` (
   `addontype` text NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `loc_daily_transaction_details`
---
-
 
 -- --------------------------------------------------------
 
@@ -345,12 +330,6 @@ CREATE TABLE `loc_fm_stock` (
   `created_at` text NOT NULL,
   `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `loc_fm_stock`
---
-
-
 
 -- --------------------------------------------------------
 
@@ -580,12 +559,6 @@ CREATE TABLE `loc_refund_return_details` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `loc_refund_return_details`
---
-
-
-
 -- --------------------------------------------------------
 
 --
@@ -605,12 +578,6 @@ CREATE TABLE `loc_senior_details` (
   `date_created` text NOT NULL,
   `synced` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `loc_senior_details`
---
-
-
 
 -- --------------------------------------------------------
 
@@ -645,7 +612,8 @@ CREATE TABLE `loc_settings` (
   `S_BackupDate` text NOT NULL,
   `S_Batter` text NOT NULL,
   `S_Brownie_Mix` text NOT NULL,
-  `S_Upgrade_Price_Add` text NOT NULL
+  `S_Upgrade_Price_Add` text NOT NULL,
+  `S_Update_Version` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -712,12 +680,6 @@ CREATE TABLE `loc_transaction_mode_details` (
   `guid` varchar(255) NOT NULL,
   `synced` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `loc_transaction_mode_details`
---
-
-
 
 -- --------------------------------------------------------
 
@@ -811,6 +773,7 @@ CREATE TABLE `loc_zread_inventory` (
 --
 -- Dumping data for table `loc_zread_inventory`
 --
+
 
 
 -- --------------------------------------------------------
@@ -1282,7 +1245,7 @@ ALTER TABLE `loc_stockadjustment_cat`
 -- AUTO_INCREMENT for table `loc_transaction_mode_details`
 --
 ALTER TABLE `loc_transaction_mode_details`
-  MODIFY `mode_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `mode_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `loc_transfer_data`

@@ -3,7 +3,6 @@ Module connectionModule
     Public LocalConnectionIsOnOrValid As Boolean
     Dim ConnStr As String
     Dim ConnStr2 As String
-
     Public LocServer As String
     Public LocUser As String
     Public LocPass As String
