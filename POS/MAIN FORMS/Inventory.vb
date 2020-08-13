@@ -32,6 +32,11 @@ Public Class Inventory
             loadcomboboxingredients()
             loadinventorycustom()
             loadinventorycustomdisapp()
+
+            If ClientRole = "Crew" Then
+                TabControl1.TabPages(3).Visible = False
+                TabControl1.TabPages(4).Visible = False
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

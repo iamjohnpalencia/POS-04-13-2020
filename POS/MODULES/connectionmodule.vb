@@ -3,6 +3,13 @@ Module connectionModule
     Public LocalConnectionIsOnOrValid As Boolean
     Dim ConnStr As String
     Dim ConnStr2 As String
+
+    Public LocServer As String
+    Public LocUser As String
+    Public LocPass As String
+    Public LocDatabase As String
+    Public LocPort As String
+
     Public Function LoadLocalConnection()
         Dim localconn As MySqlConnection
         localconn = New MySqlConnection
@@ -48,22 +55,27 @@ Module connectionModule
                         If lineCount = 0 Then
                             ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "server="))
                             ConnStr2 = "server=" & ConnStr
+                            LocServer = ConnStr
                         End If
                         If lineCount = 1 Then
                             ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "user id="))
                             ConnStr2 += ";user id=" & ConnStr
+                            LocUser = ConnStr
                         End If
                         If lineCount = 2 Then
                             ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "password="))
                             ConnStr2 += ";password=" & ConnStr
+                            LocPass = ConnStr
                         End If
                         If lineCount = 3 Then
                             ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "database="))
                             ConnStr2 += ";database=" & ConnStr
+                            LocDatabase = ConnStr
                         End If
                         If lineCount = 4 Then
                             ConnStr = ConvertB64ToString(RemoveCharacter(TextLine, "port="))
                             ConnStr2 += ";port=" & ConnStr
+                            LocPort = ConnStr
                         End If
                         If lineCount = 5 Then
                             ConnStr2 += ";" & TextLine

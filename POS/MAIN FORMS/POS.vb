@@ -225,7 +225,7 @@ Public Class POS
                 MessageBox.Show("Input cashier balance first", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Else
                 If S_Zreading <> Format(Now(), "yyyy-MM-dd") Then
-                    MessageBox.Show("Z-read", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MessageBox.Show("Z-read first", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
                     Enabled = False
                     PaymentForm.Show()

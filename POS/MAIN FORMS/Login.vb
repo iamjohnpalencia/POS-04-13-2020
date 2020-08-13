@@ -1,11 +1,84 @@
 ﻿
+Imports MySql.Data.MySqlClient
+
 Public Class Login
     Declare Function Wow64DisableWow64FsRedirection Lib "kernel32" (ByRef oldvalue As Long) As Boolean
     Private osk As String = "C:\Windows\System32\osk.exe"
     Private Sub Login_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
+        CheckDatabaseBackup()
         txtusername.Focus()
         Timer1.Enabled = True
         ButttonLogin.Text = "LOGIN (" & ClientStorename & ")"
+    End Sub
+    Public Function FirstDayOfMonth(ByVal sourceDate As DateTime)
+        Dim FirstDay As DateTime = New DateTime(sourceDate.Year, sourceDate.Month, 1)
+        Dim FormatDay As String = "yyyy-MM-dd"
+        Dim displaythis = FirstDay.ToString(FormatDay)
+        Return displaythis
+    End Function
+    Private Sub BackupDatabase()
+        Try
+            Dim DatabaseName = "\POS" & Format(Now(), "yyyy-MM-dd") & ".sql"
+            Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqldump --databases -h " & connectionModule.LocServer & " -u " & connectionModule.LocUser & " -p " & connectionModule.LocPass & " " & connectionModule.LocDatabase & " > """ & S_ExportPath & DatabaseName & """")
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub CheckDatabaseBackup()
+        Try
+            If S_Backup_Interval = "1" Then
+                'Daily
+                If S_Backup_Date <> Format(Now(), "yyyy-MM-dd") Then
+                    S_Backup_Date = Format(Now(), "yyyy-MM-dd")
+                    BackupDatabase()
+                    Dim sql As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                    cmd.ExecuteNonQuery()
+                End If
+            ElseIf S_Backup_Interval = "2" Then
+                'Weekly
+                S_Backup_Date = Format(DateAdd("d", 7, S_Zreading), "yyyy-MM-dd")
+                If S_Backup_Date = Format(Now(), "yyyy-MM-dd") Then
+                    S_Backup_Date = Format(Now(), "yyyy-MM-dd")
+                    BackupDatabase()
+                    Dim sql As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                    cmd.ExecuteNonQuery()
+                End If
+            ElseIf S_Backup_Interval = "3" Then
+                'Monthly
+                If FirstDayOfMonth(Now()) = Format(Now(), "yyyy-MM-dd") Then
+                    S_Backup_Date = Format(Now(), "yyyy-MM-dd")
+                    BackupDatabase()
+                    Dim sql As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                    cmd.ExecuteNonQuery()
+                Else
+                    Dim sql As String = "SELECT S_BackupDate FROM loc_settings WHERE settings_id = 1"
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                    Dim result = cmd.ExecuteScalar()
+                    If FirstDayOfMonth(Now) <> result Then
+                        S_Backup_Date = FirstDayOfMonth(Now)
+                        BackupDatabase()
+                        Dim sql1 As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
+                        Dim cmd1 As MySqlCommand = New MySqlCommand(sql1, LocalhostConn)
+                        cmd1.ExecuteNonQuery()
+                    End If
+                End If
+            ElseIf S_Backup_Interval = "4" Then
+                Dim YearNow As Integer = Date.Now.Year
+                If YearNow <> Format(S_Backup_Date, ("yyyy")) Then
+                    S_Backup_Date = Format(Now(), "yyyy-MM-dd")
+                    BackupDatabase()
+                    Dim sql1 As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
+                    Dim cmd1 As MySqlCommand = New MySqlCommand(sql1, LocalhostConn)
+                    cmd1.ExecuteNonQuery()
+                End If
+                'Yearly
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
     Private Sub ButttonLogin_Click(sender As Object, e As EventArgs) Handles ButttonLogin.Click

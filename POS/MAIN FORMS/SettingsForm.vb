@@ -21,6 +21,18 @@ Public Class SettingsForm
         LoadAdditionalSettings()
         LoadDevInfo()
         LoadAutoBackup()
+
+        If ClientRole = "Crew" Then
+            ButtonPartnersPrio.Visible = False
+            ButtonAddBank.Visible = False
+            ButtonDeactivateBank.Visible = False
+            ButtonEditBank.Visible = False
+            ButtonPTActivate.Visible = False
+            ButtonChangeFormula.Visible = False
+            ButtonSaveCoupon.Visible = False
+            ButtonResetCoupon.Visible = False
+        End If
+
     End Sub
     Private Sub SettingsForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         POS.Enabled = True
@@ -143,7 +155,7 @@ Public Class SettingsForm
             'Change Status to Deactivated
         End With
     End Sub
-    Private Sub ButtonDeleteProducts_Click(sender As Object, e As EventArgs) Handles ButtonDeleteProducts.Click
+    Private Sub ButtonDeleteProducts_Click(sender As Object, e As EventArgs) Handles ButtonDeactivateBank.Click
         Try
             If DataGridViewPartners.SelectedRows.Count < 1 Then
                 MsgBox("Select bank first")
@@ -175,7 +187,7 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonPartnersPrio.Click
         Try
             If DataGridViewPartners.SelectedRows.Count < 1 Then
                 MsgBox("Select bank first")
@@ -197,12 +209,12 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonAddBank.Click
         AddOrEdit = True
         Enabled = False
         AddBank.Show()
     End Sub
-    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles ButtonEditBank.Click
         If DataGridViewPartners.SelectedRows.Count < 1 Then
             MsgBox("Select bank first")
         ElseIf DataGridViewPartners.SelectedRows.Count > 1 Then
@@ -636,7 +648,7 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles ButtonSaveCoupon.Click
         If TextboxIsEmpty(Panel19) = True Then
             SaveCoupon()
             loaddatagrid2()
@@ -1855,7 +1867,7 @@ Public Class SettingsForm
         End Try
     End Sub
 #End Region
-    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles ButtonChangeFormula.Click
         Enabled = False
         Changeproductformula.Show()
     End Sub

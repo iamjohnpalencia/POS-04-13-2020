@@ -88,6 +88,8 @@ Module publicVariables
     Public S_Batter As String
     Public S_Brownie_Mix As String
     Public S_Upgrade_Price As String
+    Public S_Backup_Interval As String
+    Public S_Backup_Date As String
     '=============================================================================================================
     'btn click refresh
     Public btnperformclick As Boolean = False
