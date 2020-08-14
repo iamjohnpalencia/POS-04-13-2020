@@ -49,6 +49,8 @@ Public Class Reports
             Button6.Visible = True
         Else
             Button6.Visible = False
+            Button8.Visible = False
+            Button8.Enabled = False
         End If
         If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
             ButtonZread.Enabled = False

@@ -31,7 +31,7 @@ Partial Class About
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.LabelVersion = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,25 +69,25 @@ Partial Class About
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.LabelVersion)
         Me.Panel1.Controls.Add(Me.PictureBox5)
         Me.Panel1.Controls.Add(Me.PictureBox4)
         Me.Panel1.Controls.Add(Me.PictureBox3)
         Me.Panel1.Controls.Add(Me.PictureBox2)
         Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Controls.Add(Me.Label12)
-        Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.Label17)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Location = New System.Drawing.Point(426, 154)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(525, 315)
+        Me.Panel1.Size = New System.Drawing.Size(525, 339)
         Me.Panel1.TabIndex = 114
         '
         'PictureBox5
         '
         Me.PictureBox5.BackgroundImage = CType(resources.GetObject("PictureBox5.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox5.Location = New System.Drawing.Point(332, 257)
+        Me.PictureBox5.Location = New System.Drawing.Point(332, 259)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(54, 50)
         Me.PictureBox5.TabIndex = 120
@@ -97,7 +97,7 @@ Partial Class About
         '
         Me.PictureBox4.BackgroundImage = CType(resources.GetObject("PictureBox4.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox4.Location = New System.Drawing.Point(272, 257)
+        Me.PictureBox4.Location = New System.Drawing.Point(272, 259)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(54, 50)
         Me.PictureBox4.TabIndex = 119
@@ -107,7 +107,7 @@ Partial Class About
         '
         Me.PictureBox3.BackgroundImage = CType(resources.GetObject("PictureBox3.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox3.Location = New System.Drawing.Point(212, 257)
+        Me.PictureBox3.Location = New System.Drawing.Point(212, 259)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(54, 50)
         Me.PictureBox3.TabIndex = 118
@@ -117,7 +117,7 @@ Partial Class About
         '
         Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox2.Location = New System.Drawing.Point(153, 257)
+        Me.PictureBox2.Location = New System.Drawing.Point(153, 259)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(54, 50)
         Me.PictureBox2.TabIndex = 117
@@ -133,24 +133,24 @@ Partial Class About
         Me.PictureBox1.TabIndex = 114
         Me.PictureBox1.TabStop = False
         '
-        'Label4
+        'LabelVersion
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(196, 210)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(137, 16)
-        Me.Label4.TabIndex = 115
-        Me.Label4.Text = "Version 1.0.1213.2019"
+        Me.LabelVersion.AutoSize = True
+        Me.LabelVersion.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelVersion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.LabelVersion.Location = New System.Drawing.Point(216, 207)
+        Me.LabelVersion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelVersion.Name = "LabelVersion"
+        Me.LabelVersion.Size = New System.Drawing.Size(84, 16)
+        Me.LabelVersion.TabIndex = 115
+        Me.LabelVersion.Text = "Version 1.0.0"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(203, 236)
+        Me.Label1.Location = New System.Drawing.Point(203, 240)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(119, 16)
         Me.Label1.TabIndex = 116
@@ -182,7 +182,7 @@ Partial Class About
     Friend WithEvents Panel1 As Panel
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents Label4 As Label
+    Friend WithEvents LabelVersion As Label
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents PictureBox5 As PictureBox
     Friend WithEvents PictureBox4 As PictureBox

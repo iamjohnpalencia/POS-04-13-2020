@@ -22,7 +22,6 @@
             LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
             If ClientRole = "Crew" Then
                 Button8.Visible = False
-                Button6.Visible = False
                 Button5.Visible = False
                 Button2.Location = New Point(20, 276)
                 Button3.Location = New Point(20, 320)
