@@ -1256,6 +1256,38 @@ Public Class POS
 #End Region
 #Region "Updates"
 #Region "Categories Update"
+
+    Private Sub CheckPriceChanges()
+        Try
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+
+            Dim Query = "SELECT * FROM admin_price_request WHERE store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND synced = 'Unsynced' AND active = 2"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ConnectionServer)
+            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
+            Dim DtCheck As DataTable = New DataTable
+            DaCheck.Fill(DtCheck)
+
+            For i As Integer = 0 To DtCheck.Rows.Count - 1 Step +1
+                Dim sql = "UPDATE loc_admin_products SET product_price = " & DtCheck(i)(3) & ", price_change = 1 WHERE server_product_id = " & DtCheck(i)(2) & ""
+                CmdCheck = New MySqlCommand(sql, ConnectionLocal)
+                CmdCheck.ExecuteNonQuery()
+                Dim sql2 = "UPDATE loc_price_request_change SET active = " & DtCheck(i)(5) & " WHERE request_id = " & DtCheck(i)(0) & ""
+                CmdCheck = New MySqlCommand(sql2, ConnectionLocal)
+                CmdCheck.ExecuteNonQuery()
+                Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & DtCheck(i)(0) & ""
+                CmdCheck = New MySqlCommand(sq3, ConnectionServer)
+                CmdCheck.ExecuteNonQuery()
+            Next
+            If DtCheck.Rows.Count > 0 Then
+                PRICECHANGE = True
+            Else
+                PRICECHANGE = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Private Function LoadCategoryLocal() As DataTable
         Dim cmdlocal As MySqlCommand
         Dim dalocal As MySqlDataAdapter
@@ -1279,33 +1311,6 @@ Public Class POS
         End Try
         Return dtlocal
     End Function
-    Private Sub CheckPriceChanges()
-        Try
-            Dim Query = "SELECT * FROM admin_price_request WHERE store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND synced = 'Unsynced' AND active = 2"
-            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ServerCloudCon)
-            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
-            Dim DtCheck As DataTable = New DataTable
-            DaCheck.Fill(DtCheck)
-            For i As Integer = 0 To DtCheck.Rows.Count - 1 Step +1
-                Dim sql = "UPDATE loc_admin_products SET product_price = " & DtCheck(i)(3) & ", price_change = 1 WHERE server_product_id = " & DtCheck(i)(2) & ""
-                CmdCheck = New MySqlCommand(sql, LocalhostConn)
-                CmdCheck.ExecuteNonQuery()
-                Dim sql2 = "UPDATE loc_price_request_change SET active = " & DtCheck(i)(5) & " WHERE request_id = " & DtCheck(i)(0) & ""
-                CmdCheck = New MySqlCommand(sql2, LocalhostConn)
-                CmdCheck.ExecuteNonQuery()
-                Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & DtCheck(i)(0) & ""
-                CmdCheck = New MySqlCommand(sq3, ServerCloudCon)
-                CmdCheck.ExecuteNonQuery()
-            Next
-            If DtCheck.Rows.Count > 0 Then
-                PRICECHANGE = True
-            Else
-                PRICECHANGE = False
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
     Private Sub Function1()
         Try
             Dim Query = "SELECT * FROM loc_admin_category"
@@ -1367,7 +1372,7 @@ Public Class POS
     End Sub
 #End Region
 #Region "Products Update"
-    Dim UPDATEPRODUCTONLY As Boolean = False
+
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         If CheckForInternetConnection() = True Then
             UPDATEPRODUCTONLY = True
@@ -1380,6 +1385,7 @@ Public Class POS
             MsgBox("Internet connection is not available")
         End If
     End Sub
+    Dim UPDATEPRODUCTONLY As Boolean = False
     Dim FillDatagridProduct As DataTable
     Private Sub GetProducts()
         Try

@@ -1204,20 +1204,24 @@ Public Class SettingsForm
     Dim PRICECHANGE As Boolean = False
     Private Sub CheckPriceChanges()
         Try
-            Dim Query = "SELECT * FROM admin_price_request WHERE store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND synced = 'Unsynced'"
-            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ServerCloudCon)
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+
+            Dim Query = "SELECT * FROM admin_price_request WHERE store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND synced = 'Unsynced' AND active = 2"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ConnectionServer)
             Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
             Dim DtCheck As DataTable = New DataTable
             DaCheck.Fill(DtCheck)
+
             For i As Integer = 0 To DtCheck.Rows.Count - 1 Step +1
                 Dim sql = "UPDATE loc_admin_products SET product_price = " & DtCheck(i)(3) & ", price_change = 1 WHERE server_product_id = " & DtCheck(i)(2) & ""
-                CmdCheck = New MySqlCommand(sql, LocalhostConn)
+                CmdCheck = New MySqlCommand(sql, ConnectionLocal)
                 CmdCheck.ExecuteNonQuery()
                 Dim sql2 = "UPDATE loc_price_request_change SET active = " & DtCheck(i)(5) & " WHERE request_id = " & DtCheck(i)(0) & ""
-                CmdCheck = New MySqlCommand(sql2, LocalhostConn)
+                CmdCheck = New MySqlCommand(sql2, ConnectionLocal)
                 CmdCheck.ExecuteNonQuery()
                 Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & DtCheck(i)(0) & ""
-                CmdCheck = New MySqlCommand(sq3, ServerCloudCon)
+                CmdCheck = New MySqlCommand(sq3, ConnectionServer)
                 CmdCheck.ExecuteNonQuery()
             Next
             If DtCheck.Rows.Count > 0 Then
@@ -1261,7 +1265,6 @@ Public Class SettingsForm
             Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
             Dim DtCheck As DataTable = New DataTable
             DaCheck.Fill(DtCheck)
-
             Dim cmdserver As MySqlCommand
             Dim daserver As MySqlDataAdapter
             Dim dtserver As DataTable
@@ -1272,8 +1275,8 @@ Public Class SettingsForm
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    LabelNewRows.Text += 1
                     DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5))
+                    LabelNewRows.Text += Val(LabelNewRows.Text)
                 Next
             Else
                 Dim Ids As String = ""
@@ -1292,13 +1295,10 @@ Public Class SettingsForm
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                         If LoadCategoryLocal(i)(0).ToString <> dtserver(i)(3).ToString Then
-                            ProgressBar1.Value += 1
-                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                             DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5))
-                        Else
-                            ProgressBar1.Value += 1
-                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                         End If
+                        ProgressBar1.Value = ProgressBar1.Value + 1
+                        LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checked " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                     Next
                     Dim sql2 = "SELECT `category_id`, `category_name`, `brand_name`, `updated_at`, `origin`, `status` FROM admin_category WHERE category_id NOT IN (" & Ids & ")"
                     cmdserver = New MySqlCommand(sql2, ServerCloudCon())
@@ -1306,14 +1306,14 @@ Public Class SettingsForm
                     dtserver = New DataTable
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                        ProgressBar1.Value += 1
-                        LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
-                        DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5))
+                        If LoadCategoryLocal(i)(0) <> dtserver(i)(3) Then
+                            DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5))
+                            LabelNewRows.Text += Val(LabelNewRows.Text)
+                        End If
                     Next
                 End If
             End If
         Catch ex As Exception
-
             BackgroundWorker1.CancelAsync()
             'If table doesnt have data
         End Try
@@ -1324,6 +1324,9 @@ Public Class SettingsForm
     Dim FillDatagridProduct As DataTable
     Private Sub GetProducts()
         Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+
             FillDatagridProduct = New DataTable
             FillDatagridProduct.Columns.Add("product_id")
             FillDatagridProduct.Columns.Add("product_sku")
@@ -1338,9 +1341,10 @@ Public Class SettingsForm
             FillDatagridProduct.Columns.Add("origin")
             FillDatagridProduct.Columns.Add("date_modified")
             FillDatagridProduct.Columns.Add("inventory_id")
+            FillDatagridProduct.Columns.Add("addontype")
 
             Dim Query = "SELECT * FROM loc_admin_products"
-            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
             Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
             Dim DtCheck As DataTable = New DataTable
             DaCheck.Fill(DtCheck)
@@ -1348,26 +1352,25 @@ Public Class SettingsForm
                 GetAllProducts()
             Else
                 Dim DtCount As DataTable
-                Dim Connection As MySqlConnection = ServerCloudCon()
+
                 Dim SqlCount = "SELECT COUNT(product_id) FROM admin_products_org"
-                Dim CmdCount As MySqlCommand = New MySqlCommand(SqlCount, Connection)
+                Dim CmdCount As MySqlCommand = New MySqlCommand(SqlCount, ConnectionServer)
                 Dim result As Integer = CmdCount.ExecuteScalar
                 Dim DaCount As MySqlDataAdapter
                 Dim FillDt As DataTable = New DataTable
 
                 For a = 1 To result
-                    ProgressBar1.Value += 1
-                    LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
-                    Dim Query1 As String = "SELECT date_modified FROM loc_admin_products WHERE product_id = " & a
-                    Dim cmd As MySqlCommand = New MySqlCommand(Query1, LocalhostConn)
+                    Dim Query1 As String = "SELECT date_modified, price_change FROM loc_admin_products WHERE server_product_id = " & a
+                    Dim cmd As MySqlCommand = New MySqlCommand(Query1, ConnectionLocal)
                     DaCount = New MySqlDataAdapter(cmd)
                     FillDt = New DataTable
                     DaCount.Fill(FillDt)
                     Dim Prod As DataRow = FillDatagridProduct.NewRow
                     If FillDt.Rows.Count > 0 Then
+                        Dim PriceChange = FillDt(0)(1)
                         'Exist then check for update
                         Query1 = "SELECT * FROM admin_products_org WHERE product_id = " & a
-                        cmd = New MySqlCommand(Query1, Connection)
+                        cmd = New MySqlCommand(Query1, ConnectionServer)
                         DaCount = New MySqlDataAdapter(cmd)
                         DtCount = New DataTable
                         DaCount.Fill(DtCount)
@@ -1378,19 +1381,31 @@ Public Class SettingsForm
                             Prod("formula_id") = DtCount(0)(3)
                             Prod("product_barcode") = DtCount(0)(4)
                             Prod("product_category") = DtCount(0)(5)
-                            Prod("product_price") = DtCount(0)(6)
+                            If FillDt(0)(1) = 1 Then
+                                Dim sql2 = "SELECT product_price FROM loc_admin_products WHERE server_product_id = " & a
+                                Dim cmd2 As MySqlCommand = New MySqlCommand(sql2, LocalhostConn)
+                                Dim da2 As MySqlDataAdapter = New MySqlDataAdapter(cmd2)
+                                Dim dt2 As DataTable = New DataTable
+                                da2.Fill(dt2)
+                                Prod("product_price") = dt2(0)(0)
+                            Else
+                                Prod("product_price") = DtCount(0)(6)
+                            End If
                             Prod("product_desc") = DtCount(0)(7)
                             Prod("product_image") = DtCount(0)(8)
                             Prod("product_status") = DtCount(0)(9)
                             Prod("origin") = DtCount(0)(10)
                             Prod("date_modified") = DtCount(0)(11)
                             Prod("inventory_id") = DtCount(0)(12)
+                            Prod("addontype") = DtCount(0)(13)
                             FillDatagridProduct.Rows.Add(Prod)
                         End If
+                        ProgressBar1.Value = ProgressBar1.Value + 1
+                        LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checked " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                     Else
                         'Insert new product
                         Query1 = "SELECT * FROM admin_products_org WHERE product_id = " & a
-                        cmd = New MySqlCommand(Query1, Connection)
+                        cmd = New MySqlCommand(Query1, ConnectionServer)
                         DaCount = New MySqlDataAdapter(cmd)
                         DtCount = New DataTable
                         DaCount.Fill(DtCount)
@@ -1407,67 +1422,69 @@ Public Class SettingsForm
                         Prod("origin") = DtCount(0)(10)
                         Prod("date_modified") = DtCount(0)(11)
                         Prod("inventory_id") = DtCount(0)(12)
+                        Prod("addontype") = DtCount(0)(13)
                         FillDatagridProduct.Rows.Add(Prod)
+                        LabelNewRows.Text += Val(LabelNewRows.Text)
                     End If
                 Next
+                ConnectionLocal.Close()
+                ConnectionServer.Close()
             End If
         Catch ex As Exception
+            BackgroundWorker1.CancelAsync()
             MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub GetAllProducts()
         Try
-            Try
-                'Dim DatatableProducts As DataTable
-                Dim Connection As MySqlConnection = ServerCloudCon()
-                Dim SqlCount = "SELECT COUNT(product_id) FROM admin_products_org"
-                Dim CmdCount As MySqlCommand = New MySqlCommand(SqlCount, Connection)
-                Dim result As Integer = CmdCount.ExecuteScalar
-
-                FillDatagridProduct = New DataTable
-                FillDatagridProduct.Columns.Add("product_id")
-                FillDatagridProduct.Columns.Add("product_sku")
-                FillDatagridProduct.Columns.Add("product_name")
-                FillDatagridProduct.Columns.Add("formula_id")
-                FillDatagridProduct.Columns.Add("product_barcode")
-                FillDatagridProduct.Columns.Add("product_category")
-                FillDatagridProduct.Columns.Add("product_price")
-                FillDatagridProduct.Columns.Add("product_desc")
-                FillDatagridProduct.Columns.Add("product_image")
-                FillDatagridProduct.Columns.Add("product_status")
-                FillDatagridProduct.Columns.Add("origin")
-                FillDatagridProduct.Columns.Add("date_modified")
-                FillDatagridProduct.Columns.Add("inventory_id")
-                Dim DaCount As MySqlDataAdapter
-                Dim FillDt As DataTable = New DataTable
-                For a = 1 To result
-                    LabelNewRows.Text += 1
-                    Dim Query As String = "SELECT * FROM admin_products_org WHERE product_id = " & a
-                    cmd = New MySqlCommand(Query, Connection)
-                    DaCount = New MySqlDataAdapter(cmd)
-                    FillDt = New DataTable
-                    DaCount.Fill(FillDt)
-                    For i As Integer = 0 To FillDt.Rows.Count - 1 Step +1
-                        Dim Prod As DataRow = FillDatagridProduct.NewRow
-                        Prod("product_id") = FillDt(i)(0)
-                        Prod("product_sku") = FillDt(i)(1)
-                        Prod("product_name") = FillDt(i)(2)
-                        Prod("formula_id") = FillDt(i)(3)
-                        Prod("product_barcode") = FillDt(i)(4)
-                        Prod("product_category") = FillDt(i)(5)
-                        Prod("product_price") = FillDt(i)(6)
-                        Prod("product_desc") = FillDt(i)(7)
-                        Prod("product_image") = FillDt(i)(8)
-                        Prod("product_status") = FillDt(i)(9)
-                        Prod("origin") = FillDt(i)(10)
-                        Prod("date_modified") = FillDt(i)(11)
-                        Prod("inventory_id") = FillDt(i)(12)
-                        FillDatagridProduct.Rows.Add(Prod)
-                    Next
+            Dim Connection As MySqlConnection = ServerCloudCon()
+            Dim SqlCount = "SELECT COUNT(product_id) FROM admin_products_org"
+            Dim CmdCount As MySqlCommand = New MySqlCommand(SqlCount, Connection)
+            Dim result As Integer = CmdCount.ExecuteScalar
+            Dim Cmd As MySqlCommand
+            FillDatagridProduct = New DataTable
+            FillDatagridProduct.Columns.Add("product_id")
+            FillDatagridProduct.Columns.Add("product_sku")
+            FillDatagridProduct.Columns.Add("product_name")
+            FillDatagridProduct.Columns.Add("formula_id")
+            FillDatagridProduct.Columns.Add("product_barcode")
+            FillDatagridProduct.Columns.Add("product_category")
+            FillDatagridProduct.Columns.Add("product_price")
+            FillDatagridProduct.Columns.Add("product_desc")
+            FillDatagridProduct.Columns.Add("product_image")
+            FillDatagridProduct.Columns.Add("product_status")
+            FillDatagridProduct.Columns.Add("origin")
+            FillDatagridProduct.Columns.Add("date_modified")
+            FillDatagridProduct.Columns.Add("inventory_id")
+            FillDatagridProduct.Columns.Add("addontype")
+            Dim DaCount As MySqlDataAdapter
+            Dim FillDt As DataTable = New DataTable
+            For a = 1 To result
+                Dim Query As String = "SELECT * FROM admin_products_org WHERE product_id = " & a
+                Cmd = New MySqlCommand(Query, Connection)
+                DaCount = New MySqlDataAdapter(Cmd)
+                FillDt = New DataTable
+                DaCount.Fill(FillDt)
+                For i As Integer = 0 To FillDt.Rows.Count - 1 Step +1
+                    Dim Prod As DataRow = FillDatagridProduct.NewRow
+                    Prod("product_id") = FillDt(i)(0)
+                    Prod("product_sku") = FillDt(i)(1)
+                    Prod("product_name") = FillDt(i)(2)
+                    Prod("formula_id") = FillDt(i)(3)
+                    Prod("product_barcode") = FillDt(i)(4)
+                    Prod("product_category") = FillDt(i)(5)
+                    Prod("product_price") = FillDt(i)(6)
+                    Prod("product_desc") = FillDt(i)(7)
+                    Prod("product_image") = FillDt(i)(8)
+                    Prod("product_status") = FillDt(i)(9)
+                    Prod("origin") = FillDt(i)(10)
+                    Prod("date_modified") = FillDt(i)(11)
+                    Prod("inventory_id") = FillDt(i)(12)
+                    Prod("addontype") = FillDt(i)(13)
+                    FillDatagridProduct.Rows.Add(Prod)
+                    LabelNewRows.Text += Val(LabelNewRows.Text)
                 Next
-            Catch ex As Exception
-                MsgBox(ex.ToString)
-            End Try
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1479,17 +1496,17 @@ Public Class SettingsForm
         Dim cmdlocal As MySqlCommand
         Dim dalocal As MySqlDataAdapter
         Dim dtlocal As DataTable = New DataTable
-        dtlocal.Columns.Add("date_modified")
+        dtlocal.Columns.Add("server_date_modified")
         dtlocal.Columns.Add("server_formula_id")
         Dim dtlocal1 As DataTable = New DataTable
         Try
-            Dim sql = "SELECT date_modified, server_formula_id FROM loc_product_formula"
-            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            Dim sql = "SELECT server_date_modified, server_formula_id FROM loc_product_formula"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn)
             dalocal = New MySqlDataAdapter(cmdlocal)
             dalocal.Fill(dtlocal1)
             For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
                 Dim Cat As DataRow = dtlocal.NewRow
-                Cat("date_modified") = dtlocal1(i)(0).ToString
+                Cat("server_date_modified") = dtlocal1(i)(0).ToString
                 Cat("server_formula_id") = dtlocal1(i)(1)
                 dtlocal.Rows.Add(Cat)
             Next
@@ -1500,68 +1517,67 @@ Public Class SettingsForm
     End Function
     Private Sub Function3()
         Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+            Dim FormulaLocal = LoadFormulaLocal()
+
             Dim Query = "SELECT * FROM loc_product_formula"
-            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
             Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
             Dim DtCheck As DataTable = New DataTable
             DaCheck.Fill(DtCheck)
-
             Dim cmdserver As MySqlCommand
             Dim daserver As MySqlDataAdapter
             Dim dtserver As DataTable
             If DtCheck.Rows.Count < 1 Then
                 Dim sql = "SELECT `server_formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org"
-                cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                cmdserver = New MySqlCommand(sql, ConnectionServer)
                 daserver = New MySqlDataAdapter(cmdserver)
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    LabelNewRows.Text += 1
                     DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10).ToString, dtserver(i)(11), dtserver(i)(12))
-
+                    LabelNewRows.Text += Val(LabelNewRows.Text)
                 Next
             Else
                 Dim Ids As String = ""
+
                 If ValidCloudConnection = True Then
-                    For i As Integer = 0 To LoadFormulaLocal.Rows.Count - 1 Step +1
+                    For i As Integer = 0 To FormulaLocal.Rows.Count - 1 Step +1
                         If Ids = "" Then
-                            Ids = "" & LoadFormulaLocal(i)(1) & ""
+                            Ids = "" & FormulaLocal(i)(1) & ""
                         Else
-                            Ids += "," & LoadFormulaLocal(i)(1) & ""
+                            Ids += "," & FormulaLocal(i)(1) & ""
                         End If
                     Next
                     Dim sql = "SELECT `server_formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE server_formula_id  IN (" & Ids & ") "
-                    cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                    cmdserver = New MySqlCommand(sql, ConnectionServer)
                     daserver = New MySqlDataAdapter(cmdserver)
                     dtserver = New DataTable
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                        If LoadFormulaLocal(i)(0).ToString <> dtserver(i)(10).ToString Then
-                            ProgressBar1.Value += 1
-                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
+                        If FormulaLocal(i)(0).ToString <> dtserver(i)(10).ToString Then
                             DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10).ToString, dtserver(i)(11), dtserver(i)(12))
-                        Else
-                            ProgressBar1.Value += 1
-                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                         End If
+                        ProgressBar1.Value = ProgressBar1.Value + 1
+                        LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checked " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                     Next
                     Dim sql2 = "SELECT `server_formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE server_formula_id NOT IN (" & Ids & ") "
-                    cmdserver = New MySqlCommand(sql2, ServerCloudCon())
+                    cmdserver = New MySqlCommand(sql2, ConnectionServer)
                     daserver = New MySqlDataAdapter(cmdserver)
                     dtserver = New DataTable
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                        If LoadFormulaLocal(i)(0).ToString <> dtserver(i)(10) Then
-                            ProgressBar1.Value += 1
-                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
+                        If FormulaLocal(i)(0).ToString <> dtserver(i)(10) Then
                             DataGridView3.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10).ToString, dtserver(i)(11), dtserver(i)(12))
+                            LabelNewRows.Text += Val(LabelNewRows.Text)
                         End If
                     Next
                 End If
             End If
         Catch ex As Exception
             BackgroundWorker1.CancelAsync()
-            'If table doesnt have data
+            MsgBox(ex.ToString)
         End Try
     End Sub
 #End Region
@@ -1575,7 +1591,7 @@ Public Class SettingsForm
         Dim dtlocal1 As DataTable = New DataTable
         Try
             Dim sql = "SELECT server_date_modified , server_inventory_id FROM loc_pos_inventory"
-            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            cmdlocal = New MySqlCommand(sql, LocalhostConn)
             dalocal = New MySqlDataAdapter(cmdlocal)
             dalocal.Fill(dtlocal)
             For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
@@ -1584,6 +1600,7 @@ Public Class SettingsForm
                 Cat("server_inventory_id") = dtlocal1(i)(1)
                 dtlocal.Rows.Add(Cat)
             Next
+            LocalhostConn.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1591,8 +1608,12 @@ Public Class SettingsForm
     End Function
     Private Sub Function4()
         Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+            Dim InventoryLocal = LoadInventoryLocal()
+
             Dim Query = "SELECT * FROM loc_pos_inventory"
-            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
             Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
             Dim DtCheck As DataTable = New DataTable
             DaCheck.Fill(DtCheck)
@@ -1600,61 +1621,56 @@ Public Class SettingsForm
             Dim daserver As MySqlDataAdapter
             Dim dtserver As DataTable
             If DtCheck.Rows.Count < 1 Then
-                Dim sql = "SELECT `server_inventory_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`, `main_inventory_id` FROM admin_pos_inventory_org"
-                cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                Dim sql = "SELECT `server_inventory_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`, `main_inventory_id`, `origin` FROM admin_pos_inventory_org"
+                cmdserver = New MySqlCommand(sql, ConnectionServer)
                 daserver = New MySqlDataAdapter(cmdserver)
                 dtserver = New DataTable
                 daserver.Fill(dtserver)
                 For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                    LabelNewRows.Text += 1
-                    DataGridView4.Rows.Add(dtserver(i)(0), 0, dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
+                    DataGridView4.Rows.Add(dtserver(i)(0), 0, dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString, dtserver(i)(10).ToString)
+                    LabelNewRows.Text += Val(LabelNewRows.Text)
                 Next
             Else
                 Dim Ids As String = ""
+
                 If ValidCloudConnection = True Then
-                    For i As Integer = 0 To LoadInventoryLocal.Rows.Count - 1 Step +1
+                    For i As Integer = 0 To InventoryLocal.Rows.Count - 1 Step +1
                         If Ids = "" Then
-                            Ids = "" & LoadInventoryLocal(i)(1) & ""
+                            Ids = "" & InventoryLocal(i)(1) & ""
                         Else
-                            Ids += "," & LoadInventoryLocal(i)(1) & ""
+                            Ids += "," & InventoryLocal(i)(1) & ""
                         End If
                     Next
-                    Dim sql = "SELECT `server_inventory_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`,`main_inventory_id` FROM admin_pos_inventory_org WHERE server_inventory_id IN (" & Ids & ")"
-                    cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                    Dim sql = "SELECT `server_inventory_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`,`main_inventory_id`, `origin` FROM admin_pos_inventory_org WHERE server_inventory_id IN (" & Ids & ")"
+                    cmdserver = New MySqlCommand(sql, ConnectionServer)
                     daserver = New MySqlDataAdapter(cmdserver)
                     dtserver = New DataTable
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                        If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(8).ToString Then
-                            ProgressBar1.Value += 1
-                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
-                            DataGridView4.Rows.Add(dtserver(i)(0), 0, dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
-                        Else
-                            ProgressBar1.Value += 1
-                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
+                        If InventoryLocal(i)(0).ToString <> dtserver(i)(8).ToString Then
+                            DataGridView4.Rows.Add(dtserver(i)(0), 0, dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString, dtserver(i)(10).ToString)
                         End If
+                        ProgressBar1.Value = ProgressBar1.Value + 1
+                        LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checked " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
                     Next
-                    Dim sql2 = "SELECT `server_inventory_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`,`main_inventory_id` FROM admin_pos_inventory_org WHERE server_inventory_id NOT IN (" & Ids & ")"
-                    cmdserver = New MySqlCommand(sql2, ServerCloudCon())
+                    Dim sql2 = "SELECT `server_inventory_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `date_modified`,`main_inventory_id`, `origin` FROM admin_pos_inventory_org WHERE server_inventory_id NOT IN (" & Ids & ")"
+                    cmdserver = New MySqlCommand(sql2, ConnectionServer)
                     daserver = New MySqlDataAdapter(cmdserver)
                     dtserver = New DataTable
                     daserver.Fill(dtserver)
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
-                        If LoadInventoryLocal(i)(0).ToString <> dtserver(i)(8) Then
-                            ProgressBar1.Value += 1
-                            LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checking " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
-                            DataGridView4.Rows.Add(dtserver(i)(0), 0, dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString)
+                        If InventoryLocal(i)(0).ToString <> dtserver(i)(8) Then
+                            DataGridView4.Rows.Add(dtserver(i)(0), 0, dtserver(i)(1), dtserver(i)(2), dtserver(i)(3), dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8).ToString, dtserver(i)(9).ToString, dtserver(i)(10).ToString)
+                            LabelNewRows.Text += Val(LabelNewRows.Text)
                         End If
                     Next
                 End If
             End If
         Catch ex As Exception
             BackgroundWorker1.CancelAsync()
-            'If table doesnt have data
+            MsgBox(ex.ToString)
         End Try
     End Sub
-
-
 #End Region
 #End Region
 #Region "Install Updates"
