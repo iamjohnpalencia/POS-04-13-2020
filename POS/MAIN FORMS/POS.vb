@@ -1630,7 +1630,7 @@ Public Class POS
         Dim dtlocal1 As DataTable = New DataTable
         Try
             Dim sql = "SELECT server_date_modified , server_inventory_id FROM loc_pos_inventory"
-            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            cmdlocal = New MySqlCommand(sql, LocalhostConn)
             dalocal = New MySqlDataAdapter(cmdlocal)
             dalocal.Fill(dtlocal)
             For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
