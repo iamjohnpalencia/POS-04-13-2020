@@ -98,6 +98,10 @@ Partial Class Leaderboards
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel3.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -632,10 +636,10 @@ Partial Class Leaderboards
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.DatagridviewTransfers)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(654, 234)
+        Me.TabPage3.Size = New System.Drawing.Size(654, 231)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "TabPage3"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -659,6 +663,7 @@ Partial Class Leaderboards
         DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DatagridviewTransfers.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.DatagridviewTransfers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DatagridviewTransfers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column17, Me.Column18, Me.Column19, Me.Column20})
         DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle12.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -672,16 +677,16 @@ Partial Class Leaderboards
         Me.DatagridviewTransfers.EnableHeadersVisualStyles = False
         Me.DatagridviewTransfers.Location = New System.Drawing.Point(3, 3)
         Me.DatagridviewTransfers.Name = "DatagridviewTransfers"
-        Me.DatagridviewTransfers.Size = New System.Drawing.Size(648, 228)
+        Me.DatagridviewTransfers.Size = New System.Drawing.Size(648, 225)
         Me.DatagridviewTransfers.TabIndex = 6
         '
         'TabPage4
         '
         Me.TabPage4.Controls.Add(Me.DatagridviewLogs)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 25)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(654, 234)
+        Me.TabPage4.Size = New System.Drawing.Size(654, 231)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TabPage4"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -720,7 +725,7 @@ Partial Class Leaderboards
         Me.DatagridviewLogs.Location = New System.Drawing.Point(3, 3)
         Me.DatagridviewLogs.Name = "DatagridviewLogs"
         Me.DatagridviewLogs.RowHeadersVisible = False
-        Me.DatagridviewLogs.Size = New System.Drawing.Size(648, 228)
+        Me.DatagridviewLogs.Size = New System.Drawing.Size(648, 225)
         Me.DatagridviewLogs.TabIndex = 6
         '
         'Column3
@@ -742,6 +747,26 @@ Partial Class Leaderboards
         '
         Me.Column6.HeaderText = "Date"
         Me.Column6.Name = "Column6"
+        '
+        'Column17
+        '
+        Me.Column17.HeaderText = "Log Type"
+        Me.Column17.Name = "Column17"
+        '
+        'Column18
+        '
+        Me.Column18.HeaderText = "Description"
+        Me.Column18.Name = "Column18"
+        '
+        'Column19
+        '
+        Me.Column19.HeaderText = "Crew"
+        Me.Column19.Name = "Column19"
+        '
+        'Column20
+        '
+        Me.Column20.HeaderText = "Date"
+        Me.Column20.Name = "Column20"
         '
         'Leaderboards
         '
@@ -850,4 +875,8 @@ Partial Class Leaderboards
     Friend WithEvents Column14 As DataGridViewTextBoxColumn
     Friend WithEvents Column15 As DataGridViewTextBoxColumn
     Friend WithEvents Column16 As DataGridViewTextBoxColumn
+    Friend WithEvents Column17 As DataGridViewTextBoxColumn
+    Friend WithEvents Column18 As DataGridViewTextBoxColumn
+    Friend WithEvents Column19 As DataGridViewTextBoxColumn
+    Friend WithEvents Column20 As DataGridViewTextBoxColumn
 End Class
