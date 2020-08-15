@@ -54,10 +54,11 @@ Module publicVariables
     Public CouponTotal As Decimal
     '=============================================================================================================
     'POS INFORMATION
-    Public ClientGuid As String
     Public ClientCrewID As String
-    Public ClientStoreID As String
     Public ClientRole As String
+
+    Public ClientGuid As String
+    Public ClientStoreID As String
     Public ClientBrand As String
     Public ClientLocation As String
     Public ClientPostalCode As String

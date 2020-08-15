@@ -9,7 +9,6 @@ Module RetrieveModule
     Public Count_control As Integer = 0
     Dim result As Integer
     Dim dr
-
     Dim municipality
     Dim province
     Dim full_name
@@ -24,13 +23,14 @@ Module RetrieveModule
     Dim critical_item
     Dim product
     Dim cipherText As String
+
     'FUNCTION FOR LOGGING-IN POS CLIENT/ CREW / POS ==================================================================================== 
     Public Sub retrieveLoginDetails()
         If Login.txtusername.Text = "" Then
-            MessageBox.Show("Input username!", "Login Form", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Input username first", "Login Form", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Login.txtusername.Focus()
         ElseIf Login.txtpassword.Text = "" Then
-            MessageBox.Show("Input password!", "Login Form", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Input password first", "Login Form", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Login.txtpassword.Focus()
         Else
             Try

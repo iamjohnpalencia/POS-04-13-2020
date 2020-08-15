@@ -4,9 +4,7 @@ Public Class HoldOrder
     Private Sub HoldOrder_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         POS.Enabled = True
     End Sub
-    Private Sub ButtonExit_Click_1(sender As Object, e As EventArgs) Handles ButtonExit.Click
-        Me.Close()
-    End Sub
+
     Private Sub ButtonHoldOrder_Click(sender As Object, e As EventArgs) Handles ButtonHoldOrder.Click
         If String.IsNullOrWhiteSpace(TextBoxCustomerName.Text) Then
             MsgBox("Input customer name first")
@@ -22,7 +20,7 @@ Public Class HoldOrder
                     For i As Integer = 0 To POS.DataGridViewOrders.Rows.Count - 1 Step +1
                         messageboxappearance = False
                         table = "loc_pending_orders"
-                        fields = "(`crew_id`,`customer_name`,`product_name`,`product_quantity`,`product_price`,`product_total`,`product_id`,`product_sku`,`guid`,`active`, `increment`, `product_category`, `product_addon_id`)"
+                        fields = "(`crew_id`,`customer_name`,`product_name`,`product_quantity`,`product_price`,`product_total`,`product_id`,`product_sku`,`guid`,`active`, `increment`, `product_category`, `product_addon_id`, `ColumnSumID`, `ColumnInvID`, `Upgrade`, `Origin`, `addontype`)"
                         value = "('" & ClientCrewID & "'
                                 , '" & Me.TextBoxCustomerName.Text & "'
                                 , '" & POS.DataGridViewOrders.Rows(i).Cells(0).Value & "'
@@ -35,19 +33,23 @@ Public Class HoldOrder
                                 , " & 1 & "
                                 , " & POS.DataGridViewOrders.Rows(i).Cells(4).Value & "
                                 , '" & POS.DataGridViewOrders.Rows(i).Cells(7).Value & "'
-                                , " & POS.DataGridViewOrders.Rows(i).Cells(8).Value & ")"
+                                , " & POS.DataGridViewOrders.Rows(i).Cells(8).Value & "
+                                , '" & POS.DataGridViewOrders.Rows(i).Cells(9).Value & "'
+                                , " & POS.DataGridViewOrders.Rows(i).Cells(10).Value & "
+                                , " & POS.DataGridViewOrders.Rows(i).Cells(11).Value & "
+                                , '" & POS.DataGridViewOrders.Rows(i).Cells(12).Value & "'
+                                , '" & POS.DataGridViewOrders.Rows(i).Cells(13).Value & "')"
                         successmessage = "success"
                         errormessage = "error holdorder(loc_pending_orders)"
                         GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                     Next
-                    MsgBox(sql)
                 Catch ex As Exception
                 End Try
                 Try
                     For a As Integer = 0 To POS.DataGridViewInv.Rows.Count - 1 Step +1
                         messageboxappearance = False
                         table = "loc_hold_inventory"
-                        fields = "(`sr_total`, `f_id`, `qty`, `id`, `nm`, `org_serve`, `name`, `cog`, `ocog`, `prd.addid`)"
+                        fields = "(`sr_total`, `f_id`, `qty`, `id`, `nm`, `org_serve`, `name`, `cog`, `ocog`, `prd.addid`, `origin`)"
                         value = "(" & POS.DataGridViewInv.Rows(a).Cells(0).Value & " 
                         , " & POS.DataGridViewInv.Rows(a).Cells(1).Value & "
                         , " & POS.DataGridViewInv.Rows(a).Cells(2).Value & "
@@ -57,12 +59,12 @@ Public Class HoldOrder
                         , '" & TextBoxCustomerName.Text & "'
                         , " & POS.DataGridViewInv.Rows(a).Cells(6).Value & "
                         , " & POS.DataGridViewInv.Rows(a).Cells(7).Value & "
-                        , " & POS.DataGridViewInv.Rows(a).Cells(8).Value & ")"
+                        , " & POS.DataGridViewInv.Rows(a).Cells(8).Value & "
+                        , '" & POS.DataGridViewInv.Rows(a).Cells(9).Value & "')"
                         successmessage = "success"
                         errormessage = "error holdorder(loc_hold_inventory)"
                         GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                     Next
-                            MsgBox(sql)
                 Catch ex As Exception
                     MsgBox(ex.ToString)
                 End Try
@@ -86,5 +88,21 @@ Public Class HoldOrder
                 End With
             End If
         End If
+    End Sub
+    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
+        ShowKeyboard()
+    End Sub
+
+    Private Sub TextBoxCustomerName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxCustomerName.KeyPress
+        If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+            e.Handled = True
+        End If
+    End Sub
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Close()
+    End Sub
+
+    Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
+
     End Sub
 End Class

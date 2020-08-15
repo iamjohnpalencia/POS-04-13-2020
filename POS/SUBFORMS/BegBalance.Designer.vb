@@ -23,6 +23,7 @@ Partial Class BegBalance
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BegBalance))
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -52,6 +53,7 @@ Partial Class BegBalance
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -248,14 +250,13 @@ Partial Class BegBalance
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(0, 357)
+        Me.Button1.Location = New System.Drawing.Point(20, 357)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(343, 33)
+        Me.Button1.Size = New System.Drawing.Size(237, 35)
         Me.Button1.TabIndex = 24
         Me.Button1.Text = "SUBMIT"
         Me.Button1.UseVisualStyleBackColor = False
@@ -304,6 +305,7 @@ Partial Class BegBalance
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.ButtonKeyboard)
         Me.Panel1.Controls.Add(Me.Label15)
         Me.Panel1.Controls.Add(Me.Label14)
         Me.Panel1.Controls.Add(Me.ComboBox1)
@@ -334,7 +336,7 @@ Partial Class BegBalance
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(345, 392)
+        Me.Panel1.Size = New System.Drawing.Size(345, 412)
         Me.Panel1.TabIndex = 237
         '
         'Label15
@@ -357,12 +359,25 @@ Partial Class BegBalance
         Me.Label14.TabIndex = 237
         Me.Label14.Text = "BEGINNING BALANCE"
         '
+        'ButtonKeyboard
+        '
+        Me.ButtonKeyboard.BackColor = System.Drawing.SystemColors.Control
+        Me.ButtonKeyboard.BackgroundImage = CType(resources.GetObject("ButtonKeyboard.BackgroundImage"), System.Drawing.Image)
+        Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
+        Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(259, 357)
+        Me.ButtonKeyboard.Name = "ButtonKeyboard"
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
+        Me.ButtonKeyboard.TabIndex = 239
+        Me.ButtonKeyboard.UseVisualStyleBackColor = False
+        '
         'BegBalance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(345, 392)
+        Me.ClientSize = New System.Drawing.Size(345, 412)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "BegBalance"
@@ -405,4 +420,5 @@ Partial Class BegBalance
     Friend WithEvents Timer1 As Timer
     Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label
+    Friend WithEvents ButtonKeyboard As Button
 End Class

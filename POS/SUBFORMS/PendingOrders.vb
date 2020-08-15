@@ -69,23 +69,23 @@ Public Class PendingOrders
     End Sub
     Public Sub populatedatagridvieworders()
         Try
-            Dim command As New MySqlCommand("SELECT product_name, product_quantity, product_price, product_total, increment, product_id, product_sku, product_category, product_addon_id FROM `loc_pending_orders` WHERE customer_name = '" & ComboBoxCustomerName.Text & "' AND guid = '" & ClientGuid & "'", LocalhostConn())
+            Dim command As New MySqlCommand("SELECT * FROM `loc_pending_orders` WHERE customer_name = '" & ComboBoxCustomerName.Text & "' AND guid = '" & ClientGuid & "'", LocalhostConn())
             Dim adapter As New MySqlDataAdapter(command)
             Dim table As New DataTable()
             adapter.Fill(table)
             For Each row As DataRow In table.Rows
-                POS.DataGridViewOrders.Rows.Add(row("product_name"), row("product_quantity"), row("product_price"), row("product_total"), row("increment"), row("product_id"), row("product_sku"), row("product_category"), row("product_addon_id"))
+                POS.DataGridViewOrders.Rows.Add(row("product_name"), row("product_quantity"), row("product_price"), row("product_total"), row("increment"), row("product_id"), row("product_sku"), row("product_category"), row("product_addon_id"), row("ColumnSumID"), row("ColumnInvID"), row("Upgrade"), row("Origin"), row("addontype"))
             Next row
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
         Try
-            Dim command As New MySqlCommand("SELECT `hold_id`, `sr_total`, `f_id`, `qty`, `id`, `nm`, `org_serve`, `cog`, `ocog`, `prd.addid` FROM loc_hold_inventory WHERE name = '" & ComboBoxCustomerName.Text & "'", LocalhostConn())
+            Dim command As New MySqlCommand("SELECT `hold_id`, `sr_total`, `f_id`, `qty`, `id`, `nm`, `org_serve`, `cog`, `ocog`, `prd.addid`, `origin` FROM loc_hold_inventory WHERE name = '" & ComboBoxCustomerName.Text & "'", LocalhostConn())
             Dim adapter As New MySqlDataAdapter(command)
             Dim table As New DataTable()
             adapter.Fill(table)
             For Each row As DataRow In table.Rows
-                POS.DataGridViewInv.Rows.Add(row("sr_total"), row("f_id"), row("qty"), row("id"), row("nm"), row("org_serve"), row("cog"), row("ocog"), row("prd.addid"))
+                POS.DataGridViewInv.Rows.Add(row("sr_total"), row("f_id"), row("qty"), row("id"), row("nm"), row("org_serve"), row("cog"), row("ocog"), row("prd.addid"), row("origin"))
             Next row
         Catch ex As Exception
             MsgBox(ex.ToString)

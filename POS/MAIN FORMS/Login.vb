@@ -2,8 +2,7 @@
 Imports MySql.Data.MySqlClient
 
 Public Class Login
-    Declare Function Wow64DisableWow64FsRedirection Lib "kernel32" (ByRef oldvalue As Long) As Boolean
-    Private osk As String = "C:\Windows\System32\osk.exe"
+
     Private Sub Login_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
         CheckDatabaseBackup()
         txtusername.Focus()
@@ -85,7 +84,6 @@ Public Class Login
             MsgBox(ex.ToString)
         End Try
     End Sub
-
     Private Sub ButttonLogin_Click(sender As Object, e As EventArgs) Handles ButttonLogin.Click
         retrieveLoginDetails()
     End Sub
@@ -121,10 +119,6 @@ Public Class Login
             MessageBox.Show("Cannot connect to cloud server please try again.", "No internet connection", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
-    Private Sub PopupKeyboard(sender As Object, e As EventArgs) Handles txtusername.Click, txtpassword.Click
-        Wow64DisableWow64FsRedirection(0)
-        Process.Start(osk)
-    End Sub
     Private Sub txtusername_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtusername.KeyPress, txtpassword.KeyPress
         Try
             If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
@@ -133,5 +127,12 @@ Public Class Login
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
+    End Sub
+
+    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
+        ShowKeyboard()
+        Application.DoEvents()
+
+        txtusername.Focus()
     End Sub
 End Class

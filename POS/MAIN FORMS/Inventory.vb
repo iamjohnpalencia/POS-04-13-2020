@@ -559,9 +559,14 @@ Public Class Inventory
                 ComboBoxtransfer.Enabled = False
                 FillComboboxReason()
             ElseIf ComboBoxAction.Text = "TRANSFER" Then
-                ComboBoxDeduction.Enabled = False
-                ComboBoxtransfer.Enabled = True
-                LoadOutlets()
+                If CheckForInternetConnection() = True Then
+                    ComboBoxDeduction.Enabled = False
+                    ComboBoxtransfer.Enabled = True
+                    LoadOutlets()
+                Else
+                    MsgBox("Internet connection not available.")
+                    ComboBoxAction.SelectedIndex = 0
+                End If
             Else
                 ComboBoxDeduction.Enabled = False
                 ComboBoxtransfer.Enabled = False

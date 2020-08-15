@@ -60,4 +60,8 @@ Public Class BegBalance
     Private Sub BegBalance_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ComboBox1.SelectedIndex = 0
     End Sub
+
+    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
+        ShowKeyboard()
+    End Sub
 End Class

@@ -62,16 +62,22 @@ Public Class Registration
                 GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
                 ClearTextBox(Me)
                 selectmax(whatform:=3)
+                MessageBox.Show("Success fully registered", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End If
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If MessageBox.Show("Are you sure you really want to exit ?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-            Application.Exit()
-        End If
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+
     End Sub
     Private Sub Registration_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         selectmax(whatform:=3)
     End Sub
-
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+        If MessageBox.Show("Are you sure you really want to exit ?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            Application.Exit()
+        End If
+    End Sub
+    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
+        ShowKeyboard()
+    End Sub
 End Class

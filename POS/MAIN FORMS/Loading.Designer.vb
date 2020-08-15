@@ -127,9 +127,10 @@ Partial Class Loading
         'LabelVersion
         '
         Me.LabelVersion.AutoSize = True
+        Me.LabelVersion.Dock = System.Windows.Forms.DockStyle.Left
         Me.LabelVersion.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelVersion.ForeColor = System.Drawing.Color.White
-        Me.LabelVersion.Location = New System.Drawing.Point(3, 3)
+        Me.LabelVersion.Location = New System.Drawing.Point(0, 0)
         Me.LabelVersion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelVersion.Name = "LabelVersion"
         Me.LabelVersion.Size = New System.Drawing.Size(33, 14)
@@ -148,9 +149,10 @@ Partial Class Loading
         'Label147
         '
         Me.Label147.AutoSize = True
+        Me.Label147.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label147.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label147.ForeColor = System.Drawing.Color.White
-        Me.Label147.Location = New System.Drawing.Point(6, 3)
+        Me.Label147.Location = New System.Drawing.Point(5, 0)
         Me.Label147.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label147.Name = "Label147"
         Me.Label147.Size = New System.Drawing.Size(251, 14)

@@ -13,6 +13,16 @@ Module publicfunctions
     Dim hashable As String
     Dim dateformat
     Dim timeformat
+    Declare Function Wow64DisableWow64FsRedirection Lib "kernel32" (ByRef oldvalue As Long) As Boolean
+    Private osk As String = "C:\Windows\System32\osk.exe"
+    Public Sub ShowKeyboard()
+        Try
+            Wow64DisableWow64FsRedirection(0)
+            Process.Start(osk)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Public Sub ButtonEnableability(ByVal root As Control, ENB As Boolean)
         For Each ctrl As Control In root.Controls
             ButtonEnableability(ctrl, ENB)
