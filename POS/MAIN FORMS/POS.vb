@@ -239,7 +239,6 @@ Public Class POS
             BackgroundWorker3.WorkerReportsProgress = True
             BackgroundWorker3.WorkerSupportsCancellation = True
             BackgroundWorker3.RunWorkerAsync()
-
         End If
     End Sub
     Private Sub ButtonWaffleUpgrade_Click(sender As Object, e As EventArgs) Handles ButtonWaffleUpgrade.Click
@@ -346,7 +345,7 @@ Public Class POS
     End Sub
 
     Private Sub BackgroundWorker3_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker3.RunWorkerCompleted
-        MsgBox("Mix Ingredients")
+        MessageBox.Show("Ingredient Mixed", "Mix Products", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Panel3.Enabled = True
         ButtonWaffleUpgrade.Enabled = True
         ButtonPayMent.Text = "Checkout"

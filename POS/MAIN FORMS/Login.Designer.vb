@@ -81,7 +81,7 @@ Partial Class Login
         Me.Panel8.Controls.Add(Me.LinkLabel1)
         Me.Panel8.Controls.Add(Me.ButttonLogin)
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel8.Font = New System.Drawing.Font("Kelson Sans Normal", 9.749999!)
+        Me.Panel8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.Panel8.Location = New System.Drawing.Point(0, 0)
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(297, 322)

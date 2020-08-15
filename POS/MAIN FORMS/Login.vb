@@ -34,6 +34,7 @@ Public Class Login
                     Dim sql As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
                     Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                     cmd.ExecuteNonQuery()
+                    MessageBox.Show("Database backup path: " & S_ExportPath, "Backup Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
             ElseIf S_Backup_Interval = "2" Then
                 'Weekly
@@ -44,6 +45,7 @@ Public Class Login
                     Dim sql As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
                     Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                     cmd.ExecuteNonQuery()
+                    MessageBox.Show("Database backup path: " & S_ExportPath, "Backup Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
             ElseIf S_Backup_Interval = "3" Then
                 'Monthly
@@ -53,6 +55,7 @@ Public Class Login
                     Dim sql As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
                     Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                     cmd.ExecuteNonQuery()
+                    MessageBox.Show("Database backup path: " & S_ExportPath, "Backup Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
                     Dim sql As String = "SELECT S_BackupDate FROM loc_settings WHERE settings_id = 1"
                     Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
@@ -63,6 +66,7 @@ Public Class Login
                         Dim sql1 As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
                         Dim cmd1 As MySqlCommand = New MySqlCommand(sql1, LocalhostConn)
                         cmd1.ExecuteNonQuery()
+                        MessageBox.Show("Database backup path: " & S_ExportPath, "Backup Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
                 End If
             ElseIf S_Backup_Interval = "4" Then
@@ -73,6 +77,7 @@ Public Class Login
                     Dim sql1 As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
                     Dim cmd1 As MySqlCommand = New MySqlCommand(sql1, LocalhostConn)
                     cmd1.ExecuteNonQuery()
+                    MessageBox.Show("Database backup path: " & S_ExportPath, "Backup Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
                 'Yearly
             End If
