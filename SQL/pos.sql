@@ -349,7 +349,8 @@ CREATE TABLE `loc_hold_inventory` (
   `name` varchar(255) NOT NULL,
   `cog` decimal(11,2) NOT NULL,
   `ocog` decimal(11,2) NOT NULL,
-  `prd.addid` int(11) NOT NULL
+  `prd.addid` int(11) NOT NULL,
+  `origin` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -449,7 +450,12 @@ CREATE TABLE `loc_pending_orders` (
   `created_at` text NOT NULL,
   `guid` varchar(50) NOT NULL,
   `active` int(11) NOT NULL,
-  `increment` varchar(11) NOT NULL
+  `increment` varchar(11) NOT NULL,
+  `ColumnSumID` text NOT NULL,
+  `ColumnInvID` int(11) NOT NULL,
+  `Upgrade` int(11) NOT NULL,
+  `Origin` text NOT NULL,
+  `addontype` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
