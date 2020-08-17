@@ -268,7 +268,7 @@ Public Class ConfigManager
             If ValidCloudConnection = True And ValidLocalConnection = True Then
                 If System.IO.File.Exists(My.Settings.LocalConnectionPath) Then
                     Dim EXPORTPATH = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\Innovention"
-                    sql = "SELECT `A_Tax`, `A_SIFormat`, `A_Terminal_No`, `A_ZeroRated`, `S_Batter`, `S_Brownie_Mix`, `S_Upgrade_Price_Add` , `S_Update_Version` FROM admin_settings_org WHERE settings_id = 1"
+                    sql = "SELECT `A_Tax`, `A_SIFormat`, `A_Terminal_No`, `A_ZeroRated`, `S_Batter`, `S_Brownie_Mix`, `S_Upgrade_Price_Add` , `S_Update_Version` , `S_Waffle_Bag`, `S_Packets` FROM admin_settings_org WHERE settings_id = 1"
                     Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
                     Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
@@ -289,6 +289,8 @@ Public Class ConfigManager
                         My.Settings.Version = dt(0)(7)
                         My.Settings.Save()
                         POSVersion = dt(0)(7)
+                        TextBoxWaffleBag.Text = dt(0)(8)
+                        TextBoxSugarPackets.Text = dt(0)(9)
                         ConfirmAdditionalSettings = True
                     Else
                         ConfirmAdditionalSettings = False
@@ -798,7 +800,7 @@ Public Class ConfigManager
             If TextboxIsEmpty(GroupBox10) = True Then
                 If ValidLocalConnection = True Then
                     Dim table = "loc_settings"
-                    Dim fields = "A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add, S_Update_Version"
+                    Dim fields = "A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add, S_Update_Version, S_Waffle_Bag , S_Packets"
                     Dim where = "settings_id = 1"
                     Dim sql = "Select " & fields & " FROM " & table & " WHERE " & where
                     Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
@@ -811,7 +813,7 @@ Public Class ConfigManager
                         ElseIf RadioButtonNO.Checked = True Then
                             RButton = 0
                         End If
-                        Dim fields1 = "A_Export_Path = '" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "', A_Tax = '" & Tax & "' , A_SIFormat = '" & Trim(TextBoxSINumber.Text) & "' , A_Terminal_No = '" & Trim(TextBoxTerminalNo.Text) & "' , A_ZeroRated = '" & RButton & "', S_Zreading = '" & Format(Now(), "yyyy-MM-dd") & "' , S_Batter = '" & Trim(TextBoxBATTERID.Text) & "', S_Brownie_Mix = '" & Trim(TextBoxBROWNIEID.Text) & "', S_Upgrade_Price_Add = '" & Trim(TextBoxBROWNIEPRICE.Text) & "'"
+                        Dim fields1 = "A_Export_Path = '" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "', A_Tax = '" & Tax & "' , A_SIFormat = '" & Trim(TextBoxSINumber.Text) & "' , A_Terminal_No = '" & Trim(TextBoxTerminalNo.Text) & "' , A_ZeroRated = '" & RButton & "', S_Zreading = '" & Format(Now(), "yyyy-MM-dd") & "' , S_Batter = '" & Trim(TextBoxBATTERID.Text) & "', S_Brownie_Mix = '" & Trim(TextBoxBROWNIEID.Text) & "', S_Upgrade_Price_Add = '" & Trim(TextBoxBROWNIEPRICE.Text) & "' , `S_Waffle_Bag` = '" & Trim(TextBoxWaffleBag.Text) & "' , `S_Packets` = '" & Trim(TextBoxSugarPackets.Text) & "' , S_Update_Version = '" & POSVersion & "'"
                         sql = "UPDATE " & table & " SET " & fields1 & " WHERE " & where
                         cmd = New MySqlCommand(sql, TestLocalConnection)
                         cmd.ExecuteNonQuery()
@@ -820,7 +822,7 @@ Public Class ConfigManager
                             MsgBox("Saved!")
                         End If
                     Else
-                        Dim fields2 = "(A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add)"
+                        Dim fields2 = "(A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add , S_Update_Version , S_Waffle_Bag , S_Packets)"
                         Dim value = "('" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "'
                      ,'" & Tax & "'
                      ,'" & Trim(TextBoxSINumber.Text) & "'
@@ -830,7 +832,9 @@ Public Class ConfigManager
                      ,'" & Trim(TextBoxBATTERID.Text) & "'
                      ,'" & Trim(TextBoxBROWNIEID.Text) & "'
                      ,'" & Trim(TextBoxBROWNIEPRICE.Text) & "'
-                     ,'" & POSVersion & "')"
+                     ,'" & POSVersion & "'
+                     ,'" & Trim(TextBoxWaffleBag.Text) & "'
+                     ,'" & Trim(TextBoxSugarPackets.Text) & "')"
 
                         sql = "INSERT INTO " & table & " " & fields2 & " VALUES " & value
                         cmd = New MySqlCommand(sql, TestLocalConnection)
@@ -1006,7 +1010,7 @@ Public Class ConfigManager
                                     If AccountExist = True Then
                                         If FranchiseeStoreValidation = True Then
                                             If Not String.IsNullOrWhiteSpace(TextBoxProdKey.Text) Then
-
+                                                DataGridViewOutlets.Enabled = False
                                                 TextboxEnableability(GroupBox12, False)
                                                 ButtonEnableability(GroupBox12, False)
                                                 BackgroundWorkerACTIVATION.WorkerReportsProgress = True
@@ -1067,11 +1071,17 @@ Public Class ConfigManager
     Dim threadListActivationCategory As List(Of Thread) = New List(Of Thread)
     Dim threadListActivationFormula As List(Of Thread) = New List(Of Thread)
     Dim threadListActivationInventory As List(Of Thread) = New List(Of Thread)
+    Dim threadListActivationPartners As List(Of Thread) = New List(Of Thread)
+    Dim threadListActivationCoupons As List(Of Thread) = New List(Of Thread)
 
     Dim ThreadActivationProduct As Thread
     Dim ThreadActivationCategory As Thread
     Dim ThreadActivationFormula As Thread
     Dim ThreadActivationInventory As Thread
+    Dim ThreadActivationPartners As Thread
+    Dim ThreadActivationCoupons As Thread
+
+
     Private Sub BackgroundWorkerACTIVATION_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerACTIVATION.DoWork
         Try
             For i = 0 To 100
@@ -1266,6 +1276,7 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
+
     Private Sub InsertLocalMasterList()
         Try
             TextBox1.Text += FullDate24HR() & " :    Inserting masterlist data." & vbNewLine
@@ -1341,7 +1352,24 @@ Public Class ConfigManager
                         t.Join()
                     Next
                 End If
+
                 If i = 30 Then
+                    ThreadActivationCoupons = New Thread(AddressOf GetCoupons)
+                    ThreadActivationCoupons.Start()
+                    threadListActivationCoupons.Add(ThreadActivationCoupons)
+                    For Each t In threadListActivationCoupons
+                        t.Join()
+                    Next
+                End If
+                If i = 40 Then
+                    ThreadActivationPartners = New Thread(AddressOf GetPartners)
+                    ThreadActivationPartners.Start()
+                    threadListActivationPartners.Add(ThreadActivationPartners)
+                    For Each t In threadListActivationPartners
+                        t.Join()
+                    Next
+                End If
+                If i = 50 Then
                     ThreadActivationProduct = New Thread(AddressOf GetProducts)
                     ThreadActivationProduct.Start()
                     threadListActivationProduct.Add(ThreadActivationProduct)
@@ -1349,19 +1377,14 @@ Public Class ConfigManager
                         t.Join()
                     Next
                 End If
-                If i = 40 Then
+                If i = 60 Then
                     thread1 = New System.Threading.Thread(AddressOf FillDgvProd)
                     thread1.Start()
                     threadLISTINSERPROD.Add(thread1)
                     For Each t In threadLISTINSERPROD
                         t.Join()
                     Next
-                    thread1 = New System.Threading.Thread(AddressOf InsertToProducts)
-                    thread1.Start()
-                    threadLISTINSERPROD.Add(thread1)
-                    For Each t In threadLISTINSERPROD
-                        t.Join()
-                    Next
+
                     thread1 = New System.Threading.Thread(AddressOf InsertToInventory)
                     thread1.Start()
                     threadLISTINSERPROD.Add(thread1)
@@ -1375,6 +1398,24 @@ Public Class ConfigManager
                         t.Join()
                     Next
                     thread1 = New System.Threading.Thread(AddressOf InsertToFormula)
+                    thread1.Start()
+                    threadLISTINSERPROD.Add(thread1)
+                    For Each t In threadLISTINSERPROD
+                        t.Join()
+                    Next
+                    thread1 = New System.Threading.Thread(AddressOf InsertPartnersTransacton)
+                    thread1.Start()
+                    threadLISTINSERPROD.Add(thread1)
+                    For Each t In threadLISTINSERPROD
+                        t.Join()
+                    Next
+                    thread1 = New System.Threading.Thread(AddressOf InsertCoupons)
+                    thread1.Start()
+                    threadLISTINSERPROD.Add(thread1)
+                    For Each t In threadLISTINSERPROD
+                        t.Join()
+                    Next
+                    thread1 = New System.Threading.Thread(AddressOf InsertToProducts)
                     thread1.Start()
                     threadLISTINSERPROD.Add(thread1)
                     For Each t In threadLISTINSERPROD
@@ -1532,6 +1573,36 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Private Sub GetCoupons()
+        Try
+            TextBox1.Text += FullDate24HR() & " :    Getting cloud server's coupons data." & vbNewLine
+            table = "admin_coupon"
+            fields = "*"
+            Dim DatatableCoupons = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewCoupons)
+            For Each row As DataRow In DatatableCoupons.Rows
+                DataGridViewCoupons.Rows.Add(row("Couponname_"), row("Desc_"), row("Discountvalue_"), row("Referencevalue_"), row("Type"), row("Bundlebase_"), row("BBValue_"), row("Bundlepromo_"), row("BPValue_"), row("Effectivedate"), row("Expirydate"))
+            Next
+            TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of coupons data)" & vbNewLine
+        Catch ex As Exception
+            TextBox1.Text += FullDate24HR() & " :    Failed(Fetching of coupons data)" & vbNewLine
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub GetPartners()
+        Try
+            TextBox1.Text += FullDate24HR() & " :    Getting cloud server's partners data." & vbNewLine
+            table = "admin_partners_transaction_org"
+            fields = "*"
+            Dim DatatablePartners = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewPartners)
+            For Each row As DataRow In DatatablePartners.Rows
+                DataGridViewPartners.Rows.Add(row("arrid"), row("bankname"), row("date_modified"), row("active"))
+            Next
+            TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of partners data)" & vbNewLine
+        Catch ex As Exception
+            TextBox1.Text += FullDate24HR() & " :    Failed(Fetching of partners data)" & vbNewLine
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Public Sub GetInventory()
         Try
             TextBox1.Text += FullDate24HR() & " :    Getting cloud server's inventories data." & vbNewLine
@@ -1651,6 +1722,62 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Categories data insertion)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Categories data insertion)" & vbNewLine
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub InsertPartnersTransacton()
+        Try
+            TextBox1.Text += FullDate24HR() & " :    Inserting data to local server's table(Partners)." & vbNewLine
+            With DataGridViewPartners
+                Dim cmdlocal As MySqlCommand
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    cmdlocal = New MySqlCommand("INSERT INTO loc_partners_transaction(`arrid`, `bankname`, `date_modified`, `crew_id`, `store_id`, `guid`, `active`, `synced`)
+                                             VALUES (@0, @1, @2, @3, @4 ,@5 ,@6 ,@7)", TestLocalConnection())
+                    cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                    cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmdlocal.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString
+                    cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = ""
+                    cmdlocal.Parameters.Add("@4", MySqlDbType.VarChar).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
+                    cmdlocal.Parameters.Add("@5", MySqlDbType.VarChar).Value = UserGUID
+                    cmdlocal.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(3).Value.ToString()
+                    cmdlocal.Parameters.Add("@7", MySqlDbType.VarChar).Value = "Synced"
+                    cmdlocal.ExecuteNonQuery()
+                Next
+            End With
+            TextBox1.Text += FullDate24HR() & " :    Complete(Partners data insertion)" & vbNewLine
+        Catch ex As Exception
+            TextBox1.Text += FullDate24HR() & " :    Failed(Partners data insertion)" & vbNewLine
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub InsertCoupons()
+        Try
+            TextBox1.Text += FullDate24HR() & " :    Inserting data to local server's table(Coupons)." & vbNewLine
+            With DataGridViewCoupons
+                Dim cmdlocal As MySqlCommand
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    cmdlocal = New MySqlCommand("INSERT INTO tbcoupon(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`, `store_id`, `crew_id`, `guid`)
+                                             VALUES (@0, @1, @2, @3, @4 ,@5 ,@6 ,@7 ,@8 ,@9 ,@10 ,@11 ,@12 ,@13)", TestLocalConnection())
+                    cmdlocal.Parameters.Add("@0", MySqlDbType.Text).Value = .Rows(i).Cells(0).Value.ToString()
+                    cmdlocal.Parameters.Add("@1", MySqlDbType.Text).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmdlocal.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString
+                    cmdlocal.Parameters.Add("@3", MySqlDbType.Text).Value = .Rows(i).Cells(3).Value.ToString
+                    cmdlocal.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString
+                    cmdlocal.Parameters.Add("@5", MySqlDbType.Text).Value = .Rows(i).Cells(5).Value.ToString
+                    cmdlocal.Parameters.Add("@6", MySqlDbType.Text).Value = .Rows(i).Cells(6).Value.ToString
+                    cmdlocal.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString
+                    cmdlocal.Parameters.Add("@8", MySqlDbType.Text).Value = .Rows(i).Cells(8).Value.ToString
+                    cmdlocal.Parameters.Add("@9", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString
+                    cmdlocal.Parameters.Add("@10", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString
+                    cmdlocal.Parameters.Add("@11", MySqlDbType.Text).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
+                    cmdlocal.Parameters.Add("@12", MySqlDbType.Text).Value = ""
+                    cmdlocal.Parameters.Add("@13", MySqlDbType.Text).Value = UserGUID
+                    cmdlocal.ExecuteNonQuery()
+                Next
+            End With
+            TextBox1.Text += FullDate24HR() & " :    Complete(Coupons data insertion)" & vbNewLine
+        Catch ex As Exception
+            TextBox1.Text += FullDate24HR() & " :    Failed(Coupons data insertion)" & vbNewLine
             MsgBox(ex.ToString)
         End Try
     End Sub

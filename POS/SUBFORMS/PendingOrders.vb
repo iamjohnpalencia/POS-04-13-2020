@@ -121,4 +121,9 @@ Public Class PendingOrders
     Private Sub ComboBoxCustomerName_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxCustomerName.SelectedIndexChanged
         pendingloadorders()
     End Sub
+
+    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
+        ShowKeyboard()
+
+    End Sub
 End Class

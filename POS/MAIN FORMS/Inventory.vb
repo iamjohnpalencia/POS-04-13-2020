@@ -50,11 +50,14 @@ Public Class Inventory
             fields = "I.product_ingredients as Ingredients, i.sku , CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
             GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_pos_inventory I INNER JOIN loc_product_formula F ON F.server_formula_id = I.server_inventory_id ", datagrid:=DataGridViewINVVIEW, errormessage:="", successmessage:="", fields:=fields, where:=" I.stock_status = 1 AND I.store_id = " & ClientStoreID & " ORDER BY I.product_ingredients ASC")
             With DataGridViewINVVIEW
+                .Columns(0).HeaderCell.Value = "Ingredients"
                 .Columns(1).HeaderCell.Value = "SKU"
-                .Columns(3).HeaderCell.Value = "No. of Servings"
-                .Columns(4).HeaderCell.Value = "Status"
-                .Columns(5).HeaderCell.Value = "Critical Limit"
-                .Columns(6).HeaderCell.Value = "Date Modified"
+                .Columns(2).HeaderCell.Value = "Primary"
+                .Columns(3).HeaderCell.Value = "UOM"
+                .Columns(4).HeaderCell.Value = "No. of Servings"
+                .Columns(5).HeaderCell.Value = "Status"
+                .Columns(6).HeaderCell.Value = "Critical Limit"
+                .Columns(7).HeaderCell.Value = "Date Created"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)

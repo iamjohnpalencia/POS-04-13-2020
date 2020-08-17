@@ -1,16 +1,12 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class CouponCode
     Private Sub CouponCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        GLOBAL_SELECT_ALL_FUNCTION(table:="tbcoupon", fields:="*", datagrid:=DataGridViewCoupons)
-        With DataGridViewCoupons
-            .Columns(0).Visible = False
-            .Columns(3).Visible = False
-            .Columns(4).Visible = False
-            .Columns(6).Visible = False
-            .Columns(7).Visible = False
-            .Columns(8).Visible = False
-            .Columns(9).Visible = False
-        End With
+        Dim LoadCouponTable = AsDatatable("tbcoupon", "*", DataGridViewCoupons)
+        For Each row As DataRow In LoadCouponTable.Rows
+            DataGridViewCoupons.Rows.Add(row("ID"), row("Couponname_"), row("Desc_"), row("Discountvalue_"), row("Referencevalue_"), row("Type"), row("Bundlebase_"), row("BBValue_"), row("Bundlepromo_"), row("BPValue_"), row("Effectivedate"), row("Expirydate"))
+        Next
+        Dim arg = New DataGridViewCellEventArgs(0, 0)
+        DataGridViewCoupons_CellClick(sender, arg)
     End Sub
     Private Sub CouponCode_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         POS.Enabled = True
@@ -541,10 +537,17 @@ Public Class CouponCode
                         End If
                     End If
                 Else
-                    MsgBox("Cond not meet")
+                    MsgBox("Condition not meet")
                 End If
 
             End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub DataGridViewCoupons_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewCoupons.CellClick
+        Try
+            LabelDesc.Text = DataGridViewCoupons.SelectedRows(0).Cells(2).Value.ToString
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

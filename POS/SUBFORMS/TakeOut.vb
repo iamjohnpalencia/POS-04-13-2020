@@ -28,7 +28,7 @@ Public Class TakeOut
                 If message = DialogResult.Yes Then
                     If Double.Parse(TextBoxWaffleBag.Text) <> 0 And Double.Parse(TextBoxSugarSyrup.Text) <> 0 Then
                         Try
-                            Sql = "SELECT primary_value ,secondary_value, no_servings FROM loc_product_formula WHERE product_ingredients = 'Extra Packaging'"
+                            Sql = "SELECT primary_value ,secondary_value, no_servings FROM loc_product_formula WHERE server_formula_id = " & WaffleBagID
                             Cmd = New MySqlCommand(Sql, LocalhostConn)
                             Da = New MySqlDataAdapter(Cmd)
                             Dt = New DataTable
@@ -44,7 +44,7 @@ Public Class TakeOut
                             Dim TotalExtraS As Double = EXTRAFSecondary * Double.Parse(TextBoxWaffleBag.Text)
                             Dim TotalExtraN As Double = EXTRAFNServing * Double.Parse(TextBoxWaffleBag.Text)
 
-                            Sql = "SELECT stock_primary ,stock_secondary, stock_no_of_servings FROM loc_pos_inventory WHERE product_ingredients = 'Extra Packaging'"
+                            Sql = "SELECT stock_primary ,stock_secondary, stock_no_of_servings FROM loc_pos_inventory WHERE server_inventory_id = " & WaffleBagID
                             Cmd = New MySqlCommand(Sql, LocalhostConn)
                             Da = New MySqlDataAdapter(Cmd)
                             Dt = New DataTable
@@ -60,14 +60,14 @@ Public Class TakeOut
                             SSecondary = ISecondary - TotalExtraS
                             SNServing = INServing - TotalExtraN
 
-                            GLOBAL_FUNCTION_UPDATE("loc_pos_inventory", "stock_primary=" & SPrimary & ",stock_secondary=" & SSecondary & ",stock_no_of_servings=" & SNServing & "", "product_ingredients = 'Extra Packaging'")
+                            GLOBAL_FUNCTION_UPDATE("loc_pos_inventory", "stock_primary=" & SPrimary & ",stock_secondary=" & SSecondary & ",stock_no_of_servings=" & SNServing & "", "server_inventory_id = " & WaffleBagID)
 
                         Catch ex As Exception
                             MsgBox(ex.ToString)
                         End Try
                         '=====================================================================================================
                         Try
-                            Sql = "SELECT primary_value ,secondary_value, no_servings FROM loc_product_formula WHERE formula_id = 53"
+                            Sql = "SELECT primary_value ,secondary_value, no_servings FROM loc_product_formula WHERE server_formula_id = " & SugarPackets
                             Cmd = New MySqlCommand(Sql, LocalhostConn)
                             Da = New MySqlDataAdapter(Cmd)
                             Dt = New DataTable
@@ -83,7 +83,7 @@ Public Class TakeOut
                             Dim TotalExtraS As Double = EXTRAFSecondary * Double.Parse(TextBoxSugarSyrup.Text)
                             Dim TotalExtraN As Double = EXTRAFNServing * Double.Parse(TextBoxSugarSyrup.Text)
 
-                            Sql = "SELECT stock_primary ,stock_secondary, stock_no_of_servings FROM loc_pos_inventory WHERE inventory_id = 53"
+                            Sql = "SELECT stock_primary ,stock_secondary, stock_no_of_servings FROM loc_pos_inventory WHERE server_inventory_id = " & SugarPackets
                             Cmd = New MySqlCommand(Sql, LocalhostConn)
                             Da = New MySqlDataAdapter(Cmd)
                             Dt = New DataTable
@@ -99,8 +99,8 @@ Public Class TakeOut
                             SSecondary = ISecondary - TotalExtraS
                             SNServing = INServing - TotalExtraN
 
-                            GLOBAL_FUNCTION_UPDATE("loc_pos_inventory", "stock_primary=" & SPrimary & ",stock_secondary=" & SSecondary & ",stock_no_of_servings=" & SNServing & "", "inventory_id = 53")
-
+                            GLOBAL_FUNCTION_UPDATE("loc_pos_inventory", "stock_primary=" & SPrimary & ",stock_secondary=" & SSecondary & ",stock_no_of_servings=" & SNServing & "", "server_inventory_id =  " & SugarPackets)
+                            Log()
                         Catch ex As Exception
                             MsgBox(ex.ToString)
                         End Try
@@ -110,7 +110,7 @@ Public Class TakeOut
                 Dim message = MessageBox.Show("Do you want to add Extra Sugar Syrup?", "Extra Sugar", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 If message = DialogResult.Yes Then
                     Try
-                        Sql = "SELECT primary_value ,secondary_value, no_servings FROM loc_product_formula WHERE formula_id = 53"
+                        Sql = "SELECT primary_value ,secondary_value, no_servings FROM loc_product_formula WHERE server_formula_id = " & SugarPackets
                         Cmd = New MySqlCommand(Sql, LocalhostConn)
                         Da = New MySqlDataAdapter(Cmd)
                         Dt = New DataTable
@@ -126,7 +126,7 @@ Public Class TakeOut
                         Dim TotalExtraS As Double = EXTRAFSecondary * Double.Parse(TextBoxSugarSyrup.Text)
                         Dim TotalExtraN As Double = EXTRAFNServing * Double.Parse(TextBoxSugarSyrup.Text)
 
-                        Sql = "SELECT stock_primary ,stock_secondary, stock_no_of_servings FROM loc_pos_inventory WHERE inventory_id = 53"
+                        Sql = "SELECT stock_primary ,stock_secondary, stock_no_of_servings FROM loc_pos_inventory WHERE server_inventory_id = " & SugarPackets
                         Cmd = New MySqlCommand(Sql, LocalhostConn)
                         Da = New MySqlDataAdapter(Cmd)
                         Dt = New DataTable
@@ -142,18 +142,17 @@ Public Class TakeOut
                         SSecondary = ISecondary - TotalExtraS
                         SNServing = INServing - TotalExtraN
 
-
-                        GLOBAL_FUNCTION_UPDATE("loc_pos_inventory", "stock_primary=" & SPrimary & ",stock_secondary=" & SSecondary & ",stock_no_of_servings=" & SNServing & "", "inventory_id = 53")
-
+                        GLOBAL_FUNCTION_UPDATE("loc_pos_inventory", "stock_primary=" & SPrimary & ",stock_secondary=" & SSecondary & ",stock_no_of_servings=" & SNServing & "", "server_inventory_id =  " & SugarPackets)
+                        Log()
                     Catch ex As Exception
                         MsgBox(ex.ToString)
-                    End Try
-                End If
+        End Try
+        End If
             ElseIf CheckBoxWaffleBag.Checked = True Then
                 Dim message = MessageBox.Show("Do you want to add Extra packaging?", "Extra packaging", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 If message = DialogResult.Yes Then
                     Try
-                        Sql = "SELECT primary_value ,secondary_value, no_servings FROM loc_product_formula WHERE product_ingredients = 'Extra Packaging'"
+                        Sql = "SELECT primary_value ,secondary_value, no_servings FROM loc_product_formula WHERE server_formula_id = " & WaffleBagID
                         Cmd = New MySqlCommand(Sql, LocalhostConn)
                         Da = New MySqlDataAdapter(Cmd)
                         Dt = New DataTable
@@ -169,7 +168,7 @@ Public Class TakeOut
                         Dim TotalExtraS As Double = EXTRAFSecondary * Double.Parse(TextBoxWaffleBag.Text)
                         Dim TotalExtraN As Double = EXTRAFNServing * Double.Parse(TextBoxWaffleBag.Text)
 
-                        Sql = "SELECT stock_primary ,stock_secondary, stock_no_of_servings FROM loc_pos_inventory WHERE product_ingredients = 'Extra Packaging'"
+                        Sql = "SELECT stock_primary ,stock_secondary, stock_no_of_servings FROM loc_pos_inventory WHERE server_inventory_id = " & WaffleBagID
                         Cmd = New MySqlCommand(Sql, LocalhostConn)
                         Da = New MySqlDataAdapter(Cmd)
                         Dt = New DataTable
@@ -185,7 +184,7 @@ Public Class TakeOut
                         SSecondary = ISecondary - TotalExtraS
                         SNServing = INServing - TotalExtraN
 
-                        GLOBAL_FUNCTION_UPDATE("loc_pos_inventory", "stock_primary=" & SPrimary & ",stock_secondary=" & SSecondary & ",stock_no_of_servings=" & SNServing & "", "product_ingredients = 'Extra Packaging'")
+                        GLOBAL_FUNCTION_UPDATE("loc_pos_inventory", "stock_primary=" & SPrimary & ",stock_secondary=" & SSecondary & ",stock_no_of_servings=" & SNServing & "", "server_inventory_id = " & WaffleBagID)
 
                     Catch ex As Exception
                         MsgBox(ex.ToString)
@@ -198,9 +197,49 @@ Public Class TakeOut
             MsgBox(ex.ToString)
         End Try
     End Sub
-
+    Private Sub Log()
+        Try
+            Dim LogType As String = "EXTRA"
+            Dim LogDesc As String = ""
+            If CheckBoxWaffleBag.Checked = True And CheckBoxSugarSyrup.Checked = True Then
+                LogDesc = "BAG : " & TextBoxWaffleBag.Text & ", SUGAR : " & TextBoxSugarSyrup.Text & " " & ClientCrewID
+                GLOBAL_SYSTEM_LOGS(LogType, LogDesc)
+            ElseIf CheckBoxWaffleBag.Checked = True Then
+                LogDesc = "BAG : " & TextBoxWaffleBag.Text & " " & ClientCrewID
+                GLOBAL_SYSTEM_LOGS(LogType, LogDesc)
+            ElseIf CheckBoxSugarSyrup.Checked = True Then
+                LogDesc = "SUGAR : " & TextBoxSugarSyrup.Text & " " & ClientCrewID
+                GLOBAL_SYSTEM_LOGS(LogType, LogDesc)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
     Private Sub ButtonTakeOut_Click(sender As Object, e As EventArgs) Handles ButtonTakeOut.Click
-        DInventory()
+        If CheckBoxWaffleBag.Checked = True And CheckBoxSugarSyrup.Checked = True Then
+            If Val(TextBoxWaffleBag.Text) > 0 And Val(TextBoxSugarSyrup.Text) > 0 Then
+                DInventory()
+                Close()
+            Else
+                MessageBox.Show("Input quantity first", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        ElseIf CheckBoxWaffleBag.Checked = True Then
+            If Val(TextBoxWaffleBag.Text) > 0 Then
+                DInventory()
+                Close()
+            Else
+                MessageBox.Show("Input quantity first", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        ElseIf CheckBoxSugarSyrup.Checked = True Then
+            If Val(TextBoxSugarSyrup.Text) > 0 Then
+                DInventory()
+                Close()
+            Else
+                MessageBox.Show("Input quantity first", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Else
+            MessageBox.Show("Select extra packaging/sugar syrup first", "Select", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
     End Sub
 
     Private Sub buttonpressedenter(ByVal btntext As String)
@@ -367,9 +406,23 @@ Public Class TakeOut
             End If
         End If
     End Sub
-
     Private Sub TakeOut_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        LoadSettings()
+    End Sub
+    Dim WaffleBagID
+    Dim SugarPackets
+    Private Sub LoadSettings()
+        Try
+            Dim sql = "SELECT S_Waffle_Bag, S_Packets FROM loc_settings WHERE settings_id = 1"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim dt As DataTable = New DataTable
+            da.Fill(dt)
+            WaffleBagID = dt(0)(0)
+            SugarPackets = dt(0)(1)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
     Private Sub TextBoxWaffleBag_Click(sender As Object, e As EventArgs) Handles TextBoxWaffleBag.Click

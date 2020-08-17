@@ -10,6 +10,7 @@ Public Class HoldOrder
             MsgBox("Input customer name first")
             TextBoxCustomerName.Clear()
         Else
+
             sql = "SELECT * FROM loc_pending_orders WHERE customer_name = '" & TextBoxCustomerName.Text & "'"
             cmd = New MySqlCommand(sql, LocalhostConn())
             RowsReturned = cmd.ExecuteScalar
@@ -91,6 +92,8 @@ Public Class HoldOrder
     End Sub
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
         ShowKeyboard()
+        Application.DoEvents()
+        TextBoxCustomerName.Focus()
     End Sub
 
     Private Sub TextBoxCustomerName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxCustomerName.KeyPress

@@ -106,7 +106,7 @@ Partial Class Login
         '
         Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox2.Location = New System.Drawing.Point(17, 255)
+        Me.PictureBox2.Location = New System.Drawing.Point(20, 255)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(41, 29)
         Me.PictureBox2.TabIndex = 228
@@ -140,9 +140,9 @@ Partial Class Login
         '
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(20, 19)
+        Me.PictureBox1.Location = New System.Drawing.Point(64, 19)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(275, 96)
+        Me.PictureBox1.Size = New System.Drawing.Size(188, 96)
         Me.PictureBox1.TabIndex = 224
         Me.PictureBox1.TabStop = False
         '
@@ -267,7 +267,7 @@ Partial Class Login
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(14, 287)
+        Me.Label4.Location = New System.Drawing.Point(17, 287)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(165, 18)
         Me.Label4.TabIndex = 69

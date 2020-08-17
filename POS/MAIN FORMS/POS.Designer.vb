@@ -34,6 +34,7 @@ Partial Class POS
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
+        Me.Panel34 = New System.Windows.Forms.Panel()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.LabelCheckingUpdates = New System.Windows.Forms.Label()
         Me.Panel25 = New System.Windows.Forms.Panel()
@@ -189,6 +190,7 @@ Partial Class POS
         Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
         Me.Panel8.SuspendLayout()
         Me.Panel24.SuspendLayout()
+        Me.Panel34.SuspendLayout()
         Me.Panel25.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel32.SuspendLayout()
@@ -264,14 +266,23 @@ Partial Class POS
         'Panel24
         '
         Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Panel24.Controls.Add(Me.Button3)
-        Me.Panel24.Controls.Add(Me.LabelCheckingUpdates)
+        Me.Panel24.Controls.Add(Me.Panel34)
         Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel24.Location = New System.Drawing.Point(0, 10)
         Me.Panel24.Name = "Panel24"
         Me.Panel24.Size = New System.Drawing.Size(1565, 31)
         Me.Panel24.TabIndex = 17
+        '
+        'Panel34
+        '
+        Me.Panel34.Controls.Add(Me.Button3)
+        Me.Panel34.Controls.Add(Me.LabelCheckingUpdates)
+        Me.Panel34.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel34.Location = New System.Drawing.Point(0, 0)
+        Me.Panel34.Name = "Panel34"
+        Me.Panel34.Size = New System.Drawing.Size(291, 31)
+        Me.Panel34.TabIndex = 0
         '
         'Button3
         '
@@ -283,7 +294,7 @@ Partial Class POS
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(4, 3)
+        Me.Button3.Location = New System.Drawing.Point(3, 3)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(53, 24)
         Me.Button3.TabIndex = 60
@@ -296,7 +307,7 @@ Partial Class POS
         Me.LabelCheckingUpdates.BackColor = System.Drawing.Color.Transparent
         Me.LabelCheckingUpdates.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelCheckingUpdates.ForeColor = System.Drawing.Color.White
-        Me.LabelCheckingUpdates.Location = New System.Drawing.Point(58, 8)
+        Me.LabelCheckingUpdates.Location = New System.Drawing.Point(57, 9)
         Me.LabelCheckingUpdates.Name = "LabelCheckingUpdates"
         Me.LabelCheckingUpdates.Size = New System.Drawing.Size(135, 14)
         Me.LabelCheckingUpdates.TabIndex = 3
@@ -1861,7 +1872,8 @@ Partial Class POS
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel8.ResumeLayout(False)
         Me.Panel24.ResumeLayout(False)
-        Me.Panel24.PerformLayout()
+        Me.Panel34.ResumeLayout(False)
+        Me.Panel34.PerformLayout()
         Me.Panel25.ResumeLayout(False)
         Me.Panel25.PerformLayout()
         Me.Panel1.ResumeLayout(False)
@@ -2058,4 +2070,5 @@ Partial Class POS
     Friend WithEvents Column20 As DataGridViewTextBoxColumn
     Friend WithEvents Column42 As DataGridViewTextBoxColumn
     Friend WithEvents Column45 As DataGridViewTextBoxColumn
+    Friend WithEvents Panel34 As Panel
 End Class

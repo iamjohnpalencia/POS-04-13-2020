@@ -190,7 +190,6 @@ Public Class Loading
         Label2.Text = e.ProgressPercentage
     End Sub
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
-
         If IfConnectionIsConfigured = True Then
             'MsgBox("Connection is open")
             If RowsReturned = 1 Then
@@ -282,7 +281,7 @@ Public Class Loading
         End If
     End Sub
     Private Sub NoInternetConnection()
-        Dim msg As Integer = MessageBox.Show("No internet connection found, Would you like to continue ?", "Error 5.0", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error)
+        Dim msg As Integer = MessageBox.Show("No internet connection found, Would you like to continue ?", "No internet connection", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information)
         If msg = DialogResult.Yes Then
             GetLocalPosData()
         ElseIf msg = DialogResult.No Then

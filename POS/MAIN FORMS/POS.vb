@@ -987,7 +987,6 @@ Public Class POS
                             For Each t In THREADLIST
                                 t.Join()
                             Next
-
                         End If
                         If SENIORDETAILSBOOL = True Then
                             thread = New Thread(AddressOf InsertSeniorDetails)
@@ -997,12 +996,14 @@ Public Class POS
                                 t.Join()
                             Next
                         End If
-                        thread = New Thread(AddressOf InsertCouponData)
-                        thread.Start()
-                        THREADLIST.Add(thread)
-                        For Each t In THREADLIST
-                            t.Join()
-                        Next
+                        If CouponApplied = True Then
+                            thread = New Thread(AddressOf InsertCouponData)
+                            thread.Start()
+                            THREADLIST.Add(thread)
+                            For Each t In THREADLIST
+                                t.Join()
+                            Next
+                        End If
                     End If
                     Thread.Sleep(10)
                 Next

@@ -25,6 +25,7 @@ Partial Class Registration
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Registration))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -56,7 +57,6 @@ Partial Class Registration
         Me.Panel25 = New System.Windows.Forms.Panel()
         Me.Label147 = New System.Windows.Forms.Label()
         Me.OfdImage = New System.Windows.Forms.OpenFileDialog()
-        Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel8.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,13 +113,26 @@ Partial Class Registration
         Me.Panel8.Size = New System.Drawing.Size(315, 521)
         Me.Panel8.TabIndex = 72
         '
+        'ButtonKeyboard
+        '
+        Me.ButtonKeyboard.BackColor = System.Drawing.SystemColors.Control
+        Me.ButtonKeyboard.BackgroundImage = CType(resources.GetObject("ButtonKeyboard.BackgroundImage"), System.Drawing.Image)
+        Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
+        Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(234, 449)
+        Me.ButtonKeyboard.Name = "ButtonKeyboard"
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
+        Me.ButtonKeyboard.TabIndex = 246
+        Me.ButtonKeyboard.UseVisualStyleBackColor = False
+        '
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(20, 19)
+        Me.PictureBox1.Location = New System.Drawing.Point(66, 19)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(275, 96)
+        Me.PictureBox1.Size = New System.Drawing.Size(188, 96)
         Me.PictureBox1.TabIndex = 239
         Me.PictureBox1.TabStop = False
         '
@@ -200,6 +213,7 @@ Partial Class Registration
         Me.TextBoxCP.Name = "TextBoxCP"
         Me.TextBoxCP.Size = New System.Drawing.Size(275, 19)
         Me.TextBoxCP.TabIndex = 231
+        Me.TextBoxCP.UseSystemPasswordChar = True
         '
         'TextBoxP
         '
@@ -209,6 +223,7 @@ Partial Class Registration
         Me.TextBoxP.Name = "TextBoxP"
         Me.TextBoxP.Size = New System.Drawing.Size(275, 19)
         Me.TextBoxP.TabIndex = 230
+        Me.TextBoxP.UseSystemPasswordChar = True
         '
         'TextBoxEMAIL
         '
@@ -314,10 +329,10 @@ Partial Class Registration
         '
         'TextBoxMAXID
         '
-        Me.TextBoxMAXID.Location = New System.Drawing.Point(59, 71)
+        Me.TextBoxMAXID.Location = New System.Drawing.Point(76, 72)
         Me.TextBoxMAXID.Name = "TextBoxMAXID"
         Me.TextBoxMAXID.ReadOnly = True
-        Me.TextBoxMAXID.Size = New System.Drawing.Size(203, 26)
+        Me.TextBoxMAXID.Size = New System.Drawing.Size(158, 26)
         Me.TextBoxMAXID.TabIndex = 215
         Me.TextBoxMAXID.Visible = False
         '
@@ -442,19 +457,6 @@ Partial Class Registration
         '
         'OfdImage
         '
-        '
-        'ButtonKeyboard
-        '
-        Me.ButtonKeyboard.BackColor = System.Drawing.SystemColors.Control
-        Me.ButtonKeyboard.BackgroundImage = CType(resources.GetObject("ButtonKeyboard.BackgroundImage"), System.Drawing.Image)
-        Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
-        Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonKeyboard.Location = New System.Drawing.Point(234, 449)
-        Me.ButtonKeyboard.Name = "ButtonKeyboard"
-        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
-        Me.ButtonKeyboard.TabIndex = 246
-        Me.ButtonKeyboard.UseVisualStyleBackColor = False
         '
         'Registration
         '
