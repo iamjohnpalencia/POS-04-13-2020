@@ -6,53 +6,48 @@ Public Class ManageProducts
     Dim customproductname
     Dim result As Integer
     Private Sub Reports_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TabControl1.TabPages(0).Text = "Product List"
-        TabControl1.TabPages(1).Text = "Custom Product List(Approved)"
-        TabControl1.TabPages(2).Text = "Custom Product List(Unapproved)"
-        TabControl1.TabPages(3).Text = "Price Change"
-        serverloadproducts()
-        clientloadproducts()
-        clientloadproductsunapproved()
-        LoadPriceChange()
-        'loadindexdgv()
+        Try
+            TabControl1.TabPages(0).Text = "Product List"
+            TabControl1.TabPages(1).Text = "Custom Product List(Approved)"
+            TabControl1.TabPages(2).Text = "Custom Product List(Unapproved)"
+            TabControl1.TabPages(3).Text = "Price Change"
+            serverloadproducts()
+            clientloadproducts()
+            clientloadproductsunapproved()
+            LoadPriceChange()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
-    'Public Sub loadindexdgv()
-    '    If DataGridViewServerProducts.RowCount > 0 Then
-    '        DataGridViewServerProducts.ClearSelection()
-    '        DataGridViewServerProducts.CurrentCell = DataGridViewServerProducts.Rows(Val(Label10.Text)).Cells(1)
-    '        DataGridViewServerProducts.Rows(Val(Label10.Text)).Selected = True
-    '        selectimage()
-    '    End If
-    '    If DataGridViewClientProducts.RowCount > 0 Then
-    '        DataGridViewClientProducts.ClearSelection()
-    '        DataGridViewClientProducts.CurrentCell = DataGridViewClientProducts.Rows(Val(Label12.Text)).Cells(1)
-    '        DataGridViewClientProducts.Rows(Val(Label12.Text)).Selected = True
-    '        selectimagecustom()
-    '    End If
-    'End Sub
+
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         GroupBox2.Text = "Add Product"
         ButtonCustomProducts.Text = "Submit"
-        'ButtonCustomProducts.BackColor = Color.FromArgb(84, 177, 140)
         PanelAddCustomProducts.Top = (Me.Height - PanelAddCustomProducts.Height) / 4
         PanelAddCustomProducts.Left = (Me.Width - PanelAddCustomProducts.Width) / 3
         PanelAddCustomProducts.Visible = True
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        If DataGridViewClientProducts.SelectedRows.Count = 1 Then
-            If DataGridViewClientProducts.SelectedRows(0).Cells(7).Value.ToString = "Server" Then
-                MsgBox("Products from server is not editable")
-            Else
-                DataGridViewClientProducts.Enabled = False
-                GroupBox2.Text = "Edit Product"
-                ButtonCustomProducts.Text = "Update"
-                ButtonCustomProducts.BackColor = Color.FromArgb(221, 114, 46)
-                PanelAddCustomProducts.Top = (Me.Height - PanelAddCustomProducts.Height) / 4
-                PanelAddCustomProducts.Left = (Me.Width - PanelAddCustomProducts.Width) / 3
-                PanelAddCustomProducts.Visible = True
-                fillcustomproducts(True)
+        Try
+            If DataGridViewClientProducts.SelectedRows.Count = 1 Then
+                If DataGridViewClientProducts.SelectedRows(0).Cells(7).Value.ToString = "Server" Then
+                    MsgBox("Products from server is not editable")
+                Else
+                    DataGridViewClientProducts.Enabled = False
+                    GroupBox2.Text = "Edit Product"
+                    ButtonCustomProducts.Text = "Update"
+                    ButtonCustomProducts.BackColor = Color.FromArgb(221, 114, 46)
+                    PanelAddCustomProducts.Top = (Me.Height - PanelAddCustomProducts.Height) / 4
+                    PanelAddCustomProducts.Left = (Me.Width - PanelAddCustomProducts.Width) / 3
+                    PanelAddCustomProducts.Visible = True
+                    fillcustomproducts(True)
+                End If
             End If
-        End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub OfdImage_FileOk(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
         ImagePath = OpenFileDialog1.FileName
@@ -85,6 +80,7 @@ Public Class ManageProducts
                 End If
             Catch ex As Exception
                 MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             End Try
         Else
             Try
@@ -104,6 +100,7 @@ Public Class ManageProducts
                 End If
             Catch ex As Exception
                 MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             End Try
         End If
     End Sub
@@ -130,6 +127,7 @@ Public Class ManageProducts
                     Next
                 Catch ex As Exception
                     MsgBox(ex.ToString)
+                    SendErrorReport(ex.ToString)
                 End Try
             End If
         Else
@@ -153,6 +151,7 @@ Public Class ManageProducts
                     Next
                 Catch ex As Exception
                     MsgBox(ex.ToString)
+                    SendErrorReport(ex.ToString)
                 End Try
             End If
         End If
@@ -188,6 +187,7 @@ Public Class ManageProducts
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub clientloadproductsunapproved()
@@ -223,6 +223,7 @@ Public Class ManageProducts
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -256,6 +257,7 @@ Public Class ManageProducts
             ' DataGridViewPriceChange
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub clientloadproducts()
@@ -292,6 +294,7 @@ Public Class ManageProducts
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub addcustomproducts()
@@ -316,10 +319,8 @@ Public Class ManageProducts
                 , '" & FullDate24HR() & "')"
             GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
         Catch ex As Exception
-            MsgBox("Error 2.0")
-            SystemLogType = "ERROR"
-            SystemLogDesc = "Error 2.0 ADDING FORMULA" & ex.ToString
-            GLOBAL_SYSTEM_LOGS(systemlogtype, SystemLogDesc)
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Try
             messageboxappearance = False
@@ -340,11 +341,8 @@ Public Class ManageProducts
             errormessage = "error manageproducts(loc_admin_products)"
             GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
         Catch ex As Exception
-            MsgBox("Error 2.0")
-            messageboxappearance = False
-            SystemLogType = "Error Adding Inventory"
-            SystemLogDesc = ex.ToString
-            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Try
             messageboxappearance = True
@@ -373,14 +371,9 @@ Public Class ManageProducts
             SystemLogDesc = "Added by :" & returnfullname(ClientCrewID) & " : " & ClientRole & " : product name: " & TextBoxNAME.Text
             GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
         Catch ex As Exception
-            MsgBox("Error 2.0")
-            messageboxappearance = False
-            SystemLogType = "ERROR"
-            SystemLogDesc = "Error 2.0 ADDING OF CUSTOM PRODUCTS" & ex.ToString
-            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
-
-        'ClearTextBox(PanelAddCustomProducts)
     End Sub
     Private Sub updatecustomproduct(ByVal iftrueorfalse As Boolean)
         If iftrueorfalse = True Then
@@ -399,20 +392,17 @@ Public Class ManageProducts
                 where = " product_id = " & productid
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
             Catch ex As Exception
-                messageboxappearance = False
-                SystemLogType = "UPDATING CUSTOM PRODUCT"
-                SystemLogType = ex.ToString
-                GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogType)
+                MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             End Try
             Try
-
                 table = " loc_pos_inventory "
                 fields = "`product_ingredients`='" & Me.TextBoxNAME.Text & "',`created_at`='" & FullDate24HR() & "'"
-
                 where = " formula_id = " & formula_id & ""
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
             Catch ex As Exception
                 MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             End Try
             Try
                 table = " loc_product_formula "
@@ -439,10 +429,8 @@ Public Class ManageProducts
                 where = " product_id = " & productid
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
             Catch ex As Exception
-                messageboxappearance = False
-                SystemLogType = "UPDATING CUSTOM PRODUCT"
-                SystemLogType = ex.ToString
-                GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogType)
+                MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             End Try
             Try
                 table = " loc_pos_inventory "
@@ -451,6 +439,7 @@ Public Class ManageProducts
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
             Catch ex As Exception
                 MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             End Try
             Try
                 table = " loc_product_formula "
@@ -459,6 +448,7 @@ Public Class ManageProducts
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
             Catch ex As Exception
                 MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             End Try
             DataGridViewUNAPPROVED.Enabled = True
         End If
@@ -467,44 +457,7 @@ Public Class ManageProducts
         SystemLogDesc = "Updated by :" & returnfullname(ClientCrewID) & " : " & ClientRole
         GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
         ClearTextBox(PanelAddCustomProducts)
-
     End Sub
-    'Public Sub selectimage()
-    '    Try
-    '        Dim data As String = DataGridViewServerProducts.SelectedRows(0).Cells(0).Value.ToString()
-    '        dbconnection()
-    '        cmd = New MySqlCommand("SELECT * FROM `loc_admin_products` WHERE product_id = " & data, localconn)
-    '        da = New MySqlDataAdapter(cmd)
-    '        dr = cmd.ExecuteReader
-    '        If dr.HasRows Then
-    '            While dr.Read()
-    '                TextBoxDES.Text = dr("product_desc")
-    '                PictureBox1.BackgroundImage = Base64ToImage(dr("product_image"))
-    '                PictureBox1.BackgroundImageLayout = ImageLayout.Center
-    '            End While
-    '        End If
-    '    Catch ex As Exception
-    '        MsgBox(ex.ToString)
-    '    End Try
-    'End Sub
-    'Public Sub selectimagecustom()
-    '    Try
-    '        dbconnection()
-    '        productid = DataGridViewClientProducts.SelectedRows(0).Cells(0).Value
-    '        cmd = New MySqlCommand("SELECT * FROM `loc_admin_products` WHERE product_id = " & productid, localconn)
-    '        da = New MySqlDataAdapter(cmd)
-    '        dr = cmd.ExecuteReader
-    '        If dr.HasRows Then
-    '            While dr.Read()
-    '                TextBoxdesccust.Text = dr("product_desc")
-    '                PictureBoxCustomImage.BackgroundImage = Base64ToImage(dr("product_image"))
-    '                PictureBoxCustomImage.BackgroundImageLayout = ImageLayout.Center
-    '            End While
-    '        End If
-    '    Catch ex As Exception
-    '        MsgBox(ex.ToString)
-    '    End Try
-    'End Sub
     Private Sub rowindex()
         If DataGridViewServerProducts.Rows.Count > 0 Then
             Label10.Text = DataGridViewServerProducts.CurrentCell.RowIndex
@@ -517,108 +470,108 @@ Public Class ManageProducts
     End Sub
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewServerProducts.CellClick
         rowindex()
-        'selectimage()
     End Sub
-
-    '<================================================================================= ADD CUSTOM PRODUCTS 
     Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonCustomProducts.Click
         addcustomprod(True)
     End Sub
     Sub addcustomprod(ByVal iftrueorfalse As Boolean)
-        If iftrueorfalse = True Then
-            If ButtonCustomProducts.Text = "Submit" Then
-                If String.IsNullOrEmpty(TextBoxPRCODE.Text.Trim) Then
-                    TextBoxPRCODE.Clear()
-                    MessageBox.Show("Product Code is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(TextBoxBCODE.Text) Then
-                    MessageBox.Show("Barcode is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(TextBoxNAME.Text) Then
-                    MessageBox.Show("Product Name is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(TextBoxCustomDesc.Text) Then
-                    MessageBox.Show("Description is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(TextBoxPRICE.Text) Then
-                    MessageBox.Show("Product Price is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Else
-                    addcustomproducts()
-                    clientloadproducts()
-                    PictureBoxCustomAdd.Image = Nothing
-                    ClearTextBox(Me)
-                    TxtBase64.Text = ""
-                    clientloadproducts()
-                    clientloadproductsunapproved()
+        Try
+            If iftrueorfalse = True Then
+                If ButtonCustomProducts.Text = "Submit" Then
+                    If String.IsNullOrEmpty(TextBoxPRCODE.Text.Trim) Then
+                        TextBoxPRCODE.Clear()
+                        MessageBox.Show("Product Code is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBoxBCODE.Text) Then
+                        MessageBox.Show("Barcode is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBoxNAME.Text) Then
+                        MessageBox.Show("Product Name is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBoxCustomDesc.Text) Then
+                        MessageBox.Show("Description is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBoxPRICE.Text) Then
+                        MessageBox.Show("Product Price is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        addcustomproducts()
+                        clientloadproducts()
+                        PictureBoxCustomAdd.Image = Nothing
+                        ClearTextBox(Me)
+                        TxtBase64.Text = ""
+                        clientloadproducts()
+                        clientloadproductsunapproved()
+                    End If
+                ElseIf ButtonCustomProducts.Text = "Update" Then
+                    If String.IsNullOrEmpty(TextBoxPRCODE.Text.Trim) Then
+                        TextBoxPRCODE.Clear()
+                        MessageBox.Show("Product Code is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBoxBCODE.Text) Then
+                        MessageBox.Show("Barcode is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBoxNAME.Text) Then
+                        MessageBox.Show("Product Name is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBoxCustomDesc.Text) Then
+                        MessageBox.Show("Description is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBoxPRICE.Text) Then
+                        MessageBox.Show("Product Price is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        updatecustomproduct(True)
+                        clientloadproducts()
+                        PictureBoxCustomAdd.Image = Nothing
+                        ClearTextBox(Me)
+                        TxtBase64.Text = ""
+                        clientloadproducts()
+                        clientloadproductsunapproved()
+                    End If
                 End If
-            ElseIf ButtonCustomProducts.Text = "Update" Then
-                If String.IsNullOrEmpty(TextBoxPRCODE.Text.Trim) Then
-                    TextBoxPRCODE.Clear()
-                    MessageBox.Show("Product Code is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(TextBoxBCODE.Text) Then
-                    MessageBox.Show("Barcode is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(TextBoxNAME.Text) Then
-                    MessageBox.Show("Product Name is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(TextBoxCustomDesc.Text) Then
-                    MessageBox.Show("Description is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(TextBoxPRICE.Text) Then
-                    MessageBox.Show("Product Price is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Else
-                    updatecustomproduct(True)
-                    clientloadproducts()
-                    PictureBoxCustomAdd.Image = Nothing
-                    ClearTextBox(Me)
-                    TxtBase64.Text = ""
-                    clientloadproducts()
-                    clientloadproductsunapproved()
+            Else
+                If Button10.Text = "Submit" Then
+                    If String.IsNullOrEmpty(TextBox1.Text.Trim) Then
+                        TextBox1.Clear()
+                        MessageBox.Show("Product Code is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBox4.Text) Then
+                        MessageBox.Show("Barcode is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBox5.Text) Then
+                        MessageBox.Show("Product Name is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBox3.Text) Then
+                        MessageBox.Show("Description is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBox2.Text) Then
+                        MessageBox.Show("Product Price is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        addcustomproducts()
+                        clientloadproducts()
+                        PictureBoxCustomAdd.Image = Nothing
+                        ClearTextBox(Me)
+                        TxtBase64.Text = ""
+                        clientloadproducts()
+                        clientloadproductsunapproved()
+                    End If
+                ElseIf Button10.Text = "Update" Then
+                    If String.IsNullOrEmpty(TextBox1.Text.Trim) Then
+                        TextBox1.Clear()
+                        MessageBox.Show("Product Code is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBox4.Text) Then
+                        MessageBox.Show("Barcode is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBox5.Text) Then
+                        MessageBox.Show("Product Name is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBox3.Text) Then
+                        MessageBox.Show("Description is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ElseIf String.IsNullOrEmpty(TextBox2.Text) Then
+                        MessageBox.Show("Product Price is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        updatecustomproduct(False)
+                        clientloadproducts()
+                        PictureBoxCustomAdd.Image = Nothing
+                        ClearTextBox(Me)
+                        TxtBase64.Text = ""
+                        clientloadproducts()
+                        clientloadproductsunapproved()
+                    End If
                 End If
             End If
-        Else
-            If Button10.Text = "Submit" Then
-                If String.IsNullOrEmpty(TextBox1.Text.Trim) Then
-                    TextBox1.Clear()
-                    MessageBox.Show("Product Code is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(textbox4.Text) Then
-                    MessageBox.Show("Barcode is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(textbox5.Text) Then
-                    MessageBox.Show("Product Name is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(textbox3.Text) Then
-                    MessageBox.Show("Description is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(textbox2.Text) Then
-                    MessageBox.Show("Product Price is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Else
-                    addcustomproducts()
-                    clientloadproducts()
-                    PictureBoxCustomAdd.Image = Nothing
-                    ClearTextBox(Me)
-                    TxtBase64.Text = ""
-                    clientloadproducts()
-                    clientloadproductsunapproved()
-                End If
-            ElseIf Button10.Text = "Update" Then
-                If String.IsNullOrEmpty(TextBox1.Text.Trim) Then
-                    TextBox1.Clear()
-                    MessageBox.Show("Product Code is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(TextBox4.Text) Then
-                    MessageBox.Show("Barcode is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(TextBox5.Text) Then
-                    MessageBox.Show("Product Name is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(TextBox3.Text) Then
-                    MessageBox.Show("Description is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ElseIf String.IsNullOrEmpty(TextBox2.Text) Then
-                    MessageBox.Show("Product Price is required!", "Incomplete Fields", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Else
-                    updatecustomproduct(False)
-                    clientloadproducts()
-                    PictureBoxCustomAdd.Image = Nothing
-                    ClearTextBox(Me)
-                    TxtBase64.Text = ""
-                    clientloadproducts()
-                    clientloadproductsunapproved()
-                End If
-            End If
-        End If
-
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub DataGridViewClientProducts_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewClientProducts.CellClick
         rowindexclient()
-        'selectimagecustom()
     End Sub
     Private Sub ButtonDeleteProducts_Click(sender As Object, e As EventArgs) Handles ButtonDeleteProducts.Click
         deactivateuser(True)
@@ -659,6 +612,7 @@ Public Class ManageProducts
                 End If
             Catch ex As Exception
                 MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             End Try
         Else
             Try
@@ -690,11 +644,13 @@ Public Class ManageProducts
                             End If
                         Catch ex As Exception
                             MsgBox(ex.ToString)
+                            SendErrorReport(ex.ToString)
                         End Try
                     End If
                 End If
             Catch ex As Exception
                 MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             End Try
         End If
     End Sub
@@ -765,6 +721,7 @@ Public Class ManageProducts
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub TextBoxFROM_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxTO.KeyPress, TextBoxFROM.KeyPress
@@ -774,7 +731,6 @@ Public Class ManageProducts
             MsgBox(ex.ToString)
         End Try
     End Sub
-
     Private Sub TextBoxPRCODE_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxPRICE.KeyPress, TextBoxPRCODE.KeyPress, TextBoxNAME.KeyPress, TextBoxCustomDesc.KeyPress, TextBoxBCODE.KeyPress
         Try
             If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
@@ -782,8 +738,8 @@ Public Class ManageProducts
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
-    'ADD CUSTOM CATEGORY =================================================================================>
 End Class
 

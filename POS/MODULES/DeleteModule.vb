@@ -14,6 +14,7 @@ Module DeleteModule
             cmd.ExecuteNonQuery()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub truncatetable(ByVal tablename As String)
@@ -27,6 +28,7 @@ Module DeleteModule
             cmd.ExecuteNonQuery()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 End Module

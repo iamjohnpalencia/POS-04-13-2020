@@ -302,6 +302,24 @@ Partial Class SettingsForm
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -1523,6 +1541,7 @@ Partial Class SettingsForm
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewPartners.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridViewPartners.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewPartners.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1630,10 +1649,10 @@ Partial Class SettingsForm
         'TabPage8
         '
         Me.TabPage8.Controls.Add(Me.TableLayoutPanel8)
-        Me.TabPage8.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage8.Location = New System.Drawing.Point(4, 28)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage8.Size = New System.Drawing.Size(1017, 449)
+        Me.TabPage8.Size = New System.Drawing.Size(1017, 443)
         Me.TabPage8.TabIndex = 1
         Me.TabPage8.Text = "TabPage8"
         Me.TabPage8.UseVisualStyleBackColor = True
@@ -1650,7 +1669,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel8.RowCount = 2
         Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel8.Size = New System.Drawing.Size(1011, 443)
+        Me.TableLayoutPanel8.Size = New System.Drawing.Size(1011, 437)
         Me.TableLayoutPanel8.TabIndex = 8
         '
         'GroupBox14
@@ -1660,7 +1679,7 @@ Partial Class SettingsForm
         Me.GroupBox14.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox14.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Size = New System.Drawing.Size(1005, 367)
+        Me.GroupBox14.Size = New System.Drawing.Size(1005, 361)
         Me.GroupBox14.TabIndex = 164
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "Deactivated Bank List"
@@ -1685,6 +1704,7 @@ Partial Class SettingsForm
         DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewPartnersDeact.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridViewPartnersDeact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewPartnersDeact.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column11, Me.Column12, Me.Column13, Me.Column14, Me.Column15, Me.Column16, Me.Column17, Me.Column18, Me.Column19})
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle6.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1698,7 +1718,7 @@ Partial Class SettingsForm
         Me.DataGridViewPartnersDeact.EnableHeadersVisualStyles = False
         Me.DataGridViewPartnersDeact.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewPartnersDeact.Name = "DataGridViewPartnersDeact"
-        Me.DataGridViewPartnersDeact.Size = New System.Drawing.Size(999, 342)
+        Me.DataGridViewPartnersDeact.Size = New System.Drawing.Size(999, 336)
         Me.DataGridViewPartnersDeact.TabIndex = 6
         '
         'GroupBox15
@@ -1706,7 +1726,7 @@ Partial Class SettingsForm
         Me.GroupBox15.Controls.Add(Me.Panel25)
         Me.GroupBox15.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox15.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox15.Location = New System.Drawing.Point(3, 376)
+        Me.GroupBox15.Location = New System.Drawing.Point(3, 370)
         Me.GroupBox15.Name = "GroupBox15"
         Me.GroupBox15.Size = New System.Drawing.Size(1005, 64)
         Me.GroupBox15.TabIndex = 166
@@ -3370,6 +3390,108 @@ Partial Class SettingsForm
         '
         Me.Timer1.Interval = 1000
         '
+        'Column11
+        '
+        Me.Column11.HeaderText = "Column11"
+        Me.Column11.Name = "Column11"
+        Me.Column11.Visible = False
+        '
+        'Column12
+        '
+        Me.Column12.HeaderText = "Column12"
+        Me.Column12.Name = "Column12"
+        Me.Column12.Visible = False
+        '
+        'Column13
+        '
+        Me.Column13.HeaderText = "Name"
+        Me.Column13.Name = "Column13"
+        '
+        'Column14
+        '
+        Me.Column14.HeaderText = "Date Modified"
+        Me.Column14.Name = "Column14"
+        '
+        'Column15
+        '
+        Me.Column15.HeaderText = "Column15"
+        Me.Column15.Name = "Column15"
+        Me.Column15.Visible = False
+        '
+        'Column16
+        '
+        Me.Column16.HeaderText = "Column16"
+        Me.Column16.Name = "Column16"
+        Me.Column16.Visible = False
+        '
+        'Column17
+        '
+        Me.Column17.HeaderText = "Column17"
+        Me.Column17.Name = "Column17"
+        Me.Column17.Visible = False
+        '
+        'Column18
+        '
+        Me.Column18.HeaderText = "Status"
+        Me.Column18.Name = "Column18"
+        '
+        'Column19
+        '
+        Me.Column19.HeaderText = "Column19"
+        Me.Column19.Name = "Column19"
+        Me.Column19.Visible = False
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Column2"
+        Me.Column2.Name = "Column2"
+        Me.Column2.Visible = False
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Column3"
+        Me.Column3.Name = "Column3"
+        Me.Column3.Visible = False
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Name"
+        Me.Column4.Name = "Column4"
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Date Modified"
+        Me.Column5.Name = "Column5"
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Column6"
+        Me.Column6.Name = "Column6"
+        Me.Column6.Visible = False
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "Column7"
+        Me.Column7.Name = "Column7"
+        Me.Column7.Visible = False
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Column8"
+        Me.Column8.Name = "Column8"
+        Me.Column8.Visible = False
+        '
+        'Column9
+        '
+        Me.Column9.HeaderText = "Status"
+        Me.Column9.Name = "Column9"
+        '
+        'Column10
+        '
+        Me.Column10.HeaderText = "Column10"
+        Me.Column10.Name = "Column10"
+        Me.Column10.Visible = False
+        '
         'SettingsForm
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -3746,4 +3868,22 @@ Partial Class SettingsForm
     Friend WithEvents GroupBox20 As GroupBox
     Friend WithEvents GroupBox21 As GroupBox
     Friend WithEvents Panel20 As Panel
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents Column9 As DataGridViewTextBoxColumn
+    Friend WithEvents Column10 As DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents Column12 As DataGridViewTextBoxColumn
+    Friend WithEvents Column13 As DataGridViewTextBoxColumn
+    Friend WithEvents Column14 As DataGridViewTextBoxColumn
+    Friend WithEvents Column15 As DataGridViewTextBoxColumn
+    Friend WithEvents Column16 As DataGridViewTextBoxColumn
+    Friend WithEvents Column17 As DataGridViewTextBoxColumn
+    Friend WithEvents Column18 As DataGridViewTextBoxColumn
+    Friend WithEvents Column19 As DataGridViewTextBoxColumn
 End Class

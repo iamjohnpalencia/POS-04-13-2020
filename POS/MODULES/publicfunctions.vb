@@ -21,6 +21,7 @@ Module publicfunctions
             Process.Start(osk)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub ButtonEnableability(ByVal root As Control, ENB As Boolean)
@@ -53,6 +54,7 @@ Module publicfunctions
             Next ctrl
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub ClearTextBox(ByVal root As Control)
@@ -65,6 +67,7 @@ Module publicfunctions
             Next ctrl
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub ClearDataGridViewRows(ByVal root As Control)
@@ -78,6 +81,7 @@ Module publicfunctions
             Next ctrl
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub SpecialCharRestriction(ByVal root As Control, ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
@@ -93,6 +97,7 @@ Module publicfunctions
             Next ctrl
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub buttonpressedenter(ByVal btntext As String)
@@ -241,17 +246,23 @@ Module publicfunctions
     End Function
     Dim dtRESET As DataTable
     Public Function CheckIfNeedToReset() As Boolean
-        Dim cmd As MySqlCommand
-        Dim da As MySqlDataAdapter
-        Dim firstday = Format(FirstDayOfMonth(Date.Now), "yyyy-MM-dd")
         Try
-            Dim sql = "SELECT * FROM loc_inv_temp_data WHERE created_at = '" & firstday & "'"
-            cmd = New MySqlCommand(sql, LocalhostConn)
-            da = New MySqlDataAdapter(cmd)
-            dtRESET = New DataTable
-            da.Fill(dtRESET)
+            Dim cmd As MySqlCommand
+            Dim da As MySqlDataAdapter
+            Dim firstday = Format(FirstDayOfMonth(Date.Now), "yyyy-MM-dd")
+            Try
+                Dim sql = "SELECT * FROM loc_inv_temp_data WHERE created_at = '" & firstday & "'"
+                cmd = New MySqlCommand(sql, LocalhostConn)
+                da = New MySqlDataAdapter(cmd)
+                dtRESET = New DataTable
+                da.Fill(dtRESET)
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+            End Try
+
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         If dtRESET.Rows.Count = 0 Then
             Return True
@@ -265,36 +276,39 @@ Module publicfunctions
             DateNow = Format(Now(), "yyyy-MM-dd HH:mm:ss")
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return DateNow
     End Function
     Public Sub EndBalance()
-        If Shift = "First Shift" Then
-            SystemLogType = "END-1"
-            Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
-            EndingBalance = BeginningBalance + Val(DailySales)
-        ElseIf Shift = "Second Shift" Then
-            SystemLogType = "END-2"
-            Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
-            EndingBalance = BeginningBalance + Val(DailySales)
-        ElseIf Shift = "Third Shift" Then
-            SystemLogType = "END-3"
-            Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
-            EndingBalance = BeginningBalance + Val(DailySales)
-        Else
-            SystemLogType = "END-4"
-            Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
-            EndingBalance = BeginningBalance + Val(DailySales)
-        End If
-        SystemLogDesc = EndingBalance
-        GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-
-
-        Shift = ""
-        BeginningBalance = 0
-        EndingBalance = 0
+        Try
+            If Shift = "First Shift" Then
+                SystemLogType = "END-1"
+                Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
+                EndingBalance = BeginningBalance + Val(DailySales)
+            ElseIf Shift = "Second Shift" Then
+                SystemLogType = "END-2"
+                Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
+                EndingBalance = BeginningBalance + Val(DailySales)
+            ElseIf Shift = "Third Shift" Then
+                SystemLogType = "END-3"
+                Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
+                EndingBalance = BeginningBalance + Val(DailySales)
+            Else
+                SystemLogType = "END-4"
+                Dim DailySales = sum(table:="loc_daily_transaction_details WHERE created_at = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
+                EndingBalance = BeginningBalance + Val(DailySales)
+            End If
+            SystemLogDesc = EndingBalance
+            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+            Shift = ""
+            BeginningBalance = 0
+            EndingBalance = 0
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
-
     Dim total
     Public Function SumOfColumnsToDecimal(ByVal datagrid As DataGridView, ByVal celltocompute As Integer)
         With datagrid
@@ -304,12 +318,6 @@ Module publicfunctions
             Next
             Return Format(sum, "##,##0.00")
         End With
-        'With datagrid
-        '    total = (From row As DataGridViewRow In .Rows
-        '             Where row.Cells(celltocompute).FormattedValue.ToString() <> String.Empty
-        '             Select Convert.ToDecimal(row.Cells(celltocompute).FormattedValue)).Sum.ToString("0.00")
-        'End With
-        'Return total
     End Function
     Public Function SumOfColumnsToInt(ByVal datagrid As DataGridView, ByVal celltocompute As Integer)
         Try
@@ -320,6 +328,7 @@ Module publicfunctions
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return total
     End Function
@@ -378,26 +387,30 @@ Module publicfunctions
         SendMessage(ProgressBar_Name.Handle, &H410, ProgressBar_Color, 0)
     End Sub
     Public Sub ReceiptHeader(sender As Object, e As PrintPageEventArgs)
-
-        Dim brandfont As New Font("Tahoma", 7, FontStyle.Bold)
-        Dim font As New Font("Tahoma", 6)
-        Dim brand = ClientBrand.ToUpper
-        CenterTextDisplay(sender, e, brand, brandfont, 10)
-        CenterTextDisplay(sender, e, "VAT REG TIN " & ClientTin, font, 21)
-        CenterTextDisplay(sender, e, ClientAddress & ", Brgy." & ClientBrgy, font, 31)
-        CenterTextDisplay(sender, e, getmunicipality & ", " & getprovince, font, 41)
-        CenterTextDisplay(sender, e, "TEL. NO.: " & ClientTel, font, 51)
-        SimpleTextDisplay(sender, e, "Name:", font, 0, 50)
-        If SENIORDETAILSBOOL = True Then
-            SimpleTextDisplay(sender, e, SeniorDetailsName, font, 30, 45)
-        End If
-        e.Graphics.DrawLine(Pens.Black, 40, 77, 180, 77)
-        SimpleTextDisplay(sender, e, "Tin:", font, 0, 60)
-        e.Graphics.DrawLine(Pens.Black, 28, 87, 180, 87)
-        SimpleTextDisplay(sender, e, "Address:", font, 0, 70)
-        e.Graphics.DrawLine(Pens.Black, 49, 97, 180, 97)
-        SimpleTextDisplay(sender, e, "Business Style:", font, 0, 80)
-        e.Graphics.DrawLine(Pens.Black, 75, 107, 180, 107)
+        Try
+            Dim brandfont As New Font("Tahoma", 7, FontStyle.Bold)
+            Dim font As New Font("Tahoma", 6)
+            Dim brand = ClientBrand.ToUpper
+            CenterTextDisplay(sender, e, brand, brandfont, 10)
+            CenterTextDisplay(sender, e, "VAT REG TIN " & ClientTin, font, 21)
+            CenterTextDisplay(sender, e, ClientAddress & ", Brgy." & ClientBrgy, font, 31)
+            CenterTextDisplay(sender, e, getmunicipality & ", " & getprovince, font, 41)
+            CenterTextDisplay(sender, e, "TEL. NO.: " & ClientTel, font, 51)
+            SimpleTextDisplay(sender, e, "Name:", font, 0, 50)
+            If SENIORDETAILSBOOL = True Then
+                SimpleTextDisplay(sender, e, SeniorDetailsName, font, 30, 45)
+            End If
+            e.Graphics.DrawLine(Pens.Black, 40, 77, 180, 77)
+            SimpleTextDisplay(sender, e, "Tin:", font, 0, 60)
+            e.Graphics.DrawLine(Pens.Black, 28, 87, 180, 87)
+            SimpleTextDisplay(sender, e, "Address:", font, 0, 70)
+            e.Graphics.DrawLine(Pens.Black, 49, 97, 180, 97)
+            SimpleTextDisplay(sender, e, "Business Style:", font, 0, 80)
+            e.Graphics.DrawLine(Pens.Black, 75, 107, 180, 107)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Public Sub ReceiptFooter(sender As Object, e As PrintPageEventArgs, a As Integer)
         Try
@@ -419,6 +432,7 @@ Module publicfunctions
             CenterTextDisplay(sender, e, "VALID UNTIL : " & dt(0)(8), font, a + 275)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 End Module

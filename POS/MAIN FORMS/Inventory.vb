@@ -43,6 +43,7 @@ Public Class Inventory
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Sub loadinventory()
@@ -61,6 +62,7 @@ Public Class Inventory
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -76,6 +78,7 @@ Public Class Inventory
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -91,19 +94,24 @@ Public Class Inventory
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
-
-    Sub loadcriticalstocks()
-        fields = "`product_ingredients`, ROUND(`stock_primary`, 0),ROUND(`stock_secondary`, 0) , `critical_limit`, `created_at`"
-        GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_pos_inventory", datagrid:=DataGridViewCriticalStocks, errormessage:="", successmessage:="", fields:=fields, where:=" stock_status = 1 AND critical_limit >= stock_primary AND store_id = " & ClientStoreID)
-        With DataGridViewCriticalStocks
-            .Columns(0).HeaderCell.Value = "Product Name"
-            .Columns(1).HeaderCell.Value = "Primary Value"
-            .Columns(2).HeaderCell.Value = "Secondary Value"
-            .Columns(3).HeaderCell.Value = "Critical Limit"
-            .Columns(4).HeaderCell.Value = "Date Modified"
-        End With
+    Private Sub loadcriticalstocks()
+        Try
+            fields = "`product_ingredients`, ROUND(`stock_primary`, 0),ROUND(`stock_secondary`, 0) , `critical_limit`, `created_at`"
+            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_pos_inventory", datagrid:=DataGridViewCriticalStocks, errormessage:="", successmessage:="", fields:=fields, where:=" stock_status = 1 AND critical_limit >= stock_primary AND store_id = " & ClientStoreID)
+            With DataGridViewCriticalStocks
+                .Columns(0).HeaderCell.Value = "Product Name"
+                .Columns(1).HeaderCell.Value = "Primary Value"
+                .Columns(2).HeaderCell.Value = "Secondary Value"
+                .Columns(3).HeaderCell.Value = "Critical Limit"
+                .Columns(4).HeaderCell.Value = "Date Modified"
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Sub loadfastmovingstock()
         Try
@@ -118,6 +126,7 @@ Public Class Inventory
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
             cloudconn.Close()
         End Try
     End Sub
@@ -135,6 +144,7 @@ Public Class Inventory
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Sub loadcomboboxingredients()
@@ -149,55 +159,30 @@ Public Class Inventory
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Dim DataTableInventory As New DataTable
     Dim DataTableFormula As New DataTable
     Dim inv
-    'Public Sub selectingredients()
-    '    Try
-    '        Dim sql = "SELECT inventory_id FROM loc_pos_inventory WHERE product_ingredients = '" & ComboBoxDESC.Text & "'"
-    '        Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
-    '        Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
-    '        Dim dt As DataTable = New DataTable
-    '        da.Fill(dt)
-    '        Dim inventory_id = dt(0)(0)
-    '        Dim sql1 = "Select formula_id, serving_unit, serving_value FROM loc_product_formula WHERE formula_id = " & inventory_id & ""
-    '        cmd = New MySqlCommand(sql1, LocalhostConn)
-    '        da = New MySqlDataAdapter(cmd)
-    '        Dim dt1 As DataTable = New DataTable
-    '        da.Fill(dt1)
-    '        For Each row As DataRow In dt1.Rows
-    '            TextBoxSERVINGUNIT.Text = row("serving_unit")
-    '            TextBoxSERVINGVAL.Text = row("serving_value")
-    '            TextBoxINVENTORYID.Text = row("formula_id")
-    '        Next
-    '        Dim sql2 = "SELECT formula_id, stock_primary FROM loc_pos_inventory WHERE formula_id = " & inventory_id & " "
-    '        cmd = New MySqlCommand(sql2, LocalhostConn)
-    '        da = New MySqlDataAdapter(cmd)
-    '        Dim dt2 As DataTable = New DataTable
-    '        da.Fill(dt2)
-    '        For Each row As DataRow In dt2.Rows
-    '            TextBoxSTCKONHAND.Text = row("stock_primary")
-    '        Next
-    '    Catch ex As Exception
-    '        MsgBox(ex.ToString)
-    '    End Try
-    'End Sub
-    Sub loadstockentry()
-
-        where = " date(log_date_time) = CURRENT_DATE() AND log_type = 'STOCK ENTRY' "
-        fields = "`crew_id`, `log_type`, `log_description`, `log_date_time`"
-        GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_system_logs", datagrid:=DataGridViewSTOCKENTRY, errormessage:="", successmessage:="", fields:=fields, where:=where)
-        With DataGridViewSTOCKENTRY
-            .Columns(0).HeaderText = "Service Crew"
-            .Columns(1).Visible = False
-            .Columns(2).HeaderText = "Description"
-            .Columns(3).HeaderText = "Date and Time"
-            For Each row As DataRow In dt.Rows
-                row("crew_id") = GLOBAL_SELECT_FUNCTION_RETURN(table:="loc_users", fields:="full_name", returnvalrow:="full_name", values:="uniq_id ='" & row("crew_id") & "'")
-            Next
-        End With
+    Private Sub loadstockentry()
+        Try
+            where = " date(log_date_time) = CURRENT_DATE() AND log_type = 'STOCK ENTRY' "
+            fields = "`crew_id`, `log_type`, `log_description`, `log_date_time`"
+            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_system_logs", datagrid:=DataGridViewSTOCKENTRY, errormessage:="", successmessage:="", fields:=fields, where:=where)
+            With DataGridViewSTOCKENTRY
+                .Columns(0).HeaderText = "Service Crew"
+                .Columns(1).Visible = False
+                .Columns(2).HeaderText = "Description"
+                .Columns(3).HeaderText = "Date and Time"
+                For Each row As DataRow In dt.Rows
+                    row("crew_id") = GLOBAL_SELECT_FUNCTION_RETURN(table:="loc_users", fields:="full_name", returnvalrow:="full_name", values:="uniq_id ='" & row("crew_id") & "'")
+                Next
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Dim inventoryid
     Private Sub DataGridViewPanelStockAdjustment_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewPanelStockAdjustment.CellClick
@@ -216,6 +201,7 @@ Public Class Inventory
             SelectFormula(FormulaID, Origin)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub SelectFormula(FormulaID, Origin)
@@ -242,6 +228,7 @@ Public Class Inventory
             LocalhostConn.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub SelectFormulaEntry(FormulaID, Origin)
@@ -270,6 +257,7 @@ Public Class Inventory
             LocalhostConn.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Sub loadstockadjustmentreport(searchdate As Boolean)
@@ -298,6 +286,7 @@ Public Class Inventory
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub LoadOutlets()
@@ -305,6 +294,7 @@ Public Class Inventory
             GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX("admin_outlets", "store_name", ComboBoxtransfer, False)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub FillComboboxReason()
@@ -312,6 +302,7 @@ Public Class Inventory
             GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX("loc_transfer_data WHERE active = 1", "transfer_cat", ComboBoxDeduction, True)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -328,6 +319,7 @@ Public Class Inventory
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -343,6 +335,7 @@ Public Class Inventory
             DataGridViewPanelStockAdjustment_CellClick(sender, arg)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub countingredients()
@@ -403,6 +396,7 @@ Public Class Inventory
             MDIFORM.LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
             MsgBox("Error 2.0.1" & vbNewLine & "Please let us know whether you are still facing the problem.")
             messageboxappearance = False
             SystemLogType = "ERROR"
@@ -410,26 +404,19 @@ Public Class Inventory
             GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
         End Try
     End Sub
-    Private Sub TextBoxENTRYQTY_TextChanged(sender As Object, e As EventArgs)
-        'TextBoxENTRYTOTALQTY.Text = Val(TextBoxENTRYQTY.Text) + Val(TextBoxSTCKONHAND.Text)
-    End Sub
-    Private Sub TextBoxSTCKONHAND_TextChanged(sender As Object, e As EventArgs)
-        'If TextBoxSTCKONHAND.Text = "" Then
-        '    TextBoxENTRYQTY.ReadOnly = True
-        'Else
-        '    TextBoxENTRYQTY.ReadOnly = False
-        'End If
-        'TextBoxENTRYTOTALQTY.Text = Val(TextBoxSTCKONHAND.Text) + Val(TextBoxENTRYQTY.Text)
-    End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If DateTimePicker1.Value.Date > DateTimePicker2.Value.Date Then
-            MsgBox("")
-        Else
-            loadstockadjustmentreport(True)
-        End If
+        Try
+            If DateTimePicker1.Value.Date > DateTimePicker2.Value.Date Then
+                MsgBox("")
+            Else
+                loadstockadjustmentreport(True)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub ComboBoxDESC_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxDESC.SelectedIndexChanged
-        'selectingredients()
         Try
             Dim sql = "SELECT inventory_id, stock_primary, stock_secondary, origin FROM loc_pos_inventory WHERE product_ingredients = '" & ComboBoxDESC.Text & "'"
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
@@ -443,6 +430,7 @@ Public Class Inventory
             SelectFormulaEntry(inventory_id, dt(0)(3))
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -552,6 +540,7 @@ Public Class Inventory
 
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -576,6 +565,7 @@ Public Class Inventory
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -625,6 +615,7 @@ Public Class Inventory
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles ButtonReasonCancel.Click
@@ -646,6 +637,7 @@ Public Class Inventory
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
@@ -657,26 +649,31 @@ Public Class Inventory
         PanelSTOCKADJUSTMENT.Visible = False
     End Sub
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
-        If DataGridViewDeactivatedReasonCat.SelectedRows.Count = 1 Then
-            Dim msg = MessageBox.Show("Are you sure do you want to activate this category ?", "Activation", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-            If msg = DialogResult.Yes Then
-                Dim sql = "UPDATE `loc_transfer_data` SET `active`=@1 , `updated_at`=@2 WHERE transfer_id = " & DataGridViewDeactivatedReasonCat.SelectedRows(0).Cells(0).Value
-                cmd = New MySqlCommand(sql, LocalhostConn)
-                cmd.Parameters.Add("@1", MySqlDbType.Text).Value = "1"
-                cmd.Parameters.Add("@2", MySqlDbType.Text).Value = FullDate24HR()
-                cmd.ExecuteNonQuery()
-                LoadReasonCategories()
-                LoadReasonCategoriesDeactivated()
-                PanelReasonCat.Visible = False
-                TextBoxReasonsCat.Clear()
-                GLOBAL_SYSTEM_LOGS("REASON CATEGORY ACTIVATED", "Category Name: " & TextBoxReasonsCat.Text & " ,Activated By: " & ClientCrewID)
-                FillComboboxReason()
+        Try
+            If DataGridViewDeactivatedReasonCat.SelectedRows.Count = 1 Then
+                Dim msg = MessageBox.Show("Are you sure do you want to activate this category ?", "Activation", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                If msg = DialogResult.Yes Then
+                    Dim sql = "UPDATE `loc_transfer_data` SET `active`=@1 , `updated_at`=@2 WHERE transfer_id = " & DataGridViewDeactivatedReasonCat.SelectedRows(0).Cells(0).Value
+                    cmd = New MySqlCommand(sql, LocalhostConn)
+                    cmd.Parameters.Add("@1", MySqlDbType.Text).Value = "1"
+                    cmd.Parameters.Add("@2", MySqlDbType.Text).Value = FullDate24HR()
+                    cmd.ExecuteNonQuery()
+                    LoadReasonCategories()
+                    LoadReasonCategoriesDeactivated()
+                    PanelReasonCat.Visible = False
+                    TextBoxReasonsCat.Clear()
+                    GLOBAL_SYSTEM_LOGS("REASON CATEGORY ACTIVATED", "Category Name: " & TextBoxReasonsCat.Text & " ,Activated By: " & ClientCrewID)
+                    FillComboboxReason()
+                End If
+            ElseIf DataGridViewDeactivatedReasonCat.SelectedRows.Count > 1 Then
+                MsgBox("Select one category only.")
+            Else
+                MsgBox("Select category Category first")
             End If
-        ElseIf DataGridViewDeactivatedReasonCat.selectedrows.Count > 1 Then
-            MsgBox("Select one category only.")
-        Else
-            MsgBox("Select category Category first")
-        End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub LoadReasonCategoriesDeactivated()
         Try
@@ -691,9 +688,9 @@ Public Class Inventory
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
         PanelSTOCKADJUSTMENT.Visible = False
     End Sub
@@ -705,6 +702,7 @@ Public Class Inventory
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -715,14 +713,20 @@ Public Class Inventory
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
     Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles Button7.Click
-        Dim sql = "UPDATE loc_pos_inventory SET stock_primary = 0, stock_secondary = 0,  stock_no_of_servings = 0"
-        Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
-        cmd.ExecuteNonQuery()
-        loadinventory()
+        Try
+            Dim sql = "UPDATE loc_pos_inventory SET stock_primary = 0, stock_secondary = 0,  stock_no_of_servings = 0"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            cmd.ExecuteNonQuery()
+            loadinventory()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private WithEvents printdoc As PrintDocument = New PrintDocument
     Private PrintPreviewDialog1 As New PrintPreviewDialog
@@ -739,12 +743,13 @@ Public Class Inventory
             PrintPreviewDialog1.Document = printdoc
             PrintPreviewDialog1.ShowDialog()
             ' printdoc.Print()
-        Catch exp As Exception
+        Catch ex As Exception
             MessageBox.Show("An error occurred while trying to load the " &
                 "document for Print Preview. Make sure you currently have " &
                 "access to a printer. A printer must be localconnected and " &
                 "accessible for Print Preview to work.", Me.Text,
                  MessageBoxButtons.OK, MessageBoxIcon.Error)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub pdoc_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles printdoc.PrintPage
@@ -767,6 +772,7 @@ Public Class Inventory
             CenterTextDisplay(sender, e, Format(Now(), "yyyy-MM-dd HH:mm:ss"), font, a + 50)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 End Class

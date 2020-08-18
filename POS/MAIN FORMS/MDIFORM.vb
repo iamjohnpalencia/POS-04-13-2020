@@ -31,6 +31,7 @@
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
@@ -109,7 +110,6 @@
         '        newMDIchild.Show()
         '    End If
         'End If
-
         btncolor(changecolor:=Button10)
         btndefaut(defaultcolor:=Button10)
         formclose(closeform:=SynctoCloud)
@@ -184,6 +184,7 @@
         Catch ex As Exception
             Dispose()
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub btncolor(ByVal changecolor As Button)
@@ -191,18 +192,23 @@
         changecolor.BackColor = Color.FromArgb(23, 162, 184)
     End Sub
     Public Sub btndefaut(ByVal defaultcolor As Button)
-        For Each P As Control In Controls
-            If TypeOf P Is Panel Then
-                For Each ctrl As Control In P.Controls
-                    If TypeOf ctrl Is Button Then
-                        If ctrl.Name <> defaultcolor.Name Then
-                            CType(ctrl, Button).ForeColor = Color.Black
-                            CType(ctrl, Button).BackColor = Color.White
+        Try
+            For Each P As Control In Controls
+                If TypeOf P Is Panel Then
+                    For Each ctrl As Control In P.Controls
+                        If TypeOf ctrl Is Button Then
+                            If ctrl.Name <> defaultcolor.Name Then
+                                CType(ctrl, Button).ForeColor = Color.Black
+                                CType(ctrl, Button).BackColor = Color.White
+                            End If
                         End If
-                    End If
-                Next
-            End If
-        Next
+                    Next
+                End If
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Public Sub formclose(ByVal closeform As Form)
         Try
@@ -217,6 +223,7 @@
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Dim iflogout As Boolean

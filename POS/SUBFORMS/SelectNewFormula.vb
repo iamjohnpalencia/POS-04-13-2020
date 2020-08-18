@@ -1,7 +1,12 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class SelectNewFormula
     Private Sub SelectNewFormula_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        GLOBAL_SELECT_ALL_FUNCTION("loc_product_formula", "`product_ingredients`", DataGridView1)
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION("loc_product_formula", "`product_ingredients`", DataGridView1)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Dim ChangeFormula As Boolean = False
     Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick

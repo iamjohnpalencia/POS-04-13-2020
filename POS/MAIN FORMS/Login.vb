@@ -10,9 +10,15 @@ Public Class Login
         ButttonLogin.Text = "LOGIN (" & ClientStorename & ")"
     End Sub
     Public Function FirstDayOfMonth(ByVal sourceDate As DateTime)
-        Dim FirstDay As DateTime = New DateTime(sourceDate.Year, sourceDate.Month, 1)
-        Dim FormatDay As String = "yyyy-MM-dd"
-        Dim displaythis = FirstDay.ToString(FormatDay)
+        Dim displaythis = ""
+        Try
+            Dim FirstDay As DateTime = New DateTime(sourceDate.Year, sourceDate.Month, 1)
+            Dim FormatDay As String = "yyyy-MM-dd"
+            displaythis = FirstDay.ToString(FormatDay)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
         Return displaythis
     End Function
     Private Sub BackupDatabase()
@@ -21,6 +27,7 @@ Public Class Login
             Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqldump --databases -h " & connectionModule.LocServer & " -u " & connectionModule.LocUser & " -p " & connectionModule.LocPass & " " & connectionModule.LocDatabase & " > """ & S_ExportPath & DatabaseName & """")
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub CheckDatabaseBackup()
@@ -82,6 +89,7 @@ Public Class Login
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub ButttonLogin_Click(sender As Object, e As EventArgs) Handles ButttonLogin.Click
@@ -128,11 +136,9 @@ Public Class Login
             MsgBox(ex.ToString)
         End Try
     End Sub
-
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
         ShowKeyboard()
         Application.DoEvents()
-
         txtusername.Focus()
     End Sub
 End Class

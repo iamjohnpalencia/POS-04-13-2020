@@ -31,6 +31,7 @@ Public Class Loading
             BackgroundWorker1.RunWorkerAsync()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Load2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -119,6 +120,7 @@ Public Class Loading
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub LoadSettings()
@@ -160,6 +162,7 @@ Public Class Loading
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub LoadMasterList()
@@ -183,6 +186,7 @@ Public Class Loading
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
@@ -190,38 +194,43 @@ Public Class Loading
         Label2.Text = e.ProgressPercentage
     End Sub
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
-        If IfConnectionIsConfigured = True Then
-            'MsgBox("Connection is open")
-            If RowsReturned = 1 Then
-                'MsgBox("Activated")
-                If IfInternetIsAvailable = True Then
-                    'MsgBox("Has internet connection")
-                    'MsgBox(IfNeedsToReset)
-                    If IfNeedsToReset = True Then
-                        BackgroundWorker2.WorkerSupportsCancellation = True
-                        BackgroundWorker2.WorkerReportsProgress = True
-                        BackgroundWorker2.RunWorkerAsync()
+        Try
+            If IfConnectionIsConfigured = True Then
+                'MsgBox("Connection is open")
+                If RowsReturned = 1 Then
+                    'MsgBox("Activated")
+                    If IfInternetIsAvailable = True Then
+                        'MsgBox("Has internet connection")
+                        'MsgBox(IfNeedsToReset)
+                        If IfNeedsToReset = True Then
+                            BackgroundWorker2.WorkerSupportsCancellation = True
+                            BackgroundWorker2.WorkerReportsProgress = True
+                            BackgroundWorker2.RunWorkerAsync()
+                        Else
+                            GetLocalPosData()
+                        End If
                     Else
-                        GetLocalPosData()
+                        'MsgBox("No internet connection")
+                        If IfNeedsToReset = True Then
+                            BackgroundWorker2.WorkerSupportsCancellation = True
+                            BackgroundWorker2.WorkerReportsProgress = True
+                            BackgroundWorker2.RunWorkerAsync()
+                        Else
+                            NoInternetConnection()
+                        End If
                     End If
                 Else
-                    'MsgBox("No internet connection")
-                    If IfNeedsToReset = True Then
-                        BackgroundWorker2.WorkerSupportsCancellation = True
-                        BackgroundWorker2.WorkerReportsProgress = True
-                        BackgroundWorker2.RunWorkerAsync()
-                    Else
-                        NoInternetConnection()
-                    End If
+                    'MsgBox("Not yet activated")
+                    NotYetActivated()
                 End If
             Else
-                'MsgBox("Not yet activated")
-                NotYetActivated()
+                'MsgBox("Connecion is close")
+                ConnectionIsClose()
             End If
-        Else
-            'MsgBox("Connecion is close")
-            ConnectionIsClose()
-        End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
         Try
@@ -258,35 +267,51 @@ Public Class Loading
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     '===========================================================================================
     Private Sub NotYetActivated()
-        ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
-        Dim result As Integer = MessageBox.Show("Your POS system is not yet activated. Would you like to activate the software now ?", "Activation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If result = DialogResult.Yes Then
-            Dispose()
-            ConfigManager.Show()
-        Else
-            Application.Exit()
-        End If
+        Try
+            ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
+            Dim result As Integer = MessageBox.Show("Your POS system is not yet activated. Would you like to activate the software now ?", "Activation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = DialogResult.Yes Then
+                Dispose()
+                ConfigManager.Show()
+            Else
+                Application.Exit()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub ConnectionIsClose()
-        Dim msg2 As Integer = MessageBox.Show("Would you like to setup server configuration?", "Setup", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-        If msg2 = DialogResult.Yes Then
-            ConfigManager.Show()
-            Close()
-        ElseIf msg2 = DialogResult.No Then
-            Application.Exit()
-        End If
+        Try
+            Dim msg2 As Integer = MessageBox.Show("Would you like to setup server configuration?", "Setup", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+            If msg2 = DialogResult.Yes Then
+                ConfigManager.Show()
+                Close()
+            ElseIf msg2 = DialogResult.No Then
+                Application.Exit()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub NoInternetConnection()
-        Dim msg As Integer = MessageBox.Show("No internet connection found, Would you like to continue ?", "No internet connection", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information)
-        If msg = DialogResult.Yes Then
-            GetLocalPosData()
-        ElseIf msg = DialogResult.No Then
-            Application.Exit()
-        End If
+        Try
+            Dim msg As Integer = MessageBox.Show("No internet connection found, Would you like to continue ?", "No internet connection", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information)
+            If msg = DialogResult.Yes Then
+                GetLocalPosData()
+            ElseIf msg = DialogResult.No Then
+                Application.Exit()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub GetLocalPosData()
         Try
@@ -316,6 +341,7 @@ Public Class Loading
             Login.txtusername.Focus()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Temptinventory()
@@ -329,6 +355,7 @@ Public Class Loading
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub ResetStocks()
@@ -342,6 +369,7 @@ Public Class Loading
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub BackgroundWorker2_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker2.ProgressChanged

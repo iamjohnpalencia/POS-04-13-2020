@@ -39,6 +39,7 @@
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub TextBoxMONEY_TextChanged(sender As Object, e As EventArgs) Handles TextBoxMONEY.TextChanged
@@ -49,6 +50,7 @@
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub buttonpressedenter(ByVal btntext As String)
@@ -248,11 +250,9 @@
             ButtonClear.PerformClick()
         End If
     End Sub
-
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If TextBoxMONEY.Text.Count > 0 Then
             TextBoxMONEY.Text = TextBoxMONEY.Text.Remove(TextBoxMONEY.Text.Count - 1)
         End If
-
     End Sub
 End Class

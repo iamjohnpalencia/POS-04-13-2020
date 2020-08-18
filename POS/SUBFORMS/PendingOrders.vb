@@ -65,6 +65,7 @@ Public Class PendingOrders
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub populatedatagridvieworders()
@@ -78,6 +79,7 @@ Public Class PendingOrders
             Next row
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Try
             Dim command As New MySqlCommand("SELECT `hold_id`, `sr_total`, `f_id`, `qty`, `id`, `nm`, `org_serve`, `cog`, `ocog`, `prd.addid`, `origin` FROM loc_hold_inventory WHERE name = '" & ComboBoxCustomerName.Text & "'", LocalhostConn())
@@ -89,6 +91,7 @@ Public Class PendingOrders
             Next row
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub ButtonSelectCustomer_Click(sender As Object, e As EventArgs) Handles ButtonSelectCustomer.Click
@@ -123,7 +126,6 @@ Public Class PendingOrders
     End Sub
 
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
-        ShowKeyboard()
-
+        ShowKeyboard()s
     End Sub
 End Class

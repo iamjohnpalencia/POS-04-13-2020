@@ -64,6 +64,7 @@ Public Class TakeOut
 
                         Catch ex As Exception
                             MsgBox(ex.ToString)
+                            SendErrorReport(ex.ToString)
                         End Try
                         '=====================================================================================================
                         Try
@@ -103,6 +104,7 @@ Public Class TakeOut
                             Log()
                         Catch ex As Exception
                             MsgBox(ex.ToString)
+                            SendErrorReport(ex.ToString)
                         End Try
                     End If
                 End If
@@ -146,8 +148,9 @@ Public Class TakeOut
                         Log()
                     Catch ex As Exception
                         MsgBox(ex.ToString)
-        End Try
-        End If
+                        SendErrorReport(ex.ToString)
+                    End Try
+                End If
             ElseIf CheckBoxWaffleBag.Checked = True Then
                 Dim message = MessageBox.Show("Do you want to add Extra packaging?", "Extra packaging", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 If message = DialogResult.Yes Then
@@ -188,6 +191,7 @@ Public Class TakeOut
 
                     Catch ex As Exception
                         MsgBox(ex.ToString)
+                        SendErrorReport(ex.ToString)
                     End Try
                 End If
             Else
@@ -195,6 +199,7 @@ Public Class TakeOut
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Log()
@@ -213,6 +218,7 @@ Public Class TakeOut
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub ButtonTakeOut_Click(sender As Object, e As EventArgs) Handles ButtonTakeOut.Click
@@ -422,6 +428,7 @@ Public Class TakeOut
             SugarPackets = dt(0)(1)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 

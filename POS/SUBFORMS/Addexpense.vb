@@ -24,12 +24,6 @@ Public Class Addexpense
             .Columns(4).HeaderCell.Value = "Total Amount"
         End With
     End Sub
-    'Private Sub ButtonSaveCustomProducts_MouseEnter(sender As Object, e As EventArgs) Handles ButtonSaveCustomProducts.MouseEnter
-    '    PanelExpensesSteps.Visible = True
-    'End Sub
-    'Private Sub ButtonSaveCustomProducts_MouseLeave(sender As Object, e As EventArgs) Handles ButtonSaveCustomProducts.MouseLeave
-    '    PanelExpensesSteps.Visible = False
-    'End Sub
     Private Sub ButtonSaveCustomProducts_Click(sender As Object, e As EventArgs) Handles ButtonSaveCustomProducts.Click
         Expenses.Show()
         Enabled = False
@@ -73,6 +67,8 @@ Public Class Addexpense
                 Next
             End With
         Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Try
             With DataGridViewExpenses
@@ -97,8 +93,9 @@ Public Class Addexpense
                 GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
             End With
         Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
-        'inserttocloud()
         DataGridViewExpenses.Rows.Clear()
         selectmax(whatform:=2)
     End Sub
@@ -128,6 +125,7 @@ Public Class Addexpense
             GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
@@ -143,6 +141,7 @@ Public Class Addexpense
             ExpenseImage.PictureBox1.BackgroundImageLayout = ImageLayout.Zoom
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -158,6 +157,7 @@ Public Class Addexpense
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 

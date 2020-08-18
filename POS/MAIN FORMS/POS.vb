@@ -51,6 +51,7 @@ Public Class POS
             BackgroundWorker2.RunWorkerAsync()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub LoadCategory()
@@ -86,6 +87,7 @@ Public Class POS
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub new_Button_click(ByVal sender As Object, ByVal e As EventArgs)
@@ -196,9 +198,8 @@ Public Class POS
 
             Catch ex As Exception
                 MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             End Try
-        Else
-            'ButtonSubmitPayment.PerformClick()
         End If
     End Sub
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles ButtonPendingOrders.Click
@@ -321,6 +322,7 @@ Public Class POS
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Dim ThreadlistMIX As List(Of Thread) = New List(Of Thread)
@@ -405,6 +407,7 @@ Public Class POS
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Label76_TextChanged(sender As Object, e As EventArgs) Handles Label76.TextChanged
@@ -423,7 +426,6 @@ Public Class POS
     End Sub
     Private Sub POS_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Expenses.Dispose()
-        'Promo.Dispose()
         Couponisavailable = False
     End Sub
 
@@ -731,6 +733,7 @@ Public Class POS
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -793,6 +796,7 @@ Public Class POS
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InsertFMStock()
@@ -812,6 +816,7 @@ Public Class POS
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InsertDailyTransaction()
@@ -826,6 +831,7 @@ Public Class POS
             GLOBAL_INSERT_FUNCTION(table, fields, value)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InsertDailyDetails()
@@ -863,6 +869,7 @@ Public Class POS
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InsertModeofTransaction()
@@ -884,6 +891,7 @@ Public Class POS
             ButtonClickCount = 0
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InsertCouponData()
@@ -899,6 +907,7 @@ Public Class POS
             GLOBAL_INSERT_FUNCTION(table, fields, value)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InsertSeniorDetails()
@@ -917,6 +926,7 @@ Public Class POS
             GLOBAL_INSERT_FUNCTION(table, fields, value)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 #End Region
@@ -1013,6 +1023,7 @@ Public Class POS
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
@@ -1251,41 +1262,29 @@ Public Class POS
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 #End Region
 #Region "Updates"
 #Region "Categories Update"
-
+    Dim PriceChangeDatatabe As DataTable
     Private Sub CheckPriceChanges()
         Try
             Dim ConnectionServer As MySqlConnection = ServerCloudCon()
-            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
-
             Dim Query = "SELECT * FROM admin_price_request WHERE store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND synced = 'Unsynced' AND active = 2"
             Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ConnectionServer)
             Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
-            Dim DtCheck As DataTable = New DataTable
-            DaCheck.Fill(DtCheck)
-
-            For i As Integer = 0 To DtCheck.Rows.Count - 1 Step +1
-                Dim sql = "UPDATE loc_admin_products SET product_price = " & DtCheck(i)(3) & ", price_change = 1 WHERE server_product_id = " & DtCheck(i)(2) & ""
-                CmdCheck = New MySqlCommand(sql, ConnectionLocal)
-                CmdCheck.ExecuteNonQuery()
-                Dim sql2 = "UPDATE loc_price_request_change SET active = " & DtCheck(i)(5) & " WHERE request_id = " & DtCheck(i)(0) & ""
-                CmdCheck = New MySqlCommand(sql2, ConnectionLocal)
-                CmdCheck.ExecuteNonQuery()
-                Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & DtCheck(i)(0) & ""
-                CmdCheck = New MySqlCommand(sq3, ConnectionServer)
-                CmdCheck.ExecuteNonQuery()
-            Next
-            If DtCheck.Rows.Count > 0 Then
+            PriceChangeDatatabe = New DataTable
+            DaCheck.Fill(PriceChangeDatatabe)
+            If PriceChangeDatatabe.Rows.Count > 0 Then
                 PRICECHANGE = True
             Else
                 PRICECHANGE = False
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Function LoadCategoryLocal() As DataTable
@@ -1308,6 +1307,7 @@ Public Class POS
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return dtlocal
     End Function
@@ -1367,6 +1367,8 @@ Public Class POS
         Catch ex As Exception
 
             BackgroundWorker2.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
             'If table doesnt have data
         End Try
     End Sub
@@ -1495,6 +1497,7 @@ Public Class POS
         Catch ex As Exception
             BackgroundWorker2.CancelAsync()
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub GetAllProducts()
@@ -1548,6 +1551,7 @@ Public Class POS
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 #End Region
@@ -1572,6 +1576,7 @@ Public Class POS
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return dtlocal
     End Function
@@ -1634,6 +1639,7 @@ Public Class POS
         Catch ex As Exception
             BackgroundWorker2.CancelAsync()
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 #End Region
@@ -1659,6 +1665,7 @@ Public Class POS
             LocalhostConn.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return dtlocal
     End Function
@@ -1722,6 +1729,7 @@ Public Class POS
         Catch ex As Exception
             BackgroundWorker2.CancelAsync()
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public POSISUPDATING As Boolean = False
@@ -1779,27 +1787,28 @@ Public Class POS
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
         Try
-            If PRICECHANGE = True Then
-                listviewproductsshow(where:="Simply Perfect")
-                MsgBox("Product price changes approved")
-            End If
-            PRICECHANGE = False
             If CheckForInternetConnection() = True Then
                 DataGridView2.DataSource = FillDatagridProduct
                 Button3.Enabled = True
                 UPDATEPRODUCTONLY = False
                 POSISUPDATING = False
-                If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Then
+                If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Or PriceChangeDatatabe.Rows.Count > 0 Then
                     Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                     If updatemessage = DialogResult.Yes Then
                         InstallUpdatesFormula()
                         InstallUpdatesInventory()
                         InstallUpdatesCategory()
                         InstallUpdatesProducts()
+                        InstallUpdatesPriceChange()
+                        If PRICECHANGE = True Then
+                            MsgBox("Product price changes approved")
+                            PRICECHANGE = False
+                        End If
                         For Each btn As Button In Panel3.Controls.OfType(Of Button)()
                             If btn.Text = "Simply Perfect" Then
                                 btn.PerformClick()
@@ -1819,6 +1828,7 @@ Public Class POS
 
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InstallUpdatesCategory()
@@ -1852,6 +1862,7 @@ Public Class POS
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InstallUpdatesFormula()
@@ -1910,6 +1921,7 @@ Public Class POS
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InstallUpdatesInventory()
@@ -1970,6 +1982,7 @@ Public Class POS
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InstallUpdatesProducts()
@@ -2036,9 +2049,32 @@ Public Class POS
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
-
+    Private Sub InstallUpdatesPriceChange()
+        Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+            Dim CmdCheck As MySqlCommand
+            For i As Integer = 0 To PriceChangeDatatabe.Rows.Count - 1 Step +1
+                Dim sql = "UPDATE loc_admin_products SET product_price = " & PriceChangeDatatabe(i)(3) & ", price_change = 1 WHERE server_product_id = " & PriceChangeDatatabe(i)(2) & ""
+                CmdCheck = New MySqlCommand(sql, ConnectionLocal)
+                CmdCheck.ExecuteNonQuery()
+                Dim sql2 = "UPDATE loc_price_request_change SET active = " & PriceChangeDatatabe(i)(5) & " WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""
+                CmdCheck = New MySqlCommand(sql2, ConnectionLocal)
+                CmdCheck.ExecuteNonQuery()
+                Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""
+                CmdCheck = New MySqlCommand(sq3, ConnectionServer)
+                CmdCheck.ExecuteNonQuery()
+            Next
+            ConnectionLocal.Close()
+            ConnectionServer.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
 #End Region
 #End Region
 End Class

@@ -47,6 +47,7 @@ Public Class UserSettings
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
@@ -109,6 +110,8 @@ Public Class UserSettings
                     errormessage = "error registrationvb(loc_users)"
                     GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                 Catch ex As Exception
+                    MsgBox(ex.ToString)
+                    SendErrorReport(ex.ToString)
                 End Try
                 ClearTextBox(Me)
                 selectmax(whatform:=3)
@@ -149,6 +152,8 @@ Public Class UserSettings
                 Dim where = " uniq_id = '" & uniqid & "'"
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
             Catch ex As Exception
+                MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             End Try
             ClearTextBox(Me)
             selectmax(whatform:=3)
@@ -194,6 +199,7 @@ Public Class UserSettings
             Panel6.Visible = True
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -223,6 +229,7 @@ Public Class UserSettings
                 End If
             Catch ex As Exception
                 MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             End Try
         End If
     End Sub
@@ -234,6 +241,7 @@ Public Class UserSettings
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 End Class

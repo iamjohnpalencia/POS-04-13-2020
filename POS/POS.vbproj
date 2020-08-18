@@ -145,12 +145,6 @@
     <Compile Include="SUBFORMS\AddBank.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SUBFORMS\AddDepositSlip.Designer.vb">
-      <DependentUpon>AddDepositSlip.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SUBFORMS\AddDepositSlip.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="SUBFORMS\AdminConfirmation.Designer.vb">
       <DependentUpon>AdminConfirmation.vb</DependentUpon>
     </Compile>
@@ -187,12 +181,6 @@
     <Compile Include="MAIN FORMS\SynctoCloud.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MAIN FORMS\SystemInfo.Designer.vb">
-      <DependentUpon>SystemInfo.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MAIN FORMS\SystemInfo.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="MODULES\DeleteModule.vb" />
     <Compile Include="MODULES\serverconn.vb" />
     <Compile Include="MODULES\Simple3Des.vb" />
@@ -221,12 +209,6 @@
     <Compile Include="SUBFORMS\ExpenseImage.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SUBFORMS\ReasonCat.Designer.vb">
-      <DependentUpon>ReasonCat.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SUBFORMS\ReasonCat.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="SUBFORMS\SelectNewFormula.Designer.vb">
       <DependentUpon>SelectNewFormula.vb</DependentUpon>
     </Compile>
@@ -249,12 +231,6 @@
       <DependentUpon>TransactionTypeInfo.vb</DependentUpon>
     </Compile>
     <Compile Include="SUBFORMS\TransactionTypeInfo.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SUBFORMS\Formula.Designer.vb">
-      <DependentUpon>Formula.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SUBFORMS\Formula.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SUBFORMS\Addexpense.Designer.vb">
@@ -368,12 +344,6 @@
     <Compile Include="SUBFORMS\TransactionType.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SUBFORMS\Updates.Designer.vb">
-      <DependentUpon>Updates.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SUBFORMS\Updates.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="SUBFORMS\UserSettings.Designer.vb">
       <DependentUpon>UserSettings.vb</DependentUpon>
     </Compile>
@@ -403,9 +373,6 @@
     <EmbeddedResource Include="SUBFORMS\AddBank.resx">
       <DependentUpon>AddBank.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SUBFORMS\AddDepositSlip.resx">
-      <DependentUpon>AddDepositSlip.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\AdminConfirmation.resx">
       <DependentUpon>AdminConfirmation.vb</DependentUpon>
     </EmbeddedResource>
@@ -424,9 +391,6 @@
     <EmbeddedResource Include="MAIN FORMS\SynctoCloud.resx">
       <DependentUpon>SynctoCloud.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MAIN FORMS\SystemInfo.resx">
-      <DependentUpon>SystemInfo.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\About.resx">
       <DependentUpon>About.vb</DependentUpon>
     </EmbeddedResource>
@@ -439,9 +403,6 @@
     <EmbeddedResource Include="SUBFORMS\ExpenseImage.resx">
       <DependentUpon>ExpenseImage.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SUBFORMS\ReasonCat.resx">
-      <DependentUpon>ReasonCat.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\SelectNewFormula.resx">
       <DependentUpon>SelectNewFormula.vb</DependentUpon>
     </EmbeddedResource>
@@ -453,9 +414,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\TransactionTypeInfo.resx">
       <DependentUpon>TransactionTypeInfo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SUBFORMS\Formula.resx">
-      <DependentUpon>Formula.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\Addexpense.resx">
       <DependentUpon>Addexpense.vb</DependentUpon>
@@ -507,9 +465,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\TransactionType.resx">
       <DependentUpon>TransactionType.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SUBFORMS\Updates.resx">
-      <DependentUpon>Updates.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\UserSettings.resx">
       <DependentUpon>UserSettings.vb</DependentUpon>

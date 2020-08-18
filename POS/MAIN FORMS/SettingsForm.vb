@@ -105,6 +105,7 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -122,38 +123,38 @@ Public Class SettingsForm
 #Region "Partners"
 
     Public Sub LoadPartners()
-        GLOBAL_SELECT_ALL_FUNCTION("loc_partners_transaction WHERE active = 1 ORDER BY arrid ASC", "*", DataGridViewPartners)
-        With DataGridViewPartners
-            .Columns(0).Visible = False
-            .Columns(1).Visible = False
-            .Columns(2).HeaderText = "Bank Name"
-            .Columns(3).HeaderText = "Date Modified"
-            .Columns(4).HeaderText = "Service Crew ID"
-            .Columns(5).Visible = False
-            .Columns(6).Visible = False
-            .Columns(7).HeaderText = "Status"
-            .Columns(8).Visible = False
-            'BUG
-            'Change Status to Active
-
-        End With
-
+        Try
+            Dim ActiveRow
+            Dim PartnersTableActive = AsDatatable("loc_partners_transaction WHERE active = 1 ORDER BY arrid ASC", "*", DataGridViewPartners)
+            For Each row As DataRow In PartnersTableActive.Rows
+                If row("active") = 1 Then
+                    ActiveRow = "Active"
+                Else
+                    ActiveRow = "Deactivated"
+                End If
+                DataGridViewPartners.Rows.Add(row("id"), row("arrid"), row("bankname"), row("date_modified"), row("crew_id"), row("store_id"), row("guid"), ActiveRow, row("synced"))
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Public Sub LoadPartnersDeact()
-        GLOBAL_SELECT_ALL_FUNCTION("loc_partners_transaction WHERE active = 0 ORDER BY arrid ASC", "*", DataGridViewPartnersDeact)
-        With DataGridViewPartnersDeact
-            .Columns(0).Visible = False
-            .Columns(1).Visible = False
-            .Columns(2).HeaderText = "Bank Name"
-            .Columns(3).HeaderText = "Date Modified"
-            .Columns(4).HeaderText = "Service Crew ID"
-            .Columns(5).Visible = False
-            .Columns(6).Visible = False
-            .Columns(7).HeaderText = "Status"
-            .Columns(8).Visible = False
-            'BUG
-            'Change Status to Deactivated
-        End With
+        Try
+            Dim ActiveRow
+            Dim PartnersTableDeactive = AsDatatable("loc_partners_transaction WHERE active = 0 ORDER BY arrid ASC", "*", DataGridViewPartnersDeact)
+            For Each row As DataRow In PartnersTableDeactive.Rows
+                If row("active") = 1 Then
+                    ActiveRow = "Active"
+                Else
+                    ActiveRow = "Deactivated"
+                End If
+                DataGridViewPartnersDeact.Rows.Add(row("id"), row("arrid"), row("bankname"), row("date_modified"), row("crew_id"), row("store_id"), row("guid"), ActiveRow, row("synced"))
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub ButtonDeleteProducts_Click(sender As Object, e As EventArgs) Handles ButtonDeactivateBank.Click
         Try
@@ -169,6 +170,7 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button18_Click(sender As Object, e As EventArgs) Handles ButtonPTActivate.Click
@@ -185,6 +187,7 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonPartnersPrio.Click
@@ -207,6 +210,7 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonAddBank.Click
@@ -229,20 +233,25 @@ Public Class SettingsForm
 #End Region
 #Region "Formula"
     Public Sub loadformula()
-        fields = "`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, ROUND(`serving_value`,0) as servval, ROUND(`no_servings`,0) as noofservings"
-        GLOBAL_SELECT_ALL_FUNCTION(table:="loc_product_formula WHERE status = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ORDER BY product_ingredients ASC", datagrid:=DataGridViewFormula, fields:=fields)
-        With DataGridViewFormula
-            .Columns(0).HeaderText = "Ingredients"
-            .Columns(1).HeaderText = "Primary Unit"
-            .Columns(2).HeaderText = "Primary (Value)"
-            .Columns(3).HeaderText = "Secondary Unit"
-            .Columns(4).HeaderText = "Secondary (Value)"
-            .Columns(5).HeaderText = "Srv. Unit"
-            .Columns(6).HeaderText = "Srv. (Value)"
-            .Columns(7).HeaderText = "No. of Serving"
-            .Columns(0).Width = 150
-            .Columns(2).Width = 70
-        End With
+        Try
+            fields = "`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, ROUND(`serving_value`,0) as servval, ROUND(`no_servings`,0) as noofservings"
+            GLOBAL_SELECT_ALL_FUNCTION(table:="loc_product_formula WHERE status = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ORDER BY product_ingredients ASC", datagrid:=DataGridViewFormula, fields:=fields)
+            With DataGridViewFormula
+                .Columns(0).HeaderText = "Ingredients"
+                .Columns(1).HeaderText = "Primary Unit"
+                .Columns(2).HeaderText = "Primary (Value)"
+                .Columns(3).HeaderText = "Secondary Unit"
+                .Columns(4).HeaderText = "Secondary (Value)"
+                .Columns(5).HeaderText = "Srv. Unit"
+                .Columns(6).HeaderText = "Srv. (Value)"
+                .Columns(7).HeaderText = "No. of Serving"
+                .Columns(0).Width = 150
+                .Columns(2).Width = 70
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
 #End Region
 #Region "Returns"
@@ -283,6 +292,7 @@ Public Class SettingsForm
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub DataGridViewITEMRETURN1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewITEMRETURN1.CellClick
@@ -405,6 +415,7 @@ Public Class SettingsForm
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub TextBoxSearchTranNumber_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearchTranNumber.TextChanged
@@ -450,6 +461,7 @@ Public Class SettingsForm
 
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub INSERTRETURNS(transaction_num As String)
@@ -475,6 +487,7 @@ Public Class SettingsForm
             TextBoxIRREASON.Clear()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 #End Region
@@ -621,6 +634,7 @@ Public Class SettingsForm
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub loaddatagrid2()
@@ -637,6 +651,7 @@ Public Class SettingsForm
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub SaveCoupon()
@@ -646,6 +661,7 @@ Public Class SettingsForm
             GLOBAL_SYSTEM_LOGS("NEW COUPON", "Name : " & TextBoxCName.Text & " Type : " & ComboBoxCType.Text)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button15_Click(sender As Object, e As EventArgs) Handles ButtonSaveCoupon.Click
@@ -688,6 +704,7 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -769,6 +786,7 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub LoadCloudConn()
@@ -792,6 +810,7 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub LoadAdditionalSettings()
@@ -823,31 +842,11 @@ Public Class SettingsForm
                         End If
                     End If
                 End If
-                'For i As Integer = 0 To dt.Rows.Count - 1 Step +1
-                '    If dt(i)(0) = "" Then
-                '        My.Settings.ValidAddtionalSettings = False
-                '        Exit For
-                '    ElseIf dt(i)(1) = "" Then
-                '        My.Settings.ValidAddtionalSettings = False
-                '        Exit For
-                '    ElseIf dt(i)(2) = "" Then
-                '        My.Settings.ValidAddtionalSettings = False
-                '        Exit For
-                '    ElseIf dt(i)(3) = "" Then
-                '        My.Settings.ValidAddtionalSettings = False
-                '        Exit For
-                '    ElseIf dt(i)(4) = "" Then
-                '        My.Settings.ValidAddtionalSettings = False
-                '        Exit For
-                '    Else
-                '        My.Settings.ValidAddtionalSettings = True
-                '        Exit For
-                '    End If
-                'Next
                 My.Settings.Save()
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub LoadDevInfo()
@@ -887,51 +886,10 @@ Public Class SettingsForm
                         DateTimePickerPTUVU.Value = dt(0)(8)
                     End If
                 End If
-                'For i As Integer = 0 To dt.Rows.Count - 1 Step +1
-                '    If dt(i)(0) = "" Then
-                '        My.Settings.ValidDevSettings = False
-                '        My.Settings.Save()
-                '        Exit For
-                '    ElseIf dt(i)(1) = "" Then
-                '        My.Settings.ValidDevSettings = False
-                '        My.Settings.Save()
-                '        Exit For
-                '    ElseIf dt(i)(2) = "" Then
-                '        My.Settings.ValidDevSettings = False
-                '        My.Settings.Save()
-                '        Exit For
-                '    ElseIf dt(i)(3) = "" Then
-                '        My.Settings.ValidDevSettings = False
-                '        My.Settings.Save()
-                '        Exit For
-                '    ElseIf dt(i)(4) = "" Then
-                '        My.Settings.ValidDevSettings = False
-                '        My.Settings.Save()
-                '        Exit For
-                '    ElseIf dt(i)(5) = "" Then
-                '        My.Settings.ValidDevSettings = False
-                '        My.Settings.Save()
-                '        Exit For
-                '    ElseIf dt(i)(6) = "" Then
-                '        My.Settings.ValidDevSettings = False
-                '        My.Settings.Save()
-                '        Exit For
-                '    ElseIf dt(i)(7) = "" Then
-                '        My.Settings.ValidDevSettings = False
-                '        My.Settings.Save()
-                '        Exit For
-                '    ElseIf dt(i)(8) = "" Then
-                '        My.Settings.ValidDevSettings = False
-                '        My.Settings.Save()
-                '        Exit For
-                '    Else
-                '        My.Settings.ValidDevSettings = True
-                '        My.Settings.Save()
-                '    End If
-                'Next
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -973,6 +931,7 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub ButtonExport_Click(sender As Object, e As EventArgs) Handles ButtonExport.Click
@@ -988,6 +947,7 @@ Public Class SettingsForm
             Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqldump --databases -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " " & TextBoxLocalDatabase.Text & " > """ & TextBoxExportPath.Text & DatabaseName & """")
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub ButtonImport_Click(sender As Object, e As EventArgs) Handles ButtonImport.Click
@@ -1006,6 +966,7 @@ Public Class SettingsForm
             con.Open()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return con
     End Function
@@ -1017,6 +978,7 @@ Public Class SettingsForm
             Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysql -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " " & TextBoxLocalDatabase.Text & " < """ & TextBoxLocalRestorePath.Text & """")
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
@@ -1036,6 +998,7 @@ Public Class SettingsForm
             Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqlcheck -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " --auto-repair -c --databases " & TextBoxLocalDatabase.Text)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles ButtonOptimizeDB.Click
@@ -1050,6 +1013,7 @@ Public Class SettingsForm
             Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqlcheck -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " -o --databases " & TextBoxLocalDatabase.Text)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -1067,6 +1031,7 @@ Public Class SettingsForm
             testcon.Open()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return testcon
     End Function
@@ -1080,6 +1045,7 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -1098,26 +1064,17 @@ Public Class SettingsForm
 
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
-
-    Private Sub TextBoxIRREASON_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxSearchTranNumber.KeyPress, TextBoxIRREASON.KeyPress
+    Private Sub TextBoxCName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxCRefVal.KeyPress, TextBoxCName.KeyPress, TextBoxCDVal.KeyPress, TextBoxCDesc.KeyPress, TextBoxCBV.KeyPress, TextBoxCBundVal.KeyPress, TextBoxCBP.KeyPress, TextBoxCBBP.KeyPress, TextBoxSearchTranNumber.KeyPress, TextBoxIRREASON.KeyPress
         Try
             If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
                 e.Handled = True
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
-        End Try
-    End Sub
-
-    Private Sub TextBoxCName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxCRefVal.KeyPress, TextBoxCName.KeyPress, TextBoxCDVal.KeyPress, TextBoxCDesc.KeyPress, TextBoxCBV.KeyPress, TextBoxCBundVal.KeyPress, TextBoxCBP.KeyPress, TextBoxCBBP.KeyPress
-        Try
-            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
-                e.Handled = True
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Dim thread As Thread
@@ -1161,26 +1118,33 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Try
-            If PRICECHANGE = True Then
-                listviewproductsshow(where:="Simply Perfect")
-            End If
             LabelStatus.Text = "Item(s) " & LabelCountAllRows.Text & " Checked " & ProgressBar1.Value & " of " & LabelCountAllRows.Text
             DataGridView2.DataSource = FillDatagridProduct
             Button4.Enabled = True
             UPDATEPRODUCTONLY = False
-            If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Then
+            If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Or PriceChangeDatatabe.Rows.Count > 0 Then
                 Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 If updatemessage = DialogResult.Yes Then
                     InstallUpdatesFormula()
                     InstallUpdatesInventory()
                     InstallUpdatesCategory()
                     InstallUpdatesProducts()
-                    listviewproductsshow(where:="Simply Perfect")
+                    InstallUpdatesPriceChange()
+                    If PRICECHANGE = True Then
+                        MsgBox("Product price changes approved")
+                        PRICECHANGE = False
+                    End If
+                    For Each btn As Button In Panel3.Controls.OfType(Of Button)()
+                        If btn.Text = "Simply Perfect" Then
+                            btn.PerformClick()
+                        End If
+                    Next
                     LabelCheckingUpdates.Text = "Update Completed : " & FullDate24HR()
                     My.Settings.Updatedatetime = FullDate24HR()
                 Else
@@ -1196,41 +1160,30 @@ Public Class SettingsForm
             Timer1.Stop()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 #End Region
 #Region "Updates"
 #Region "Price Change"
     Dim PRICECHANGE As Boolean = False
+    Dim PriceChangeDatatabe As DataTable
     Private Sub CheckPriceChanges()
         Try
             Dim ConnectionServer As MySqlConnection = ServerCloudCon()
-            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
-
             Dim Query = "SELECT * FROM admin_price_request WHERE store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND synced = 'Unsynced' AND active = 2"
             Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ConnectionServer)
             Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
-            Dim DtCheck As DataTable = New DataTable
-            DaCheck.Fill(DtCheck)
-
-            For i As Integer = 0 To DtCheck.Rows.Count - 1 Step +1
-                Dim sql = "UPDATE loc_admin_products SET product_price = " & DtCheck(i)(3) & ", price_change = 1 WHERE server_product_id = " & DtCheck(i)(2) & ""
-                CmdCheck = New MySqlCommand(sql, ConnectionLocal)
-                CmdCheck.ExecuteNonQuery()
-                Dim sql2 = "UPDATE loc_price_request_change SET active = " & DtCheck(i)(5) & " WHERE request_id = " & DtCheck(i)(0) & ""
-                CmdCheck = New MySqlCommand(sql2, ConnectionLocal)
-                CmdCheck.ExecuteNonQuery()
-                Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & DtCheck(i)(0) & ""
-                CmdCheck = New MySqlCommand(sq3, ConnectionServer)
-                CmdCheck.ExecuteNonQuery()
-            Next
-            If DtCheck.Rows.Count > 0 Then
+            PriceChangeDatatabe = New DataTable
+            DaCheck.Fill(PriceChangeDatatabe)
+            If PriceChangeDatatabe.Rows.Count > 0 Then
                 PRICECHANGE = True
             Else
                 PRICECHANGE = False
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 #End Region
@@ -1255,6 +1208,7 @@ Public Class SettingsForm
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return dtlocal
     End Function
@@ -1315,6 +1269,8 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
             'If table doesnt have data
         End Try
     End Sub
@@ -1433,6 +1389,7 @@ Public Class SettingsForm
         Catch ex As Exception
             BackgroundWorker1.CancelAsync()
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub GetAllProducts()
@@ -1487,6 +1444,7 @@ Public Class SettingsForm
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -1512,6 +1470,7 @@ Public Class SettingsForm
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return dtlocal
     End Function
@@ -1578,6 +1537,7 @@ Public Class SettingsForm
         Catch ex As Exception
             BackgroundWorker1.CancelAsync()
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 #End Region
@@ -1603,6 +1563,7 @@ Public Class SettingsForm
             LocalhostConn.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return dtlocal
     End Function
@@ -1669,6 +1630,7 @@ Public Class SettingsForm
         Catch ex As Exception
             BackgroundWorker1.CancelAsync()
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 #End Region
@@ -1705,6 +1667,7 @@ Public Class SettingsForm
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InstallUpdatesFormula()
@@ -1763,6 +1726,7 @@ Public Class SettingsForm
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InstallUpdatesInventory()
@@ -1819,6 +1783,7 @@ Public Class SettingsForm
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub InstallUpdatesProducts()
@@ -1880,6 +1845,30 @@ Public Class SettingsForm
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub InstallUpdatesPriceChange()
+        Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+            Dim CmdCheck As MySqlCommand
+            For i As Integer = 0 To PriceChangeDatatabe.Rows.Count - 1 Step +1
+                Dim sql = "UPDATE loc_admin_products SET product_price = " & PriceChangeDatatabe(i)(3) & ", price_change = 1 WHERE server_product_id = " & PriceChangeDatatabe(i)(2) & ""
+                CmdCheck = New MySqlCommand(sql, ConnectionLocal)
+                CmdCheck.ExecuteNonQuery()
+                Dim sql2 = "UPDATE loc_price_request_change SET active = " & PriceChangeDatatabe(i)(5) & " WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""
+                CmdCheck = New MySqlCommand(sql2, ConnectionLocal)
+                CmdCheck.ExecuteNonQuery()
+                Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""
+                CmdCheck = New MySqlCommand(sq3, ConnectionServer)
+                CmdCheck.ExecuteNonQuery()
+            Next
+            ConnectionLocal.Close()
+            ConnectionServer.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 #End Region

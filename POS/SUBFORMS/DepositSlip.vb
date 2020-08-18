@@ -32,6 +32,7 @@ Public Class DepositSlip
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub TextBoxAMT_KeyPress(sender As Object, e As KeyPressEventArgs)
@@ -50,6 +51,7 @@ Public Class DepositSlip
             ComboBoxBankName.SelectedIndex = 0
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub TextBoxNAME_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxAMT.KeyPress
@@ -57,6 +59,7 @@ Public Class DepositSlip
             Numeric(sender, e)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub TextBoxNAME_KeyPress_1(sender As Object, e As KeyPressEventArgs) Handles TextBoxTRANNUM.KeyPress, TextBoxNAME.KeyPress
@@ -66,6 +69,7 @@ Public Class DepositSlip
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 End Class

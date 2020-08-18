@@ -17,7 +17,8 @@ Public Class Changeproductformula
             DataGridViewProducts.Columns(0).Visible = False
             DataGridViewProducts.Columns(2).Visible = False
         Catch ex As Exception
-            ex.ToString()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public IamTheChoosenButton As String = ""
@@ -28,6 +29,7 @@ Public Class Changeproductformula
             LoadFormulas(formulaid, Origin)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub LoadFormulas(formulaid, Origin)
@@ -64,10 +66,10 @@ Public Class Changeproductformula
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub new_Button_click(ByVal sender As Object, ByVal e As EventArgs)
-        'NEW BUTTON ON CLICK EVENT 
         If TypeOf sender Is Button Then
             Dim btn = sender
             Dim name = btn.name
@@ -77,7 +79,6 @@ Public Class Changeproductformula
             SelectNewFormula.Show()
         End If
     End Sub
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonArrangeFormulaIDs.Click
         Try
             Dim sql = ""
@@ -106,7 +107,7 @@ Public Class Changeproductformula
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
-
 End Class

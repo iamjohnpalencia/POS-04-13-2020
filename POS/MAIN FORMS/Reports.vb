@@ -93,6 +93,7 @@ Public Class Reports
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub reportsreturnsandrefunds(ByVal searchdate As Boolean)
@@ -117,6 +118,7 @@ Public Class Reports
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub reportstransactionlogs(ByVal searchdate As Boolean)
@@ -137,6 +139,7 @@ Public Class Reports
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub reportsdailytransaction(ByVal searchdate As Boolean)
@@ -200,6 +203,7 @@ Public Class Reports
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub reportexpensedet(ByVal searchdate As Boolean)
@@ -226,6 +230,7 @@ Public Class Reports
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -251,6 +256,7 @@ Public Class Reports
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub viewexpensesdetails(ByVal expense_number As String)
@@ -268,6 +274,7 @@ Public Class Reports
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub viewtransactiondetails(ByVal transaction_number As String)
@@ -292,6 +299,7 @@ Public Class Reports
             'End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         Finally
             da.Dispose()
         End Try
@@ -321,6 +329,7 @@ Public Class Reports
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles ButtonSearchDailyTransaction.Click
@@ -355,6 +364,7 @@ Public Class Reports
             viewexpensesdetails(datagridid)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub DataGridViewDaily_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewDaily.CellClick
@@ -363,6 +373,7 @@ Public Class Reports
             viewtransactiondetails(transaction_number:=DataGridViewDaily.SelectedRows(0).Cells(0).Value)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -378,12 +389,13 @@ Public Class Reports
                 PrintPreviewDialog1.Document = printdoc
                 PrintPreviewDialog1.ShowDialog()
                 ' printdoc.Print()
-            Catch exp As Exception
+            Catch ex As Exception
                 MessageBox.Show("An error occurred while trying to load the " &
                     "document for Print Preview. Make sure you currently have " &
                     "access to a printer. A printer must be localconnected and " &
                     "accessible for Print Preview to work.", Me.Text,
                      MessageBoxButtons.OK, MessageBoxIcon.Error)
+                SendErrorReport(ex.ToString)
             End Try
         Else
             MsgBox("Select Transaction First!")
@@ -511,6 +523,7 @@ Public Class Reports
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Dim XreadOrZread As String
@@ -681,6 +694,7 @@ Public Class Reports
             CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 810)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonZread.Click
@@ -713,6 +727,7 @@ Public Class Reports
             Button7.PerformClick()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles Button6.Click
@@ -755,6 +770,7 @@ Public Class Reports
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub XZreadingInventory(zreaddate)
@@ -789,6 +805,7 @@ Public Class Reports
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -809,6 +826,7 @@ Public Class Reports
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
@@ -882,6 +900,7 @@ Public Class Reports
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
@@ -913,6 +932,7 @@ Public Class Reports
             previewsales.ShowDialog()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub printsales_printdoc(sender As Object, e As Printing.PrintPageEventArgs) Handles printsales.PrintPage
@@ -936,6 +956,7 @@ Public Class Reports
             CenterTextDisplay(sender, e, Format(Now(), "yyyy-MM-dd HH:mm:ss"), font, loopa + 50)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 End Class

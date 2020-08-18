@@ -27,6 +27,7 @@ Module POSMODULE
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub retrieveformulaids()
@@ -74,6 +75,7 @@ Module POSMODULE
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         Finally
             LocalhostConn.close
             cmd.Dispose()
@@ -368,6 +370,7 @@ Module POSMODULE
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -399,6 +402,7 @@ Module POSMODULE
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         Finally
             DataAdapterCriticalLimit.Dispose()
             CmdCriticalLimit.Dispose()
@@ -815,6 +819,7 @@ Module POSMODULE
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         Finally
             cmd.Dispose()
         End Try

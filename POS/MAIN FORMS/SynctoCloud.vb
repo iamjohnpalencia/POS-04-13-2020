@@ -40,6 +40,7 @@ Public Class SynctoCloud
             'End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -62,6 +63,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     '=====================================================SYSTEMLOGS
@@ -77,6 +79,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -92,6 +95,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub filldatagridsystemlog3()
@@ -109,6 +113,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub filldatagridsystemlog4()
@@ -127,6 +132,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     '=====================================================SYSTEMLOGS
@@ -139,6 +145,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     '======================================================TRANSACTION DETAILS
@@ -155,6 +162,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub filldatagridinventory()
@@ -170,6 +178,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub filldatagridexpenses()
@@ -187,6 +196,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub filldatagridexpensesdetails()
@@ -204,6 +214,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub filldatagridlocusers()
@@ -221,6 +232,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub filldatagridproducts()
@@ -238,6 +250,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub filldatagriddepositslip()
@@ -253,6 +266,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub filldatagridmodeoftransaction()
@@ -270,6 +284,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub fillpricerequestchange()
@@ -281,6 +296,7 @@ Public Class SynctoCloud
             countrows(tablename:=table)
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -296,6 +312,7 @@ Public Class SynctoCloud
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         Finally
             LocalhostConn.close
             cmd.Dispose()
@@ -314,6 +331,7 @@ Public Class SynctoCloud
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         Finally
             LocalhostConn.close
             cmd.Dispose()
@@ -348,6 +366,7 @@ Public Class SynctoCloud
             Label2.Text = "Item(s)"
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -623,6 +642,7 @@ Public Class SynctoCloud
 
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
@@ -667,6 +687,7 @@ Public Class SynctoCloud
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertlocaldailytransaction()
@@ -735,9 +756,10 @@ Public Class SynctoCloud
                 LabelDTransacTime.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub inserttransactiondetails1()
@@ -794,7 +816,6 @@ Public Class SynctoCloud
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
                     '====================================================================
-
                 Next
                 server.Close()
                 local.Close()
@@ -802,9 +823,10 @@ Public Class SynctoCloud
                 LabelDTransactDTime.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertinventory()
@@ -865,6 +887,8 @@ Public Class SynctoCloud
         Catch ex As Exception
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertexpenses()
@@ -927,9 +951,10 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertexpensedetails()
@@ -1005,9 +1030,10 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_details")
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertlocalusers()
@@ -1072,9 +1098,10 @@ Public Class SynctoCloud
                 LabelACCTime.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertsystemlogs1()
@@ -1128,9 +1155,10 @@ Public Class SynctoCloud
                 LabelSYS1Time.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertsystemlogs2()
@@ -1184,9 +1212,10 @@ Public Class SynctoCloud
                 LabelSYS2Time.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertsystemlogs3()
@@ -1241,8 +1270,9 @@ Public Class SynctoCloud
             End With
         Catch ex As Exception
             Unsuccessful = True
-            MsgBox(ex.ToString)
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertsystemlogs4()
@@ -1296,9 +1326,10 @@ Public Class SynctoCloud
                 LabelSYS4Time.Text = LabelTime.Text & " Seconds"
             End With
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertrefretdetails()
@@ -1354,9 +1385,10 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertlocproducts()
@@ -1418,9 +1450,10 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertlocmodeoftransaction()
@@ -1478,9 +1511,10 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertlocdeposit()
@@ -1538,9 +1572,10 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -1598,9 +1633,10 @@ Public Class SynctoCloud
             LabelPRICEREQTime.Text = LabelTime.Text & " Seconds"
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            MsgBox(ex.ToString)
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 

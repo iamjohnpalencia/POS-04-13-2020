@@ -56,6 +56,7 @@ Module RetrieveModule
                 da.Fill(dt)
             Catch ex As MySqlException
                 MsgBox(ex.ToString)
+                SendErrorReport(ex.ToString)
             Finally
                 da.Dispose()
                 If dt.Rows.Count > 0 Then
@@ -171,6 +172,7 @@ Module RetrieveModule
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         Finally
             LocalhostConn.close()
             da.Dispose()
@@ -195,6 +197,7 @@ Module RetrieveModule
             formulaid = cmd.ExecuteScalar()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return formulaid
         cmd.Dispose()
@@ -212,6 +215,7 @@ Module RetrieveModule
             cmd.Dispose()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return FullName
     End Function
@@ -247,6 +251,7 @@ Module RetrieveModule
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return valuetoreturn
     End Function
@@ -272,6 +277,7 @@ Module RetrieveModule
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         Finally
             LocalhostConn.close
             cmd.Dispose()
@@ -302,6 +308,7 @@ Module RetrieveModule
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         Finally
             LocalhostConn.close
             cmd.Dispose()
@@ -332,6 +339,7 @@ Module RetrieveModule
             LocalhostConn.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX(table As String, fields As String, combobox As ComboBox, Loccon As Boolean)
@@ -353,6 +361,7 @@ Module RetrieveModule
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         Finally
             da.Dispose()
         End Try
@@ -369,6 +378,7 @@ Module RetrieveModule
             LocalhostConn.close()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return returnval
     End Function
@@ -386,6 +396,7 @@ Module RetrieveModule
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return returncount
     End Function
@@ -406,6 +417,7 @@ Module RetrieveModule
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return returnsum
     End Function
@@ -425,6 +437,7 @@ Module RetrieveModule
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return returnsum
     End Function
@@ -441,6 +454,7 @@ Module RetrieveModule
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
         Return RetunSel
     End Function

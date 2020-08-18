@@ -25,23 +25,28 @@ Public Class Expenses
         Me.Close()
     End Sub
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        If String.IsNullOrWhiteSpace(ComboBoxType.Text) Then
-            MsgBox("Fill up blanks")
-        ElseIf String.IsNullOrWhiteSpace(TextBoxITEMINF.Text) Then
-            MsgBox("Fill up blanks")
-        ElseIf String.IsNullOrWhiteSpace(TextBoxQTY.Text) Then
-            MsgBox("Fill up blanks")
-        ElseIf String.IsNullOrWhiteSpace(TextBoxPRICE.Text) Then
-            MsgBox("Fill up blanks")
-        Else
-            With Addexpense
-                .ButtonClickCount += 1
-                .DataGridViewExpenses.Rows.Add(ComboBoxType.Text, TextBoxITEMINF.Text, TextBoxQTY.Text, TextBoxPRICE.Text, TextBoxTOTAL.Text, TextBoxAttatchment.Text, .ButtonClickCount)
-                .Label1.Text = SumOfColumnsToDecimal(.DataGridViewExpenses, 4)
-            End With
-            Me.Close()
-            ClearTextBox(root:=GroupBox1)
-        End If
+        Try
+            If String.IsNullOrWhiteSpace(ComboBoxType.Text) Then
+                MsgBox("Fill up blanks")
+            ElseIf String.IsNullOrWhiteSpace(TextBoxITEMINF.Text) Then
+                MsgBox("Fill up blanks")
+            ElseIf String.IsNullOrWhiteSpace(TextBoxQTY.Text) Then
+                MsgBox("Fill up blanks")
+            ElseIf String.IsNullOrWhiteSpace(TextBoxPRICE.Text) Then
+                MsgBox("Fill up blanks")
+            Else
+                With Addexpense
+                    .ButtonClickCount += 1
+                    .DataGridViewExpenses.Rows.Add(ComboBoxType.Text, TextBoxITEMINF.Text, TextBoxQTY.Text, TextBoxPRICE.Text, TextBoxTOTAL.Text, TextBoxAttatchment.Text, .ButtonClickCount)
+                    .Label1.Text = SumOfColumnsToDecimal(.DataGridViewExpenses, 4)
+                End With
+                Me.Close()
+                ClearTextBox(root:=GroupBox1)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         TextBoxAttatchment.Clear()
@@ -65,25 +70,31 @@ Public Class Expenses
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Dim threadList As List(Of Thread) = New List(Of Thread)
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        For i = 0 To 100
-            ToolStripStatusLabel1.Text = "Uploading image please wait " & i & " %"
-            BackgroundWorker1.ReportProgress(i)
-            If i = 10 Then
-                thread1 = New System.Threading.Thread(AddressOf convertimage)
-                thread1.Start()
-                threadList.Add(thread1)
-            ElseIf i = 100 Then
+        Try
+            For i = 0 To 100
+                ToolStripStatusLabel1.Text = "Uploading image please wait " & i & " %"
+                BackgroundWorker1.ReportProgress(i)
+                If i = 10 Then
+                    thread1 = New System.Threading.Thread(AddressOf convertimage)
+                    thread1.Start()
+                    threadList.Add(thread1)
+                ElseIf i = 100 Then
 
-            End If
-            Threading.Thread.Sleep(10)
-        Next
-        For Each t In threadList
-            t.Join()
-        Next
+                End If
+                Threading.Thread.Sleep(10)
+            Next
+            For Each t In threadList
+                t.Join()
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         If e.Error IsNot Nothing Then
@@ -110,20 +121,25 @@ Public Class Expenses
         ToolStripProgressBar1.Value = e.ProgressPercentage
     End Sub
     Private Sub convertimage()
-        Dim ImageToConvert As Bitmap = Bitmap.FromFile(ImagePath)
-        ImageToConvert.MakeTransparent()
-        Dim encoding As String = String.Empty
-        If ImagePath.ToLower.EndsWith(".jpg") Then
-            encodeType = ImageFormat.Jpeg
-        ElseIf ImagePath.ToLower.EndsWith(".png") Then
-            encodeType = ImageFormat.Png
-        ElseIf ImagePath.ToLower.EndsWith(".gif") Then
-            encodeType = ImageFormat.Gif
-        ElseIf ImagePath.ToLower.EndsWith(".bmp") Then
-            encodeType = ImageFormat.Bmp
-        End If
-        decodingstring = encoding
-        TextBoxAttatchment.Text = ImageToBase64(ImageToConvert, encodeType)
+        Try
+            Dim ImageToConvert As Bitmap = Bitmap.FromFile(ImagePath)
+            ImageToConvert.MakeTransparent()
+            Dim encoding As String = String.Empty
+            If ImagePath.ToLower.EndsWith(".jpg") Then
+                encodeType = ImageFormat.Jpeg
+            ElseIf ImagePath.ToLower.EndsWith(".png") Then
+                encodeType = ImageFormat.Png
+            ElseIf ImagePath.ToLower.EndsWith(".gif") Then
+                encodeType = ImageFormat.Gif
+            ElseIf ImagePath.ToLower.EndsWith(".bmp") Then
+                encodeType = ImageFormat.Bmp
+            End If
+            decodingstring = encoding
+            TextBoxAttatchment.Text = ImageToBase64(ImageToConvert, encodeType)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         insertcurrenttime = TimeOfDay.ToString("h:mm:ss")

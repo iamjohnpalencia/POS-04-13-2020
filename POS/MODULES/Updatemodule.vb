@@ -17,6 +17,7 @@ Module Updatemodule
             cmd.ExecuteNonQuery()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         Finally
             LocalhostConn.Close()
             cmd.Dispose()

@@ -45,6 +45,8 @@ Public Class HoldOrder
                         GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                     Next
                 Catch ex As Exception
+                    MsgBox(ex.ToString)
+                    SendErrorReport(ex.ToString)
                 End Try
                 Try
                     For a As Integer = 0 To POS.DataGridViewInv.Rows.Count - 1 Step +1
@@ -68,6 +70,7 @@ Public Class HoldOrder
                     Next
                 Catch ex As Exception
                     MsgBox(ex.ToString)
+                    SendErrorReport(ex.ToString)
                 End Try
                 Try
                     messageboxappearance = False
@@ -76,6 +79,7 @@ Public Class HoldOrder
                     GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
                 Catch ex As Exception
                     MsgBox(ex.ToString)
+                    SendErrorReport(ex.ToString)
                 End Try
                 MsgBox("success")
                 Me.Close()
@@ -103,9 +107,5 @@ Public Class HoldOrder
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
-    End Sub
-
-    Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
-
-    End Sub
+        End Subs
 End Class

@@ -471,6 +471,7 @@ Partial Class Registration
         Me.MinimizeBox = False
         Me.Name = "Registration"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "s"
         Me.Panel1.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
         Me.Panel8.PerformLayout()
