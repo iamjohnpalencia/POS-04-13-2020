@@ -144,18 +144,36 @@ Public Class Reports
     End Sub
     Public Sub reportsdailytransaction(ByVal searchdate As Boolean)
         Try
-            table = "`loc_daily_transaction`"
-            fields = "`transaction_number`, `grosssales`, `totaldiscount`, `amounttendered`, `change`, `amountdue`, `vatablesales`, `vatexemptsales`, `zeroratedsales`, `vatpercentage`, `lessvat`, `transaction_type`, `discount_type`, `totaldiscountedamount`, `si_number`, `crew_id`, `created_at`"
+            Dim table = "`loc_daily_transaction`"
+
+            Dim fields = "`transaction_number`, `grosssales`, `totaldiscount`, `amounttendered`, `change`, `amountdue`, `vatablesales`, `vatexemptsales`, `zeroratedsales`, `vatpercentage`, `lessvat`, `transaction_type`, `discount_type`, `totaldiscountedamount`, `si_number`, `crew_id`, `created_at`"
+            Dim DailyTable
             If searchdate = False Then
-                where = " zreading = CURRENT_DATE() AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
-                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDaily, errormessage:="", fields:=fields, successmessage:="", where:=where)
+                where = " WHERE zreading = CURRENT_DATE() AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                'GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDaily, errormessage:="", fields:=fields, successmessage:="", where:=where)
+                DailyTable = AsDatatable(table & where, fields, DataGridViewDaily)
+                For Each row As DataRow In DailyTable.rows
+                    DataGridViewDaily.Rows.Add(row("transaction_number"), row("grosssales"), row("totaldiscount"), row("amounttendered"), row("change"), row("amountdue"), row("vatablesales"), row("vatexemptsales"), row("zeroratedsales"), row("vatpercentage"), row("lessvat"), row("transaction_type"), row("discount_type"), row("totaldiscountedamount"), row("si_number"), row("crew_id"), row("created_at"))
+                Next
             Else
-                where = " zreading >= '" & Format(DateTimePicker1.Value, "yyyy-MM-dd") & "' and zreading <= '" & Format(DateTimePicker2.Value, "yyyy-MM-dd") & "' AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
-                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDaily, errormessage:="", fields:=fields, successmessage:="", where:=where)
+                where = " WHERE zreading >= '" & Format(DateTimePicker1.Value, "yyyy-MM-dd") & "' and zreading <= '" & Format(DateTimePicker2.Value, "yyyy-MM-dd") & "' AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                'GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDaily, errormessage:="", fields:=fields, successmessage:="", where:=where)
+                DailyTable = AsDatatable(table & where, fields, DataGridViewDaily)
+                For Each row As DataRow In DailyTable.rows
+                    DataGridViewDaily.Rows.Add(row("transaction_number"), row("grosssales"), row("totaldiscount"), row("amounttendered"), row("change"), row("amountdue"), row("vatablesales"), row("vatexemptsales"), row("zeroratedsales"), row("vatpercentage"), row("lessvat"), row("transaction_type"), row("discount_type"), row("totaldiscountedamount"), row("si_number"), row("crew_id"), row("created_at"))
+                Next
+
             End If
             With DataGridViewDaily
-                .Columns(12).Visible = False
-                .Columns(14).Visible = False
+                '.Columns(6).Visible = False
+                '.Columns(7).Visible = False
+                '.Columns(8).Visible = False
+                '.Columns(9).Visible = False
+                '.Columns(10).Visible = False
+                '.Columns(12).Visible = False
+                '.Columns(13).Visible = False
+                '.Columns(14).Visible = False
+                '.Columns(15).Visible = False
                 '    .Columns(0).Visible = False
                 '    .Columns(1).HeaderCell.Value = "Date and Time"
                 '    .Columns(2).HeaderCell.Value = "Ref. #"
@@ -818,10 +836,10 @@ Public Class Reports
             table = "loc_zread_inventory I INNER JOIN loc_product_formula F ON F.server_formula_id = I.server_inventory_id "
             fields = "I.product_ingredients as Ingredients, CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
             If searchdate = False Then
-                where = "zreading = '" & Format(Now(), "yyyy-MM-dd") & "'"
+                where = "zreading = '" & Format(Now(), "yyyy-MM-dd") & "' ORDER BY I.product_ingredients ASC"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewZreadInvData, errormessage:="", fields:=fields, successmessage:="", where:=where)
             Else
-                where = "zreading = '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "'"
+                where = "zreading = '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "' ORDER BY I.product_ingredients ASC"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewZreadInvData, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
         Catch ex As Exception

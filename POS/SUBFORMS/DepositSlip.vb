@@ -39,6 +39,8 @@ Public Class DepositSlip
         Numeric(sender:=sender, e:=e)
     End Sub
     Private Sub DepositSlip_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Panel2.Top = (Me.Height - Panel2.Height) / 2
+        Panel2.Left = (Me.Width - Panel2.Width) / 2
         Try
             sql = "SELECT bankname FROM loc_partners_transaction WHERE active = 1 ORDER BY arrid ASC"
             cmd = New MySqlCommand(sql, LocalhostConn())
@@ -71,5 +73,8 @@ Public Class DepositSlip
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
+    End Sub
+    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
+        ShowKeyboard()
     End Sub
 End Class

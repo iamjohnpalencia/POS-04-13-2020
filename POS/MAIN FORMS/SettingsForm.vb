@@ -648,6 +648,14 @@ Public Class SettingsForm
                 .Columns(7).Visible = False
                 .Columns(8).Visible = False
                 .Columns(9).Visible = False
+                .Columns(12).Visible = False
+                .Columns(13).Visible = False
+                .Columns(14).Visible = False
+                .Columns(1).HeaderText = "Name"
+                .Columns(2).HeaderText = "Description"
+                .Columns(5).HeaderText = "Coupon Type"
+                .Columns(10).HeaderText = "Effective Date"
+                .Columns(11).HeaderText = "Expiry Date"
             End With
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1875,5 +1883,8 @@ Public Class SettingsForm
     Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles ButtonChangeFormula.Click
         Enabled = False
         Changeproductformula.Show()
+    End Sub
+    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click, Button1.Click
+        ShowKeyboard()
     End Sub
 End Class

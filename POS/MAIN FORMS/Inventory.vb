@@ -775,4 +775,8 @@ Public Class Inventory
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+
+    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
+        ShowKeyboard()
+    End Sub
 End Class

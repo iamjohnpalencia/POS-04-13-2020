@@ -52,6 +52,7 @@ Partial Class Inventory
         Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Inventory))
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -183,6 +184,8 @@ Partial Class Inventory
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Panel24 = New System.Windows.Forms.Panel()
+        Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -237,6 +240,7 @@ Partial Class Inventory
         Me.Panel21.SuspendLayout()
         Me.Panel16.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.Panel24.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel6
@@ -378,10 +382,10 @@ Partial Class Inventory
         'TabPage11
         '
         Me.TabPage11.Controls.Add(Me.TabControl5)
-        Me.TabPage11.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage11.Location = New System.Drawing.Point(4, 22)
         Me.TabPage11.Name = "TabPage11"
         Me.TabPage11.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage11.Size = New System.Drawing.Size(1183, 583)
+        Me.TabPage11.Size = New System.Drawing.Size(1183, 589)
         Me.TabPage11.TabIndex = 1
         Me.TabPage11.Text = "TabPage11"
         Me.TabPage11.UseVisualStyleBackColor = True
@@ -394,7 +398,7 @@ Partial Class Inventory
         Me.TabControl5.Location = New System.Drawing.Point(3, 3)
         Me.TabControl5.Name = "TabControl5"
         Me.TabControl5.SelectedIndex = 0
-        Me.TabControl5.Size = New System.Drawing.Size(1177, 577)
+        Me.TabControl5.Size = New System.Drawing.Size(1177, 583)
         Me.TabControl5.TabIndex = 4
         '
         'TabPage12
@@ -404,7 +408,7 @@ Partial Class Inventory
         Me.TabPage12.Location = New System.Drawing.Point(4, 28)
         Me.TabPage12.Name = "TabPage12"
         Me.TabPage12.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage12.Size = New System.Drawing.Size(1169, 545)
+        Me.TabPage12.Size = New System.Drawing.Size(1169, 551)
         Me.TabPage12.TabIndex = 0
         Me.TabPage12.Text = "TabPage12"
         Me.TabPage12.UseVisualStyleBackColor = True
@@ -441,7 +445,7 @@ Partial Class Inventory
         Me.DataGridViewCustomInvApproved.EnableHeadersVisualStyles = False
         Me.DataGridViewCustomInvApproved.Location = New System.Drawing.Point(3, 40)
         Me.DataGridViewCustomInvApproved.Name = "DataGridViewCustomInvApproved"
-        Me.DataGridViewCustomInvApproved.Size = New System.Drawing.Size(1163, 502)
+        Me.DataGridViewCustomInvApproved.Size = New System.Drawing.Size(1163, 508)
         Me.DataGridViewCustomInvApproved.TabIndex = 3
         '
         'Panel3
@@ -461,7 +465,7 @@ Partial Class Inventory
         Me.TabPage13.Location = New System.Drawing.Point(4, 22)
         Me.TabPage13.Name = "TabPage13"
         Me.TabPage13.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage13.Size = New System.Drawing.Size(1169, 557)
+        Me.TabPage13.Size = New System.Drawing.Size(1169, 551)
         Me.TabPage13.TabIndex = 1
         Me.TabPage13.Text = "TabPage13"
         Me.TabPage13.UseVisualStyleBackColor = True
@@ -498,7 +502,7 @@ Partial Class Inventory
         Me.DataGridViewCustomDisapp.EnableHeadersVisualStyles = False
         Me.DataGridViewCustomDisapp.Location = New System.Drawing.Point(3, 40)
         Me.DataGridViewCustomDisapp.Name = "DataGridViewCustomDisapp"
-        Me.DataGridViewCustomDisapp.Size = New System.Drawing.Size(1163, 514)
+        Me.DataGridViewCustomDisapp.Size = New System.Drawing.Size(1163, 508)
         Me.DataGridViewCustomDisapp.TabIndex = 4
         '
         'Panel18
@@ -1938,6 +1942,7 @@ Partial Class Inventory
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.Panel24)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
@@ -1955,6 +1960,28 @@ Partial Class Inventory
         Me.Label2.Size = New System.Drawing.Size(139, 25)
         Me.Label2.TabIndex = 153
         Me.Label2.Text = "INVENTORY"
+        '
+        'Panel24
+        '
+        Me.Panel24.Controls.Add(Me.ButtonKeyboard)
+        Me.Panel24.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel24.Location = New System.Drawing.Point(1175, 0)
+        Me.Panel24.Name = "Panel24"
+        Me.Panel24.Size = New System.Drawing.Size(70, 42)
+        Me.Panel24.TabIndex = 232
+        '
+        'ButtonKeyboard
+        '
+        Me.ButtonKeyboard.BackColor = System.Drawing.SystemColors.Control
+        Me.ButtonKeyboard.BackgroundImage = CType(resources.GetObject("ButtonKeyboard.BackgroundImage"), System.Drawing.Image)
+        Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
+        Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(5, 4)
+        Me.ButtonKeyboard.Name = "ButtonKeyboard"
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
+        Me.ButtonKeyboard.TabIndex = 230
+        Me.ButtonKeyboard.UseVisualStyleBackColor = False
         '
         'Inventory
         '
@@ -2027,6 +2054,7 @@ Partial Class Inventory
         Me.Panel16.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.Panel24.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -2161,4 +2189,6 @@ Partial Class Inventory
     Friend WithEvents Button7 As Button
     Friend WithEvents Panel22 As Panel
     Friend WithEvents ButtonPrintCurInv As Button
+    Friend WithEvents Panel24 As Panel
+    Friend WithEvents ButtonKeyboard As Button
 End Class

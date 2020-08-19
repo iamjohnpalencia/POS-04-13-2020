@@ -49,6 +49,7 @@ Partial Class Expenses
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -87,6 +88,7 @@ Partial Class Expenses
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.White
+        Me.GroupBox1.Controls.Add(Me.ButtonKeyboard)
         Me.GroupBox1.Controls.Add(Me.TextBoxTOTAL)
         Me.GroupBox1.Controls.Add(Me.TextBoxPRICE)
         Me.GroupBox1.Controls.Add(Me.Button5)
@@ -322,6 +324,19 @@ Partial Class Expenses
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'ButtonKeyboard
+        '
+        Me.ButtonKeyboard.BackColor = System.Drawing.SystemColors.Control
+        Me.ButtonKeyboard.BackgroundImage = CType(resources.GetObject("ButtonKeyboard.BackgroundImage"), System.Drawing.Image)
+        Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
+        Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(323, 96)
+        Me.ButtonKeyboard.Name = "ButtonKeyboard"
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
+        Me.ButtonKeyboard.TabIndex = 230
+        Me.ButtonKeyboard.UseVisualStyleBackColor = False
+        '
         'Expenses
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -372,4 +387,5 @@ Partial Class Expenses
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ToolStripProgressBar1 As ToolStripProgressBar
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents ButtonKeyboard As Button
 End Class

@@ -93,6 +93,8 @@ Partial Class Reports
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Panel9 = New System.Windows.Forms.Panel()
         Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.Panel27 = New System.Windows.Forms.Panel()
+        Me.ButtonPrintSales = New System.Windows.Forms.Button()
         Me.ButtonSearchTotalDailySales = New System.Windows.Forms.Button()
         Me.DateTimePicker3 = New System.Windows.Forms.DateTimePicker()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -173,8 +175,23 @@ Partial Class Reports
         Me.pdoc = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.Panel27 = New System.Windows.Forms.Panel()
-        Me.ButtonPrintSales = New System.Windows.Forms.Button()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -191,6 +208,7 @@ Partial Class Reports
         CType(Me.DataGridViewSales, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.Panel16.SuspendLayout()
+        Me.Panel27.SuspendLayout()
         Me.TabPage5.SuspendLayout()
         Me.Panel19.SuspendLayout()
         CType(Me.DataGridViewEXPENSES, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -227,7 +245,6 @@ Partial Class Reports
         Me.GroupBox9.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        Me.Panel27.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel6
@@ -294,6 +311,7 @@ Partial Class Reports
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewDaily.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridViewDaily.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewDaily.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column12, Me.Column13, Me.Column14, Me.Column15, Me.Column16, Me.Column17, Me.Column18, Me.Column19, Me.Column20})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -715,6 +733,24 @@ Partial Class Reports
         Me.Panel16.Name = "Panel16"
         Me.Panel16.Size = New System.Drawing.Size(1117, 37)
         Me.Panel16.TabIndex = 6
+        '
+        'Panel27
+        '
+        Me.Panel27.Controls.Add(Me.ButtonPrintSales)
+        Me.Panel27.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel27.Location = New System.Drawing.Point(970, 0)
+        Me.Panel27.Name = "Panel27"
+        Me.Panel27.Size = New System.Drawing.Size(145, 35)
+        Me.Panel27.TabIndex = 14
+        '
+        'ButtonPrintSales
+        '
+        Me.ButtonPrintSales.Location = New System.Drawing.Point(4, 3)
+        Me.ButtonPrintSales.Name = "ButtonPrintSales"
+        Me.ButtonPrintSales.Size = New System.Drawing.Size(138, 29)
+        Me.ButtonPrintSales.TabIndex = 1
+        Me.ButtonPrintSales.Text = "Print"
+        Me.ButtonPrintSales.UseVisualStyleBackColor = True
         '
         'ButtonSearchTotalDailySales
         '
@@ -1764,23 +1800,100 @@ Partial Class Reports
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Panel27
+        'Column4
         '
-        Me.Panel27.Controls.Add(Me.ButtonPrintSales)
-        Me.Panel27.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel27.Location = New System.Drawing.Point(970, 0)
-        Me.Panel27.Name = "Panel27"
-        Me.Panel27.Size = New System.Drawing.Size(145, 35)
-        Me.Panel27.TabIndex = 14
+        Me.Column4.HeaderText = "Transaction No."
+        Me.Column4.Name = "Column4"
         '
-        'ButtonPrintSales
+        'Column5
         '
-        Me.ButtonPrintSales.Location = New System.Drawing.Point(4, 3)
-        Me.ButtonPrintSales.Name = "ButtonPrintSales"
-        Me.ButtonPrintSales.Size = New System.Drawing.Size(138, 29)
-        Me.ButtonPrintSales.TabIndex = 1
-        Me.ButtonPrintSales.Text = "Print"
-        Me.ButtonPrintSales.UseVisualStyleBackColor = True
+        Me.Column5.HeaderText = "Gross Sales"
+        Me.Column5.Name = "Column5"
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Discount"
+        Me.Column6.Name = "Column6"
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "Cash"
+        Me.Column7.Name = "Column7"
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Change"
+        Me.Column8.Name = "Column8"
+        '
+        'Column9
+        '
+        Me.Column9.HeaderText = "Amount Due"
+        Me.Column9.Name = "Column9"
+        '
+        'Column10
+        '
+        Me.Column10.HeaderText = "Column10"
+        Me.Column10.Name = "Column10"
+        Me.Column10.Visible = False
+        '
+        'Column11
+        '
+        Me.Column11.HeaderText = "Column11"
+        Me.Column11.Name = "Column11"
+        Me.Column11.Visible = False
+        '
+        'Column12
+        '
+        Me.Column12.HeaderText = "Column12"
+        Me.Column12.Name = "Column12"
+        Me.Column12.Visible = False
+        '
+        'Column13
+        '
+        Me.Column13.HeaderText = "Column13"
+        Me.Column13.Name = "Column13"
+        Me.Column13.Visible = False
+        '
+        'Column14
+        '
+        Me.Column14.HeaderText = "Column14"
+        Me.Column14.Name = "Column14"
+        Me.Column14.Visible = False
+        '
+        'Column15
+        '
+        Me.Column15.HeaderText = "Type"
+        Me.Column15.Name = "Column15"
+        '
+        'Column16
+        '
+        Me.Column16.HeaderText = "Column16"
+        Me.Column16.Name = "Column16"
+        Me.Column16.Visible = False
+        '
+        'Column17
+        '
+        Me.Column17.HeaderText = "Column17"
+        Me.Column17.Name = "Column17"
+        Me.Column17.Visible = False
+        '
+        'Column18
+        '
+        Me.Column18.HeaderText = "Column18"
+        Me.Column18.Name = "Column18"
+        Me.Column18.Visible = False
+        '
+        'Column19
+        '
+        Me.Column19.HeaderText = "Column19"
+        Me.Column19.Name = "Column19"
+        Me.Column19.Visible = False
+        '
+        'Column20
+        '
+        Me.Column20.HeaderText = "Column20"
+        Me.Column20.Name = "Column20"
+        Me.Column20.Visible = False
         '
         'Reports
         '
@@ -1814,6 +1927,7 @@ Partial Class Reports
         Me.Panel2.PerformLayout()
         Me.Panel16.ResumeLayout(False)
         Me.Panel16.PerformLayout()
+        Me.Panel27.ResumeLayout(False)
         Me.TabPage5.ResumeLayout(False)
         Me.Panel19.ResumeLayout(False)
         CType(Me.DataGridViewEXPENSES, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1860,7 +1974,6 @@ Partial Class Reports
         Me.Panel3.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        Me.Panel27.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1982,4 +2095,21 @@ Partial Class Reports
     Friend WithEvents Button8 As Button
     Friend WithEvents Panel27 As Panel
     Friend WithEvents ButtonPrintSales As Button
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents Column9 As DataGridViewTextBoxColumn
+    Friend WithEvents Column10 As DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents Column12 As DataGridViewTextBoxColumn
+    Friend WithEvents Column13 As DataGridViewTextBoxColumn
+    Friend WithEvents Column14 As DataGridViewTextBoxColumn
+    Friend WithEvents Column15 As DataGridViewTextBoxColumn
+    Friend WithEvents Column16 As DataGridViewTextBoxColumn
+    Friend WithEvents Column17 As DataGridViewTextBoxColumn
+    Friend WithEvents Column18 As DataGridViewTextBoxColumn
+    Friend WithEvents Column19 As DataGridViewTextBoxColumn
+    Friend WithEvents Column20 As DataGridViewTextBoxColumn
 End Class

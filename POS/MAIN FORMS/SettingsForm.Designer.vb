@@ -41,6 +41,7 @@ Partial Class SettingsForm
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SettingsForm))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -140,6 +141,15 @@ Partial Class SettingsForm
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewPartners = New System.Windows.Forms.DataGridView()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.ButtonPartnersPrio = New System.Windows.Forms.Button()
@@ -150,6 +160,15 @@ Partial Class SettingsForm
         Me.TableLayoutPanel8 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewPartnersDeact = New System.Windows.Forms.DataGridView()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
         Me.Panel25 = New System.Windows.Forms.Panel()
         Me.ButtonPTActivate = New System.Windows.Forms.Button()
@@ -302,24 +321,8 @@ Partial Class SettingsForm
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ButtonKeyboard = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -1558,6 +1561,57 @@ Partial Class SettingsForm
         Me.DataGridViewPartners.Size = New System.Drawing.Size(999, 336)
         Me.DataGridViewPartners.TabIndex = 5
         '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Column2"
+        Me.Column2.Name = "Column2"
+        Me.Column2.Visible = False
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Column3"
+        Me.Column3.Name = "Column3"
+        Me.Column3.Visible = False
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Name"
+        Me.Column4.Name = "Column4"
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Date Modified"
+        Me.Column5.Name = "Column5"
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Column6"
+        Me.Column6.Name = "Column6"
+        Me.Column6.Visible = False
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "Column7"
+        Me.Column7.Name = "Column7"
+        Me.Column7.Visible = False
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Column8"
+        Me.Column8.Name = "Column8"
+        Me.Column8.Visible = False
+        '
+        'Column9
+        '
+        Me.Column9.HeaderText = "Status"
+        Me.Column9.Name = "Column9"
+        '
+        'Column10
+        '
+        Me.Column10.HeaderText = "Column10"
+        Me.Column10.Name = "Column10"
+        Me.Column10.Visible = False
+        '
         'GroupBox9
         '
         Me.GroupBox9.Controls.Add(Me.Panel4)
@@ -1649,10 +1703,10 @@ Partial Class SettingsForm
         'TabPage8
         '
         Me.TabPage8.Controls.Add(Me.TableLayoutPanel8)
-        Me.TabPage8.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage8.Location = New System.Drawing.Point(4, 22)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage8.Size = New System.Drawing.Size(1017, 443)
+        Me.TabPage8.Size = New System.Drawing.Size(1017, 449)
         Me.TabPage8.TabIndex = 1
         Me.TabPage8.Text = "TabPage8"
         Me.TabPage8.UseVisualStyleBackColor = True
@@ -1669,7 +1723,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel8.RowCount = 2
         Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel8.Size = New System.Drawing.Size(1011, 437)
+        Me.TableLayoutPanel8.Size = New System.Drawing.Size(1011, 443)
         Me.TableLayoutPanel8.TabIndex = 8
         '
         'GroupBox14
@@ -1679,7 +1733,7 @@ Partial Class SettingsForm
         Me.GroupBox14.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox14.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Size = New System.Drawing.Size(1005, 361)
+        Me.GroupBox14.Size = New System.Drawing.Size(1005, 367)
         Me.GroupBox14.TabIndex = 164
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "Deactivated Bank List"
@@ -1718,15 +1772,66 @@ Partial Class SettingsForm
         Me.DataGridViewPartnersDeact.EnableHeadersVisualStyles = False
         Me.DataGridViewPartnersDeact.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewPartnersDeact.Name = "DataGridViewPartnersDeact"
-        Me.DataGridViewPartnersDeact.Size = New System.Drawing.Size(999, 336)
+        Me.DataGridViewPartnersDeact.Size = New System.Drawing.Size(999, 342)
         Me.DataGridViewPartnersDeact.TabIndex = 6
+        '
+        'Column11
+        '
+        Me.Column11.HeaderText = "Column11"
+        Me.Column11.Name = "Column11"
+        Me.Column11.Visible = False
+        '
+        'Column12
+        '
+        Me.Column12.HeaderText = "Column12"
+        Me.Column12.Name = "Column12"
+        Me.Column12.Visible = False
+        '
+        'Column13
+        '
+        Me.Column13.HeaderText = "Name"
+        Me.Column13.Name = "Column13"
+        '
+        'Column14
+        '
+        Me.Column14.HeaderText = "Date Modified"
+        Me.Column14.Name = "Column14"
+        '
+        'Column15
+        '
+        Me.Column15.HeaderText = "Column15"
+        Me.Column15.Name = "Column15"
+        Me.Column15.Visible = False
+        '
+        'Column16
+        '
+        Me.Column16.HeaderText = "Column16"
+        Me.Column16.Name = "Column16"
+        Me.Column16.Visible = False
+        '
+        'Column17
+        '
+        Me.Column17.HeaderText = "Column17"
+        Me.Column17.Name = "Column17"
+        Me.Column17.Visible = False
+        '
+        'Column18
+        '
+        Me.Column18.HeaderText = "Status"
+        Me.Column18.Name = "Column18"
+        '
+        'Column19
+        '
+        Me.Column19.HeaderText = "Column19"
+        Me.Column19.Name = "Column19"
+        Me.Column19.Visible = False
         '
         'GroupBox15
         '
         Me.GroupBox15.Controls.Add(Me.Panel25)
         Me.GroupBox15.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox15.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox15.Location = New System.Drawing.Point(3, 370)
+        Me.GroupBox15.Location = New System.Drawing.Point(3, 376)
         Me.GroupBox15.Name = "GroupBox15"
         Me.GroupBox15.Size = New System.Drawing.Size(1005, 64)
         Me.GroupBox15.TabIndex = 166
@@ -2062,6 +2167,7 @@ Partial Class SettingsForm
         'Panel18
         '
         Me.Panel18.AutoScroll = True
+        Me.Panel18.Controls.Add(Me.ButtonKeyboard)
         Me.Panel18.Controls.Add(Me.TableLayoutPanel6)
         Me.Panel18.Controls.Add(Me.LabelIRSUBTOTAL)
         Me.Panel18.Controls.Add(Me.TableLayoutPanel7)
@@ -2331,15 +2437,14 @@ Partial Class SettingsForm
         '
         'ButtonRefund
         '
-        Me.ButtonRefund.BackColor = System.Drawing.Color.SlateGray
-        Me.ButtonRefund.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ButtonRefund.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.ButtonRefund.FlatAppearance.BorderSize = 0
         Me.ButtonRefund.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonRefund.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonRefund.ForeColor = System.Drawing.Color.White
-        Me.ButtonRefund.Location = New System.Drawing.Point(0, 255)
+        Me.ButtonRefund.Location = New System.Drawing.Point(3, 250)
         Me.ButtonRefund.Name = "ButtonRefund"
-        Me.ButtonRefund.Size = New System.Drawing.Size(353, 33)
+        Me.ButtonRefund.Size = New System.Drawing.Size(283, 35)
         Me.ButtonRefund.TabIndex = 239
         Me.ButtonRefund.Text = "REFUND"
         Me.ButtonRefund.UseVisualStyleBackColor = False
@@ -2453,7 +2558,7 @@ Partial Class SettingsForm
         '
         'Panel17
         '
-        Me.Panel17.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Panel17.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.Panel17.Controls.Add(Me.Label16)
         Me.Panel17.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
@@ -2494,7 +2599,7 @@ Partial Class SettingsForm
         '
         'Panel16
         '
-        Me.Panel16.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Panel16.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.Panel16.Controls.Add(Me.Label3)
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
@@ -2555,7 +2660,7 @@ Partial Class SettingsForm
         '
         'Panel15
         '
-        Me.Panel15.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Panel15.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.Panel15.Controls.Add(Me.Label2)
         Me.Panel15.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel15.Location = New System.Drawing.Point(0, 0)
@@ -2720,6 +2825,7 @@ Partial Class SettingsForm
         '
         'Panel19
         '
+        Me.Panel19.Controls.Add(Me.Button1)
         Me.Panel19.Controls.Add(Me.TextBoxCDesc)
         Me.Panel19.Controls.Add(Me.DateTimePickerCExpiryDate)
         Me.Panel19.Controls.Add(Me.Label46)
@@ -2760,7 +2866,7 @@ Partial Class SettingsForm
         'DateTimePickerCExpiryDate
         '
         Me.DateTimePickerCExpiryDate.CustomFormat = "mm/dd/yyyy"
-        Me.DateTimePickerCExpiryDate.Location = New System.Drawing.Point(599, 158)
+        Me.DateTimePickerCExpiryDate.Location = New System.Drawing.Point(665, 159)
         Me.DateTimePickerCExpiryDate.Name = "DateTimePickerCExpiryDate"
         Me.DateTimePickerCExpiryDate.Size = New System.Drawing.Size(207, 22)
         Me.DateTimePickerCExpiryDate.TabIndex = 3
@@ -2785,7 +2891,7 @@ Partial Class SettingsForm
         'DateTimePickerCEffectiveDate
         '
         Me.DateTimePickerCEffectiveDate.CustomFormat = "mm/dd/yyyy"
-        Me.DateTimePickerCEffectiveDate.Location = New System.Drawing.Point(599, 116)
+        Me.DateTimePickerCEffectiveDate.Location = New System.Drawing.Point(665, 117)
         Me.DateTimePickerCEffectiveDate.Name = "DateTimePickerCEffectiveDate"
         Me.DateTimePickerCEffectiveDate.Size = New System.Drawing.Size(207, 22)
         Me.DateTimePickerCEffectiveDate.TabIndex = 3
@@ -2803,7 +2909,7 @@ Partial Class SettingsForm
         'Label33
         '
         Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(596, 141)
+        Me.Label33.Location = New System.Drawing.Point(662, 142)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(69, 14)
         Me.Label33.TabIndex = 1
@@ -2817,13 +2923,13 @@ Partial Class SettingsForm
         Me.ComboBoxCType.Items.AddRange(New Object() {"Percentage(w/o vat)", "Percentage(w/ vat)", "Fix-1", "Fix-2", "Bundle-1(Fix)", "Bundle-2(Fix)", "Bundle-3(%)"})
         Me.ComboBoxCType.Location = New System.Drawing.Point(239, 116)
         Me.ComboBoxCType.Name = "ComboBoxCType"
-        Me.ComboBoxCType.Size = New System.Drawing.Size(174, 22)
+        Me.ComboBoxCType.Size = New System.Drawing.Size(207, 22)
         Me.ComboBoxCType.TabIndex = 2
         '
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(596, 99)
+        Me.Label37.Location = New System.Drawing.Point(662, 100)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(85, 14)
         Me.Label37.TabIndex = 1
@@ -2835,13 +2941,13 @@ Partial Class SettingsForm
         Me.TextBoxCDVal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxCDVal.Location = New System.Drawing.Point(239, 31)
         Me.TextBoxCDVal.Name = "TextBoxCDVal"
-        Me.TextBoxCDVal.Size = New System.Drawing.Size(174, 22)
+        Me.TextBoxCDVal.Size = New System.Drawing.Size(207, 22)
         Me.TextBoxCDVal.TabIndex = 0
         '
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(596, 57)
+        Me.Label40.Location = New System.Drawing.Point(662, 58)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(78, 14)
         Me.Label40.TabIndex = 1
@@ -2853,13 +2959,13 @@ Partial Class SettingsForm
         Me.TextBoxCRefVal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxCRefVal.Location = New System.Drawing.Point(239, 74)
         Me.TextBoxCRefVal.Name = "TextBoxCRefVal"
-        Me.TextBoxCRefVal.Size = New System.Drawing.Size(174, 22)
+        Me.TextBoxCRefVal.Size = New System.Drawing.Size(207, 22)
         Me.TextBoxCRefVal.TabIndex = 0
         '
         'Label43
         '
         Me.Label43.AutoSize = True
-        Me.Label43.Location = New System.Drawing.Point(596, 14)
+        Me.Label43.Location = New System.Drawing.Point(662, 15)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(156, 14)
         Me.Label43.TabIndex = 1
@@ -2869,15 +2975,15 @@ Partial Class SettingsForm
         '
         Me.TextBoxCBP.BackColor = System.Drawing.Color.White
         Me.TextBoxCBP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCBP.Location = New System.Drawing.Point(599, 32)
+        Me.TextBoxCBP.Location = New System.Drawing.Point(665, 33)
         Me.TextBoxCBP.Name = "TextBoxCBP"
-        Me.TextBoxCBP.Size = New System.Drawing.Size(174, 22)
+        Me.TextBoxCBP.Size = New System.Drawing.Size(207, 22)
         Me.TextBoxCBP.TabIndex = 0
         '
         'Label42
         '
         Me.Label42.AutoSize = True
-        Me.Label42.Location = New System.Drawing.Point(416, 57)
+        Me.Label42.Location = New System.Drawing.Point(449, 57)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(78, 14)
         Me.Label42.TabIndex = 1
@@ -2887,9 +2993,9 @@ Partial Class SettingsForm
         '
         Me.TextBoxCBundVal.BackColor = System.Drawing.Color.White
         Me.TextBoxCBundVal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCBundVal.Location = New System.Drawing.Point(599, 74)
+        Me.TextBoxCBundVal.Location = New System.Drawing.Point(665, 75)
         Me.TextBoxCBundVal.Name = "TextBoxCBundVal"
-        Me.TextBoxCBundVal.Size = New System.Drawing.Size(174, 22)
+        Me.TextBoxCBundVal.Size = New System.Drawing.Size(207, 22)
         Me.TextBoxCBundVal.TabIndex = 0
         '
         'Label34
@@ -2905,9 +3011,9 @@ Partial Class SettingsForm
         '
         Me.TextBoxCBBP.BackColor = System.Drawing.Color.White
         Me.TextBoxCBBP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCBBP.Location = New System.Drawing.Point(419, 31)
+        Me.TextBoxCBBP.Location = New System.Drawing.Point(452, 32)
         Me.TextBoxCBBP.Name = "TextBoxCBBP"
-        Me.TextBoxCBBP.Size = New System.Drawing.Size(174, 22)
+        Me.TextBoxCBBP.Size = New System.Drawing.Size(207, 22)
         Me.TextBoxCBBP.TabIndex = 0
         '
         'Label45
@@ -2923,9 +3029,9 @@ Partial Class SettingsForm
         '
         Me.TextBoxCBV.BackColor = System.Drawing.Color.White
         Me.TextBoxCBV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxCBV.Location = New System.Drawing.Point(419, 74)
+        Me.TextBoxCBV.Location = New System.Drawing.Point(452, 75)
         Me.TextBoxCBV.Name = "TextBoxCBV"
-        Me.TextBoxCBV.Size = New System.Drawing.Size(174, 22)
+        Me.TextBoxCBV.Size = New System.Drawing.Size(207, 22)
         Me.TextBoxCBV.TabIndex = 0
         '
         'Label38
@@ -2940,7 +3046,7 @@ Partial Class SettingsForm
         'Label44
         '
         Me.Label44.AutoSize = True
-        Me.Label44.Location = New System.Drawing.Point(416, 13)
+        Me.Label44.Location = New System.Drawing.Point(449, 14)
         Me.Label44.Name = "Label44"
         Me.Label44.Size = New System.Drawing.Size(130, 14)
         Me.Label44.TabIndex = 1
@@ -3390,107 +3496,31 @@ Partial Class SettingsForm
         '
         Me.Timer1.Interval = 1000
         '
-        'Column11
+        'ButtonKeyboard
         '
-        Me.Column11.HeaderText = "Column11"
-        Me.Column11.Name = "Column11"
-        Me.Column11.Visible = False
+        Me.ButtonKeyboard.BackColor = System.Drawing.SystemColors.Control
+        Me.ButtonKeyboard.BackgroundImage = CType(resources.GetObject("ButtonKeyboard.BackgroundImage"), System.Drawing.Image)
+        Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
+        Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(289, 250)
+        Me.ButtonKeyboard.Name = "ButtonKeyboard"
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
+        Me.ButtonKeyboard.TabIndex = 243
+        Me.ButtonKeyboard.UseVisualStyleBackColor = False
         '
-        'Column12
+        'Button1
         '
-        Me.Column12.HeaderText = "Column12"
-        Me.Column12.Name = "Column12"
-        Me.Column12.Visible = False
-        '
-        'Column13
-        '
-        Me.Column13.HeaderText = "Name"
-        Me.Column13.Name = "Column13"
-        '
-        'Column14
-        '
-        Me.Column14.HeaderText = "Date Modified"
-        Me.Column14.Name = "Column14"
-        '
-        'Column15
-        '
-        Me.Column15.HeaderText = "Column15"
-        Me.Column15.Name = "Column15"
-        Me.Column15.Visible = False
-        '
-        'Column16
-        '
-        Me.Column16.HeaderText = "Column16"
-        Me.Column16.Name = "Column16"
-        Me.Column16.Visible = False
-        '
-        'Column17
-        '
-        Me.Column17.HeaderText = "Column17"
-        Me.Column17.Name = "Column17"
-        Me.Column17.Visible = False
-        '
-        'Column18
-        '
-        Me.Column18.HeaderText = "Status"
-        Me.Column18.Name = "Column18"
-        '
-        'Column19
-        '
-        Me.Column19.HeaderText = "Column19"
-        Me.Column19.Name = "Column19"
-        Me.Column19.Visible = False
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Column2"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Visible = False
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Column3"
-        Me.Column3.Name = "Column3"
-        Me.Column3.Visible = False
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "Name"
-        Me.Column4.Name = "Column4"
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "Date Modified"
-        Me.Column5.Name = "Column5"
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "Column6"
-        Me.Column6.Name = "Column6"
-        Me.Column6.Visible = False
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "Column7"
-        Me.Column7.Name = "Column7"
-        Me.Column7.Visible = False
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "Column8"
-        Me.Column8.Name = "Column8"
-        Me.Column8.Visible = False
-        '
-        'Column9
-        '
-        Me.Column9.HeaderText = "Status"
-        Me.Column9.Name = "Column9"
-        '
-        'Column10
-        '
-        Me.Column10.HeaderText = "Column10"
-        Me.Column10.Name = "Column10"
-        Me.Column10.Visible = False
+        Me.Button1.BackColor = System.Drawing.SystemColors.Control
+        Me.Button1.BackgroundImage = CType(resources.GetObject("Button1.BackgroundImage"), System.Drawing.Image)
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Location = New System.Drawing.Point(943, 159)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(61, 35)
+        Me.Button1.TabIndex = 244
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'SettingsForm
         '
@@ -3886,4 +3916,6 @@ Partial Class SettingsForm
     Friend WithEvents Column17 As DataGridViewTextBoxColumn
     Friend WithEvents Column18 As DataGridViewTextBoxColumn
     Friend WithEvents Column19 As DataGridViewTextBoxColumn
+    Friend WithEvents ButtonKeyboard As Button
+    Friend WithEvents Button1 As Button
 End Class

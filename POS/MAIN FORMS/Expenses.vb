@@ -156,4 +156,8 @@ Public Class Expenses
     Private Sub Expenses_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Addexpense.Enabled = True
     End Sub
+
+    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
+        ShowKeyboard()
+    End Sub
 End Class

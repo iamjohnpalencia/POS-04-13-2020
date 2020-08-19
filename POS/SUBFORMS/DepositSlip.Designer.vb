@@ -23,9 +23,8 @@ Partial Class DepositSlip
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DepositSlip))
         Me.ComboBoxBankName = New System.Windows.Forms.ComboBox()
-        Me.Panel9 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.DateTimePickerDATE = New System.Windows.Forms.DateTimePicker()
         Me.TextBoxAMT = New System.Windows.Forms.TextBox()
@@ -37,54 +36,26 @@ Partial Class DepositSlip
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Panel1.SuspendLayout()
+        Me.ButtonKeyboard = New System.Windows.Forms.Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Panel1
-        '
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.ComboBoxBankName)
-        Me.Panel1.Controls.Add(Me.Panel9)
-        Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.DateTimePickerDATE)
-        Me.Panel1.Controls.Add(Me.TextBoxAMT)
-        Me.Panel1.Controls.Add(Me.TextBoxTRANNUM)
-        Me.Panel1.Controls.Add(Me.TextBoxNAME)
-        Me.Panel1.Controls.Add(Me.Button1)
-        Me.Panel1.Controls.Add(Me.Label5)
-        Me.Panel1.Controls.Add(Me.Label4)
-        Me.Panel1.Controls.Add(Me.Label2)
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(562, 271)
-        Me.Panel1.TabIndex = 94
         '
         'ComboBoxBankName
         '
         Me.ComboBoxBankName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxBankName.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxBankName.FormattingEnabled = True
-        Me.ComboBoxBankName.Location = New System.Drawing.Point(147, 146)
+        Me.ComboBoxBankName.Location = New System.Drawing.Point(208, 115)
         Me.ComboBoxBankName.Name = "ComboBoxBankName"
         Me.ComboBoxBankName.Size = New System.Drawing.Size(400, 22)
         Me.ComboBoxBankName.TabIndex = 233
-        '
-        'Panel9
-        '
-        Me.Panel9.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel9.Location = New System.Drawing.Point(0, 0)
-        Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(560, 36)
-        Me.Panel9.TabIndex = 231
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(9, 182)
+        Me.Label3.Location = New System.Drawing.Point(70, 151)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(104, 14)
@@ -94,7 +65,7 @@ Partial Class DepositSlip
         'DateTimePickerDATE
         '
         Me.DateTimePickerDATE.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePickerDATE.Location = New System.Drawing.Point(147, 175)
+        Me.DateTimePickerDATE.Location = New System.Drawing.Point(208, 144)
         Me.DateTimePickerDATE.Name = "DateTimePickerDATE"
         Me.DateTimePickerDATE.Size = New System.Drawing.Size(400, 22)
         Me.DateTimePickerDATE.TabIndex = 229
@@ -103,7 +74,7 @@ Partial Class DepositSlip
         '
         Me.TextBoxAMT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxAMT.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxAMT.Location = New System.Drawing.Point(147, 115)
+        Me.TextBoxAMT.Location = New System.Drawing.Point(208, 84)
         Me.TextBoxAMT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TextBoxAMT.Name = "TextBoxAMT"
         Me.TextBoxAMT.Size = New System.Drawing.Size(400, 22)
@@ -113,7 +84,7 @@ Partial Class DepositSlip
         '
         Me.TextBoxTRANNUM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxTRANNUM.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxTRANNUM.Location = New System.Drawing.Point(147, 82)
+        Me.TextBoxTRANNUM.Location = New System.Drawing.Point(208, 51)
         Me.TextBoxTRANNUM.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TextBoxTRANNUM.Name = "TextBoxTRANNUM"
         Me.TextBoxTRANNUM.Size = New System.Drawing.Size(400, 22)
@@ -123,7 +94,7 @@ Partial Class DepositSlip
         '
         Me.TextBoxNAME.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxNAME.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxNAME.Location = New System.Drawing.Point(147, 49)
+        Me.TextBoxNAME.Location = New System.Drawing.Point(208, 18)
         Me.TextBoxNAME.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TextBoxNAME.Name = "TextBoxNAME"
         Me.TextBoxNAME.Size = New System.Drawing.Size(400, 22)
@@ -131,15 +102,15 @@ Partial Class DepositSlip
         '
         'Button1
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(147, 206)
+        Me.Button1.Location = New System.Drawing.Point(208, 175)
         Me.Button1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(400, 50)
+        Me.Button1.Size = New System.Drawing.Size(332, 35)
         Me.Button1.TabIndex = 224
         Me.Button1.Text = "SUBMIT"
         Me.Button1.UseVisualStyleBackColor = False
@@ -148,7 +119,7 @@ Partial Class DepositSlip
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(9, 150)
+        Me.Label5.Location = New System.Drawing.Point(70, 119)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(37, 14)
@@ -159,7 +130,7 @@ Partial Class DepositSlip
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(9, 118)
+        Me.Label4.Location = New System.Drawing.Point(70, 87)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(55, 14)
@@ -170,7 +141,7 @@ Partial Class DepositSlip
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(9, 85)
+        Me.Label2.Location = New System.Drawing.Point(70, 54)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(121, 14)
@@ -181,34 +152,62 @@ Partial Class DepositSlip
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(9, 52)
+        Me.Label1.Location = New System.Drawing.Point(70, 21)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(42, 14)
         Me.Label1.TabIndex = 220
         Me.Label1.Text = "Name:"
         '
+        'ButtonKeyboard
+        '
+        Me.ButtonKeyboard.BackColor = System.Drawing.SystemColors.Control
+        Me.ButtonKeyboard.BackgroundImage = CType(resources.GetObject("ButtonKeyboard.BackgroundImage"), System.Drawing.Image)
+        Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
+        Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(547, 175)
+        Me.ButtonKeyboard.Name = "ButtonKeyboard"
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
+        Me.ButtonKeyboard.TabIndex = 230
+        Me.ButtonKeyboard.UseVisualStyleBackColor = False
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.TextBoxNAME)
+        Me.Panel2.Controls.Add(Me.ButtonKeyboard)
+        Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.ComboBoxBankName)
+        Me.Panel2.Controls.Add(Me.Label2)
+        Me.Panel2.Controls.Add(Me.Label3)
+        Me.Panel2.Controls.Add(Me.Label4)
+        Me.Panel2.Controls.Add(Me.DateTimePickerDATE)
+        Me.Panel2.Controls.Add(Me.Label5)
+        Me.Panel2.Controls.Add(Me.TextBoxAMT)
+        Me.Panel2.Controls.Add(Me.Button1)
+        Me.Panel2.Controls.Add(Me.TextBoxTRANNUM)
+        Me.Panel2.Location = New System.Drawing.Point(127, 154)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(674, 231)
+        Me.Panel2.TabIndex = 234
+        '
         'DepositSlip
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 18.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(562, 271)
-        Me.Controls.Add(Me.Panel1)
+        Me.ClientSize = New System.Drawing.Size(991, 560)
+        Me.Controls.Add(Me.Panel2)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "DepositSlip"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Refund"
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents Panel9 As Panel
     Friend WithEvents Label3 As Label
     Friend WithEvents DateTimePickerDATE As DateTimePicker
     Friend WithEvents TextBoxAMT As TextBox
@@ -221,4 +220,6 @@ Partial Class DepositSlip
     Friend WithEvents Label1 As Label
     Friend WithEvents Timer1 As Timer
     Friend WithEvents ComboBoxBankName As ComboBox
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents ButtonKeyboard As Button
 End Class

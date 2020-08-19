@@ -22,6 +22,7 @@ Partial Class UserSettings
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UserSettings))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -30,8 +31,8 @@ Partial Class UserSettings
         Me.Panel15 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.ButtonExit = New System.Windows.Forms.Button()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel8 = New System.Windows.Forms.Panel()
@@ -62,7 +63,7 @@ Partial Class UserSettings
         Me.ButtonDeleteProducts = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.Panel1.SuspendLayout()
-        Me.Panel4.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel6.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -112,7 +113,7 @@ Partial Class UserSettings
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.Controls.Add(Me.Panel4)
+        Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
@@ -120,29 +121,27 @@ Partial Class UserSettings
         Me.Panel1.Size = New System.Drawing.Size(1171, 43)
         Me.Panel1.TabIndex = 17
         '
-        'Panel4
+        'Panel3
         '
-        Me.Panel4.Controls.Add(Me.ButtonExit)
-        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel4.Location = New System.Drawing.Point(1058, 0)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(113, 43)
-        Me.Panel4.TabIndex = 185
+        Me.Panel3.Controls.Add(Me.ButtonKeyboard)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel3.Location = New System.Drawing.Point(1101, 0)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(70, 43)
+        Me.Panel3.TabIndex = 232
         '
-        'ButtonExit
+        'ButtonKeyboard
         '
-        Me.ButtonExit.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonExit.FlatAppearance.BorderSize = 0
-        Me.ButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonExit.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonExit.ForeColor = System.Drawing.Color.White
-        Me.ButtonExit.Location = New System.Drawing.Point(70, 3)
-        Me.ButtonExit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ButtonExit.Name = "ButtonExit"
-        Me.ButtonExit.Size = New System.Drawing.Size(40, 30)
-        Me.ButtonExit.TabIndex = 150
-        Me.ButtonExit.Text = "X"
-        Me.ButtonExit.UseVisualStyleBackColor = False
+        Me.ButtonKeyboard.BackColor = System.Drawing.SystemColors.Control
+        Me.ButtonKeyboard.BackgroundImage = CType(resources.GetObject("ButtonKeyboard.BackgroundImage"), System.Drawing.Image)
+        Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
+        Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(5, 4)
+        Me.ButtonKeyboard.Name = "ButtonKeyboard"
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
+        Me.ButtonKeyboard.TabIndex = 230
+        Me.ButtonKeyboard.UseVisualStyleBackColor = False
         '
         'Panel5
         '
@@ -526,7 +525,7 @@ Partial Class UserSettings
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        Me.Panel4.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.Panel6.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
@@ -549,9 +548,7 @@ Partial Class UserSettings
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents Panel2 As Panel
     Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents ButtonExit As Button
     Friend WithEvents DataGridViewUserSettings As DataGridView
-    Friend WithEvents Panel4 As Panel
     Friend WithEvents Button5 As Button
     Friend WithEvents ButtonDeleteProducts As Button
     Friend WithEvents Button1 As Button
@@ -573,4 +570,6 @@ Partial Class UserSettings
     Friend WithEvents Label4 As Label
     Friend WithEvents ButtonUser As Button
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents ButtonKeyboard As Button
 End Class
