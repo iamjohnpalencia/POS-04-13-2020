@@ -126,6 +126,6 @@ Public Class PendingOrders
     End Sub
 
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
-        ShowKeyboard()s
+        ShowKeyboard()
     End Sub
 End Class
