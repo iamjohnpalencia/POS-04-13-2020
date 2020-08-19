@@ -515,15 +515,16 @@ july 30
 Aug 2
 
 	POS	
-	•	Price change
-	•	Senior Discount adjustment
-	•	New coupon function for combo
+		•	Price change
+		•	Senior Discount adjustment
+		•	New coupon function for combo
 Aug 3 
-
-	•	Print Functions
-		o	Print Current Inventory
-		o	Print X-Read and Z-Read inventory
-		o	Print Sales between dates
+	
+	POS
+		•	Print Functions
+			o	Print Current Inventory
+			o	Print X-Read and Z-Read inventory
+			o	Print Sales between dates
 
 Aug 5
 
