@@ -482,6 +482,153 @@ july 24
 	* configuration manager adjustment for filling datagridview orders
 	* dashboard datagridview properties
 	
+July 28
+
+	Senior + GC discount
+	* Catch for : if amountdue is less than GC amount 
+	Local Web Panel
+	* Coffee jelly formila
+	POS Form
+	For inventory deduction
+	* fixed formula id not looping bug
+	Formulas Update
+	* fixed update formula bug
+	Inventory form layout
+	* stock entry tab design
+	* font adjustment
+july 30
+
+	new formula endcoded
+	duplicate products removal
+	local web panel
+	* client Page
+	* client nav bar
+	* client sidebar
+	* client dashboard
+	* client index
+
+Aug 2
+
+	Price change
+	Senior Discount adjustment
+	New coupon function for combo
+
+Aug 3 
+
+	Print Current inventory
+
+Aug 5
+
+	ingredient sku encoding
+	printing of current inventory
+	printing of product sales 
+	local web panel add and update query
+	new input box for add and update inventory
+Aug 6
+
+	Inventory form query for datagridviewinventory
+	Stock in receiving entry query for combobox
+	Stock adjustment query for datagridviewstockpaneladjustment
+	encoding of ingredients unit cost
+
+Aug 7
+
+	System Debugging
+
+Aug 8
+
+	System Debugging
+
+Aug 9
+
+	System Debugging
+
+Aug 10 
+
+	POS documentation
+	Zreading debugging
+Aug 11
+
+	Product Name Adjustments
+
+Aug 12
+
+	POS System Update
+	Settings Adjustments
+Aug 13
+
+	FinalPosUpdate
+	Truncate all cloud server's table
+	POS Debugging
+Aug 14
+
+	Debug
+	Update Fix
+	Final POS Fix
+Aug 15
+
+	Icon change
+	Other crew provisions
+	Check for login function
+	Inventory stock adjustment bug fixed
+		* Catch for no internet connection when getting outlet list from cloud server for transfer purpose
+	Pop up keyboard function
+	Hold and Pending orders bug fixed
+	New column for loc_pending_orders and loc_hold_inventory
+	db script update
+Aug 17
+
+	Take out form bug fixed
+	coupon details bug fixed
+	Coupon application messages
+	Configuration manager new datagridviews for partners and coupons
+	New database table column for Waffle bag and Sugar packets reference id
+	Takeout form query
+	Coupon datagridview column visibility
+	Db script update
+
+Aug 18
+
+	Catch all error message and insert to table
+
+Aug 19
+
+	Put keyboard function on forms
+	Datagridview Column names
+	Settings Form > Coupon Settings 
+		Hide 0,3,4,6,7,8,9,12,13,14
+		1 = Coupon Name
+		2 = Description
+		5 = Coupon Type
+		10 = Effective Date
+		11 = Expiry Date
+	Reports > Daily Transaction
+		DatagridviewDaily
+		Hide 6,7,8,9,10,12,13,14,15
+		0 = Transaction Number
+		1 = Gross Sales
+		2 = Discount
+		3 = Amount Tendered
+		4 = Change
+		5 = Amount Due
+		11 = Transaction Type
+	DatagridviewDetails
+		Hide 6
+		0 = Product Name
+		1 = Quantity
+		2 = Price
+		3 = Total Price
+		4 = Category
+		5 = Brownie Upgrade
+	> Z/X Reading
+		0 = Ingredients
+		1 = Primary Value
+		2 = UOM
+		3 = No. of Servings
+		4 = Status
+		5 = Critical Limit
+		6 = Date Created
+
 
 	
 
