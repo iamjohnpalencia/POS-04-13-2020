@@ -454,68 +454,77 @@ July 17 5:00 PM To 1:00 PM
 
 july 23 
 
-	* Local web panel
-		* Premium Add-Ons(New Product Modal/ Edit product Page)
-		* Dropdown data bug fixed
-		* query adjustment
-	* New column for premium fillings reference(products table both servers)
-	* db script update
-	* new column for POS form datagridview orders for premium fillings reference
-	* print view line adjustment for Premium Fillings(POS and REPORTS form)
-	* new variable for addon type
-		* retrieveformulaids function
-		* preventdgvordersdup function
-	 	* checkcriticallimit function
-	* Catch for add on type in
-		* retrieveformulaids function
-		* preventdgvordersdup function
-	 	* checkcriticallimit function
-	* Combo products
+	Local Web Panel
+		•	Premium Add-Ons (New Product Modal/ Edit Product Page)
+		•	Dropdown data bug fixed
+		•	Query Adjustments
+		•	New Column for premium fillings reference (Products table both server)
+		•	Database Script Update
+	POS
+		•	New Column for POS form datagridview for premium fillings reference
+		•	Print view line adjustment for premium fillings reference
+		•	New variable for add-ons type
+			o	Retrieveformulaid Function
+			o	Preventdgvorderdup Function
+			o	Checkcriticallimit Function
+		•	Catch for add-on type in
+			o	Retrieveformulaid Function
+			o	Preventdgvorderdup Function
+			o	Checkcriticallimit Function
+		•	Combo products enconding
+
 
 july 24
 
-	* Cashless report in zread and xreading
-	* transaction type bug fixed
-	* tab control name
-	* variables for cashless reports queries
-	* zread and xread query adjustment for Grab
-	* configuration manager adjustment for filling datagridview orders
-	* dashboard datagridview properties
+	POS
+		•	Cashless report in zread and xreading
+		•	Transaction type bug fix
+		•	Tab Control Names
+		•	Variables for cashless reports queries
+		•	Z-Read and X-Read query adjustment for GRAB FOOD
+		•	Configuration Manager adjustment for filling datagridview orders
+		•	Dashboard datagridviews properties adjustment
+
 	
 July 28
 
-	Senior + GC discount
-	* Catch for : if amountdue is less than GC amount 
 	Local Web Panel
-	* Coffee jelly formila
-	POS Form
-	For inventory deduction
-	* fixed formula id not looping bug
-	Formulas Update
-	* fixed update formula bug
-	Inventory form layout
-	* stock entry tab design
-	* font adjustment
+		•	 Coffee jelly formila
+	POS
+		•	Senior + GC discount
+		•	Catch for : if amountdue is less than GC amount 
+		•	POS Form
+		•	For inventory deduction
+		•	Fixed formula id not looping bug
+		•	Formulas Update
+		•	Fixed update formula bug
+		•	Inventory form layout
+		•	Stock entry tab design
+		•	Font adjustment
+
 july 30
 
-	new formula endcoded
-	duplicate products removal
-	local web panel
-	* client Page
-	* client nav bar
-	* client sidebar
-	* client dashboard
-	* client index
-
+	Local Web Panel
+		•	New formula encoding
+		•	Duplicate products removal
+		•	Client Page
+			o	Client nav bar
+			o	Client sidebar
+			o	Client dashboard
+			o	Client index
 Aug 2
 
-	Price change
-	Senior Discount adjustment
-	New coupon function for combo
-
+	POS	
+		•	Price change
+		•	Senior Discount adjustment
+		•	New coupon function for combo
 Aug 3 
-
-	Print Current inventory
+	
+	POS
+		•	Print Functions
+			o	Print Current Inventory
+			o	Print X-Read and Z-Read inventory
+			o	Print Sales between dates
 
 Aug 5
 
@@ -594,7 +603,7 @@ Aug 18
 Aug 19
 
 	Put keyboard function on forms
-	Datagridview Column names
+	Datagridview Column name adjustments
 	Settings Form > Coupon Settings 
 		Hide 0,3,4,6,7,8,9,12,13,14
 		1 = Coupon Name
