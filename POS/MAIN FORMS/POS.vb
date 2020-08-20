@@ -1833,15 +1833,16 @@ Public Class POS
     End Sub
     Private Sub InstallUpdatesCategory()
         Try
+            Dim Connection As MySqlConnection = LocalhostConn()
             Dim cmdlocal As MySqlCommand
             With DataGridView1
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     Dim sql = "SELECT category_id FROM loc_admin_category WHERE category_id = " & .Rows(i).Cells(0).Value
-                    cmdlocal = New MySqlCommand(sql, LocalhostConn())
+                    cmdlocal = New MySqlCommand(sql, Connection)
                     Dim result As Integer = cmdlocal.ExecuteScalar
                     If result = 0 Then
                         Dim sqlinsert = "INSERT INTO `loc_admin_category`(`category_name`, `brand_name`, `updated_at`, `origin`, `status`) VALUES (@0,@1,@2,@3,@4)"
-                        cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
+                        cmdlocal = New MySqlCommand(sqlinsert, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
@@ -1850,7 +1851,7 @@ Public Class POS
                         cmdlocal.ExecuteNonQuery()
                     Else
                         Dim sqlupdate = "UPDATE `loc_admin_category` SET `category_name`=@0,`brand_name`=@1,`updated_at`=@2,`origin`=@3,`status`=@4 WHERE category_id = " & .Rows(i).Cells(0).Value
-                        cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
+                        cmdlocal = New MySqlCommand(sqlupdate, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
@@ -1867,16 +1868,17 @@ Public Class POS
     End Sub
     Private Sub InstallUpdatesFormula()
         Try
+            Dim Connection As MySqlConnection = LocalhostConn()
             Dim cmdlocal As MySqlCommand
             With DataGridView3
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     Dim sql = "SELECT formula_id FROM loc_product_formula WHERE formula_id = " & .Rows(i).Cells(0).Value
-                    cmdlocal = New MySqlCommand(sql, LocalhostConn())
+                    cmdlocal = New MySqlCommand(sql, Connection)
                     Dim result As Integer = cmdlocal.ExecuteScalar
                     If result = 0 Then
                         Dim sqlinsert = "INSERT INTO loc_product_formula (`server_formula_id`,`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin`, `store_id`, `guid`, `crew_id`, `server_date_modified`) VALUES
                                         (@0 ,@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11 , @12 , @13 , @14, @15, @16)"
-                        cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
+                        cmdlocal = New MySqlCommand(sqlinsert, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1897,7 +1899,7 @@ Public Class POS
                         cmdlocal.ExecuteNonQuery()
                     Else
                         Dim sqlupdate = "UPDATE `loc_product_formula` SET `server_formula_id`= @0,`product_ingredients`= @1,`primary_unit`= @2,`primary_value`= @3,`secondary_unit`= @4,`secondary_value`=@5,`serving_unit`=@6,`serving_value`=@7,`no_servings`=@8,`status`=@9,`date_modified`=@10,`unit_cost`=@11,`origin`=@12,`store_id`=@13,`guid`=@14,`crew_id`=@15,`server_date_modified`=@16 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
-                        cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
+                        cmdlocal = New MySqlCommand(sqlupdate, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1926,16 +1928,17 @@ Public Class POS
     End Sub
     Private Sub InstallUpdatesInventory()
         Try
+            Dim Connection As MySqlConnection = LocalhostConn()
             Dim cmdlocal As MySqlCommand
             With DataGridView4
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     Dim sql = "SELECT inventory_id FROM loc_pos_inventory WHERE inventory_id = " & .Rows(i).Cells(0).Value
-                    cmdlocal = New MySqlCommand(sql, LocalhostConn())
+                    cmdlocal = New MySqlCommand(sql, Connection)
                     Dim result As Integer = cmdlocal.ExecuteScalar
                     If result = 0 Then
                         Dim sqlinsert = "INSERT INTO loc_pos_inventory (`server_inventory_id`,`formula_id`,`product_ingredients`,`sku`,`stock_primary`,`stock_secondary`,`stock_no_of_servings`,`stock_status`,`critical_limit`,`created_at`,`server_date_modified`,`store_id`,`crew_id`,`guid`,`synced`,`main_inventory_id`,`origin`) VALUES
                                         (@0 ,@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15 , @16)"
-                        cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
+                        cmdlocal = New MySqlCommand(sqlinsert, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1957,7 +1960,7 @@ Public Class POS
                     Else
                         ',`stock_primary`=@4,`stock_secondary`=@5,`stock_no_of_servings`=@6
                         Dim sqlUpdate = "UPDATE `loc_pos_inventory` SET `server_inventory_id`= @0,`formula_id`=@1,`product_ingredients`=@2,`sku`=@3,`stock_status`=@7,`critical_limit`=@8,`created_at`=@9,`server_date_modified`=@10,`store_id`=@11,`crew_id`=@12,`guid`=@13,`synced`=@14,`main_inventory_id`=@15,`origin`=@16 WHERE `server_inventory_id`= " & .Rows(i).Cells(0).Value
-                        cmdlocal = New MySqlCommand(sqlUpdate, LocalhostConn())
+                        cmdlocal = New MySqlCommand(sqlUpdate, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -1987,16 +1990,17 @@ Public Class POS
     End Sub
     Private Sub InstallUpdatesProducts()
         Try
+            Dim Connection As MySqlConnection = LocalhostConn()
             Dim cmdlocal As MySqlCommand
             With DataGridView2
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     Dim sql = "SELECT product_id FROM loc_admin_products WHERE product_id = " & .Rows(i).Cells(0).Value
-                    cmdlocal = New MySqlCommand(sql, LocalhostConn())
+                    cmdlocal = New MySqlCommand(sql, Connection)
                     Dim result As Integer = cmdlocal.ExecuteScalar
                     If result = 0 Then
                         Dim sqlinsert = "INSERT INTO loc_admin_products (`server_product_id`, `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `server_inventory_id`, `guid`, `store_id`, `crew_id`, `synced`, `addontype`) VALUES
                                         (@0 ,@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17)"
-                        cmdlocal = New MySqlCommand(sqlinsert, LocalhostConn())
+                        cmdlocal = New MySqlCommand(sqlinsert, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -2021,7 +2025,7 @@ Public Class POS
                     Else
                         ',`formula_id`=@3
                         Dim sqlupdate = "UPDATE `loc_admin_products` SET `server_product_id`=@0,`product_sku`=@1,`product_name`=@2,`product_barcode`=@4,`product_category`=@5,`product_price`=@6,`product_desc`=@7,`product_image`=@8,`product_status`=@9,`origin`=@10,`date_modified`=@11,`server_inventory_id`=@12,`guid`=@13,`store_id`=@14,`crew_id`=@15,`synced`=@16,`addontype`=@17 WHERE server_product_id =  " & .Rows(i).Cells(0).Value
-                        cmdlocal = New MySqlCommand(sqlupdate, LocalhostConn())
+                        cmdlocal = New MySqlCommand(sqlupdate, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()

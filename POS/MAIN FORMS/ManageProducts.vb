@@ -299,77 +299,73 @@ Public Class ManageProducts
     End Sub
     Private Sub addcustomproducts()
         Try
-            messageboxappearance = False
-            table = "loc_product_formula"
-            fields = "(`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `store_id`, `guid`, `date_modified`, `crew_id`, `origin`, `server_date_modified`)"
-            value = "('" & TextBoxNAME.Text & "'
-                , 'piece(s)'
-                , " & 1 & "
-                , 'piece(s)'
-                , " & 1 & "
-                , 'piece(s)'
-                , " & 1 & "
-                , " & 1 & "
-                , " & 0 & "
-                , '" & ClientStoreID & "'
-                , '" & ClientGuid & "'
-                , '" & FullDate24HR() & "'
-                , '" & ClientCrewID & "'
-                , 'Local'
-                , '" & FullDate24HR() & "')"
-            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-        Try
-            messageboxappearance = False
-            table = "loc_pos_inventory"
-            fields = "(`store_id`, `formula_id`, `product_ingredients`, `stock_status`, `guid`, `created_at`, `synced`, `critical_limit`, `server_date_modified, `crew_id`)"
-            value = "('" & ClientStoreID & "'
-                    , " & selectmaxformula(whatid:="formula_id", fromtable:="loc_product_formula", flds:="formula_id") & "
-                    , '" & Me.TextBoxNAME.Text & "' 
-                    , " & 0 & "
-                    , '" & ClientGuid & "'
-                    , '" & FullDate24HR() & "'
-                    , 'Unsynced'
-                    , '" & 10 & "'
-                    , '" & 10 & "'
-                    , '" & FullDate24HR() & "'
-                    , '" & ClientCrewID & "')"
-            successmessage = "Successfully Added!"
-            errormessage = "error manageproducts(loc_admin_products)"
-            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-        Try
-            messageboxappearance = True
-            table = "loc_admin_products"
-            fields = "(`product_sku`,`product_name`,`formula_id`,`product_barcode`,`product_category`,`product_price`,`product_desc`,`product_image`,`origin`,`product_status`,`guid`,`store_id`,`crew_id`,`synced`,`date_modified`)"
-            value = "('" & Me.TextBoxPRCODE.Text & "'
-                    , '" & Me.TextBoxNAME.Text & "'
-                    , " & selectmaxformula(whatid:="formula_id", fromtable:="loc_product_formula", flds:="formula_id") & "
-                    , '" & Me.TextBoxBCODE.Text & "'
-                    , 'Others'
-                    , '" & Me.TextBoxPRICE.Text & "'
-                    , '" & Me.TextBoxCustomDesc.Text & "'
-                    , '" & Me.TxtBase64.Text & "'
-                    , 'Local'
-                    , " & 0 & "
-                    , '" & ClientGuid & "'
-                    , " & ClientStoreID & "
-                    , '" & ClientCrewID & "'
-                    , 'Unsynced'
-                    , '" & FullDate24HR() & "')"
-            successmessage = "Successfully Added!"
-            errormessage = "error manageproducts(loc_admin_products)"
-            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim FormulaID = selectmaxformula("inventory_id", "loc_pos_inventory", "inventory_id")
+            Dim Query = "INSERT INTO loc_product_formula (`product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `store_id`, `guid`, `crew_id`, `origin`, `server_formula_id`, `server_date_modified`) VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17)"
+            Dim Cmd As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
+            Cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = Trim(TextBoxNAME.Text)
+            Cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = "piece(s)"
+            Cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = 1
+            Cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = "piece(s)"
+            Cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = 1
+            Cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = "piece(s)"
+            Cmd.Parameters.Add("@7", MySqlDbType.VarChar).Value = 1
+            Cmd.Parameters.Add("@8", MySqlDbType.VarChar).Value = 1
+            Cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = 0
+            Cmd.Parameters.Add("@10", MySqlDbType.Text).Value = FullDate24HR()
+            Cmd.Parameters.Add("@11", MySqlDbType.Decimal).Value = 0
+            Cmd.Parameters.Add("@12", MySqlDbType.VarChar).Value = ClientStoreID
+            Cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientGuid
+            Cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = ClientCrewID
+            Cmd.Parameters.Add("@15", MySqlDbType.VarChar).Value = "Local"
+            Cmd.Parameters.Add("@16", MySqlDbType.Int64).Value = 0
+            Cmd.Parameters.Add("@17", MySqlDbType.Text).Value = "N/A"
+            Cmd.ExecuteNonQuery()
 
-            SystemLogType = "NEW CUSTOM PRODUCT"
-            SystemLogDesc = "Added by :" & returnfullname(ClientCrewID) & " : " & ClientRole & " : product name: " & TextBoxNAME.Text
-            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+            Query = "INSERT INTO loc_pos_inventory (`store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `guid`, `created_at`, `crew_id`, `synced`, `server_date_modified`, `server_inventory_id`, `main_inventory_id`, `origin`) VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17)"
+            Cmd = New MySqlCommand(Query, ConnectionLocal)
+            Cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = ClientStoreID
+            Cmd.Parameters.Add("@2", MySqlDbType.Int64).Value = FormulaID
+            Cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = Trim(TextBoxNAME.Text)
+            Cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = Trim(TextBoxPRCODE.Text)
+            Cmd.Parameters.Add("@5", MySqlDbType.Double).Value = 0
+            Cmd.Parameters.Add("@6", MySqlDbType.Double).Value = 0
+            Cmd.Parameters.Add("@7", MySqlDbType.Double).Value = 0
+            Cmd.Parameters.Add("@8", MySqlDbType.Int64).Value = 0
+            Cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = 20
+            Cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = ClientGuid
+            Cmd.Parameters.Add("@11", MySqlDbType.Text).Value = FullDate24HR()
+            Cmd.Parameters.Add("@12", MySqlDbType.VarChar).Value = ClientCrewID
+            Cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = "Unsynced"
+            Cmd.Parameters.Add("@14", MySqlDbType.Text).Value = "N/A"
+            Cmd.Parameters.Add("@15", MySqlDbType.Int64).Value = 0
+            Cmd.Parameters.Add("@16", MySqlDbType.Int64).Value = 0
+            Cmd.Parameters.Add("@17", MySqlDbType.Text).Value = "Local"
+            Cmd.ExecuteNonQuery()
+
+            Query = "INSERT INTO loc_admin_products (`product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `store_id`, `crew_id`, `synced`, `server_product_id`, `server_inventory_id`, `price_change`, `addontype`) VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17,@18,@19)"
+            Cmd = New MySqlCommand(Query, ConnectionLocal)
+            Cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = Trim(TextBoxPRCODE.Text)
+            Cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = Trim(TextBoxNAME.Text)
+            Cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = FormulaID
+            Cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = Trim(TextBoxBCODE.Text)
+            Cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = "Others"
+            Cmd.Parameters.Add("@6", MySqlDbType.Int64).Value = Double.Parse(TextBoxPRICE.Text)
+            Cmd.Parameters.Add("@7", MySqlDbType.VarChar).Value = Trim(TextBoxCustomDesc.Text)
+            Cmd.Parameters.Add("@8", MySqlDbType.LongText).Value = TxtBase64.Text
+            Cmd.Parameters.Add("@9", MySqlDbType.VarChar).Value = 0
+            Cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = "Local"
+            Cmd.Parameters.Add("@11", MySqlDbType.Text).Value = FullDate24HR()
+            Cmd.Parameters.Add("@12", MySqlDbType.VarChar).Value = ClientGuid
+            Cmd.Parameters.Add("@13", MySqlDbType.Int64).Value = ClientStoreID
+            Cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = ClientCrewID
+            Cmd.Parameters.Add("@15", MySqlDbType.VarChar).Value = "Unsynced"
+            Cmd.Parameters.Add("@16", MySqlDbType.Int64).Value = 0
+            Cmd.Parameters.Add("@17", MySqlDbType.Int64).Value = 0
+            Cmd.Parameters.Add("@18", MySqlDbType.Int64).Value = 0
+            Cmd.Parameters.Add("@19", MySqlDbType.Text).Value = "N/A"
+            Cmd.ExecuteNonQuery()
+
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)

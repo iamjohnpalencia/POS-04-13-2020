@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2020 at 07:04 AM
+-- Generation Time: Aug 20, 2020 at 07:16 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -82,6 +82,7 @@ CREATE TABLE `admin_outlets` (
 -- Dumping data for table `admin_outlets`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -159,7 +160,6 @@ CREATE TABLE `loc_coupon_data` (
 --
 -- Dumping data for table `loc_coupon_data`
 --
-
 
 
 -- --------------------------------------------------------
@@ -262,6 +262,7 @@ CREATE TABLE `loc_deposit` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -340,6 +341,7 @@ CREATE TABLE `loc_expense_list` (
 -- Dumping data for table `loc_expense_list`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -362,6 +364,7 @@ CREATE TABLE `loc_fm_stock` (
 --
 -- Dumping data for table `loc_fm_stock`
 --
+
 
 
 -- --------------------------------------------------------
@@ -430,6 +433,7 @@ CREATE TABLE `loc_inv_temp_data` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -452,6 +456,7 @@ CREATE TABLE `loc_partners_transaction` (
 --
 -- Dumping data for table `loc_partners_transaction`
 --
+
 
 
 -- --------------------------------------------------------
@@ -517,6 +522,7 @@ CREATE TABLE `loc_pos_inventory` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -536,6 +542,12 @@ CREATE TABLE `loc_price_request_change` (
   `synced` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `loc_price_request_change`
+--
+
+
+
 -- --------------------------------------------------------
 
 --
@@ -553,7 +565,7 @@ CREATE TABLE `loc_product_formula` (
   `serving_unit` varchar(50) NOT NULL,
   `serving_value` varchar(50) NOT NULL,
   `no_servings` varchar(250) NOT NULL,
-  `status` tinyint(2) NOT NULL,
+  `status` int(2) NOT NULL,
   `date_modified` text NOT NULL,
   `unit_cost` decimal(11,2) NOT NULL,
   `store_id` varchar(50) NOT NULL,
@@ -589,6 +601,33 @@ CREATE TABLE `loc_refund_return_details` (
   `zreading` text NOT NULL,
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_refund_return_details`
+--
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_send_bug_report`
+--
+
+DROP TABLE IF EXISTS `loc_send_bug_report`;
+CREATE TABLE `loc_send_bug_report` (
+  `bug_id` int(11) NOT NULL,
+  `bug_desc` text NOT NULL,
+  `crew_id` text NOT NULL,
+  `guid` text NOT NULL,
+  `store_id` text NOT NULL,
+  `date_created` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `loc_send_bug_report`
+--
+
 
 -- --------------------------------------------------------
 
@@ -691,6 +730,7 @@ CREATE TABLE `loc_system_logs` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -732,7 +772,6 @@ CREATE TABLE `loc_transfer_data` (
 --
 -- Dumping data for table `loc_transfer_data`
 --
-
 
 -- --------------------------------------------------------
 
@@ -809,6 +848,7 @@ CREATE TABLE `loc_zread_inventory` (
 --
 -- Dumping data for table `loc_zread_inventory`
 --
+
 
 
 -- --------------------------------------------------------
@@ -911,7 +951,6 @@ CREATE TABLE `triggers_loc_users` (
 --
 -- Dumping data for table `triggers_loc_users`
 --
-
 
 --
 -- Triggers `triggers_loc_users`
@@ -1056,6 +1095,12 @@ ALTER TABLE `loc_product_formula`
 --
 ALTER TABLE `loc_refund_return_details`
   ADD PRIMARY KEY (`refret_id`);
+
+--
+-- Indexes for table `loc_send_bug_report`
+--
+ALTER TABLE `loc_send_bug_report`
+  ADD PRIMARY KEY (`bug_id`);
 
 --
 -- Indexes for table `loc_senior_details`
@@ -1252,6 +1297,12 @@ ALTER TABLE `loc_product_formula`
 --
 ALTER TABLE `loc_refund_return_details`
   MODIFY `refret_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `loc_send_bug_report`
+--
+ALTER TABLE `loc_send_bug_report`
+  MODIFY `bug_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `loc_senior_details`
