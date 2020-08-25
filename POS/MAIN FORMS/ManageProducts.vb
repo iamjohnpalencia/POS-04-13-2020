@@ -325,7 +325,7 @@ Public Class ManageProducts
             Query = "INSERT INTO loc_pos_inventory (`store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `guid`, `created_at`, `crew_id`, `synced`, `server_date_modified`, `server_inventory_id`, `main_inventory_id`, `origin`) VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17)"
             Cmd = New MySqlCommand(Query, ConnectionLocal)
             Cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = ClientStoreID
-            Cmd.Parameters.Add("@2", MySqlDbType.Int64).Value = FormulaID
+            Cmd.Parameters.Add("@2", MySqlDbType.Int64).Value = FormulaID + 1
             Cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = Trim(TextBoxNAME.Text)
             Cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = Trim(TextBoxPRCODE.Text)
             Cmd.Parameters.Add("@5", MySqlDbType.Double).Value = 0
@@ -347,7 +347,7 @@ Public Class ManageProducts
             Cmd = New MySqlCommand(Query, ConnectionLocal)
             Cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = Trim(TextBoxPRCODE.Text)
             Cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = Trim(TextBoxNAME.Text)
-            Cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = FormulaID
+            Cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = FormulaID + 1
             Cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = Trim(TextBoxBCODE.Text)
             Cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = "Others"
             Cmd.Parameters.Add("@6", MySqlDbType.Int64).Value = Double.Parse(TextBoxPRICE.Text)
@@ -493,6 +493,7 @@ Public Class ManageProducts
                         TxtBase64.Text = ""
                         clientloadproducts()
                         clientloadproductsunapproved()
+                        MsgBox("Complete")
                     End If
                 ElseIf ButtonCustomProducts.Text = "Update" Then
                     If String.IsNullOrEmpty(TextBoxPRCODE.Text.Trim) Then
@@ -514,6 +515,7 @@ Public Class ManageProducts
                         TxtBase64.Text = ""
                         clientloadproducts()
                         clientloadproductsunapproved()
+                        MsgBox("Complete")
                     End If
                 End If
             Else
@@ -537,6 +539,7 @@ Public Class ManageProducts
                         TxtBase64.Text = ""
                         clientloadproducts()
                         clientloadproductsunapproved()
+                        MsgBox("Complete")
                     End If
                 ElseIf Button10.Text = "Update" Then
                     If String.IsNullOrEmpty(TextBox1.Text.Trim) Then
@@ -558,6 +561,7 @@ Public Class ManageProducts
                         TxtBase64.Text = ""
                         clientloadproducts()
                         clientloadproductsunapproved()
+                        MsgBox("Complete")
                     End If
                 End If
             End If
