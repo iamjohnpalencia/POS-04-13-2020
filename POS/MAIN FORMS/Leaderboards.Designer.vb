@@ -567,7 +567,7 @@ Partial Class Leaderboards
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(654, 234)
+        Me.TabPage2.Size = New System.Drawing.Size(664, 234)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -605,7 +605,7 @@ Partial Class Leaderboards
         Me.DataGridViewRecentExpenses.EnableHeadersVisualStyles = False
         Me.DataGridViewRecentExpenses.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewRecentExpenses.Name = "DataGridViewRecentExpenses"
-        Me.DataGridViewRecentExpenses.Size = New System.Drawing.Size(648, 228)
+        Me.DataGridViewRecentExpenses.Size = New System.Drawing.Size(658, 228)
         Me.DataGridViewRecentExpenses.TabIndex = 5
         '
         'Column12
@@ -639,7 +639,7 @@ Partial Class Leaderboards
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(654, 234)
+        Me.TabPage3.Size = New System.Drawing.Size(664, 234)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "TabPage3"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -677,7 +677,7 @@ Partial Class Leaderboards
         Me.DatagridviewTransfers.EnableHeadersVisualStyles = False
         Me.DatagridviewTransfers.Location = New System.Drawing.Point(3, 3)
         Me.DatagridviewTransfers.Name = "DatagridviewTransfers"
-        Me.DatagridviewTransfers.Size = New System.Drawing.Size(648, 228)
+        Me.DatagridviewTransfers.Size = New System.Drawing.Size(658, 228)
         Me.DatagridviewTransfers.TabIndex = 6
         '
         'Column17
@@ -706,7 +706,7 @@ Partial Class Leaderboards
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(654, 234)
+        Me.TabPage4.Size = New System.Drawing.Size(664, 234)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TabPage4"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -745,7 +745,7 @@ Partial Class Leaderboards
         Me.DatagridviewLogs.Location = New System.Drawing.Point(3, 3)
         Me.DatagridviewLogs.Name = "DatagridviewLogs"
         Me.DatagridviewLogs.RowHeadersVisible = False
-        Me.DatagridviewLogs.Size = New System.Drawing.Size(648, 228)
+        Me.DatagridviewLogs.Size = New System.Drawing.Size(658, 228)
         Me.DatagridviewLogs.TabIndex = 6
         '
         'Column3

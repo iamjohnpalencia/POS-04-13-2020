@@ -27,6 +27,7 @@ Partial Class Expenses
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.TextBoxTOTAL = New System.Windows.Forms.TextBox()
         Me.TextBoxPRICE = New System.Windows.Forms.TextBox()
         Me.Button5 = New System.Windows.Forms.Button()
@@ -49,7 +50,6 @@ Partial Class Expenses
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -110,6 +110,19 @@ Partial Class Expenses
         Me.GroupBox1.TabIndex = 25
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Expense"
+        '
+        'ButtonKeyboard
+        '
+        Me.ButtonKeyboard.BackColor = System.Drawing.SystemColors.Control
+        Me.ButtonKeyboard.BackgroundImage = CType(resources.GetObject("ButtonKeyboard.BackgroundImage"), System.Drawing.Image)
+        Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
+        Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(323, 96)
+        Me.ButtonKeyboard.Name = "ButtonKeyboard"
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
+        Me.ButtonKeyboard.TabIndex = 230
+        Me.ButtonKeyboard.UseVisualStyleBackColor = False
         '
         'TextBoxTOTAL
         '
@@ -323,19 +336,6 @@ Partial Class Expenses
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'ButtonKeyboard
-        '
-        Me.ButtonKeyboard.BackColor = System.Drawing.SystemColors.Control
-        Me.ButtonKeyboard.BackgroundImage = CType(resources.GetObject("ButtonKeyboard.BackgroundImage"), System.Drawing.Image)
-        Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
-        Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonKeyboard.Location = New System.Drawing.Point(323, 96)
-        Me.ButtonKeyboard.Name = "ButtonKeyboard"
-        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
-        Me.ButtonKeyboard.TabIndex = 230
-        Me.ButtonKeyboard.UseVisualStyleBackColor = False
         '
         'Expenses
         '

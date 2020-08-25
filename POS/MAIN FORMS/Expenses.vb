@@ -160,4 +160,13 @@ Public Class Expenses
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
         ShowKeyboard()
     End Sub
+
+    Private Sub TextBoxQTY_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxQTY.KeyPress, TextBoxPRICE.KeyPress
+        Try
+            Numeric(sender, e)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
 End Class

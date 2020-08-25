@@ -695,7 +695,7 @@ Public Class Inventory
         PanelSTOCKADJUSTMENT.Visible = False
     End Sub
 
-    Private Sub TextBoxIPQuantity_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxIReason.KeyPress, TextBoxIPQuantity.KeyPress
+    Private Sub TextBoxIPQuantity_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxIReason.KeyPress
         Try
             If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
                 e.Handled = True
@@ -706,16 +706,7 @@ Public Class Inventory
         End Try
     End Sub
 
-    Private Sub TextBoxEQuantity_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxEQuantity.KeyPress
-        Try
-            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
-                e.Handled = True
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
+
 
     Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles Button7.Click
         Try
@@ -778,5 +769,14 @@ Public Class Inventory
 
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
         ShowKeyboard()
+    End Sub
+
+    Private Sub TextBoxIPQuantity_KeyPress_1(sender As Object, e As KeyPressEventArgs) Handles TextBoxIPQuantity.KeyPress, TextBoxEQuantity.KeyPress
+        Try
+            Numeric(sender, e)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
 End Class

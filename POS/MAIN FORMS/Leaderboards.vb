@@ -107,6 +107,7 @@ Public Class Leaderboards
                     rowActive = "Active"
                 ElseIf row("active") = 2 Then
                     rowActive = "Returned"
+
                 Else
                     rowActive = "N/A"
                 End If
@@ -119,18 +120,10 @@ Public Class Leaderboards
     End Sub
     Private Sub LoadTransfers()
         Try
-            Dim TransferReport = AsDatatable("loc_system_logs WHERE log_type = 'STOCK TRANSFER' GROUP BY log_date_time DESC LIMIT 10", "loc_systemlog_id  , log_date_time , crew_id , log_description", DatagridviewTransfers)
-            Dim rowActive
+            Dim TransferReport = AsDatatable("loc_system_logs WHERE log_type = 'STOCK TRANSFER' GROUP BY log_date_time DESC LIMIT 10", "loc_systemlog_id , log_description  , crew_id , log_date_time", DatagridviewTransfers)
 
             For Each row As DataRow In TransferReport.Rows
-                If row("active") = 1 Then
-                    rowActive = "Active"
-                ElseIf row("active") = 2 Then
-                    rowActive = "Returned"
-                Else
-                    rowActive = "N/A"
-                End If
-                DatagridviewTransfers.Rows.Add(row("loc_systemlog_id"), row("log_date_time"), row("crew_id"), row("log_description"), rowActive)
+                DatagridviewTransfers.Rows.Add(row("loc_systemlog_id"), row("log_description"), row("crew_id"), row("log_date_time"))
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)

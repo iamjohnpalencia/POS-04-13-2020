@@ -727,7 +727,7 @@ Public Class ManageProducts
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Private Sub TextBoxPRCODE_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxPRICE.KeyPress, TextBoxPRCODE.KeyPress, TextBoxNAME.KeyPress, TextBoxCustomDesc.KeyPress, TextBoxBCODE.KeyPress
+    Private Sub TextBoxPRCODE_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxPRCODE.KeyPress, TextBoxNAME.KeyPress, TextBoxCustomDesc.KeyPress, TextBoxBCODE.KeyPress
         Try
             If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
                 e.Handled = True
@@ -740,6 +740,24 @@ Public Class ManageProducts
 
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
         ShowKeyboard()
+    End Sub
+
+    Private Sub TextBoxPRICE_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxPRICE.KeyPress
+        Try
+            Numeric(sender, e)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub TextBox2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox2.KeyPress
+        Try
+            Numeric(sender, e)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
 End Class
 

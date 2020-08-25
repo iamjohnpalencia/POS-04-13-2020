@@ -183,9 +183,9 @@ Partial Class Inventory
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel24 = New System.Windows.Forms.Panel()
         Me.ButtonKeyboard = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -465,7 +465,7 @@ Partial Class Inventory
         Me.TabPage13.Location = New System.Drawing.Point(4, 22)
         Me.TabPage13.Name = "TabPage13"
         Me.TabPage13.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage13.Size = New System.Drawing.Size(1169, 551)
+        Me.TabPage13.Size = New System.Drawing.Size(1169, 557)
         Me.TabPage13.TabIndex = 1
         Me.TabPage13.Text = "TabPage13"
         Me.TabPage13.UseVisualStyleBackColor = True
@@ -502,7 +502,7 @@ Partial Class Inventory
         Me.DataGridViewCustomDisapp.EnableHeadersVisualStyles = False
         Me.DataGridViewCustomDisapp.Location = New System.Drawing.Point(3, 40)
         Me.DataGridViewCustomDisapp.Name = "DataGridViewCustomDisapp"
-        Me.DataGridViewCustomDisapp.Size = New System.Drawing.Size(1163, 508)
+        Me.DataGridViewCustomDisapp.Size = New System.Drawing.Size(1163, 514)
         Me.DataGridViewCustomDisapp.TabIndex = 4
         '
         'Panel18
@@ -1950,17 +1950,6 @@ Partial Class Inventory
         Me.Panel1.Size = New System.Drawing.Size(1245, 42)
         Me.Panel1.TabIndex = 15
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(15, 8)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(139, 25)
-        Me.Label2.TabIndex = 153
-        Me.Label2.Text = "INVENTORY"
-        '
         'Panel24
         '
         Me.Panel24.Controls.Add(Me.ButtonKeyboard)
@@ -1982,6 +1971,17 @@ Partial Class Inventory
         Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
         Me.ButtonKeyboard.TabIndex = 230
         Me.ButtonKeyboard.UseVisualStyleBackColor = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(15, 8)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(139, 25)
+        Me.Label2.TabIndex = 153
+        Me.Label2.Text = "INVENTORY"
         '
         'Inventory
         '
