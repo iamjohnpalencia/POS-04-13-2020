@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2020 at 07:16 AM
+-- Generation Time: Aug 25, 2020 at 03:00 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -82,7 +82,6 @@ CREATE TABLE `admin_outlets` (
 -- Dumping data for table `admin_outlets`
 --
 
-
 -- --------------------------------------------------------
 
 --
@@ -160,6 +159,7 @@ CREATE TABLE `loc_coupon_data` (
 --
 -- Dumping data for table `loc_coupon_data`
 --
+
 
 
 -- --------------------------------------------------------
@@ -260,7 +260,6 @@ CREATE TABLE `loc_deposit` (
 --
 -- Dumping data for table `loc_deposit`
 --
-
 
 
 -- --------------------------------------------------------
@@ -364,7 +363,6 @@ CREATE TABLE `loc_fm_stock` (
 --
 -- Dumping data for table `loc_fm_stock`
 --
-
 
 
 -- --------------------------------------------------------
@@ -581,7 +579,6 @@ CREATE TABLE `loc_product_formula` (
 --
 
 
-
 -- --------------------------------------------------------
 
 --
@@ -692,6 +689,7 @@ CREATE TABLE `loc_settings` (
 -- Dumping data for table `loc_settings`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -728,7 +726,6 @@ CREATE TABLE `loc_system_logs` (
 --
 -- Dumping data for table `loc_system_logs`
 --
-
 
 
 -- --------------------------------------------------------
@@ -772,6 +769,8 @@ CREATE TABLE `loc_transfer_data` (
 --
 -- Dumping data for table `loc_transfer_data`
 --
+
+
 
 -- --------------------------------------------------------
 
@@ -951,6 +950,7 @@ CREATE TABLE `triggers_loc_users` (
 --
 -- Dumping data for table `triggers_loc_users`
 --
+
 
 --
 -- Triggers `triggers_loc_users`
