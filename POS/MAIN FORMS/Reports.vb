@@ -829,17 +829,15 @@ Public Class Reports
 
     Dim threadlist As List(Of Thread) = New List(Of Thread)
     Dim thread1 As Thread
-
-
     Private Sub FillDatagridZreadInv(searchdate As Boolean)
         Try
             table = "loc_zread_inventory I INNER JOIN loc_product_formula F ON F.server_formula_id = I.server_inventory_id "
-            fields = "I.product_ingredients as Ingredients, CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
+            fields = "I.product_ingredients as Ingredients, i.sku , CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
             If searchdate = False Then
-                where = "zreading = '" & Format(Now(), "yyyy-MM-dd") & "' ORDER BY I.product_ingredients ASC"
+                where = "zreading = '" & Format(Now(), "yyyy-MM-dd") & "' AND I.stock_status = 1 AND I.store_id = " & ClientStoreID & " ORDER BY I.product_ingredients ASC"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewZreadInvData, errormessage:="", fields:=fields, successmessage:="", where:=where)
             Else
-                where = "zreading = '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "' ORDER BY I.product_ingredients ASC"
+                where = "zreading = '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "' AND I.stock_status = 1 AND I.store_id = " & ClientStoreID & " ORDER BY I.product_ingredients ASC"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewZreadInvData, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
         Catch ex As Exception
@@ -856,7 +854,6 @@ Public Class Reports
             With DataGridViewZreadInventory
                 Dim MainInvId As Integer = 0
                 Dim SubInvId As Integer = 0
-
 
                 Dim MICommand As MySqlCommand
                 Dim MIDa As MySqlDataAdapter

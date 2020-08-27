@@ -16,12 +16,13 @@ Public Class SettingsForm
         TabControl1.TabPages(5).Text = "Updates"
         TabControl2.TabPages(0).Text = "Connection Settings"
         TabControl2.TabPages(1).Text = "Additional Settings"
+        TabControl4.TabPages(0).Text = "Create Coupon"
+        TabControl4.TabPages(1).Text = "Coupon List"
         LoadConn()
         LoadCloudConn()
         LoadAdditionalSettings()
         LoadDevInfo()
         LoadAutoBackup()
-
         If ClientRole = "Crew" Then
             ButtonPartnersPrio.Visible = False
             ButtonAddBank.Visible = False
@@ -29,10 +30,9 @@ Public Class SettingsForm
             ButtonEditBank.Visible = False
             ButtonPTActivate.Visible = False
             ButtonChangeFormula.Visible = False
-            ButtonSaveCoupon.Visible = False
-            ButtonResetCoupon.Visible = False
+            'ButtonSaveCoupon.Visible = False
+            'ButtonResetCoupon.Visible = False
         End If
-
     End Sub
     Private Sub SettingsForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         POS.Enabled = True
@@ -59,8 +59,11 @@ Public Class SettingsForm
             End If
         ElseIf TabControl1.SelectedIndex = 4 Then
             If Coupons = False Then
-                loaddatagrid1()
-                loaddatagrid2()
+                'loaddatagrid1()
+                ShowAllCoupons()
+                FillComboboxSearch()
+                ComboBoxCategorySearch.SelectedIndex = 0
+                ShowAllProducts("All")
                 Coupons = True
             End If
         ElseIf TabControl1.SelectedIndex = 5 Then
@@ -108,7 +111,6 @@ Public Class SettingsForm
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If LabelCheckingUpdates.Text = "Checking for updates." Then
             LabelCheckingUpdates.Text = "Checking for updates.."
@@ -362,21 +364,21 @@ Public Class SettingsForm
                         With myqty
                             .Font = New Font("kelson sans normal", 10)
                             .Location = New Point(200, 35)
-                            .Text = "quantity: " & row("quantity")
+                            .Text = "Quantity: " & row("quantity")
                             .ForeColor = Color.Black
                             .Width = 200
                         End With
                         With myprice
                             .Font = New Font("kelson sans normal", 10)
                             .Location = New Point(200, 60)
-                            .Text = "price: " & row("price")
+                            .Text = "Price: " & row("price")
                             .ForeColor = Color.Black
                             .Width = 200
                         End With
                         With mytotal
                             .Font = New Font("kelson sans normal", 10)
                             .Location = New Point(200, 85)
-                            .Text = "total: " & row("total")
+                            .Text = "Total: " & row("total")
                             .ForeColor = Color.Black
                             .Width = 200
                         End With
@@ -492,7 +494,119 @@ Public Class SettingsForm
     End Sub
 #End Region
 #Region "Coupons"
-    Private Sub ComboBox1_TextChanged(sender As Object, e As EventArgs) Handles ComboBoxCType.TextChanged
+    Private Sub FillComboboxSearch()
+        Try
+            ComboBoxCategorySearch.Items.Clear()
+            Dim FillThisDt As DataTable
+            FillThisDt = New DataTable
+            FillThisDt.Columns.Add("Category")
+            Dim sql = "Select category_name FROM loc_admin_category"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim dt As DataTable = New DataTable
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            da.Fill(dt)
+            FillThisDt.Rows.Add("All")
+            For i As Integer = 0 To dt.Rows.Count - 1 Step +1
+                Dim Cat As DataRow = FillThisDt.NewRow
+                Cat("Category") = dt(i)(0)
+                FillThisDt.Rows.Add(Cat)
+            Next
+            For Each row As DataRow In FillThisDt.Rows
+                ComboBoxCategorySearch.Items.Add(row("Category"))
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub ShowAllProducts(Category)
+        Try
+            DataGridViewProducts.Rows.Clear()
+            If Category = "All" Then
+                Dim ProductsDatatable = AsDatatable("loc_admin_products WHERE product_status = 1", "product_id, product_name, product_category", DataGridViewProducts)
+                For Each row As DataRow In ProductsDatatable.Rows
+                    DataGridViewProducts.Rows.Add(row("product_id"), row("product_name"), row("product_category"))
+                Next
+            Else
+                Dim ProductsDatatable = AsDatatable("loc_admin_products WHERE product_status = 1 and product_category = '" & Category & "'", "product_id, product_name, product_category", DataGridViewProducts)
+                For Each row As DataRow In ProductsDatatable.Rows
+                    DataGridViewProducts.Rows.Add(row("product_id"), row("product_name"), row("product_category"))
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub ShowAllCoupons()
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION("tbcoupon", "`Couponname_`, `Desc_`, `Type`, `Effectivedate`, `Expirydate`", DataGridViewCouponList)
+            With DataGridViewCouponList
+                .Columns(0).HeaderText = "Coupon Name"
+                .Columns(0).HeaderText = "Coupon Descrition"
+                .Columns(0).HeaderText = "Coupon Type"
+                .Columns(0).HeaderText = "Effective Date"
+                .Columns(0).HeaderText = "Expiry Date"
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub SaveCoupon()
+        Try
+            value = "('" & TextBoxCName.Text & "' , '" & TextBoxCDesc.Text & "', '" & TextBoxCDVal.Text & "', '" & TextBoxCRefVal.Text & "', '" & ComboBoxCType.Text & "' , '" & TextBoxCBBP.Text & "' , '" & TextBoxCBV.Text & "', '" & TextBoxCBP.Text & "', '" & TextBoxCBundVal.Text & "', '" & Format(DateTimePickerCEffectiveDate.Value, "yyyy-MM-dd") & "' , '" & Format(DateTimePickerCExpiryDate.Value, "yyyy-MM-dd") & "')"
+            GLOBAL_INSERT_FUNCTION("tbcoupon", "(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`)", value)
+            GLOBAL_SYSTEM_LOGS("NEW COUPON", "Name : " & TextBoxCName.Text & " Type : " & ComboBoxCType.Text)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Dim Checkall As Boolean = False
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        Try
+            For i = 0 To DataGridViewProducts.RowCount - 1
+                If Checkall = False Then
+                    DataGridViewProducts.Rows(i).Cells(3).Value = True
+
+                Else
+                    DataGridViewProducts.Rows(i).Cells(3).Value = False
+                End If
+            Next
+            If Checkall = True Then
+                Checkall = False
+            Else
+                Checkall = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub ComboBoxCategorySearch_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxCategorySearch.SelectedIndexChanged
+        Try
+            ShowAllProducts(ComboBoxCategorySearch.Text)
+            CheckBox1.Checked = False
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        For i As Integer = 0 To DataGridViewProducts.Rows.Count - 1 Step +1
+            If TypeOf DataGridViewProducts.Rows(i).Cells(3) Is DataGridViewCheckBoxCell Then
+                Dim checked As Boolean = DataGridViewProducts.Rows(i).Cells(3).Value
+                If checked = True Then
+                    TextBoxCBBP.Text += DataGridViewProducts.Rows(i).Cells(0).Value.ToString & ","
+                    TextBoxCBP.Text += DataGridViewProducts.Rows(i).Cells(0).Value.ToString & ","
+                End If
+            End If
+        Next
+        TextBoxCBBP.Text = TextBoxCBBP.Text.TrimEnd(CChar(","))
+        TextBoxCBP.Text = TextBoxCBP.Text.TrimEnd(CChar(","))
+    End Sub
+
+    Private Sub ComboBoxCType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxCType.SelectedIndexChanged
         If ComboBoxCType.Text = "Percentage(w/o vat)" Then
             TextBoxCDVal.Enabled = True
             TextBoxCRefVal.Enabled = False
@@ -500,7 +614,9 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = False
             TextBoxCBP.Enabled = False
             TextBoxCBundVal.Enabled = False
-            For Each a In Panel19.Controls
+            Button1.Enabled = False
+            Button2.Enabled = False
+            For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
                         a.Text = "N/A"
@@ -516,7 +632,9 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = False
             TextBoxCBP.Enabled = False
             TextBoxCBundVal.Enabled = False
-            For Each a In Panel19.Controls
+            Button1.Enabled = False
+            Button2.Enabled = False
+            For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
                         a.Text = "N/A"
@@ -532,7 +650,9 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = False
             TextBoxCBP.Enabled = False
             TextBoxCBundVal.Enabled = False
-            For Each a In Panel19.Controls
+            Button1.Enabled = False
+            Button2.Enabled = False
+            For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
                         a.Text = "N/A"
@@ -548,7 +668,9 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = False
             TextBoxCBP.Enabled = False
             TextBoxCBundVal.Enabled = False
-            For Each a In Panel19.Controls
+            Button1.Enabled = False
+            Button2.Enabled = False
+            For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
                         a.Text = "N/A"
@@ -564,7 +686,9 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = True
             TextBoxCBP.Enabled = True
             TextBoxCBundVal.Enabled = True
-            For Each a In Panel19.Controls
+            Button1.Enabled = True
+            Button2.Enabled = True
+            For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
                         a.Text = "N/A"
@@ -580,7 +704,9 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = True
             TextBoxCBP.Enabled = True
             TextBoxCBundVal.Enabled = True
-            For Each a In Panel19.Controls
+            Button1.Enabled = True
+            Button2.Enabled = True
+            For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
                         a.Text = "N/A"
@@ -596,7 +722,9 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = True
             TextBoxCBP.Enabled = True
             TextBoxCBundVal.Enabled = True
-            For Each a In Panel19.Controls
+            Button1.Enabled = True
+            Button2.Enabled = True
+            For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
                         a.Text = "N/A"
@@ -612,7 +740,9 @@ Public Class SettingsForm
             TextBoxCBV.Enabled = True
             TextBoxCBP.Enabled = True
             TextBoxCBundVal.Enabled = True
-            For Each a In Panel19.Controls
+            Button1.Enabled = True
+            Button2.Enabled = True
+            For Each a In TabPage9.Controls
                 If TypeOf a Is TextBox Then
                     If a.Enabled = False Then
                         a.Text = "N/A"
@@ -623,100 +753,37 @@ Public Class SettingsForm
             Next
         End If
     End Sub
-    Private Sub loaddatagrid1()
-        Try
-            DataGridViewCProductList.Columns.Clear()
-            GLOBAL_SELECT_ALL_FUNCTION("loc_admin_products", "product_id, product_name, product_category", DataGridViewCProductList)
-            With DataGridViewCProductList
-                .Columns(0).HeaderText = "Product ID"
-                .Columns(1).HeaderText = "Product Name"
-                .Columns(2).HeaderText = "Category"
-            End With
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub loaddatagrid2()
-        Try
-            GLOBAL_SELECT_ALL_FUNCTION(table:="tbcoupon", fields:="*", datagrid:=DataGridViewCouponList)
-            With DataGridViewCouponList
-                .Columns(0).Visible = False
-                .Columns(3).Visible = False
-                .Columns(4).Visible = False
-                .Columns(6).Visible = False
-                .Columns(7).Visible = False
-                .Columns(8).Visible = False
-                .Columns(9).Visible = False
-                .Columns(12).Visible = False
-                .Columns(13).Visible = False
-                .Columns(14).Visible = False
-                .Columns(1).HeaderText = "Name"
-                .Columns(2).HeaderText = "Description"
-                .Columns(5).HeaderText = "Coupon Type"
-                .Columns(10).HeaderText = "Effective Date"
-                .Columns(11).HeaderText = "Expiry Date"
-            End With
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub SaveCoupon()
-        Try
-            value = "('" & TextBoxCName.Text & "' , '" & TextBoxCDesc.Text & "', '" & TextBoxCDVal.Text & "', '" & TextBoxCRefVal.Text & "', '" & ComboBoxCType.Text & "' , '" & TextBoxCBBP.Text & "' , '" & TextBoxCBV.Text & "', '" & TextBoxCBP.Text & "', '" & TextBoxCBundVal.Text & "', '" & CDate(DateTimePickerCEffectiveDate.Value).ToShortDateString & "' , '" & CDate(DateTimePickerCExpiryDate.Value).ToShortDateString & "')"
-            GLOBAL_INSERT_FUNCTION("tbcoupon", "(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`)", value)
-            GLOBAL_SYSTEM_LOGS("NEW COUPON", "Name : " & TextBoxCName.Text & " Type : " & ComboBoxCType.Text)
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles ButtonSaveCoupon.Click
-        If TextboxIsEmpty(Panel19) = True Then
-            SaveCoupon()
-            loaddatagrid2()
-        Else
-            MsgBox("Fill up all blanks")
-        End If
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        TextBoxCBBP.Clear()
+        TextBoxCBP.Clear()
     End Sub
 
-    Private Sub DataGridViewCProductList_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewCProductList.CellClick
+    Private Sub ButtonSaveCoupon_Click(sender As Object, e As EventArgs) Handles ButtonSaveCoupon.Click
         Try
-            If TextBoxCBBP.Enabled = False Then
-                Exit Sub
-            Else
-                If TextBoxCBBP.Text = String.Empty Then
-                    TextBoxCBBP.Text = Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
-                    '  Dim newString As String
-                    '   newString = deleteDup(TextBox5.Text, TextBox5.Text)
-
-                    '   TextBox5.Text = newString
-                Else
-                    TextBoxCBBP.Text = TextBoxCBBP.Text & "," & Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
-                    ' Dim newString As String
-                    '  newString = deleteDup(TextBox5.Text, TextBox5.Text)
-
-                    ' TextBox5.Text = newString
+            Dim Required As Boolean = False
+            For Each a In TabPage9.Controls
+                If TypeOf a Is TextBox Or TypeOf a Is ComboBox Then
+                    If a.text = "" Then
+                        Required = False
+                        Exit For
+                    Else
+                        Required = True
+                    End If
                 End If
-            End If
-
-            If TextBoxCBP.Enabled = False Then
-                Exit Sub
+            Next
+            If Required = True Then
+                SaveCoupon()
+                ShowAllCoupons()
+                MessageBox.Show("Complete", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
-                If TextBoxCBP.Text = String.Empty Then
-                    TextBoxCBP.Text = Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
-                Else
-                    TextBoxCBP.Text = TextBoxCBP.Text & "," & Me.DataGridViewCProductList.Item(0, Me.DataGridViewCProductList.CurrentRow.Index).Value
-                End If
+                MessageBox.Show("All fields are required", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
-
 #End Region
 #Region "Load"
     Private Sub LoadConn()
@@ -1075,7 +1142,7 @@ Public Class SettingsForm
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub TextBoxCName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxCRefVal.KeyPress, TextBoxCName.KeyPress, TextBoxCDVal.KeyPress, TextBoxCDesc.KeyPress, TextBoxCBV.KeyPress, TextBoxCBundVal.KeyPress, TextBoxCBP.KeyPress, TextBoxCBBP.KeyPress, TextBoxSearchTranNumber.KeyPress, TextBoxIRREASON.KeyPress
+    Private Sub TextBoxCName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxSearchTranNumber.KeyPress, TextBoxIRREASON.KeyPress
         Try
             If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
                 e.Handled = True
@@ -1884,7 +1951,8 @@ Public Class SettingsForm
         Enabled = False
         Changeproductformula.Show()
     End Sub
-    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click, Button1.Click
+    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click, Button3.Click
         ShowKeyboard()
     End Sub
+
 End Class
