@@ -69,7 +69,8 @@ Public Class SynctoCloud
     '=====================================================SYSTEMLOGS
     Private Sub filldatagridsystemlog1()
         Try
-            Dim table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('LOG OUT', 'LOGIN', 'ERROR') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            'Dim table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('LOG OUT', 'LOGIN', 'ERROR') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            Dim table = "loc_system_logs WHERE synced = 'Unsynced' AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             Dim fields = "*"
             Dim ThisDT = AsDatatable(table, fields, DataGridViewSYSLOG1)
             For Each row As DataRow In ThisDT.Rows
@@ -434,62 +435,62 @@ Public Class SynctoCloud
                 Next
                 ProgressBar1.Maximum = Val(LabelTTLRowtoSync.Text)
                 'POS.ProgressBar1.Maximum = Val(Label7.Text)
-                '  ============================================================================transaction
+                'System Logs
+                thread1 = New Thread(AddressOf insertsystemlogs1)
+                thread1.Start()
+                threadListLOCSYSLOG1.Add(thread1)
+                'Transaction
                 thread1 = New Thread(AddressOf insertlocaldailytransaction)
                 thread1.Start()
                 threadListLOCTRAN.Add(thread1)
                 thread1 = New Thread(AddressOf inserttransactiondetails1)
                 thread1.Start()
                 threadListLOCTD1.Add(thread1)
-                ''  ============================================================================inventory
+                'Inventory
                 thread1 = New Thread(AddressOf insertinventory)
                 thread1.Start()
                 threadListLOCINV.Add(thread1)
-                ''   ============================================================================expenses
+                'Expenses
                 thread1 = New Thread(AddressOf insertexpenses)
                 thread1.Start()
                 threadListLOCEXP.Add(thread1)
                 thread1 = New Thread(AddressOf insertexpensedetails)
                 thread1.Start()
                 threadListLOCEXPD.Add(thread1)
-                ''============================================================================users
+                'New Users
                 thread1 = New Thread(AddressOf insertlocalusers)
                 thread1.Start()
                 threadListLOCTUSER.Add(thread1)
-                ''============================================================================System Logs
-                thread1 = New Thread(AddressOf insertsystemlogs1)
-                thread1.Start()
-                threadListLOCSYSLOG1.Add(thread1)
-                thread1 = New Thread(AddressOf insertsystemlogs2)
-                thread1.Start()
-                threadListLOCSYSLOG2.Add(thread1)
-                thread1 = New Thread(AddressOf insertsystemlogs3)
-                thread1.Start()
-                threadListLOCSYSLOG3.Add(thread1)
-                thread1 = New Thread(AddressOf insertsystemlogs4)
-                thread1.Start()
-                threadListLOCSYSLOG4.Add(thread1)
-                ''============================================================================Returns / Refunds
+                'Returns
                 thread1 = New Thread(AddressOf insertrefretdetails)
                 thread1.Start()
                 threadListLOCREFRET.Add(thread1)
-
+                'Custom Products
                 thread1 = New Thread(AddressOf insertlocproducts)
                 thread1.Start()
                 threadListLOCPRODUCT.Add(thread1)
-
+                'Mode of transaction details
                 thread1 = New Thread(AddressOf insertlocmodeoftransaction)
                 thread1.Start()
                 threadListMODEOFTRANSACTION.Add(thread1)
-
+                'Deposits
                 thread1 = New Thread(AddressOf insertlocdeposit)
                 thread1.Start()
                 threadListLocDeposit.Add(thread1)
-
+                'Price Request
                 thread1 = New Thread(AddressOf insertpricerequest)
                 thread1.Start()
                 threadListPRICEREQUEST.Add(thread1)
-
+                'thread1 = New Thread(AddressOf insertsystemlogs2)
+                'thread1.Start()
+                'threadListLOCSYSLOG2.Add(thread1)
+                'thread1 = New Thread(AddressOf insertsystemlogs3)
+                'thread1.Start()
+                'threadListLOCSYSLOG3.Add(thread1)
+                'thread1 = New Thread(AddressOf insertsystemlogs4)
+                'thread1.Start()
+                'threadListLOCSYSLOG4.Add(thread1)
+                'Refunds
                 For Each t In threadListPRICEREQUEST
                     t.Join()
                     If (BackgroundWorker1.CancellationPending) Then
@@ -1161,177 +1162,177 @@ Public Class SynctoCloud
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub insertsystemlogs2()
-        Try
-            Dim cmd As MySqlCommand
-            Dim cmdloc As MySqlCommand
+    'Private Sub insertsystemlogs2()
+    '    Try
+    '        Dim cmd As MySqlCommand
+    '        Dim cmdloc As MySqlCommand
 
-            Dim server As MySqlConnection = New MySqlConnection
-            server.ConnectionString = CloudConnectionString
-            server.Open()
+    '        Dim server As MySqlConnection = New MySqlConnection
+    '        server.ConnectionString = CloudConnectionString
+    '        server.Open()
 
-            Dim local As MySqlConnection = New MySqlConnection
-            local.ConnectionString = LocalConnectionString
-            local.Open()
+    '        Dim local As MySqlConnection = New MySqlConnection
+    '        local.ConnectionString = LocalConnectionString
+    '        local.Open()
 
-            LabelSYS2.Text = "Syncing Systemlogs 2"
-            With DataGridViewSYSLOG2
-                For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    If WorkerCanceled = True Then
-                        Exit For
-                    End If
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
-                    VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
-                    cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
-                    cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-                    cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
-                    cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
-                    cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
-                    cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
-                    '====================================================================
-                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
-                    LabelSYS2Item.Text = Val(LabelSYS2Item.Text) + 1
-                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
-                    'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
-                    cmd.ExecuteNonQuery()
-                    '====================================================================
-                    table = " loc_system_logs "
-                    where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
-                    fields = "`synced`='Synced' "
-                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
-                    cmdloc = New MySqlCommand(sql, local)
-                    cmdloc.ExecuteNonQuery()
-                    '====================================================================
-                Next
-                server.Close()
-                local.Close()
-                LabelSYS2.Text = "Synced Systemlogs 2"
-                LabelSYS2Time.Text = LabelTime.Text & " Seconds"
-            End With
-        Catch ex As Exception
-            Unsuccessful = True
-            BackgroundWorker1.CancelAsync()
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub insertsystemlogs3()
-        Try
-            Dim cmd As MySqlCommand
-            Dim cmdloc As MySqlCommand
+    '        LabelSYS2.Text = "Syncing Systemlogs 2"
+    '        With DataGridViewSYSLOG2
+    '            For i As Integer = 0 To .Rows.Count - 1 Step +1
+    '                If WorkerCanceled = True Then
+    '                    Exit For
+    '                End If
+    '                cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
+    '                VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
+    '                cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
+    '                cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+    '                cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+    '                cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+    '                cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
+    '                cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
+    '                cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
+    '                cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
+    '                '====================================================================
+    '                LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
+    '                LabelSYS2Item.Text = Val(LabelSYS2Item.Text) + 1
+    '                ProgressBar1.Value = CInt(LabelRowtoSync.Text)
+    '                'POS.ProgressBar1.Value = Val(Label7.Text)
+    '                Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
+    '                cmd.ExecuteNonQuery()
+    '                '====================================================================
+    '                table = " loc_system_logs "
+    '                where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
+    '                fields = "`synced`='Synced' "
+    '                sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+    '                cmdloc = New MySqlCommand(sql, local)
+    '                cmdloc.ExecuteNonQuery()
+    '                '====================================================================
+    '            Next
+    '            server.Close()
+    '            local.Close()
+    '            LabelSYS2.Text = "Synced Systemlogs 2"
+    '            LabelSYS2Time.Text = LabelTime.Text & " Seconds"
+    '        End With
+    '    Catch ex As Exception
+    '        Unsuccessful = True
+    '        BackgroundWorker1.CancelAsync()
+    '        MsgBox(ex.ToString)
+    '        SendErrorReport(ex.ToString)
+    '    End Try
+    'End Sub
+    'Private Sub insertsystemlogs3()
+    '    Try
+    '        Dim cmd As MySqlCommand
+    '        Dim cmdloc As MySqlCommand
 
-            Dim server As MySqlConnection = New MySqlConnection
-            server.ConnectionString = CloudConnectionString
-            server.Open()
+    '        Dim server As MySqlConnection = New MySqlConnection
+    '        server.ConnectionString = CloudConnectionString
+    '        server.Open()
 
-            Dim local As MySqlConnection = New MySqlConnection
-            local.ConnectionString = LocalConnectionString
-            local.Open()
+    '        Dim local As MySqlConnection = New MySqlConnection
+    '        local.ConnectionString = LocalConnectionString
+    '        local.Open()
 
-            LabelSYS3.Text = "Syncing Systemlogs 3"
-            With DataGridViewSYSLOG3
-                For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    If WorkerCanceled = True Then
-                        Exit For
-                    End If
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
-                    VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
-                    cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
-                    cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-                    cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
-                    cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
-                    cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
-                    cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
-                    '====================================================================
-                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
-                    LabelSYS3Item.Text = Val(LabelSYS3Item.Text) + 1
-                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
-                    'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
-                    cmd.ExecuteNonQuery()
-                    '====================================================================
-                    table = " loc_system_logs "
-                    where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
-                    fields = "`synced`='Synced' "
-                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
-                    cmdloc = New MySqlCommand(sql, local)
-                    cmdloc.ExecuteNonQuery()
-                    '====================================================================
-                Next
-                server.Close()
-                local.Close()
-                LabelSYS3.Text = "Synced Systemlogs 3"
-                LabelSYS3Time.Text = LabelTime.Text & " Seconds"
-            End With
-        Catch ex As Exception
-            Unsuccessful = True
-            BackgroundWorker1.CancelAsync()
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub insertsystemlogs4()
-        Try
-            Dim cmd As MySqlCommand
-            Dim cmdloc As MySqlCommand
+    '        LabelSYS3.Text = "Syncing Systemlogs 3"
+    '        With DataGridViewSYSLOG3
+    '            For i As Integer = 0 To .Rows.Count - 1 Step +1
+    '                If WorkerCanceled = True Then
+    '                    Exit For
+    '                End If
+    '                cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
+    '                VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
+    '                cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
+    '                cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+    '                cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+    '                cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+    '                cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
+    '                cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
+    '                cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
+    '                cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
+    '                '====================================================================
+    '                LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
+    '                LabelSYS3Item.Text = Val(LabelSYS3Item.Text) + 1
+    '                ProgressBar1.Value = CInt(LabelRowtoSync.Text)
+    '                'POS.ProgressBar1.Value = Val(Label7.Text)
+    '                Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
+    '                cmd.ExecuteNonQuery()
+    '                '====================================================================
+    '                table = " loc_system_logs "
+    '                where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
+    '                fields = "`synced`='Synced' "
+    '                sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+    '                cmdloc = New MySqlCommand(sql, local)
+    '                cmdloc.ExecuteNonQuery()
+    '                '====================================================================
+    '            Next
+    '            server.Close()
+    '            local.Close()
+    '            LabelSYS3.Text = "Synced Systemlogs 3"
+    '            LabelSYS3Time.Text = LabelTime.Text & " Seconds"
+    '        End With
+    '    Catch ex As Exception
+    '        Unsuccessful = True
+    '        BackgroundWorker1.CancelAsync()
+    '        MsgBox(ex.ToString)
+    '        SendErrorReport(ex.ToString)
+    '    End Try
+    'End Sub
+    'Private Sub insertsystemlogs4()
+    '    Try
+    '        Dim cmd As MySqlCommand
+    '        Dim cmdloc As MySqlCommand
 
-            Dim server As MySqlConnection = New MySqlConnection
-            server.ConnectionString = CloudConnectionString
-            server.Open()
+    '        Dim server As MySqlConnection = New MySqlConnection
+    '        server.ConnectionString = CloudConnectionString
+    '        server.Open()
 
-            Dim local As MySqlConnection = New MySqlConnection
-            local.ConnectionString = LocalConnectionString
-            local.Open()
+    '        Dim local As MySqlConnection = New MySqlConnection
+    '        local.ConnectionString = LocalConnectionString
+    '        local.Open()
 
-            LabelSYS4.Text = "Syncing Systemlogs 4"
-            With DataGridViewSYSLOG4
-                For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    If WorkerCanceled = True Then
-                        Exit For
-                    End If
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
-                    VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
-                    cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
-                    cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-                    cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
-                    cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
-                    cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
-                    cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
-                    '====================================================================
-                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
-                    LabelSYS4Item.Text = Val(LabelSYS4Item.Text) + 1
-                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
-                    'POS.ProgressBar1.Value = Val(Label7.Text)
-                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
-                    cmd.ExecuteNonQuery()
-                    '====================================================================
-                    table = " loc_system_logs "
-                    where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
-                    fields = "`synced`='Synced' "
-                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
-                    cmdloc = New MySqlCommand(sql, local)
-                    cmdloc.ExecuteNonQuery()
-                    '====================================================================
-                Next
-                server.Close()
-                local.Close()
-                LabelSYS4.Text = "Synced Systemlogs 4"
-                LabelSYS4Time.Text = LabelTime.Text & " Seconds"
-            End With
-        Catch ex As Exception
-            Unsuccessful = True
-            BackgroundWorker1.CancelAsync()
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
+    '        LabelSYS4.Text = "Syncing Systemlogs 4"
+    '        With DataGridViewSYSLOG4
+    '            For i As Integer = 0 To .Rows.Count - 1 Step +1
+    '                If WorkerCanceled = True Then
+    '                    Exit For
+    '                End If
+    '                cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
+    '                VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
+    '                cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
+    '                cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+    '                cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+    '                cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+    '                cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
+    '                cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
+    '                cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
+    '                cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
+    '                '====================================================================
+    '                LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
+    '                LabelSYS4Item.Text = Val(LabelSYS4Item.Text) + 1
+    '                ProgressBar1.Value = CInt(LabelRowtoSync.Text)
+    '                'POS.ProgressBar1.Value = Val(Label7.Text)
+    '                Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
+    '                cmd.ExecuteNonQuery()
+    '                '====================================================================
+    '                table = " loc_system_logs "
+    '                where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
+    '                fields = "`synced`='Synced' "
+    '                sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+    '                cmdloc = New MySqlCommand(sql, local)
+    '                cmdloc.ExecuteNonQuery()
+    '                '====================================================================
+    '            Next
+    '            server.Close()
+    '            local.Close()
+    '            LabelSYS4.Text = "Synced Systemlogs 4"
+    '            LabelSYS4Time.Text = LabelTime.Text & " Seconds"
+    '        End With
+    '    Catch ex As Exception
+    '        Unsuccessful = True
+    '        BackgroundWorker1.CancelAsync()
+    '        MsgBox(ex.ToString)
+    '        SendErrorReport(ex.ToString)
+    '    End Try
+    'End Sub
     Private Sub insertrefretdetails()
         Try
             Dim cmd As MySqlCommand

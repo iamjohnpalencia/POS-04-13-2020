@@ -46,9 +46,9 @@ Public Class POS
             Enabled = False
             BegBalance.Show()
             BegBalance.TopMost = True
-            'BackgroundWorker2.WorkerReportsProgress = True
-            'BackgroundWorker2.WorkerSupportsCancellation = True
-            'BackgroundWorker2.RunWorkerAsync()
+            BackgroundWorker2.WorkerReportsProgress = True
+            BackgroundWorker2.WorkerSupportsCancellation = True
+            BackgroundWorker2.RunWorkerAsync()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)

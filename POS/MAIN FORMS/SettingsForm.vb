@@ -1340,6 +1340,7 @@ Public Class SettingsForm
                             LabelNewRows.Text += Val(LabelNewRows.Text)
                         End If
                     Next
+                    Label50.Text = "Categories Done"
                 End If
             End If
         Catch ex As Exception
@@ -1458,6 +1459,7 @@ Public Class SettingsForm
                         LabelNewRows.Text += Val(LabelNewRows.Text)
                     End If
                 Next
+                Label51.Text = "Products Done"
                 ConnectionLocal.Close()
                 ConnectionServer.Close()
             End If
@@ -1584,7 +1586,7 @@ Public Class SettingsForm
                             Ids += "," & FormulaLocal(i)(1) & ""
                         End If
                     Next
-                    Dim sql = "SELECT `server_formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE server_formula_id  IN (" & Ids & ") "
+                    Dim sql = "SELECT `server_formula_id`, `product_ingredients`, `primary_unit`, `primary_value`, `secondary_unit`, `secondary_value`, `serving_unit`, `serving_value`, `no_servings`, `status`, `date_modified`, `unit_cost`, `origin` FROM admin_product_formula_org WHERE server_formula_id IN (" & Ids & ") "
                     cmdserver = New MySqlCommand(sql, ConnectionServer)
                     daserver = New MySqlDataAdapter(cmdserver)
                     dtserver = New DataTable
@@ -1607,6 +1609,7 @@ Public Class SettingsForm
                             LabelNewRows.Text += Val(LabelNewRows.Text)
                         End If
                     Next
+                    Label52.Text = "Formula Done"
                 End If
             End If
         Catch ex As Exception
@@ -1700,6 +1703,8 @@ Public Class SettingsForm
                             LabelNewRows.Text += Val(LabelNewRows.Text)
                         End If
                     Next
+                    Label53.Text = "inv Done"
+
                 End If
             End If
         Catch ex As Exception
