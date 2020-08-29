@@ -24,10 +24,10 @@ Partial Class POS
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(POS))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
@@ -188,19 +188,6 @@ Partial Class POS
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
-        Me.DataGridView5 = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel8.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel34.SuspendLayout()
@@ -227,7 +214,6 @@ Partial Class POS
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel7
@@ -958,8 +944,8 @@ Partial Class POS
         Me.DataGridViewOrders.AllowUserToDeleteRows = False
         Me.DataGridViewOrders.AllowUserToResizeColumns = False
         Me.DataGridViewOrders.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
+        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridViewOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewOrders.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewOrders.BorderStyle = System.Windows.Forms.BorderStyle.None
@@ -984,24 +970,24 @@ Partial Class POS
         '
         'Column2
         '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle6
         Me.Column2.FillWeight = 65.65144!
         Me.Column2.HeaderText = "Qty"
         Me.Column2.Name = "Column2"
         '
         'Column3
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column3.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column3.DefaultCellStyle = DataGridViewCellStyle7
         Me.Column3.FillWeight = 65.65144!
         Me.Column3.HeaderText = "Price"
         Me.Column3.Name = "Column3"
         '
         'Column4
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle8
         Me.Column4.FillWeight = 65.65144!
         Me.Column4.HeaderText = "Total"
         Me.Column4.Name = "Column4"
@@ -1577,15 +1563,15 @@ Partial Class POS
         Me.PanelProducts.AutoScroll = True
         Me.PanelProducts.BackColor = System.Drawing.SystemColors.Window
         Me.PanelProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanelProducts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelProducts.Location = New System.Drawing.Point(8, 8)
         Me.PanelProducts.Name = "PanelProducts"
-        Me.PanelProducts.Size = New System.Drawing.Size(1160, 71)
+        Me.PanelProducts.Size = New System.Drawing.Size(1160, 541)
         Me.PanelProducts.TabIndex = 0
         '
         'Panel13
         '
         Me.Panel13.BackColor = System.Drawing.Color.White
-        Me.Panel13.Controls.Add(Me.DataGridView5)
         Me.Panel13.Controls.Add(Me.PanelProducts)
         Me.Panel13.Controls.Add(Me.DataGridViewInv)
         Me.Panel13.Controls.Add(Me.DataGridView4)
@@ -1860,93 +1846,6 @@ Partial Class POS
         'BackgroundWorker3
         '
         '
-        'DataGridView5
-        '
-        Me.DataGridView5.AllowUserToAddRows = False
-        Me.DataGridView5.AllowUserToDeleteRows = False
-        Me.DataGridView5.AllowUserToResizeColumns = False
-        Me.DataGridView5.AllowUserToResizeRows = False
-        Me.DataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView5.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14})
-        Me.DataGridView5.Location = New System.Drawing.Point(571, 239)
-        Me.DataGridView5.Name = "DataGridView5"
-        Me.DataGridView5.ReadOnly = True
-        Me.DataGridView5.RowHeadersVisible = False
-        Me.DataGridView5.Size = New System.Drawing.Size(533, 92)
-        Me.DataGridView5.TabIndex = 68
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Column32"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Column33"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Column34"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.HeaderText = "Column35"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        Me.DataGridViewTextBoxColumn6.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.HeaderText = "Column36"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        Me.DataGridViewTextBoxColumn7.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn8
-        '
-        Me.DataGridViewTextBoxColumn8.HeaderText = "Column37"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        Me.DataGridViewTextBoxColumn8.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn9
-        '
-        Me.DataGridViewTextBoxColumn9.HeaderText = "Column38"
-        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
-        Me.DataGridViewTextBoxColumn9.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn10
-        '
-        Me.DataGridViewTextBoxColumn10.HeaderText = "Column39"
-        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
-        Me.DataGridViewTextBoxColumn10.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn11
-        '
-        Me.DataGridViewTextBoxColumn11.HeaderText = "Column40"
-        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
-        Me.DataGridViewTextBoxColumn11.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn12
-        '
-        Me.DataGridViewTextBoxColumn12.HeaderText = "Column41"
-        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
-        Me.DataGridViewTextBoxColumn12.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn13
-        '
-        Me.DataGridViewTextBoxColumn13.HeaderText = "Column44"
-        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
-        Me.DataGridViewTextBoxColumn13.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn14
-        '
-        Me.DataGridViewTextBoxColumn14.HeaderText = "Column46"
-        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
-        Me.DataGridViewTextBoxColumn14.ReadOnly = True
-        '
         'POS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2009,7 +1908,6 @@ Partial Class POS
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2173,17 +2071,4 @@ Partial Class POS
     Friend WithEvents Column42 As DataGridViewTextBoxColumn
     Friend WithEvents Column45 As DataGridViewTextBoxColumn
     Friend WithEvents Panel34 As Panel
-    Friend WithEvents DataGridView5 As DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn12 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
 End Class
