@@ -300,6 +300,18 @@ Public Class SynctoCloud
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Private Sub filldatagridviewcoupon()
+        Try
+            Dim fields = "*"
+            Dim table = "tbcoupon WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND origin = 'Local'"
+            GLOBAL_SELECT_ALL_FUNCTION(table, fields, DataGridViewCoupons)
+            gettablesize(tablename:="tbcoupon")
+            countrows(tablename:=table)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
 
     Private Sub countrows(ByVal tablename As String)
         Try
@@ -361,6 +373,7 @@ Public Class SynctoCloud
             filldatagridmodeoftransaction()
             filldatagriddepositslip()
             fillpricerequestchange()
+            filldatagridviewcoupon()
             totalrow = SumOfColumnsToInt(DataGridView2, 0)
             LabelTTLRowtoSync.Text = totalrow
             Button1.Enabled = False
@@ -420,6 +433,7 @@ Public Class SynctoCloud
     Dim threadListLocDeposit As List(Of Thread) = New List(Of Thread)
     Dim threadListloadData As List(Of Thread) = New List(Of Thread)
     Dim threadListPRICEREQUEST As List(Of Thread) = New List(Of Thread)
+    Dim threadListCoupon As List(Of Thread) = New List(Of Thread)
     Dim thread1 As Thread
 
     Dim WorkerCanceled As Boolean = False
@@ -481,6 +495,10 @@ Public Class SynctoCloud
                 thread1 = New Thread(AddressOf insertpricerequest)
                 thread1.Start()
                 threadListPRICEREQUEST.Add(thread1)
+                'Coupons
+                thread1 = New Thread(AddressOf insertcoupon)
+                thread1.Start()
+                threadListCoupon.Add(thread1)
                 'thread1 = New Thread(AddressOf insertsystemlogs2)
                 'thread1.Start()
                 'threadListLOCSYSLOG2.Add(thread1)
@@ -491,15 +509,7 @@ Public Class SynctoCloud
                 'thread1.Start()
                 'threadListLOCSYSLOG4.Add(thread1)
                 'Refunds
-                For Each t In threadListPRICEREQUEST
-                    t.Join()
-                    If (BackgroundWorker1.CancellationPending) Then
-                        ' Indicate that the task was canceled.
-                        WorkerCanceled = True
-                        e.Cancel = True
-                        Exit For
-                    End If
-                Next
+
                 For Each t In threadListLOCTRAN
                     t.Join()
                     If (BackgroundWorker1.CancellationPending) Then
@@ -636,6 +646,24 @@ Public Class SynctoCloud
                         Exit For
                     End If
                 Next
+                For Each t In threadListPRICEREQUEST
+                    t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
+                Next
+                For Each t In threadListCoupon
+                    t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
+                Next
             Else
                 Unsuccessful = True
             End If
@@ -650,7 +678,6 @@ Public Class SynctoCloud
         Try
             If Unsuccessful = True Then
                 ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
-                ProgressBar1.Maximum = Val(LabelTTLRowtoSync.Text)
                 'POS.ProgressBar1.Maximum = Val(Label3.Text)
                 If LabelRowtoSync.Text <> "0" Then
                     Label1.Text = "Synced " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
@@ -672,6 +699,7 @@ Public Class SynctoCloud
 
                     Close()
                 Else
+                    ProgressBar1.Value = Val(LabelTTLRowtoSync.Text)
                     SyncIsOnProcess = False
                     Timer1.Enabled = False
                     Label1.Text = "Synced " & LabelTTLRowtoSync.Text & " of " & LabelTTLRowtoSync.Text
@@ -741,10 +769,10 @@ Public Class SynctoCloud
                     Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     cmd.ExecuteNonQuery()
                     '====================================================================
-                    table = " loc_daily_transaction "
-                    where = " transaction_number = '" & .Rows(i).Cells(1).Value.ToString & "'"
-                    fields = "`synced`='Synced' "
-                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+                    Dim table = " loc_daily_transaction "
+                    Dim where = " transaction_number = '" & .Rows(i).Cells(1).Value.ToString & "'"
+                    Dim fields = "`synced`='Synced' "
+                    Dim sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
                     '====================================================================
@@ -810,10 +838,10 @@ Public Class SynctoCloud
                     Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     cmd.ExecuteNonQuery()
                     '====================================================================
-                    table = " loc_daily_transaction_details "
-                    where = " details_id =" & .Rows(i).Cells(0).Value.ToString
-                    fields = "`synced`='Synced' "
-                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+                    Dim table = " loc_daily_transaction_details "
+                    Dim where = " details_id =" & .Rows(i).Cells(0).Value.ToString
+                    Dim fields = "`synced`='Synced' "
+                    Dim sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
                     '====================================================================
@@ -876,7 +904,7 @@ Public Class SynctoCloud
                             .ExecuteNonQuery()
                         End With
                     End With
-                    sql = "UPDATE loc_pos_inventory SET `synced`='Synced' WHERE inventory_id = " & .Rows(i).Cells(0).Value.ToString
+                    Dim sql = "UPDATE loc_pos_inventory SET `synced`='Synced' WHERE inventory_id = " & .Rows(i).Cells(0).Value.ToString
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
                 Next
@@ -937,10 +965,10 @@ Public Class SynctoCloud
                     Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     '====================================================================
                     cmd.ExecuteNonQuery()
-                    table = " loc_expense_list "
-                    where = " expense_id = '" & .Rows(i).Cells(0).Value.ToString & "'"
-                    fields = "`synced`='Synced' "
-                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+                    Dim table = " loc_expense_list "
+                    Dim where = " expense_id = '" & .Rows(i).Cells(0).Value.ToString & "'"
+                    Dim fields = "`synced`='Synced' "
+                    Dim sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
                     '====================================================================
@@ -970,7 +998,6 @@ Public Class SynctoCloud
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
-
 
             LabelEXPD.Text = "Syncing Expense Details"
             With DataGridViewEXPDET
@@ -1016,10 +1043,10 @@ Public Class SynctoCloud
                     Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     cmd.ExecuteNonQuery()
                     '====================================================================
-                    table = " loc_expense_details "
-                    fields = "`synced`='Synced' "
-                    where = " expense_id = '" & .Rows(i).Cells(0).Value.ToString & "'"
-                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+                    Dim table = " loc_expense_details "
+                    Dim fields = "`synced`='Synced' "
+                    Dim where = " expense_id = '" & .Rows(i).Cells(0).Value.ToString & "'"
+                    Dim sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
                     '====================================================================
@@ -1086,10 +1113,10 @@ Public Class SynctoCloud
                     cmd.ExecuteNonQuery()
                     cmdupdateinventory.ExecuteNonQuery()
                     '====================================================================
-                    table = " loc_users "
-                    where = " user_id = " & .Rows(i).Cells(0).Value.ToString
-                    fields = "`synced`='Synced' "
-                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+                    Dim table = " loc_users "
+                    Dim where = " user_id = " & .Rows(i).Cells(0).Value.ToString
+                    Dim fields = "`synced`='Synced' "
+                    Dim sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
                 Next
@@ -1142,10 +1169,10 @@ Public Class SynctoCloud
                     Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     cmd.ExecuteNonQuery()
                     '====================================================================
-                    table = " loc_system_logs "
-                    where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
-                    fields = "`synced`='Synced' "
-                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+                    Dim table = " loc_system_logs "
+                    Dim where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
+                    Dim fields = "`synced`='Synced' "
+                    Dim sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
                     '====================================================================
@@ -1371,9 +1398,9 @@ Public Class SynctoCloud
                     Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     '====================================================================
                     cmd.ExecuteNonQuery()
-                    table = " loc_refund_return_details "
-                    where = " refret_id = '" & .Rows(i).Cells(0).Value.ToString & "'"
-                    fields = "`synced`='Synced' "
+                    Dim table = " loc_refund_return_details "
+                    Dim where = " refret_id = '" & .Rows(i).Cells(0).Value.ToString & "'"
+                    Dim fields = "`synced`='Synced' "
                     sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
@@ -1436,9 +1463,9 @@ Public Class SynctoCloud
                     Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     '====================================================================
                     cmd.ExecuteNonQuery()
-                    table = " loc_admin_products "
-                    where = " product_id = '" & .Rows(i).Cells(0).Value.ToString & "'"
-                    fields = " `synced`='Synced' "
+                    Dim table = " loc_admin_products "
+                    Dim where = " product_id = '" & .Rows(i).Cells(0).Value.ToString & "'"
+                    Dim fields = " `synced`='Synced' "
                     sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
@@ -1497,9 +1524,9 @@ Public Class SynctoCloud
                     Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     '====================================================================
                     cmd.ExecuteNonQuery()
-                    table = " loc_transaction_mode_details "
-                    where = " mode_id = '" & .Rows(i).Cells(0).Value.ToString & "'"
-                    fields = " `synced`='Synced' "
+                    Dim table = " loc_transaction_mode_details "
+                    Dim where = " mode_id = '" & .Rows(i).Cells(0).Value.ToString & "'"
+                    Dim fields = " `synced`='Synced' "
                     sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
@@ -1558,9 +1585,9 @@ Public Class SynctoCloud
                     Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     '====================================================================
                     cmd.ExecuteNonQuery()
-                    table = " loc_deposit "
-                    where = " dep_id = '" & .Rows(i).Cells(0).Value.ToString & "'"
-                    fields = " `synced`='Synced' "
+                    Dim table = " loc_deposit "
+                    Dim where = " dep_id = '" & .Rows(i).Cells(0).Value.ToString & "'"
+                    Dim fields = " `synced`='Synced' "
                     sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
@@ -1619,9 +1646,9 @@ Public Class SynctoCloud
                     Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     '====================================================================
                     cmd.ExecuteNonQuery()
-                    table = " loc_price_request_change "
-                    where = " request_id = " & .Rows(i).Cells(0).Value.ToString & ""
-                    fields = " `synced`='Synced' "
+                    Dim table = " loc_price_request_change "
+                    Dim where = " request_id = " & .Rows(i).Cells(0).Value.ToString & ""
+                    Dim fields = " `synced`='Synced' "
                     sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
                     cmdloc = New MySqlCommand(sql, local)
                     cmdloc.ExecuteNonQuery()
@@ -1632,6 +1659,75 @@ Public Class SynctoCloud
             End With
             LabelPRICEREQ.Text = "Synced Price Request Change"
             LabelPRICEREQTime.Text = LabelTime.Text & " Seconds"
+            'truncatetable(tablename:="loc_expense_list")
+        Catch ex As Exception
+            Unsuccessful = True
+            BackgroundWorker1.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub insertcoupon()
+        Try
+            Dim cmd As MySqlCommand
+            Dim cmdloc As MySqlCommand
+
+            Dim server As MySqlConnection = New MySqlConnection
+            server.ConnectionString = CloudConnectionString
+            server.Open()
+
+            Dim local As MySqlConnection = New MySqlConnection
+            local.ConnectionString = LocalConnectionString
+            local.Open()
+
+            LabelCoupon.Text = "Syncing Coupons"
+            With DataGridViewCoupons
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_custom_coupon(`ID`, `Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`, `active`, `store_id`, `crew_id`, `guid`, `synced`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9 ,@10 ,@11, @12, @13, @14, @15, @16)", server)
+
+                    cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
+                    cmd.Parameters.Add("@1", MySqlDbType.Text).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmd.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString()
+                    cmd.Parameters.Add("@3", MySqlDbType.Text).Value = .Rows(i).Cells(3).Value.ToString()
+                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@5", MySqlDbType.Text).Value = .Rows(i).Cells(5).Value.ToString()
+                    cmd.Parameters.Add("@6", MySqlDbType.Text).Value = .Rows(i).Cells(6).Value.ToString()
+                    cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
+                    cmd.Parameters.Add("@8", MySqlDbType.Text).Value = .Rows(i).Cells(8).Value.ToString()
+                    cmd.Parameters.Add("@9", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString()
+                    cmd.Parameters.Add("@10", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString()
+                    cmd.Parameters.Add("@11", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value.ToString()
+                    cmd.Parameters.Add("@12", MySqlDbType.Text).Value = .Rows(i).Cells(12).Value.ToString()
+                    cmd.Parameters.Add("@13", MySqlDbType.Text).Value = .Rows(i).Cells(13).Value.ToString()
+                    cmd.Parameters.Add("@14", MySqlDbType.Text).Value = .Rows(i).Cells(14).Value.ToString()
+                    cmd.Parameters.Add("@15", MySqlDbType.Text).Value = .Rows(i).Cells(15).Value.ToString()
+                    cmd.Parameters.Add("@16", MySqlDbType.Text).Value = "Synced"
+
+                    '====================================================================
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
+                    LabelCouponItem.Text = Val(LabelCouponItem.Text) + 1
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
+                    'POS.ProgressBar1.Value = Val(Label7.Text)
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
+                    '====================================================================
+                    cmd.ExecuteNonQuery()
+                    Dim table = " tbcoupon "
+                    Dim where = " ID = " & .Rows(i).Cells(0).Value.ToString & ""
+                    Dim fields = " `synced`='Synced' "
+                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+                    cmdloc = New MySqlCommand(sql, local)
+                    cmdloc.ExecuteNonQuery()
+                    '====================================================================
+                Next
+                server.Close()
+                local.Close()
+            End With
+            LabelCoupon.Text = "Synced Coupons"
+            LabelCouponTime.Text = LabelTime.Text & " Seconds"
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
             Unsuccessful = True

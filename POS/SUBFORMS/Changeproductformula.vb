@@ -13,7 +13,7 @@ Public Class Changeproductformula
     End Sub
     Private Sub LoadProducts()
         Try
-            GLOBAL_SELECT_ALL_FUNCTION("loc_admin_products", "`product_id`,`product_name`, `formula_id`, `origin`", DataGridViewProducts)
+            GLOBAL_SELECT_ALL_FUNCTION("loc_admin_products WHERE product_status = 1", "`product_id`,`product_name`, `formula_id`, `origin`", DataGridViewProducts)
             DataGridViewProducts.Columns(0).Visible = False
             DataGridViewProducts.Columns(2).Visible = False
         Catch ex As Exception

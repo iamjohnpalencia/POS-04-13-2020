@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class CouponCode
     Private Sub CouponCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim LoadCouponTable = AsDatatable("tbcoupon", "*", DataGridViewCoupons)
+        Dim LoadCouponTable = AsDatatable("tbcoupon WHERE active = 1", "*", DataGridViewCoupons)
         For Each row As DataRow In LoadCouponTable.Rows
             DataGridViewCoupons.Rows.Add(row("ID"), row("Couponname_"), row("Desc_"), row("Discountvalue_"), row("Referencevalue_"), row("Type"), row("Bundlebase_"), row("BBValue_"), row("Bundlepromo_"), row("BPValue_"), row("Effectivedate"), row("Expirydate"))
         Next

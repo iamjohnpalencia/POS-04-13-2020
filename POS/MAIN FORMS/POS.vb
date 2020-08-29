@@ -1287,6 +1287,26 @@ Public Class POS
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Dim CouponDatatable As DataTable
+    Dim CouponApp As Boolean = False
+    Private Sub CouponApproval()
+        Try
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+            Dim Query = "SELECT ID FROM admin_custom_coupon WHERE store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND active = 1 AND synced = 'Unsynced'"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ConnectionServer)
+            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
+            CouponDatatable = New DataTable
+            DaCheck.Fill(CouponDatatable)
+            If CouponDatatable.Rows.Count > 0 Then
+                CouponApp = True
+            Else
+                CouponApp = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
     Private Function LoadCategoryLocal() As DataTable
         Dim cmdlocal As MySqlCommand
         Dim dalocal As MySqlDataAdapter
@@ -1766,6 +1786,9 @@ Public Class POS
                             thread = New Thread(AddressOf Function4)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf CouponApproval)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
                         Else
                             thread = New Thread(AddressOf CheckPriceChanges)
                             thread.Start()
@@ -1797,7 +1820,7 @@ Public Class POS
                 Button3.Enabled = True
                 UPDATEPRODUCTONLY = False
                 POSISUPDATING = False
-                If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Or PriceChangeDatatabe.Rows.Count > 0 Then
+                If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Or PriceChangeDatatabe.Rows.Count > 0 Or CouponDatatable.Rows.Count > 0 Then
                     Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                     If updatemessage = DialogResult.Yes Then
                         InstallUpdatesFormula()
@@ -1805,9 +1828,15 @@ Public Class POS
                         InstallUpdatesCategory()
                         InstallUpdatesProducts()
                         InstallUpdatesPriceChange()
+                        InstallCoupons()
+
                         If PRICECHANGE = True Then
                             MsgBox("Product price changes approved")
                             PRICECHANGE = False
+                        End If
+
+                        If CouponApp = True Then
+                            MsgBox("Coupon Approved")
                         End If
                         For Each btn As Button In Panel3.Controls.OfType(Of Button)()
                             If btn.Text = "Simply Perfect" Then
@@ -2070,6 +2099,26 @@ Public Class POS
                 CmdCheck.ExecuteNonQuery()
                 Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""
                 CmdCheck = New MySqlCommand(sq3, ConnectionServer)
+                CmdCheck.ExecuteNonQuery()
+            Next
+            ConnectionLocal.Close()
+            ConnectionServer.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub InstallCoupons()
+        Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+            Dim CmdCheck As MySqlCommand
+            For i As Integer = 0 To CouponDatatable.Rows.Count - 1 Step +1
+                Dim sql = "UPDATE tbcoupon SET active = 1 WHERE ID = " & CouponDatatable(i)(0) & ""
+                CmdCheck = New MySqlCommand(sql, ConnectionLocal)
+                CmdCheck.ExecuteNonQuery()
+                Dim sql2 = "UPDATE admin_custom_coupon SET synced = 'Synced' WHERE ID = " & CouponDatatable(i)(0) & ""
+                CmdCheck = New MySqlCommand(sql2, ConnectionServer)
                 CmdCheck.ExecuteNonQuery()
             Next
             ConnectionLocal.Close()

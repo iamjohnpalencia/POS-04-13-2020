@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2020 at 03:00 AM
+-- Generation Time: Aug 27, 2020 at 02:16 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -48,6 +48,7 @@ CREATE TABLE `admin_masterlist` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -82,6 +83,7 @@ CREATE TABLE `admin_outlets` (
 -- Dumping data for table `admin_outlets`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -101,6 +103,7 @@ CREATE TABLE `loc_admin_category` (
 --
 -- Dumping data for table `loc_admin_category`
 --
+
 
 
 -- --------------------------------------------------------
@@ -136,7 +139,6 @@ CREATE TABLE `loc_admin_products` (
 --
 -- Dumping data for table `loc_admin_products`
 --
-
 
 
 -- --------------------------------------------------------
@@ -313,7 +315,6 @@ CREATE TABLE `loc_expense_details` (
 -- Dumping data for table `loc_expense_details`
 --
 
-
 -- --------------------------------------------------------
 
 --
@@ -340,7 +341,6 @@ CREATE TABLE `loc_expense_list` (
 -- Dumping data for table `loc_expense_list`
 --
 
-
 -- --------------------------------------------------------
 
 --
@@ -363,6 +363,7 @@ CREATE TABLE `loc_fm_stock` (
 --
 -- Dumping data for table `loc_fm_stock`
 --
+
 
 
 -- --------------------------------------------------------
@@ -431,7 +432,6 @@ CREATE TABLE `loc_inv_temp_data` (
 --
 
 
-
 -- --------------------------------------------------------
 
 --
@@ -454,7 +454,6 @@ CREATE TABLE `loc_partners_transaction` (
 --
 -- Dumping data for table `loc_partners_transaction`
 --
-
 
 
 -- --------------------------------------------------------
@@ -518,7 +517,6 @@ CREATE TABLE `loc_pos_inventory` (
 --
 -- Dumping data for table `loc_pos_inventory`
 --
-
 
 
 -- --------------------------------------------------------
@@ -712,6 +710,7 @@ CREATE TABLE `loc_stockadjustment_cat` (
 
 DROP TABLE IF EXISTS `loc_system_logs`;
 CREATE TABLE `loc_system_logs` (
+  `log_id` int(11) NOT NULL,
   `crew_id` varchar(50) NOT NULL,
   `log_type` varchar(255) NOT NULL,
   `log_description` text NOT NULL,
@@ -847,7 +846,6 @@ CREATE TABLE `loc_zread_inventory` (
 --
 -- Dumping data for table `loc_zread_inventory`
 --
-
 
 
 -- --------------------------------------------------------
@@ -1121,6 +1119,12 @@ ALTER TABLE `loc_stockadjustment_cat`
   ADD PRIMARY KEY (`adj_id`);
 
 --
+-- Indexes for table `loc_system_logs`
+--
+ALTER TABLE `loc_system_logs`
+  ADD PRIMARY KEY (`log_id`);
+
+--
 -- Indexes for table `loc_transaction_mode_details`
 --
 ALTER TABLE `loc_transaction_mode_details`
@@ -1321,6 +1325,12 @@ ALTER TABLE `loc_settings`
 --
 ALTER TABLE `loc_stockadjustment_cat`
   MODIFY `adj_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `loc_system_logs`
+--
+ALTER TABLE `loc_system_logs`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `loc_transaction_mode_details`

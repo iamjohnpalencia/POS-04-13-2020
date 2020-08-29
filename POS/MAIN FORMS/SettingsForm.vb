@@ -18,6 +18,9 @@ Public Class SettingsForm
         TabControl2.TabPages(1).Text = "Additional Settings"
         TabControl4.TabPages(0).Text = "Create Coupon"
         TabControl4.TabPages(1).Text = "Coupon List"
+
+        TabControl5.TabPages(0).Text = "Available Coupon"
+        TabControl5.TabPages(1).Text = "Pending (For admin approval)"
         LoadConn()
         LoadCloudConn()
         LoadAdditionalSettings()
@@ -61,6 +64,7 @@ Public Class SettingsForm
             If Coupons = False Then
                 'loaddatagrid1()
                 ShowAllCoupons()
+                ShowAllCouponsPending()
                 FillComboboxSearch()
                 ComboBoxCategorySearch.SelectedIndex = 0
                 ShowAllProducts("All")
@@ -540,8 +544,23 @@ Public Class SettingsForm
     End Sub
     Private Sub ShowAllCoupons()
         Try
-            GLOBAL_SELECT_ALL_FUNCTION("tbcoupon", "`Couponname_`, `Desc_`, `Type`, `Effectivedate`, `Expirydate`", DataGridViewCouponList)
+            GLOBAL_SELECT_ALL_FUNCTION("tbcoupon WHERE active = 1", "`Couponname_`, `Desc_`, `Type`, `Effectivedate`, `Expirydate`", DataGridViewCouponList)
             With DataGridViewCouponList
+                .Columns(0).HeaderText = "Coupon Name"
+                .Columns(0).HeaderText = "Coupon Descrition"
+                .Columns(0).HeaderText = "Coupon Type"
+                .Columns(0).HeaderText = "Effective Date"
+                .Columns(0).HeaderText = "Expiry Date"
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub ShowAllCouponsPending()
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION("tbcoupon WHERE active = 0", "`Couponname_`, `Desc_`, `Type`, `Effectivedate`, `Expirydate`", DataGridViewCouponPending)
+            With DataGridViewCouponPending
                 .Columns(0).HeaderText = "Coupon Name"
                 .Columns(0).HeaderText = "Coupon Descrition"
                 .Columns(0).HeaderText = "Coupon Type"
@@ -555,8 +574,8 @@ Public Class SettingsForm
     End Sub
     Private Sub SaveCoupon()
         Try
-            value = "('" & TextBoxCName.Text & "' , '" & TextBoxCDesc.Text & "', '" & TextBoxCDVal.Text & "', '" & TextBoxCRefVal.Text & "', '" & ComboBoxCType.Text & "' , '" & TextBoxCBBP.Text & "' , '" & TextBoxCBV.Text & "', '" & TextBoxCBP.Text & "', '" & TextBoxCBundVal.Text & "', '" & Format(DateTimePickerCEffectiveDate.Value, "yyyy-MM-dd") & "' , '" & Format(DateTimePickerCExpiryDate.Value, "yyyy-MM-dd") & "')"
-            GLOBAL_INSERT_FUNCTION("tbcoupon", "(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`)", value)
+            value = "('" & TextBoxCName.Text & "' , '" & TextBoxCDesc.Text & "', '" & TextBoxCDVal.Text & "', '" & TextBoxCRefVal.Text & "', '" & ComboBoxCType.Text & "' , '" & TextBoxCBBP.Text & "' , '" & TextBoxCBV.Text & "', '" & TextBoxCBP.Text & "', '" & TextBoxCBundVal.Text & "', '" & Format(DateTimePickerCEffectiveDate.Value, "yyyy-MM-dd") & "' , '" & Format(DateTimePickerCExpiryDate.Value, "yyyy-MM-dd") & "', '0', '" & ClientStoreID & "', '" & ClientCrewID & "', '" & ClientGuid & "','Unsynced','Local')"
+            GLOBAL_INSERT_FUNCTION("tbcoupon", "(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`, `active`, `store_id`, `crew_id`, `guid`, `synced`, `origin`)", value)
             GLOBAL_SYSTEM_LOGS("NEW COUPON", "Name : " & TextBoxCName.Text & " Type : " & ComboBoxCType.Text)
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -775,6 +794,7 @@ Public Class SettingsForm
             If Required = True Then
                 SaveCoupon()
                 ShowAllCoupons()
+                ShowAllCouponsPending()
                 MessageBox.Show("Complete", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 MessageBox.Show("All fields are required", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1183,6 +1203,9 @@ Public Class SettingsForm
                         thread = New Thread(AddressOf Function4)
                         thread.Start()
                         THREADLISTUPDATE.Add(thread)
+                        thread = New Thread(AddressOf CouponApproval)
+                        thread.Start()
+                        THREADLISTUPDATE.Add(thread)
                     End If
                 Else
                     MsgBox("Internet connection is not available. Please try again")
@@ -1255,6 +1278,28 @@ Public Class SettingsForm
                 PRICECHANGE = True
             Else
                 PRICECHANGE = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+#End Region
+#Region "Coupon"
+    Dim CouponDatatable As DataTable
+    Dim CouponApp As Boolean = False
+    Private Sub CouponApproval()
+        Try
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+            Dim Query = "SELECT ID FROM admin_custom_coupon WHERE store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND active = 1 AND synced = 'Unsynced'"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ConnectionServer)
+            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
+            CouponDatatable = New DataTable
+            DaCheck.Fill(CouponDatatable)
+            If CouponDatatable.Rows.Count > 0 Then
+                CouponApp = True
+            Else
+                CouponApp = False
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1340,7 +1385,6 @@ Public Class SettingsForm
                             LabelNewRows.Text += Val(LabelNewRows.Text)
                         End If
                     Next
-                    Label50.Text = "Categories Done"
                 End If
             End If
         Catch ex As Exception
@@ -1459,7 +1503,6 @@ Public Class SettingsForm
                         LabelNewRows.Text += Val(LabelNewRows.Text)
                     End If
                 Next
-                Label51.Text = "Products Done"
                 ConnectionLocal.Close()
                 ConnectionServer.Close()
             End If
@@ -1609,7 +1652,6 @@ Public Class SettingsForm
                             LabelNewRows.Text += Val(LabelNewRows.Text)
                         End If
                     Next
-                    Label52.Text = "Formula Done"
                 End If
             End If
         Catch ex As Exception
@@ -1703,8 +1745,6 @@ Public Class SettingsForm
                             LabelNewRows.Text += Val(LabelNewRows.Text)
                         End If
                     Next
-                    Label53.Text = "inv Done"
-
                 End If
             End If
         Catch ex As Exception
@@ -1951,6 +1991,26 @@ Public Class SettingsForm
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Private Sub InstallCoupons()
+        Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+            Dim CmdCheck As MySqlCommand
+            For i As Integer = 0 To CouponDatatable.Rows.Count - 1 Step +1
+                Dim sql = "UPDATE tbcoupon SET active = 1 WHERE ID = " & CouponDatatable(i)(0) & ""
+                CmdCheck = New MySqlCommand(sql, ConnectionLocal)
+                CmdCheck.ExecuteNonQuery()
+                Dim sql2 = "UPDATE admin_custom_coupon SET synced = 'Synced' WHERE ID = " & CouponDatatable(i)(0) & ""
+                CmdCheck = New MySqlCommand(sql2, ConnectionServer)
+                CmdCheck.ExecuteNonQuery()
+            Next
+            ConnectionLocal.Close()
+            ConnectionServer.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
 #End Region
     Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles ButtonChangeFormula.Click
         Enabled = False
@@ -1960,4 +2020,7 @@ Public Class SettingsForm
         ShowKeyboard()
     End Sub
 
+    Private Sub TextBoxCRefVal_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxCRefVal.KeyPress, TextBoxCDVal.KeyPress, TextBoxCBundVal.KeyPress, TextBoxCBP.KeyPress
+        Numeric(sender, e)
+    End Sub
 End Class
