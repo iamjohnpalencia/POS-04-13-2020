@@ -1,12 +1,18 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class CouponCode
     Private Sub CouponCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim LoadCouponTable = AsDatatable("tbcoupon WHERE active = 1", "*", DataGridViewCoupons)
-        For Each row As DataRow In LoadCouponTable.Rows
-            DataGridViewCoupons.Rows.Add(row("ID"), row("Couponname_"), row("Desc_"), row("Discountvalue_"), row("Referencevalue_"), row("Type"), row("Bundlebase_"), row("BBValue_"), row("Bundlepromo_"), row("BPValue_"), row("Effectivedate"), row("Expirydate"))
-        Next
-        Dim arg = New DataGridViewCellEventArgs(0, 0)
-        DataGridViewCoupons_CellClick(sender, arg)
+        Try
+            Dim LoadCouponTable = AsDatatable("tbcoupon WHERE active = 1", "*", DataGridViewCoupons)
+            For Each row As DataRow In LoadCouponTable.Rows
+                DataGridViewCoupons.Rows.Add(row("ID"), row("Couponname_"), row("Desc_"), row("Discountvalue_"), row("Referencevalue_"), row("Type"), row("Bundlebase_"), row("BBValue_"), row("Bundlepromo_"), row("BPValue_"), row("Effectivedate"), row("Expirydate"))
+            Next
+            If LoadCouponTable.Rows.Count > 0 Then
+                Dim arg = New DataGridViewCellEventArgs(0, 0)
+                DataGridViewCoupons_CellClick(sender, arg)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub CouponCode_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         POS.Enabled = True

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2020 at 02:16 PM
+-- Generation Time: Aug 31, 2020 at 04:10 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -46,7 +46,6 @@ CREATE TABLE `admin_masterlist` (
 --
 -- Dumping data for table `admin_masterlist`
 --
-
 
 
 -- --------------------------------------------------------
@@ -103,7 +102,6 @@ CREATE TABLE `loc_admin_category` (
 --
 -- Dumping data for table `loc_admin_category`
 --
-
 
 
 -- --------------------------------------------------------
@@ -263,7 +261,6 @@ CREATE TABLE `loc_deposit` (
 -- Dumping data for table `loc_deposit`
 --
 
-
 -- --------------------------------------------------------
 
 --
@@ -314,6 +311,7 @@ CREATE TABLE `loc_expense_details` (
 --
 -- Dumping data for table `loc_expense_details`
 --
+
 
 -- --------------------------------------------------------
 
@@ -432,6 +430,7 @@ CREATE TABLE `loc_inv_temp_data` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -454,6 +453,7 @@ CREATE TABLE `loc_partners_transaction` (
 --
 -- Dumping data for table `loc_partners_transaction`
 --
+
 
 
 -- --------------------------------------------------------
@@ -577,6 +577,7 @@ CREATE TABLE `loc_product_formula` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -622,7 +623,6 @@ CREATE TABLE `loc_send_bug_report` (
 --
 -- Dumping data for table `loc_send_bug_report`
 --
-
 
 -- --------------------------------------------------------
 
@@ -687,7 +687,6 @@ CREATE TABLE `loc_settings` (
 -- Dumping data for table `loc_settings`
 --
 
-
 -- --------------------------------------------------------
 
 --
@@ -725,6 +724,7 @@ CREATE TABLE `loc_system_logs` (
 --
 -- Dumping data for table `loc_system_logs`
 --
+
 
 
 -- --------------------------------------------------------
@@ -768,7 +768,6 @@ CREATE TABLE `loc_transfer_data` (
 --
 -- Dumping data for table `loc_transfer_data`
 --
-
 
 
 -- --------------------------------------------------------
@@ -848,6 +847,7 @@ CREATE TABLE `loc_zread_inventory` (
 --
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -868,9 +868,12 @@ CREATE TABLE `tbcoupon` (
   `BPValue_` text NOT NULL,
   `Effectivedate` text NOT NULL,
   `Expirydate` text NOT NULL,
+  `active` text NOT NULL,
   `store_id` text NOT NULL,
   `crew_id` text NOT NULL,
-  `guid` text NOT NULL
+  `guid` text NOT NULL,
+  `origin` text NOT NULL,
+  `synced` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -948,6 +951,7 @@ CREATE TABLE `triggers_loc_users` (
 --
 -- Dumping data for table `triggers_loc_users`
 --
+
 
 
 --

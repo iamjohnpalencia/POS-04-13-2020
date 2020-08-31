@@ -100,7 +100,7 @@ Public Class Inventory
     Private Sub loadcriticalstocks()
         Try
             fields = "`product_ingredients`, ROUND(`stock_primary`, 0),ROUND(`stock_secondary`, 0) , `critical_limit`, `created_at`"
-            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_pos_inventory", datagrid:=DataGridViewCriticalStocks, errormessage:="", successmessage:="", fields:=fields, where:=" stock_status = 1 AND critical_limit >= stock_primary AND store_id = " & ClientStoreID)
+            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:="loc_pos_inventory", datagrid:=DataGridViewCriticalStocks, errormessage:="", successmessage:="", fields:=fields, where:=" stock_status = 1 AND critical_limit >= stock_primary AND store_id = " & ClientStoreID & "  ORDER BY product_ingredients ASC")
             With DataGridViewCriticalStocks
                 .Columns(0).HeaderCell.Value = "Product Name"
                 .Columns(1).HeaderCell.Value = "Primary Value"

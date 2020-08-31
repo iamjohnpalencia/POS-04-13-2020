@@ -23,8 +23,15 @@ Public Class POS
 
     Public WaffleUpgrade As Boolean = False
     Public SeniorGC As Boolean = False
+    Private Shared _instance As POS
+    Public ReadOnly Property Instance As POS
+        Get
+            Return _instance
+        End Get
+    End Property
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        _instance = Me
         Try
             If Application.OpenForms().OfType(Of SynctoCloud).Any Then
                 SynctoCloud.BringToFront()
@@ -1307,6 +1314,26 @@ Public Class POS
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Dim CustomProductsApproval As DataTable
+    Dim CustomProdctsAppBool As Boolean = False
+    Private Sub CustomProductApproval()
+        Try
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+            Dim Query = "SELECT loc_product_id FROM loc_product_list WHERE store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND product_status = 1 AND synced = 'Unsynced'"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, ConnectionServer)
+            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
+            CustomProductsApproval = New DataTable
+            DaCheck.Fill(CustomProductsApproval)
+            If CustomProductsApproval.Rows.Count > 0 Then
+                CustomProdctsAppBool = True
+            Else
+                CustomProdctsAppBool = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
     Private Function LoadCategoryLocal() As DataTable
         Dim cmdlocal As MySqlCommand
         Dim dalocal As MySqlDataAdapter
@@ -1789,6 +1816,9 @@ Public Class POS
                             thread = New Thread(AddressOf CouponApproval)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf CustomProductApproval)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
                         Else
                             thread = New Thread(AddressOf CheckPriceChanges)
                             thread.Start()
@@ -1820,7 +1850,7 @@ Public Class POS
                 Button3.Enabled = True
                 UPDATEPRODUCTONLY = False
                 POSISUPDATING = False
-                If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Or PriceChangeDatatabe.Rows.Count > 0 Or CouponDatatable.Rows.Count > 0 Then
+                If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Or PriceChangeDatatabe.Rows.Count > 0 Or CouponDatatable.Rows.Count > 0 Or CustomProductsApproval.Rows.Count Then
                     Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                     If updatemessage = DialogResult.Yes Then
                         InstallUpdatesFormula()
@@ -1829,14 +1859,16 @@ Public Class POS
                         InstallUpdatesProducts()
                         InstallUpdatesPriceChange()
                         InstallCoupons()
-
+                        InstallProducts()
                         If PRICECHANGE = True Then
                             MsgBox("Product price changes approved")
                             PRICECHANGE = False
                         End If
-
                         If CouponApp = True Then
                             MsgBox("Coupon Approved")
+                        End If
+                        If CustomProdctsAppBool = True Then
+                            MsgBox("Products Approved")
                         End If
                         For Each btn As Button In Panel3.Controls.OfType(Of Button)()
                             If btn.Text = "Simply Perfect" Then
@@ -2118,6 +2150,26 @@ Public Class POS
                 CmdCheck = New MySqlCommand(sql, ConnectionLocal)
                 CmdCheck.ExecuteNonQuery()
                 Dim sql2 = "UPDATE admin_custom_coupon SET synced = 'Synced' WHERE ID = " & CouponDatatable(i)(0) & ""
+                CmdCheck = New MySqlCommand(sql2, ConnectionServer)
+                CmdCheck.ExecuteNonQuery()
+            Next
+            ConnectionLocal.Close()
+            ConnectionServer.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub InstallProducts()
+        Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+            Dim CmdCheck As MySqlCommand
+            For i As Integer = 0 To CustomProductsApproval.Rows.Count - 1 Step +1
+                Dim sql = "UPDATE loc_admin_products SET active = 1 WHERE product_id = " & CustomProductsApproval(i)(0) & ""
+                CmdCheck = New MySqlCommand(sql, ConnectionLocal)
+                CmdCheck.ExecuteNonQuery()
+                Dim sql2 = "UPDATE loc_product_list SET synced = 'Synced' WHERE product_id = " & CustomProductsApproval(i)(0) & ""
                 CmdCheck = New MySqlCommand(sql2, ConnectionServer)
                 CmdCheck.ExecuteNonQuery()
             Next

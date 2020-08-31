@@ -24,21 +24,20 @@ Partial Class POS
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(POS))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.Panel34 = New System.Windows.Forms.Panel()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.LabelCheckingUpdates = New System.Windows.Forms.Label()
-        Me.Panel25 = New System.Windows.Forms.Panel()
-        Me.Label12 = New System.Windows.Forms.Label()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel32 = New System.Windows.Forms.Panel()
@@ -188,10 +187,10 @@ Partial Class POS
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Panel8.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel34.SuspendLayout()
-        Me.Panel25.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel32.SuspendLayout()
         Me.Panel22.SuspendLayout()
@@ -266,13 +265,27 @@ Partial Class POS
         'Panel24
         '
         Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Panel24.Controls.Add(Me.ProgressBar1)
+        Me.Panel24.Controls.Add(Me.Label12)
         Me.Panel24.Controls.Add(Me.Panel34)
-        Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel24.Location = New System.Drawing.Point(0, 10)
         Me.Panel24.Name = "Panel24"
         Me.Panel24.Size = New System.Drawing.Size(1565, 31)
         Me.Panel24.TabIndex = 17
+        '
+        'Label12
+        '
+        Me.Label12.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.ForeColor = System.Drawing.Color.White
+        Me.Label12.Location = New System.Drawing.Point(1314, 0)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(251, 31)
+        Me.Label12.TabIndex = 16
+        Me.Label12.Text = "© 2019 - Innovention Food Asia Corporation"
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Panel34
         '
@@ -281,7 +294,7 @@ Partial Class POS
         Me.Panel34.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel34.Location = New System.Drawing.Point(0, 0)
         Me.Panel34.Name = "Panel34"
-        Me.Panel34.Size = New System.Drawing.Size(291, 31)
+        Me.Panel34.Size = New System.Drawing.Size(355, 31)
         Me.Panel34.TabIndex = 0
         '
         'Button3
@@ -303,36 +316,14 @@ Partial Class POS
         '
         'LabelCheckingUpdates
         '
-        Me.LabelCheckingUpdates.AutoSize = True
         Me.LabelCheckingUpdates.BackColor = System.Drawing.Color.Transparent
         Me.LabelCheckingUpdates.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelCheckingUpdates.ForeColor = System.Drawing.Color.White
         Me.LabelCheckingUpdates.Location = New System.Drawing.Point(57, 9)
         Me.LabelCheckingUpdates.Name = "LabelCheckingUpdates"
-        Me.LabelCheckingUpdates.Size = New System.Drawing.Size(135, 14)
+        Me.LabelCheckingUpdates.Size = New System.Drawing.Size(295, 14)
         Me.LabelCheckingUpdates.TabIndex = 3
         Me.LabelCheckingUpdates.Text = "Checking for updates..."
-        '
-        'Panel25
-        '
-        Me.Panel25.Controls.Add(Me.Label12)
-        Me.Panel25.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel25.Location = New System.Drawing.Point(1306, 0)
-        Me.Panel25.Name = "Panel25"
-        Me.Panel25.Size = New System.Drawing.Size(259, 31)
-        Me.Panel25.TabIndex = 1
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.ForeColor = System.Drawing.Color.White
-        Me.Label12.Location = New System.Drawing.Point(-2, 8)
-        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(251, 14)
-        Me.Label12.TabIndex = 16
-        Me.Label12.Text = "© 2019 - Innovention Food Asia Corporation"
         '
         'Panel23
         '
@@ -944,8 +935,8 @@ Partial Class POS
         Me.DataGridViewOrders.AllowUserToDeleteRows = False
         Me.DataGridViewOrders.AllowUserToResizeColumns = False
         Me.DataGridViewOrders.AllowUserToResizeRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window
+        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
         Me.DataGridViewOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewOrders.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewOrders.BorderStyle = System.Windows.Forms.BorderStyle.None
@@ -970,24 +961,24 @@ Partial Class POS
         '
         'Column2
         '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle14
         Me.Column2.FillWeight = 65.65144!
         Me.Column2.HeaderText = "Qty"
         Me.Column2.Name = "Column2"
         '
         'Column3
         '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column3.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column3.DefaultCellStyle = DataGridViewCellStyle15
         Me.Column3.FillWeight = 65.65144!
         Me.Column3.HeaderText = "Price"
         Me.Column3.Name = "Column3"
         '
         'Column4
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle16
         Me.Column4.FillWeight = 65.65144!
         Me.Column4.HeaderText = "Total"
         Me.Column4.Name = "Column4"
@@ -1846,6 +1837,14 @@ Partial Class POS
         'BackgroundWorker3
         '
         '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(361, 6)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(214, 18)
+        Me.ProgressBar1.TabIndex = 17
+        Me.ProgressBar1.Visible = False
+        '
         'POS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1874,8 +1873,6 @@ Partial Class POS
         Me.Panel24.ResumeLayout(False)
         Me.Panel34.ResumeLayout(False)
         Me.Panel34.PerformLayout()
-        Me.Panel25.ResumeLayout(False)
-        Me.Panel25.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel32.ResumeLayout(False)
@@ -2000,7 +1997,6 @@ Partial Class POS
     Friend WithEvents Button1 As Button
     Friend WithEvents Panel32 As Panel
     Friend WithEvents Panel24 As Panel
-    Friend WithEvents Panel25 As Panel
     Friend WithEvents Label12 As Label
     Friend WithEvents Panel33 As Panel
     Friend WithEvents Panel20 As Panel
@@ -2071,4 +2067,5 @@ Partial Class POS
     Friend WithEvents Column42 As DataGridViewTextBoxColumn
     Friend WithEvents Column45 As DataGridViewTextBoxColumn
     Friend WithEvents Panel34 As Panel
+    Friend WithEvents ProgressBar1 As ProgressBar
 End Class
