@@ -55,26 +55,32 @@ Public Class Login
                 End If
             ElseIf S_Backup_Interval = "3" Then
                 'Monthly
-                If FirstDayOfMonth(Now()) = Format(Now(), "yyyy-MM-dd") Then
-                    S_Backup_Date = Format(Now(), "yyyy-MM-dd")
-                    BackupDatabase()
-                    Dim sql As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
-                    Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
-                    cmd.ExecuteNonQuery()
-                    MessageBox.Show("Database backup path: " & S_ExportPath, "Backup Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Else
-                    Dim sql As String = "SELECT S_BackupDate FROM loc_settings WHERE settings_id = 1"
-                    Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
-                    Dim result = cmd.ExecuteScalar()
-                    If FirstDayOfMonth(Now) <> result Then
-                        S_Backup_Date = FirstDayOfMonth(Now)
+                Dim Query = "SELECT S_BackupDate FROM loc_settings WHERE settings_id = 1"
+                Dim Command As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+                Dim result = Command.ExecuteScalar
+                If result <> Format(Now(), "yyyy-MM-dd") Then
+                    If FirstDayOfMonth(Now()) = Format(Now(), "yyyy-MM-dd") Then
+                        S_Backup_Date = Format(Now(), "yyyy-MM-dd")
                         BackupDatabase()
-                        Dim sql1 As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
-                        Dim cmd1 As MySqlCommand = New MySqlCommand(sql1, LocalhostConn)
-                        cmd1.ExecuteNonQuery()
+                        Dim sql As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
+                        Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                        cmd.ExecuteNonQuery()
                         MessageBox.Show("Database backup path: " & S_ExportPath, "Backup Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        Dim sql As String = "SELECT S_BackupDate FROM loc_settings WHERE settings_id = 1"
+                        Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                        Dim result1 = cmd.ExecuteScalar()
+                        If FirstDayOfMonth(Now) <> result1 Then
+                            S_Backup_Date = FirstDayOfMonth(Now)
+                            BackupDatabase()
+                            Dim sql1 As String = "UPDATE loc_settings SET S_BackupDate = '" & S_Backup_Date & "' WHERE settings_id = 1"
+                            Dim cmd1 As MySqlCommand = New MySqlCommand(sql1, LocalhostConn)
+                            cmd1.ExecuteNonQuery()
+                            MessageBox.Show("Database backup path: " & S_ExportPath, "Backup Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        End If
                     End If
                 End If
+
             ElseIf S_Backup_Interval = "4" Then
                 Dim YearNow As Integer = Date.Now.Year
                 If YearNow <> Format(S_Backup_Date, ("yyyy")) Then
