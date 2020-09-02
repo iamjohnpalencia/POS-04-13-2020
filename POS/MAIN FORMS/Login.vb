@@ -110,7 +110,6 @@ Public Class Login
         Me.Hide()
         Registration.Show()
     End Sub
-
     Private Sub txtpassword_KeyDown(sender As Object, e As KeyEventArgs) Handles txtpassword.KeyDown
         If e.KeyCode = Keys.Enter Then
             ButttonLogin.PerformClick()
