@@ -375,9 +375,8 @@ Public Class SynctoCloud
             fillpricerequestchange()
             filldatagridviewcoupon()
             totalrow = SumOfColumnsToInt(DataGridView2, 0)
-            POS.ProgressBar1.Maximum = totalrow
             LabelTTLRowtoSync.Text = totalrow
-            POS.ProgressBar1.Value = 0
+
             Button1.Enabled = False
             Label2.Text = "Item(s)"
         Catch ex As Exception
@@ -451,7 +450,11 @@ Public Class SynctoCloud
                 For Each t In threadListloadData
                     t.Join()
                 Next
+                POS.ProgressBar1.Maximum = Val(LabelTTLRowtoSync.Text)
                 ProgressBar1.Maximum = Val(LabelTTLRowtoSync.Text)
+                MsgBox(POS.ProgressBar1.Maximum)
+                MsgBox(ProgressBar1.Maximum)
+
                 'POS.ProgressBar1.Maximum = Val(Label7.Text)
                 'System Logs
                 thread1 = New Thread(AddressOf insertsystemlogs1)
