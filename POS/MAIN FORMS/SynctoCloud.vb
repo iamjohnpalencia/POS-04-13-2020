@@ -375,11 +375,7 @@ Public Class SynctoCloud
             fillpricerequestchange()
             filldatagridviewcoupon()
             totalrow = SumOfColumnsToInt(DataGridView2, 0)
-
-            POS.Instance.Invoke(Sub()
-                                    POS.ProgressBar1.Maximum = totalrow
-                                End Sub)
-
+            POS.ProgressBar1.Maximum = totalrow
             LabelTTLRowtoSync.Text = totalrow
             POS.ProgressBar1.Value = 0
             Button1.Enabled = False
