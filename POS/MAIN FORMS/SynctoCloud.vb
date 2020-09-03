@@ -354,6 +354,8 @@ Public Class SynctoCloud
 #End Region
     Private Sub LoadData()
         Try
+            POS.ProgressBar1.Value = 0
+            ProgressBar1.Value = 0
             Label1.Text = ""
             Label2.Text = ""
             LabelTTLRowtoSync.Text = ""
