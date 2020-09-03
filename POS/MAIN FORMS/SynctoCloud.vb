@@ -452,8 +452,6 @@ Public Class SynctoCloud
                 Next
                 POS.ProgressBar1.Maximum = Val(LabelTTLRowtoSync.Text)
                 ProgressBar1.Maximum = Val(LabelTTLRowtoSync.Text)
-                MsgBox(POS.ProgressBar1.Maximum)
-                MsgBox(ProgressBar1.Maximum)
 
                 'POS.ProgressBar1.Maximum = Val(Label7.Text)
                 'System Logs
