@@ -32,47 +32,44 @@ Module POSMODULE
     End Sub
     Public Sub retrieveformulaids()
         Try
-            sql = "SELECT product_id, product_sku, formula_id, product_category, origin, server_inventory_id, addontype FROM `loc_admin_products` WHERE product_name = '" & POS.TextBoxNAME.Text & "'"
-            cmd = New MySqlCommand
-            With cmd
-                .CommandText = sql
-                .Connection = LocalhostConn()
-                Using readerObj As MySqlDataReader = cmd.ExecuteReader
-                    While readerObj.Read
-                        Dim formula_id = readerObj("formula_id")
-                        Dim product_id = readerObj("product_id").ToString
-                        Dim product_sku = readerObj("product_sku").ToString
-                        Dim product_category = readerObj("product_category").ToString
-                        Dim origin = readerObj("origin").ToString
-                        Dim inventoryid = readerObj("server_inventory_id").ToString
-                        Dim addontype = readerObj("addontype").ToString
-                        With POS
-                            If POS.WaffleUpgrade = True Then
-                                Dim formulaId As String = ""
-                                Dim str As String = formula_id
-                                Dim words As String() = str.Split(New Char() {","c})
-                                Dim word As String
-                                For Each word In words
-                                    If word.Length = 1 Then
-                                        If word = S_Batter Then
-                                            word = word.Replace(word, S_Brownie_Mix)
-                                            formulaId += word & ","
-                                        Else
-                                            formulaId += word & ","
-                                        End If
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim sql = "SELECT product_id, product_sku, formula_id, product_category, origin, server_inventory_id, addontype FROM `loc_admin_products` WHERE product_name = '" & POS.TextBoxNAME.Text & "'"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
+            Using readerObj As MySqlDataReader = cmd.ExecuteReader
+                While readerObj.Read
+                    Dim formula_id = readerObj("formula_id")
+                    Dim product_id = readerObj("product_id").ToString
+                    Dim product_sku = readerObj("product_sku").ToString
+                    Dim product_category = readerObj("product_category").ToString
+                    Dim origin = readerObj("origin").ToString
+                    Dim inventoryid = readerObj("server_inventory_id").ToString
+                    Dim addontype = readerObj("addontype").ToString
+                    With POS
+                        If POS.WaffleUpgrade = True Then
+                            Dim formulaId As String = ""
+                            Dim str As String = formula_id
+                            Dim words As String() = str.Split(New Char() {","c})
+                            Dim word As String
+                            For Each word In words
+                                If word.Length = 1 Then
+                                    If word = S_Batter Then
+                                        word = word.Replace(word, S_Brownie_Mix)
+                                        formulaId += word & ","
                                     Else
                                         formulaId += word & ","
                                     End If
-                                Next
-                                formula_id = formulaId.Substring(0, formulaId.Length - 1)
+                                Else
+                                    formulaId += word & ","
+                                End If
+                            Next
+                            formula_id = formulaId.Substring(0, formulaId.Length - 1)
 
-                            End If
-                            .TextBoxFormulaID.Text = formula_id
-                            checkcriticallimit(formula_id:=formula_id, ID:=product_id, SKU:=product_sku, CAT:=product_category, ORIGIN:=origin, INVID:=inventoryid, addontype:=addontype)
-                        End With
-                    End While
-                End Using
-            End With
+                        End If
+                        .TextBoxFormulaID.Text = formula_id
+                        checkcriticallimit(formula_id:=formula_id, ID:=product_id, SKU:=product_sku, CAT:=product_category, ORIGIN:=origin, INVID:=inventoryid, addontype:=addontype)
+                    End With
+                End While
+            End Using
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
