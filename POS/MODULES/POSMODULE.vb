@@ -422,9 +422,9 @@ Module POSMODULE
                 Dim words As String() = splitformulaID.Split(New Char() {","c})
                 Dim word As String
                 For Each word In words
-                    sql = "SELECT serving_value, server_formula_id, unit_cost FROM `loc_product_formula` WHERE server_formula_id = " & word
-                    cmd = New MySqlCommand(sql, LocalhostConn)
-                    da = New MySqlDataAdapter(cmd)
+                    Dim sql = "SELECT serving_value, server_formula_id, unit_cost FROM `loc_product_formula` WHERE server_formula_id = " & word
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dtfill As DataTable = New DataTable
                     da.Fill(dtfill)
                     Dim FRID As DataRow = dt.NewRow
@@ -444,9 +444,9 @@ Module POSMODULE
                 Dim words As String() = splitformulaID.Split(New Char() {","c})
                 Dim word As String
                 For Each word In words
-                    sql = "SELECT serving_value, formula_id, unit_cost FROM `loc_product_formula` WHERE server_formula_id " & word
-                    cmd = New MySqlCommand(sql, LocalhostConn)
-                    da = New MySqlDataAdapter(cmd)
+                    Dim sql = "SELECT serving_value, formula_id, unit_cost FROM `loc_product_formula` WHERE server_formula_id " & word
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dtfill As DataTable = New DataTable
                     da.Fill(dtfill)
                     Dim FRID As DataRow = dt.NewRow
