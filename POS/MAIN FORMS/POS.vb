@@ -808,18 +808,21 @@ Public Class POS
     End Sub
     Private Sub InsertFMStock()
         Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim cmd As MySqlCommand
+            Dim sql = "INSERT INTO loc_fm_stock (`formula_id`, `stock_primary`, `stock_secondary`,`crew_id`, `store_id`, `guid`, `created_at`, `status`)
+                       VALUES (@1,@2,@3,@4,@5,@6,@7,@8)"
             For i As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
-                table = "loc_fm_stock"
-                fields = "(`formula_id`, `stock_primary`, `stock_secondary`,`crew_id`, `store_id`, `guid`, `created_at`, `status`)"
-                value = "('" & DataGridViewInv.Rows(i).Cells(1).Value & "'  
-                                ," & DataGridViewInv.Rows(i).Cells(2).Value & "    
-                                ," & DataGridViewInv.Rows(i).Cells(0).Value & "                   
-                                ,'" & ClientCrewID & "'
-                                ,'" & ClientStoreID & "'
-                                ,'" & ClientGuid & "'
-                                ,'" & FullDate24HR() & "'                    
-                                , " & 1 & ")"
-                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
+                cmd = New MySqlCommand(sql, ConnectionLocal)
+                cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = DataGridViewInv.Rows(i).Cells(1).Value
+                cmd.Parameters.Add("@2", MySqlDbType.Decimal).Value = DataGridViewInv.Rows(i).Cells(2).Value
+                cmd.Parameters.Add("@3", MySqlDbType.Decimal).Value = DataGridViewInv.Rows(i).Cells(0).Value
+                cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = ClientCrewID
+                cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = ClientStoreID
+                cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = ClientGuid
+                cmd.Parameters.Add("@7", MySqlDbType.Text).Value = FullDate24HR()
+                cmd.Parameters.Add("@8", MySqlDbType.Int64).Value = 1
+                cmd.ExecuteNonQuery()
             Next
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -828,6 +831,7 @@ Public Class POS
     End Sub
     Private Sub InsertDailyTransaction()
         Try
+
             Dim table As String = "loc_daily_transaction"
             Dim fields As String = " (`transaction_number`, `amounttendered`, `totaldiscount`, `change`, `amountdue`, `vatablesales`, `vatexemptsales`, `zeroratedsales`
                      , `lessvat`, `si_number`, `crew_id`, `guid`, `active`, `store_id`, `created_at`, `transaction_type`, `shift`, `zreading`, `synced`
