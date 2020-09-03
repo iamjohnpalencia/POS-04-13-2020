@@ -843,35 +843,38 @@ Public Class POS
     End Sub
     Private Sub InsertDailyDetails()
         Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim cmd As MySqlCommand
+            Dim sql = "INSERT INTO loc_daily_transaction_details (`product_id`,`product_sku`,`product_name`,`quantity`,`price`,`total`,`crew_id`,`transaction_number`,`active`,`created_at`,`guid`,`store_id`,`synced`,`total_cost_of_goods`,`product_category`,`zreading`,`transaction_type`,`upgraded`,`addontype`) 
+                       VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17,@18,@19)"
             For i As Integer = 0 To DataGridViewOrders.Rows.Count - 1 Step +1
                 Dim totalcostofgoods As Decimal
-                Dim table As String = "loc_daily_transaction_details"
-                Dim fields As String = "(`product_id`,`product_sku`,`product_name`,`quantity`,`price`,`total`,`crew_id`,`transaction_number`,`active`,`created_at`,`guid`,`store_id`,`synced`,`total_cost_of_goods`,`product_category`,`zreading`,`transaction_type`,`upgraded`,`addontype`)"
                 For a As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
                     If DataGridViewInv.Rows(a).Cells(4).Value = DataGridViewOrders.Rows(i).Cells(0).Value Then
                         totalcostofgoods += DataGridViewInv.Rows(a).Cells(6).Value
                     End If
                 Next
-                Dim value As String = "(" & DataGridViewOrders.Rows(i).Cells(5).Value & "
-                            ,'" & DataGridViewOrders.Rows(i).Cells(6).Value & "'
-                            ,'" & DataGridViewOrders.Rows(i).Cells(0).Value & "'
-                            , " & DataGridViewOrders.Rows(i).Cells(1).Value & "
-                            , " & DataGridViewOrders.Rows(i).Cells(2).Value & "
-                            , " & DataGridViewOrders.Rows(i).Cells(3).Value & "
-                            , '" & ClientCrewID & "'
-                            , '" & TextBoxMAXID.Text & "'
-                            , " & ACTIVE & "
-                            , '" & FullDate24HR() & "'
-                            , '" & ClientGuid & "'
-                            , '" & ClientStoreID & "'
-                            , 'Unsynced'
-                            , " & totalcostofgoods & "
-                            , '" & DataGridViewOrders.Rows(i).Cells(7).Value & "'
-                            , '" & S_Zreading & "'
-                            , '" & TRANSACTIONMODE & "'
-                            , " & DataGridViewOrders.Rows(i).Cells(11).Value & "
-                            , '" & DataGridViewOrders.Rows(i).Cells(13).Value & "')"
-                GLOBAL_INSERT_FUNCTION(table, fields, value)
+                cmd = New MySqlCommand(sql, ConnectionLocal)
+                cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = DataGridViewOrders.Rows(i).Cells(5).Value
+                cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = DataGridViewOrders.Rows(i).Cells(6).Value
+                cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = DataGridViewOrders.Rows(i).Cells(0).Value
+                cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = DataGridViewOrders.Rows(i).Cells(1).Value
+                cmd.Parameters.Add("@5", MySqlDbType.Decimal).Value = DataGridViewOrders.Rows(i).Cells(2).Value
+                cmd.Parameters.Add("@6", MySqlDbType.Decimal).Value = DataGridViewOrders.Rows(i).Cells(3).Value
+                cmd.Parameters.Add("@7", MySqlDbType.VarChar).Value = ClientCrewID
+                cmd.Parameters.Add("@8", MySqlDbType.VarChar).Value = TextBoxMAXID.Text
+                cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = ACTIVE
+                cmd.Parameters.Add("@10", MySqlDbType.Text).Value = FullDate24HR()
+                cmd.Parameters.Add("@11", MySqlDbType.VarChar).Value = ClientGuid
+                cmd.Parameters.Add("@12", MySqlDbType.VarChar).Value = ClientStoreID
+                cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = "Unsynced"
+                cmd.Parameters.Add("@14", MySqlDbType.Decimal).Value = totalcostofgoods
+                cmd.Parameters.Add("@15", MySqlDbType.VarChar).Value = DataGridViewOrders.Rows(i).Cells(7).Value
+                cmd.Parameters.Add("@16", MySqlDbType.Text).Value = S_Zreading
+                cmd.Parameters.Add("@17", MySqlDbType.Text).Value = TRANSACTIONMODE
+                cmd.Parameters.Add("@18", MySqlDbType.Int64).Value = DataGridViewOrders.Rows(i).Cells(11).Value
+                cmd.Parameters.Add("@19", MySqlDbType.Text).Value = DataGridViewOrders.Rows(i).Cells(13).Value
+                cmd.ExecuteNonQuery()
                 totalcostofgoods = 0
             Next
         Catch ex As Exception
