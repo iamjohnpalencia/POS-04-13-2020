@@ -1,4 +1,4 @@
-server=pos-cloud.cnk01mqwsyxf.ap-southeast-1.rds.amazonaws.com
+server=pos-cloud-rev.cnk01mqwsyxf.ap-southeast-1.rds.amazonaws.com
 user id=masteradmin
 password=password2019
 database=pos
