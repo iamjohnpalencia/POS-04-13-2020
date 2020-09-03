@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2020 at 04:10 PM
+-- Generation Time: Sep 03, 2020 at 12:56 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `pos`
 --
-CREATE DATABASE IF NOT EXISTS `pos` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `pos`;
 
 -- --------------------------------------------------------
 
@@ -44,8 +42,14 @@ CREATE TABLE `admin_masterlist` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `admin_masterlist`
+--
+
+TRUNCATE TABLE `admin_masterlist`;
+--
 -- Dumping data for table `admin_masterlist`
 --
+
 
 
 -- --------------------------------------------------------
@@ -79,6 +83,11 @@ CREATE TABLE `admin_outlets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `admin_outlets`
+--
+
+TRUNCATE TABLE `admin_outlets`;
+--
 -- Dumping data for table `admin_outlets`
 --
 
@@ -100,8 +109,14 @@ CREATE TABLE `loc_admin_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `loc_admin_category`
+--
+
+TRUNCATE TABLE `loc_admin_category`;
+--
 -- Dumping data for table `loc_admin_category`
 --
+
 
 
 -- --------------------------------------------------------
@@ -135,6 +150,11 @@ CREATE TABLE `loc_admin_products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `loc_admin_products`
+--
+
+TRUNCATE TABLE `loc_admin_products`;
+--
 -- Dumping data for table `loc_admin_products`
 --
 
@@ -157,11 +177,10 @@ CREATE TABLE `loc_coupon_data` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `loc_coupon_data`
+-- Truncate table before insert `loc_coupon_data`
 --
 
-
-
+TRUNCATE TABLE `loc_coupon_data`;
 -- --------------------------------------------------------
 
 --
@@ -197,9 +216,13 @@ CREATE TABLE `loc_daily_transaction` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_daily_transaction`
+-- Truncate table before insert `loc_daily_transaction`
 --
 
+TRUNCATE TABLE `loc_daily_transaction`;
+--
+-- Dumping data for table `loc_daily_transaction`
+--
 
 -- --------------------------------------------------------
 
@@ -232,6 +255,11 @@ CREATE TABLE `loc_daily_transaction_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `loc_daily_transaction_details`
+--
+
+TRUNCATE TABLE `loc_daily_transaction_details`;
+--
 -- Dumping data for table `loc_daily_transaction_details`
 --
 
@@ -258,9 +286,10 @@ CREATE TABLE `loc_deposit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_deposit`
+-- Truncate table before insert `loc_deposit`
 --
 
+TRUNCATE TABLE `loc_deposit`;
 -- --------------------------------------------------------
 
 --
@@ -283,6 +312,11 @@ CREATE TABLE `loc_expenses_hold` (
   `active` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_expenses_hold`
+--
+
+TRUNCATE TABLE `loc_expenses_hold`;
 -- --------------------------------------------------------
 
 --
@@ -309,10 +343,10 @@ CREATE TABLE `loc_expense_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_expense_details`
+-- Truncate table before insert `loc_expense_details`
 --
 
-
+TRUNCATE TABLE `loc_expense_details`;
 -- --------------------------------------------------------
 
 --
@@ -336,9 +370,10 @@ CREATE TABLE `loc_expense_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_expense_list`
+-- Truncate table before insert `loc_expense_list`
 --
 
+TRUNCATE TABLE `loc_expense_list`;
 -- --------------------------------------------------------
 
 --
@@ -359,9 +394,13 @@ CREATE TABLE `loc_fm_stock` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_fm_stock`
+-- Truncate table before insert `loc_fm_stock`
 --
 
+TRUNCATE TABLE `loc_fm_stock`;
+--
+-- Dumping data for table `loc_fm_stock`
+--
 
 
 -- --------------------------------------------------------
@@ -386,6 +425,11 @@ CREATE TABLE `loc_hold_inventory` (
   `origin` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_hold_inventory`
+--
+
+TRUNCATE TABLE `loc_hold_inventory`;
 -- --------------------------------------------------------
 
 --
@@ -403,6 +447,11 @@ CREATE TABLE `loc_inbox_messages` (
   `active` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_inbox_messages`
+--
+
+TRUNCATE TABLE `loc_inbox_messages`;
 -- --------------------------------------------------------
 
 --
@@ -426,9 +475,13 @@ CREATE TABLE `loc_inv_temp_data` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_inv_temp_data`
+-- Truncate table before insert `loc_inv_temp_data`
 --
 
+TRUNCATE TABLE `loc_inv_temp_data`;
+--
+-- Dumping data for table `loc_inv_temp_data`
+--
 
 
 -- --------------------------------------------------------
@@ -451,9 +504,13 @@ CREATE TABLE `loc_partners_transaction` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_partners_transaction`
+-- Truncate table before insert `loc_partners_transaction`
 --
 
+TRUNCATE TABLE `loc_partners_transaction`;
+--
+-- Dumping data for table `loc_partners_transaction`
+--
 
 
 -- --------------------------------------------------------
@@ -486,6 +543,11 @@ CREATE TABLE `loc_pending_orders` (
   `addontype` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_pending_orders`
+--
+
+TRUNCATE TABLE `loc_pending_orders`;
 -- --------------------------------------------------------
 
 --
@@ -515,6 +577,11 @@ CREATE TABLE `loc_pos_inventory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `loc_pos_inventory`
+--
+
+TRUNCATE TABLE `loc_pos_inventory`;
+--
 -- Dumping data for table `loc_pos_inventory`
 --
 
@@ -539,11 +606,10 @@ CREATE TABLE `loc_price_request_change` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `loc_price_request_change`
+-- Truncate table before insert `loc_price_request_change`
 --
 
-
-
+TRUNCATE TABLE `loc_price_request_change`;
 -- --------------------------------------------------------
 
 --
@@ -573,9 +639,13 @@ CREATE TABLE `loc_product_formula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_product_formula`
+-- Truncate table before insert `loc_product_formula`
 --
 
+TRUNCATE TABLE `loc_product_formula`;
+--
+-- Dumping data for table `loc_product_formula`
+--
 
 
 -- --------------------------------------------------------
@@ -599,11 +669,10 @@ CREATE TABLE `loc_refund_return_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_refund_return_details`
+-- Truncate table before insert `loc_refund_return_details`
 --
 
-
-
+TRUNCATE TABLE `loc_refund_return_details`;
 -- --------------------------------------------------------
 
 --
@@ -621,8 +690,14 @@ CREATE TABLE `loc_send_bug_report` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Truncate table before insert `loc_send_bug_report`
+--
+
+TRUNCATE TABLE `loc_send_bug_report`;
+--
 -- Dumping data for table `loc_send_bug_report`
 --
+
 
 -- --------------------------------------------------------
 
@@ -644,6 +719,11 @@ CREATE TABLE `loc_senior_details` (
   `synced` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Truncate table before insert `loc_senior_details`
+--
+
+TRUNCATE TABLE `loc_senior_details`;
 -- --------------------------------------------------------
 
 --
@@ -684,8 +764,14 @@ CREATE TABLE `loc_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `loc_settings`
+--
+
+TRUNCATE TABLE `loc_settings`;
+--
 -- Dumping data for table `loc_settings`
 --
+
 
 -- --------------------------------------------------------
 
@@ -701,6 +787,11 @@ CREATE TABLE `loc_stockadjustment_cat` (
   `active` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Truncate table before insert `loc_stockadjustment_cat`
+--
+
+TRUNCATE TABLE `loc_stockadjustment_cat`;
 -- --------------------------------------------------------
 
 --
@@ -722,9 +813,13 @@ CREATE TABLE `loc_system_logs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_system_logs`
+-- Truncate table before insert `loc_system_logs`
 --
 
+TRUNCATE TABLE `loc_system_logs`;
+--
+-- Dumping data for table `loc_system_logs`
+--
 
 
 -- --------------------------------------------------------
@@ -748,6 +843,11 @@ CREATE TABLE `loc_transaction_mode_details` (
   `synced` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_transaction_mode_details`
+--
+
+TRUNCATE TABLE `loc_transaction_mode_details`;
 -- --------------------------------------------------------
 
 --
@@ -766,10 +866,10 @@ CREATE TABLE `loc_transfer_data` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `loc_transfer_data`
+-- Truncate table before insert `loc_transfer_data`
 --
 
-
+TRUNCATE TABLE `loc_transfer_data`;
 -- --------------------------------------------------------
 
 --
@@ -783,6 +883,11 @@ CREATE TABLE `loc_update_logs` (
   `updated_at` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Truncate table before insert `loc_update_logs`
+--
+
+TRUNCATE TABLE `loc_update_logs`;
 -- --------------------------------------------------------
 
 --
@@ -809,6 +914,11 @@ CREATE TABLE `loc_users` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loc_users`
+--
+
+TRUNCATE TABLE `loc_users`;
 --
 -- Dumping data for table `loc_users`
 --
@@ -843,9 +953,13 @@ CREATE TABLE `loc_zread_inventory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loc_zread_inventory`
+-- Truncate table before insert `loc_zread_inventory`
 --
 
+TRUNCATE TABLE `loc_zread_inventory`;
+--
+-- Dumping data for table `loc_zread_inventory`
+--
 
 
 -- --------------------------------------------------------
@@ -876,6 +990,11 @@ CREATE TABLE `tbcoupon` (
   `synced` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Truncate table before insert `tbcoupon`
+--
+
+TRUNCATE TABLE `tbcoupon`;
 --
 -- Dumping data for table `tbcoupon`
 --
@@ -908,6 +1027,11 @@ CREATE TABLE `triggers_loc_admin_products` (
   `synced` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `triggers_loc_admin_products`
+--
+
+TRUNCATE TABLE `triggers_loc_admin_products`;
 --
 -- Triggers `triggers_loc_admin_products`
 --
@@ -949,9 +1073,13 @@ CREATE TABLE `triggers_loc_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `triggers_loc_users`
+-- Truncate table before insert `triggers_loc_users`
 --
 
+TRUNCATE TABLE `triggers_loc_users`;
+--
+-- Dumping data for table `triggers_loc_users`
+--
 
 
 --
