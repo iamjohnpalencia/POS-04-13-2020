@@ -23,11 +23,11 @@ Partial Class POS
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(POS))
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
@@ -73,7 +73,6 @@ Partial Class POS
         Me.Origin = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.ButtonWaffleUpgrade = New System.Windows.Forms.Button()
@@ -143,7 +142,6 @@ Partial Class POS
         Me.Panel26 = New System.Windows.Forms.Panel()
         Me.Panel19 = New System.Windows.Forms.Panel()
         Me.Panel12 = New System.Windows.Forms.Panel()
-        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.Panel15 = New System.Windows.Forms.Panel()
@@ -666,22 +664,6 @@ Partial Class POS
         Me.Panel3.Size = New System.Drawing.Size(1176, 70)
         Me.Panel3.TabIndex = 39
         '
-        'ImageList1
-        '
-        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
-        Me.ImageList1.Images.SetKeyName(0, "Blueberry-FBW-Images-150x150.jpg")
-        Me.ImageList1.Images.SetKeyName(1, "Caramel-FBW-Images-150x150.jpg")
-        Me.ImageList1.Images.SetKeyName(2, "Cheddar-Cheese-FBW-Images-150x150.jpg")
-        Me.ImageList1.Images.SetKeyName(3, "Chocolate-FBW-Images-300x300.jpg")
-        Me.ImageList1.Images.SetKeyName(4, "Cream-Cheese-FBW-Images-150x150.jpg")
-        Me.ImageList1.Images.SetKeyName(5, "Custard-FBW-Images-150x150.jpg")
-        Me.ImageList1.Images.SetKeyName(6, "Hazelnut-FBW-Images-150x150.jpg")
-        Me.ImageList1.Images.SetKeyName(7, "Mango-Peach-FBW-Images-150x150.jpg")
-        Me.ImageList1.Images.SetKeyName(8, "Peanut-Butter-FBW-Images-300x300.jpg")
-        Me.ImageList1.Images.SetKeyName(9, "Plain waffle.jpg")
-        Me.ImageList1.Images.SetKeyName(10, "Strawberry-FBW-Images-300x300.jpg")
-        '
         'Panel14
         '
         Me.Panel14.BackColor = System.Drawing.Color.White
@@ -943,8 +925,8 @@ Partial Class POS
         Me.DataGridViewOrders.AllowUserToDeleteRows = False
         Me.DataGridViewOrders.AllowUserToResizeColumns = False
         Me.DataGridViewOrders.AllowUserToResizeRows = False
-        DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window
-        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        Me.DataGridViewOrders.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridViewOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewOrders.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewOrders.BorderStyle = System.Windows.Forms.BorderStyle.None
@@ -969,24 +951,24 @@ Partial Class POS
         '
         'Column2
         '
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle2
         Me.Column2.FillWeight = 65.65144!
         Me.Column2.HeaderText = "Qty"
         Me.Column2.Name = "Column2"
         '
         'Column3
         '
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column3.DefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column3.DefaultCellStyle = DataGridViewCellStyle3
         Me.Column3.FillWeight = 65.65144!
         Me.Column3.HeaderText = "Price"
         Me.Column3.Name = "Column3"
         '
         'Column4
         '
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle4
         Me.Column4.FillWeight = 65.65144!
         Me.Column4.HeaderText = "Total"
         Me.Column4.Name = "Column4"
@@ -1920,7 +1902,6 @@ Partial Class POS
     Private WithEvents ButtonMenu As Button
     Private WithEvents ButtonPromo As Button
     Private WithEvents ButtonLogout As Button
-    Friend WithEvents ImageList1 As ImageList
     Private WithEvents ButtonSettings As Button
     Private WithEvents ButtonExpense As Button
     Public WithEvents Panel3 As Panel
@@ -1965,7 +1946,6 @@ Partial Class POS
     Friend WithEvents DataGridViewInv As DataGridView
     Friend WithEvents TextBoxINC As TextBox
     Friend WithEvents TextBoxPressQTY As TextBox
-    Friend WithEvents PrintDocument1 As Printing.PrintDocument
     Friend WithEvents Timer1 As Timer
     Friend WithEvents LabelStorename As Label
     Friend WithEvents Panel19 As Panel

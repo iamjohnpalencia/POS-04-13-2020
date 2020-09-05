@@ -396,16 +396,19 @@ Public Class Reports
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If DataGridViewTransactionDetails.Rows.Count > 0 Then
-            a = 115
+
             total = SumOfColumnsToDecimal(DataGridViewTransactionDetails, 3)
-            b = 0
             Try
                 For i As Integer = 0 To DataGridViewTransactionDetails.Rows.Count - 1 Step +1
-                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
                     b += 10
+                    If DataGridViewTransactionDetails.Rows(i).Cells(5).Value > 0 Then
+                        b += 10
+                    End If
                 Next
+                printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
                 PrintPreviewDialog1.Document = printdoc
                 PrintPreviewDialog1.ShowDialog()
+                b = 0
                 ' printdoc.Print()
             Catch ex As Exception
                 MessageBox.Show("An error occurred while trying to load the " &
@@ -453,6 +456,7 @@ Public Class Reports
                     If DataGridViewTransactionDetails.Rows(i).Cells(5).Value > 0 Then
                         abc += 10
                         a += 10
+
                         RightToLeftDisplay(sender, e, abc + 115, "     + UPGRADE BRWN " & DataGridViewTransactionDetails.Rows(i).Cells(5).Value, "", fontaddon, 0, 0)
                     End If
                 End If
@@ -653,7 +657,7 @@ Public Class Reports
             RightToLeftDisplay(sender, e, 430, "PAYMAYA", PAYMAYA, font, 20, 0)
             Dim lalafood = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Lalafood' ")
             RightToLeftDisplay(sender, e, 440, "LALAFOOD", lalafood, font, 20, 0)
-            Dim FOODPANDA = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Cashalo' ")
+            Dim FOODPANDA = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Food Panda' ")
             RightToLeftDisplay(sender, e, 450, "FOOD PANDA", FOODPANDA, font, 20, 0)
             Dim REPEX = sum("amountdue", "loc_daily_transaction WHERE active = 3 AND zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Representation Expenses' ")
             RightToLeftDisplay(sender, e, 460, "REPEXPENSE", REPEX, font, 20, 0)
@@ -974,4 +978,6 @@ Public Class Reports
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+
+
 End Class

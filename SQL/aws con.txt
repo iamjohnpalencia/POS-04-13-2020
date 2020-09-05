@@ -1,5 +1,5 @@
 server=pos-cloud-rev.cnk01mqwsyxf.ap-southeast-1.rds.amazonaws.com
 user id=masteradmin
 password=password2019
-database=pos
+database=posrev
 port=3306

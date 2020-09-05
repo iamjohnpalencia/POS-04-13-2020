@@ -148,6 +148,10 @@ Partial Class ConfigManager
         Me.TextBoxSINumber = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.GroupBox19 = New System.Windows.Forms.GroupBox()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.TextBoxSugarPackets = New System.Windows.Forms.TextBox()
+        Me.TextBoxWaffleBag = New System.Windows.Forms.TextBox()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
@@ -207,6 +211,40 @@ Partial Class ConfigManager
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel10 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
+        Me.Panel27 = New System.Windows.Forms.Panel()
+        Me.GroupBox20 = New System.Windows.Forms.GroupBox()
+        Me.DataGridViewPartners = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GroupBox21 = New System.Windows.Forms.GroupBox()
+        Me.DataGridViewCoupons = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GroupBox15 = New System.Windows.Forms.GroupBox()
+        Me.DataGridViewINVENTORY = New System.Windows.Forms.DataGridView()
+        Me.Column35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column57 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column36 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column37 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column38 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column39 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column40 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column41 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column42 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column43 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox18 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewCATEGORIES = New System.Windows.Forms.DataGridView()
         Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -214,6 +252,8 @@ Partial Class ConfigManager
         Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GroupBox16 = New System.Windows.Forms.GroupBox()
+        Me.DataGridViewPRODUCTS = New System.Windows.Forms.DataGridView()
         Me.GroupBox17 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewFORMULA = New System.Windows.Forms.DataGridView()
         Me.Column44 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -229,22 +269,6 @@ Partial Class ConfigManager
         Me.Column54 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column55 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column56 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GroupBox16 = New System.Windows.Forms.GroupBox()
-        Me.DataGridViewPRODUCTS = New System.Windows.Forms.DataGridView()
-        Me.GroupBox15 = New System.Windows.Forms.GroupBox()
-        Me.DataGridViewINVENTORY = New System.Windows.Forms.DataGridView()
-        Me.Column35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column57 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column36 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column37 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column38 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column39 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column40 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column41 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column42 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column43 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel20 = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.ProgressBar6 = New System.Windows.Forms.ProgressBar()
@@ -295,30 +319,6 @@ Partial Class ConfigManager
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel22 = New System.Windows.Forms.Panel()
         Me.BackgroundWorker6 = New System.ComponentModel.BackgroundWorker()
-        Me.Panel27 = New System.Windows.Forms.Panel()
-        Me.GroupBox20 = New System.Windows.Forms.GroupBox()
-        Me.DataGridViewPartners = New System.Windows.Forms.DataGridView()
-        Me.GroupBox21 = New System.Windows.Forms.GroupBox()
-        Me.DataGridViewCoupons = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.Label27 = New System.Windows.Forms.Label()
-        Me.TextBoxSugarPackets = New System.Windows.Forms.TextBox()
-        Me.TextBoxWaffleBag = New System.Windows.Forms.TextBox()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -376,14 +376,19 @@ Partial Class ConfigManager
         Me.TabPage6.SuspendLayout()
         Me.TableLayoutPanel10.SuspendLayout()
         Me.GroupBox14.SuspendLayout()
-        Me.GroupBox18.SuspendLayout()
-        CType(Me.DataGridViewCATEGORIES, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox17.SuspendLayout()
-        CType(Me.DataGridViewFORMULA, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox16.SuspendLayout()
-        CType(Me.DataGridViewPRODUCTS, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel27.SuspendLayout()
+        Me.GroupBox20.SuspendLayout()
+        CType(Me.DataGridViewPartners, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox21.SuspendLayout()
+        CType(Me.DataGridViewCoupons, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox15.SuspendLayout()
         CType(Me.DataGridViewINVENTORY, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox18.SuspendLayout()
+        CType(Me.DataGridViewCATEGORIES, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox16.SuspendLayout()
+        CType(Me.DataGridViewPRODUCTS, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox17.SuspendLayout()
+        CType(Me.DataGridViewFORMULA, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel21.SuspendLayout()
         Me.TableLayoutPanel11.SuspendLayout()
         Me.GroupBox12.SuspendLayout()
@@ -393,11 +398,6 @@ Partial Class ConfigManager
         CType(Me.DataGridViewOutletDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel12.SuspendLayout()
-        Me.Panel27.SuspendLayout()
-        Me.GroupBox20.SuspendLayout()
-        CType(Me.DataGridViewPartners, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox21.SuspendLayout()
-        CType(Me.DataGridViewCoupons, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel2
@@ -1876,6 +1876,46 @@ Partial Class ConfigManager
         Me.GroupBox19.TabStop = False
         Me.GroupBox19.Text = "Default id references"
         '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.Location = New System.Drawing.Point(158, 72)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(88, 14)
+        Me.Label26.TabIndex = 290
+        Me.Label26.Text = "Sugar Packets:"
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label27.Location = New System.Drawing.Point(157, 28)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(70, 14)
+        Me.Label27.TabIndex = 289
+        Me.Label27.Text = "Waffle Bag:"
+        '
+        'TextBoxSugarPackets
+        '
+        Me.TextBoxSugarPackets.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxSugarPackets.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxSugarPackets.Location = New System.Drawing.Point(160, 87)
+        Me.TextBoxSugarPackets.Name = "TextBoxSugarPackets"
+        Me.TextBoxSugarPackets.ReadOnly = True
+        Me.TextBoxSugarPackets.Size = New System.Drawing.Size(118, 22)
+        Me.TextBoxSugarPackets.TabIndex = 288
+        '
+        'TextBoxWaffleBag
+        '
+        Me.TextBoxWaffleBag.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxWaffleBag.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxWaffleBag.Location = New System.Drawing.Point(160, 45)
+        Me.TextBoxWaffleBag.Name = "TextBoxWaffleBag"
+        Me.TextBoxWaffleBag.ReadOnly = True
+        Me.TextBoxWaffleBag.Size = New System.Drawing.Size(118, 22)
+        Me.TextBoxWaffleBag.TabIndex = 287
+        '
         'Label25
         '
         Me.Label25.AutoSize = True
@@ -2574,6 +2614,237 @@ Partial Class ConfigManager
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "Data"
         '
+        'Panel27
+        '
+        Me.Panel27.AutoScroll = True
+        Me.Panel27.Controls.Add(Me.GroupBox20)
+        Me.Panel27.Controls.Add(Me.GroupBox21)
+        Me.Panel27.Controls.Add(Me.GroupBox15)
+        Me.Panel27.Controls.Add(Me.GroupBox18)
+        Me.Panel27.Controls.Add(Me.GroupBox16)
+        Me.Panel27.Controls.Add(Me.GroupBox17)
+        Me.Panel27.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel27.Location = New System.Drawing.Point(3, 23)
+        Me.Panel27.Name = "Panel27"
+        Me.Panel27.Size = New System.Drawing.Size(493, 405)
+        Me.Panel27.TabIndex = 253
+        '
+        'GroupBox20
+        '
+        Me.GroupBox20.Controls.Add(Me.DataGridViewPartners)
+        Me.GroupBox20.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox20.Location = New System.Drawing.Point(0, 480)
+        Me.GroupBox20.Name = "GroupBox20"
+        Me.GroupBox20.Size = New System.Drawing.Size(476, 96)
+        Me.GroupBox20.TabIndex = 257
+        Me.GroupBox20.TabStop = False
+        Me.GroupBox20.Text = "Partners"
+        '
+        'DataGridViewPartners
+        '
+        Me.DataGridViewPartners.AllowUserToAddRows = False
+        Me.DataGridViewPartners.AllowUserToDeleteRows = False
+        Me.DataGridViewPartners.AllowUserToResizeColumns = False
+        Me.DataGridViewPartners.AllowUserToResizeRows = False
+        Me.DataGridViewPartners.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewPartners.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewPartners.ColumnHeadersVisible = False
+        Me.DataGridViewPartners.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4})
+        Me.DataGridViewPartners.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewPartners.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewPartners.Name = "DataGridViewPartners"
+        Me.DataGridViewPartners.Size = New System.Drawing.Size(470, 70)
+        Me.DataGridViewPartners.TabIndex = 65
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Column18"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Column19"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Column20"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Column21"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        '
+        'GroupBox21
+        '
+        Me.GroupBox21.Controls.Add(Me.DataGridViewCoupons)
+        Me.GroupBox21.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox21.Location = New System.Drawing.Point(0, 384)
+        Me.GroupBox21.Name = "GroupBox21"
+        Me.GroupBox21.Size = New System.Drawing.Size(476, 96)
+        Me.GroupBox21.TabIndex = 257
+        Me.GroupBox21.TabStop = False
+        Me.GroupBox21.Text = "Coupons"
+        '
+        'DataGridViewCoupons
+        '
+        Me.DataGridViewCoupons.AllowUserToAddRows = False
+        Me.DataGridViewCoupons.AllowUserToDeleteRows = False
+        Me.DataGridViewCoupons.AllowUserToResizeColumns = False
+        Me.DataGridViewCoupons.AllowUserToResizeRows = False
+        Me.DataGridViewCoupons.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewCoupons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewCoupons.ColumnHeadersVisible = False
+        Me.DataGridViewCoupons.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.Column25, Me.Column26, Me.Column27, Me.Column28, Me.Column29, Me.Column30})
+        Me.DataGridViewCoupons.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewCoupons.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewCoupons.Name = "DataGridViewCoupons"
+        Me.DataGridViewCoupons.Size = New System.Drawing.Size(470, 70)
+        Me.DataGridViewCoupons.TabIndex = 65
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Column18"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Column19"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Column20"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.HeaderText = "Column21"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        '
+        'DataGridViewTextBoxColumn10
+        '
+        Me.DataGridViewTextBoxColumn10.HeaderText = "Column22"
+        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        '
+        'Column25
+        '
+        Me.Column25.HeaderText = "Column25"
+        Me.Column25.Name = "Column25"
+        '
+        'Column26
+        '
+        Me.Column26.HeaderText = "Column26"
+        Me.Column26.Name = "Column26"
+        '
+        'Column27
+        '
+        Me.Column27.HeaderText = "Column27"
+        Me.Column27.Name = "Column27"
+        '
+        'Column28
+        '
+        Me.Column28.HeaderText = "Column28"
+        Me.Column28.Name = "Column28"
+        '
+        'Column29
+        '
+        Me.Column29.HeaderText = "Column29"
+        Me.Column29.Name = "Column29"
+        '
+        'Column30
+        '
+        Me.Column30.HeaderText = "Column30"
+        Me.Column30.Name = "Column30"
+        '
+        'GroupBox15
+        '
+        Me.GroupBox15.Controls.Add(Me.DataGridViewINVENTORY)
+        Me.GroupBox15.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox15.Location = New System.Drawing.Point(0, 288)
+        Me.GroupBox15.Name = "GroupBox15"
+        Me.GroupBox15.Size = New System.Drawing.Size(476, 96)
+        Me.GroupBox15.TabIndex = 253
+        Me.GroupBox15.TabStop = False
+        Me.GroupBox15.Text = "Inventory"
+        '
+        'DataGridViewINVENTORY
+        '
+        Me.DataGridViewINVENTORY.AllowUserToAddRows = False
+        Me.DataGridViewINVENTORY.AllowUserToDeleteRows = False
+        Me.DataGridViewINVENTORY.AllowUserToResizeColumns = False
+        Me.DataGridViewINVENTORY.AllowUserToResizeRows = False
+        Me.DataGridViewINVENTORY.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewINVENTORY.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewINVENTORY.ColumnHeadersVisible = False
+        Me.DataGridViewINVENTORY.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column35, Me.Column57, Me.Column36, Me.Column37, Me.Column38, Me.Column39, Me.Column40, Me.Column41, Me.Column42, Me.Column43, Me.Column23, Me.Column24})
+        Me.DataGridViewINVENTORY.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewINVENTORY.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewINVENTORY.Name = "DataGridViewINVENTORY"
+        Me.DataGridViewINVENTORY.Size = New System.Drawing.Size(470, 70)
+        Me.DataGridViewINVENTORY.TabIndex = 67
+        '
+        'Column35
+        '
+        Me.Column35.HeaderText = "Column35"
+        Me.Column35.Name = "Column35"
+        '
+        'Column57
+        '
+        Me.Column57.HeaderText = "Column57"
+        Me.Column57.Name = "Column57"
+        '
+        'Column36
+        '
+        Me.Column36.HeaderText = "Column36"
+        Me.Column36.Name = "Column36"
+        '
+        'Column37
+        '
+        Me.Column37.HeaderText = "Column37"
+        Me.Column37.Name = "Column37"
+        '
+        'Column38
+        '
+        Me.Column38.HeaderText = "Column38"
+        Me.Column38.Name = "Column38"
+        '
+        'Column39
+        '
+        Me.Column39.HeaderText = "Column39"
+        Me.Column39.Name = "Column39"
+        '
+        'Column40
+        '
+        Me.Column40.HeaderText = "Column40"
+        Me.Column40.Name = "Column40"
+        '
+        'Column41
+        '
+        Me.Column41.HeaderText = "Column41"
+        Me.Column41.Name = "Column41"
+        '
+        'Column42
+        '
+        Me.Column42.HeaderText = "Column42"
+        Me.Column42.Name = "Column42"
+        '
+        'Column43
+        '
+        Me.Column43.HeaderText = "Column43"
+        Me.Column43.Name = "Column43"
+        '
+        'Column23
+        '
+        Me.Column23.HeaderText = "Column23"
+        Me.Column23.Name = "Column23"
+        '
+        'Column24
+        '
+        Me.Column24.HeaderText = "Column24"
+        Me.Column24.Name = "Column24"
+        '
         'GroupBox18
         '
         Me.GroupBox18.Controls.Add(Me.DataGridViewCATEGORIES)
@@ -2625,6 +2896,32 @@ Partial Class ConfigManager
         '
         Me.Column22.HeaderText = "Column22"
         Me.Column22.Name = "Column22"
+        '
+        'GroupBox16
+        '
+        Me.GroupBox16.Controls.Add(Me.DataGridViewPRODUCTS)
+        Me.GroupBox16.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox16.Location = New System.Drawing.Point(0, 96)
+        Me.GroupBox16.Name = "GroupBox16"
+        Me.GroupBox16.Size = New System.Drawing.Size(476, 96)
+        Me.GroupBox16.TabIndex = 254
+        Me.GroupBox16.TabStop = False
+        Me.GroupBox16.Text = "Products"
+        '
+        'DataGridViewPRODUCTS
+        '
+        Me.DataGridViewPRODUCTS.AllowUserToAddRows = False
+        Me.DataGridViewPRODUCTS.AllowUserToDeleteRows = False
+        Me.DataGridViewPRODUCTS.AllowUserToResizeColumns = False
+        Me.DataGridViewPRODUCTS.AllowUserToResizeRows = False
+        Me.DataGridViewPRODUCTS.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewPRODUCTS.ColumnHeadersVisible = False
+        Me.DataGridViewPRODUCTS.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewPRODUCTS.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewPRODUCTS.Name = "DataGridViewPRODUCTS"
+        Me.DataGridViewPRODUCTS.Size = New System.Drawing.Size(470, 70)
+        Me.DataGridViewPRODUCTS.TabIndex = 66
         '
         'GroupBox17
         '
@@ -2717,119 +3014,6 @@ Partial Class ConfigManager
         '
         Me.Column56.HeaderText = "Column56"
         Me.Column56.Name = "Column56"
-        '
-        'GroupBox16
-        '
-        Me.GroupBox16.Controls.Add(Me.DataGridViewPRODUCTS)
-        Me.GroupBox16.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox16.Location = New System.Drawing.Point(0, 96)
-        Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(476, 96)
-        Me.GroupBox16.TabIndex = 254
-        Me.GroupBox16.TabStop = False
-        Me.GroupBox16.Text = "Products"
-        '
-        'DataGridViewPRODUCTS
-        '
-        Me.DataGridViewPRODUCTS.AllowUserToAddRows = False
-        Me.DataGridViewPRODUCTS.AllowUserToDeleteRows = False
-        Me.DataGridViewPRODUCTS.AllowUserToResizeColumns = False
-        Me.DataGridViewPRODUCTS.AllowUserToResizeRows = False
-        Me.DataGridViewPRODUCTS.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridViewPRODUCTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewPRODUCTS.ColumnHeadersVisible = False
-        Me.DataGridViewPRODUCTS.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewPRODUCTS.Location = New System.Drawing.Point(3, 23)
-        Me.DataGridViewPRODUCTS.Name = "DataGridViewPRODUCTS"
-        Me.DataGridViewPRODUCTS.Size = New System.Drawing.Size(470, 70)
-        Me.DataGridViewPRODUCTS.TabIndex = 66
-        '
-        'GroupBox15
-        '
-        Me.GroupBox15.Controls.Add(Me.DataGridViewINVENTORY)
-        Me.GroupBox15.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox15.Location = New System.Drawing.Point(0, 288)
-        Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(476, 96)
-        Me.GroupBox15.TabIndex = 253
-        Me.GroupBox15.TabStop = False
-        Me.GroupBox15.Text = "Inventory"
-        '
-        'DataGridViewINVENTORY
-        '
-        Me.DataGridViewINVENTORY.AllowUserToAddRows = False
-        Me.DataGridViewINVENTORY.AllowUserToDeleteRows = False
-        Me.DataGridViewINVENTORY.AllowUserToResizeColumns = False
-        Me.DataGridViewINVENTORY.AllowUserToResizeRows = False
-        Me.DataGridViewINVENTORY.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridViewINVENTORY.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewINVENTORY.ColumnHeadersVisible = False
-        Me.DataGridViewINVENTORY.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column35, Me.Column57, Me.Column36, Me.Column37, Me.Column38, Me.Column39, Me.Column40, Me.Column41, Me.Column42, Me.Column43, Me.Column23, Me.Column24})
-        Me.DataGridViewINVENTORY.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewINVENTORY.Location = New System.Drawing.Point(3, 23)
-        Me.DataGridViewINVENTORY.Name = "DataGridViewINVENTORY"
-        Me.DataGridViewINVENTORY.Size = New System.Drawing.Size(470, 70)
-        Me.DataGridViewINVENTORY.TabIndex = 67
-        '
-        'Column35
-        '
-        Me.Column35.HeaderText = "Column35"
-        Me.Column35.Name = "Column35"
-        '
-        'Column57
-        '
-        Me.Column57.HeaderText = "Column57"
-        Me.Column57.Name = "Column57"
-        '
-        'Column36
-        '
-        Me.Column36.HeaderText = "Column36"
-        Me.Column36.Name = "Column36"
-        '
-        'Column37
-        '
-        Me.Column37.HeaderText = "Column37"
-        Me.Column37.Name = "Column37"
-        '
-        'Column38
-        '
-        Me.Column38.HeaderText = "Column38"
-        Me.Column38.Name = "Column38"
-        '
-        'Column39
-        '
-        Me.Column39.HeaderText = "Column39"
-        Me.Column39.Name = "Column39"
-        '
-        'Column40
-        '
-        Me.Column40.HeaderText = "Column40"
-        Me.Column40.Name = "Column40"
-        '
-        'Column41
-        '
-        Me.Column41.HeaderText = "Column41"
-        Me.Column41.Name = "Column41"
-        '
-        'Column42
-        '
-        Me.Column42.HeaderText = "Column42"
-        Me.Column42.Name = "Column42"
-        '
-        'Column43
-        '
-        Me.Column43.HeaderText = "Column43"
-        Me.Column43.Name = "Column43"
-        '
-        'Column23
-        '
-        Me.Column23.HeaderText = "Column23"
-        Me.Column23.Name = "Column23"
-        '
-        'Column24
-        '
-        Me.Column24.HeaderText = "Column24"
-        Me.Column24.Name = "Column24"
         '
         'Panel20
         '
@@ -2943,6 +3127,7 @@ Partial Class ConfigManager
         'TextBox1
         '
         Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.Location = New System.Drawing.Point(3, 23)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
@@ -3193,190 +3378,6 @@ Partial Class ConfigManager
         Me.Panel22.Size = New System.Drawing.Size(1298, 10)
         Me.Panel22.TabIndex = 216
         '
-        'Panel27
-        '
-        Me.Panel27.AutoScroll = True
-        Me.Panel27.Controls.Add(Me.GroupBox20)
-        Me.Panel27.Controls.Add(Me.GroupBox21)
-        Me.Panel27.Controls.Add(Me.GroupBox15)
-        Me.Panel27.Controls.Add(Me.GroupBox18)
-        Me.Panel27.Controls.Add(Me.GroupBox16)
-        Me.Panel27.Controls.Add(Me.GroupBox17)
-        Me.Panel27.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel27.Location = New System.Drawing.Point(3, 23)
-        Me.Panel27.Name = "Panel27"
-        Me.Panel27.Size = New System.Drawing.Size(493, 405)
-        Me.Panel27.TabIndex = 253
-        '
-        'GroupBox20
-        '
-        Me.GroupBox20.Controls.Add(Me.DataGridViewPartners)
-        Me.GroupBox20.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox20.Location = New System.Drawing.Point(0, 480)
-        Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(476, 96)
-        Me.GroupBox20.TabIndex = 257
-        Me.GroupBox20.TabStop = False
-        Me.GroupBox20.Text = "Partners"
-        '
-        'DataGridViewPartners
-        '
-        Me.DataGridViewPartners.AllowUserToAddRows = False
-        Me.DataGridViewPartners.AllowUserToDeleteRows = False
-        Me.DataGridViewPartners.AllowUserToResizeColumns = False
-        Me.DataGridViewPartners.AllowUserToResizeRows = False
-        Me.DataGridViewPartners.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridViewPartners.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewPartners.ColumnHeadersVisible = False
-        Me.DataGridViewPartners.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4})
-        Me.DataGridViewPartners.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewPartners.Location = New System.Drawing.Point(3, 23)
-        Me.DataGridViewPartners.Name = "DataGridViewPartners"
-        Me.DataGridViewPartners.Size = New System.Drawing.Size(470, 70)
-        Me.DataGridViewPartners.TabIndex = 65
-        '
-        'GroupBox21
-        '
-        Me.GroupBox21.Controls.Add(Me.DataGridViewCoupons)
-        Me.GroupBox21.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox21.Location = New System.Drawing.Point(0, 384)
-        Me.GroupBox21.Name = "GroupBox21"
-        Me.GroupBox21.Size = New System.Drawing.Size(476, 96)
-        Me.GroupBox21.TabIndex = 257
-        Me.GroupBox21.TabStop = False
-        Me.GroupBox21.Text = "Coupons"
-        '
-        'DataGridViewCoupons
-        '
-        Me.DataGridViewCoupons.AllowUserToAddRows = False
-        Me.DataGridViewCoupons.AllowUserToDeleteRows = False
-        Me.DataGridViewCoupons.AllowUserToResizeColumns = False
-        Me.DataGridViewCoupons.AllowUserToResizeRows = False
-        Me.DataGridViewCoupons.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridViewCoupons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewCoupons.ColumnHeadersVisible = False
-        Me.DataGridViewCoupons.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.Column25, Me.Column26, Me.Column27, Me.Column28, Me.Column29, Me.Column30})
-        Me.DataGridViewCoupons.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewCoupons.Location = New System.Drawing.Point(3, 23)
-        Me.DataGridViewCoupons.Name = "DataGridViewCoupons"
-        Me.DataGridViewCoupons.Size = New System.Drawing.Size(470, 70)
-        Me.DataGridViewCoupons.TabIndex = 65
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Column18"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Column19"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Column20"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Column21"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.HeaderText = "Column18"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.HeaderText = "Column19"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        '
-        'DataGridViewTextBoxColumn8
-        '
-        Me.DataGridViewTextBoxColumn8.HeaderText = "Column20"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        '
-        'DataGridViewTextBoxColumn9
-        '
-        Me.DataGridViewTextBoxColumn9.HeaderText = "Column21"
-        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
-        '
-        'DataGridViewTextBoxColumn10
-        '
-        Me.DataGridViewTextBoxColumn10.HeaderText = "Column22"
-        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
-        '
-        'Column25
-        '
-        Me.Column25.HeaderText = "Column25"
-        Me.Column25.Name = "Column25"
-        '
-        'Column26
-        '
-        Me.Column26.HeaderText = "Column26"
-        Me.Column26.Name = "Column26"
-        '
-        'Column27
-        '
-        Me.Column27.HeaderText = "Column27"
-        Me.Column27.Name = "Column27"
-        '
-        'Column28
-        '
-        Me.Column28.HeaderText = "Column28"
-        Me.Column28.Name = "Column28"
-        '
-        'Column29
-        '
-        Me.Column29.HeaderText = "Column29"
-        Me.Column29.Name = "Column29"
-        '
-        'Column30
-        '
-        Me.Column30.HeaderText = "Column30"
-        Me.Column30.Name = "Column30"
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(158, 72)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(88, 14)
-        Me.Label26.TabIndex = 290
-        Me.Label26.Text = "Sugar Packets:"
-        '
-        'Label27
-        '
-        Me.Label27.AutoSize = True
-        Me.Label27.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label27.Location = New System.Drawing.Point(157, 28)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(70, 14)
-        Me.Label27.TabIndex = 289
-        Me.Label27.Text = "Waffle Bag:"
-        '
-        'TextBoxSugarPackets
-        '
-        Me.TextBoxSugarPackets.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxSugarPackets.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxSugarPackets.Location = New System.Drawing.Point(160, 87)
-        Me.TextBoxSugarPackets.Name = "TextBoxSugarPackets"
-        Me.TextBoxSugarPackets.ReadOnly = True
-        Me.TextBoxSugarPackets.Size = New System.Drawing.Size(118, 22)
-        Me.TextBoxSugarPackets.TabIndex = 288
-        '
-        'TextBoxWaffleBag
-        '
-        Me.TextBoxWaffleBag.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxWaffleBag.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxWaffleBag.Location = New System.Drawing.Point(160, 45)
-        Me.TextBoxWaffleBag.Name = "TextBoxWaffleBag"
-        Me.TextBoxWaffleBag.ReadOnly = True
-        Me.TextBoxWaffleBag.Size = New System.Drawing.Size(118, 22)
-        Me.TextBoxWaffleBag.TabIndex = 287
-        '
         'ConfigManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3463,14 +3464,19 @@ Partial Class ConfigManager
         Me.TabPage6.ResumeLayout(False)
         Me.TableLayoutPanel10.ResumeLayout(False)
         Me.GroupBox14.ResumeLayout(False)
-        Me.GroupBox18.ResumeLayout(False)
-        CType(Me.DataGridViewCATEGORIES, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox17.ResumeLayout(False)
-        CType(Me.DataGridViewFORMULA, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox16.ResumeLayout(False)
-        CType(Me.DataGridViewPRODUCTS, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel27.ResumeLayout(False)
+        Me.GroupBox20.ResumeLayout(False)
+        CType(Me.DataGridViewPartners, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox21.ResumeLayout(False)
+        CType(Me.DataGridViewCoupons, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox15.ResumeLayout(False)
         CType(Me.DataGridViewINVENTORY, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox18.ResumeLayout(False)
+        CType(Me.DataGridViewCATEGORIES, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox16.ResumeLayout(False)
+        CType(Me.DataGridViewPRODUCTS, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox17.ResumeLayout(False)
+        CType(Me.DataGridViewFORMULA, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel21.ResumeLayout(False)
         Me.Panel21.PerformLayout()
         Me.TableLayoutPanel11.ResumeLayout(False)
@@ -3484,11 +3490,6 @@ Partial Class ConfigManager
         CType(Me.DataGridViewOutletDetails, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel12.ResumeLayout(False)
-        Me.Panel27.ResumeLayout(False)
-        Me.GroupBox20.ResumeLayout(False)
-        CType(Me.DataGridViewPartners, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox21.ResumeLayout(False)
-        CType(Me.DataGridViewCoupons, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

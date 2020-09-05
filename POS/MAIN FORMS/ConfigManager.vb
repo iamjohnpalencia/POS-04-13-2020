@@ -1308,6 +1308,7 @@ Public Class ConfigManager
             Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection())
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             da.Fill(dt)
+            datagrid.ReadOnly = True
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

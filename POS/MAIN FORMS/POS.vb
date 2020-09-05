@@ -1066,13 +1066,16 @@ Public Class POS
         PaymentForm.Close()
 
         If DataGridViewOrders.Rows.Count > 0 Then
-            b = 0
             Try
                 For i As Integer = 0 To DataGridViewOrders.Rows.Count - 1 Step +1
-                    'printdoc.PrinterSettings = printdoc.PrinterSettings
-                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
                     b += 10
+                    'printdoc.PrinterSettings = printdoc.PrinterSettings
+
+                    If DataGridViewOrders.Rows(i).Cells(11).Value > 0 Then
+                        b += 10
+                    End If
                 Next
+                printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
                 PrintPreviewDialog1.Document = printdoc
                 'printdoc.Print()
                 PrintPreviewDialog1.ShowDialog()
@@ -1116,6 +1119,7 @@ Public Class POS
             VATABLESALES = 0
             VAT12PERCENT = 0
             CouponLine = 10
+
             DISABLESERVEROTHERSPRODUCT = False
             WaffleUpgrade = False
             ButtonWaffleUpgrade.Text = "Brownie Upgrade"
@@ -1126,6 +1130,7 @@ Public Class POS
             MsgBox("Select Transaction First!")
         End If
         a = 0
+        b = 0
     End Sub
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
         Try
@@ -1155,6 +1160,7 @@ Public Class POS
                         If DataGridViewOrders.Rows(i).Cells(11).Value > 0 Then
                             abc += 10
                             .a += 10
+
                             RightToLeftDisplay(sender, e, abc + 115, "     + UPGRADE BRWN " & DataGridViewOrders.Rows(i).Cells(11).Value, "", fontaddon, 0, 0)
 
                         End If

@@ -1206,6 +1206,9 @@ Public Class SettingsForm
                         thread = New Thread(AddressOf CouponApproval)
                         thread.Start()
                         THREADLISTUPDATE.Add(thread)
+                        'thread = New Thread(AddressOf SoftwareUpdate)
+                        'thread.Start()
+                        'THREADLISTUPDATE.Add(thread)
                     End If
                 Else
                     MsgBox("Internet connection is not available. Please try again")
@@ -1253,9 +1256,15 @@ Public Class SettingsForm
                 LabelCheckingUpdates.Text = "Complete Checking! No updates found."
                 My.Settings.Updatedatetime = FullDate24HR()
             End If
-            MsgBox("Complete")
-            My.Settings.Save()
             Timer1.Stop()
+            If CloudVersion <> LocalVersion Then
+                Dim msg = MessageBox.Show("Software Update found" & vbNewLine & "Version No: " & CloudVersion, "Sofware Update", MessageBoxButtons.OK)
+                Process.Start(Application.StartupPath & "\Update\Update.exe")
+                Application.Exit()
+            Else
+                MsgBox("Complete")
+                My.Settings.Save()
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -1263,6 +1272,30 @@ Public Class SettingsForm
     End Sub
 #End Region
 #Region "Updates"
+#Region "Check for software update"
+    Dim CloudVersion
+    Dim LocalVersion
+    Private Sub SoftwareUpdate()
+        Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionCloud As MySqlConnection = New MySqlConnection
+            ConnectionCloud.ConnectionString = "server=" & Trim(TextBoxCloudServer.Text) &
+                ";user id=" & Trim(TextBoxCloudUsername.Text) &
+                ";password=" & Trim(TextBoxCloudPassword.Text) &
+                ";database=" & Trim(TextBoxCloudDatabase.Text) &
+                ";port=" & Trim(TextBoxCloudPort.Text)
+            ConnectionCloud.Open()
+            Dim sql = "SELECT S_Update_Version FROM loc_settings WHERE settings_id = 1"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
+            LocalVersion = cmd.ExecuteScalar
+            sql = "SELECT S_Update_Version FROM admin_settings_org WHERE settings_id = 1"
+            cmd = New MySqlCommand(sql, ConnectionCloud)
+            CloudVersion = cmd.ExecuteScalar
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+#End Region
 #Region "Price Change"
     Dim PRICECHANGE As Boolean = False
     Dim PriceChangeDatatabe As DataTable
@@ -2023,4 +2056,6 @@ Public Class SettingsForm
     Private Sub TextBoxCRefVal_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxCRefVal.KeyPress, TextBoxCDVal.KeyPress, TextBoxCBundVal.KeyPress, TextBoxCBP.KeyPress
         Numeric(sender, e)
     End Sub
+
+
 End Class
