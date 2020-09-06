@@ -32,6 +32,7 @@ Public Class POS
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _instance = Me
+        LabelFOOTER.Text = My.Settings.Footer
         Try
             If Application.OpenForms().OfType(Of SynctoCloud).Any Then
                 SynctoCloud.BringToFront()

@@ -39,18 +39,17 @@ Partial Class Login
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
-        Me.Panel25 = New System.Windows.Forms.Panel()
-        Me.Label147 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.ButttonLogin = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.LabelFOOTER = New System.Windows.Forms.Label()
+        Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
         Me.Panel1.SuspendLayout()
         Me.Panel8.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel24.SuspendLayout()
-        Me.Panel25.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -60,12 +59,13 @@ Partial Class Login
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(317, 353)
+        Me.Panel1.Size = New System.Drawing.Size(317, 372)
         Me.Panel1.TabIndex = 0
         '
         'Panel8
         '
         Me.Panel8.BackColor = System.Drawing.Color.White
+        Me.Panel8.Controls.Add(Me.LinkLabel3)
         Me.Panel8.Controls.Add(Me.ButtonKeyboard)
         Me.Panel8.Controls.Add(Me.PictureBox2)
         Me.Panel8.Controls.Add(Me.Label1)
@@ -86,7 +86,7 @@ Partial Class Login
         Me.Panel8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.Panel8.Location = New System.Drawing.Point(0, 0)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(315, 351)
+        Me.Panel8.Size = New System.Drawing.Size(315, 370)
         Me.Panel8.TabIndex = 82
         '
         'ButtonKeyboard
@@ -106,7 +106,7 @@ Partial Class Login
         '
         Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox2.Location = New System.Drawing.Point(20, 255)
+        Me.PictureBox2.Location = New System.Drawing.Point(20, 280)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(41, 29)
         Me.PictureBox2.TabIndex = 228
@@ -117,7 +117,7 @@ Partial Class Login
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(61, 261)
+        Me.Label1.Location = New System.Drawing.Point(61, 286)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(243, 18)
         Me.Label1.TabIndex = 227
@@ -129,7 +129,7 @@ Partial Class Login
         Me.LinkLabel2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LinkLabel2.ForeColor = System.Drawing.Color.Black
         Me.LinkLabel2.LinkColor = System.Drawing.Color.Firebrick
-        Me.LinkLabel2.Location = New System.Drawing.Point(261, 287)
+        Me.LinkLabel2.Location = New System.Drawing.Point(261, 312)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(31, 18)
         Me.LinkLabel2.TabIndex = 225
@@ -225,7 +225,7 @@ Partial Class Login
         '
         Me.Panel23.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel23.Location = New System.Drawing.Point(0, 321)
+        Me.Panel23.Location = New System.Drawing.Point(0, 340)
         Me.Panel23.Name = "Panel23"
         Me.Panel23.Size = New System.Drawing.Size(315, 10)
         Me.Panel23.TabIndex = 219
@@ -233,41 +233,19 @@ Partial Class Login
         'Panel24
         '
         Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Panel24.Controls.Add(Me.Panel25)
+        Me.Panel24.Controls.Add(Me.LabelFOOTER)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel24.Location = New System.Drawing.Point(0, 331)
+        Me.Panel24.Location = New System.Drawing.Point(0, 350)
         Me.Panel24.Name = "Panel24"
         Me.Panel24.Size = New System.Drawing.Size(315, 20)
         Me.Panel24.TabIndex = 218
-        '
-        'Panel25
-        '
-        Me.Panel25.Controls.Add(Me.Label147)
-        Me.Panel25.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel25.Location = New System.Drawing.Point(59, 0)
-        Me.Panel25.Name = "Panel25"
-        Me.Panel25.Size = New System.Drawing.Size(256, 20)
-        Me.Panel25.TabIndex = 0
-        '
-        'Label147
-        '
-        Me.Label147.AutoSize = True
-        Me.Label147.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Label147.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.Label147.ForeColor = System.Drawing.Color.White
-        Me.Label147.Location = New System.Drawing.Point(5, 0)
-        Me.Label147.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label147.Name = "Label147"
-        Me.Label147.Size = New System.Drawing.Size(251, 14)
-        Me.Label147.TabIndex = 15
-        Me.Label147.Text = "© 2019 - Innovention Food Asia Corporation"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(17, 287)
+        Me.Label4.Location = New System.Drawing.Point(17, 312)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(165, 18)
         Me.Label4.TabIndex = 69
@@ -279,7 +257,7 @@ Partial Class Login
         Me.LinkLabel1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LinkLabel1.ForeColor = System.Drawing.Color.Black
         Me.LinkLabel1.LinkColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.LinkLabel1.Location = New System.Drawing.Point(185, 287)
+        Me.LinkLabel1.Location = New System.Drawing.Point(181, 312)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(57, 18)
         Me.LinkLabel1.TabIndex = 68
@@ -301,11 +279,35 @@ Partial Class Login
         Me.ButttonLogin.Text = "LOGIN"
         Me.ButttonLogin.UseVisualStyleBackColor = False
         '
+        'LabelFOOTER
+        '
+        Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
+        Me.LabelFOOTER.Location = New System.Drawing.Point(64, 0)
+        Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelFOOTER.Name = "LabelFOOTER"
+        Me.LabelFOOTER.Size = New System.Drawing.Size(251, 20)
+        Me.LabelFOOTER.TabIndex = 18
+        Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LinkLabel3
+        '
+        Me.LinkLabel3.AutoSize = True
+        Me.LinkLabel3.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.LinkLabel3.LinkColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.LinkLabel3.Location = New System.Drawing.Point(21, 257)
+        Me.LinkLabel3.Name = "LinkLabel3"
+        Me.LinkLabel3.Size = New System.Drawing.Size(116, 18)
+        Me.LinkLabel3.TabIndex = 230
+        Me.LinkLabel3.TabStop = True
+        Me.LinkLabel3.Text = "Forgot Password"
+        '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(317, 353)
+        Me.ClientSize = New System.Drawing.Size(317, 372)
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Century Gothic", 11.25!)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -322,8 +324,6 @@ Partial Class Login
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel24.ResumeLayout(False)
-        Me.Panel25.ResumeLayout(False)
-        Me.Panel25.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -338,8 +338,6 @@ Partial Class Login
     Friend WithEvents txtpassword As TextBox
     Friend WithEvents Panel23 As Panel
     Friend WithEvents Panel24 As Panel
-    Friend WithEvents Panel25 As Panel
-    Friend WithEvents Label147 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
@@ -349,4 +347,6 @@ Partial Class Login
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents ButtonKeyboard As Button
+    Friend WithEvents LabelFOOTER As Label
+    Friend WithEvents LinkLabel3 As LinkLabel
 End Class

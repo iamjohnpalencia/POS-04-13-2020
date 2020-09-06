@@ -4,6 +4,7 @@ Imports MySql.Data.MySqlClient
 Public Class Login
 
     Private Sub Login_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
+        LabelFOOTER.Text = My.Settings.Footer
         CheckDatabaseBackup()
         txtusername.Focus()
         Timer1.Enabled = True
@@ -145,5 +146,10 @@ Public Class Login
         ShowKeyboard()
         Application.DoEvents()
         txtusername.Focus()
+    End Sub
+
+    Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
+        ForgotPassword.Show()
+        Close()
     End Sub
 End Class

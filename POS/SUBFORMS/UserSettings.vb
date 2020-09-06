@@ -55,16 +55,19 @@ Public Class UserSettings
         ClearTextBox(Me)
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonUser.Click
-        If ButtonUser.Text = "Add User" Then
-            adduser()
-        ElseIf ButtonUser.Text = "Update" Then
-            updateuser()
-        End If
-        Usersloadusers()
-        messageboxappearance = False
-        SystemLogType = "NEW USER"
-        SystemLogDesc = "Added by :" & returnfullname(ClientCrewID)
-        GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+        Try
+
+            If ButtonUser.Text = "Add User" Then
+                adduser()
+            ElseIf ButtonUser.Text = "Update" Then
+                updateuser()
+
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub adduser()
         If String.IsNullOrEmpty(TextBoxFULLNAME.Text.Trim) Then
@@ -83,17 +86,19 @@ Public Class UserSettings
                 MessageBox.Show("Password did not match!", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 Dim cipherText As String = ConvertPassword(SourceString:=TextBoxPASS.Text)
-                Try
-                    messageboxappearance = True
-                    If RadioButtonMALE.Checked = True Then
-                        gender = "Male"
-                    ElseIf RadioButtonFEMALE.Checked = True Then
-                        gender = "Female"
-                    End If
-                    uniqid = ClientStorename & "-" & r.[Next](1000, 10000)
-                    table = "loc_users"
-                    fields = " (`uniq_id`,`user_level`,`full_name`,`username`,`password`,`contact_number`,`email`,`position`,`store_id`,`gender`,`active`,`guid`,`synced`)"
-                    value = "('" & uniqid & "'
+                If CheckUserName(TextBoxUSERNAME.Text) = False Then
+                    If CheckEmail(TextBoxEMAIL.Text) = False Then
+                        If CheckContactNumber(TextBoxCONTACT.Text) = False Then
+                            Try
+                                If RadioButtonMALE.Checked = True Then
+                                    gender = "Male"
+                                ElseIf RadioButtonFEMALE.Checked = True Then
+                                    gender = "Female"
+                                End If
+                                uniqid = CheckUserId()
+                                table = "loc_users"
+                                fields = " (`uniq_id`,`user_level`,`full_name`,`username`,`password`,`contact_number`,`email`,`position`,`store_id`,`gender`,`active`,`guid`,`synced`)"
+                                value = "('" & uniqid & "'
                             ,'Crew'
                             , '" & TextBoxFULLNAME.Text & "'
                             , '" & TextBoxUSERNAME.Text & "'
@@ -106,19 +111,30 @@ Public Class UserSettings
                             , " & 1 & "
                             , '" & ClientGuid & "'
                             , 'Unsynced')"
-                    successmessage = "Successfully Registered!"
-                    errormessage = "error registrationvb(loc_users)"
-                    GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
-                Catch ex As Exception
-                    MsgBox(ex.ToString)
-                    SendErrorReport(ex.ToString)
-                End Try
-                ClearTextBox(Me)
-                selectmax(whatform:=3)
-                messageboxappearance = False
-                SystemLogType = "NEW USER"
-                SystemLogDesc = "Added by :" & returnfullname(ClientCrewID) & " : " & ClientRole
-                GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+                                successmessage = "Successfully Registered!"
+                                errormessage = "error registrationvb(loc_users)"
+                                GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
+                            Catch ex As Exception
+                                MsgBox(ex.ToString)
+                                SendErrorReport(ex.ToString)
+                            End Try
+                            ClearTextBox(Me)
+                            selectmax(whatform:=3)
+                            messageboxappearance = False
+                            SystemLogType = "NEW USER"
+                            SystemLogDesc = "Added by :" & returnfullname(ClientCrewID) & " : " & ClientRole
+                            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+                            MsgBox("Registered Successfully")
+                            Usersloadusers()
+                        Else
+                            MsgBox("Contact number already exist. Please use different ontact number")
+                        End If
+                    Else
+                        MsgBox("Email already exist. Please use different email")
+                    End If
+                Else
+                    MsgBox("Username already exist. Please use different username")
+                End If
             End If
         End If
     End Sub
@@ -161,6 +177,8 @@ Public Class UserSettings
             SystemLogType = "USER UPDATE"
             SystemLogDesc = "Updated by :" & returnfullname(ClientCrewID) & " : " & ClientRole
             GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+            Usersloadusers()
+            MsgBox("Updated Successfully")
         End If
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

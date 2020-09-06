@@ -1156,7 +1156,6 @@ Public Class SettingsForm
             Else
                 MessageBox.Show("No internet connection available", "No internet connection", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
-
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)

@@ -450,4 +450,12 @@ Public Class TakeOut
             End If
         End If
     End Sub
+    Private Sub TextBoxWaffleBag_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxWaffleBag.KeyPress, TextBoxSugarSyrup.KeyPress
+        Try
+            Numeric(sender, e)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
 End Class

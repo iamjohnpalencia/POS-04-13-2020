@@ -209,6 +209,18 @@
     <Compile Include="SUBFORMS\ExpenseImage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SUBFORMS\ForgotPassword.Designer.vb">
+      <DependentUpon>ForgotPassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\ForgotPassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\ResetPassword.Designer.vb">
+      <DependentUpon>ResetPassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\ResetPassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SUBFORMS\SelectNewFormula.Designer.vb">
       <DependentUpon>SelectNewFormula.vb</DependentUpon>
     </Compile>
@@ -402,6 +414,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\ExpenseImage.resx">
       <DependentUpon>ExpenseImage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\ForgotPassword.resx">
+      <DependentUpon>ForgotPassword.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\ResetPassword.resx">
+      <DependentUpon>ResetPassword.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\SelectNewFormula.resx">
       <DependentUpon>SelectNewFormula.vb</DependentUpon>

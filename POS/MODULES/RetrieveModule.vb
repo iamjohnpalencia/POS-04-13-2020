@@ -112,6 +112,85 @@ Module RetrieveModule
             End Try
         End If
     End Sub
+    Public Function CheckUserName(Username) As Boolean
+        Dim ReturnUsername As Boolean = False
+        Try
+            Dim sql = "SELECT username FROM loc_users WHERE username = '" & Username & "'"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Using reader As MySqlDataReader = cmd.ExecuteReader()
+                If reader.HasRows Then
+                    ReturnUsername = True
+                Else
+                    ReturnUsername = False
+                End If
+            End Using
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+        Return ReturnUsername
+    End Function
+    Public Function CheckEmail(Email) As Boolean
+        Dim ReturnUsername As Boolean = False
+        Try
+            Dim sql = "SELECT email FROM loc_users WHERE email = '" & Email & "'"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Using reader As MySqlDataReader = cmd.ExecuteReader()
+                If reader.HasRows Then
+                    ReturnUsername = True
+                Else
+                    ReturnUsername = False
+                End If
+            End Using
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+        Return ReturnUsername
+    End Function
+    Public Function CheckContactNumber(ContactNumber) As Boolean
+        Dim ReturnUsername As Boolean = False
+        Try
+            Dim sql = "SELECT contact_number FROM loc_users WHERE contact_number = '" & ContactNumber & "'"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Using reader As MySqlDataReader = cmd.ExecuteReader()
+                If reader.HasRows Then
+                    ReturnUsername = True
+                Else
+                    ReturnUsername = False
+                End If
+            End Using
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+        Return ReturnUsername
+    End Function
+    Dim r As Random = New Random(Guid.NewGuid().GetHashCode())
+    Public Function CheckUserId() As String
+        Dim Uniqid = ""
+        Try
+            Dim ReturnThis As Boolean = True
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Do
+                Uniqid = ClientStorename & "-" & r.[Next](1000, 10000)
+
+                Dim sql = "SELECT uniq_id FROM loc_users WHERE uniq_id = '" & uniqid & "'"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
+                Using reader As MySqlDataReader = cmd.ExecuteReader()
+                    If reader.HasRows Then
+                        ReturnThis = True
+                    Else
+                        ReturnThis = False
+                    End If
+                End Using
+            Loop Until (ReturnThis = False)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+        Return Uniqid
+    End Function
     'FUNCTION LOADING EXPENCES / POS ==================================================================================== 
     Public Sub listviewproductsshow(ByVal where As String)
         Try

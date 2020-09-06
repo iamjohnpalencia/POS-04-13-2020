@@ -263,12 +263,13 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
+    Dim FooterInfo As String = ""
     Private Sub LoadDefaultSettingsAdd()
         Try
             If ValidCloudConnection = True And ValidLocalConnection = True Then
                 If System.IO.File.Exists(My.Settings.LocalConnectionPath) Then
                     Dim EXPORTPATH = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\Innovention"
-                    sql = "SELECT `A_Tax`, `A_SIFormat`, `A_Terminal_No`, `A_ZeroRated`, `S_Batter`, `S_Brownie_Mix`, `S_Upgrade_Price_Add` , `S_Update_Version` , `S_Waffle_Bag`, `S_Packets` FROM admin_settings_org WHERE settings_id = 1"
+                    sql = "SELECT `A_Tax`, `A_SIFormat`, `A_Terminal_No`, `A_ZeroRated`, `S_Batter`, `S_Brownie_Mix`, `S_Upgrade_Price_Add` , `S_Update_Version` , `S_Waffle_Bag`, `S_Packets`, `P_Footer_Info` FROM admin_settings_org WHERE settings_id = 1"
                     Dim cmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
                     Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable
@@ -292,6 +293,7 @@ Public Class ConfigManager
                         TextBoxWaffleBag.Text = dt(0)(8)
                         TextBoxSugarPackets.Text = dt(0)(9)
                         ConfirmAdditionalSettings = True
+                        FooterInfo = dt(0)(10)
                     Else
                         ConfirmAdditionalSettings = False
                     End If
@@ -800,7 +802,7 @@ Public Class ConfigManager
             If TextboxIsEmpty(GroupBox10) = True Then
                 If ValidLocalConnection = True Then
                     Dim table = "loc_settings"
-                    Dim fields = "A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add, S_Update_Version, S_Waffle_Bag , S_Packets"
+                    Dim fields = "A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add, S_Update_Version, S_Waffle_Bag , S_Packets , P_Footer_Info"
                     Dim where = "settings_id = 1"
                     Dim sql = "Select " & fields & " FROM " & table & " WHERE " & where
                     Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
@@ -813,7 +815,7 @@ Public Class ConfigManager
                         ElseIf RadioButtonNO.Checked = True Then
                             RButton = 0
                         End If
-                        Dim fields1 = "A_Export_Path = '" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "', A_Tax = '" & Tax & "' , A_SIFormat = '" & Trim(TextBoxSINumber.Text) & "' , A_Terminal_No = '" & Trim(TextBoxTerminalNo.Text) & "' , A_ZeroRated = '" & RButton & "', S_Zreading = '" & Format(Now(), "yyyy-MM-dd") & "' , S_Batter = '" & Trim(TextBoxBATTERID.Text) & "', S_Brownie_Mix = '" & Trim(TextBoxBROWNIEID.Text) & "', S_Upgrade_Price_Add = '" & Trim(TextBoxBROWNIEPRICE.Text) & "' , `S_Waffle_Bag` = '" & Trim(TextBoxWaffleBag.Text) & "' , `S_Packets` = '" & Trim(TextBoxSugarPackets.Text) & "' , S_Update_Version = '" & POSVersion & "'"
+                        Dim fields1 = "A_Export_Path = '" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "', A_Tax = '" & Tax & "' , A_SIFormat = '" & Trim(TextBoxSINumber.Text) & "' , A_Terminal_No = '" & Trim(TextBoxTerminalNo.Text) & "' , A_ZeroRated = '" & RButton & "', S_Zreading = '" & Format(Now(), "yyyy-MM-dd") & "' , S_Batter = '" & Trim(TextBoxBATTERID.Text) & "', S_Brownie_Mix = '" & Trim(TextBoxBROWNIEID.Text) & "', S_Upgrade_Price_Add = '" & Trim(TextBoxBROWNIEPRICE.Text) & "' , `S_Waffle_Bag` = '" & Trim(TextBoxWaffleBag.Text) & "' , `S_Packets` = '" & Trim(TextBoxSugarPackets.Text) & "' , S_Update_Version = '" & POSVersion & "', P_Footer_Info = '" & FooterInfo & "'"
                         sql = "UPDATE " & table & " SET " & fields1 & " WHERE " & where
                         cmd = New MySqlCommand(sql, TestLocalConnection)
                         cmd.ExecuteNonQuery()
@@ -822,7 +824,7 @@ Public Class ConfigManager
                             MsgBox("Saved!")
                         End If
                     Else
-                        Dim fields2 = "(A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add , S_Update_Version , S_Waffle_Bag , S_Packets)"
+                        Dim fields2 = "(A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix, S_Upgrade_Price_Add , S_Update_Version , S_Waffle_Bag , S_Packets, P_Footer_Info)"
                         Dim value = "('" & ConvertToBase64(Trim(TextBoxExportPath.Text)) & "'
                      ,'" & Tax & "'
                      ,'" & Trim(TextBoxSINumber.Text) & "'
@@ -834,7 +836,8 @@ Public Class ConfigManager
                      ,'" & Trim(TextBoxBROWNIEPRICE.Text) & "'
                      ,'" & POSVersion & "'
                      ,'" & Trim(TextBoxWaffleBag.Text) & "'
-                     ,'" & Trim(TextBoxSugarPackets.Text) & "')"
+                     ,'" & Trim(TextBoxSugarPackets.Text) & "')
+                     ,'" & FooterInfo & "')"
 
                         sql = "INSERT INTO " & table & " " & fields2 & " VALUES " & value
                         cmd = New MySqlCommand(sql, TestLocalConnection)

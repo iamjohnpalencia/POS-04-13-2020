@@ -155,6 +155,7 @@ Partial Class Reports
         Me.Panel31 = New System.Windows.Forms.Panel()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.Button9 = New System.Windows.Forms.Button()
         Me.DateTimePicker13 = New System.Windows.Forms.DateTimePicker()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label16 = New System.Windows.Forms.Label()
@@ -192,7 +193,7 @@ Partial Class Reports
         Me.pdoc = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.Button9 = New System.Windows.Forms.Button()
+        Me.CheckBoxPRINTALL = New System.Windows.Forms.CheckBox()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -1452,6 +1453,7 @@ Partial Class Reports
         '
         Me.Panel8.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel8.Controls.Add(Me.CheckBoxPRINTALL)
         Me.Panel8.Controls.Add(Me.Button9)
         Me.Panel8.Controls.Add(Me.DateTimePicker13)
         Me.Panel8.Controls.Add(Me.Button3)
@@ -1462,6 +1464,22 @@ Partial Class Reports
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(1117, 37)
         Me.Panel8.TabIndex = 6
+        '
+        'Button9
+        '
+        Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(162, Byte), Integer), CType(CType(184, Byte), Integer))
+        Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button9.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button9.FlatAppearance.BorderSize = 0
+        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button9.ForeColor = System.Drawing.Color.White
+        Me.Button9.Location = New System.Drawing.Point(967, 0)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(148, 35)
+        Me.Button9.TabIndex = 17
+        Me.Button9.Text = "Print"
+        Me.Button9.UseVisualStyleBackColor = False
         '
         'DateTimePicker13
         '
@@ -1897,21 +1915,16 @@ Partial Class Reports
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Button9
+        'CheckBoxPRINTALL
         '
-        Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(162, Byte), Integer), CType(CType(184, Byte), Integer))
-        Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button9.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button9.FlatAppearance.BorderSize = 0
-        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button9.ForeColor = System.Drawing.Color.White
-        Me.Button9.Location = New System.Drawing.Point(967, 0)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(148, 35)
-        Me.Button9.TabIndex = 17
-        Me.Button9.Text = "Print"
-        Me.Button9.UseVisualStyleBackColor = False
+        Me.CheckBoxPRINTALL.AutoSize = True
+        Me.CheckBoxPRINTALL.Dock = System.Windows.Forms.DockStyle.Right
+        Me.CheckBoxPRINTALL.Location = New System.Drawing.Point(882, 0)
+        Me.CheckBoxPRINTALL.Name = "CheckBoxPRINTALL"
+        Me.CheckBoxPRINTALL.Size = New System.Drawing.Size(85, 35)
+        Me.CheckBoxPRINTALL.TabIndex = 18
+        Me.CheckBoxPRINTALL.Text = "Print All"
+        Me.CheckBoxPRINTALL.UseVisualStyleBackColor = True
         '
         'Reports
         '
@@ -2131,4 +2144,5 @@ Partial Class Reports
     Friend WithEvents Column19 As DataGridViewTextBoxColumn
     Friend WithEvents Column20 As DataGridViewTextBoxColumn
     Friend WithEvents Button9 As Button
+    Friend WithEvents CheckBoxPRINTALL As CheckBox
 End Class

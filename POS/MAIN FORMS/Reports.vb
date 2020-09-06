@@ -5,11 +5,15 @@ Public Class Reports
     Private WithEvents printdoc As PrintDocument = New PrintDocument
     Private WithEvents printdocXread As PrintDocument = New PrintDocument
     Private WithEvents printdocInventory As PrintDocument = New PrintDocument
+    Private WithEvents printdocReturns As PrintDocument = New PrintDocument
+    Private WithEvents printsales As PrintDocument = New PrintDocument
 
 
     Private PrintPreviewDialog1 As New PrintPreviewDialog
     Private PrintPreviewDialogXread As New PrintPreviewDialog
     Private PrintPreviewDialogInventory As New PrintPreviewDialog
+    Private PrintPreviewDialogReturns As New PrintPreviewDialog
+    Private previewsales As New PrintPreviewDialog
 
     Dim buttons As DataGridViewButtonColumn = New DataGridViewButtonColumn()
     Dim user_id As String
@@ -575,7 +579,7 @@ Public Class Reports
             Dim GrossSale = sum("grosssales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
             Dim LessVat = sum("lessvat", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
             Dim TotalDiscount = sum("totaldiscount", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
-            Dim begORNm = returnselect("transaction_number", "`loc_daily_transaction` WHERE date(zreading) = CURRENT_DATE AND active = 1 Limit 1")
+            Dim begORNm = returnselect("transaction_number", "`loc_daily_transaction` WHERE date(zreading) = zreading AND active = 1 Limit 1")
             Dim EndORNumber = Format(Now, "yyddMMHHmmssyy")
             Dim ReturnsTotal = sum("total", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
             Dim ReturnsExchange = sum("quantity", "loc_daily_transaction_details WHERE active = 2 AND zreading = '" & ZreadDateFormat & "' ")
@@ -815,10 +819,10 @@ Public Class Reports
                     cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString
                     cmd.Parameters.Add("@10", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString
                     cmd.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString
-                    cmd.Parameters.Add("@12", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value.ToString
+                    cmd.Parameters.Add("@12", MySqlDbType.Text).Value = FullDate24HR()
                     cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString
                     cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = .Rows(i).Cells(13).Value.ToString
-                    cmd.Parameters.Add("@15", MySqlDbType.Text).Value = .Rows(i).Cells(14).Value.ToString
+                    cmd.Parameters.Add("@15", MySqlDbType.Text).Value = "N/A"
                     cmd.Parameters.Add("@16", MySqlDbType.Int64).Value = .Rows(i).Cells(15).Value.ToString
                     cmd.Parameters.Add("@17", MySqlDbType.Text).Value = S_Zreading
                     cmd.ExecuteNonQuery()
@@ -836,7 +840,7 @@ Public Class Reports
     Private Sub FillDatagridZreadInv(searchdate As Boolean)
         Try
             table = "loc_zread_inventory I INNER JOIN loc_product_formula F ON F.server_formula_id = I.server_inventory_id "
-            fields = "I.product_ingredients as Ingredients, i.sku , CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
+            fields = "I.product_ingredients as Ingredients, i.sku , CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', ROUND(I.stock_secondary,0), F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.zreading"
             If searchdate = False Then
                 where = "zreading = '" & Format(Now(), "yyyy-MM-dd") & "' AND I.stock_status = 1 AND I.store_id = " & ClientStoreID & " ORDER BY I.product_ingredients ASC"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewZreadInvData, errormessage:="", fields:=fields, successmessage:="", where:=where)
@@ -844,6 +848,14 @@ Public Class Reports
                 where = "zreading = '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "' AND I.stock_status = 1 AND I.store_id = " & ClientStoreID & " ORDER BY I.product_ingredients ASC"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewZreadInvData, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
+            With DataGridViewZreadInvData
+                .Columns(0).HeaderText = "Ingredients"
+                .Columns(1).HeaderText = "SKU"
+                .Columns(2).HeaderText = "Primary Value"
+                .Columns(3).HeaderText = "UOM"
+                .Columns(4).HeaderText = "No. of Servings"
+                .Columns(5).HeaderText = "Zreading Date"
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -929,8 +941,7 @@ Public Class Reports
         reportsdailytransaction(False)
         DataGridViewTransactionDetails.DataSource = Nothing
     End Sub
-    Private WithEvents printsales As PrintDocument = New PrintDocument
-    Private previewsales As New PrintPreviewDialog
+
     Dim loopb = 0
     Dim loopa = 0
     Dim PrintSalesDatatable As DataTable
@@ -973,11 +984,91 @@ Public Class Reports
             Next
             CenterTextDisplay(sender, e, "*************************************", font, loopa + 30)
             CenterTextDisplay(sender, e, Format(Now(), "yyyy-MM-dd HH:mm:ss"), font, loopa + 50)
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Dim ColumnSpacing As Integer = 0
+    Private Sub printreturns_printdoc(sender As Object, e As Printing.PrintPageEventArgs) Handles printdocReturns.PrintPage
+        Try
+            Dim font As New Font("tahoma", 6)
+            Dim font2 As New Font("tahoma", 6, FontStyle.Bold)
+            Dim brandfont As New Font("tahoma", 8, FontStyle.Bold)
+            CenterTextDisplay(sender, e, ClientBrand.ToUpper, brandfont, 10)
+            ReadingOR = "R" & Format(Now, "yyddMMHHmmssyy")
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, "Opt by : Innovention Food Asia Co.", font, 21)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, ClientAddress & ", Brgy. " & ClientBrgy, font, 31)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, getmunicipality & ", " & getprovince, font, 41)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, "VAT REG TIN : " & ClientTin, font, 51)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, "MSN : " & ClientMSN, font, 61)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, "MIN : " & ClientMIN, font, 71)
+            '============================================================================================================================
+            CenterTextDisplay(sender, e, "PTUN : " & ClientPTUN, font, 81)
+            '============================================================================================================================
+            RightToLeftDisplay(sender, e, 100, "TERMINAL REPORT", "RETURNS", font2, 20, 0)
+            '============================================================================================================================
+            SimpleTextDisplay(sender, e, ReadingOR, font, 0, 90)
+            SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 100)
+            '============================================================================================================================
+            With DataGridViewReturns
+                Dim FooterSpacing As Integer = 0
+                If CheckBoxPRINTALL.Checked = False Then
+                    RightToLeftDisplay(sender, e, 140, "TRANSACTION NUMBER: ", "", font, 20, 0)
+                    RightToLeftDisplay(sender, e, 150, "SERVICE CREW: ", "", font, 20, 0)
+                    RightToLeftDisplay(sender, e, 160, "DATE: ", "", font, 20, 0)
+                    RightToLeftDisplay(sender, e, 170, "REASON:", "", font, 20, 0)
+                    RightToLeftDisplay(sender, e, 180, Space(5) & .SelectedRows(0).Cells(2).Value.ToString, "", font, 20, 0)
+                    SimpleTextDisplay(sender, e, Space(40) & .SelectedRows(0).Cells(0).Value.ToString, font, 0, 120)
+                    SimpleTextDisplay(sender, e, Space(40) & .SelectedRows(0).Cells(1).Value.ToString, font, 0, 130)
+                    SimpleTextDisplay(sender, e, Space(40) & .SelectedRows(0).Cells(3).Value.ToString, font, 0, 140)
+                    SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 240)
+                    CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 270)
+                Else
+                    For i As Integer = 0 To .Rows.Count - 1 Step +1
+                        RightToLeftDisplay(sender, e, 140 + ColumnSpacing, "TRANSACTION NUMBER: ", "", font, 20, 0)
+                        RightToLeftDisplay(sender, e, 150 + ColumnSpacing, "SERVICE CREW: ", "", font, 20, 0)
+                        RightToLeftDisplay(sender, e, 160 + ColumnSpacing, "DATE: ", "", font, 20, 0)
+                        RightToLeftDisplay(sender, e, 170 + ColumnSpacing, "REASON:", "", font, 20, 0)
+                        RightToLeftDisplay(sender, e, 180 + ColumnSpacing, Space(5) & .Rows(0).Cells(2).Value.ToString, "", font, 20, 0)
+                        SimpleTextDisplay(sender, e, Space(40) & .Rows(i).Cells(0).Value.ToString, font, 0, 120 + ColumnSpacing)
+                        SimpleTextDisplay(sender, e, Space(40) & .Rows(i).Cells(1).Value.ToString, font, 0, 130 + ColumnSpacing)
+                        SimpleTextDisplay(sender, e, Space(40) & .Rows(i).Cells(3).Value.ToString, font, 0, 140 + ColumnSpacing)
+                        ColumnSpacing += 70
+                        FooterSpacing += 60
+                    Next
+                    SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 240 + FooterSpacing)
+                    CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 270 + FooterSpacing)
+                End If
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
     End Sub
 
-
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        Dim B As Integer = 0
+        If CheckBoxPRINTALL.Checked = False Then
+            printdocReturns.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 320)
+            PrintPreviewDialogReturns.Document = printdocReturns
+            PrintPreviewDialogReturns.ShowDialog()
+        Else
+            For i As Integer = 0 To DataGridViewReturns.Rows.Count - 1 Step +1
+                B += 65
+            Next
+            printdocReturns.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 320 + B)
+            PrintPreviewDialogReturns.Document = printdocReturns
+            PrintPreviewDialogReturns.ShowDialog()
+        End If
+        B = 0
+        ColumnSpacing = 0
+    End Sub
 End Class

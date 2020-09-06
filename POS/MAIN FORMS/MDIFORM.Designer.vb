@@ -51,7 +51,6 @@ Partial Class MDIFORM
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Panel14 = New System.Windows.Forms.Panel()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel10 = New System.Windows.Forms.Panel()
@@ -84,6 +83,7 @@ Partial Class MDIFORM
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
+        Me.LabelFOOTER = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel5.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -452,24 +452,12 @@ Partial Class MDIFORM
         '
         'Panel14
         '
-        Me.Panel14.Controls.Add(Me.Label9)
+        Me.Panel14.Controls.Add(Me.LabelFOOTER)
         Me.Panel14.Dock = System.Windows.Forms.DockStyle.Right
         Me.Panel14.Location = New System.Drawing.Point(697, 0)
         Me.Panel14.Name = "Panel14"
         Me.Panel14.Size = New System.Drawing.Size(331, 25)
         Me.Panel14.TabIndex = 0
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.White
-        Me.Label9.Location = New System.Drawing.Point(88, 4)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(222, 13)
-        Me.Label9.TabIndex = 16
-        Me.Label9.Text = "© 2019 - Innovention Food Asia Corporation"
         '
         'Panel3
         '
@@ -833,6 +821,18 @@ Partial Class MDIFORM
         Me.MenuStrip.Text = "MenuStrip"
         Me.MenuStrip.Visible = False
         '
+        'LabelFOOTER
+        '
+        Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
+        Me.LabelFOOTER.Location = New System.Drawing.Point(80, 0)
+        Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelFOOTER.Name = "LabelFOOTER"
+        Me.LabelFOOTER.Size = New System.Drawing.Size(251, 25)
+        Me.LabelFOOTER.TabIndex = 17
+        Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'MDIFORM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -865,7 +865,6 @@ Partial Class MDIFORM
         Me.Panel20.ResumeLayout(False)
         Me.Panel13.ResumeLayout(False)
         Me.Panel14.ResumeLayout(False)
-        Me.Panel14.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.Panel10.ResumeLayout(False)
@@ -898,7 +897,6 @@ Partial Class MDIFORM
     Friend WithEvents Panel20 As Panel
     Friend WithEvents Panel13 As Panel
     Friend WithEvents Panel14 As Panel
-    Friend WithEvents Label9 As Label
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Panel7 As Panel
@@ -944,4 +942,5 @@ Partial Class MDIFORM
     Friend WithEvents Panel32 As Panel
     Friend WithEvents Button12 As Button
     Friend WithEvents Panel9 As Panel
+    Friend WithEvents LabelFOOTER As Label
 End Class

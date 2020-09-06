@@ -101,6 +101,18 @@ Namespace My
                 Me("Version") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property Footer() As String
+            Get
+                Return CType(Me("Footer"),String)
+            End Get
+            Set
+                Me("Footer") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

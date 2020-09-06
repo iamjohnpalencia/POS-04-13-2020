@@ -2009,6 +2009,7 @@ Partial Class SettingsForm
         '
         Me.TextBoxIRREASON.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxIRREASON.Location = New System.Drawing.Point(10, 5)
+        Me.TextBoxIRREASON.MaxLength = 50
         Me.TextBoxIRREASON.Multiline = True
         Me.TextBoxIRREASON.Name = "TextBoxIRREASON"
         Me.TextBoxIRREASON.Size = New System.Drawing.Size(335, 53)

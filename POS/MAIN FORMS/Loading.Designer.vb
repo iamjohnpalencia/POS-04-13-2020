@@ -32,14 +32,12 @@ Partial Class Loading
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
         Me.LabelVersion = New System.Windows.Forms.Label()
-        Me.Panel25 = New System.Windows.Forms.Panel()
-        Me.Label147 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DataGridViewRESULT = New System.Windows.Forms.DataGridView()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
+        Me.LabelFOOTER = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel24.SuspendLayout()
-        Me.Panel25.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewRESULT, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -116,8 +114,8 @@ Partial Class Loading
         'Panel24
         '
         Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Panel24.Controls.Add(Me.LabelFOOTER)
         Me.Panel24.Controls.Add(Me.LabelVersion)
-        Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel24.Location = New System.Drawing.Point(0, 72)
         Me.Panel24.Name = "Panel24"
@@ -126,38 +124,15 @@ Partial Class Loading
         '
         'LabelVersion
         '
-        Me.LabelVersion.AutoSize = True
         Me.LabelVersion.Dock = System.Windows.Forms.DockStyle.Left
         Me.LabelVersion.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelVersion.ForeColor = System.Drawing.Color.White
         Me.LabelVersion.Location = New System.Drawing.Point(0, 0)
         Me.LabelVersion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelVersion.Name = "LabelVersion"
-        Me.LabelVersion.Size = New System.Drawing.Size(33, 14)
+        Me.LabelVersion.Size = New System.Drawing.Size(124, 20)
         Me.LabelVersion.TabIndex = 16
-        Me.LabelVersion.Text = "V1.0"
-        '
-        'Panel25
-        '
-        Me.Panel25.Controls.Add(Me.Label147)
-        Me.Panel25.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel25.Location = New System.Drawing.Point(127, 0)
-        Me.Panel25.Name = "Panel25"
-        Me.Panel25.Size = New System.Drawing.Size(256, 20)
-        Me.Panel25.TabIndex = 0
-        '
-        'Label147
-        '
-        Me.Label147.AutoSize = True
-        Me.Label147.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Label147.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label147.ForeColor = System.Drawing.Color.White
-        Me.Label147.Location = New System.Drawing.Point(5, 0)
-        Me.Label147.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label147.Name = "Label147"
-        Me.Label147.Size = New System.Drawing.Size(251, 14)
-        Me.Label147.TabIndex = 15
-        Me.Label147.Text = "© 2019 - Innovention Food Asia Corporation"
+        Me.LabelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'PictureBox1
         '
@@ -188,6 +163,18 @@ Partial Class Loading
         Me.BackgroundWorker2.WorkerReportsProgress = True
         Me.BackgroundWorker2.WorkerSupportsCancellation = True
         '
+        'LabelFOOTER
+        '
+        Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
+        Me.LabelFOOTER.Location = New System.Drawing.Point(132, 0)
+        Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelFOOTER.Name = "LabelFOOTER"
+        Me.LabelFOOTER.Size = New System.Drawing.Size(251, 20)
+        Me.LabelFOOTER.TabIndex = 17
+        Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'Loading
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -203,9 +190,6 @@ Partial Class Loading
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel24.ResumeLayout(False)
-        Me.Panel24.PerformLayout()
-        Me.Panel25.ResumeLayout(False)
-        Me.Panel25.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewRESULT, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -217,8 +201,6 @@ Partial Class Loading
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel23 As Panel
     Friend WithEvents Panel24 As Panel
-    Friend WithEvents Panel25 As Panel
-    Friend WithEvents Label147 As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
@@ -226,4 +208,5 @@ Partial Class Loading
     Friend WithEvents DataGridViewRESULT As DataGridView
     Friend WithEvents Label3 As Label
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents LabelFOOTER As Label
 End Class

@@ -54,14 +54,12 @@ Partial Class Registration
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Panel25 = New System.Windows.Forms.Panel()
-        Me.Label147 = New System.Windows.Forms.Label()
+        Me.LabelFOOTER = New System.Windows.Forms.Label()
         Me.OfdImage = New System.Windows.Forms.OpenFileDialog()
         Me.Panel1.SuspendLayout()
         Me.Panel8.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
-        Me.Panel25.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -73,7 +71,7 @@ Partial Class Registration
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(317, 553)
+        Me.Panel1.Size = New System.Drawing.Size(317, 551)
         Me.Panel1.TabIndex = 0
         '
         'Panel8
@@ -110,7 +108,7 @@ Partial Class Registration
         Me.Panel8.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.Panel8.Location = New System.Drawing.Point(0, 0)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(315, 521)
+        Me.Panel8.Size = New System.Drawing.Size(315, 519)
         Me.Panel8.TabIndex = 72
         '
         'ButtonKeyboard
@@ -130,7 +128,7 @@ Partial Class Registration
         '
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(66, 19)
+        Me.PictureBox1.Location = New System.Drawing.Point(58, 19)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(188, 96)
         Me.PictureBox1.TabIndex = 239
@@ -418,7 +416,7 @@ Partial Class Registration
         '
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel4.Location = New System.Drawing.Point(0, 521)
+        Me.Panel4.Location = New System.Drawing.Point(0, 519)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(315, 10)
         Me.Panel4.TabIndex = 74
@@ -426,34 +424,24 @@ Partial Class Registration
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Panel3.Controls.Add(Me.Panel25)
+        Me.Panel3.Controls.Add(Me.LabelFOOTER)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel3.Location = New System.Drawing.Point(0, 531)
+        Me.Panel3.Location = New System.Drawing.Point(0, 529)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(315, 20)
         Me.Panel3.TabIndex = 73
         '
-        'Panel25
+        'LabelFOOTER
         '
-        Me.Panel25.Controls.Add(Me.Label147)
-        Me.Panel25.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel25.Location = New System.Drawing.Point(59, 0)
-        Me.Panel25.Name = "Panel25"
-        Me.Panel25.Size = New System.Drawing.Size(256, 20)
-        Me.Panel25.TabIndex = 1
-        '
-        'Label147
-        '
-        Me.Label147.AutoSize = True
-        Me.Label147.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Label147.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.Label147.ForeColor = System.Drawing.Color.White
-        Me.Label147.Location = New System.Drawing.Point(5, 0)
-        Me.Label147.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label147.Name = "Label147"
-        Me.Label147.Size = New System.Drawing.Size(251, 14)
-        Me.Label147.TabIndex = 15
-        Me.Label147.Text = "© 2019 - Innovention Food Asia Corporation"
+        Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
+        Me.LabelFOOTER.Location = New System.Drawing.Point(64, 0)
+        Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelFOOTER.Name = "LabelFOOTER"
+        Me.LabelFOOTER.Size = New System.Drawing.Size(251, 20)
+        Me.LabelFOOTER.TabIndex = 18
+        Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'OfdImage
         '
@@ -463,7 +451,7 @@ Partial Class Registration
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(317, 553)
+        Me.ClientSize = New System.Drawing.Size(317, 551)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -477,8 +465,6 @@ Partial Class Registration
         Me.Panel8.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
-        Me.Panel25.ResumeLayout(False)
-        Me.Panel25.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -494,8 +480,6 @@ Partial Class Registration
     Friend WithEvents Panel3 As Panel
     Friend WithEvents OfdImage As OpenFileDialog
     Friend WithEvents TextBoxMAXID As TextBox
-    Friend WithEvents Panel25 As Panel
-    Friend WithEvents Label147 As Label
     Friend WithEvents LinkLabel2 As LinkLabel
     Friend WithEvents TextBoxCN As TextBox
     Friend WithEvents TextBoxCP As TextBox
@@ -517,4 +501,5 @@ Partial Class Registration
     Friend WithEvents Label13 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents ButtonKeyboard As Button
+    Friend WithEvents LabelFOOTER As Label
 End Class

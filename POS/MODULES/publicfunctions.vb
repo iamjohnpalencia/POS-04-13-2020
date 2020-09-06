@@ -193,14 +193,9 @@ Module publicfunctions
         Dim ConvertedBase64Image As Image = Image.FromStream(ms, True)
         Return ConvertedBase64Image
     End Function
-
     Private ImagePath As String = ""
-
     '_________________________________________________________________________________________________________________
     'POS FUNCTIONS
-
-    '.DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString)
-
     Public Function GetHash(theInput As String) As String
         Using hasher As MD5 = MD5.Create()    ' create hash object
             ' Convert to byte array and get hash

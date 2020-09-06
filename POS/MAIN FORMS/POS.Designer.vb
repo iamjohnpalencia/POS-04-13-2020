@@ -35,7 +35,7 @@ Partial Class POS
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
-        Me.Label12 = New System.Windows.Forms.Label()
+        Me.LabelFOOTER = New System.Windows.Forms.Label()
         Me.Panel34 = New System.Windows.Forms.Panel()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.LabelCheckingUpdates = New System.Windows.Forms.Label()
@@ -264,7 +264,7 @@ Partial Class POS
         '
         Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Panel24.Controls.Add(Me.ProgressBar1)
-        Me.Panel24.Controls.Add(Me.Label12)
+        Me.Panel24.Controls.Add(Me.LabelFOOTER)
         Me.Panel24.Controls.Add(Me.Panel34)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel24.Location = New System.Drawing.Point(0, 10)
@@ -280,18 +280,18 @@ Partial Class POS
         Me.ProgressBar1.TabIndex = 17
         Me.ProgressBar1.Visible = False
         '
-        'Label12
+        'LabelFOOTER
         '
-        Me.Label12.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.ForeColor = System.Drawing.Color.White
-        Me.Label12.Location = New System.Drawing.Point(1314, 0)
-        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(251, 31)
-        Me.Label12.TabIndex = 16
-        Me.Label12.Text = "© 2019 - Innovention Food Asia Corporation"
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
+        Me.LabelFOOTER.Location = New System.Drawing.Point(1314, 0)
+        Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelFOOTER.Name = "LabelFOOTER"
+        Me.LabelFOOTER.Size = New System.Drawing.Size(251, 31)
+        Me.LabelFOOTER.TabIndex = 16
+        Me.LabelFOOTER.Text = "© 2019 - Innovention Food Asia Corporation"
+        Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Panel34
         '
@@ -1977,7 +1977,7 @@ Partial Class POS
     Friend WithEvents Button1 As Button
     Friend WithEvents Panel32 As Panel
     Friend WithEvents Panel24 As Panel
-    Friend WithEvents Label12 As Label
+    Friend WithEvents LabelFOOTER As Label
     Friend WithEvents Panel33 As Panel
     Friend WithEvents Panel20 As Panel
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
