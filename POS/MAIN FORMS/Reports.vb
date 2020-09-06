@@ -1037,7 +1037,7 @@ Public Class Reports
                         RightToLeftDisplay(sender, e, 150 + ColumnSpacing, "SERVICE CREW: ", "", font, 20, 0)
                         RightToLeftDisplay(sender, e, 160 + ColumnSpacing, "DATE: ", "", font, 20, 0)
                         RightToLeftDisplay(sender, e, 170 + ColumnSpacing, "REASON:", "", font, 20, 0)
-                        RightToLeftDisplay(sender, e, 180 + ColumnSpacing, Space(5) & .Rows(0).Cells(2).Value.ToString, "", font, 20, 0)
+                        RightToLeftDisplay(sender, e, 180 + ColumnSpacing, Space(5) & .Rows(i).Cells(2).Value.ToString, "", font, 20, 0)
                         SimpleTextDisplay(sender, e, Space(40) & .Rows(i).Cells(0).Value.ToString, font, 0, 120 + ColumnSpacing)
                         SimpleTextDisplay(sender, e, Space(40) & .Rows(i).Cells(1).Value.ToString, font, 0, 130 + ColumnSpacing)
                         SimpleTextDisplay(sender, e, Space(40) & .Rows(i).Cells(3).Value.ToString, font, 0, 140 + ColumnSpacing)
