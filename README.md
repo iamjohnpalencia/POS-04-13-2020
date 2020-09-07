@@ -638,7 +638,93 @@ Aug 19
 		5 = Critical Limit
 		6 = Date Created
 
+August 20 2020
 
+	Update db script
+	Manage product debugging
+	POS table description
+	POS bug connection fixed at line 1956
+
+August 24 2020
 	
+	Numberic values
+	Special symbols restriction 
+	
+August 25 2020
 
+	coupon settings form update
+	
+August 26 2020
 
+	Coupon settings debug
+	
+August 27 2020
+
+	Coupon settings
+	Change system logs sync function to one
+	add new column for systemlogs id
+	
+August 28 2020
+
+	3rd party software for pos configuration
+	Database Script update
+	
+August 29 2020
+
+	New table for store custom coupon
+	Trigger table for store custom coupons
+	Sync Coupons
+	New columns for coupon for sync purpose
+	Sync approved coupons to POS
+
+September 1 2020
+
+	Database Script Update
+	Textbox Special characters restriction
+
+September 2 2020
+
+	Login backup bug fixed
+	Create Coupon
+	Edit Product
+	Synchronization
+	WEB
+	Registration form
+	Upload file to subdomain
+	DTSERVER bug fixed
+	
+September 3 2020
+
+	POS user registration form
+	Outlet page
+
+September 4 2020
+	
+	Sync form debugging
+	POS form insert to fm stock debugging
+	aws.aiolos connection string update
+	update software function for pos
+	
+September 5 2020
+
+	Coniguration properties to read only
+	Textbox Logs fonts to 8
+	
+September 6 2020
+
+	Change innovention food asia to Innovention Food Resources Inc.
+	Function for checking username, user unique id, email, contactnumber existence
+	zreading inventory date change to current zread inventory date
+	takeout form letters can be input at quantity field bug
+	refund print
+
+September 7 2020
+	
+	Custom product retrieval
+	Products Retrieval
+	Configuration manager 
+	coupon bug
+	Inventory form bug
+	POS progressbar for sync 
+	function to call pos form to system.threading
+	Sync to cloud function to call pos form
