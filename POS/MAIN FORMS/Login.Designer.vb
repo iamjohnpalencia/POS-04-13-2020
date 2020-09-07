@@ -26,6 +26,7 @@ Partial Class Login
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Login))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
         Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -39,12 +40,11 @@ Partial Class Login
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
+        Me.LabelFOOTER = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.ButttonLogin = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.LabelFOOTER = New System.Windows.Forms.Label()
-        Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
         Me.Panel1.SuspendLayout()
         Me.Panel8.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,6 +88,18 @@ Partial Class Login
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(315, 370)
         Me.Panel8.TabIndex = 82
+        '
+        'LinkLabel3
+        '
+        Me.LinkLabel3.AutoSize = True
+        Me.LinkLabel3.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.LinkLabel3.LinkColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.LinkLabel3.Location = New System.Drawing.Point(21, 257)
+        Me.LinkLabel3.Name = "LinkLabel3"
+        Me.LinkLabel3.Size = New System.Drawing.Size(116, 18)
+        Me.LinkLabel3.TabIndex = 230
+        Me.LinkLabel3.TabStop = True
+        Me.LinkLabel3.Text = "Forgot Password"
         '
         'ButtonKeyboard
         '
@@ -240,6 +252,18 @@ Partial Class Login
         Me.Panel24.Size = New System.Drawing.Size(315, 20)
         Me.Panel24.TabIndex = 218
         '
+        'LabelFOOTER
+        '
+        Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
+        Me.LabelFOOTER.Location = New System.Drawing.Point(64, 0)
+        Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelFOOTER.Name = "LabelFOOTER"
+        Me.LabelFOOTER.Size = New System.Drawing.Size(251, 20)
+        Me.LabelFOOTER.TabIndex = 18
+        Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -279,30 +303,6 @@ Partial Class Login
         Me.ButttonLogin.Text = "LOGIN"
         Me.ButttonLogin.UseVisualStyleBackColor = False
         '
-        'LabelFOOTER
-        '
-        Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
-        Me.LabelFOOTER.Location = New System.Drawing.Point(64, 0)
-        Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LabelFOOTER.Name = "LabelFOOTER"
-        Me.LabelFOOTER.Size = New System.Drawing.Size(251, 20)
-        Me.LabelFOOTER.TabIndex = 18
-        Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'LinkLabel3
-        '
-        Me.LinkLabel3.AutoSize = True
-        Me.LinkLabel3.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.LinkLabel3.LinkColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.LinkLabel3.Location = New System.Drawing.Point(21, 257)
-        Me.LinkLabel3.Name = "LinkLabel3"
-        Me.LinkLabel3.Size = New System.Drawing.Size(116, 18)
-        Me.LinkLabel3.TabIndex = 230
-        Me.LinkLabel3.TabStop = True
-        Me.LinkLabel3.Text = "Forgot Password"
-        '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -317,7 +317,7 @@ Partial Class Login
         Me.MinimizeBox = False
         Me.Name = "Login"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "s"
+        Me.Text = "LOGIN"
         Me.Panel1.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
         Me.Panel8.PerformLayout()

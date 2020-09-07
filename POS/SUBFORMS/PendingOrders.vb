@@ -128,4 +128,8 @@ Public Class PendingOrders
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
         ShowKeyboard()
     End Sub
+
+    Private Sub ComboBoxCustomerName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ComboBoxCustomerName.KeyPress
+
+    End Sub
 End Class

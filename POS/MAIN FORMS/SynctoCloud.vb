@@ -930,6 +930,7 @@ Public Class SynctoCloud
                 Button1.Enabled = True
                 Button2.Enabled = True
                 GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "State: Unsuccessful, Time End : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
+                Close()
             Else
                 If WorkerCanceled = True Then
                     MsgBox("Canceled")
