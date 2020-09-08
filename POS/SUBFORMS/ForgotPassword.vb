@@ -1,11 +1,15 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class ForgotPassword
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If CheckCredentials() = True Then
-            ResetPassword.Show()
-            Close()
+        If TextboxIsEmpty(Panel1) = True Then
+            If CheckCredentials() = True Then
+                ResetPassword.Show()
+                Close()
+            Else
+                MsgBox("Account doesnt exist")
+            End If
         Else
-            MsgBox("Account doesnt exist")
+            MsgBox("All fields are required.")
         End If
     End Sub
     Private Function CheckCredentials() As Boolean

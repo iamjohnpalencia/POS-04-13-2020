@@ -77,32 +77,40 @@ Public Class ConfigManager
 
 
     Private Sub CreateFolder(Path As String, FolderName As String, Optional ByVal Attributes As System.IO.FileAttributes = IO.FileAttributes.Normal)
-        My.Computer.FileSystem.CreateDirectory(Path & "\" & FolderName)
-        If Not Attributes = IO.FileAttributes.Normal Then
-            My.Computer.FileSystem.GetDirectoryInfo(Path & "\" & FolderName).Attributes = Attributes
-        End If
-        CreateUserConfig(Path, "user.config", FolderName)
+        Try
+            My.Computer.FileSystem.CreateDirectory(Path & "\" & FolderName)
+            If Not Attributes = IO.FileAttributes.Normal Then
+                My.Computer.FileSystem.GetDirectoryInfo(Path & "\" & FolderName).Attributes = Attributes
+            End If
+            CreateUserConfig(Path, "user.config", FolderName)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Public Sub CreateUserConfig(path As String, FileName As String, FolderName As String, Optional ByVal Attributes As System.IO.FileAttributes = IO.FileAttributes.Normal)
-        Dim CompletePath As String = path & "\" & FolderName & "\" & "user.config"
-        My.Computer.FileSystem.CreateDirectory(path & "\" & FolderName)
-        If Not Attributes = IO.FileAttributes.Normal Then
-            My.Computer.FileSystem.GetDirectoryInfo(path & "\" & FolderName).Attributes = Attributes
-        End If
-        Dim ConnString(5) As String
-        ConnString(0) = "server=" & ConvertToBase64(Trim(TextBoxLocalServer.Text))
-        ConnString(1) = "user id=" & ConvertToBase64(Trim(TextBoxLocalUsername.Text))
-        ConnString(2) = "password=" & ConvertToBase64(Trim(TextBoxLocalPassword.Text))
-        ConnString(3) = "database=" & ConvertToBase64(Trim(TextBoxLocalDatabase.Text))
-        ConnString(4) = "port=" & ConvertToBase64(Trim(TextBoxLocalPort.Text))
-        ConnString(5) = "Allow Zero Datetime=True"
-        File.WriteAllLines(CompletePath, ConnString, Encoding.UTF8)
-        CreateConn(CompletePath)
-        My.Settings.LocalConnectionPath = CompletePath
-        My.Settings.Save()
-        If LOCALCONNDATA = False Then
-            MsgBox("Saved")
-        End If
+        Try
+            Dim CompletePath As String = path & "\" & FolderName & "\" & "user.config"
+            My.Computer.FileSystem.CreateDirectory(path & "\" & FolderName)
+            If Not Attributes = IO.FileAttributes.Normal Then
+                My.Computer.FileSystem.GetDirectoryInfo(path & "\" & FolderName).Attributes = Attributes
+            End If
+            Dim ConnString(5) As String
+            ConnString(0) = "server=" & ConvertToBase64(Trim(TextBoxLocalServer.Text))
+            ConnString(1) = "user id=" & ConvertToBase64(Trim(TextBoxLocalUsername.Text))
+            ConnString(2) = "password=" & ConvertToBase64(Trim(TextBoxLocalPassword.Text))
+            ConnString(3) = "database=" & ConvertToBase64(Trim(TextBoxLocalDatabase.Text))
+            ConnString(4) = "port=" & ConvertToBase64(Trim(TextBoxLocalPort.Text))
+            ConnString(5) = "Allow Zero Datetime=True"
+            File.WriteAllLines(CompletePath, ConnString, Encoding.UTF8)
+            CreateConn(CompletePath)
+            My.Settings.LocalConnectionPath = CompletePath
+            My.Settings.Save()
+            If LOCALCONNDATA = False Then
+                MsgBox("Saved")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub ButtonTestLocConn_Click(sender As Object, e As EventArgs) Handles ButtonTestLocConn.Click
         TextboxEnableability(Panel5, False)
@@ -598,7 +606,6 @@ Public Class ConfigManager
                 lineCount = lineCount + 1
             Loop
             objReader.Close()
-
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

@@ -30,6 +30,8 @@ Partial Class ForgotPassword
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -40,8 +42,6 @@ Partial Class ForgotPassword
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,9 +85,9 @@ Partial Class ForgotPassword
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.Label1.Location = New System.Drawing.Point(15, 187)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(46, 18)
+        Me.Label1.Size = New System.Drawing.Size(103, 18)
         Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Email:"
+        Me.Label1.Text = "Email Address:"
         '
         'Label2
         '
@@ -122,6 +122,32 @@ Partial Class ForgotPassword
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(308, 392)
         Me.Panel1.TabIndex = 6
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.White
+        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 9.75!)
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Label4.Location = New System.Drawing.Point(15, 267)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(274, 17)
+        Me.Label4.TabIndex = 254
+        Me.Label4.Text = "______________________________________"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.White
+        Me.Label7.Font = New System.Drawing.Font("Century Gothic", 9.75!)
+        Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Label7.Location = New System.Drawing.Point(15, 217)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(274, 17)
+        Me.Label7.TabIndex = 253
+        Me.Label7.Text = "______________________________________"
         '
         'LinkLabel2
         '
@@ -224,32 +250,6 @@ Partial Class ForgotPassword
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Please provide your email address and " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "contact number to validate your account." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.White
-        Me.Label7.Font = New System.Drawing.Font("Century Gothic", 9.75!)
-        Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(15, 217)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(274, 17)
-        Me.Label7.TabIndex = 253
-        Me.Label7.Text = "______________________________________"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.White
-        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 9.75!)
-        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(15, 267)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(274, 17)
-        Me.Label4.TabIndex = 254
-        Me.Label4.Text = "______________________________________"
         '
         'ForgotPassword
         '
