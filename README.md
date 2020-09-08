@@ -720,6 +720,17 @@ September 6 2020
 
 September 7 2020
 	
+	POS Third party apps connection
+	Restore Database function
+	Optimize database function
+	Export database function
+	Import database function
+	POS Debugging 
+	New table for Script runner (Cloud/Local database)
+	Settings Design
+	
+September 8 2020
+
 	Custom product retrieval
 	Products Retrieval
 	Configuration manager 
@@ -728,3 +739,5 @@ September 7 2020
 	POS progressbar for sync 
 	function to call pos form to system.threading
 	Sync to cloud function to call pos form
+
+
