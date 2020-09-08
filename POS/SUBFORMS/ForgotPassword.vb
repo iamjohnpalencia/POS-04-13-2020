@@ -6,10 +6,10 @@ Public Class ForgotPassword
                 ResetPassword.Show()
                 Close()
             Else
-                MsgBox("Account doesnt exist")
+                MessageBox.Show("Account doesnt exist", "Invalid Account", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Else
-            MsgBox("All fields are required.")
+            MessageBox.Show("All fields are required.", "Fill the blanks", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
     Private Function CheckCredentials() As Boolean

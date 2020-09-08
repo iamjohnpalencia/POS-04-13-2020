@@ -1055,20 +1055,24 @@ Public Class Reports
     End Sub
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
-        Dim B As Integer = 0
-        If CheckBoxPRINTALL.Checked = False Then
-            printdocReturns.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 320)
-            PrintPreviewDialogReturns.Document = printdocReturns
-            PrintPreviewDialogReturns.ShowDialog()
+        If DataGridViewReturns.Rows.Count > 0 Then
+            Dim B As Integer = 0
+            If CheckBoxPRINTALL.Checked = False Then
+                printdocReturns.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 320)
+                PrintPreviewDialogReturns.Document = printdocReturns
+                PrintPreviewDialogReturns.ShowDialog()
+            Else
+                For i As Integer = 0 To DataGridViewReturns.Rows.Count - 1 Step +1
+                    B += 65
+                Next
+                printdocReturns.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 320 + B)
+                PrintPreviewDialogReturns.Document = printdocReturns
+                PrintPreviewDialogReturns.ShowDialog()
+            End If
+            B = 0
+            ColumnSpacing = 0
         Else
-            For i As Integer = 0 To DataGridViewReturns.Rows.Count - 1 Step +1
-                B += 65
-            Next
-            printdocReturns.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 320 + B)
-            PrintPreviewDialogReturns.Document = printdocReturns
-            PrintPreviewDialogReturns.ShowDialog()
+            MsgBox("Create deposit slip report first.")
         End If
-        B = 0
-        ColumnSpacing = 0
     End Sub
 End Class

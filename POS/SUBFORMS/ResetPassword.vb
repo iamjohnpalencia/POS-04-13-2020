@@ -37,11 +37,11 @@ Public Class ResetPassword
         Try
             If Trim(TextBoxPASSWORD.Text) = Trim(TextBoxCONFIRMPASSWORD.Text) Then
                 ResetPass()
-                MsgBox("Password reset complete")
+                MessageBox.Show("Password reset complete", "Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Login.Show()
                 Close()
             Else
-                MsgBox("Password did not match")
+                MessageBox.Show("Password did not match", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)

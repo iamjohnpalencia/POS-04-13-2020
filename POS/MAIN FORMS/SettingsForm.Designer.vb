@@ -23,7 +23,6 @@ Partial Class SettingsForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SettingsForm))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -45,6 +44,7 @@ Partial Class SettingsForm
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SettingsForm))
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
@@ -92,7 +92,6 @@ Partial Class SettingsForm
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.LabelCheckingUpdates = New System.Windows.Forms.Label()
-        Me.Label47 = New System.Windows.Forms.Label()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel11 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
@@ -249,11 +248,13 @@ Partial Class SettingsForm
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
-        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Label53 = New System.Windows.Forms.Label()
+        Me.Label52 = New System.Windows.Forms.Label()
+        Me.Label51 = New System.Windows.Forms.Label()
+        Me.Label50 = New System.Windows.Forms.Label()
         Me.ButtonTestLocCon = New System.Windows.Forms.Button()
         Me.TextBoxLocalServer = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -267,7 +268,10 @@ Partial Class SettingsForm
         Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Label54 = New System.Windows.Forms.Label()
+        Me.Label55 = New System.Windows.Forms.Label()
+        Me.Label57 = New System.Windows.Forms.Label()
+        Me.Label58 = New System.Windows.Forms.Label()
         Me.ButtonTestCloudCon = New System.Windows.Forms.Button()
         Me.TextBoxCloudServer = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -279,6 +283,8 @@ Partial Class SettingsForm
         Me.TextBoxCloudUsername = New System.Windows.Forms.TextBox()
         Me.TextBoxCloudPassword = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
+        Me.TabPage12 = New System.Windows.Forms.TabPage()
+        Me.Panel10 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Panel8 = New System.Windows.Forms.Panel()
@@ -302,8 +308,7 @@ Partial Class SettingsForm
         Me.RadioButtonMonthly = New System.Windows.Forms.RadioButton()
         Me.RadioButtonWeekly = New System.Windows.Forms.RadioButton()
         Me.RadioButtonDaily = New System.Windows.Forms.RadioButton()
-        Me.TabPage12 = New System.Windows.Forms.TabPage()
-        Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.TabPage15 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel9 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox12 = New System.Windows.Forms.GroupBox()
         Me.TextBoxExportPath = New System.Windows.Forms.TextBox()
@@ -329,14 +334,20 @@ Partial Class SettingsForm
         Me.Label71 = New System.Windows.Forms.Label()
         Me.DateTimePickerPTUVU = New System.Windows.Forms.DateTimePicker()
         Me.DateTimePicker4PTUDI = New System.Windows.Forms.DateTimePicker()
+        Me.TextBoxDevAccr = New System.Windows.Forms.TextBox()
+        Me.TextBoxDevTIN = New System.Windows.Forms.TextBox()
         Me.TextBoxDEVPTU = New System.Windows.Forms.TextBox()
         Me.DateTimePicker2ACCRVU = New System.Windows.Forms.DateTimePicker()
         Me.DateTimePicker1ACCRDI = New System.Windows.Forms.DateTimePicker()
-        Me.TextBoxDevAccr = New System.Windows.Forms.TextBox()
-        Me.TextBoxDevTIN = New System.Windows.Forms.TextBox()
         Me.TextBoxDevAdd = New System.Windows.Forms.TextBox()
         Me.TextBoxDevname = New System.Windows.Forms.TextBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.Panel26 = New System.Windows.Forms.Panel()
+        Me.Panel27 = New System.Windows.Forms.Panel()
+        Me.Panel29 = New System.Windows.Forms.Panel()
+        Me.Label47 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.TabPage6.SuspendLayout()
         CType(Me.DataGridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -399,12 +410,13 @@ Partial Class SettingsForm
         Me.Panel1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage11.SuspendLayout()
-        Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        Me.TabPage12.SuspendLayout()
+        Me.Panel10.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.Panel8.SuspendLayout()
@@ -413,12 +425,16 @@ Partial Class SettingsForm
         Me.GroupBox1.SuspendLayout()
         Me.Panel6.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
-        Me.TabPage12.SuspendLayout()
-        Me.Panel10.SuspendLayout()
+        Me.TabPage15.SuspendLayout()
         Me.TableLayoutPanel9.SuspendLayout()
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.TabControl1.SuspendLayout()
+        Me.Panel26.SuspendLayout()
+        Me.Panel27.SuspendLayout()
+        Me.Panel29.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -434,19 +450,15 @@ Partial Class SettingsForm
         '
         'TabPage6
         '
-        Me.TabPage6.Controls.Add(Me.Label48)
-        Me.TabPage6.Controls.Add(Me.LabelNewRows)
-        Me.TabPage6.Controls.Add(Me.LabelCountAllRows)
-        Me.TabPage6.Controls.Add(Me.Button4)
+        Me.TabPage6.Controls.Add(Me.PictureBox1)
+        Me.TabPage6.Controls.Add(Me.Label47)
+        Me.TabPage6.Controls.Add(Me.PictureBox2)
+        Me.TabPage6.Controls.Add(Me.Panel29)
         Me.TabPage6.Controls.Add(Me.DataGridView5)
-        Me.TabPage6.Controls.Add(Me.LabelStatus)
         Me.TabPage6.Controls.Add(Me.DataGridView4)
         Me.TabPage6.Controls.Add(Me.DataGridView3)
         Me.TabPage6.Controls.Add(Me.DataGridView2)
         Me.TabPage6.Controls.Add(Me.DataGridView1)
-        Me.TabPage6.Controls.Add(Me.ProgressBar1)
-        Me.TabPage6.Controls.Add(Me.LabelCheckingUpdates)
-        Me.TabPage6.Controls.Add(Me.Label47)
         Me.TabPage6.Location = New System.Drawing.Point(4, 28)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
@@ -457,26 +469,28 @@ Partial Class SettingsForm
         '
         'Label48
         '
-        Me.Label48.AutoSize = True
-        Me.Label48.Location = New System.Drawing.Point(370, 292)
+        Me.Label48.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label48.Location = New System.Drawing.Point(0, 0)
         Me.Label48.Name = "Label48"
-        Me.Label48.Size = New System.Drawing.Size(141, 19)
+        Me.Label48.Size = New System.Drawing.Size(141, 27)
         Me.Label48.TabIndex = 75
         Me.Label48.Text = "Getting New Items"
+        Me.Label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'LabelNewRows
         '
-        Me.LabelNewRows.AutoSize = True
-        Me.LabelNewRows.Location = New System.Drawing.Point(609, 292)
+        Me.LabelNewRows.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelNewRows.Location = New System.Drawing.Point(319, 0)
         Me.LabelNewRows.Name = "LabelNewRows"
-        Me.LabelNewRows.Size = New System.Drawing.Size(18, 19)
+        Me.LabelNewRows.Size = New System.Drawing.Size(18, 27)
         Me.LabelNewRows.TabIndex = 74
         Me.LabelNewRows.Text = "0"
+        Me.LabelNewRows.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'LabelCountAllRows
         '
         Me.LabelCountAllRows.AutoSize = True
-        Me.LabelCountAllRows.Location = New System.Drawing.Point(667, 212)
+        Me.LabelCountAllRows.Location = New System.Drawing.Point(349, 5)
         Me.LabelCountAllRows.Name = "LabelCountAllRows"
         Me.LabelCountAllRows.Size = New System.Drawing.Size(18, 19)
         Me.LabelCountAllRows.TabIndex = 73
@@ -486,11 +500,12 @@ Partial Class SettingsForm
         'Button4
         '
         Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.Button4.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Location = New System.Drawing.Point(374, 204)
+        Me.Button4.Location = New System.Drawing.Point(0, 33)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(287, 34)
+        Me.Button4.Size = New System.Drawing.Size(337, 34)
         Me.Button4.TabIndex = 72
         Me.Button4.Text = "Check for updates"
         Me.Button4.UseVisualStyleBackColor = False
@@ -518,12 +533,13 @@ Partial Class SettingsForm
         '
         'LabelStatus
         '
-        Me.LabelStatus.AutoSize = True
-        Me.LabelStatus.Location = New System.Drawing.Point(370, 241)
+        Me.LabelStatus.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelStatus.Location = New System.Drawing.Point(0, 0)
         Me.LabelStatus.Name = "LabelStatus"
-        Me.LabelStatus.Size = New System.Drawing.Size(52, 19)
+        Me.LabelStatus.Size = New System.Drawing.Size(337, 27)
         Me.LabelStatus.TabIndex = 70
         Me.LabelStatus.Text = "Status"
+        Me.LabelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'DataGridView4
         '
@@ -770,29 +786,21 @@ Partial Class SettingsForm
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(374, 266)
+        Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ProgressBar1.Location = New System.Drawing.Point(0, 94)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(287, 23)
+        Me.ProgressBar1.Size = New System.Drawing.Size(337, 23)
         Me.ProgressBar1.TabIndex = 3
         '
         'LabelCheckingUpdates
         '
-        Me.LabelCheckingUpdates.AutoSize = True
-        Me.LabelCheckingUpdates.Location = New System.Drawing.Point(370, 182)
+        Me.LabelCheckingUpdates.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.LabelCheckingUpdates.Location = New System.Drawing.Point(0, 0)
         Me.LabelCheckingUpdates.Name = "LabelCheckingUpdates"
-        Me.LabelCheckingUpdates.Size = New System.Drawing.Size(291, 19)
+        Me.LabelCheckingUpdates.Size = New System.Drawing.Size(337, 33)
         Me.LabelCheckingUpdates.TabIndex = 2
-        Me.LabelCheckingUpdates.Text = "last Checked: 2020-06-01 11:12:30 AM"
-        '
-        'Label47
-        '
-        Me.Label47.AutoSize = True
-        Me.Label47.Font = New System.Drawing.Font("Tahoma", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label47.Location = New System.Drawing.Point(368, 149)
-        Me.Label47.Name = "Label47"
-        Me.Label47.Size = New System.Drawing.Size(157, 33)
-        Me.Label47.TabIndex = 0
-        Me.Label47.Text = "POS Update"
+        Me.LabelCheckingUpdates.Text = "Last Checked: 2020-06-01 11:12:30 AM"
+        Me.LabelCheckingUpdates.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'TabPage5
         '
@@ -2634,6 +2642,7 @@ Partial Class SettingsForm
         '
         Me.TabControl2.Controls.Add(Me.TabPage11)
         Me.TabControl2.Controls.Add(Me.TabPage12)
+        Me.TabControl2.Controls.Add(Me.TabPage15)
         Me.TabControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl2.Location = New System.Drawing.Point(0, 0)
         Me.TabControl2.Name = "TabControl2"
@@ -2643,7 +2652,7 @@ Partial Class SettingsForm
         '
         'TabPage11
         '
-        Me.TabPage11.Controls.Add(Me.TableLayoutPanel3)
+        Me.TabPage11.Controls.Add(Me.TableLayoutPanel1)
         Me.TabPage11.Location = New System.Drawing.Point(4, 28)
         Me.TabPage11.Name = "TabPage11"
         Me.TabPage11.Padding = New System.Windows.Forms.Padding(3)
@@ -2651,21 +2660,6 @@ Partial Class SettingsForm
         Me.TabPage11.TabIndex = 0
         Me.TabPage11.Text = "TabPage11"
         Me.TabPage11.UseVisualStyleBackColor = True
-        '
-        'TableLayoutPanel3
-        '
-        Me.TableLayoutPanel3.ColumnCount = 2
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.TableLayoutPanel1, 0, 0)
-        Me.TableLayoutPanel3.Controls.Add(Me.TableLayoutPanel2, 1, 0)
-        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 3)
-        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-        Me.TableLayoutPanel3.RowCount = 1
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1011, 437)
-        Me.TableLayoutPanel3.TabIndex = 12
         '
         'TableLayoutPanel1
         '
@@ -2680,7 +2674,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(499, 431)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1011, 437)
         Me.TableLayoutPanel1.TabIndex = 5
         '
         'GroupBox3
@@ -2690,7 +2684,7 @@ Partial Class SettingsForm
         Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(493, 209)
+        Me.GroupBox3.Size = New System.Drawing.Size(1005, 212)
         Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Local Database Connection"
@@ -2698,7 +2692,10 @@ Partial Class SettingsForm
         'Panel5
         '
         Me.Panel5.AutoScroll = True
-        Me.Panel5.Controls.Add(Me.Button6)
+        Me.Panel5.Controls.Add(Me.Label53)
+        Me.Panel5.Controls.Add(Me.Label52)
+        Me.Panel5.Controls.Add(Me.Label51)
+        Me.Panel5.Controls.Add(Me.Label50)
         Me.Panel5.Controls.Add(Me.ButtonTestLocCon)
         Me.Panel5.Controls.Add(Me.TextBoxLocalServer)
         Me.Panel5.Controls.Add(Me.Label6)
@@ -2714,27 +2711,56 @@ Partial Class SettingsForm
         Me.Panel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.999999!)
         Me.Panel5.Location = New System.Drawing.Point(3, 22)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(487, 184)
+        Me.Panel5.Size = New System.Drawing.Size(999, 187)
         Me.Panel5.TabIndex = 2
         '
-        'Button6
+        'Label53
         '
-        Me.Button6.FlatAppearance.BorderSize = 0
-        Me.Button6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button6.Location = New System.Drawing.Point(97, 142)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(171, 23)
-        Me.Button6.TabIndex = 14
-        Me.Button6.Text = "Edit"
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.Label53.AutoSize = True
+        Me.Label53.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label53.Location = New System.Drawing.Point(662, 119)
+        Me.Label53.Name = "Label53"
+        Me.Label53.Size = New System.Drawing.Size(229, 16)
+        Me.Label53.TabIndex = 15
+        Me.Label53.Text = "The schema to use as default schema."
+        '
+        'Label52
+        '
+        Me.Label52.AutoSize = True
+        Me.Label52.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label52.Location = New System.Drawing.Point(662, 90)
+        Me.Label52.Name = "Label52"
+        Me.Label52.Size = New System.Drawing.Size(131, 16)
+        Me.Label52.TabIndex = 14
+        Me.Label52.Text = "The user's password."
+        '
+        'Label51
+        '
+        Me.Label51.AutoSize = True
+        Me.Label51.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label51.Location = New System.Drawing.Point(662, 61)
+        Me.Label51.Name = "Label51"
+        Me.Label51.Size = New System.Drawing.Size(202, 16)
+        Me.Label51.TabIndex = 13
+        Me.Label51.Text = "Name of the user to connect with."
+        '
+        'Label50
+        '
+        Me.Label50.AutoSize = True
+        Me.Label50.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label50.Location = New System.Drawing.Point(662, 20)
+        Me.Label50.Name = "Label50"
+        Me.Label50.Size = New System.Drawing.Size(260, 32)
+        Me.Label50.TabIndex = 12
+        Me.Label50.Text = "Name or IP address of the server host - and" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "TCP/IP port."
         '
         'ButtonTestLocCon
         '
         Me.ButtonTestLocCon.FlatAppearance.BorderSize = 0
         Me.ButtonTestLocCon.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonTestLocCon.Location = New System.Drawing.Point(274, 142)
+        Me.ButtonTestLocCon.Location = New System.Drawing.Point(665, 143)
         Me.ButtonTestLocCon.Name = "ButtonTestLocCon"
-        Me.ButtonTestLocCon.Size = New System.Drawing.Size(167, 23)
+        Me.ButtonTestLocCon.Size = New System.Drawing.Size(257, 23)
         Me.ButtonTestLocCon.TabIndex = 11
         Me.ButtonTestLocCon.Text = "Test"
         Me.ButtonTestLocCon.UseVisualStyleBackColor = True
@@ -2743,10 +2769,10 @@ Partial Class SettingsForm
         '
         Me.TextBoxLocalServer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxLocalServer.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxLocalServer.Location = New System.Drawing.Point(97, 30)
+        Me.TextBoxLocalServer.Location = New System.Drawing.Point(160, 20)
         Me.TextBoxLocalServer.Name = "TextBoxLocalServer"
         Me.TextBoxLocalServer.ReadOnly = True
-        Me.TextBoxLocalServer.Size = New System.Drawing.Size(171, 23)
+        Me.TextBoxLocalServer.Size = New System.Drawing.Size(302, 23)
         Me.TextBoxLocalServer.TabIndex = 0
         Me.TextBoxLocalServer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -2754,17 +2780,17 @@ Partial Class SettingsForm
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(9, 60)
+        Me.Label6.Location = New System.Drawing.Point(83, 63)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(76, 16)
+        Me.Label6.Size = New System.Drawing.Size(71, 16)
         Me.Label6.TabIndex = 6
-        Me.Label6.Text = "User Name:"
+        Me.Label6.Text = "Username:"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(274, 34)
+        Me.Label9.Location = New System.Drawing.Point(483, 22)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(36, 16)
         Me.Label9.TabIndex = 9
@@ -2774,17 +2800,17 @@ Partial Class SettingsForm
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(9, 32)
+        Me.Label4.Location = New System.Drawing.Point(79, 22)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(88, 16)
+        Me.Label4.Size = New System.Drawing.Size(75, 16)
         Me.Label4.TabIndex = 5
-        Me.Label4.Text = "Server Name:"
+        Me.Label4.Text = "Host Name:"
         '
         'TextBoxLocalPort
         '
         Me.TextBoxLocalPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxLocalPort.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxLocalPort.Location = New System.Drawing.Point(310, 30)
+        Me.TextBoxLocalPort.Location = New System.Drawing.Point(525, 20)
         Me.TextBoxLocalPort.Name = "TextBoxLocalPort"
         Me.TextBoxLocalPort.ReadOnly = True
         Me.TextBoxLocalPort.Size = New System.Drawing.Size(131, 23)
@@ -2795,7 +2821,7 @@ Partial Class SettingsForm
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(9, 88)
+        Me.Label7.Location = New System.Drawing.Point(86, 104)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(68, 16)
         Me.Label7.TabIndex = 7
@@ -2805,10 +2831,10 @@ Partial Class SettingsForm
         '
         Me.TextBoxLocalDatabase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxLocalDatabase.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxLocalDatabase.Location = New System.Drawing.Point(97, 114)
+        Me.TextBoxLocalDatabase.Location = New System.Drawing.Point(160, 143)
         Me.TextBoxLocalDatabase.Name = "TextBoxLocalDatabase"
         Me.TextBoxLocalDatabase.ReadOnly = True
-        Me.TextBoxLocalDatabase.Size = New System.Drawing.Size(171, 23)
+        Me.TextBoxLocalDatabase.Size = New System.Drawing.Size(496, 23)
         Me.TextBoxLocalDatabase.TabIndex = 3
         Me.TextBoxLocalDatabase.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.TextBoxLocalDatabase.UseSystemPasswordChar = True
@@ -2817,10 +2843,10 @@ Partial Class SettingsForm
         '
         Me.TextBoxLocalUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxLocalUsername.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxLocalUsername.Location = New System.Drawing.Point(97, 58)
+        Me.TextBoxLocalUsername.Location = New System.Drawing.Point(160, 61)
         Me.TextBoxLocalUsername.Name = "TextBoxLocalUsername"
         Me.TextBoxLocalUsername.ReadOnly = True
-        Me.TextBoxLocalUsername.Size = New System.Drawing.Size(171, 23)
+        Me.TextBoxLocalUsername.Size = New System.Drawing.Size(496, 23)
         Me.TextBoxLocalUsername.TabIndex = 1
         Me.TextBoxLocalUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.TextBoxLocalUsername.UseSystemPasswordChar = True
@@ -2829,10 +2855,10 @@ Partial Class SettingsForm
         '
         Me.TextBoxLocalPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxLocalPassword.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxLocalPassword.Location = New System.Drawing.Point(97, 86)
+        Me.TextBoxLocalPassword.Location = New System.Drawing.Point(160, 102)
         Me.TextBoxLocalPassword.Name = "TextBoxLocalPassword"
         Me.TextBoxLocalPassword.ReadOnly = True
-        Me.TextBoxLocalPassword.Size = New System.Drawing.Size(171, 23)
+        Me.TextBoxLocalPassword.Size = New System.Drawing.Size(302, 23)
         Me.TextBoxLocalPassword.TabIndex = 2
         Me.TextBoxLocalPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.TextBoxLocalPassword.UseSystemPasswordChar = True
@@ -2841,27 +2867,30 @@ Partial Class SettingsForm
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(9, 116)
+        Me.Label8.Location = New System.Drawing.Point(51, 145)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(59, 16)
+        Me.Label8.Size = New System.Drawing.Size(103, 16)
         Me.Label8.TabIndex = 8
-        Me.Label8.Text = "Schema:"
+        Me.Label8.Text = "Default Schema:"
         '
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.Panel2)
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox4.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(3, 218)
+        Me.GroupBox4.Location = New System.Drawing.Point(3, 221)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(493, 210)
+        Me.GroupBox4.Size = New System.Drawing.Size(1005, 213)
         Me.GroupBox4.TabIndex = 1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Cloud Database Connection"
         '
         'Panel2
         '
-        Me.Panel2.Controls.Add(Me.Button5)
+        Me.Panel2.Controls.Add(Me.Label54)
+        Me.Panel2.Controls.Add(Me.Label55)
+        Me.Panel2.Controls.Add(Me.Label57)
+        Me.Panel2.Controls.Add(Me.Label58)
         Me.Panel2.Controls.Add(Me.ButtonTestCloudCon)
         Me.Panel2.Controls.Add(Me.TextBoxCloudServer)
         Me.Panel2.Controls.Add(Me.Label10)
@@ -2876,27 +2905,56 @@ Partial Class SettingsForm
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(3, 22)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(487, 185)
+        Me.Panel2.Size = New System.Drawing.Size(999, 188)
         Me.Panel2.TabIndex = 2
         '
-        'Button5
+        'Label54
         '
-        Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button5.Location = New System.Drawing.Point(97, 139)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(171, 23)
-        Me.Button5.TabIndex = 13
-        Me.Button5.Text = "Edit"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.Label54.AutoSize = True
+        Me.Label54.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label54.Location = New System.Drawing.Point(662, 119)
+        Me.Label54.Name = "Label54"
+        Me.Label54.Size = New System.Drawing.Size(229, 16)
+        Me.Label54.TabIndex = 19
+        Me.Label54.Text = "The schema to use as default schema."
+        '
+        'Label55
+        '
+        Me.Label55.AutoSize = True
+        Me.Label55.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label55.Location = New System.Drawing.Point(662, 90)
+        Me.Label55.Name = "Label55"
+        Me.Label55.Size = New System.Drawing.Size(131, 16)
+        Me.Label55.TabIndex = 18
+        Me.Label55.Text = "The user's password."
+        '
+        'Label57
+        '
+        Me.Label57.AutoSize = True
+        Me.Label57.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label57.Location = New System.Drawing.Point(662, 61)
+        Me.Label57.Name = "Label57"
+        Me.Label57.Size = New System.Drawing.Size(202, 16)
+        Me.Label57.TabIndex = 17
+        Me.Label57.Text = "Name of the user to connect with."
+        '
+        'Label58
+        '
+        Me.Label58.AutoSize = True
+        Me.Label58.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label58.Location = New System.Drawing.Point(662, 20)
+        Me.Label58.Name = "Label58"
+        Me.Label58.Size = New System.Drawing.Size(260, 32)
+        Me.Label58.TabIndex = 16
+        Me.Label58.Text = "Name or IP address of the server host - and" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "TCP/IP port."
         '
         'ButtonTestCloudCon
         '
         Me.ButtonTestCloudCon.FlatAppearance.BorderSize = 0
         Me.ButtonTestCloudCon.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonTestCloudCon.Location = New System.Drawing.Point(274, 139)
+        Me.ButtonTestCloudCon.Location = New System.Drawing.Point(665, 143)
         Me.ButtonTestCloudCon.Name = "ButtonTestCloudCon"
-        Me.ButtonTestCloudCon.Size = New System.Drawing.Size(167, 23)
+        Me.ButtonTestCloudCon.Size = New System.Drawing.Size(257, 23)
         Me.ButtonTestCloudCon.TabIndex = 12
         Me.ButtonTestCloudCon.Text = "Test"
         Me.ButtonTestCloudCon.UseVisualStyleBackColor = True
@@ -2905,10 +2963,10 @@ Partial Class SettingsForm
         '
         Me.TextBoxCloudServer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxCloudServer.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxCloudServer.Location = New System.Drawing.Point(97, 26)
+        Me.TextBoxCloudServer.Location = New System.Drawing.Point(160, 20)
         Me.TextBoxCloudServer.Name = "TextBoxCloudServer"
         Me.TextBoxCloudServer.ReadOnly = True
-        Me.TextBoxCloudServer.Size = New System.Drawing.Size(171, 23)
+        Me.TextBoxCloudServer.Size = New System.Drawing.Size(302, 23)
         Me.TextBoxCloudServer.TabIndex = 0
         Me.TextBoxCloudServer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -2916,7 +2974,7 @@ Partial Class SettingsForm
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(9, 56)
+        Me.Label10.Location = New System.Drawing.Point(83, 63)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(76, 16)
         Me.Label10.TabIndex = 6
@@ -2926,7 +2984,7 @@ Partial Class SettingsForm
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(274, 32)
+        Me.Label11.Location = New System.Drawing.Point(483, 22)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(36, 16)
         Me.Label11.TabIndex = 9
@@ -2936,17 +2994,17 @@ Partial Class SettingsForm
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(9, 32)
+        Me.Label12.Location = New System.Drawing.Point(79, 22)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(88, 16)
+        Me.Label12.Size = New System.Drawing.Size(75, 16)
         Me.Label12.TabIndex = 5
-        Me.Label12.Text = "Server Name:"
+        Me.Label12.Text = "Host Name:"
         '
         'TextBoxCloudPort
         '
         Me.TextBoxCloudPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxCloudPort.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxCloudPort.Location = New System.Drawing.Point(310, 26)
+        Me.TextBoxCloudPort.Location = New System.Drawing.Point(525, 20)
         Me.TextBoxCloudPort.Name = "TextBoxCloudPort"
         Me.TextBoxCloudPort.ReadOnly = True
         Me.TextBoxCloudPort.Size = New System.Drawing.Size(131, 23)
@@ -2957,7 +3015,7 @@ Partial Class SettingsForm
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(9, 84)
+        Me.Label14.Location = New System.Drawing.Point(86, 104)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(68, 16)
         Me.Label14.TabIndex = 7
@@ -2967,10 +3025,10 @@ Partial Class SettingsForm
         '
         Me.TextBoxCloudDatabase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxCloudDatabase.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxCloudDatabase.Location = New System.Drawing.Point(97, 110)
+        Me.TextBoxCloudDatabase.Location = New System.Drawing.Point(160, 143)
         Me.TextBoxCloudDatabase.Name = "TextBoxCloudDatabase"
         Me.TextBoxCloudDatabase.ReadOnly = True
-        Me.TextBoxCloudDatabase.Size = New System.Drawing.Size(171, 23)
+        Me.TextBoxCloudDatabase.Size = New System.Drawing.Size(496, 23)
         Me.TextBoxCloudDatabase.TabIndex = 3
         Me.TextBoxCloudDatabase.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.TextBoxCloudDatabase.UseSystemPasswordChar = True
@@ -2979,10 +3037,10 @@ Partial Class SettingsForm
         '
         Me.TextBoxCloudUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxCloudUsername.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxCloudUsername.Location = New System.Drawing.Point(97, 54)
+        Me.TextBoxCloudUsername.Location = New System.Drawing.Point(160, 61)
         Me.TextBoxCloudUsername.Name = "TextBoxCloudUsername"
         Me.TextBoxCloudUsername.ReadOnly = True
-        Me.TextBoxCloudUsername.Size = New System.Drawing.Size(171, 23)
+        Me.TextBoxCloudUsername.Size = New System.Drawing.Size(496, 23)
         Me.TextBoxCloudUsername.TabIndex = 1
         Me.TextBoxCloudUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.TextBoxCloudUsername.UseSystemPasswordChar = True
@@ -2991,10 +3049,10 @@ Partial Class SettingsForm
         '
         Me.TextBoxCloudPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxCloudPassword.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxCloudPassword.Location = New System.Drawing.Point(97, 82)
+        Me.TextBoxCloudPassword.Location = New System.Drawing.Point(160, 102)
         Me.TextBoxCloudPassword.Name = "TextBoxCloudPassword"
         Me.TextBoxCloudPassword.ReadOnly = True
-        Me.TextBoxCloudPassword.Size = New System.Drawing.Size(171, 23)
+        Me.TextBoxCloudPassword.Size = New System.Drawing.Size(302, 23)
         Me.TextBoxCloudPassword.TabIndex = 2
         Me.TextBoxCloudPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.TextBoxCloudPassword.UseSystemPasswordChar = True
@@ -3003,11 +3061,31 @@ Partial Class SettingsForm
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(9, 112)
+        Me.Label15.Location = New System.Drawing.Point(51, 145)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(59, 16)
+        Me.Label15.Size = New System.Drawing.Size(103, 16)
         Me.Label15.TabIndex = 8
-        Me.Label15.Text = "Schema:"
+        Me.Label15.Text = "Default Schema:"
+        '
+        'TabPage12
+        '
+        Me.TabPage12.Controls.Add(Me.Panel10)
+        Me.TabPage12.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage12.Name = "TabPage12"
+        Me.TabPage12.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage12.Size = New System.Drawing.Size(1017, 449)
+        Me.TabPage12.TabIndex = 1
+        Me.TabPage12.Text = "TabPage12"
+        Me.TabPage12.UseVisualStyleBackColor = True
+        '
+        'Panel10
+        '
+        Me.Panel10.Controls.Add(Me.TableLayoutPanel2)
+        Me.Panel10.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel10.Location = New System.Drawing.Point(3, 3)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.Size = New System.Drawing.Size(1011, 443)
+        Me.Panel10.TabIndex = 0
         '
         'TableLayoutPanel2
         '
@@ -3017,13 +3095,13 @@ Partial Class SettingsForm
         Me.TableLayoutPanel2.Controls.Add(Me.GroupBox2, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.GroupBox1, 0, 2)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(508, 3)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 3
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(500, 431)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1011, 443)
         Me.TableLayoutPanel2.TabIndex = 10
         '
         'GroupBox6
@@ -3033,7 +3111,7 @@ Partial Class SettingsForm
         Me.GroupBox6.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox6.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(494, 137)
+        Me.GroupBox6.Size = New System.Drawing.Size(1005, 141)
         Me.GroupBox6.TabIndex = 4
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "System Database Option"
@@ -3050,80 +3128,83 @@ Partial Class SettingsForm
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel8.Location = New System.Drawing.Point(3, 22)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(488, 112)
+        Me.Panel8.Size = New System.Drawing.Size(999, 116)
         Me.Panel8.TabIndex = 0
         '
         'ButtonOptimizeDB
         '
+        Me.ButtonOptimizeDB.FlatAppearance.BorderSize = 0
         Me.ButtonOptimizeDB.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonOptimizeDB.Location = New System.Drawing.Point(64, 84)
+        Me.ButtonOptimizeDB.Location = New System.Drawing.Point(279, 83)
         Me.ButtonOptimizeDB.Name = "ButtonOptimizeDB"
-        Me.ButtonOptimizeDB.Size = New System.Drawing.Size(360, 23)
+        Me.ButtonOptimizeDB.Size = New System.Drawing.Size(441, 23)
         Me.ButtonOptimizeDB.TabIndex = 30
         Me.ButtonOptimizeDB.Text = "Optimize"
         Me.ButtonOptimizeDB.UseVisualStyleBackColor = True
         '
         'ButtonDatabaseReset
         '
+        Me.ButtonDatabaseReset.FlatAppearance.BorderSize = 0
         Me.ButtonDatabaseReset.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonDatabaseReset.Location = New System.Drawing.Point(64, 60)
+        Me.ButtonDatabaseReset.Location = New System.Drawing.Point(279, 57)
         Me.ButtonDatabaseReset.Name = "ButtonDatabaseReset"
-        Me.ButtonDatabaseReset.Size = New System.Drawing.Size(179, 23)
+        Me.ButtonDatabaseReset.Size = New System.Drawing.Size(219, 23)
         Me.ButtonDatabaseReset.TabIndex = 29
         Me.ButtonDatabaseReset.Text = "Database Reset"
         Me.ButtonDatabaseReset.UseVisualStyleBackColor = True
         '
         'ButtonMaintenance
         '
+        Me.ButtonMaintenance.FlatAppearance.BorderSize = 0
         Me.ButtonMaintenance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonMaintenance.Location = New System.Drawing.Point(245, 60)
+        Me.ButtonMaintenance.Location = New System.Drawing.Point(501, 57)
         Me.ButtonMaintenance.Name = "ButtonMaintenance"
-        Me.ButtonMaintenance.Size = New System.Drawing.Size(179, 23)
+        Me.ButtonMaintenance.Size = New System.Drawing.Size(219, 23)
         Me.ButtonMaintenance.TabIndex = 28
         Me.ButtonMaintenance.Text = "Repair"
         Me.ButtonMaintenance.UseVisualStyleBackColor = True
         '
         'Label64
         '
-        Me.Label64.AutoSize = True
         Me.Label64.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label64.ForeColor = System.Drawing.Color.Black
-        Me.Label64.Location = New System.Drawing.Point(79, 42)
+        Me.Label64.Location = New System.Drawing.Point(3, 40)
         Me.Label64.Name = "Label64"
-        Me.Label64.Size = New System.Drawing.Size(328, 14)
+        Me.Label64.Size = New System.Drawing.Size(993, 14)
         Me.Label64.TabIndex = 18
         Me.Label64.Text = "*Repair - Repair the tables, Optimize - Optimize the tables."
+        Me.Label64.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label65
         '
-        Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label65.ForeColor = System.Drawing.Color.Black
-        Me.Label65.Location = New System.Drawing.Point(6, 9)
+        Me.Label65.Location = New System.Drawing.Point(3, 7)
         Me.Label65.Name = "Label65"
-        Me.Label65.Size = New System.Drawing.Size(475, 14)
+        Me.Label65.Size = New System.Drawing.Size(993, 14)
         Me.Label65.TabIndex = 17
         Me.Label65.Text = "*Database Reset deletes EVERYTHING you have input, changed, saved BE CAREFUL."
+        Me.Label65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label66
         '
-        Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label66.ForeColor = System.Drawing.Color.Black
-        Me.Label66.Location = New System.Drawing.Point(79, 27)
+        Me.Label66.Location = New System.Drawing.Point(3, 25)
         Me.Label66.Name = "Label66"
-        Me.Label66.Size = New System.Drawing.Size(341, 14)
+        Me.Label66.Size = New System.Drawing.Size(993, 14)
         Me.Label66.TabIndex = 16
         Me.Label66.Text = "This acts as NEW DATABASE and you will have to start now."
+        Me.Label66.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Panel7)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 146)
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 150)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(494, 137)
+        Me.GroupBox2.Size = New System.Drawing.Size(1005, 141)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Manual System Backup"
@@ -3137,57 +3218,59 @@ Partial Class SettingsForm
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel7.Location = New System.Drawing.Point(3, 22)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(488, 112)
+        Me.Panel7.Size = New System.Drawing.Size(999, 116)
         Me.Panel7.TabIndex = 0
         '
         'TextBoxLocalRestorePath
         '
         Me.TextBoxLocalRestorePath.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxLocalRestorePath.Location = New System.Drawing.Point(59, 33)
+        Me.TextBoxLocalRestorePath.Location = New System.Drawing.Point(279, 37)
         Me.TextBoxLocalRestorePath.Name = "TextBoxLocalRestorePath"
         Me.TextBoxLocalRestorePath.ReadOnly = True
-        Me.TextBoxLocalRestorePath.Size = New System.Drawing.Size(363, 26)
+        Me.TextBoxLocalRestorePath.Size = New System.Drawing.Size(441, 26)
         Me.TextBoxLocalRestorePath.TabIndex = 28
         '
         'ButtonImport
         '
+        Me.ButtonImport.FlatAppearance.BorderSize = 0
         Me.ButtonImport.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.ButtonImport.Location = New System.Drawing.Point(59, 64)
+        Me.ButtonImport.Location = New System.Drawing.Point(279, 69)
         Me.ButtonImport.Name = "ButtonImport"
-        Me.ButtonImport.Size = New System.Drawing.Size(179, 23)
+        Me.ButtonImport.Size = New System.Drawing.Size(219, 23)
         Me.ButtonImport.TabIndex = 27
         Me.ButtonImport.Text = "Import"
         Me.ButtonImport.UseVisualStyleBackColor = True
         '
         'ButtonExport
         '
+        Me.ButtonExport.FlatAppearance.BorderSize = 0
         Me.ButtonExport.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.ButtonExport.Location = New System.Drawing.Point(243, 64)
+        Me.ButtonExport.Location = New System.Drawing.Point(501, 69)
         Me.ButtonExport.Name = "ButtonExport"
-        Me.ButtonExport.Size = New System.Drawing.Size(179, 23)
+        Me.ButtonExport.Size = New System.Drawing.Size(219, 23)
         Me.ButtonExport.TabIndex = 26
         Me.ButtonExport.Text = "Export"
         Me.ButtonExport.UseVisualStyleBackColor = True
         '
         'Label61
         '
-        Me.Label61.AutoSize = True
         Me.Label61.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Label61.ForeColor = System.Drawing.Color.Black
-        Me.Label61.Location = New System.Drawing.Point(79, 15)
+        Me.Label61.Location = New System.Drawing.Point(6, 19)
         Me.Label61.Name = "Label61"
-        Me.Label61.Size = New System.Drawing.Size(292, 14)
+        Me.Label61.Size = New System.Drawing.Size(990, 14)
         Me.Label61.TabIndex = 25
         Me.Label61.Text = "*Manually backup system data and print it with you."
+        Me.Label61.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.Panel6)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 289)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 297)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(494, 139)
+        Me.GroupBox1.Size = New System.Drawing.Size(1005, 143)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Schedule Automatic System Backup"
@@ -3199,19 +3282,19 @@ Partial Class SettingsForm
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel6.Location = New System.Drawing.Point(3, 22)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(488, 114)
+        Me.Panel6.Size = New System.Drawing.Size(999, 118)
         Me.Panel6.TabIndex = 0
         '
         'Label60
         '
-        Me.Label60.AutoSize = True
         Me.Label60.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Label60.ForeColor = System.Drawing.Color.Black
-        Me.Label60.Location = New System.Drawing.Point(100, 35)
+        Me.Label60.Location = New System.Drawing.Point(6, 28)
         Me.Label60.Name = "Label60"
-        Me.Label60.Size = New System.Drawing.Size(283, 14)
+        Me.Label60.Size = New System.Drawing.Size(990, 14)
         Me.Label60.TabIndex = 53
         Me.Label60.Text = "*Automatic create system backup in interval basis."
+        Me.Label60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GroupBox5
         '
@@ -3220,9 +3303,9 @@ Partial Class SettingsForm
         Me.GroupBox5.Controls.Add(Me.RadioButtonWeekly)
         Me.GroupBox5.Controls.Add(Me.RadioButtonDaily)
         Me.GroupBox5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox5.Location = New System.Drawing.Point(82, 52)
+        Me.GroupBox5.Location = New System.Drawing.Point(279, 45)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(301, 47)
+        Me.GroupBox5.Size = New System.Drawing.Size(441, 47)
         Me.GroupBox5.TabIndex = 52
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Frequency"
@@ -3230,7 +3313,7 @@ Partial Class SettingsForm
         'RadioButtonYearly
         '
         Me.RadioButtonYearly.AutoSize = True
-        Me.RadioButtonYearly.Location = New System.Drawing.Point(226, 18)
+        Me.RadioButtonYearly.Location = New System.Drawing.Point(292, 19)
         Me.RadioButtonYearly.Name = "RadioButtonYearly"
         Me.RadioButtonYearly.Size = New System.Drawing.Size(61, 20)
         Me.RadioButtonYearly.TabIndex = 3
@@ -3241,7 +3324,7 @@ Partial Class SettingsForm
         'RadioButtonMonthly
         '
         Me.RadioButtonMonthly.AutoSize = True
-        Me.RadioButtonMonthly.Location = New System.Drawing.Point(155, 18)
+        Me.RadioButtonMonthly.Location = New System.Drawing.Point(216, 19)
         Me.RadioButtonMonthly.Name = "RadioButtonMonthly"
         Me.RadioButtonMonthly.Size = New System.Drawing.Size(70, 20)
         Me.RadioButtonMonthly.TabIndex = 2
@@ -3252,7 +3335,7 @@ Partial Class SettingsForm
         'RadioButtonWeekly
         '
         Me.RadioButtonWeekly.AutoSize = True
-        Me.RadioButtonWeekly.Location = New System.Drawing.Point(88, 18)
+        Me.RadioButtonWeekly.Location = New System.Drawing.Point(143, 19)
         Me.RadioButtonWeekly.Name = "RadioButtonWeekly"
         Me.RadioButtonWeekly.Size = New System.Drawing.Size(67, 20)
         Me.RadioButtonWeekly.TabIndex = 1
@@ -3263,7 +3346,7 @@ Partial Class SettingsForm
         'RadioButtonDaily
         '
         Me.RadioButtonDaily.AutoSize = True
-        Me.RadioButtonDaily.Location = New System.Drawing.Point(32, 18)
+        Me.RadioButtonDaily.Location = New System.Drawing.Point(84, 19)
         Me.RadioButtonDaily.Name = "RadioButtonDaily"
         Me.RadioButtonDaily.Size = New System.Drawing.Size(53, 20)
         Me.RadioButtonDaily.TabIndex = 0
@@ -3271,36 +3354,26 @@ Partial Class SettingsForm
         Me.RadioButtonDaily.Text = "Daily"
         Me.RadioButtonDaily.UseVisualStyleBackColor = True
         '
-        'TabPage12
+        'TabPage15
         '
-        Me.TabPage12.Controls.Add(Me.Panel10)
-        Me.TabPage12.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage12.Name = "TabPage12"
-        Me.TabPage12.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage12.Size = New System.Drawing.Size(1017, 449)
-        Me.TabPage12.TabIndex = 1
-        Me.TabPage12.Text = "TabPage12"
-        Me.TabPage12.UseVisualStyleBackColor = True
-        '
-        'Panel10
-        '
-        Me.Panel10.Controls.Add(Me.TableLayoutPanel9)
-        Me.Panel10.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel10.Location = New System.Drawing.Point(3, 3)
-        Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(1011, 443)
-        Me.Panel10.TabIndex = 0
+        Me.TabPage15.Controls.Add(Me.TableLayoutPanel9)
+        Me.TabPage15.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage15.Name = "TabPage15"
+        Me.TabPage15.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage15.Size = New System.Drawing.Size(1017, 449)
+        Me.TabPage15.TabIndex = 2
+        Me.TabPage15.Text = "TabPage15"
+        Me.TabPage15.UseVisualStyleBackColor = True
         '
         'TableLayoutPanel9
         '
-        Me.TableLayoutPanel9.ColumnCount = 3
-        Me.TableLayoutPanel9.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanel9.ColumnCount = 2
         Me.TableLayoutPanel9.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel9.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel9.Controls.Add(Me.GroupBox12, 0, 0)
         Me.TableLayoutPanel9.Controls.Add(Me.GroupBox11, 0, 0)
         Me.TableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel9.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel9.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel9.Name = "TableLayoutPanel9"
         Me.TableLayoutPanel9.RowCount = 1
         Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -3322,9 +3395,9 @@ Partial Class SettingsForm
         Me.GroupBox12.Controls.Add(Me.TextBoxSINumber)
         Me.GroupBox12.Controls.Add(Me.Label31)
         Me.GroupBox12.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox12.Location = New System.Drawing.Point(340, 3)
+        Me.GroupBox12.Location = New System.Drawing.Point(508, 3)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(331, 437)
+        Me.GroupBox12.Size = New System.Drawing.Size(500, 437)
         Me.GroupBox12.TabIndex = 296
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "Additional Settings"
@@ -3332,7 +3405,7 @@ Partial Class SettingsForm
         'TextBoxExportPath
         '
         Me.TextBoxExportPath.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxExportPath.Location = New System.Drawing.Point(38, 40)
+        Me.TextBoxExportPath.Location = New System.Drawing.Point(158, 83)
         Me.TextBoxExportPath.Name = "TextBoxExportPath"
         Me.TextBoxExportPath.ReadOnly = True
         Me.TextBoxExportPath.Size = New System.Drawing.Size(245, 23)
@@ -3342,7 +3415,7 @@ Partial Class SettingsForm
         '
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.Location = New System.Drawing.Point(35, 155)
+        Me.Label24.Location = New System.Drawing.Point(70, 209)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(82, 16)
         Me.Label24.TabIndex = 292
@@ -3352,7 +3425,7 @@ Partial Class SettingsForm
         '
         Me.Label56.AutoSize = True
         Me.Label56.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label56.Location = New System.Drawing.Point(35, 203)
+        Me.Label56.Location = New System.Drawing.Point(76, 249)
         Me.Label56.Name = "Label56"
         Me.Label56.Size = New System.Drawing.Size(76, 16)
         Me.Label56.TabIndex = 285
@@ -3361,7 +3434,7 @@ Partial Class SettingsForm
         'TextBoxTerminalNo
         '
         Me.TextBoxTerminalNo.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxTerminalNo.Location = New System.Drawing.Point(38, 173)
+        Me.TextBoxTerminalNo.Location = New System.Drawing.Point(158, 206)
         Me.TextBoxTerminalNo.Name = "TextBoxTerminalNo"
         Me.TextBoxTerminalNo.ReadOnly = True
         Me.TextBoxTerminalNo.Size = New System.Drawing.Size(245, 23)
@@ -3372,7 +3445,7 @@ Partial Class SettingsForm
         Me.RadioButtonYES.AutoSize = True
         Me.RadioButtonYES.Enabled = False
         Me.RadioButtonYES.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonYES.Location = New System.Drawing.Point(173, 199)
+        Me.RadioButtonYES.Location = New System.Drawing.Point(158, 247)
         Me.RadioButtonYES.Name = "RadioButtonYES"
         Me.RadioButtonYES.Size = New System.Drawing.Size(46, 20)
         Me.RadioButtonYES.TabIndex = 287
@@ -3384,7 +3457,7 @@ Partial Class SettingsForm
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(35, 108)
+        Me.Label25.Location = New System.Drawing.Point(33, 168)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(119, 16)
         Me.Label25.TabIndex = 290
@@ -3394,7 +3467,7 @@ Partial Class SettingsForm
         '
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(35, 23)
+        Me.Label26.Location = New System.Drawing.Point(74, 86)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(78, 16)
         Me.Label26.TabIndex = 283
@@ -3405,7 +3478,7 @@ Partial Class SettingsForm
         Me.RadioButtonNO.AutoSize = True
         Me.RadioButtonNO.Enabled = False
         Me.RadioButtonNO.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonNO.Location = New System.Drawing.Point(244, 199)
+        Me.RadioButtonNO.Location = New System.Drawing.Point(210, 247)
         Me.RadioButtonNO.Name = "RadioButtonNO"
         Me.RadioButtonNO.Size = New System.Drawing.Size(41, 20)
         Me.RadioButtonNO.TabIndex = 288
@@ -3416,7 +3489,7 @@ Partial Class SettingsForm
         'TextBoxTax
         '
         Me.TextBoxTax.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxTax.Location = New System.Drawing.Point(38, 82)
+        Me.TextBoxTax.Location = New System.Drawing.Point(158, 124)
         Me.TextBoxTax.Name = "TextBoxTax"
         Me.TextBoxTax.ReadOnly = True
         Me.TextBoxTax.Size = New System.Drawing.Size(245, 23)
@@ -3425,7 +3498,7 @@ Partial Class SettingsForm
         'TextBoxSINumber
         '
         Me.TextBoxSINumber.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxSINumber.Location = New System.Drawing.Point(38, 129)
+        Me.TextBoxSINumber.Location = New System.Drawing.Point(158, 165)
         Me.TextBoxSINumber.Name = "TextBoxSINumber"
         Me.TextBoxSINumber.ReadOnly = True
         Me.TextBoxSINumber.Size = New System.Drawing.Size(245, 23)
@@ -3435,7 +3508,7 @@ Partial Class SettingsForm
         '
         Me.Label31.AutoSize = True
         Me.Label31.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label31.Location = New System.Drawing.Point(35, 66)
+        Me.Label31.Location = New System.Drawing.Point(115, 130)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(37, 16)
         Me.Label31.TabIndex = 286
@@ -3454,17 +3527,17 @@ Partial Class SettingsForm
         Me.GroupBox11.Controls.Add(Me.Label71)
         Me.GroupBox11.Controls.Add(Me.DateTimePickerPTUVU)
         Me.GroupBox11.Controls.Add(Me.DateTimePicker4PTUDI)
+        Me.GroupBox11.Controls.Add(Me.TextBoxDevAccr)
+        Me.GroupBox11.Controls.Add(Me.TextBoxDevTIN)
         Me.GroupBox11.Controls.Add(Me.TextBoxDEVPTU)
         Me.GroupBox11.Controls.Add(Me.DateTimePicker2ACCRVU)
         Me.GroupBox11.Controls.Add(Me.DateTimePicker1ACCRDI)
-        Me.GroupBox11.Controls.Add(Me.TextBoxDevAccr)
-        Me.GroupBox11.Controls.Add(Me.TextBoxDevTIN)
         Me.GroupBox11.Controls.Add(Me.TextBoxDevAdd)
         Me.GroupBox11.Controls.Add(Me.TextBoxDevname)
         Me.GroupBox11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox11.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(331, 437)
+        Me.GroupBox11.Size = New System.Drawing.Size(499, 437)
         Me.GroupBox11.TabIndex = 295
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "Developer Information"
@@ -3473,7 +3546,7 @@ Partial Class SettingsForm
         '
         Me.Label79.AutoSize = True
         Me.Label79.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label79.Location = New System.Drawing.Point(38, 376)
+        Me.Label79.Location = New System.Drawing.Point(91, 373)
         Me.Label79.Name = "Label79"
         Me.Label79.Size = New System.Drawing.Size(70, 16)
         Me.Label79.TabIndex = 271
@@ -3483,7 +3556,7 @@ Partial Class SettingsForm
         '
         Me.Label78.AutoSize = True
         Me.Label78.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label78.Location = New System.Drawing.Point(38, 332)
+        Me.Label78.Location = New System.Drawing.Point(81, 332)
         Me.Label78.Name = "Label78"
         Me.Label78.Size = New System.Drawing.Size(80, 16)
         Me.Label78.TabIndex = 270
@@ -3493,7 +3566,7 @@ Partial Class SettingsForm
         '
         Me.Label77.AutoSize = True
         Me.Label77.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label77.Location = New System.Drawing.Point(38, 288)
+        Me.Label77.Location = New System.Drawing.Point(102, 288)
         Me.Label77.Name = "Label77"
         Me.Label77.Size = New System.Drawing.Size(59, 16)
         Me.Label77.TabIndex = 269
@@ -3503,7 +3576,7 @@ Partial Class SettingsForm
         '
         Me.Label76.AutoSize = True
         Me.Label76.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label76.Location = New System.Drawing.Point(38, 243)
+        Me.Label76.Location = New System.Drawing.Point(91, 250)
         Me.Label76.Name = "Label76"
         Me.Label76.Size = New System.Drawing.Size(70, 16)
         Me.Label76.TabIndex = 268
@@ -3513,7 +3586,7 @@ Partial Class SettingsForm
         '
         Me.Label75.AutoSize = True
         Me.Label75.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label75.Location = New System.Drawing.Point(38, 199)
+        Me.Label75.Location = New System.Drawing.Point(81, 209)
         Me.Label75.Name = "Label75"
         Me.Label75.Size = New System.Drawing.Size(80, 16)
         Me.Label75.TabIndex = 267
@@ -3523,7 +3596,7 @@ Partial Class SettingsForm
         '
         Me.Label74.AutoSize = True
         Me.Label74.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label74.Location = New System.Drawing.Point(38, 155)
+        Me.Label74.Location = New System.Drawing.Point(103, 165)
         Me.Label74.Name = "Label74"
         Me.Label74.Size = New System.Drawing.Size(58, 16)
         Me.Label74.TabIndex = 266
@@ -3533,7 +3606,7 @@ Partial Class SettingsForm
         '
         Me.Label73.AutoSize = True
         Me.Label73.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label73.Location = New System.Drawing.Point(38, 111)
+        Me.Label73.Location = New System.Drawing.Point(81, 124)
         Me.Label73.Name = "Label73"
         Me.Label73.Size = New System.Drawing.Size(80, 16)
         Me.Label73.TabIndex = 265
@@ -3543,17 +3616,17 @@ Partial Class SettingsForm
         '
         Me.Label72.AutoSize = True
         Me.Label72.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label72.Location = New System.Drawing.Point(38, 67)
+        Me.Label72.Location = New System.Drawing.Point(45, 83)
         Me.Label72.Name = "Label72"
-        Me.Label72.Size = New System.Drawing.Size(59, 16)
+        Me.Label72.Size = New System.Drawing.Size(116, 16)
         Me.Label72.TabIndex = 264
-        Me.Label72.Text = "Address:"
+        Me.Label72.Text = "Company Address:"
         '
         'Label71
         '
         Me.Label71.AutoSize = True
         Me.Label71.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label71.Location = New System.Drawing.Point(38, 23)
+        Me.Label71.Location = New System.Drawing.Point(58, 43)
         Me.Label71.Name = "Label71"
         Me.Label71.Size = New System.Drawing.Size(103, 16)
         Me.Label71.TabIndex = 263
@@ -3563,7 +3636,7 @@ Partial Class SettingsForm
         '
         Me.DateTimePickerPTUVU.Enabled = False
         Me.DateTimePickerPTUVU.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePickerPTUVU.Location = New System.Drawing.Point(41, 394)
+        Me.DateTimePickerPTUVU.Location = New System.Drawing.Point(167, 368)
         Me.DateTimePickerPTUVU.Name = "DateTimePickerPTUVU"
         Me.DateTimePickerPTUVU.Size = New System.Drawing.Size(245, 23)
         Me.DateTimePickerPTUVU.TabIndex = 262
@@ -3572,44 +3645,16 @@ Partial Class SettingsForm
         '
         Me.DateTimePicker4PTUDI.Enabled = False
         Me.DateTimePicker4PTUDI.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePicker4PTUDI.Location = New System.Drawing.Point(41, 350)
+        Me.DateTimePicker4PTUDI.Location = New System.Drawing.Point(167, 327)
         Me.DateTimePicker4PTUDI.Name = "DateTimePicker4PTUDI"
         Me.DateTimePicker4PTUDI.Size = New System.Drawing.Size(245, 23)
         Me.DateTimePicker4PTUDI.TabIndex = 261
-        '
-        'TextBoxDEVPTU
-        '
-        Me.TextBoxDEVPTU.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxDEVPTU.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxDEVPTU.Location = New System.Drawing.Point(41, 306)
-        Me.TextBoxDEVPTU.Name = "TextBoxDEVPTU"
-        Me.TextBoxDEVPTU.ReadOnly = True
-        Me.TextBoxDEVPTU.Size = New System.Drawing.Size(245, 23)
-        Me.TextBoxDEVPTU.TabIndex = 260
-        '
-        'DateTimePicker2ACCRVU
-        '
-        Me.DateTimePicker2ACCRVU.Enabled = False
-        Me.DateTimePicker2ACCRVU.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePicker2ACCRVU.Location = New System.Drawing.Point(41, 261)
-        Me.DateTimePicker2ACCRVU.Name = "DateTimePicker2ACCRVU"
-        Me.DateTimePicker2ACCRVU.Size = New System.Drawing.Size(245, 23)
-        Me.DateTimePicker2ACCRVU.TabIndex = 259
-        '
-        'DateTimePicker1ACCRDI
-        '
-        Me.DateTimePicker1ACCRDI.Enabled = False
-        Me.DateTimePicker1ACCRDI.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePicker1ACCRDI.Location = New System.Drawing.Point(41, 217)
-        Me.DateTimePicker1ACCRDI.Name = "DateTimePicker1ACCRDI"
-        Me.DateTimePicker1ACCRDI.Size = New System.Drawing.Size(245, 23)
-        Me.DateTimePicker1ACCRDI.TabIndex = 258
         '
         'TextBoxDevAccr
         '
         Me.TextBoxDevAccr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxDevAccr.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxDevAccr.Location = New System.Drawing.Point(41, 173)
+        Me.TextBoxDevAccr.Location = New System.Drawing.Point(167, 163)
         Me.TextBoxDevAccr.Name = "TextBoxDevAccr"
         Me.TextBoxDevAccr.ReadOnly = True
         Me.TextBoxDevAccr.Size = New System.Drawing.Size(245, 23)
@@ -3619,17 +3664,45 @@ Partial Class SettingsForm
         '
         Me.TextBoxDevTIN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxDevTIN.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxDevTIN.Location = New System.Drawing.Point(41, 129)
+        Me.TextBoxDevTIN.Location = New System.Drawing.Point(167, 122)
         Me.TextBoxDevTIN.Name = "TextBoxDevTIN"
         Me.TextBoxDevTIN.ReadOnly = True
         Me.TextBoxDevTIN.Size = New System.Drawing.Size(245, 23)
         Me.TextBoxDevTIN.TabIndex = 256
         '
+        'TextBoxDEVPTU
+        '
+        Me.TextBoxDEVPTU.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxDEVPTU.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxDEVPTU.Location = New System.Drawing.Point(167, 286)
+        Me.TextBoxDEVPTU.Name = "TextBoxDEVPTU"
+        Me.TextBoxDEVPTU.ReadOnly = True
+        Me.TextBoxDEVPTU.Size = New System.Drawing.Size(245, 23)
+        Me.TextBoxDEVPTU.TabIndex = 260
+        '
+        'DateTimePicker2ACCRVU
+        '
+        Me.DateTimePicker2ACCRVU.Enabled = False
+        Me.DateTimePicker2ACCRVU.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DateTimePicker2ACCRVU.Location = New System.Drawing.Point(167, 245)
+        Me.DateTimePicker2ACCRVU.Name = "DateTimePicker2ACCRVU"
+        Me.DateTimePicker2ACCRVU.Size = New System.Drawing.Size(245, 23)
+        Me.DateTimePicker2ACCRVU.TabIndex = 259
+        '
+        'DateTimePicker1ACCRDI
+        '
+        Me.DateTimePicker1ACCRDI.Enabled = False
+        Me.DateTimePicker1ACCRDI.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DateTimePicker1ACCRDI.Location = New System.Drawing.Point(167, 204)
+        Me.DateTimePicker1ACCRDI.Name = "DateTimePicker1ACCRDI"
+        Me.DateTimePicker1ACCRDI.Size = New System.Drawing.Size(245, 23)
+        Me.DateTimePicker1ACCRDI.TabIndex = 258
+        '
         'TextBoxDevAdd
         '
         Me.TextBoxDevAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxDevAdd.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxDevAdd.Location = New System.Drawing.Point(41, 85)
+        Me.TextBoxDevAdd.Location = New System.Drawing.Point(167, 81)
         Me.TextBoxDevAdd.Name = "TextBoxDevAdd"
         Me.TextBoxDevAdd.ReadOnly = True
         Me.TextBoxDevAdd.Size = New System.Drawing.Size(245, 23)
@@ -3639,7 +3712,7 @@ Partial Class SettingsForm
         '
         Me.TextBoxDevname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxDevname.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxDevname.Location = New System.Drawing.Point(41, 41)
+        Me.TextBoxDevname.Location = New System.Drawing.Point(167, 40)
         Me.TextBoxDevname.Name = "TextBoxDevname"
         Me.TextBoxDevname.ReadOnly = True
         Me.TextBoxDevname.Size = New System.Drawing.Size(245, 23)
@@ -3660,6 +3733,68 @@ Partial Class SettingsForm
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(1039, 513)
         Me.TabControl1.TabIndex = 0
+        '
+        'Panel26
+        '
+        Me.Panel26.Controls.Add(Me.Label48)
+        Me.Panel26.Controls.Add(Me.LabelNewRows)
+        Me.Panel26.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel26.Location = New System.Drawing.Point(0, 117)
+        Me.Panel26.Name = "Panel26"
+        Me.Panel26.Size = New System.Drawing.Size(337, 27)
+        Me.Panel26.TabIndex = 76
+        '
+        'Panel27
+        '
+        Me.Panel27.Controls.Add(Me.LabelStatus)
+        Me.Panel27.Controls.Add(Me.LabelCountAllRows)
+        Me.Panel27.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel27.Location = New System.Drawing.Point(0, 67)
+        Me.Panel27.Name = "Panel27"
+        Me.Panel27.Size = New System.Drawing.Size(337, 27)
+        Me.Panel27.TabIndex = 78
+        '
+        'Panel29
+        '
+        Me.Panel29.Controls.Add(Me.LabelCheckingUpdates)
+        Me.Panel29.Controls.Add(Me.Button4)
+        Me.Panel29.Controls.Add(Me.Panel27)
+        Me.Panel29.Controls.Add(Me.ProgressBar1)
+        Me.Panel29.Controls.Add(Me.Panel26)
+        Me.Panel29.Location = New System.Drawing.Point(412, 153)
+        Me.Panel29.Name = "Panel29"
+        Me.Panel29.Size = New System.Drawing.Size(337, 144)
+        Me.Panel29.TabIndex = 77
+        '
+        'Label47
+        '
+        Me.Label47.AutoSize = True
+        Me.Label47.Font = New System.Drawing.Font("Tahoma", 27.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label47.Location = New System.Drawing.Point(337, 105)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(412, 45)
+        Me.Label47.TabIndex = 78
+        Me.Label47.Text = "Point of sales Update"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(299, 225)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(66, 58)
+        Me.PictureBox1.TabIndex = 80
+        Me.PictureBox1.TabStop = False
+        Me.PictureBox1.Visible = False
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox2.Location = New System.Drawing.Point(264, 128)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(137, 136)
+        Me.PictureBox2.TabIndex = 81
+        Me.PictureBox2.TabStop = False
         '
         'SettingsForm
         '
@@ -3748,7 +3883,6 @@ Partial Class SettingsForm
         Me.Panel1.ResumeLayout(False)
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage11.ResumeLayout(False)
-        Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
@@ -3756,26 +3890,31 @@ Partial Class SettingsForm
         Me.GroupBox4.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        Me.TabPage12.ResumeLayout(False)
+        Me.Panel10.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
-        Me.Panel8.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.Panel7.ResumeLayout(False)
         Me.Panel7.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.Panel6.ResumeLayout(False)
-        Me.Panel6.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
-        Me.TabPage12.ResumeLayout(False)
-        Me.Panel10.ResumeLayout(False)
+        Me.TabPage15.ResumeLayout(False)
         Me.TableLayoutPanel9.ResumeLayout(False)
         Me.GroupBox12.ResumeLayout(False)
         Me.GroupBox12.PerformLayout()
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox11.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
+        Me.Panel26.ResumeLayout(False)
+        Me.Panel27.ResumeLayout(False)
+        Me.Panel27.PerformLayout()
+        Me.Panel29.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3826,7 +3965,6 @@ Partial Class SettingsForm
     Friend WithEvents DataGridViewTextBoxColumn20 As DataGridViewTextBoxColumn
     Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents LabelCheckingUpdates As Label
-    Friend WithEvents Label47 As Label
     Friend WithEvents TabPage5 As TabPage
     Friend WithEvents TableLayoutPanel11 As TableLayoutPanel
     Friend WithEvents GroupBox16 As GroupBox
@@ -3939,11 +4077,9 @@ Partial Class SettingsForm
     Friend WithEvents Panel1 As Panel
     Friend WithEvents TabControl2 As TabControl
     Friend WithEvents TabPage11 As TabPage
-    Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents Panel5 As Panel
-    Friend WithEvents Button6 As Button
     Friend WithEvents ButtonTestLocCon As Button
     Friend WithEvents TextBoxLocalServer As TextBox
     Friend WithEvents Label6 As Label
@@ -3957,7 +4093,6 @@ Partial Class SettingsForm
     Friend WithEvents Label8 As Label
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Button5 As Button
     Friend WithEvents ButtonTestCloudCon As Button
     Friend WithEvents TextBoxCloudServer As TextBox
     Friend WithEvents Label10 As Label
@@ -4071,4 +4206,19 @@ Partial Class SettingsForm
     Friend WithEvents DataGridViewCouponList As DataGridView
     Friend WithEvents TabPage14 As TabPage
     Friend WithEvents DataGridViewCouponPending As DataGridView
+    Friend WithEvents Label53 As Label
+    Friend WithEvents Label52 As Label
+    Friend WithEvents Label51 As Label
+    Friend WithEvents Label50 As Label
+    Friend WithEvents TabPage15 As TabPage
+    Friend WithEvents Label54 As Label
+    Friend WithEvents Label55 As Label
+    Friend WithEvents Label57 As Label
+    Friend WithEvents Label58 As Label
+    Friend WithEvents Panel27 As Panel
+    Friend WithEvents Panel26 As Panel
+    Friend WithEvents Label47 As Label
+    Friend WithEvents Panel29 As Panel
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents PictureBox2 As PictureBox
 End Class

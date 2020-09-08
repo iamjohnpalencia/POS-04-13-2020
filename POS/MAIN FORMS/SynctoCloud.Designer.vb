@@ -304,9 +304,9 @@ Partial Class SynctoCloud
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(0, 213)
+        Me.Button2.Location = New System.Drawing.Point(0, 217)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(482, 41)
+        Me.Button2.Size = New System.Drawing.Size(490, 41)
         Me.Button2.TabIndex = 25
         Me.Button2.Text = "SYNC"
         Me.Button2.UseVisualStyleBackColor = False
@@ -484,9 +484,9 @@ Partial Class SynctoCloud
         Me.Panel7.Controls.Add(Me.Label4)
         Me.Panel7.Controls.Add(Me.ProgressBar1)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel7.Location = New System.Drawing.Point(0, 254)
+        Me.Panel7.Location = New System.Drawing.Point(0, 258)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(482, 36)
+        Me.Panel7.Size = New System.Drawing.Size(490, 36)
         Me.Panel7.TabIndex = 24
         '
         'Label8
@@ -508,7 +508,7 @@ Partial Class SynctoCloud
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(482, 0)
+        Me.Label5.Location = New System.Drawing.Point(490, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(0, 18)
         Me.Label5.TabIndex = 28
@@ -564,7 +564,7 @@ Partial Class SynctoCloud
         Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ProgressBar1.Location = New System.Drawing.Point(0, 25)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(482, 11)
+        Me.ProgressBar1.Size = New System.Drawing.Size(490, 11)
         Me.ProgressBar1.TabIndex = 11
         '
         'DataGridViewINV
@@ -799,7 +799,7 @@ Partial Class SynctoCloud
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(484, 292)
+        Me.Panel1.Size = New System.Drawing.Size(492, 296)
         Me.Panel1.TabIndex = 26
         '
         'Panel16
@@ -846,7 +846,7 @@ Partial Class SynctoCloud
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel16.Location = New System.Drawing.Point(0, 0)
         Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(482, 283)
+        Me.Panel16.Size = New System.Drawing.Size(490, 283)
         Me.Panel16.TabIndex = 41
         '
         'LabelCouponItem
@@ -1245,8 +1245,8 @@ Partial Class SynctoCloud
         Me.GroupBox1.Controls.Add(Me.LabelTime)
         Me.GroupBox1.Controls.Add(Me.LabelRowtoSync)
         Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Controls.Add(Me.DataGridView2)
         Me.GroupBox1.Controls.Add(Me.DataGridViewINV)
+        Me.GroupBox1.Controls.Add(Me.DataGridView2)
         Me.GroupBox1.Controls.Add(Me.DataGridViewPriceChangeRequest)
         Me.GroupBox1.Controls.Add(Me.DataGridViewDepositSlip)
         Me.GroupBox1.Controls.Add(Me.DataGridViewMODEOFTRANSACTION)
@@ -2154,7 +2154,7 @@ Partial Class SynctoCloud
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(484, 292)
+        Me.ClientSize = New System.Drawing.Size(492, 296)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SynctoCloud"

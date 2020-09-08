@@ -169,11 +169,11 @@ Public Class SynctoCloud
     Private Sub filldatagridinventory()
         Try
             Dim fields = "*"
-            Dim table = "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND synced = 'Unsynced'"
+            Dim table = "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewINV)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewINV)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewINV.Rows.Add(row("inventory_id"), row("store_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_primary"), row("stock_secondary"), row("stock_status"), row("critical_limit"), row("guid"), row("created_at"), row("crew_id"), row("synced"), row("server_date_modified"), row("server_inventory_id"))
+                DataGridViewINV.Rows.Add(row("inventory_id"), row("store_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_primary"), row("stock_secondary"), row("stock_no_of_servings"), row("stock_status"), row("critical_limit"), row("guid"), row("created_at"), row("crew_id"), row("server_inventory_id"))
             Next
             gettablesize(tablename:="loc_pos_inventory")
             countrows(tablename:=table)
@@ -649,7 +649,8 @@ Public Class SynctoCloud
                     LabelTTLRowtoSync.Visible = False
                     Label8.Visible = True
                     Button2.Enabled = False
-                    Timer2.Start()
+                    Timer2.Stop()
+                    Close()
                 End If
             End If
         Catch ex As Exception
@@ -930,7 +931,7 @@ Public Class SynctoCloud
                 Button1.Enabled = True
                 Button2.Enabled = True
                 GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "State: Unsuccessful, Time End : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
-                Close()
+
             Else
                 If WorkerCanceled = True Then
                     MsgBox("Canceled")
@@ -1117,7 +1118,6 @@ Public Class SynctoCloud
     End Sub
     Private Sub insertinventory()
         Try
-            Dim cmdupdateinventory As MySqlCommand
             Dim cmd As MySqlCommand
             Dim cmdloc As MySqlCommand
 
@@ -1135,7 +1135,7 @@ Public Class SynctoCloud
                     If WorkerCanceled = True Then
                         Exit For
                     End If
-                    cmdupdateinventory = New MySqlCommand("UPDATE admin_pos_inventory SET stock_primary = " & .Rows(i).Cells(6).Value & " , stock_secondary = " & .Rows(i).Cells(7).Value & " , stock_no_of_servings = " & .Rows(i).Cells(8).Value & " WHERE store_id =" & ClientStoreID & " AND guid = '" & ClientGuid & "' AND loc_inventory_id = " & .Rows(i).Cells(0).Value, server)
+                    'inventory_id,store_id,formula_id,product_ingredients,sku,stock_primary,stock_secondary,stock_no_of_servings,stock_status,critical_limit,guid,created_at,crew_id,server_inventory_id
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_pos_inventory( `loc_inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `guid`, `date`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
@@ -1150,6 +1150,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString()
                     cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(9).Value.ToString()
                     cmd.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+
                     With cmd
                         LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                         LabelINVItem.Text = Val(LabelINVItem.Text) + 1
@@ -1160,9 +1161,6 @@ Public Class SynctoCloud
 
                         Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                         .ExecuteNonQuery()
-                        With cmdupdateinventory
-                            .ExecuteNonQuery()
-                        End With
                     End With
                     Dim sql = "UPDATE loc_pos_inventory SET `synced`='Synced' WHERE inventory_id = " & .Rows(i).Cells(0).Value.ToString
                     cmdloc = New MySqlCommand(sql, local)
@@ -1170,13 +1168,11 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-
                 Dim t As New Task(New Action(Sub()
                                                  LabelINV.Text = "Synced Inventories"
                                                  LabelINVTime.Text = LabelTime.Text & " Seconds"
                                              End Sub))
                 t.Start()
-
             End With
         Catch ex As Exception
             Unsuccessful = True

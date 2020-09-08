@@ -15,7 +15,9 @@ Public Class SettingsForm
         TabControl1.TabPages(4).Text = "Coupon Settings"
         TabControl1.TabPages(5).Text = "Updates"
         TabControl2.TabPages(0).Text = "Connection Settings"
-        TabControl2.TabPages(1).Text = "Additional Settings"
+        TabControl2.TabPages(1).Text = "Database Settings"
+        TabControl2.TabPages(2).Text = "Additional Settings"
+
         TabControl4.TabPages(0).Text = "Create Coupon"
         TabControl4.TabPages(1).Text = "Coupon List"
 
@@ -72,29 +74,27 @@ Public Class SettingsForm
             End If
         ElseIf TabControl1.SelectedIndex = 5 Then
             If My.Settings.Updatedatetime = "" Then
-                LabelCheckingUpdates.Text = "last Checked: 2020-06-01 11:12:30"
+                LabelCheckingUpdates.Text = "Last Checked: 2020-06-01 11:12:30"
             Else
-                LabelCheckingUpdates.Text = "last Checked: " & My.Settings.Updatedatetime
+                LabelCheckingUpdates.Text = "Last Checked: " & My.Settings.Updatedatetime
             End If
         End If
     End Sub
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Try
             If CheckForInternetConnection() = True Then
-
                 If POS.POSISUPDATING = False Then
+                    PictureBox1.Visible = True
                     Timer1.Start()
                     DataGridView5.Rows.Clear()
                     Dim Products = count("product_id", "loc_admin_products")
                     Dim Category = count("category_id", "loc_admin_category")
                     Dim Inventory = count("inventory_id", "loc_pos_inventory")
                     Dim Formula = count("formula_id", "loc_product_formula")
-
                     DataGridView5.Rows.Add(Products)
                     DataGridView5.Rows.Add(Category)
                     DataGridView5.Rows.Add(Inventory)
                     DataGridView5.Rows.Add(Formula)
-
                     LabelCountAllRows.Text = SumOfColumnsToInt(DataGridView5, 0)
                     LabelCheckingUpdates.Text = "Checking for updates."
                     ProgressBar1.Maximum = Val(LabelCountAllRows.Text)
@@ -1134,9 +1134,9 @@ Public Class SettingsForm
         Try
             Dim Con = TestDBConnection(TextBoxLocalServer.Text, TextBoxLocalUsername.Text, TextBoxLocalPassword.Text, TextBoxLocalDatabase.Text, TextBoxLocalPort.Text)
             If Con.State = ConnectionState.Open Then
-                MsgBox("Connected successfully!")
+                MessageBox.Show("Connected Successfully", "Connected", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
-                MsgBox("Cannot connect to server.")
+                MessageBox.Show("Cannot connect to server", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1173,6 +1173,7 @@ Public Class SettingsForm
     End Sub
     Dim thread As Thread
     Dim THREADLISTUPDATE As List(Of Thread) = New List(Of Thread)
+    Dim WorkerCanceled As Boolean = False
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
             If ValidDatabaseLocalConnection Then
@@ -1181,6 +1182,12 @@ Public Class SettingsForm
                 THREADLISTUPDATE.Add(thread)
                 For Each t In THREADLISTUPDATE
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
                 If CheckForInternetConnection() = True Then
                     If ServerCloudCon.state = ConnectionState.Open Then
@@ -1214,7 +1221,14 @@ Public Class SettingsForm
                 End If
                 For Each t In THREADLISTUPDATE
                     t.Join()
+                    If (BackgroundWorker1.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
                 Next
+
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -1264,6 +1278,7 @@ Public Class SettingsForm
                 MsgBox("Complete")
                 My.Settings.Save()
             End If
+            PictureBox1.Visible = False
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -2055,6 +2070,4 @@ Public Class SettingsForm
     Private Sub TextBoxCRefVal_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxCRefVal.KeyPress, TextBoxCDVal.KeyPress, TextBoxCBundVal.KeyPress, TextBoxCBP.KeyPress
         Numeric(sender, e)
     End Sub
-
-
 End Class
