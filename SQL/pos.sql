@@ -760,7 +760,8 @@ CREATE TABLE `loc_settings` (
   `S_Upgrade_Price_Add` text NOT NULL,
   `S_Waffle_Bag` text NOT NULL,
   `S_Packets` text NOT NULL,
-  `S_Update_Version` text NOT NULL
+  `S_Update_Version` text NOT NULL,
+  `P_Footer_Info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
