@@ -686,7 +686,6 @@ Public Class Inventory
     Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
         PanelSTOCKADJUSTMENT.Visible = False
     End Sub
-
     Private Sub TextBoxIPQuantity_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxIReason.KeyPress
         Try
             If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
@@ -697,9 +696,6 @@ Public Class Inventory
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
-
-
     Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles Button7.Click
         Try
             Dim sql = "UPDATE loc_pos_inventory SET stock_primary = 0, stock_secondary = 0,  stock_no_of_servings = 0"

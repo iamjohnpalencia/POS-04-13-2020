@@ -2,7 +2,6 @@
 Imports MySql.Data.MySqlClient
 Imports System.Threading
 Imports System.Globalization
-
 Public Class SynctoCloud
     Dim totalrow As Integer
     Dim counter As Integer = 0
@@ -26,18 +25,12 @@ Public Class SynctoCloud
     End Sub
     Private Sub SynctoCloud_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
-
             If SyncIsOnProcess = True Then
                 e.Cancel = True
             Else
                 GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "State: Canceled, Time End : " & FullDate24HR() & " Canceled by : " & returnfullname(ClientCrewID))
                 e.Cancel = False
             End If
-            'If BackgroundWorker1.IsBusy Then
-            '    e.Cancel = True
-            'Else
-            '    e.Cancel = False
-            'End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -45,16 +38,12 @@ Public Class SynctoCloud
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         LabelTime.Text = Val(LabelTime.Text) + 1
-        'If CountStart = True Then
-        'End If
     End Sub
 #Region "FillDatagrid"
-
     Private Sub filldatagridrefretdetails()
         Try
             Dim fields = "*"
             Dim table = "loc_refund_return_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewRetrefdetails)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewRetrefdetails)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewRetrefdetails.Rows.Add(row("refret_id"), row("transaction_number"), row("crew_id"), row("reason"), row("total"), row("guid"), row("store_id"), row("created_at"), row("zreading"), row("synced"))
@@ -69,7 +58,6 @@ Public Class SynctoCloud
     '=====================================================SYSTEMLOGS
     Private Sub filldatagridsystemlog1()
         Try
-            'Dim table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('LOG OUT', 'LOGIN', 'ERROR') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             Dim table = "loc_system_logs WHERE synced = 'Unsynced' AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             Dim fields = "*"
             Dim ThisDT = AsDatatable(table, fields, DataGridViewSYSLOG1)
@@ -108,8 +96,6 @@ Public Class SynctoCloud
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewSYSLOG3.Rows.Add(row("crew_id"), row("log_type"), row("log_description"), row("log_date_time"), row("log_store"), row("guid"), row("loc_systemlog_id"), row("zreading"), row("synced"))
             Next
-
-            'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewSYSLOG3)
             gettablesize(tablename:="loc_system_logs")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -121,14 +107,10 @@ Public Class SynctoCloud
         Try
             Dim fields = "*"
             Dim table = "loc_system_logs WHERE synced = 'Unsynced' AND log_type IN ('TRANSACTION', 'USER UPDATE') AND log_store = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-
-            'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewSYSLOG4)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewSYSLOG4)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewSYSLOG4.Rows.Add(row("crew_id"), row("log_type"), row("log_description"), row("log_date_time"), row("log_store"), row("guid"), row("loc_systemlog_id"), row("zreading"), row("synced"))
             Next
-
-
             gettablesize(tablename:="loc_system_logs")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -154,7 +136,6 @@ Public Class SynctoCloud
         Try
             Dim fields = "*"
             Dim table = "loc_daily_transaction_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewTRANDET)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewTRANDET)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewTRANDET.Rows.Add(row("details_id"), row("product_id"), row("product_sku"), row("product_name"), row("quantity"), row("price"), row("total"), row("crew_id"), row("transaction_number"), row("active"), row("created_at"), row("guid"), row("store_id"), row("total_cost_of_goods"), row("product_category"), row("zreading"), row("transaction_type"), row("synced"))
@@ -170,7 +151,6 @@ Public Class SynctoCloud
         Try
             Dim fields = "*"
             Dim table = "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewINV)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewINV)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewINV.Rows.Add(row("inventory_id"), row("store_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_primary"), row("stock_secondary"), row("stock_no_of_servings"), row("stock_status"), row("critical_limit"), row("guid"), row("created_at"), row("crew_id"), row("server_inventory_id"))
@@ -186,13 +166,10 @@ Public Class SynctoCloud
         Try
             Dim fields = "*"
             Dim table = "loc_expense_list WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewEXP)
-
             Dim ThisDT = AsDatatable(table, fields, DataGridViewEXP)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewEXP.Rows.Add(row("expense_id"), row("crew_id"), row("expense_number"), row("total_amount"), row("paid_amount"), row("unpaid_amount"), row("store_id"), row("guid"), row("created_at").ToString, row("active"), row("zreading"), row("synced"))
             Next
-
             gettablesize(tablename:="loc_expense_list")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -204,13 +181,10 @@ Public Class SynctoCloud
         Try
             Dim fields = "*"
             Dim table = "loc_expense_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewEXPDET)
-
             Dim ThisDT = AsDatatable(table, fields, DataGridViewEXPDET)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewEXPDET.Rows.Add(row("expense_id"), row("expense_number"), row("expense_type"), row("item_info"), row("quantity"), row("price"), row("amount"), row("attachment"), row("created_at"), row("crew_id"), row("guid"), row("store_id"), row("active"), row("zreading"), row("synced"))
             Next
-
             gettablesize(tablename:="loc_expense_details")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -222,13 +196,10 @@ Public Class SynctoCloud
         Try
             Dim fields = "*"
             Dim table = "loc_users WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND synced = 'Unsynced'"
-            'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewLocusers)
-
             Dim ThisDT = AsDatatable(table, fields, DataGridViewLocusers)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewLocusers.Rows.Add(row("user_id"), row("user_level"), row("full_name"), row("username"), row("password"), row("contact_number"), row("email"), row("position"), row("gender"), row("created_at"), row("updated_at"), row("active"), row("guid"), row("store_id"), row("uniq_id"), row("synced"))
             Next
-
             gettablesize(tablename:="loc_users")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -240,13 +211,10 @@ Public Class SynctoCloud
         Try
             Dim fields = "*"
             Dim table = "loc_admin_products WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "' AND product_status = 0"
-            'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewCUSTOMPRODUCTS)
-
             Dim ThisDT = AsDatatable(table, fields, DataGridViewCUSTOMPRODUCTS)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewCUSTOMPRODUCTS.Rows.Add(row("product_id"), row("product_sku"), row("product_name"), row("formula_id"), row("product_barcode"), row("product_category"), row("product_price"), row("product_desc"), row("product_image"), row("product_status"), row("origin"), row("date_modified"), row("guid"), row("store_id"), row("crew_id"), row("synced"), row("server_product_id"))
             Next
-
             gettablesize(tablename:="loc_daily_transaction")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -258,7 +226,6 @@ Public Class SynctoCloud
         Try
             Dim fields = "*"
             Dim table = "loc_deposit WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewDepositSlip)
             Dim ThisDT = AsDatatable(table, fields, DataGridViewDepositSlip)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewDepositSlip.Rows.Add(row("dep_id"), row("name"), row("crew_id"), row("transaction_number"), row("amount"), row("bank"), row("transaction_date"), row("store_id"), row("guid"), row("created_at"), row("synced"))
@@ -274,13 +241,10 @@ Public Class SynctoCloud
         Try
             Dim fields = "*"
             Dim table = "loc_transaction_mode_details WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
-            'GLOBAL_SELECT_ALL_FUNCTION(fields:=fields, table:=table, datagrid:=DataGridViewMODEOFTRANSACTION)
-
             Dim ThisDT = AsDatatable(table, fields, DataGridViewMODEOFTRANSACTION)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewMODEOFTRANSACTION.Rows.Add(row("mode_id"), row("transaction_type"), row("transaction_number"), row("fullname"), row("reference"), row("markup"), row("created_at"), row("status"), row("store_id"), row("guid"), row("synced"))
             Next
-
             gettablesize(tablename:="loc_transaction_mode_details")
             countrows(tablename:=table)
         Catch ex As Exception
@@ -312,7 +276,6 @@ Public Class SynctoCloud
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Private Sub countrows(ByVal tablename As String)
         Try
             Dim sql = "SELECT COUNT(*) FROM " & tablename & " "
@@ -676,19 +639,10 @@ Public Class SynctoCloud
     Dim threadListPRICEREQUEST As List(Of Thread) = New List(Of Thread)
     Dim threadListCoupon As List(Of Thread) = New List(Of Thread)
     Dim thread1 As Thread
-
     Dim WorkerCanceled As Boolean = False
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
             If CheckForInternetConnection() = True Then
-                'Button1.PerformClick()
-                'thread1 = New Thread(AddressOf LoadData)
-                'thread1.Start()
-                'threadListloadData.Add(thread1)
-                'For Each t In threadListloadData
-                '    t.Join()
-                'Next
-                'POS.ProgressBar1.Maximum = Val(Label7.Text)
                 'System Logs
                 thread1 = New Thread(AddressOf insertsystemlogs1)
                 thread1.Start()
@@ -741,16 +695,6 @@ Public Class SynctoCloud
                 thread1 = New Thread(AddressOf insertcoupon)
                 thread1.Start()
                 threadListCoupon.Add(thread1)
-                'thread1 = New Thread(AddressOf insertsystemlogs2)
-                'thread1.Start()
-                'threadListLOCSYSLOG2.Add(thread1)
-                'thread1 = New Thread(AddressOf insertsystemlogs3)
-                'thread1.Start()
-                'threadListLOCSYSLOG3.Add(thread1)
-                'thread1 = New Thread(AddressOf insertsystemlogs4)
-                'thread1.Start()
-                'threadListLOCSYSLOG4.Add(thread1)
-                'Refunds
 
                 For Each t In threadListLOCTRAN
                     t.Join()
@@ -909,8 +853,6 @@ Public Class SynctoCloud
             Else
                 Unsuccessful = True
             End If
-
-
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -920,7 +862,6 @@ Public Class SynctoCloud
         Try
             If Unsuccessful = True Then
                 ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
-                'POS.ProgressBar1.Maximum = Val(Label3.Text)
                 If LabelRowtoSync.Text <> "0" Then
                     Label1.Text = "Synced " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                 Else
@@ -949,7 +890,6 @@ Public Class SynctoCloud
                     POS.Instance.Invoke(Sub()
                                             POS.ProgressBar1.Value = totalrow
                                         End Sub)
-
                     Dim sync = MessageBox.Show("Synchronization Complete", "Sync", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If sync = DialogResult.OK Then
                         Me.Close()
@@ -1481,177 +1421,7 @@ Public Class SynctoCloud
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    'Private Sub insertsystemlogs2()
-    '    Try
-    '        Dim cmd As MySqlCommand
-    '        Dim cmdloc As MySqlCommand
 
-    '        Dim server As MySqlConnection = New MySqlConnection
-    '        server.ConnectionString = CloudConnectionString
-    '        server.Open()
-
-    '        Dim local As MySqlConnection = New MySqlConnection
-    '        local.ConnectionString = LocalConnectionString
-    '        local.Open()
-
-    '        LabelSYS2.Text = "Syncing Systemlogs 2"
-    '        With DataGridViewSYSLOG2
-    '            For i As Integer = 0 To .Rows.Count - 1 Step +1
-    '                If WorkerCanceled = True Then
-    '                    Exit For
-    '                End If
-    '                cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
-    '                VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
-    '                cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
-    '                cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-    '                cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-    '                cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-    '                cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
-    '                cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
-    '                cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
-    '                cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
-    '                '====================================================================
-    '                LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
-    '                LabelSYS2Item.Text = Val(LabelSYS2Item.Text) + 1
-    '                ProgressBar1.Value = CInt(LabelRowtoSync.Text)
-    '                'POS.ProgressBar1.Value = Val(Label7.Text)
-    '                Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
-    '                cmd.ExecuteNonQuery()
-    '                '====================================================================
-    '                table = " loc_system_logs "
-    '                where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
-    '                fields = "`synced`='Synced' "
-    '                sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
-    '                cmdloc = New MySqlCommand(sql, local)
-    '                cmdloc.ExecuteNonQuery()
-    '                '====================================================================
-    '            Next
-    '            server.Close()
-    '            local.Close()
-    '            LabelSYS2.Text = "Synced Systemlogs 2"
-    '            LabelSYS2Time.Text = LabelTime.Text & " Seconds"
-    '        End With
-    '    Catch ex As Exception
-    '        Unsuccessful = True
-    '        BackgroundWorker1.CancelAsync()
-    '        MsgBox(ex.ToString)
-    '        SendErrorReport(ex.ToString)
-    '    End Try
-    'End Sub
-    'Private Sub insertsystemlogs3()
-    '    Try
-    '        Dim cmd As MySqlCommand
-    '        Dim cmdloc As MySqlCommand
-
-    '        Dim server As MySqlConnection = New MySqlConnection
-    '        server.ConnectionString = CloudConnectionString
-    '        server.Open()
-
-    '        Dim local As MySqlConnection = New MySqlConnection
-    '        local.ConnectionString = LocalConnectionString
-    '        local.Open()
-
-    '        LabelSYS3.Text = "Syncing Systemlogs 3"
-    '        With DataGridViewSYSLOG3
-    '            For i As Integer = 0 To .Rows.Count - 1 Step +1
-    '                If WorkerCanceled = True Then
-    '                    Exit For
-    '                End If
-    '                cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
-    '                VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
-    '                cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
-    '                cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-    '                cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-    '                cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-    '                cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
-    '                cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
-    '                cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
-    '                cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
-    '                '====================================================================
-    '                LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
-    '                LabelSYS3Item.Text = Val(LabelSYS3Item.Text) + 1
-    '                ProgressBar1.Value = CInt(LabelRowtoSync.Text)
-    '                'POS.ProgressBar1.Value = Val(Label7.Text)
-    '                Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
-    '                cmd.ExecuteNonQuery()
-    '                '====================================================================
-    '                table = " loc_system_logs "
-    '                where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
-    '                fields = "`synced`='Synced' "
-    '                sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
-    '                cmdloc = New MySqlCommand(sql, local)
-    '                cmdloc.ExecuteNonQuery()
-    '                '====================================================================
-    '            Next
-    '            server.Close()
-    '            local.Close()
-    '            LabelSYS3.Text = "Synced Systemlogs 3"
-    '            LabelSYS3Time.Text = LabelTime.Text & " Seconds"
-    '        End With
-    '    Catch ex As Exception
-    '        Unsuccessful = True
-    '        BackgroundWorker1.CancelAsync()
-    '        MsgBox(ex.ToString)
-    '        SendErrorReport(ex.ToString)
-    '    End Try
-    'End Sub
-    'Private Sub insertsystemlogs4()
-    '    Try
-    '        Dim cmd As MySqlCommand
-    '        Dim cmdloc As MySqlCommand
-
-    '        Dim server As MySqlConnection = New MySqlConnection
-    '        server.ConnectionString = CloudConnectionString
-    '        server.Open()
-
-    '        Dim local As MySqlConnection = New MySqlConnection
-    '        local.ConnectionString = LocalConnectionString
-    '        local.Open()
-
-    '        LabelSYS4.Text = "Syncing Systemlogs 4"
-    '        With DataGridViewSYSLOG4
-    '            For i As Integer = 0 To .Rows.Count - 1 Step +1
-    '                If WorkerCanceled = True Then
-    '                    Exit For
-    '                End If
-    '                cmd = New MySqlCommand("INSERT INTO Triggers_admin_system_logs(`crew_id`, `log_type`, `log_description`, `log_date_time`, `log_store`, `guid`, `loc_systemlog_id`, `zreading`) 
-    '                VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
-    '                cmd.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(0).Value.ToString()
-    '                cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-    '                cmd.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-    '                cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-    '                cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
-    '                cmd.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
-    '                cmd.Parameters.Add("@6", MySqlDbType.VarChar).Value = .Rows(i).Cells(6).Value.ToString()
-    '                cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
-    '                '====================================================================
-    '                LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
-    '                LabelSYS4Item.Text = Val(LabelSYS4Item.Text) + 1
-    '                ProgressBar1.Value = CInt(LabelRowtoSync.Text)
-    '                'POS.ProgressBar1.Value = Val(Label7.Text)
-    '                Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
-    '                cmd.ExecuteNonQuery()
-    '                '====================================================================
-    '                table = " loc_system_logs "
-    '                where = " loc_systemlog_id = '" & .Rows(i).Cells(6).Value.ToString & "'"
-    '                fields = "`synced`='Synced' "
-    '                sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
-    '                cmdloc = New MySqlCommand(sql, local)
-    '                cmdloc.ExecuteNonQuery()
-    '                '====================================================================
-    '            Next
-    '            server.Close()
-    '            local.Close()
-    '            LabelSYS4.Text = "Synced Systemlogs 4"
-    '            LabelSYS4Time.Text = LabelTime.Text & " Seconds"
-    '        End With
-    '    Catch ex As Exception
-    '        Unsuccessful = True
-    '        BackgroundWorker1.CancelAsync()
-    '        MsgBox(ex.ToString)
-    '        SendErrorReport(ex.ToString)
-    '    End Try
-    'End Sub
     Private Sub insertrefretdetails()
         Try
             Dim cmd As MySqlCommand
@@ -1987,7 +1757,6 @@ Public Class SynctoCloud
                                              End Sub))
                 t.Start()
             End With
-            'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
             Unsuccessful = True
             BackgroundWorker1.CancelAsync()
@@ -1997,7 +1766,6 @@ Public Class SynctoCloud
     End Sub
     Private Sub insertcoupon()
         Try
-
             Dim cmd As MySqlCommand
             Dim cmdloc As MySqlCommand
 
@@ -2017,7 +1785,6 @@ Public Class SynctoCloud
                     End If
                     cmd = New MySqlCommand("INSERT INTO Triggers_admin_custom_coupon(`ID`, `Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`, `active`, `store_id`, `crew_id`, `guid`, `synced`)
                                              VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9 ,@10 ,@11, @12, @13, @14, @15, @16)", server)
-
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.Text).Value = .Rows(i).Cells(1).Value.ToString()
                     cmd.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString()
