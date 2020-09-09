@@ -1021,31 +1021,33 @@ Public Class Reports
             With DataGridViewReturns
                 Dim FooterSpacing As Integer = 0
                 If CheckBoxPRINTALL.Checked = False Then
-                    RightToLeftDisplay(sender, e, 140, "TRANSACTION NUMBER: ", "", font, 20, 0)
-                    RightToLeftDisplay(sender, e, 150, "SERVICE CREW: ", "", font, 20, 0)
-                    RightToLeftDisplay(sender, e, 160, "DATE: ", "", font, 20, 0)
-                    RightToLeftDisplay(sender, e, 170, "REASON:", "", font, 20, 0)
-                    RightToLeftDisplay(sender, e, 180, Space(5) & .SelectedRows(0).Cells(2).Value.ToString, "", font, 20, 0)
-                    SimpleTextDisplay(sender, e, Space(40) & .SelectedRows(0).Cells(0).Value.ToString, font, 0, 120)
-                    SimpleTextDisplay(sender, e, Space(40) & .SelectedRows(0).Cells(1).Value.ToString, font, 0, 130)
-                    SimpleTextDisplay(sender, e, Space(40) & .SelectedRows(0).Cells(3).Value.ToString, font, 0, 140)
-                    SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 240)
-                    CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 270)
+                    RightToLeftDisplay(sender, e, 140, "RETURN ITEM LOGS : " & Format(DateTimePicker14.Value, "yyyy-MM-dd") & " " & Format(DateTimePicker13.Value, "yyyy-MM-dd"), "", font, 20, 0)
+                    RightToLeftDisplay(sender, e, 160, "TRANSACTION NUMBER: ", "", font, 20, 0)
+                    RightToLeftDisplay(sender, e, 170, "SERVICE CREW: ", "", font, 20, 0)
+                    RightToLeftDisplay(sender, e, 180, "DATE: ", "", font, 20, 0)
+                    RightToLeftDisplay(sender, e, 190, "REASON:", "", font, 20, 0)
+                    RightToLeftDisplay(sender, e, 200, Space(5) & .SelectedRows(0).Cells(2).Value.ToString, "", font, 20, 0)
+                    SimpleTextDisplay(sender, e, Space(40) & .SelectedRows(0).Cells(0).Value.ToString, font, 0, 140)
+                    SimpleTextDisplay(sender, e, Space(40) & .SelectedRows(0).Cells(1).Value.ToString, font, 0, 150)
+                    SimpleTextDisplay(sender, e, Space(40) & .SelectedRows(0).Cells(3).Value.ToString, font, 0, 160)
+                    SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 260)
+                    CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 290)
                 Else
                     For i As Integer = 0 To .Rows.Count - 1 Step +1
-                        RightToLeftDisplay(sender, e, 140 + ColumnSpacing, "TRANSACTION NUMBER: ", "", font, 20, 0)
-                        RightToLeftDisplay(sender, e, 150 + ColumnSpacing, "SERVICE CREW: ", "", font, 20, 0)
-                        RightToLeftDisplay(sender, e, 160 + ColumnSpacing, "DATE: ", "", font, 20, 0)
-                        RightToLeftDisplay(sender, e, 170 + ColumnSpacing, "REASON:", "", font, 20, 0)
-                        RightToLeftDisplay(sender, e, 180 + ColumnSpacing, Space(5) & .Rows(i).Cells(2).Value.ToString, "", font, 20, 0)
-                        SimpleTextDisplay(sender, e, Space(40) & .Rows(i).Cells(0).Value.ToString, font, 0, 120 + ColumnSpacing)
-                        SimpleTextDisplay(sender, e, Space(40) & .Rows(i).Cells(1).Value.ToString, font, 0, 130 + ColumnSpacing)
-                        SimpleTextDisplay(sender, e, Space(40) & .Rows(i).Cells(3).Value.ToString, font, 0, 140 + ColumnSpacing)
+                        RightToLeftDisplay(sender, e, 140, "RETURN ITEM LOGS : " & Format(DateTimePicker14.Value, "yyyy-MM-dd") & " " & Format(DateTimePicker13.Value, "yyyy-MM-dd"), "", font, 20, 0)
+                        RightToLeftDisplay(sender, e, 160 + ColumnSpacing, "TRANSACTION NUMBER: ", "", font, 20, 0)
+                        RightToLeftDisplay(sender, e, 170 + ColumnSpacing, "SERVICE CREW: ", "", font, 20, 0)
+                        RightToLeftDisplay(sender, e, 180 + ColumnSpacing, "DATE: ", "", font, 20, 0)
+                        RightToLeftDisplay(sender, e, 190 + ColumnSpacing, "REASON:", "", font, 20, 0)
+                        RightToLeftDisplay(sender, e, 200 + ColumnSpacing, Space(5) & .Rows(i).Cells(2).Value.ToString, "", font, 20, 0)
+                        SimpleTextDisplay(sender, e, Space(40) & .Rows(i).Cells(0).Value.ToString, font, 0, 140 + ColumnSpacing)
+                        SimpleTextDisplay(sender, e, Space(40) & .Rows(i).Cells(1).Value.ToString, font, 0, 150 + ColumnSpacing)
+                        SimpleTextDisplay(sender, e, Space(40) & .Rows(i).Cells(3).Value.ToString, font, 0, 160 + ColumnSpacing)
                         ColumnSpacing += 70
                         FooterSpacing += 60
                     Next
-                    SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 240 + FooterSpacing)
-                    CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 270 + FooterSpacing)
+                    SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 260 + FooterSpacing)
+                    CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 290 + FooterSpacing)
                 End If
             End With
         Catch ex As Exception
