@@ -12,18 +12,15 @@ Public Class Inventory
             TabControl1.TabPages(2).Text = "Fast Moving Stock"
             TabControl1.TabPages(3).Text = "Stock Adjustment"
             TabControl1.TabPages(4).Text = "Stock in (Receiving) Entry"
-
             TabControl2.TabPages(0).Text = "Product Ingredients(Server)"
             TabControl2.TabPages(1).Text = "Product Ingredients(Local)"
-
             TabControl5.TabPages(0).Text = "Approved"
             TabControl5.TabPages(1).Text = "Waiting for approval"
-
             TabControl3.TabPages(0).Text = "Stock Adjustment (Add/Deduct/Transfer)"
             TabControl3.TabPages(1).Text = "Stock Adjustment (Settings)"
-
             TabControl4.TabPages(0).Text = "Active"
             TabControl4.TabPages(1).Text = "Deactivated"
+
             loadinventory()
             loadcriticalstocks()
             loadstockadjustmentreport(False)
@@ -38,8 +35,6 @@ Public Class Inventory
                 TabControl1.TabPages.Remove(TabControl1.TabPages(3))
                 Button7.Enabled = False
                 Button7.Visible = False
-                'TabControl1.TabPages.RemoveAt(4)
-                'TabControl1.TabPages.RemoveAt(5)
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -65,7 +60,6 @@ Public Class Inventory
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Sub loadinventorycustom()
         Try
             fields = "I.product_ingredients as Ingredients, CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
@@ -81,7 +75,6 @@ Public Class Inventory
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Sub loadinventorycustomdisapp()
         Try
             fields = "I.product_ingredients as Ingredients, CONCAT_WS(' ', ROUND(I.stock_primary,0), F.primary_unit) as PrimaryValue , CONCAT_WS(' ', I.stock_secondary, F.secondary_unit) as UOM , ROUND(I.stock_no_of_servings,0) as NoofServings, I.stock_status, I.critical_limit, I.created_at"
@@ -305,7 +298,6 @@ Public Class Inventory
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Private Sub LoadReasonCategories()
         Try
             GLOBAL_SELECT_ALL_FUNCTION("`loc_transfer_data` WHERE active = 1", "`transfer_id`, `transfer_cat`, `crew_id`, `created_at`, `created_by`, `updated_at`", DataGridViewReasonCategories)

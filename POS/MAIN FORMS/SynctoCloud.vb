@@ -701,9 +701,11 @@ Public Class SynctoCloud
                 thread1.Start()
                 threadListLOCTD1.Add(thread1)
                 'Inventory
-                thread1 = New Thread(AddressOf insertinventory)
-                thread1.Start()
-                threadListLOCINV.Add(thread1)
+
+                'thread1 = New Thread(AddressOf insertinventory)
+                'thread1.Start()
+                'threadListLOCINV.Add(thread1)
+
                 'Expenses
                 thread1 = New Thread(AddressOf insertexpenses)
                 thread1.Start()

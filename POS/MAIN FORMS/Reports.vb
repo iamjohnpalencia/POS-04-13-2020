@@ -31,35 +31,50 @@ Public Class Reports
     Dim total
     Dim ReadingOR
     Private Sub Reports_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TabControl1.TabPages(0).Text = "Daily Transactions"
-        TabControl1.TabPages(1).Text = "System Logs"
-        TabControl1.TabPages(2).Text = "Sales Report"
-        TabControl1.TabPages(3).Text = "Expense Report"
-        TabControl1.TabPages(4).Text = "Total Expenses"
-        TabControl1.TabPages(5).Text = "Transaction Logs"
-        TabControl1.TabPages(6).Text = "Item Return"
-        TabControl1.TabPages(7).Text = "Deposit Slip"
-        TabControl1.TabPages(8).Text = "Z/X Reading"
-        reportsdailytransaction(False)
-        reportssystemlogs(False)
-        reportssales(False)
-        reportstransactionlogs(False)
-        expensereports(False)
-        reportexpensedet(False)
-        reportsreturnsandrefunds(False)
-        viewdeposit(False)
-        FillDatagridZreadInv(False)
-        If ClientRole = "Head Crew" Then
-            Button6.Visible = True
-        Else
-            Button6.Visible = False
-            Button8.Visible = False
-            Button8.Enabled = False
-        End If
-        If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
-            ButtonZread.Enabled = False
-            Button6.Enabled = False
-        End If
+        Try
+            TabControl1.TabPages(0).Text = "Daily Transactions"
+            TabControl1.TabPages(1).Text = "System Logs"
+            TabControl1.TabPages(2).Text = "Sales Report"
+            TabControl1.TabPages(3).Text = "Expense Report"
+            TabControl1.TabPages(4).Text = "Total Expenses"
+            TabControl1.TabPages(5).Text = "Transaction Logs"
+            TabControl1.TabPages(6).Text = "Item Return"
+            TabControl1.TabPages(7).Text = "Deposit Slip"
+            TabControl1.TabPages(8).Text = "Z/X Reading"
+            reportsdailytransaction(False)
+            reportssystemlogs(False)
+            reportssales(False)
+            reportstransactionlogs(False)
+            expensereports(False)
+            reportexpensedet(False)
+            reportsreturnsandrefunds(False)
+            viewdeposit(False)
+            FillDatagridZreadInv(False)
+            If ClientRole = "Head Crew" Then
+                Button6.Visible = True
+            Else
+                Button6.Visible = False
+                Button8.Visible = False
+                Button8.Enabled = False
+            End If
+            If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
+                ButtonZread.Enabled = False
+                Button6.Enabled = False
+            End If
+            If DataGridViewDaily.Rows.Count > 0 Then
+                Dim arg = New DataGridViewCellEventArgs(0, 0)
+                DataGridViewDaily_CellClick(sender, arg)
+            End If
+
+            If DataGridViewEXPENSES.Rows.Count > 0 Then
+                Dim arg = New DataGridViewCellEventArgs(0, 0)
+                DataGridViewEXPENSES_CellClick(sender, arg)
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Public Sub reportssystemlogs(ByVal searchdate As Boolean)
         Try
@@ -485,7 +500,7 @@ Public Class Reports
                     a += 4
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 92)
                     a += 1
-                    SimpleTextDisplay(sender, e, "Transaction Type: " & .SelectedRows(0).Cells(10).Value.ToString, font, 0, a + 100)
+                    SimpleTextDisplay(sender, e, "Transaction Type: " & .SelectedRows(0).Cells(11).Value.ToString, font, 0, a + 100)
                     SimpleTextDisplay(sender, e, "Total Item(s): " & SumOfColumnsToInt(DataGridViewTransactionDetails, 1), font, 0, a + 110)
                     SimpleTextDisplay(sender, e, "Cashier: " & .SelectedRows(0).Cells(15).Value.ToString & " " & returnfullname(where:= .SelectedRows(0).Cells(15).Value.ToString), font, 0, a + 120)
                     SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 110, a + 110)
@@ -530,7 +545,7 @@ Public Class Reports
                         RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & .SelectedRows(0).Cells(10).Value.ToString & "-", font, 0, 0)
                         SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 101)
                         a += 4
-                        SimpleTextDisplay(sender, e, "Transaction Type: " & .SelectedRows(0).Cells(12).Value.ToString, font, 0, a + 110)
+                        SimpleTextDisplay(sender, e, "Transaction Type: " & .SelectedRows(0).Cells(11).Value.ToString, font, 0, a + 110)
                         SimpleTextDisplay(sender, e, "Total Item(s): " & SumOfColumnsToInt(DataGridViewTransactionDetails, 1), font, 0, a + 120)
                         SimpleTextDisplay(sender, e, "Cashier: " & .SelectedRows(0).Cells(15).Value.ToString & " " & returnfullname(where:= .SelectedRows(0).Cells(15).Value.ToString), font, 0, a + 130)
                         SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 120)
