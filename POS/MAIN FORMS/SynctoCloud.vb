@@ -1853,6 +1853,4 @@ Public Class SynctoCloud
             Label8.Text = "Cancelling Sync."
         End If
     End Sub
-
-
 End Class
