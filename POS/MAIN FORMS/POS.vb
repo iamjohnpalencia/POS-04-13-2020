@@ -29,7 +29,6 @@ Public Class POS
             Return _instance
         End Get
     End Property
-
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _instance = Me
         LabelFOOTER.Text = My.Settings.Footer
@@ -1815,6 +1814,9 @@ Public Class POS
                             For Each t In THREADLISTUPDATE
                                 t.Join()
                             Next
+                            thread = New Thread(AddressOf FillScript)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
                             thread = New Thread(AddressOf Function1)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
@@ -1864,6 +1866,7 @@ Public Class POS
                 Button3.Enabled = True
                 UPDATEPRODUCTONLY = False
                 POSISUPDATING = False
+                RunScript()
                 If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Or PriceChangeDatatabe.Rows.Count > 0 Or CouponDatatable.Rows.Count > 0 Or CustomProductsApproval.Rows.Count Then
                     Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                     If updatemessage = DialogResult.Yes Then
@@ -1874,6 +1877,7 @@ Public Class POS
                         InstallUpdatesPriceChange()
                         InstallCoupons()
                         InstallProducts()
+
                         If PRICECHANGE = True Then
                             MsgBox("Product price changes approved")
                             PRICECHANGE = False
@@ -2192,6 +2196,60 @@ Public Class POS
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+#End Region
+#Region "Script Runner"
+    Private Sub FillScript()
+        Try
+            Dim ScriptTable = AsDatatable("loc_script_runner", "script_id", DataGridViewScript)
+            For Each row As DataRow In ScriptTable.Rows
+                DataGridViewScript.Rows.Add(row("script_id"))
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub RunScript()
+        Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionCloud As MySqlConnection = ServerCloudCon()
+            Dim Ids = ""
+            For i As Integer = 0 To DataGridViewScript.Rows.Count - 1 Step +1
+                Ids += DataGridViewScript.Rows(i).Cells(0).Value.ToString & ","
+            Next
+            Ids = Ids.TrimEnd(CChar(","))
+            If DataGridViewScript.Rows.Count > 0 Then
+                Dim sql = "SELECT * FROM admin_script_runner WHERE script_id NOT IN (" & Ids & ")"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ServerCloudCon)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                For Each row As DataRow In dt.Rows
+                    Dim query = "" & row("script_command") & ""
+                    cmd = New MySqlCommand(query, ConnectionLocal)
+                    cmd.ExecuteNonQuery()
+                    query = "INSERT INTO loc_script_runner (script_command, active) VALUES ('" & row("script_command") & "', " & row("active") & ")"
+                    cmd = New MySqlCommand(query, ConnectionLocal)
+                    cmd.ExecuteNonQuery()
+                Next
+            Else
+                Dim sql = "SELECT * FROM admin_script_runner"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ServerCloudCon)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                For Each row As DataRow In dt.Rows
+                    Dim query = "" & row("script_command") & ""
+                    cmd = New MySqlCommand(query, ConnectionLocal)
+                    cmd.ExecuteNonQuery()
+                    query = "INSERT INTO loc_script_runner (script_command, active) VALUES ('" & row("script_command") & "', " & row("active") & ")"
+                    cmd = New MySqlCommand(query, ConnectionLocal)
+                    cmd.ExecuteNonQuery()
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
         End Try
     End Sub
 #End Region
