@@ -321,7 +321,7 @@ Public Class POS
                     Dim Secondary As Double = RetStockSec + TotalSecondaryVal
                     Dim ServingValue As Double = RetNoServ + TotalNoOfServings
 
-                    Query = "UPDATE loc_pos_inventory SET `stock_secondary` = " & Secondary & " , `stock_no_of_servings` = " & ServingValue & " , `stock_primary` = " & TotalPrimary & " WHERE `server_inventory_id` = " & inventory_id
+                    Query = "UPDATE loc_pos_inventory SET `stock_secondary` = " & Secondary & " , `stock_no_of_servings` = " & ServingValue & " , `stock_primary` = " & TotalPrimary & ", `date_modified` = '" & FullDate24HR() & "' WHERE `server_inventory_id` = " & inventory_id
                     SqlCommand = New MySqlCommand(Query, LocalhostConn())
                     SqlCommand.ExecuteNonQuery()
                     GLOBAL_SYSTEM_LOGS("MIX", "MIXED : " & Ingredient & ", Crew : " & ClientCrewID)
@@ -792,9 +792,9 @@ Public Class POS
                     ServingValue = Secondary / Double.Parse(.Rows(i).Cells(5).Value.ToString)
                     TotalPrimary = Secondary / secondary_value
                     If .Rows(i).Cells(9).Value.ToString = "Server" Then
-                        Query = "UPDATE loc_pos_inventory SET `stock_secondary` = " & Secondary & " , `stock_no_of_servings` = " & ServingValue & " , `stock_primary` = " & TotalPrimary & " WHERE `server_inventory_id` = " & .Rows(i).Cells(1).Value
+                        Query = "UPDATE loc_pos_inventory SET `stock_secondary` = " & Secondary & " , `stock_no_of_servings` = " & ServingValue & " , `stock_primary` = " & TotalPrimary & ", `date_modified` = '" & FullDate24HR() & "' WHERE `server_inventory_id` = " & .Rows(i).Cells(1).Value
                     Else
-                        Query = "UPDATE loc_pos_inventory SET `stock_secondary` = " & Secondary & " , `stock_no_of_servings` = " & ServingValue & " , `stock_primary` = " & TotalPrimary & " WHERE `inventory_id` = " & .Rows(i).Cells(1).Value
+                        Query = "UPDATE loc_pos_inventory SET `stock_secondary` = " & Secondary & " , `stock_no_of_servings` = " & ServingValue & " , `stock_primary` = " & TotalPrimary & ", `date_modified` = '" & FullDate24HR() & "' WHERE `inventory_id` = " & .Rows(i).Cells(1).Value
                     End If
                     SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
                     SqlCommand.ExecuteNonQuery()
@@ -2015,7 +2015,7 @@ Public Class POS
                     cmdlocal = New MySqlCommand(sql, Connection)
                     Dim result As Integer = cmdlocal.ExecuteScalar
                     If result = 0 Then
-                        Dim sqlinsert = "INSERT INTO loc_pos_inventory (`server_inventory_id`,`formula_id`,`product_ingredients`,`sku`,`stock_primary`,`stock_secondary`,`stock_no_of_servings`,`stock_status`,`critical_limit`,`created_at`,`server_date_modified`,`store_id`,`crew_id`,`guid`,`synced`,`main_inventory_id`,`origin`) VALUES
+                        Dim sqlinsert = "INSERT INTO loc_pos_inventory (`server_inventory_id`,`formula_id`,`product_ingredients`,`sku`,`stock_primary`,`stock_secondary`,`stock_no_of_servings`,`stock_status`,`critical_limit`,`date_modified`,`server_date_modified`,`store_id`,`crew_id`,`guid`,`synced`,`main_inventory_id`,`origin`) VALUES
                                         (@0 ,@1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15 , @16)"
                         cmdlocal = New MySqlCommand(sqlinsert, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
@@ -2038,7 +2038,7 @@ Public Class POS
                         cmdlocal.ExecuteNonQuery()
                     Else
                         ',`stock_primary`=@4,`stock_secondary`=@5,`stock_no_of_servings`=@6
-                        Dim sqlUpdate = "UPDATE `loc_pos_inventory` SET `server_inventory_id`= @0,`formula_id`=@1,`product_ingredients`=@2,`sku`=@3,`stock_status`=@7,`critical_limit`=@8,`created_at`=@9,`server_date_modified`=@10,`store_id`=@11,`crew_id`=@12,`guid`=@13,`synced`=@14,`main_inventory_id`=@15,`origin`=@16 WHERE `server_inventory_id`= " & .Rows(i).Cells(0).Value
+                        Dim sqlUpdate = "UPDATE `loc_pos_inventory` SET `server_inventory_id`= @0,`formula_id`=@1,`product_ingredients`=@2,`sku`=@3,`stock_status`=@7,`critical_limit`=@8,`date_modified`=@9,`server_date_modified`=@10,`store_id`=@11,`crew_id`=@12,`guid`=@13,`synced`=@14,`main_inventory_id`=@15,`origin`=@16 WHERE `server_inventory_id`= " & .Rows(i).Cells(0).Value
                         cmdlocal = New MySqlCommand(sqlUpdate, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()

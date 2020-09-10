@@ -382,10 +382,10 @@ Partial Class Inventory
         'TabPage11
         '
         Me.TabPage11.Controls.Add(Me.TabControl5)
-        Me.TabPage11.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage11.Location = New System.Drawing.Point(4, 28)
         Me.TabPage11.Name = "TabPage11"
         Me.TabPage11.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage11.Size = New System.Drawing.Size(1183, 589)
+        Me.TabPage11.Size = New System.Drawing.Size(1183, 583)
         Me.TabPage11.TabIndex = 1
         Me.TabPage11.Text = "TabPage11"
         Me.TabPage11.UseVisualStyleBackColor = True
@@ -398,7 +398,7 @@ Partial Class Inventory
         Me.TabControl5.Location = New System.Drawing.Point(3, 3)
         Me.TabControl5.Name = "TabControl5"
         Me.TabControl5.SelectedIndex = 0
-        Me.TabControl5.Size = New System.Drawing.Size(1177, 583)
+        Me.TabControl5.Size = New System.Drawing.Size(1177, 577)
         Me.TabControl5.TabIndex = 4
         '
         'TabPage12
@@ -408,7 +408,7 @@ Partial Class Inventory
         Me.TabPage12.Location = New System.Drawing.Point(4, 28)
         Me.TabPage12.Name = "TabPage12"
         Me.TabPage12.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage12.Size = New System.Drawing.Size(1169, 551)
+        Me.TabPage12.Size = New System.Drawing.Size(1169, 545)
         Me.TabPage12.TabIndex = 0
         Me.TabPage12.Text = "TabPage12"
         Me.TabPage12.UseVisualStyleBackColor = True
@@ -445,7 +445,7 @@ Partial Class Inventory
         Me.DataGridViewCustomInvApproved.EnableHeadersVisualStyles = False
         Me.DataGridViewCustomInvApproved.Location = New System.Drawing.Point(3, 40)
         Me.DataGridViewCustomInvApproved.Name = "DataGridViewCustomInvApproved"
-        Me.DataGridViewCustomInvApproved.Size = New System.Drawing.Size(1163, 508)
+        Me.DataGridViewCustomInvApproved.Size = New System.Drawing.Size(1163, 502)
         Me.DataGridViewCustomInvApproved.TabIndex = 3
         '
         'Panel3

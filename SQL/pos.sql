@@ -500,7 +500,7 @@ CREATE TABLE `loc_pos_inventory` (
   `stock_status` int(11) NOT NULL,
   `critical_limit` int(11) NOT NULL,
   `guid` varchar(255) NOT NULL,
-  `created_at` text NOT NULL,
+  `date_modified` text NOT NULL,
   `crew_id` varchar(50) NOT NULL,
   `synced` varchar(255) NOT NULL,
   `server_date_modified` text NOT NULL,

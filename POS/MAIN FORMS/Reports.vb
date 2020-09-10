@@ -740,6 +740,7 @@ Public Class Reports
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonZread.Click
         Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
             'Fill dgv inv
             GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
             'Update inventory
@@ -753,12 +754,19 @@ Public Class Reports
             PrintPreviewDialogXread.Document = printdocXread
             PrintPreviewDialogXread.ShowDialog()
             'Update Zread
+
             S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
             sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
-            cmd = New MySqlCommand(sql, LocalhostConn())
+            cmd = New MySqlCommand(sql, ConnectionLocal)
             cmd.ExecuteNonQuery()
             cmd.Dispose()
+
+            sql = "UPDATE loc_pos_inventory SET zreading = '" & S_Zreading & "'"
             LocalhostConn.Close()
+            cmd = New MySqlCommand(sql, ConnectionLocal)
+            cmd.ExecuteNonQuery()
+
+            cmd.Dispose()
             'Insert to local zread inv
             XZreadingInventory(S_Zreading)
             If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
