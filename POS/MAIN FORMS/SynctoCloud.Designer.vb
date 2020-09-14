@@ -23,9 +23,9 @@ Partial Class SynctoCloud
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.BackgroundWorkerSYNCTOCLOUD = New System.ComponentModel.BackgroundWorker()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.ButtonSYNCDATA = New System.Windows.Forms.Button()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -90,6 +90,7 @@ Partial Class SynctoCloud
         Me.Column71 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTRAN = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ButtonSYNCINVENTORY = New System.Windows.Forms.Button()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.LabelCouponItem = New System.Windows.Forms.Label()
         Me.LabelCouponTime = New System.Windows.Forms.Label()
@@ -262,7 +263,7 @@ Partial Class SynctoCloud
         Me.Column30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column182 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
+        Me.BackgroundWorkerFILLDATAGRIDS = New System.ComponentModel.BackgroundWorker()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewEXPDET, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -287,29 +288,29 @@ Partial Class SynctoCloud
         CType(Me.DataGridViewSYSLOG3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'BackgroundWorker1
+        'BackgroundWorkerSYNCTOCLOUD
         '
-        Me.BackgroundWorker1.WorkerReportsProgress = True
-        Me.BackgroundWorker1.WorkerSupportsCancellation = True
+        Me.BackgroundWorkerSYNCTOCLOUD.WorkerReportsProgress = True
+        Me.BackgroundWorkerSYNCTOCLOUD.WorkerSupportsCancellation = True
         '
         'Timer1
         '
         Me.Timer1.Interval = 1000
         '
-        'Button2
+        'ButtonSYNCDATA
         '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Button2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(0, 217)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(490, 41)
-        Me.Button2.TabIndex = 25
-        Me.Button2.Text = "SYNC"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.ButtonSYNCDATA.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ButtonSYNCDATA.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ButtonSYNCDATA.FlatAppearance.BorderSize = 0
+        Me.ButtonSYNCDATA.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSYNCDATA.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonSYNCDATA.ForeColor = System.Drawing.Color.White
+        Me.ButtonSYNCDATA.Location = New System.Drawing.Point(0, 215)
+        Me.ButtonSYNCDATA.Name = "ButtonSYNCDATA"
+        Me.ButtonSYNCDATA.Size = New System.Drawing.Size(490, 41)
+        Me.ButtonSYNCDATA.TabIndex = 25
+        Me.ButtonSYNCDATA.Text = "SYNC"
+        Me.ButtonSYNCDATA.UseVisualStyleBackColor = False
         '
         'DataGridView2
         '
@@ -484,7 +485,7 @@ Partial Class SynctoCloud
         Me.Panel7.Controls.Add(Me.Label4)
         Me.Panel7.Controls.Add(Me.ProgressBar1)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel7.Location = New System.Drawing.Point(0, 258)
+        Me.Panel7.Location = New System.Drawing.Point(0, 297)
         Me.Panel7.Name = "Panel7"
         Me.Panel7.Size = New System.Drawing.Size(490, 36)
         Me.Panel7.TabIndex = 24
@@ -792,15 +793,31 @@ Partial Class SynctoCloud
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.Button2)
+        Me.Panel1.Controls.Add(Me.ButtonSYNCDATA)
+        Me.Panel1.Controls.Add(Me.ButtonSYNCINVENTORY)
         Me.Panel1.Controls.Add(Me.Panel7)
         Me.Panel1.Controls.Add(Me.Panel16)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(492, 296)
+        Me.Panel1.Size = New System.Drawing.Size(492, 335)
         Me.Panel1.TabIndex = 26
+        '
+        'ButtonSYNCINVENTORY
+        '
+        Me.ButtonSYNCINVENTORY.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.ButtonSYNCINVENTORY.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ButtonSYNCINVENTORY.FlatAppearance.BorderSize = 0
+        Me.ButtonSYNCINVENTORY.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSYNCINVENTORY.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonSYNCINVENTORY.ForeColor = System.Drawing.Color.White
+        Me.ButtonSYNCINVENTORY.Location = New System.Drawing.Point(0, 256)
+        Me.ButtonSYNCINVENTORY.Name = "ButtonSYNCINVENTORY"
+        Me.ButtonSYNCINVENTORY.Size = New System.Drawing.Size(490, 41)
+        Me.ButtonSYNCINVENTORY.TabIndex = 42
+        Me.ButtonSYNCINVENTORY.Text = "SYNC INVENTORY"
+        Me.ButtonSYNCINVENTORY.UseVisualStyleBackColor = False
         '
         'Panel16
         '
@@ -2145,16 +2162,16 @@ Partial Class SynctoCloud
         '
         Me.Timer2.Interval = 1000
         '
-        'BackgroundWorker2
+        'BackgroundWorkerFILLDATAGRIDS
         '
-        Me.BackgroundWorker2.WorkerReportsProgress = True
-        Me.BackgroundWorker2.WorkerSupportsCancellation = True
+        Me.BackgroundWorkerFILLDATAGRIDS.WorkerReportsProgress = True
+        Me.BackgroundWorkerFILLDATAGRIDS.WorkerSupportsCancellation = True
         '
         'SynctoCloud
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(492, 296)
+        Me.ClientSize = New System.Drawing.Size(492, 335)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SynctoCloud"
@@ -2188,7 +2205,7 @@ Partial Class SynctoCloud
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents BackgroundWorkerSYNCTOCLOUD As System.ComponentModel.BackgroundWorker
     Friend WithEvents Timer1 As Timer
     Friend WithEvents DataGridViewEXP As DataGridView
     Friend WithEvents DataGridViewINV As DataGridView
@@ -2203,7 +2220,7 @@ Partial Class SynctoCloud
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents Panel7 As Panel
-    Friend WithEvents Button2 As Button
+    Friend WithEvents ButtonSYNCDATA As Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label5 As Label
     Friend WithEvents Label1 As Label
@@ -2427,5 +2444,6 @@ Partial Class SynctoCloud
     Friend WithEvents LabelCoupon As Label
     Friend WithEvents LabelCouponItem As Label
     Friend WithEvents LabelCouponTime As Label
-    Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents BackgroundWorkerFILLDATAGRIDS As System.ComponentModel.BackgroundWorker
+    Friend WithEvents ButtonSYNCINVENTORY As Button
 End Class

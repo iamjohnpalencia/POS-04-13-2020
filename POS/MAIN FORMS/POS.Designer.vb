@@ -149,6 +149,8 @@ Partial Class POS
         Me.Panel17 = New System.Windows.Forms.Panel()
         Me.PanelProducts = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.DataGridViewScript = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridView4 = New System.Windows.Forms.DataGridView()
         Me.Column32 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -186,8 +188,6 @@ Partial Class POS
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
-        Me.DataGridViewScript = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel8.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel34.SuspendLayout()
@@ -209,11 +209,11 @@ Partial Class POS
         Me.Panel33.SuspendLayout()
         Me.Panel10.SuspendLayout()
         Me.Panel13.SuspendLayout()
+        CType(Me.DataGridViewScript, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewScript, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel7
@@ -1580,6 +1580,27 @@ Partial Class POS
         Me.Panel13.Size = New System.Drawing.Size(1176, 557)
         Me.Panel13.TabIndex = 51
         '
+        'DataGridViewScript
+        '
+        Me.DataGridViewScript.AllowUserToAddRows = False
+        Me.DataGridViewScript.AllowUserToDeleteRows = False
+        Me.DataGridViewScript.AllowUserToResizeColumns = False
+        Me.DataGridViewScript.AllowUserToResizeRows = False
+        Me.DataGridViewScript.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewScript.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3})
+        Me.DataGridViewScript.Location = New System.Drawing.Point(571, 239)
+        Me.DataGridViewScript.Name = "DataGridViewScript"
+        Me.DataGridViewScript.ReadOnly = True
+        Me.DataGridViewScript.RowHeadersVisible = False
+        Me.DataGridViewScript.Size = New System.Drawing.Size(533, 92)
+        Me.DataGridViewScript.TabIndex = 68
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Column32"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        '
         'DataGridView4
         '
         Me.DataGridView4.AllowUserToAddRows = False
@@ -1831,27 +1852,6 @@ Partial Class POS
         'BackgroundWorker3
         '
         '
-        'DataGridViewScript
-        '
-        Me.DataGridViewScript.AllowUserToAddRows = False
-        Me.DataGridViewScript.AllowUserToDeleteRows = False
-        Me.DataGridViewScript.AllowUserToResizeColumns = False
-        Me.DataGridViewScript.AllowUserToResizeRows = False
-        Me.DataGridViewScript.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewScript.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3})
-        Me.DataGridViewScript.Location = New System.Drawing.Point(571, 239)
-        Me.DataGridViewScript.Name = "DataGridViewScript"
-        Me.DataGridViewScript.ReadOnly = True
-        Me.DataGridViewScript.RowHeadersVisible = False
-        Me.DataGridViewScript.Size = New System.Drawing.Size(533, 92)
-        Me.DataGridViewScript.TabIndex = 68
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Column32"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        '
         'POS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1875,6 +1875,7 @@ Partial Class POS
         Me.MinimizeBox = False
         Me.Name = "POS"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Point Of Sales"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel8.ResumeLayout(False)
         Me.Panel24.ResumeLayout(False)
@@ -1908,11 +1909,11 @@ Partial Class POS
         Me.Panel10.PerformLayout()
         Me.Panel13.ResumeLayout(False)
         Me.Panel13.PerformLayout()
+        CType(Me.DataGridViewScript, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewScript, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -36,17 +36,17 @@ Public Class Reports
             TabControl1.TabPages(1).Text = "System Logs"
             TabControl1.TabPages(2).Text = "Sales Report"
             TabControl1.TabPages(3).Text = "Expense Report"
-            TabControl1.TabPages(4).Text = "Total Expenses"
-            TabControl1.TabPages(5).Text = "Transaction Logs"
-            TabControl1.TabPages(6).Text = "Item Return"
-            TabControl1.TabPages(7).Text = "Deposit Slip"
-            TabControl1.TabPages(8).Text = "Z/X Reading"
+            TabControl1.TabPages(4).Text = "Transaction Logs"
+            TabControl1.TabPages(5).Text = "Item Return"
+            TabControl1.TabPages(6).Text = "Deposit Slip"
+            TabControl1.TabPages(7).Text = "Z/X Reading"
+
             reportsdailytransaction(False)
             reportssystemlogs(False)
             reportssales(False)
             reportstransactionlogs(False)
             expensereports(False)
-            reportexpensedet(False)
+
             reportsreturnsandrefunds(False)
             viewdeposit(False)
             FillDatagridZreadInv(False)
@@ -243,33 +243,7 @@ Public Class Reports
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Public Sub reportexpensedet(ByVal searchdate As Boolean)
-        Try
-            table = "`loc_expense_details`"
-            fields = "`expense_type`, `item_info`, `quantity`, `price`, `amount`, `attachment`, `created_at`"
-            If searchdate = False Then
-                where = " zreading = date(CURRENT_DATE()) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
-                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewExpenseDetails, errormessage:="", fields:=fields, successmessage:="", where:=where)
-            Else
-                where = " zreading >= '" & Format(DateTimePicker5.Value, "yyyy-MM-dd") & "' AND zreading <= '" & Format(DateTimePicker6.Value, "yyyy-MM-dd") & "' AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
-                GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewExpenseDetails, errormessage:="", fields:=fields, successmessage:="", where:=where)
-            End If
 
-            With DataGridViewExpenseDetails
-                .Columns(0).HeaderText = "Expense Type"
-                .Columns(1).HeaderText = "Description"
-                .Columns(2).HeaderText = "Quantity"
-                .Columns(3).HeaderText = "Price"
-                .Columns(4).HeaderText = "Total Amount"
-                .Columns(5).Visible = False
-                .Columns(6).HeaderText = "Date Created"
-                Label15.Text = SumOfColumnsToDecimal(DataGridViewExpenseDetails, 4)
-            End With
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
 
     Public Sub expensereports(ByVal searchdate As Boolean)
         Try
@@ -381,9 +355,6 @@ Public Class Reports
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         reportstransactionlogs(True)
-    End Sub
-    Private Sub ButtonTotalExpenses_Click(sender As Object, e As EventArgs) Handles ButtonTotalExpenses.Click
-        reportexpensedet(True)
     End Sub
     Private Sub ButtonSearchExpenses_Click(sender As Object, e As EventArgs) Handles ButtonSearchExpenses.Click
         expensereports(True)
@@ -583,10 +554,8 @@ Public Class Reports
     Private Function NUMBERFORMAT(formatthis)
         Return Format(formatthis, "##,##0.00")
     End Function
-
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdocXread.PrintPage
         Try
-
             Dim ZreadDateFormat = S_Zreading
             Dim font As New Font("tahoma", 6)
             Dim font2 As New Font("tahoma", 6, FontStyle.Bold)

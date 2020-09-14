@@ -56,7 +56,11 @@ Public Class BegBalance
         Me.Close()
     End Sub
     Private Sub BegBalance_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        POS.Enabled = True
+        If Application.OpenForms().OfType(Of Message).Any Then
+            POS.Enabled = False
+        Else
+            POS.Enabled = True
+        End If
     End Sub
     Private Sub BegBalance_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ComboBox1.SelectedIndex = 0

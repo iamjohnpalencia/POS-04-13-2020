@@ -1814,9 +1814,22 @@ Public Class POS
                             For Each t In THREADLISTUPDATE
                                 t.Join()
                             Next
+
+                            thread = New Thread(AddressOf PromptMessage)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+
                             thread = New Thread(AddressOf FillScript)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
+
+                            For Each t In THREADLISTUPDATE
+                                t.Join()
+                            Next
+                            thread = New Thread(AddressOf RunScript)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
+
                             thread = New Thread(AddressOf Function1)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
@@ -1866,7 +1879,7 @@ Public Class POS
                 Button3.Enabled = True
                 UPDATEPRODUCTONLY = False
                 POSISUPDATING = False
-                RunScript()
+
                 If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Or PriceChangeDatatabe.Rows.Count > 0 Or CouponDatatable.Rows.Count > 0 Or CustomProductsApproval.Rows.Count Then
                     Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                     If updatemessage = DialogResult.Yes Then
@@ -1877,7 +1890,6 @@ Public Class POS
                         InstallUpdatesPriceChange()
                         InstallCoupons()
                         InstallProducts()
-
                         If PRICECHANGE = True Then
                             MsgBox("Product price changes approved")
                             PRICECHANGE = False
@@ -1899,6 +1911,36 @@ Public Class POS
                     End If
                 Else
                     LabelCheckingUpdates.Text = "Complete Checking! No updates found."
+                End If
+                If DtMessage.Rows.Count > 0 Then
+                    Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+                    For i As Integer = 0 To DtMessage.Rows.Count - 1 Step +1
+                        Dim sql = "INSERT INTO loc_message (`server_message_id`,`from`, `subject`, `content`, `guid`, `store_id`, `active`, `created_at`, `origin`, `seen`) VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9,@10)"
+                        Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
+                        cmd.Parameters.Add("@1", MySqlDbType.Int64).Value = DtMessage(i)(0).ToString
+                        cmd.Parameters.Add("@2", MySqlDbType.Text).Value = DtMessage(i)(1).ToString
+                        cmd.Parameters.Add("@3", MySqlDbType.Text).Value = DtMessage(i)(2).ToString
+                        cmd.Parameters.Add("@4", MySqlDbType.Text).Value = DtMessage(i)(3).ToString
+                        cmd.Parameters.Add("@5", MySqlDbType.Text).Value = DtMessage(i)(4).ToString
+                        cmd.Parameters.Add("@6", MySqlDbType.Text).Value = DtMessage(i)(5).ToString
+                        cmd.Parameters.Add("@7", MySqlDbType.Int64).Value = DtMessage(i)(6)
+                        cmd.Parameters.Add("@8", MySqlDbType.Text).Value = DtMessage(i)(7).ToString
+                        cmd.Parameters.Add("@9", MySqlDbType.Text).Value = DtMessage(i)(8).ToString
+                        cmd.Parameters.Add("@10", MySqlDbType.Int64).Value = 0
+                        cmd.ExecuteNonQuery()
+                        cmd.Dispose()
+                    Next
+                    Enabled = False
+                    For i As Integer = 0 To DtMessage.Rows.Count - 1 Step +1
+                        If DtMessage(i)(4).ToString = "Server" Then
+                            Message.Show()
+                        ElseIf DtMessage(i)(4).ToString = ClientGuid Then
+                            If DtMessage(i)(5).ToString = ClientStoreID Then
+                                Message.Show()
+                            End If
+                        End If
+
+                    Next
                 End If
             Else
                 Button3.Enabled = True
@@ -2193,6 +2235,79 @@ Public Class POS
             Next
             ConnectionLocal.Close()
             ConnectionServer.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+#End Region
+#Region "Message"
+    Public DtMessage As DataTable
+    Private Sub PromptMessage()
+        Dim LocMessageDatatable As DataTable
+
+        DtMessage = New DataTable
+        DtMessage.Columns.Add("message_id")
+        DtMessage.Columns.Add("from")
+        DtMessage.Columns.Add("subject")
+        DtMessage.Columns.Add("content")
+        DtMessage.Columns.Add("guid")
+        DtMessage.Columns.Add("store_id")
+        DtMessage.Columns.Add("active")
+        DtMessage.Columns.Add("created_at")
+        DtMessage.Columns.Add("origin")
+        Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionCloud As MySqlConnection = ServerCloudCon()
+            Dim Query = "SELECT server_message_id FROM loc_message"
+            Dim Command As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(Command)
+            LocMessageDatatable = New DataTable
+            da.Fill(LocMessageDatatable)
+            If LocMessageDatatable.Rows.Count > 0 Then
+                Dim MessageIDS = ""
+                For i As Integer = 0 To LocMessageDatatable.Rows.Count - 1 Step +1
+                    MessageIDS += LocMessageDatatable(i)(0).ToString & ","
+                Next
+                MessageIDS = MessageIDS.TrimEnd(CChar(","))
+                Query = "SELECT * FROM admin_message WHERE message_id NOT IN (" & MessageIDS & ") AND origin IN ('Server','Client') AND guid IN ('Server','" & ClientGuid & "') AND store_id IN ('0','" & ClientStoreID & "') "
+                Command = New MySqlCommand(Query, ServerCloudCon)
+                da = New MySqlDataAdapter(Command)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                For i As Integer = 0 To dt.Rows.Count - 1 Step +1
+                    Dim Mess As DataRow = DtMessage.NewRow
+                    Mess("message_id") = dt(i)(0)
+                    Mess("from") = dt(i)(1)
+                    Mess("subject") = dt(i)(2)
+                    Mess("content") = dt(i)(3)
+                    Mess("guid") = dt(i)(4)
+                    Mess("store_id") = dt(i)(5)
+                    Mess("active") = dt(i)(6)
+                    Mess("created_at") = dt(i)(7)
+                    Mess("origin") = dt(i)(8)
+                    DtMessage.Rows.Add(Mess)
+                Next
+            Else
+                Query = "SELECT * FROM admin_message WHERE origin IN ('Server','Client') AND guid IN ('Server','" & ClientGuid & "') AND store_id IN ('0','" & ClientStoreID & "') "
+                Command = New MySqlCommand(Query, ServerCloudCon)
+                da = New MySqlDataAdapter(Command)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                For i As Integer = 0 To dt.Rows.Count - 1 Step +1
+                    Dim Mess As DataRow = DtMessage.NewRow
+                    Mess("message_id") = dt(i)(0)
+                    Mess("from") = dt(i)(1)
+                    Mess("subject") = dt(i)(2)
+                    Mess("content") = dt(i)(3)
+                    Mess("guid") = dt(i)(4)
+                    Mess("store_id") = dt(i)(5)
+                    Mess("active") = dt(i)(6)
+                    Mess("created_at") = dt(i)(7)
+                    Mess("origin") = dt(i)(8)
+                    DtMessage.Rows.Add(Mess)
+                Next
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)

@@ -74,8 +74,6 @@ Public Class ConfigManager
         End Try
         Return cloudconn
     End Function
-
-
     Private Sub CreateFolder(Path As String, FolderName As String, Optional ByVal Attributes As System.IO.FileAttributes = IO.FileAttributes.Normal)
         Try
             My.Computer.FileSystem.CreateDirectory(Path & "\" & FolderName)

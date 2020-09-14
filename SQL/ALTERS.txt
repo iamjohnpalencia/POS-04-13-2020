@@ -1,0 +1,2 @@
+ALTER TABLE `loc_pos_inventory` ADD `zreading` TEXT NOT NULL AFTER `origin`;
+ALTER TABLE `loc_message` ADD `server_message_id` INT(11) NOT NULL AFTER `message_id`;
