@@ -448,6 +448,7 @@ Module RetrieveModule
     Public Function GLOBAL_SELECT_FUNCTION_RETURN(ByVal table As String, ByVal fields As String, ByVal values As String, ByVal returnvalrow As String)
         Try
             sql = "SELECT " + fields + " FROM " + table + " WHERE " + values
+
             cmd = New MySqlCommand(sql, LocalhostConn)
             Using readerObj As MySqlDataReader = cmd.ExecuteReader
                 While readerObj.Read

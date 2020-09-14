@@ -36,6 +36,7 @@ Module publicfunctions
         Dim ReturnThisThing As Boolean
         For Each tb As TextBox In root.Controls.OfType(Of TextBox)()
             If tb.Text = String.Empty Then
+
                 ReturnThisThing = False
                 Exit For
             Else

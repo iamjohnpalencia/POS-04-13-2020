@@ -67,8 +67,8 @@ Public Class Reports
             End If
 
             If DataGridViewEXPENSES.Rows.Count > 0 Then
-                Dim arg = New DataGridViewCellEventArgs(0, 0)
-                DataGridViewEXPENSES_CellClick(sender, arg)
+                'Dim arg = New DataGridViewCellEventArgs(0, 0)
+                'DataGridViewEXPENSES_CellClick(sender, arg)
             End If
 
         Catch ex As Exception
