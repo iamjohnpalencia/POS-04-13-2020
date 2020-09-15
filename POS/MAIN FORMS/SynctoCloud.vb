@@ -276,6 +276,19 @@ Public Class SynctoCloud
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+
+    Private Sub filldatagridviewerrors()
+        Try
+            Dim fields = "*"
+            Dim table = "loc_send_bug_report WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
+            GLOBAL_SELECT_ALL_FUNCTION(table, fields, DataGridViewERRORS)
+            gettablesize(tablename:="loc_send_bug_report")
+            countrows(tablename:=table)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
     Private Sub countrows(ByVal tablename As String)
         Try
             Dim sql = "SELECT COUNT(*) FROM " & tablename & " "
@@ -558,6 +571,18 @@ Public Class SynctoCloud
                         End If
                     Next
                 End If
+                ThreadLoaddata = New Thread(AddressOf filldatagridviewerrors)
+                ThreadLoaddata.Start()
+                Threadlist.Add(ThreadLoaddata)
+                For Each t In Threadlist
+                    t.Join()
+                    If (BackgroundWorkerSYNCTOCLOUD.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
+                Next
                 ThreadLoaddata = New Thread(AddressOf LoadData2)
                 ThreadLoaddata.Start()
                 Threadlist.Add(ThreadLoaddata)
@@ -570,6 +595,7 @@ Public Class SynctoCloud
                         Exit For
                     End If
                 Next
+
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -673,6 +699,7 @@ Public Class SynctoCloud
     Dim threadListloadData As List(Of Thread) = New List(Of Thread)
     Dim threadListPRICEREQUEST As List(Of Thread) = New List(Of Thread)
     Dim threadListCoupon As List(Of Thread) = New List(Of Thread)
+    Dim threadListErrors As List(Of Thread) = New List(Of Thread)
     Dim thread1 As Thread
     Dim WorkerCanceled As Boolean = False
 
@@ -726,6 +753,11 @@ Public Class SynctoCloud
                     thread1 = New Thread(AddressOf insertcoupon)
                     thread1.Start()
                     threadListCoupon.Add(thread1)
+                    'Errors
+                    thread1 = New Thread(AddressOf inserterrors)
+                    thread1.Start()
+                    threadListErrors.Add(thread1)
+
                 Else
                     thread1 = New Thread(AddressOf insertinventory)
                     thread1.Start()
@@ -879,6 +911,15 @@ Public Class SynctoCloud
                     End If
                 Next
                 For Each t In threadListLOCINV
+                    t.Join()
+                    If (BackgroundWorkerSYNCTOCLOUD.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
+                Next
+                For Each t In threadListErrors
                     t.Join()
                     If (BackgroundWorkerSYNCTOCLOUD.CancellationPending) Then
                         ' Indicate that the task was canceled.
@@ -1799,6 +1840,70 @@ Public Class SynctoCloud
                 Dim t As New Task(New Action(Sub()
                                                  LabelCoupon.Text = "Synced Coupons"
                                                  LabelCouponTime.Text = LabelTime.Text & " Seconds"
+                                             End Sub))
+                t.Start()
+            End With
+            'truncatetable(tablename:="loc_expense_list")
+        Catch ex As Exception
+            Unsuccessful = True
+            BackgroundWorkerSYNCTOCLOUD.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub inserterrors()
+        Try
+            Dim cmd As MySqlCommand
+            Dim cmdloc As MySqlCommand
+
+            Dim server As MySqlConnection = New MySqlConnection
+            server.ConnectionString = CloudConnectionString
+            server.Open()
+
+            Dim local As MySqlConnection = New MySqlConnection
+            local.ConnectionString = LocalConnectionString
+            local.Open()
+
+            LabelError.Text = "Syncing Coupons"
+            With DataGridViewERRORS
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_error_reports(`loc_bug_id`,`bug_desc`,`crew_id`,`guid`,`store_id`,`date_created`) VALUES (@0, @1, @2, @3, @4, @5)", server)
+
+                    cmd.Parameters.Add("@0", MySqlDbType.Text).Value = .Rows(i).Cells(0).Value.ToString()
+                    cmd.Parameters.Add("@1", MySqlDbType.Text).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmd.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString()
+                    cmd.Parameters.Add("@3", MySqlDbType.Text).Value = .Rows(i).Cells(3).Value.ToString()
+                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@5", MySqlDbType.Text).Value = .Rows(i).Cells(5).Value.ToString()
+
+
+                    '====================================================================
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
+                    LabelErrorItem.Text = Val(LabelErrorItem.Text) + 1
+                    POS.Instance.Invoke(Sub()
+                                            POS.ProgressBar1.Value += 1
+                                        End Sub)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
+
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
+                    '====================================================================
+                    cmd.ExecuteNonQuery()
+                    Dim table = " loc_send_bug_report "
+                    Dim where = " bug_id = " & .Rows(i).Cells(0).Value.ToString & ""
+                    Dim fields = " `synced`='Synced' "
+                    sql = "UPDATE " & table & " SET " & fields & " WHERE " & where
+                    cmdloc = New MySqlCommand(sql, local)
+                    cmdloc.ExecuteNonQuery()
+                    '====================================================================
+                Next
+                server.Close()
+                local.Close()
+                Dim t As New Task(New Action(Sub()
+                                                 LabelError.Text = "Synced Coupons"
+                                                 LabelErrorTime.Text = LabelTime.Text & " Seconds"
                                              End Sub))
                 t.Start()
             End With

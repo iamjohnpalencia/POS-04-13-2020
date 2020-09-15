@@ -92,6 +92,9 @@ Partial Class SynctoCloud
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ButtonSYNCINVENTORY = New System.Windows.Forms.Button()
         Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.LabelErrorItem = New System.Windows.Forms.Label()
+        Me.LabelErrorTime = New System.Windows.Forms.Label()
+        Me.LabelError = New System.Windows.Forms.Label()
         Me.LabelCouponItem = New System.Windows.Forms.Label()
         Me.LabelCouponTime = New System.Windows.Forms.Label()
         Me.LabelCoupon = New System.Windows.Forms.Label()
@@ -132,6 +135,7 @@ Partial Class SynctoCloud
         Me.LabelDTransactD = New System.Windows.Forms.Label()
         Me.LabelDTransac = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.DataGridViewERRORS = New System.Windows.Forms.DataGridView()
         Me.DataGridViewCoupons = New System.Windows.Forms.DataGridView()
         Me.LabelTime = New System.Windows.Forms.Label()
         Me.LabelRowtoSync = New System.Windows.Forms.Label()
@@ -274,6 +278,7 @@ Partial Class SynctoCloud
         Me.Panel1.SuspendLayout()
         Me.Panel16.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.DataGridViewERRORS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewCoupons, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewPriceChangeRequest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewDepositSlip, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -305,9 +310,9 @@ Partial Class SynctoCloud
         Me.ButtonSYNCDATA.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonSYNCDATA.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonSYNCDATA.ForeColor = System.Drawing.Color.White
-        Me.ButtonSYNCDATA.Location = New System.Drawing.Point(0, 215)
+        Me.ButtonSYNCDATA.Location = New System.Drawing.Point(0, 228)
         Me.ButtonSYNCDATA.Name = "ButtonSYNCDATA"
-        Me.ButtonSYNCDATA.Size = New System.Drawing.Size(490, 41)
+        Me.ButtonSYNCDATA.Size = New System.Drawing.Size(487, 41)
         Me.ButtonSYNCDATA.TabIndex = 25
         Me.ButtonSYNCDATA.Text = "SYNC"
         Me.ButtonSYNCDATA.UseVisualStyleBackColor = False
@@ -485,9 +490,9 @@ Partial Class SynctoCloud
         Me.Panel7.Controls.Add(Me.Label4)
         Me.Panel7.Controls.Add(Me.ProgressBar1)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel7.Location = New System.Drawing.Point(0, 297)
+        Me.Panel7.Location = New System.Drawing.Point(0, 310)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(490, 36)
+        Me.Panel7.Size = New System.Drawing.Size(487, 36)
         Me.Panel7.TabIndex = 24
         '
         'Label8
@@ -509,7 +514,7 @@ Partial Class SynctoCloud
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(490, 0)
+        Me.Label5.Location = New System.Drawing.Point(487, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(0, 18)
         Me.Label5.TabIndex = 28
@@ -565,7 +570,7 @@ Partial Class SynctoCloud
         Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ProgressBar1.Location = New System.Drawing.Point(0, 25)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(490, 11)
+        Me.ProgressBar1.Size = New System.Drawing.Size(487, 11)
         Me.ProgressBar1.TabIndex = 11
         '
         'DataGridViewINV
@@ -801,7 +806,7 @@ Partial Class SynctoCloud
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(492, 335)
+        Me.Panel1.Size = New System.Drawing.Size(489, 348)
         Me.Panel1.TabIndex = 26
         '
         'ButtonSYNCINVENTORY
@@ -812,15 +817,18 @@ Partial Class SynctoCloud
         Me.ButtonSYNCINVENTORY.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonSYNCINVENTORY.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonSYNCINVENTORY.ForeColor = System.Drawing.Color.White
-        Me.ButtonSYNCINVENTORY.Location = New System.Drawing.Point(0, 256)
+        Me.ButtonSYNCINVENTORY.Location = New System.Drawing.Point(0, 269)
         Me.ButtonSYNCINVENTORY.Name = "ButtonSYNCINVENTORY"
-        Me.ButtonSYNCINVENTORY.Size = New System.Drawing.Size(490, 41)
+        Me.ButtonSYNCINVENTORY.Size = New System.Drawing.Size(487, 41)
         Me.ButtonSYNCINVENTORY.TabIndex = 42
         Me.ButtonSYNCINVENTORY.Text = "SYNC INVENTORY"
         Me.ButtonSYNCINVENTORY.UseVisualStyleBackColor = False
         '
         'Panel16
         '
+        Me.Panel16.Controls.Add(Me.LabelErrorItem)
+        Me.Panel16.Controls.Add(Me.LabelErrorTime)
+        Me.Panel16.Controls.Add(Me.LabelError)
         Me.Panel16.Controls.Add(Me.LabelCouponItem)
         Me.Panel16.Controls.Add(Me.LabelCouponTime)
         Me.Panel16.Controls.Add(Me.LabelCoupon)
@@ -863,8 +871,38 @@ Partial Class SynctoCloud
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel16.Location = New System.Drawing.Point(0, 0)
         Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(490, 283)
+        Me.Panel16.Size = New System.Drawing.Size(487, 283)
         Me.Panel16.TabIndex = 41
+        '
+        'LabelErrorItem
+        '
+        Me.LabelErrorItem.AutoSize = True
+        Me.LabelErrorItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelErrorItem.Location = New System.Drawing.Point(438, 204)
+        Me.LabelErrorItem.Name = "LabelErrorItem"
+        Me.LabelErrorItem.Size = New System.Drawing.Size(14, 14)
+        Me.LabelErrorItem.TabIndex = 53
+        Me.LabelErrorItem.Text = "0"
+        '
+        'LabelErrorTime
+        '
+        Me.LabelErrorTime.AutoSize = True
+        Me.LabelErrorTime.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelErrorTime.Location = New System.Drawing.Point(190, 204)
+        Me.LabelErrorTime.Name = "LabelErrorTime"
+        Me.LabelErrorTime.Size = New System.Drawing.Size(165, 14)
+        Me.LabelErrorTime.TabIndex = 52
+        Me.LabelErrorTime.Text = "Estimating Time. Please Wait"
+        '
+        'LabelError
+        '
+        Me.LabelError.AutoSize = True
+        Me.LabelError.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelError.Location = New System.Drawing.Point(8, 204)
+        Me.LabelError.Name = "LabelError"
+        Me.LabelError.Size = New System.Drawing.Size(38, 14)
+        Me.LabelError.TabIndex = 51
+        Me.LabelError.Text = "Errors"
         '
         'LabelCouponItem
         '
@@ -1258,6 +1296,7 @@ Partial Class SynctoCloud
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.DataGridViewERRORS)
         Me.GroupBox1.Controls.Add(Me.DataGridViewCoupons)
         Me.GroupBox1.Controls.Add(Me.LabelTime)
         Me.GroupBox1.Controls.Add(Me.LabelRowtoSync)
@@ -1281,10 +1320,23 @@ Partial Class SynctoCloud
         Me.GroupBox1.Controls.Add(Me.DataGridViewSYSLOG3)
         Me.GroupBox1.Location = New System.Drawing.Point(29, 303)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(442, 148)
+        Me.GroupBox1.Size = New System.Drawing.Size(423, 148)
         Me.GroupBox1.TabIndex = 28
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
+        '
+        'DataGridViewERRORS
+        '
+        Me.DataGridViewERRORS.AllowUserToAddRows = False
+        Me.DataGridViewERRORS.AllowUserToDeleteRows = False
+        Me.DataGridViewERRORS.AllowUserToResizeColumns = False
+        Me.DataGridViewERRORS.AllowUserToResizeRows = False
+        Me.DataGridViewERRORS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewERRORS.Location = New System.Drawing.Point(70, 29)
+        Me.DataGridViewERRORS.Name = "DataGridViewERRORS"
+        Me.DataGridViewERRORS.ReadOnly = True
+        Me.DataGridViewERRORS.Size = New System.Drawing.Size(230, 80)
+        Me.DataGridViewERRORS.TabIndex = 43
         '
         'DataGridViewCoupons
         '
@@ -2171,7 +2223,7 @@ Partial Class SynctoCloud
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(492, 335)
+        Me.ClientSize = New System.Drawing.Size(489, 348)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SynctoCloud"
@@ -2190,6 +2242,7 @@ Partial Class SynctoCloud
         Me.Panel16.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.DataGridViewERRORS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewCoupons, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewPriceChangeRequest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewDepositSlip, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2446,4 +2499,8 @@ Partial Class SynctoCloud
     Friend WithEvents LabelCouponTime As Label
     Friend WithEvents BackgroundWorkerFILLDATAGRIDS As System.ComponentModel.BackgroundWorker
     Friend WithEvents ButtonSYNCINVENTORY As Button
+    Friend WithEvents LabelErrorItem As Label
+    Friend WithEvents LabelErrorTime As Label
+    Friend WithEvents LabelError As Label
+    Friend WithEvents DataGridViewERRORS As DataGridView
 End Class

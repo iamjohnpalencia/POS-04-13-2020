@@ -41,13 +41,14 @@ Module Addmodule
     Public Sub SendErrorReport(MSG)
         If LocalhostConn.State = ConnectionState.Open Then
             Try
-                Dim Query As String = "INSERT INTO `loc_send_bug_report`(`bug_desc`, `crew_id`, `guid`, `store_id`, `date_created`) VALUES (@1,@2,@3,@4,@5)"
+                Dim Query As String = "INSERT INTO `loc_send_bug_report`(`bug_desc`, `crew_id`, `guid`, `store_id`, `date_created`, `synced`) VALUES (@1,@2,@3,@4,@5,@6)"
                 Dim Command As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
                 Command.Parameters.Add("@1", MySqlDbType.Text).Value = MSG
                 Command.Parameters.Add("@2", MySqlDbType.Text).Value = ClientCrewID
                 Command.Parameters.Add("@3", MySqlDbType.Text).Value = ClientGuid
                 Command.Parameters.Add("@4", MySqlDbType.Text).Value = ClientStoreID
                 Command.Parameters.Add("@5", MySqlDbType.Text).Value = FullDate24HR()
+                Command.Parameters.Add("@6", MySqlDbType.Text).Value = "Unsynced"
                 Command.ExecuteNonQuery()
             Catch ex As Exception
                 MsgBox(ex.ToString)
