@@ -996,7 +996,12 @@ Public Class SynctoCloud
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
-            LabelDTransac.Text = "Syncing Daily Transaction"
+
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelDTransac.Text = "Syncing Daily Transaction"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewTRAN
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1076,7 +1081,11 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            LabelDTransactD.Text = "Syncing Transaction Details"
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelDTransactD.Text = "Syncing Transaction Details"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewTRANDET
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1152,7 +1161,11 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            LabelEXP.Text = "Syncing Expense List"
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelEXP.Text = "Syncing Expense List"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewEXP
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1225,7 +1238,11 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            LabelEXPD.Text = "Syncing Expense Details"
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelEXPD.Text = "Syncing Expense Details"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewEXPDET
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1310,9 +1327,11 @@ Public Class SynctoCloud
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelACC.Text = "Syncing Accounts"
+                                          End Sub))
+            t1.Start()
 
-
-            LabelACC.Text = "Syncing Accounts"
             With DataGridViewLocusers
                 messageboxappearance = False
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1385,7 +1404,11 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            LabelSYS1.Text = "Syncing Systemlogs 1"
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelSYS1.Text = "Syncing Systemlogs 1"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewSYSLOG1
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1449,7 +1472,11 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            LabelRET.Text = "Syncing Refund Details"
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelRET.Text = "Syncing Refund Details"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewRetrefdetails
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1515,7 +1542,11 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            LabelCPROD.Text = "Syncing Local Products"
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelCPROD.Text = "Syncing Local Products"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewCUSTOMPRODUCTS
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1589,7 +1620,11 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            LabelMODET.Text = "Syncing Mode of Transaction"
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelMODET.Text = "Syncing Mode of Transaction"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewMODEOFTRANSACTION
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1657,7 +1692,11 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            LabelDEPOSIT.Text = "Syncing Deposit Details"
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelDEPOSIT.Text = "Syncing Deposit Details"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewDepositSlip
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1725,7 +1764,11 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            LabelPRICEREQ.Text = "Syncing Price Request"
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelPRICEREQ.Text = "Syncing Price Request"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewPriceChangeRequest
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1790,7 +1833,11 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            LabelCoupon.Text = "Syncing Coupons"
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelCoupon.Text = "Syncing Coupons"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewCoupons
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1864,7 +1911,11 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            LabelError.Text = "Syncing Coupons"
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelError.Text = "Syncing Errors"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewERRORS
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1942,7 +1993,11 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            LabelINV.Text = "Syncing Inventory"
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelINV.Text = "Syncing Inventory"
+                                          End Sub))
+            t1.Start()
+
             With DataGridViewINV
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
