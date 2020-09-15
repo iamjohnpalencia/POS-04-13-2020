@@ -2344,7 +2344,7 @@ Public Class POS
                     Dim query = "" & row("script_command") & ""
                     cmd = New MySqlCommand(query, ConnectionLocal)
                     cmd.ExecuteNonQuery()
-                    query = "INSERT INTO loc_script_runner (script_command, active) VALUES ('" & row("script_command") & "', " & row("active") & ")"
+                    query = "INSERT INTO loc_script_runner (script_command, active) VALUES ('" & row("script_id") & "', " & row("active") & ")"
                     cmd = New MySqlCommand(query, ConnectionLocal)
                     cmd.ExecuteNonQuery()
                 Next
@@ -2358,13 +2358,14 @@ Public Class POS
                     Dim query = "" & row("script_command") & ""
                     cmd = New MySqlCommand(query, ConnectionLocal)
                     cmd.ExecuteNonQuery()
-                    query = "INSERT INTO loc_script_runner (script_command, active) VALUES ('" & row("script_command") & "', " & row("active") & ")"
+                    query = "INSERT INTO loc_script_runner (script_command, active) VALUES ('" & row("script_id") & "', " & row("active") & ")"
                     cmd = New MySqlCommand(query, ConnectionLocal)
                     cmd.ExecuteNonQuery()
                 Next
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 #End Region
