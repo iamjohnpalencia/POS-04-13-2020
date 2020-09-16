@@ -1966,9 +1966,6 @@ Public Class SynctoCloud
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub Button4_Click(sender As Object, e As EventArgs)
-        Me.WindowState = FormWindowState.Minimized
-    End Sub
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         If Label8.Text = "Cancelling Sync." Then
             Label8.Text = "Cancelling Sync.."

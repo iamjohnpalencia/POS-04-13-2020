@@ -1233,13 +1233,16 @@ Public Class POS
                         End If
                         RightToLeftDisplay(sender, e, a + 85, "     Zero Rated Sales", "    " & "0.00", font, 0, 0)
                         RightToLeftDisplay(sender, e, a + 95, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & VAT12PERCENT, font, 0, 0)
+
+
+
                         If DISCOUNTTYPE = "Percentage(w/o vat)" Then
-                            RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & LESSVAT & "-", font, 0, 0)
+                            RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & Math.Round(LESSVAT, 2, MidpointRounding.AwayFromZero) & "-", font, 0, 0)
                         Else
                             If SeniorGC = False Then
                                 RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & "0.00" & "-", font, 0, 0)
                             Else
-                                RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & LESSVAT & "-", font, 0, 0)
+                                RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & Math.Round(LESSVAT, 2, MidpointRounding.AwayFromZero) & "-", font, 0, 0)
                             End If
                         End If
 
