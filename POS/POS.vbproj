@@ -145,6 +145,12 @@
     <Compile Include="SUBFORMS\AddBank.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SUBFORMS\AddEditProducts.Designer.vb">
+      <DependentUpon>AddEditProducts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\AddEditProducts.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SUBFORMS\AdminConfirmation.Designer.vb">
       <DependentUpon>AdminConfirmation.vb</DependentUpon>
     </Compile>
@@ -195,6 +201,12 @@
       <DependentUpon>BegBalance.vb</DependentUpon>
     </Compile>
     <Compile Include="SUBFORMS\BegBalance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\ChangePrice.Designer.vb">
+      <DependentUpon>ChangePrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\ChangePrice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SUBFORMS\Changeproductformula.Designer.vb">
@@ -391,6 +403,9 @@
     <EmbeddedResource Include="SUBFORMS\AddBank.resx">
       <DependentUpon>AddBank.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\AddEditProducts.resx">
+      <DependentUpon>AddEditProducts.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\AdminConfirmation.resx">
       <DependentUpon>AdminConfirmation.vb</DependentUpon>
     </EmbeddedResource>
@@ -414,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\BegBalance.resx">
       <DependentUpon>BegBalance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\ChangePrice.resx">
+      <DependentUpon>ChangePrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\Changeproductformula.resx">
       <DependentUpon>Changeproductformula.vb</DependentUpon>

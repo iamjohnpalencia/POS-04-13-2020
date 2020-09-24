@@ -23,6 +23,17 @@ Public Class SynctoCloud
         CheckForIllegalCrossThreadCalls = False
         ProgressBar1.Value = 0
     End Sub
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        If Label8.Text = "Cancelling Sync." Then
+            Label8.Text = "Cancelling Sync.."
+        ElseIf Label8.Text = "Cancelling Sync.." Then
+            Label8.Text = "Cancelling Sync..."
+        ElseIf Label8.Text = "Cancelling Sync..." Then
+            Label8.Text = "Cancelling Sync...."
+        ElseIf Label8.Text = "Cancelling Sync...." Then
+            Label8.Text = "Cancelling Sync."
+        End If
+    End Sub
     Private Sub SynctoCloud_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
             If SyncIsOnProcess = True Then
@@ -154,6 +165,21 @@ Public Class SynctoCloud
             Dim ThisDT = AsDatatable(table, fields, DataGridViewINV)
             For Each row As DataRow In ThisDT.Rows
                 DataGridViewINV.Rows.Add(row("inventory_id"), row("store_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_primary"), row("stock_secondary"), row("stock_no_of_servings"), row("stock_status"), row("critical_limit"), row("guid"), row("date_modified"), row("crew_id"), row("server_inventory_id"))
+            Next
+            gettablesize(tablename:="loc_pos_inventory")
+            countrows(tablename:=table)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub filldatagridzreadinventory()
+        Try
+            Dim fields = "*"
+            Dim table = "loc_zread_inventory WHERE synced = 'Unsynced'"
+            Dim ThisDT = AsDatatable(table, fields, DataGridViewZREADINVENTORY)
+            For Each row As DataRow In ThisDT.Rows
+                DataGridViewZREADINVENTORY.Rows.Add(row("inventory_id"), row("store_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_primary"), row("stock_secondary"), row("stock_no_of_servings"), row("stock_status"), row("critical_limit"), row("guid"), row("created_at"), row("crew_id"), row("server_date_modified"), row("server_inventory_id"), row("zreading"))
             Next
             gettablesize(tablename:="loc_pos_inventory")
             countrows(tablename:=table)
@@ -351,7 +377,6 @@ Public Class SynctoCloud
                                     POS.ProgressBar1.Maximum = totalrow
                                 End Sub)
             ProgressBar1.Maximum = Val(LabelTTLRowtoSync.Text)
-            Button1.Enabled = False
             Label2.Text = "Item(s)"
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -390,6 +415,18 @@ Public Class SynctoCloud
                         End If
                     Next
                     ThreadLoaddata = New Thread(AddressOf filldatagridtransactiondetails1)
+                    ThreadLoaddata.Start()
+                    Threadlist.Add(ThreadLoaddata)
+                    For Each t In Threadlist
+                        t.Join()
+                        If (BackgroundWorkerSYNCTOCLOUD.CancellationPending) Then
+                            ' Indicate that the task was canceled.
+                            WorkerCanceled = True
+                            e.Cancel = True
+                            Exit For
+                        End If
+                    Next
+                    ThreadLoaddata = New Thread(AddressOf filldatagridzreadinventory)
                     ThreadLoaddata.Start()
                     Threadlist.Add(ThreadLoaddata)
                     For Each t In Threadlist
@@ -700,6 +737,7 @@ Public Class SynctoCloud
     Dim threadListPRICEREQUEST As List(Of Thread) = New List(Of Thread)
     Dim threadListCoupon As List(Of Thread) = New List(Of Thread)
     Dim threadListErrors As List(Of Thread) = New List(Of Thread)
+    Dim threadListzreadInventory As List(Of Thread) = New List(Of Thread)
     Dim thread1 As Thread
     Dim WorkerCanceled As Boolean = False
 
@@ -718,6 +756,9 @@ Public Class SynctoCloud
                     thread1 = New Thread(AddressOf inserttransactiondetails1)
                     thread1.Start()
                     threadListLOCTD1.Add(thread1)
+                    thread1 = New Thread(AddressOf insertzreadinventory)
+                    thread1.Start()
+                    threadListzreadInventory.Add(thread1)
                     'Expenses
                     thread1 = New Thread(AddressOf insertexpenses)
                     thread1.Start()
@@ -791,7 +832,15 @@ Public Class SynctoCloud
                         Exit For
                     End If
                 Next
-
+                For Each t In threadListzreadInventory
+                    t.Join()
+                    If (BackgroundWorkerSYNCTOCLOUD.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
+                Next
                 For Each t In threadListLOCEXP
                     t.Join()
                     If (BackgroundWorkerSYNCTOCLOUD.CancellationPending) Then
@@ -949,7 +998,6 @@ Public Class SynctoCloud
                 End If
                 Label5.Text = "Synchronization Failed"
                 MsgBox("An error occured")
-                Button1.Enabled = True
                 ButtonSYNCDATA.Enabled = True
                 GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "State: Unsuccessful, Time End : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
                 Close()
@@ -971,11 +1019,9 @@ Public Class SynctoCloud
                     Dim sync = MessageBox.Show("Synchronization Complete", "Sync", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If sync = DialogResult.OK Then
                         Me.Close()
-                        Button1.Enabled = True
                         ButtonSYNCDATA.Enabled = True
                     End If
                     GLOBAL_SYSTEM_LOGS("CLOUD SYNC", "State: Successful, Time End : " & FullDate24HR() & " Synced by : " & returnfullname(ClientCrewID))
-
                 End If
             End If
             POS.ProgressBar1.Visible = False
@@ -1053,12 +1099,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-
-                Dim t As New Task(New Action(Sub()
-                                                 LabelDTransac.Text = "Synced Daily Transaction"
-                                                 LabelDTransacTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelDTransac.Text = "Synced Daily Transaction"
+                                                     LabelDTransacTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
         Catch ex As Exception
             Unsuccessful = True
@@ -1132,13 +1179,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Dim t As New Task(New Action(Sub()
-                                                 LabelDTransactD.Text = "Synced Transaction Details"
-                                                 LabelDTransactDTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
-
-
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelDTransactD.Text = "Synced Transaction Details"
+                                                     LabelDTransactDTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
         Catch ex As Exception
             Unsuccessful = True
@@ -1209,12 +1256,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-
-                Dim t As New Task(New Action(Sub()
-                                                 LabelEXP.Text = "Synced Expense List"
-                                                 LabelEXPTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelEXP.Text = "Synced Expense List"
+                                                     LabelEXPTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1299,12 +1347,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-
-                Dim t As New Task(New Action(Sub()
-                                                 LabelEXPD.Text = "Synced Expense Details"
-                                                 LabelEXPDTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelEXPD.Text = "Synced Expense Details"
+                                                     LabelEXPDTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
             'truncatetable(tablename:="loc_expense_details")
         Catch ex As Exception
@@ -1376,12 +1425,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-
-                Dim t As New Task(New Action(Sub()
-                                                 LabelACC.Text = "Synced Accounts"
-                                                 LabelACCTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelACC.Text = "Synced Accounts"
+                                                     LabelACCTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
         Catch ex As Exception
             Unsuccessful = True
@@ -1445,12 +1495,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-
-                Dim t As New Task(New Action(Sub()
-                                                 LabelSYS1.Text = "Synced Systemlogs 1"
-                                                 LabelSYS1Time.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelSYS1.Text = "Synced Systemlogs 1"
+                                                     LabelSYS1Time.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
         Catch ex As Exception
             Unsuccessful = True
@@ -1514,12 +1565,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-
-                Dim t As New Task(New Action(Sub()
-                                                 LabelRET.Text = "Synced Refund Details"
-                                                 LabelRETTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelRET.Text = "Synced Refund Details"
+                                                     LabelRETTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1592,12 +1644,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-
-                Dim t As New Task(New Action(Sub()
-                                                 LabelCPROD.Text = "Synced Local Products"
-                                                 LabelCPRODTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelCPROD.Text = "Synced Local Products"
+                                                     LabelCPRODTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1664,12 +1717,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-
-                Dim t As New Task(New Action(Sub()
-                                                 LabelMODET.Text = "Synced Mode of Transaction"
-                                                 LabelMODETTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelMODET.Text = "Synced Mode of Transaction"
+                                                     LabelMODETTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1736,12 +1790,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-
-                Dim t As New Task(New Action(Sub()
-                                                 LabelDEPOSIT.Text = "Synced  Deposit Details"
-                                                 LabelDEPOSITTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelDEPOSIT.Text = "Synced  Deposit Details"
+                                                     LabelDEPOSITTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1807,11 +1862,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Dim t As New Task(New Action(Sub()
-                                                 LabelPRICEREQ.Text = "Synced Price Request Change"
-                                                 LabelPRICEREQTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelPRICEREQ.Text = "Synced Price Request Change"
+                                                     LabelPRICEREQTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
         Catch ex As Exception
             Unsuccessful = True
@@ -1884,11 +1941,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Dim t As New Task(New Action(Sub()
-                                                 LabelCoupon.Text = "Synced Coupons"
-                                                 LabelCouponTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelCoupon.Text = "Synced Coupons"
+                                                     LabelCouponTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1952,11 +2011,13 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Dim t As New Task(New Action(Sub()
-                                                 LabelError.Text = "Synced Coupons"
-                                                 LabelErrorTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelError.Text = "Synced Coupons"
+                                                     LabelErrorTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
@@ -1965,17 +2026,6 @@ Public Class SynctoCloud
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
-    End Sub
-    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
-        If Label8.Text = "Cancelling Sync." Then
-            Label8.Text = "Cancelling Sync.."
-        ElseIf Label8.Text = "Cancelling Sync.." Then
-            Label8.Text = "Cancelling Sync..."
-        ElseIf Label8.Text = "Cancelling Sync..." Then
-            Label8.Text = "Cancelling Sync...."
-        ElseIf Label8.Text = "Cancelling Sync...." Then
-            Label8.Text = "Cancelling Sync."
-        End If
     End Sub
     Private Sub insertinventory()
         Try
@@ -2042,11 +2092,86 @@ Public Class SynctoCloud
                 Next
                 server.Close()
                 local.Close()
-                Dim t As New Task(New Action(Sub()
-                                                 LabelINV.Text = "Synced Inventories"
-                                                 LabelINVTime.Text = LabelTime.Text & " Seconds"
-                                             End Sub))
-                t.Start()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelINV.Text = "Synced Inventories"
+                                                     LabelINVTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
+            End With
+        Catch ex As Exception
+            Unsuccessful = True
+            BackgroundWorkerSYNCTOCLOUD.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub insertzreadinventory()
+        Try
+            Dim cmd As MySqlCommand
+            Dim cmdloc As MySqlCommand
+
+            Dim server As MySqlConnection = New MySqlConnection
+            server.ConnectionString = CloudConnectionString
+            server.Open()
+
+            Dim local As MySqlConnection = New MySqlConnection
+            local.ConnectionString = LocalConnectionString
+            local.Open()
+
+            Dim t1 As New Task(New Action(Sub()
+                                              LabelZREADINV.Text = "Syncing Zread Inventory"
+                                          End Sub))
+            t1.Start()
+
+            With DataGridViewZREADINVENTORY
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
+
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_pos_zread_inventory( `loc_zreadinv_id`,`store_id`,`formula_id`,`product_ingredients`,`sku`,`stock_primary`,`stock_secondary`,`stock_no_of_servings`,`stock_status`,`critical_limit`,`guid`,`created_at`,`crew_id`,`server_date_modified`,`server_inventory_id`,`zreading`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11,@12,@13,@14,@15)", server)
+                    cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString
+                    cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmd.Parameters.Add("@2", MySqlDbType.Int64).Value = .Rows(i).Cells(2).Value.ToString
+                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
+                    cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@5", MySqlDbType.Double).Value = .Rows(i).Cells(5).Value.ToString
+                    cmd.Parameters.Add("@6", MySqlDbType.Double).Value = .Rows(i).Cells(6).Value.ToString
+                    cmd.Parameters.Add("@7", MySqlDbType.Double).Value = .Rows(i).Cells(7).Value.ToString
+                    cmd.Parameters.Add("@8", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString
+                    cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString
+                    cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
+                    cmd.Parameters.Add("@11", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value.ToString()
+                    cmd.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
+                    cmd.Parameters.Add("@13", MySqlDbType.Text).Value = .Rows(i).Cells(13).Value.ToString()
+                    cmd.Parameters.Add("@14", MySqlDbType.Int64).Value = .Rows(i).Cells(14).Value.ToString
+                    cmd.Parameters.Add("@15", MySqlDbType.Text).Value = .Rows(i).Cells(15).Value.ToString()
+
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
+                    LabelZREADINVITEM.Text = Val(LabelZREADINVITEM.Text) + 1
+                    POS.Instance.Invoke(Sub()
+                                            POS.ProgressBar1.Value += 1
+                                        End Sub)
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
+
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
+                    cmd.ExecuteNonQuery()
+                    Dim sql = "UPDATE loc_zread_inventory SET `synced`='Synced' WHERE zreadinv_id = " & .Rows(i).Cells(0).Value.ToString
+                    cmdloc = New MySqlCommand(sql, local)
+                    cmdloc.ExecuteNonQuery()
+                Next
+                server.Close()
+                local.Close()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelZREADINV.Text = "Synced Zread Inventory"
+                                                     LabelZREADINVTIME.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
             End With
         Catch ex As Exception
             Unsuccessful = True

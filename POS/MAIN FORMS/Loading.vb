@@ -66,6 +66,13 @@ Public Class Loading
                         thread = New Thread(AddressOf LoadMasterList)
                         thread.Start()
                         threadList.Add(thread)
+
+                        thread = New Thread(AddressOf FillScript)
+                        thread.Start()
+                        threadList.Add(thread)
+                        For Each t In threadList
+                            t.Join()
+                        Next
                     Else
                         IfConnectionIsConfigured = False
                         Label1.Text = "Please Setup Connection in Configuration Manager..."
@@ -87,6 +94,11 @@ Public Class Loading
                             For Each t In threadList
                                 t.Join()
                             Next
+                        End If
+                        If ValidCloudConnection = True Then
+                            thread = New Thread(AddressOf RunScript)
+                            thread.Start()
+                            threadList.Add(thread)
                         End If
                     Else
                         IfInternetIsAvailable = False
@@ -305,7 +317,7 @@ Public Class Loading
     End Sub
     Private Sub NoInternetConnection()
         Try
-            Dim msg As Integer = MessageBox.Show("No internet connection found, Would you like to continue ?", "No internet connection", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information)
+            Dim msg As Integer = MessageBox.Show("No internet connection found, Would you like to continue ?", "No internet connection", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
             If msg = DialogResult.Yes Then
                 GetLocalPosData()
             ElseIf msg = DialogResult.No Then
@@ -385,4 +397,60 @@ Public Class Loading
         Login.Show()
         Login.txtusername.Focus()
     End Sub
+#Region "Script Runner"
+    Private Sub FillScript()
+        Try
+            GLOBAL_SELECT_ALL_FUNCTION("loc_script_runner", "script_id", DataGridViewScript)
+            'Dim ScriptTable = AsDatatable("loc_script_runner", "script_id", DataGridViewScript)
+            'For Each row As DataRow In ScriptTable.Rows
+            '    DataGridViewScript.Rows.Add(row("script_id"))
+            'Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Sub RunScript()
+        Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionCloud As MySqlConnection = ServerCloudCon()
+            Dim Ids = ""
+            For i As Integer = 0 To DataGridViewScript.Rows.Count - 1 Step +1
+                Ids += DataGridViewScript.Rows(i).Cells(0).Value.ToString & ","
+            Next
+            Ids = Ids.TrimEnd(CChar(","))
+            If DataGridViewScript.Rows.Count > 0 Then
+                Dim sql = "SELECT * FROM admin_script_runner WHERE script_id NOT IN (" & Ids & ")"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ServerCloudCon)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                For Each row As DataRow In dt.Rows
+                    Dim query = "" & row("script_command") & ""
+                    cmd = New MySqlCommand(query, ConnectionLocal)
+                    cmd.ExecuteNonQuery()
+                    query = "INSERT INTO loc_script_runner (script_command, active) VALUES ('" & row("script_id") & "', " & row("active") & ")"
+                    cmd = New MySqlCommand(query, ConnectionLocal)
+                    cmd.ExecuteNonQuery()
+                Next
+            Else
+                Dim sql = "SELECT * FROM admin_script_runner"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ServerCloudCon)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                For Each row As DataRow In dt.Rows
+                    Dim query = "" & row("script_command") & ""
+                    cmd = New MySqlCommand(query, ConnectionLocal)
+                    cmd.ExecuteNonQuery()
+                    query = "INSERT INTO loc_script_runner (script_command, active) VALUES ('" & row("script_id") & "', " & row("active") & ")"
+                    cmd = New MySqlCommand(query, ConnectionLocal)
+                    cmd.ExecuteNonQuery()
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+#End Region
 End Class

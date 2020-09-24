@@ -388,10 +388,6 @@ Module RetrieveModule
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
-        Finally
-            LocalhostConn.close
-            cmd.Dispose()
-            da.Dispose()
         End Try
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION_WHERE(ByVal table As String, ByVal fields As String, ByVal where As String, ByVal successmessage As String, ByVal errormessage As String, ByRef datagrid As DataGridView)

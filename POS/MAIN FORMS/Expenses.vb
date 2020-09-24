@@ -96,6 +96,9 @@ Public Class Expenses
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
+        ToolStripProgressBar1.Value = e.ProgressPercentage
+    End Sub
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         If e.Error IsNot Nothing Then
             '' if BackgroundWorker terminated due to error
@@ -117,9 +120,7 @@ Public Class Expenses
     Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
         ImagePath = OpenFileDialog1.FileName
     End Sub
-    Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
-        ToolStripProgressBar1.Value = e.ProgressPercentage
-    End Sub
+
     Private Sub convertimage()
         Try
             Dim ImageToConvert As Bitmap = Bitmap.FromFile(ImagePath)
@@ -169,4 +170,6 @@ Public Class Expenses
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+
+
 End Class

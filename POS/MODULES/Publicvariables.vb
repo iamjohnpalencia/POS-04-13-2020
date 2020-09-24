@@ -20,7 +20,7 @@ Module publicVariables
     'Public InventoryDTUpdate As DataTable = New DataTable
     'Public FormulaDTUpdate As DataTable = New DataTable
     'Public CategoryDTUpdate As DataTable = New DataTable
-
+    Public Messageboolean As Boolean = False
     '=============================================================================================================
     'POS
     Public SINumber As Integer

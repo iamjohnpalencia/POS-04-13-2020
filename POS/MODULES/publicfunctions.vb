@@ -330,7 +330,7 @@ Module publicfunctions
     End Function
     Public Sub Numeric(ByVal sender As Object, ByVal e As KeyPressEventArgs)
         If e.KeyChar <> ControlChars.Back Then
-            e.Handled = Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = ".")
+            e.Handled = Not (Char.IsDigit(e.KeyChar))
         End If
     End Sub
     Dim ReturnRowIndex

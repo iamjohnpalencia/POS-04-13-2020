@@ -20,7 +20,12 @@ Public Class UserSettings
     End Sub
     Public Sub Usersloadusers()
         Try
-            GLOBAL_SELECT_ALL_FUNCTION("loc_users WHERE store_id= " & ClientStoreID & " AND guid='" & ClientGuid & "' AND active = 1 ", "*", DataGridViewUserSettings)
+            If ClientRole = "Crew" Then
+                GLOBAL_SELECT_ALL_FUNCTION("loc_users WHERE user_id = " & ClientCrewID & " AND store_id= " & ClientStoreID & " AND guid='" & ClientGuid & "' AND active = 1 ", "*", DataGridViewUserSettings)
+            Else
+                GLOBAL_SELECT_ALL_FUNCTION("loc_users WHERE store_id= " & ClientStoreID & " AND guid='" & ClientGuid & "' AND active = 1 ", "*", DataGridViewUserSettings)
+            End If
+
             With DataGridViewUserSettings
                 .AllowUserToAddRows = False
                 .DataSource = dt
@@ -56,13 +61,10 @@ Public Class UserSettings
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonUser.Click
         Try
-
             If ButtonUser.Text = "Add User" Then
                 adduser()
             ElseIf ButtonUser.Text = "Update" Then
                 updateuser()
-
-
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)

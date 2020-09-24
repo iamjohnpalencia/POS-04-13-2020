@@ -2,11 +2,27 @@
 Public Class Message
     Private Sub Message_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            POS.Enabled = False
-            GLOBAL_SELECT_ALL_FUNCTION("loc_message", "*", DataGridView1)
-            Dim arg = New DataGridViewCellEventArgs(0, 0)
-            DataGridView1_CellClick(sender, arg)
-            ReadMessage()
+            If Messageboolean = False Then
+                POS.Enabled = False
+                GLOBAL_SELECT_ALL_FUNCTION("loc_message", "*", DataGridView1)
+                Dim arg = New DataGridViewCellEventArgs(0, 0)
+                DataGridView1_CellClick(sender, arg)
+                ReadMessage()
+            Else
+                Me.MinimizeBox = True
+                Me.MaximizeBox = True
+                Me.WindowState = FormWindowState.Maximized
+
+                GLOBAL_SELECT_ALL_FUNCTION("loc_message", "*", DataGridView1)
+                Dim arg = New DataGridViewCellEventArgs(0, 0)
+                DataGridView1_CellClick(sender, arg)
+                ReadMessage()
+
+                If DataGridView1.Rows.Count = 0 Then
+                    Label1.TextAlign = ContentAlignment.MiddleCenter
+                    Label1.Text = "No messages available"
+                End If
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -42,18 +58,20 @@ Public Class Message
     End Sub
     Private Sub Message_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         POS.Enabled = True
+        Messageboolean = False
     End Sub
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         Try
-            TextBox1.Text = "Message From: " & Me.DataGridView1.Item(2, Me.DataGridView1.CurrentRow.Index).Value.ToString & vbCrLf & "Subject: " & Me.DataGridView1.Item(3, Me.DataGridView1.CurrentRow.Index).Value.ToString & vbCrLf & "Date: " & Me.DataGridView1.Item(8, Me.DataGridView1.CurrentRow.Index).Value.ToString & vbCrLf & "Content: " & vbCrLf & vbCrLf & Me.DataGridView1.Item(4, Me.DataGridView1.CurrentRow.Index).Value.ToString
-            SeenMessage(DataGridView1.SelectedRows(0).Cells(0).Value)
-            DataGridView1.SelectedRows(0).Cells(10).Value = 1
-            ReadMessage()
+            If DataGridView1.Rows.Count > 0 Then
+                Label1.Text = "Message From: " & Me.DataGridView1.Item(2, Me.DataGridView1.CurrentRow.Index).Value.ToString & vbCrLf & "Subject: " & Me.DataGridView1.Item(3, Me.DataGridView1.CurrentRow.Index).Value.ToString & vbCrLf & "Date: " & Me.DataGridView1.Item(8, Me.DataGridView1.CurrentRow.Index).Value.ToString & vbCrLf & "Content: " & vbCrLf & vbCrLf & Me.DataGridView1.Item(4, Me.DataGridView1.CurrentRow.Index).Value.ToString
+                SeenMessage(DataGridView1.SelectedRows(0).Cells(0).Value)
+                DataGridView1.SelectedRows(0).Cells(10).Value = 1
+                ReadMessage()
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
-
     End Sub
     Private Sub SeenMessage(messageid)
         Try

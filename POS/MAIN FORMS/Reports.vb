@@ -813,7 +813,7 @@ Public Class Reports
                     cmd.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString
                     cmd.Parameters.Add("@12", MySqlDbType.Text).Value = FullDate24HR()
                     cmd.Parameters.Add("@13", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString
-                    cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = .Rows(i).Cells(13).Value.ToString
+                    cmd.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Unsynced"
                     cmd.Parameters.Add("@15", MySqlDbType.Text).Value = "N/A"
                     cmd.Parameters.Add("@16", MySqlDbType.Int64).Value = .Rows(i).Cells(15).Value.ToString
                     cmd.Parameters.Add("@17", MySqlDbType.Text).Value = S_Zreading

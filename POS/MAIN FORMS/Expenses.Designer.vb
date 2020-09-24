@@ -50,6 +50,7 @@ Partial Class Expenses
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -131,7 +132,7 @@ Partial Class Expenses
         Me.TextBoxTOTAL.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.TextBoxTOTAL.Location = New System.Drawing.Point(106, 154)
         Me.TextBoxTOTAL.Name = "TextBoxTOTAL"
-        Me.TextBoxTOTAL.Size = New System.Drawing.Size(146, 23)
+        Me.TextBoxTOTAL.Size = New System.Drawing.Size(278, 23)
         Me.TextBoxTOTAL.TabIndex = 24
         '
         'TextBoxPRICE
@@ -160,7 +161,7 @@ Partial Class Expenses
         '
         'Button4
         '
-        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -196,7 +197,7 @@ Partial Class Expenses
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(11, 156)
+        Me.Label9.Location = New System.Drawing.Point(10, 156)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(90, 16)
         Me.Label9.TabIndex = 30
@@ -206,7 +207,7 @@ Partial Class Expenses
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(11, 41)
+        Me.Label6.Location = New System.Drawing.Point(8, 41)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(92, 16)
         Me.Label6.TabIndex = 29
@@ -216,7 +217,7 @@ Partial Class Expenses
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(11, 127)
+        Me.Label4.Location = New System.Drawing.Point(59, 125)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(41, 16)
         Me.Label4.TabIndex = 28
@@ -226,7 +227,7 @@ Partial Class Expenses
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(11, 98)
+        Me.Label3.Location = New System.Drawing.Point(40, 98)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(60, 16)
         Me.Label3.TabIndex = 27
@@ -236,7 +237,7 @@ Partial Class Expenses
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(11, 69)
+        Me.Label1.Location = New System.Drawing.Point(61, 69)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(39, 16)
         Me.Label1.TabIndex = 26
@@ -281,7 +282,7 @@ Partial Class Expenses
         '
         'Button1
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Button1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -388,4 +389,5 @@ Partial Class Expenses
     Friend WithEvents ToolStripProgressBar1 As ToolStripProgressBar
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents ButtonKeyboard As Button
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class

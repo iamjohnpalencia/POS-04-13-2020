@@ -34,17 +34,19 @@
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Public newMDIchildManageproduct As ManageProducts
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Try
-            Dim newMDIchild As New ManageProducts()
+
             If Application.OpenForms().OfType(Of ManageProducts).Any Then
             Else
+                newMDIchildManageproduct = New ManageProducts
                 btndefaut(defaultcolor:=Button5)
                 btncolor(changecolor:=Button5)
                 formclose(closeform:=ManageProducts)
-                newMDIchild.MdiParent = Me
-                newMDIchild.ShowIcon = False
-                newMDIchild.Show()
+                newMDIchildManageproduct.MdiParent = Me
+                newMDIchildManageproduct.ShowIcon = False
+                newMDIchildManageproduct.Show()
             End If
             If SyncIsOnProcess = False Then
                 SynctoCloud.Close()
@@ -197,6 +199,28 @@
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        Messageboolean = True
+        Try
+            Dim newMDIchild As New Message()
+            If Application.OpenForms().OfType(Of Message).Any Then
+            Else
+                btncolor(changecolor:=Button9)
+                btndefaut(defaultcolor:=Button9)
+                formclose(closeform:=Message)
+                newMDIchild.MdiParent = Me
+                newMDIchild.ShowIcon = False
+                newMDIchild.Show()
+
+            End If
+            If SyncIsOnProcess = False Then
+                SynctoCloud.Close()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Try
             iflogout = False
@@ -271,4 +295,6 @@
             POS.BringToFront()
         End If
     End Sub
+
+
 End Class

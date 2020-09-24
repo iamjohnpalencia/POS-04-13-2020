@@ -31,15 +31,15 @@ Partial Class Loading
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
+        Me.LabelFOOTER = New System.Windows.Forms.Label()
         Me.LabelVersion = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.DataGridViewRESULT = New System.Windows.Forms.DataGridView()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
-        Me.LabelFOOTER = New System.Windows.Forms.Label()
+        Me.DataGridViewScript = New System.Windows.Forms.DataGridView()
         Me.Panel1.SuspendLayout()
         Me.Panel24.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewRESULT, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewScript, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BackgroundWorker1
@@ -65,11 +65,11 @@ Partial Class Loading
         Me.Panel1.Controls.Add(Me.Panel24)
         Me.Panel1.Controls.Add(Me.ProgressBar1)
         Me.Panel1.Controls.Add(Me.PictureBox1)
-        Me.Panel1.Controls.Add(Me.DataGridViewRESULT)
+        Me.Panel1.Controls.Add(Me.DataGridViewScript)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(385, 94)
+        Me.Panel1.Size = New System.Drawing.Size(384, 94)
         Me.Panel1.TabIndex = 21
         '
         'Label3
@@ -108,7 +108,7 @@ Partial Class Loading
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel23.Location = New System.Drawing.Point(0, 62)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(383, 10)
+        Me.Panel23.Size = New System.Drawing.Size(382, 10)
         Me.Panel23.TabIndex = 22
         '
         'Panel24
@@ -119,8 +119,20 @@ Partial Class Loading
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel24.Location = New System.Drawing.Point(0, 72)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(383, 20)
+        Me.Panel24.Size = New System.Drawing.Size(382, 20)
         Me.Panel24.TabIndex = 21
+        '
+        'LabelFOOTER
+        '
+        Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
+        Me.LabelFOOTER.Location = New System.Drawing.Point(131, 0)
+        Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelFOOTER.Name = "LabelFOOTER"
+        Me.LabelFOOTER.Size = New System.Drawing.Size(251, 20)
+        Me.LabelFOOTER.TabIndex = 17
+        Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'LabelVersion
         '
@@ -144,43 +156,25 @@ Partial Class Loading
         Me.PictureBox1.TabIndex = 24
         Me.PictureBox1.TabStop = False
         '
-        'DataGridViewRESULT
-        '
-        Me.DataGridViewRESULT.AllowUserToAddRows = False
-        Me.DataGridViewRESULT.AllowUserToDeleteRows = False
-        Me.DataGridViewRESULT.AllowUserToResizeColumns = False
-        Me.DataGridViewRESULT.AllowUserToResizeRows = False
-        Me.DataGridViewRESULT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewRESULT.Location = New System.Drawing.Point(6, 69)
-        Me.DataGridViewRESULT.Name = "DataGridViewRESULT"
-        Me.DataGridViewRESULT.ReadOnly = True
-        Me.DataGridViewRESULT.RowHeadersVisible = False
-        Me.DataGridViewRESULT.Size = New System.Drawing.Size(377, 54)
-        Me.DataGridViewRESULT.TabIndex = 28
-        '
         'BackgroundWorker2
         '
         Me.BackgroundWorker2.WorkerReportsProgress = True
         Me.BackgroundWorker2.WorkerSupportsCancellation = True
         '
-        'LabelFOOTER
+        'DataGridViewScript
         '
-        Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
-        Me.LabelFOOTER.Location = New System.Drawing.Point(132, 0)
-        Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LabelFOOTER.Name = "LabelFOOTER"
-        Me.LabelFOOTER.Size = New System.Drawing.Size(251, 20)
-        Me.LabelFOOTER.TabIndex = 17
-        Me.LabelFOOTER.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.DataGridViewScript.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewScript.Location = New System.Drawing.Point(3, 69)
+        Me.DataGridViewScript.Name = "DataGridViewScript"
+        Me.DataGridViewScript.Size = New System.Drawing.Size(121, 48)
+        Me.DataGridViewScript.TabIndex = 28
         '
         'Loading
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(385, 94)
+        Me.ClientSize = New System.Drawing.Size(384, 94)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -191,7 +185,7 @@ Partial Class Loading
         Me.Panel1.PerformLayout()
         Me.Panel24.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewRESULT, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewScript, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -205,8 +199,8 @@ Partial Class Loading
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents LabelVersion As Label
-    Friend WithEvents DataGridViewRESULT As DataGridView
     Friend WithEvents Label3 As Label
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
     Friend WithEvents LabelFOOTER As Label
+    Friend WithEvents DataGridViewScript As DataGridView
 End Class
