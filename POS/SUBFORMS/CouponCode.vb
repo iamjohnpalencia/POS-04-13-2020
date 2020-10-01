@@ -70,9 +70,8 @@ Public Class CouponCode
                 '  MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
                 couponbundle3()
             End If
-            With POS
-                .DISCOUNTTYPE = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
-            End With
+
+
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -127,6 +126,48 @@ Public Class CouponCode
                         SeniorGCDiscount = True
                         CouponTotal = LESSDISCOUNT
                     End With
+                Else
+                    CouponDefault()
+                    With POS.DataGridViewOrders
+                        Dim AmountDueWaffle As Double = 0
+                        Dim AmountDueDrinks As Double = 0
+                        Dim SeniorPwdDisk = DataGridViewCoupons.SelectedRows(0).Cells(3).Value / 100
+                        Dim Tax = 1 + Val(S_Tax)
+                        Dim GROSSSALES As Double = 0
+                        For i As Integer = 0 To .Rows.Count - 1 Step +1
+                            GROSSSALES += .Rows(i).Cells(3).Value
+                            If .Rows(i).Cells(9).Value.ToString = "WAFFLE" Then
+                                AmountDueWaffle += .Rows(i).Cells(3).Value
+                            Else
+                                AmountDueDrinks += .Rows(i).Cells(3).Value
+                            End If
+                        Next
+                        AmountDueWaffle = AmountDueWaffle - SeniorPWd
+                        AmountDueDrinks = AmountDueDrinks - SeniorPWdDrinks
+
+                        Dim TOTALPRODUCT As Double = AmountDueWaffle + AmountDueDrinks
+                        Dim TotalCountedAmount As Double = SeniorPWd + SeniorPWdDrinks
+                        Dim SENIOR20PERCENT As Double = TotalCountedAmount / Tax * SeniorPwdDisk
+                        SENIOR20PERCENT = Math.Round(SENIOR20PERCENT, 2, MidpointRounding.AwayFromZero)
+                        Dim ZERORATEDSALE As Double = GROSSSALES / Tax
+                        ZERORATEDSALE = Math.Round(ZERORATEDSALE, 2)
+                        Dim NetSales As Double = ZERORATEDSALE - SENIOR20PERCENT
+                        With POS
+                            .GROSSSALE = GROSSSALES
+                            .VATABLESALES = 0
+                            .VAT12PERCENT = 0
+                            .LESSVAT = 0
+                            .TOTALDISCOUNTEDAMOUNT = TotalCountedAmount
+                            .VATEXEMPTSALES = 0
+                            .TOTALDISCOUNT = SENIOR20PERCENT
+                            .ZERORATEDSALES = ZERORATEDSALE
+                            .ZERORATEDNETSALES = NetSales
+                            .TextBoxGRANDTOTAL.Text = NetSales
+                            .TextBoxDISCOUNT.Text = SENIOR20PERCENT
+                        End With
+                        SeniorGCDiscount = True
+                        CouponTotal = SENIOR20PERCENT
+                    End With
                 End If
                 CouponApplied = True
                 CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
@@ -134,6 +175,9 @@ Public Class CouponCode
             Else
                 SeniorGCDiscount = False
             End If
+            With POS
+                .DISCOUNTTYPE = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -176,6 +220,10 @@ Public Class CouponCode
                     MsgBox("Applied")
                 End With
             End If
+            With POS
+                .DISCOUNTTYPE = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+            End With
+            Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -198,7 +246,13 @@ Public Class CouponCode
                 If Double.Parse(TOTALDISCOUNT) < GROSSSALES Then
                     If SeniorGCDiscount = False Then
                         CouponDefault()
-                        TOTALAMOUNTDUE = GROSSSALES - TOTALDISCOUNT
+
+                        If S_ZeroRated = "1" Then
+                            TOTALAMOUNTDUE = Val(POS.TextBoxGRANDTOTAL.Text) - TOTALDISCOUNT
+                        Else
+                            TOTALAMOUNTDUE = GROSSSALES - TOTALDISCOUNT
+                        End If
+
                         VATABLESALES = Format(GROSSSALES / Tax, "0.00")
                         VAT12PERCENT = Format(VATABLESALES * S_Tax, "0.00")
                         .GROSSSALE = GROSSSALES
@@ -211,15 +265,32 @@ Public Class CouponCode
                         .TOTALAMOUNTDUE = TOTALAMOUNTDUE
                         .TextBoxGRANDTOTAL.Text = TOTALAMOUNTDUE
                         .TextBoxDISCOUNT.Text = TOTALDISCOUNT
+                        If S_ZeroRated = "1" Then
+                            .ZERORATEDSALES = VATABLESALES
+                            .ZERORATEDNETSALES = TOTALAMOUNTDUE
+                        End If
+
                         CouponDesc = ""
                         CouponTotal = TOTALDISCOUNT
                         CouponApplied = True
                         CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                         MsgBox("Applied")
                     Else
+                        If S_ZeroRated = "1" Then
+                            TOTALAMOUNTDUE = Val(POS.TextBoxGRANDTOTAL.Text) - TOTALDISCOUNT
+                        Else
+                            TOTALAMOUNTDUE = GROSSSALES - TOTALDISCOUNT
+                        End If
+
+                        VATABLESALES = Format(GROSSSALES / Tax, "0.00")
                         .TextBoxDISCOUNT.Text = Val(.TextBoxDISCOUNT.Text) + TOTALDISCOUNT
                         .TOTALDISCOUNT = .TOTALDISCOUNT + TOTALDISCOUNT
                         .TOTALAMOUNTDUE = .TOTALAMOUNTDUE - TOTALDISCOUNT
+                        If S_ZeroRated = "1" Then
+                            .ZERORATEDSALES = VATABLESALES
+                            .ZERORATEDNETSALES = TOTALAMOUNTDUE
+                        End If
+
                         .TextBoxGRANDTOTAL.Text = Val(.TextBoxGRANDTOTAL.Text) - TOTALDISCOUNT
                         CouponTotal = CouponTotal + TOTALDISCOUNT
                         .SeniorGC = True
@@ -228,10 +299,17 @@ Public Class CouponCode
                 Else
                     If SeniorGCDiscount = False Then
                         CouponDefault()
-                        TOTALDISCOUNT = GROSSSALES
-                        TOTALAMOUNTDUE = 0
                         VATABLESALES = Format(GROSSSALES / Tax, "0.00")
-                        VAT12PERCENT = Format(VATABLESALES * S_Tax, "0.00")
+                        If S_ZeroRated = "1" Then
+                            TOTALAMOUNTDUE = 0
+                            VAT12PERCENT = 0
+                        Else
+                            TOTALAMOUNTDUE = GROSSSALES - TOTALDISCOUNT
+                            VAT12PERCENT = Format(VATABLESALES * S_Tax, "0.00")
+                        End If
+                        TOTALDISCOUNT = Val(POS.TextBoxGRANDTOTAL.Text)
+                        TOTALAMOUNTDUE = 0
+
                         .GROSSSALE = GROSSSALES
                         .TOTALDISCOUNTEDAMOUNT = GROSSSALES
                         .VATEXEMPTSALES = 0
@@ -240,24 +318,42 @@ Public Class CouponCode
                         .VATABLESALES = VATABLESALES
                         .VAT12PERCENT = VAT12PERCENT
                         .TOTALAMOUNTDUE = TOTALAMOUNTDUE
-                        .TextBoxGRANDTOTAL.Text = TOTALAMOUNTDUE
+                        .TextBoxGRANDTOTAL.Text = 0
                         .TextBoxDISCOUNT.Text = TOTALDISCOUNT
+
+                        If S_ZeroRated = "1" Then
+                            .ZERORATEDSALES = VATABLESALES
+                            .ZERORATEDNETSALES = TOTALAMOUNTDUE
+                        End If
                         CouponDesc = ""
                         CouponTotal = TOTALDISCOUNT
                         CouponApplied = True
                         CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                         MsgBox("Applied")
                     Else
+                        If S_ZeroRated = "1" Then
+                            TOTALAMOUNTDUE = Val(POS.TextBoxGRANDTOTAL.Text) - TOTALDISCOUNT
+                        Else
+                            TOTALAMOUNTDUE = GROSSSALES - TOTALDISCOUNT
+                        End If
                         .TextBoxDISCOUNT.Text = GROSSSALES
                         .TOTALDISCOUNT = GROSSSALES
                         .TOTALAMOUNTDUE = 0
                         .TextBoxGRANDTOTAL.Text = 0
+                        If S_ZeroRated = "1" Then
+                            .ZERORATEDSALES = VATABLESALES
+                            .ZERORATEDNETSALES = TOTALAMOUNTDUE
+                        End If
                         CouponTotal = GROSSSALES
                         .SeniorGC = True
                         MsgBox("Applied")
                     End If
                 End If
             End With
+            With POS
+                .DISCOUNTTYPE = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+            End With
+            Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -270,15 +366,11 @@ Public Class CouponCode
                     MsgBox("Condition not meet")
                     CouponApplied = False
                 Else
-                    Dim GROSSSALES As Double = 0
+                    Dim GROSSSALES As Double = POS.TextBoxGRANDTOTAL.Text
                     Dim TAX As Double = 1 + Val(S_Tax)
                     Dim TOTALDISCOUNT As Double = DataGridViewCoupons.SelectedRows(0).Cells(3).Value
                     Dim TOTALAMOUNTDUE As Double = 0
-                    With .DataGridViewOrders
-                        For i As Integer = 0 To .Rows.Count - 1 Step +1
-                            GROSSSALES += .Rows(i).Cells(3).Value
-                        Next
-                    End With
+
                     TOTALAMOUNTDUE = Format(GROSSSALES - TOTALDISCOUNT, "0.00")
                     Dim VATABLESALES As Double = Format(GROSSSALES / TAX, "0.00")
                     Dim VAT12PERCENT As Double = Format(VATABLESALES * S_Tax, "0.00")
@@ -291,6 +383,12 @@ Public Class CouponCode
                     .VATABLESALES = VATABLESALES
                     .VAT12PERCENT = VAT12PERCENT
                     .TOTALAMOUNTDUE = TOTALAMOUNTDUE
+
+                    If S_ZeroRated = "1" Then
+                        .ZERORATEDSALES = VATABLESALES
+                        .ZERORATEDNETSALES = TOTALAMOUNTDUE
+                    End If
+
                     .TextBoxGRANDTOTAL.Text = TOTALAMOUNTDUE
                     .TextBoxDISCOUNT.Text = TOTALDISCOUNT
                     CouponDesc = ""
@@ -300,6 +398,10 @@ Public Class CouponCode
                     MsgBox("Applied")
                 End If
             End With
+            With POS
+                .DISCOUNTTYPE = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+            End With
+            Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -341,7 +443,13 @@ Public Class CouponCode
                 For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
                     GROSSSALES += .DataGridViewOrders.Rows(i).Cells(3).Value
                 Next
-                TOTALAMOUNTDUE = GROSSSALES - DISCOUNTEDAMOUNT
+                Dim SUBTOTAL As Double = 0
+                If S_ZeroRated = "1" Then
+                    SUBTOTAL = Val(POS.TextBoxGRANDTOTAL.Text)
+                Else
+                    SUBTOTAL = Val(POS.Label76.Text)
+                End If
+                TOTALAMOUNTDUE = SUBTOTAL - DISCOUNTEDAMOUNT
                 Dim QtyCondMeet As Boolean = True
                 Dim TotalPrice As Double = 0
                 Dim BundlepromoID As String = Me.DataGridViewCoupons.Item(8, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
@@ -353,6 +461,7 @@ Public Class CouponCode
                             If POS.DataGridViewOrders.Rows(i).Cells(5).Value.ToString.Contains(getBundleids) = True Then
                                 TotalPrice += .DataGridViewOrders.Rows(i).Cells(3).Value
                                 If POS.DataGridViewOrders.Rows(i).Cells(1).Value >= Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value Then
+                                    Dim GetDiscount As Double = 0
                                     Dim OrgPrice = POS.DataGridViewOrders.Rows(i).Cells(2).Value
                                     Dim Qty = Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value
                                     Dim TotalLess = OrgPrice * Qty
@@ -365,8 +474,19 @@ Public Class CouponCode
                                     .VATABLESALES = Format(VATABLESALES, "0.00")
                                     .VAT12PERCENT = Format(VATABLESALES * S_Tax, "0.00")
                                     .TOTALAMOUNTDUE = TOTALAMOUNTDUE
-                                    .TextBoxGRANDTOTAL.Text = Format(TOTALAMOUNTDUE, "0.00")
-                                    .TextBoxDISCOUNT.Text = Format(DISCOUNTEDAMOUNT, "0.00")
+                                    Dim TotalZeroRatedPrice As Double = 0
+
+                                    If S_ZeroRated = "1" Then
+                                        GetDiscount = Math.Round(POS.DataGridViewOrders.Rows(i).Cells(2).Value / TAX, 2, MidpointRounding.AwayFromZero)
+                                        TotalZeroRatedPrice = GetDiscount * DataGridViewCoupons.SelectedRows(i).Cells(7).Value
+                                        .ZERORATEDSALES = VATABLESALES
+                                        .ZERORATEDNETSALES = TOTALAMOUNTDUE
+                                        .TextBoxGRANDTOTAL.Text = Format(Val(.TextBoxGRANDTOTAL.Text) - TotalZeroRatedPrice, "0.00")
+                                        .TextBoxDISCOUNT.Text = Format(GetDiscount, "0.00")
+                                    Else
+                                        .TextBoxGRANDTOTAL.Text = Format(TOTALAMOUNTDUE, "0.00")
+                                        .TextBoxDISCOUNT.Text = Format(DISCOUNTEDAMOUNT, "0.00")
+                                    End If
                                     CouponDesc = ""
                                     CouponTotal = DISCOUNTEDAMOUNT
                                     CouponApplied = True
@@ -389,6 +509,10 @@ Public Class CouponCode
                     MsgBox("Condition not meet")
                 End If
             End With
+            With POS
+                .DISCOUNTTYPE = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+            End With
+            Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -448,9 +572,24 @@ Public Class CouponCode
                                         .TOTALDISCOUNT = TOTALDISCOUNT
                                         .VATABLESALES = Format(VATABLESALES, "0.00")
                                         .VAT12PERCENT = Format(VATABLESALES * S_Tax, "0.00")
-                                        .TOTALAMOUNTDUE = TOTALAMOUNTDUE
-                                        .TextBoxGRANDTOTAL.Text = Format(TOTALAMOUNTDUE, "0.00")
-                                        .TextBoxDISCOUNT.Text = Format(TOTALDISCOUNT, "0.00")
+
+
+
+                                        If S_ZeroRated = "1" Then
+                                            .ZERORATEDSALES = VATABLESALES
+                                            .ZERORATEDNETSALES = TOTALAMOUNTDUE
+
+                                            .TextBoxGRANDTOTAL.Text = Format(Val(.TextBoxGRANDTOTAL.Text) - TOTALDISCOUNT, "0.00")
+                                            .TextBoxDISCOUNT.Text = Format(TOTALDISCOUNT, "0.00")
+                                            .TOTALAMOUNTDUE = .TextBoxGRANDTOTAL.Text
+                                        Else
+                                            .TextBoxGRANDTOTAL.Text = Format(TOTALAMOUNTDUE, "0.00")
+                                            .TextBoxDISCOUNT.Text = Format(TOTALDISCOUNT, "0.00")
+                                            .TOTALAMOUNTDUE = TOTALAMOUNTDUE
+                                        End If
+
+
+
                                         CouponDesc = ""
                                         CouponTotal = TOTALDISCOUNT
                                         CouponApplied = True
@@ -476,6 +615,10 @@ Public Class CouponCode
                     MsgBox("Condition not meet")
                 End If
             End With
+            With POS
+                .DISCOUNTTYPE = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+            End With
+            Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -539,8 +682,10 @@ Public Class CouponCode
                             If CountQty = 3 Then
                                 DISCOUNTAMOUNT = .DataGridViewOrders.Rows(i).Cells(2).Value
                                 TOTALDISCOUNT = Percentage * DISCOUNTAMOUNT
-                                TOTALAMOUNTDUE = GROSSSALES - TOTALDISCOUNT
-                                VATABLESALES = Format(GROSSSALES / TAX, "0.00")
+                                .TextBoxDISCOUNT.Text = Format(TOTALDISCOUNT, "0.00")
+
+                                TOTALAMOUNTDUE = Double.Parse(POS.TextBoxSUBTOTAL.Text) - Double.Parse(POS.TextBoxDISCOUNT.Text)
+                                VATABLESALES = Format(TOTALAMOUNTDUE / TAX, "0.00")
                                 .GROSSSALE = GROSSSALES
                                 .TOTALDISCOUNTEDAMOUNT = DISCOUNTAMOUNT
                                 .VATEXEMPTSALES = 0
@@ -550,7 +695,13 @@ Public Class CouponCode
                                 .VAT12PERCENT = Format(VATABLESALES * S_Tax, "0.00")
                                 .TOTALAMOUNTDUE = TOTALAMOUNTDUE
                                 .TextBoxGRANDTOTAL.Text = Format(TOTALAMOUNTDUE, "0.00")
-                                .TextBoxDISCOUNT.Text = Format(TOTALDISCOUNT, "0.00")
+
+
+                                If S_ZeroRated = "1" Then
+                                    .ZERORATEDSALES = VATABLESALES
+                                    .ZERORATEDNETSALES = TOTALAMOUNTDUE
+                                End If
+
                                 CouponDesc = ""
                                 CouponTotal = TOTALDISCOUNT
                                 CouponApplied = True
@@ -564,8 +715,11 @@ Public Class CouponCode
                 Else
                     MsgBox("Condition not meet")
                 End If
-
             End With
+            With POS
+                .DISCOUNTTYPE = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+            End With
+            Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)

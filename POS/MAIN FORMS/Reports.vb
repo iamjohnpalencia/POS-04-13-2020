@@ -465,9 +465,9 @@ Public Class Reports
                     RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & .SelectedRows(0).Cells(6).Value.ToString, font, 0, 0)
                     RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & .SelectedRows(0).Cells(7).Value.ToString, font, 0, 0)
                     RightToLeftDisplay(sender, e, a + 72, "     Zero Rated Sales", "    " & .SelectedRows(0).Cells(8).Value.ToString, font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & .SelectedRows(0).Cells(9).Value.ToString & "-", font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 92, "     Less Vat", "    " & .SelectedRows(0).Cells(10).Value.ToString & "-", font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 102, "     Total", "    " & .SelectedRows(0).Cells(1).Value.ToString, font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & .SelectedRows(0).Cells(9).Value.ToString, font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 92, "     Less Vat", "    " & .SelectedRows(0).Cells(10).Value.ToString, font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 102, "     Total", "    " & .SelectedRows(0).Cells(5).Value.ToString, font, 0, 0)
                     a += 4
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 92)
                     a += 1
@@ -505,32 +505,28 @@ Public Class Reports
                     RightToLeftDisplay(sender, e, a + 20, "AMOUNT DUE:", "P" & .SelectedRows(0).Cells(5).Value.ToString, font2, 0, 0)
                     RightToLeftDisplay(sender, e, a + 30, "CASH:", "P" & .SelectedRows(0).Cells(3).Value.ToString, font1, 0, 0)
                     RightToLeftDisplay(sender, e, a + 40, "CHANGE:", "P" & .SelectedRows(0).Cells(4).Value.ToString, font1, 0, 0)
-
-                    If S_ZeroRated = "0" Then
-                        SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 37)
-                        a += 4
-                        RightToLeftDisplay(sender, e, a + 65, "     Vatable", "    " & .SelectedRows(0).Cells(6).Value.ToString, font, 0, 0)
-                        RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & .SelectedRows(0).Cells(7).Value.ToString, font, 0, 0)
-                        RightToLeftDisplay(sender, e, a + 85, "     Zero Rated Sales", "    " & .SelectedRows(0).Cells(8).Value.ToString, font, 0, 0)
-                        RightToLeftDisplay(sender, e, a + 95, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & .SelectedRows(0).Cells(9).Value.ToString, font, 0, 0)
-                        RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & .SelectedRows(0).Cells(10).Value.ToString & "-", font, 0, 0)
-                        SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 101)
-                        a += 4
-                        SimpleTextDisplay(sender, e, "Transaction Type: " & .SelectedRows(0).Cells(11).Value.ToString, font, 0, a + 110)
-                        SimpleTextDisplay(sender, e, "Total Item(s): " & SumOfColumnsToInt(DataGridViewTransactionDetails, 1), font, 0, a + 120)
-                        SimpleTextDisplay(sender, e, "Cashier: " & .SelectedRows(0).Cells(15).Value.ToString & " " & returnfullname(where:= .SelectedRows(0).Cells(15).Value.ToString), font, 0, a + 130)
-                        SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 120)
-                        SimpleTextDisplay(sender, e, "Date & Time: " & .SelectedRows(0).Cells(16).Value, font, 0, a + 140)
-                        SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 120, a + 150)
-                        SimpleTextDisplay(sender, e, "Ref. #: " & .SelectedRows(0).Cells(0).Value.ToString, font, 0, a + 150)
-                        SimpleTextDisplay(sender, e, "SI No: " & SINUMBERSTRING, font, 0, a + 160)
-                        SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 170)
-                        a += 6
-                        SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 180)
-                        a += 16
-                        ReceiptFooter(sender, e, a)
-
-                    End If
+                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 37)
+                    a += 4
+                    RightToLeftDisplay(sender, e, a + 65, "     Vatable", "    " & .SelectedRows(0).Cells(6).Value.ToString, font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & .SelectedRows(0).Cells(7).Value.ToString, font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 85, "     Zero Rated Sales", "    " & .SelectedRows(0).Cells(8).Value.ToString, font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 95, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & .SelectedRows(0).Cells(9).Value.ToString, font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & .SelectedRows(0).Cells(10).Value.ToString, font, 0, 0)
+                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 101)
+                    a += 4
+                    SimpleTextDisplay(sender, e, "Transaction Type: " & .SelectedRows(0).Cells(11).Value.ToString, font, 0, a + 110)
+                    SimpleTextDisplay(sender, e, "Total Item(s): " & SumOfColumnsToInt(DataGridViewTransactionDetails, 1), font, 0, a + 120)
+                    SimpleTextDisplay(sender, e, "Cashier: " & .SelectedRows(0).Cells(15).Value.ToString & " " & returnfullname(where:= .SelectedRows(0).Cells(15).Value.ToString), font, 0, a + 130)
+                    SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 120)
+                    SimpleTextDisplay(sender, e, "Date & Time: " & .SelectedRows(0).Cells(16).Value, font, 0, a + 140)
+                    SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 120, a + 150)
+                    SimpleTextDisplay(sender, e, "Ref. #: " & .SelectedRows(0).Cells(0).Value.ToString, font, 0, a + 150)
+                    SimpleTextDisplay(sender, e, "SI No: " & SINUMBERSTRING, font, 0, a + 160)
+                    SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 170)
+                    a += 6
+                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 180)
+                    a += 16
+                    ReceiptFooter(sender, e, a)
                 End If
             End With
         Catch ex As Exception
@@ -709,40 +705,44 @@ Public Class Reports
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonZread.Click
         Try
-            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
-            'Fill dgv inv
-            GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
-            'Update inventory
-            MainInventorySub()
-            'Fill again
-            GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
-            'Print zread
-            XreadOrZread = "Z-READ"
-            ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
-            printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 1000)
-            PrintPreviewDialogXread.Document = printdocXread
-            PrintPreviewDialogXread.ShowDialog()
-            'Update Zread
+            Dim msg = MessageBox.Show("Zread message not available", "Z-reading", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 
-            S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
-            sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
-            cmd = New MySqlCommand(sql, ConnectionLocal)
-            cmd.ExecuteNonQuery()
-            cmd.Dispose()
+            If msg = DialogResult.Yes Then
+                Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+                'Fill dgv inv
+                GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
+                'Update inventory
+                MainInventorySub()
+                'Fill again
+                GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
+                'Print zread
+                XreadOrZread = "Z-READ"
+                ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
+                printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 1000)
+                PrintPreviewDialogXread.Document = printdocXread
+                PrintPreviewDialogXread.ShowDialog()
+                'Update Zread
 
-            sql = "UPDATE loc_pos_inventory SET zreading = '" & S_Zreading & "'"
-            LocalhostConn.Close()
-            cmd = New MySqlCommand(sql, ConnectionLocal)
-            cmd.ExecuteNonQuery()
+                S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
+                sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
+                cmd = New MySqlCommand(sql, ConnectionLocal)
+                cmd.ExecuteNonQuery()
+                cmd.Dispose()
 
-            cmd.Dispose()
-            'Insert to local zread inv
-            XZreadingInventory(S_Zreading)
-            If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
-                ButtonZread.Enabled = False
-                Button6.Enabled = False
+                sql = "UPDATE loc_pos_inventory SET zreading = '" & S_Zreading & "'"
+                LocalhostConn.Close()
+                cmd = New MySqlCommand(sql, ConnectionLocal)
+                cmd.ExecuteNonQuery()
+
+                cmd.Dispose()
+                'Insert to local zread inv
+                XZreadingInventory(S_Zreading)
+                If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
+                    ButtonZread.Enabled = False
+                    Button6.Enabled = False
+                End If
+                Button7.PerformClick()
             End If
-            Button7.PerformClick()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)

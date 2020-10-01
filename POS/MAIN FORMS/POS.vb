@@ -240,8 +240,14 @@ Public Class POS
                     Enabled = False
                     PaymentForm.Show()
                     Application.DoEvents()
-                    PaymentForm.textboxmoney.Focus
+                    PaymentForm.TextBoxMONEY.Focus()
                     PaymentForm.TextBoxTOTALPAY.Text = TextBoxGRANDTOTAL.Text
+                    'If S_ZeroRated = "0" Then
+
+                    'Else
+                    '    PaymentForm.TextBoxTOTALPAY.Text = Math.Round(Val(TextBoxGRANDTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                    'End If
+
                     PaymentForm.Focus()
                 End If
             End If
@@ -385,10 +391,18 @@ Public Class POS
                     Dim discount As Double = Val(TextBoxDISCOUNT.Text / 100)
                     Dim discounttotal As Double = Val(Label76.Text) * discount
                     TextBoxSUBTOTAL.Text = Val(Label76.Text)
+                    If S_ZeroRated = "0" Then
+                        TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
+                        TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+                    Else
+                        TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
+                        TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                        TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+                    End If
 
-                    TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
+
                     TextBoxSUBTOTAL.Text = Format(Val(TextBoxSUBTOTAL.Text), "##,##0.00")
-                    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+
                 Next
             Else
                 TextBoxQTY.Text = 0
@@ -427,8 +441,14 @@ Public Class POS
                 ButtonApplyCoupon.Enabled = False
             End If
             Label76.Text = SumOfColumnsToDecimal(DataGridViewOrders, 3)
-            TextBoxGRANDTOTAL.Text = Label76.Text
             TextBoxSUBTOTAL.Text = Label76.Text
+            If S_ZeroRated = "0" Then
+                TextBoxGRANDTOTAL.Text = Label76.Text
+            Else
+                TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+            End If
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -454,6 +474,13 @@ Public Class POS
         End Try
     End Sub
     Private Sub ButtonCDISC_Click(sender As Object, e As EventArgs) Handles ButtonCDISC.Click
+        TextBoxSUBTOTAL.Text = SumOfColumnsToDecimal(DataGridViewOrders, 3)
+        If S_ZeroRated = "0" Then
+            TextBoxGRANDTOTAL.Text = Label76.Text
+        Else
+            TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+            TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+        End If
         TextBoxDISCOUNT.Text = 0
         TOTALDISCOUNT = 0
         GROSSSALE = 0
@@ -464,8 +491,6 @@ Public Class POS
         VATABLESALES = 0
         VAT12PERCENT = 0
         ZERORATEDSALES = 0
-        TextBoxGRANDTOTAL.Text = SumOfColumnsToDecimal(DataGridViewOrders, 3)
-        TextBoxSUBTOTAL.Text = SumOfColumnsToDecimal(DataGridViewOrders, 3)
         CouponApplied = False
     End Sub
     Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles ButtonTransactionMode.Click
@@ -705,12 +730,21 @@ Public Class POS
     Public VATABLESALES As Double = 0
     Public VAT12PERCENT As Double = 0
     Public ZERORATEDSALES As Double = 0
+    Public ZERORATEDNETSALES As Double = 0
     Dim THREADLIST As List(Of Thread) = New List(Of Thread)
     Dim THREADLISTUPDATE As List(Of Thread) = New List(Of Thread)
     Dim TIMETOINSERT As String
     Dim ACTIVE As Integer = 1
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonApplyCoupon.Click
+        TextBoxDISCOUNT.Text = 0
+        If S_ZeroRated = "0" Then
+            TextBoxGRANDTOTAL.Text = Label76.Text
+        Else
+            TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+            TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+        End If
+
         Enabled = False
         'GetProductHighestValue()
         GetHighest()
@@ -839,7 +873,13 @@ Public Class POS
             Dim fields As String = " (`transaction_number`, `amounttendered`, `totaldiscount`, `change`, `amountdue`, `vatablesales`, `vatexemptsales`, `zeroratedsales`
                      , `lessvat`, `si_number`, `crew_id`, `guid`, `active`, `store_id`, `created_at`, `transaction_type`, `shift`, `zreading`, `synced`
                      , `discount_type`, `vatpercentage`, `grosssales`, `totaldiscountedamount`) "
-            Dim value As String = "('" & TextBoxMAXID.Text & "'," & TEXTBOXMONEYVALUE & "," & TOTALDISCOUNT & "," & TEXTBOXCHANGEVALUE & "," & SUPERAMOUNTDUE & "," & VATABLESALES & "
+            Dim NetSales As Double = 0
+            If S_ZeroRated = "0" Then
+                NetSales = SUPERAMOUNTDUE
+            Else
+                NetSales = ZERORATEDNETSALES
+            End If
+            Dim value As String = "('" & TextBoxMAXID.Text & "'," & TEXTBOXMONEYVALUE & "," & TOTALDISCOUNT & "," & TEXTBOXCHANGEVALUE & "," & NetSales & "," & VATABLESALES & "
                      ," & VATEXEMPTSALES & "," & ZERORATEDSALES & "," & LESSVAT & "," & SINumber & ",'" & ClientCrewID & "','" & ClientGuid & "','" & ACTIVE & "','" & ClientStoreID & "'
                      ,'" & INSERTTHISDATE & "','" & TRANSACTIONMODE & "','" & Shift & "','" & S_Zreading & "','Unsynced','" & DISCOUNTTYPE & "'," & VAT12PERCENT & "," & GROSSSALE & "," & TOTALDISCOUNTEDAMOUNT & ")"
             GLOBAL_INSERT_FUNCTION(table, fields, value)
@@ -950,6 +990,7 @@ Public Class POS
     Dim INSERTTHISDATE
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
+
             With WaitFrm
                 INSERTTHISDATE = FullDate24HR()
                 SUPERAMOUNTDUE = Convert.ToDecimal(Double.Parse(TextBoxGRANDTOTAL.Text))
@@ -961,6 +1002,14 @@ Public Class POS
                     VATEXEMPTSALES = 0.00
                     VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
                     GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
+                End If
+                If S_ZeroRated = "1" Then
+                    VAT12PERCENT = 0
+                    LESSVAT = 0
+                    If CouponApplied = False Then
+                        ZERORATEDSALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                        ZERORATEDNETSALES = ZERORATEDSALES
+                    End If
                 End If
                 sql = "SELECT si_number FROM loc_daily_transaction ORDER BY transaction_id DESC limit 1"
                 cmd = New MySqlCommand(sql, LocalhostConn)
@@ -1122,7 +1171,8 @@ Public Class POS
             VATABLESALES = 0
             VAT12PERCENT = 0
             CouponLine = 10
-
+            ZERORATEDNETSALES = 0
+            ZERORATEDSALES = 0
             DISABLESERVEROTHERSPRODUCT = False
             WaffleUpgrade = False
             ButtonWaffleUpgrade.Text = "Brownie Upgrade"
@@ -1137,7 +1187,6 @@ Public Class POS
     End Sub
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
         Try
-            Dim totalDisplay = Format(SUPERAMOUNTDUE, "##,##0.00")
             With Me
                 a = 0
                 ' Microsoft Sans Serif, 8.25pt
@@ -1176,27 +1225,33 @@ Public Class POS
                     SimpleTextDisplay(sender, e, CouponName & "(" & DISCOUNTTYPE & ")", font, 0, a)
                     SimpleTextDisplay(sender, e, CouponDesc, font, 0, a + 10)
                     a += 40 + CouponLine
-                    RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & CouponTotal, font, 0, 0)
+                    RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & Format(CouponTotal, "##,##0.00"), font, 0, 0)
                 Else
                     a += 120
                 End If
                 Dim Qty = SumOfColumnsToInt(.DataGridViewOrders, 1)
+                Dim NETSALES As Double = 0
+                If S_ZeroRated = "0" Then
+                    NETSALES = Format(SUPERAMOUNTDUE, "##,##0.00")
+                Else
+                    NETSALES = ZERORATEDNETSALES
+                End If
                 If Val(TextBoxDISCOUNT.Text) < 1 Then
-                    Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
                     Dim aNumber As Double = TEXTBOXMONEYVALUE
                     Dim cash = String.Format("{0:n2}", aNumber)
                     Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
                     Dim change = String.Format("{0:n2}", aNumber1)
-                    RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & totalDisplay, font2, 0, 0)
+
+                    RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & NETSALES, font2, 0, 0)
                     RightToLeftDisplay(sender, e, a + 15, "CASH:", "P" & cash, font1, 0, 0)
                     RightToLeftDisplay(sender, e, a + 25, "CHANGE:", "P" & change, font1, 0, 0)
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 23)
-                    RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & VATABLESALES, font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & "0.00", font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 72, "     Zero Rated Sales", "    " & "0.00", font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & VAT12PERCENT, font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 92, "     Less Vat", "    " & "0.00" & "-", font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 102, "     Total", "    " & totalDisplay, font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & Format(VATABLESALES, "##,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & Format(VATEXEMPTSALES, "##,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 72, "     Zero Rated Sales", "    " & Format(ZERORATEDSALES, "##,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & Format(VAT12PERCENT, "##,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 92, "     Less Vat", "    " & Format(LESSVAT, "##,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 102, "     Total", "    " & Format(NETSALES, "##,##0.00"), font, 0, 0)
                     a += 4
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 92)
                     a += 1
@@ -1211,79 +1266,55 @@ Public Class POS
                     SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 160)
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 174)
                     ReceiptFooter(sender, e, a + 12)
+
                 Else
                     Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
                     Dim change = String.Format("{0:n2}", aNumber1)
                     Dim aNumber As Double = TEXTBOXMONEYVALUE
                     Dim cash = String.Format("{0:n2}", aNumber)
-                    Dim format As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-                    RightToLeftDisplay(sender, e, a, "SUB TOTAL:", "P" & TextBoxSUBTOTAL.Text, font1, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 10, "DISCOUNT:", TOTALDISCOUNT & "-", font1, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 20, "AMOUNT DUE:", "P" & TOTALAMOUNTDUE, font2, 0, 0)
+
+                    RightToLeftDisplay(sender, e, a, "SUB TOTAL:", "P" & Format(Double.Parse(Label76.Text), "##,##0.00"), font1, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 10, "DISCOUNT:", Format(Double.Parse(TextBoxDISCOUNT.Text), "##,##0.00") & "-", font1, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 20, "AMOUNT DUE:", "P" & Format(Double.Parse(TextBoxGRANDTOTAL.Text), "##,##0.00"), font2, 0, 0)
                     RightToLeftDisplay(sender, e, a + 30, "CASH:", "P" & cash, font1, 0, 0)
                     RightToLeftDisplay(sender, e, a + 40, "CHANGE:", "P" & change, font1, 0, 0)
-                    If S_ZeroRated = "0" Then
-                        SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 37)
-                        RightToLeftDisplay(sender, e, a + 65, "     Vatable", "    " & VATABLESALES, font, 0, 0)
-                        If DISCOUNTTYPE = "Percentage(w/o vat)" Then
-                            RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & VATEXEMPTSALES, font, 0, 0)
-                        Else
-                            If SeniorGC = False Then
-                                RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & "0.00", font, 0, 0)
-                            Else
-                                RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & VATEXEMPTSALES, font, 0, 0)
-                            End If
-                        End If
-                        RightToLeftDisplay(sender, e, a + 85, "     Zero Rated Sales", "    " & "0.00", font, 0, 0)
-                        RightToLeftDisplay(sender, e, a + 95, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & VAT12PERCENT, font, 0, 0)
-
-
-
-                        If DISCOUNTTYPE = "Percentage(w/o vat)" Then
-                            RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & Math.Round(LESSVAT, 2, MidpointRounding.AwayFromZero) & "-", font, 0, 0)
-                        Else
-                            If SeniorGC = False Then
-                                RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & "0.00" & "-", font, 0, 0)
-                            Else
-                                RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & Math.Round(LESSVAT, 2, MidpointRounding.AwayFromZero) & "-", font, 0, 0)
-                            End If
-                        End If
-
-                        SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 101)
-                        a += 4
-                        SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 110)
-                        SimpleTextDisplay(sender, e, "Total Item(s): " & Qty, font, 0, a + 120)
-                        SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 130)
-                        SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 120)
-                        SimpleTextDisplay(sender, e, "Date & Time: " & INSERTTHISDATE, font, 0, a + 140)
-                        SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 120, a + 150)
-                        SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 150)
-                        SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 160)
-                        SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 170)
-                        a += 6
-                        SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 180)
-                        a += 16
-                        ReceiptFooter(sender, e, a)
+                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 37)
+                    RightToLeftDisplay(sender, e, a + 65, "     Vatable", "    " & Format(VATABLESALES, "##,##0.00"), font, 0, 0)
+                    If DISCOUNTTYPE = "Percentage(w/o vat)" Then
+                        RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & Format(VATEXEMPTSALES, "0.00"), font, 0, 0)
                     Else
-                        SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 47)
-                        RightToLeftDisplay(sender, e, a + 72, "     Vatable", "    " & "0.00", font, 0, 0)
-                        RightToLeftDisplay(sender, e, a + 82, "     Vat Exempt Sales", "    " & Val(TextBoxGRANDTOTAL.Text), font, 0, 0)
-                        RightToLeftDisplay(sender, e, a + 92, "     Zero Rated Sales", "    " & "0.00", font, 0, 0)
-                        RightToLeftDisplay(sender, e, a + 102, "    VAT", "    " & "0.00", font, 0, 0)
-                        RightToLeftDisplay(sender, e, a + 112, "     Less Vat", "    " & LESSVAT & "-", font, 0, 0)
-                        SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 102)
-                        SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 110)
-                        SimpleTextDisplay(sender, e, "Total Item(s): " & Qty, font, 0, a + 120)
-                        SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 130)
-                        SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 120)
-                        SimpleTextDisplay(sender, e, "Date & Time: " & INSERTTHISDATE, font, 0, a + 140)
-                        SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 120, a + 150)
-                        SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 15)
-                        SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 160)
-                        SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 170)
-                        SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 180)
-                        ReceiptFooter(sender, e, a)
+                        If SeniorGC = False Then
+                            RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & "0.00", font, 0, 0)
+                        Else
+                            RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & Format(VATEXEMPTSALES, "0.00"), font, 0, 0)
+                        End If
                     End If
+                    RightToLeftDisplay(sender, e, a + 85, "     Zero Rated Sales", "    " & Format(ZERORATEDSALES, "0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 95, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & Format(VAT12PERCENT, "0.00"), font, 0, 0)
+                    If DISCOUNTTYPE = "Percentage(w/o vat)" Then
+                        RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & Format(LESSVAT, "0.00"), font, 0, 0)
+                    Else
+                        If SeniorGC = False Then
+                            RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & "0.00", font, 0, 0)
+                        Else
+                            RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & Format(LESSVAT, "0.00"), font, 0, 0)
+                        End If
+                    End If
+                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 101)
+                    a += 4
+                    SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 110)
+                    SimpleTextDisplay(sender, e, "Total Item(s): " & Qty, font, 0, a + 120)
+                    SimpleTextDisplay(sender, e, "Cashier: " & ClientCrewID & " " & returnfullname(where:=ClientCrewID), font, 0, a + 130)
+                    SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 120)
+                    SimpleTextDisplay(sender, e, "Date & Time: " & INSERTTHISDATE, font, 0, a + 140)
+                    SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 120, a + 150)
+                    SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 150)
+                    SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 160)
+                    SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 170)
+                    a += 6
+                    SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 180)
+                    a += 16
+                    ReceiptFooter(sender, e, a)
                 End If
             End With
         Catch ex As Exception
