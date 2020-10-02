@@ -573,8 +573,6 @@ Public Class CouponCode
                                         .VATABLESALES = Format(VATABLESALES, "0.00")
                                         .VAT12PERCENT = Format(VATABLESALES * S_Tax, "0.00")
 
-
-
                                         If S_ZeroRated = "1" Then
                                             .ZERORATEDSALES = VATABLESALES
                                             .ZERORATEDNETSALES = TOTALAMOUNTDUE
@@ -681,10 +679,14 @@ Public Class CouponCode
                             End If
                             If CountQty = 3 Then
                                 DISCOUNTAMOUNT = .DataGridViewOrders.Rows(i).Cells(2).Value
+                                MsgBox(DISCOUNTAMOUNT)
                                 TOTALDISCOUNT = Percentage * DISCOUNTAMOUNT
+                                MsgBox(TOTALDISCOUNT)
                                 .TextBoxDISCOUNT.Text = Format(TOTALDISCOUNT, "0.00")
 
-                                TOTALAMOUNTDUE = Double.Parse(POS.TextBoxSUBTOTAL.Text) - Double.Parse(POS.TextBoxDISCOUNT.Text)
+                                TOTALAMOUNTDUE = Double.Parse(POS.TextBoxGRANDTOTAL.Text) - Double.Parse(POS.TextBoxDISCOUNT.Text)
+
+
                                 VATABLESALES = Format(TOTALAMOUNTDUE / TAX, "0.00")
                                 .GROSSSALE = GROSSSALES
                                 .TOTALDISCOUNTEDAMOUNT = DISCOUNTAMOUNT
