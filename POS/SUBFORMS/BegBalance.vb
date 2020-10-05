@@ -53,13 +53,21 @@ Public Class BegBalance
         Dim message As String = GetMonthName(Format(Now(), "yyyy-MM-dd")) & " " & Format(Now(), "dd yyyy") & vbNewLine & Format(Now(), "hh:mm tt")
         'MessageBox.Show(message, "Set Cash Datetime:", MessageBoxButtons.OK, MessageBoxIcon.Information)
         'Settings.Button8.Visible = False
+        AllowFormClose = True
         Me.Close()
     End Sub
+    Dim AllowFormClose As Boolean = False
     Private Sub BegBalance_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        If Application.OpenForms().OfType(Of Message).Any Then
-            POS.Enabled = False
+        If AllowFormClose = False Then
+            If (e.CloseReason = CloseReason.UserClosing) Then
+                e.Cancel = True
+            End If
         Else
-            POS.Enabled = True
+            If Application.OpenForms().OfType(Of Message).Any Then
+                POS.Enabled = False
+            Else
+                POS.Enabled = True
+            End If
         End If
     End Sub
     Private Sub BegBalance_Load(sender As Object, e As EventArgs) Handles MyBase.Load
