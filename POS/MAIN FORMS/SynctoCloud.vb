@@ -179,7 +179,7 @@ Public Class SynctoCloud
             Dim table = "loc_zread_inventory WHERE synced = 'Unsynced'"
             Dim ThisDT = AsDatatable(table, fields, DataGridViewZREADINVENTORY)
             For Each row As DataRow In ThisDT.Rows
-                DataGridViewZREADINVENTORY.Rows.Add(row("inventory_id"), row("store_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_primary"), row("stock_secondary"), row("stock_no_of_servings"), row("stock_status"), row("critical_limit"), row("guid"), row("created_at"), row("crew_id"), row("server_date_modified"), row("server_inventory_id"), row("zreading"))
+                DataGridViewZREADINVENTORY.Rows.Add(row("zreadinv_id"), row("inventory_id"), row("store_id"), row("formula_id"), row("product_ingredients"), row("sku"), row("stock_primary"), row("stock_secondary"), row("stock_no_of_servings"), row("stock_status"), row("critical_limit"), row("guid"), row("created_at"), row("crew_id"), row("server_date_modified"), row("server_inventory_id"), row("zreading"))
             Next
             gettablesize(tablename:="loc_pos_inventory")
             countrows(tablename:=table)
@@ -2130,33 +2130,31 @@ Public Class SynctoCloud
                     If WorkerCanceled = True Then
                         Exit For
                     End If
-
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_pos_zread_inventory( `loc_zreadinv_id`,`store_id`,`formula_id`,`product_ingredients`,`sku`,`stock_primary`,`stock_secondary`,`stock_no_of_servings`,`stock_status`,`critical_limit`,`guid`,`created_at`,`crew_id`,`server_date_modified`,`server_inventory_id`,`zreading`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11,@12,@13,@14,@15)", server)
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_pos_zread_inventory(`loc_zreadinv_id`,`inventory_id`,`store_id`,`formula_id`,`product_ingredients`,`sku`,`stock_primary`,`stock_secondary`,`stock_no_of_servings`,`stock_status`,`critical_limit`,`guid`,`created_at`,`crew_id`,`server_date_modified`,`server_inventory_id`,`zreading`)
+                                             VALUES (@0, @ID, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11,@12,@13,@14,@15)", server)
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString
-                    cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
-                    cmd.Parameters.Add("@2", MySqlDbType.Int64).Value = .Rows(i).Cells(2).Value.ToString
-                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-                    cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
-                    cmd.Parameters.Add("@5", MySqlDbType.Double).Value = .Rows(i).Cells(5).Value.ToString
-                    cmd.Parameters.Add("@6", MySqlDbType.Double).Value = .Rows(i).Cells(6).Value.ToString
-                    cmd.Parameters.Add("@7", MySqlDbType.Double).Value = .Rows(i).Cells(7).Value.ToString
-                    cmd.Parameters.Add("@8", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString
-                    cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString
-                    cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
-                    cmd.Parameters.Add("@11", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value.ToString()
-                    cmd.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(12).Value.ToString()
-                    cmd.Parameters.Add("@13", MySqlDbType.Text).Value = .Rows(i).Cells(13).Value.ToString()
-                    cmd.Parameters.Add("@14", MySqlDbType.Int64).Value = .Rows(i).Cells(14).Value.ToString
-                    cmd.Parameters.Add("@15", MySqlDbType.Text).Value = .Rows(i).Cells(15).Value.ToString()
-
+                    cmd.Parameters.Add("@ID", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmd.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
+                    cmd.Parameters.Add("@2", MySqlDbType.Int64).Value = .Rows(i).Cells(3).Value.ToString
+                    cmd.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
+                    cmd.Parameters.Add("@5", MySqlDbType.Double).Value = .Rows(i).Cells(6).Value.ToString
+                    cmd.Parameters.Add("@6", MySqlDbType.Double).Value = .Rows(i).Cells(7).Value.ToString
+                    cmd.Parameters.Add("@7", MySqlDbType.Double).Value = .Rows(i).Cells(8).Value.ToString
+                    cmd.Parameters.Add("@8", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value.ToString
+                    cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(10).Value.ToString
+                    cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
+                    cmd.Parameters.Add("@11", MySqlDbType.Text).Value = .Rows(i).Cells(12).Value.ToString()
+                    cmd.Parameters.Add("@12", MySqlDbType.VarChar).Value = .Rows(i).Cells(13).Value.ToString()
+                    cmd.Parameters.Add("@13", MySqlDbType.Text).Value = .Rows(i).Cells(14).Value.ToString()
+                    cmd.Parameters.Add("@14", MySqlDbType.Int64).Value = .Rows(i).Cells(15).Value.ToString
+                    cmd.Parameters.Add("@15", MySqlDbType.Text).Value = .Rows(i).Cells(16).Value.ToString()
                     LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelZREADINVITEM.Text = Val(LabelZREADINVITEM.Text) + 1
                     POS.Instance.Invoke(Sub()
                                             POS.ProgressBar1.Value += 1
                                         End Sub)
                     ProgressBar1.Value = CInt(LabelRowtoSync.Text)
-
                     Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
                     cmd.ExecuteNonQuery()
                     Dim sql = "UPDATE loc_zread_inventory SET `synced`='Synced' WHERE zreadinv_id = " & .Rows(i).Cells(0).Value.ToString

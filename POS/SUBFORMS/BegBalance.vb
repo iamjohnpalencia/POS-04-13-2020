@@ -37,24 +37,29 @@ Public Class BegBalance
         End Try
     End Sub
     Private Sub InsertBeginningBalance()
-        If ComboBox1.Text = "First Shift" Then
-            SystemLogType = "BG-1"
-        ElseIf ComboBox1.Text = "Second Shift" Then
-            SystemLogType = "BG-2"
-        ElseIf ComboBox1.Text = "Third Shift" Then
-            SystemLogType = "BG-3"
-        Else
-            SystemLogType = "BG-4"
-        End If
-        Shift = ComboBox1.Text
-        BeginningBalance = Val(Label12.Text)
-        SystemLogDesc = Label12.Text
-        GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-        Dim message As String = GetMonthName(Format(Now(), "yyyy-MM-dd")) & " " & Format(Now(), "dd yyyy") & vbNewLine & Format(Now(), "hh:mm tt")
-        'MessageBox.Show(message, "Set Cash Datetime:", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        'Settings.Button8.Visible = False
-        AllowFormClose = True
-        Me.Close()
+        Try
+            If ComboBox1.Text = "First Shift" Then
+                SystemLogType = "BG-1"
+            ElseIf ComboBox1.Text = "Second Shift" Then
+                SystemLogType = "BG-2"
+            ElseIf ComboBox1.Text = "Third Shift" Then
+                SystemLogType = "BG-3"
+            Else
+                SystemLogType = "BG-4"
+            End If
+            Shift = ComboBox1.Text
+            BeginningBalance = Val(Label12.Text)
+            SystemLogDesc = Label12.Text
+            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+            Dim message As String = GetMonthName(Format(Now(), "yyyy-MM-dd")) & " " & Format(Now(), "dd yyyy") & vbNewLine & Format(Now(), "hh:mm tt")
+            'MessageBox.Show(message, "Set Cash Datetime:", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            'Settings.Button8.Visible = False
+            AllowFormClose = True
+            Me.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Dim AllowFormClose As Boolean = False
     Private Sub BegBalance_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing

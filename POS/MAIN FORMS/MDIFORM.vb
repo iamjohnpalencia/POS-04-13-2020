@@ -36,8 +36,10 @@
     End Sub
     Public newMDIchildManageproduct As ManageProducts
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+            SynctoCloud.TopMost = False
+        End If
         Try
-
             If Application.OpenForms().OfType(Of ManageProducts).Any Then
             Else
                 newMDIchildManageproduct = New ManageProducts
@@ -57,6 +59,9 @@
         End Try
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+            SynctoCloud.TopMost = False
+        End If
         Try
             Dim newMDIchild As New Inventory()
             If Application.OpenForms().OfType(Of Inventory).Any Then
@@ -77,6 +82,9 @@
         End Try
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+            SynctoCloud.TopMost = False
+        End If
         Try
             Dim newMDIchild As New Reports()
             If Application.OpenForms().OfType(Of Reports).Any Then
@@ -97,6 +105,9 @@
         End Try
     End Sub
     Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles Button8.Click
+        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+            SynctoCloud.TopMost = False
+        End If
         Try
             Dim newMDIchild As New UserSettings()
             If Application.OpenForms().OfType(Of UserSettings).Any Then
@@ -117,6 +128,9 @@
         End Try
     End Sub
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+            SynctoCloud.TopMost = True
+        End If
         'Dim newMDIchild As New SynctoCloud()
         'If Application.OpenForms().OfType(Of SynctoCloud).Any Then
 
@@ -138,6 +152,9 @@
         SynctoCloud.Show()
     End Sub
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+            SynctoCloud.TopMost = False
+        End If
         Try
             Dim newMDIchild As New Leaderboards()
             If Application.OpenForms().OfType(Of Leaderboards).Any Then
@@ -159,6 +176,9 @@
         End Try
     End Sub
     Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click
+        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+            SynctoCloud.TopMost = False
+        End If
         Try
             Dim newMDIchild As New About()
             If Application.OpenForms().OfType(Of About).Any Then
@@ -180,6 +200,9 @@
     End Sub
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
+        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+            SynctoCloud.TopMost = False
+        End If
         Try
             Dim newMDIchild As New DepositSlip()
             If Application.OpenForms().OfType(Of DepositSlip).Any Then
@@ -201,6 +224,9 @@
     End Sub
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
         Messageboolean = True
+        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+            SynctoCloud.TopMost = False
+        End If
         Try
             Dim newMDIchild As New Message()
             If Application.OpenForms().OfType(Of Message).Any Then
@@ -222,6 +248,9 @@
         End Try
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+            SynctoCloud.TopMost = False
+        End If
         Try
             iflogout = False
             Me.Close()

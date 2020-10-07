@@ -57,8 +57,10 @@ Public Class Message
         End Try
     End Sub
     Private Sub Message_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        POS.Enabled = True
-        Messageboolean = False
+        If Messageboolean = False Then
+            POS.Enabled = True
+            Messageboolean = False
+        End If
     End Sub
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         Try

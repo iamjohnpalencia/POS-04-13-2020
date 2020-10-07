@@ -243,5 +243,13 @@ Public Class ManageProducts
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
+        Try
+            ShowKeyboard()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
 End Class
 

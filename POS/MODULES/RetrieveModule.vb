@@ -115,8 +115,9 @@ Module RetrieveModule
     Public Function CheckUserName(Username) As Boolean
         Dim ReturnUsername As Boolean = False
         Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
             Dim sql = "SELECT username FROM loc_users WHERE username = '" & Username & "'"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
             Using reader As MySqlDataReader = cmd.ExecuteReader()
                 If reader.HasRows Then
                     ReturnUsername = True
@@ -133,8 +134,9 @@ Module RetrieveModule
     Public Function CheckEmail(Email) As Boolean
         Dim ReturnUsername As Boolean = False
         Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
             Dim sql = "SELECT email FROM loc_users WHERE email = '" & Email & "'"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
             Using reader As MySqlDataReader = cmd.ExecuteReader()
                 If reader.HasRows Then
                     ReturnUsername = True
@@ -142,6 +144,7 @@ Module RetrieveModule
                     ReturnUsername = False
                 End If
             End Using
+            ConnectionLocal.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -149,10 +152,11 @@ Module RetrieveModule
         Return ReturnUsername
     End Function
     Public Function CheckContactNumber(ContactNumber) As Boolean
+        Dim ConnectionLocal As MySqlConnection = LocalhostConn()
         Dim ReturnUsername As Boolean = False
         Try
             Dim sql = "SELECT contact_number FROM loc_users WHERE contact_number = '" & ContactNumber & "'"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
             Using reader As MySqlDataReader = cmd.ExecuteReader()
                 If reader.HasRows Then
                     ReturnUsername = True
@@ -160,6 +164,7 @@ Module RetrieveModule
                     ReturnUsername = False
                 End If
             End Using
+            ConnectionLocal.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -174,8 +179,7 @@ Module RetrieveModule
             Dim ConnectionLocal As MySqlConnection = LocalhostConn()
             Do
                 Uniqid = ClientStorename & "-" & r.[Next](1000, 10000)
-
-                Dim sql = "SELECT uniq_id FROM loc_users WHERE uniq_id = '" & uniqid & "'"
+                Dim sql = "SELECT uniq_id FROM loc_users WHERE uniq_id = '" & Uniqid & "'"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
                 Using reader As MySqlDataReader = cmd.ExecuteReader()
                     If reader.HasRows Then
@@ -271,25 +275,28 @@ Module RetrieveModule
     Dim formulaid
     Public Function selectmaxformula(ByVal whatid As String, ByVal fromtable As String, ByVal flds As String)
         Try
-            sql = "Select " & flds & " FROM " & fromtable & " ORDER BY " & whatid & " DESC LIMIT 1"
-            cmd = New MySqlCommand(sql, LocalhostConn())
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim sql = "Select " & flds & " FROM " & fromtable & " ORDER BY " & whatid & " DESC LIMIT 1"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
             formulaid = cmd.ExecuteScalar()
+            cmd.Dispose()
+            ConnectionLocal.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
         Return formulaid
-        cmd.Dispose()
     End Function
     Public Function returnfullname(ByVal where As String)
         Dim FullName As String = ""
         Try
-            Dim cmd As MySqlCommand = New MySqlCommand("SELECT full_name FROM loc_users WHERE uniq_id = '" + where + "' ", LocalhostConn)
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim cmd As MySqlCommand = New MySqlCommand("SELECT full_name FROM loc_users WHERE uniq_id = '" + where + "' ", ConnectionLocal)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
             FullName = dt(0)(0).ToString
-            LocalhostConn.close()
+            LocalhostConn.Close()
             da.Dispose()
             cmd.Dispose()
         Catch ex As Exception
@@ -304,7 +311,7 @@ Module RetrieveModule
     Dim MyCmd As MySqlCommand
     Public Function GLOBAL_RETURN_FUNCTION(tbl As String, flds As String, toreturn As String, thisislocalconn As Boolean)
         Try
-            sql = "SELECT " & flds & " FROM " & tbl
+            Dim sql = "SELECT " & flds & " FROM " & tbl
             If thisislocalconn = True Then
                 MyLocalConnection = New MySqlConnection
                 MyLocalConnection.ConnectionString = LocalConnectionString
@@ -337,9 +344,10 @@ Module RetrieveModule
     Public Function AsDatatable(table, fields, datagridd) As DataTable
         datagridd.rows.clear
         Dim dttable As DataTable = New DataTable
+        Dim ConnectionLocal As MySqlConnection = LocalhostConn()
         Try
             Dim sql = "SELECT " & fields & " FROM " & table
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             da.Fill(dttable)
             With datagridd
@@ -358,7 +366,7 @@ Module RetrieveModule
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         Finally
-            LocalhostConn.close
+            ConnectionLocal.Close()
             cmd.Dispose()
             da.Dispose()
         End Try
@@ -366,8 +374,9 @@ Module RetrieveModule
     End Function
     Public Sub GLOBAL_SELECT_ALL_FUNCTION(ByVal table As String, ByVal fields As String, ByRef datagrid As DataGridView)
         Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
             Dim sql As String = "SELECT " + fields + " FROM " + table
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
@@ -392,8 +401,9 @@ Module RetrieveModule
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION_WHERE(ByVal table As String, ByVal fields As String, ByVal where As String, ByVal successmessage As String, ByVal errormessage As String, ByRef datagrid As DataGridView)
         Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
             sql = "SELECT " + fields + " FROM " + table + " WHERE " + where
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             dt = New DataTable
             da.Fill(dt)
@@ -411,7 +421,6 @@ Module RetrieveModule
                 .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
                 .SelectionMode = DataGridViewSelectionMode.FullRowSelect
             End With
-            LocalhostConn.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -419,14 +428,17 @@ Module RetrieveModule
     End Sub
     Public Sub GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX(table As String, fields As String, combobox As ComboBox, Loccon As Boolean)
         Try
-            sql = "SELECT " + fields + " FROM " + table
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim ConnectionCloud As MySqlConnection = ServerCloudCon()
+            Dim sql = "SELECT " + fields + " FROM " + table
+            Dim cmd As MySqlCommand
             If Loccon = True Then
-                cmd = New MySqlCommand(sql, LocalhostConn)
+                cmd = New MySqlCommand(sql, ConnectionLocal)
             Else
-                cmd = New MySqlCommand(sql, ServerCloudCon)
+                cmd = New MySqlCommand(sql, ConnectionCloud)
             End If
-            da = New MySqlDataAdapter(cmd)
-            dt = New DataTable
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim dt As DataTable = New DataTable
             da.Fill(dt)
             With combobox
                 .DataSource = Nothing
@@ -434,6 +446,8 @@ Module RetrieveModule
                 .ValueMember = fields
                 .DisplayMember = fields
             End With
+            ConnectionLocal.Close()
+            ConnectionCloud.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -443,15 +457,14 @@ Module RetrieveModule
     End Sub
     Public Function GLOBAL_SELECT_FUNCTION_RETURN(ByVal table As String, ByVal fields As String, ByVal values As String, ByVal returnvalrow As String)
         Try
-            sql = "SELECT " + fields + " FROM " + table + " WHERE " + values
-
-            cmd = New MySqlCommand(sql, LocalhostConn)
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim sql = "SELECT " + fields + " FROM " + table + " WHERE " + values
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
             Using readerObj As MySqlDataReader = cmd.ExecuteReader
                 While readerObj.Read
                     returnval = readerObj(returnvalrow).ToString
                 End While
             End Using
-            LocalhostConn.close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)

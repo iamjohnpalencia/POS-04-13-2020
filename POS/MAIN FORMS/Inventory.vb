@@ -415,11 +415,10 @@ Public Class Inventory
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
-            Dim inventory_id = dt(0)(0)
             TextBoxEPrimary.Text = dt(0)(1)
             TextBoxESecondary.Text = dt(0)(2)
             TextBox1.Text = dt(0)(0)
-            SelectFormulaEntry(inventory_id, dt(0)(3))
+            SelectFormulaEntry(dt(0)(0), dt(0)(3))
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
