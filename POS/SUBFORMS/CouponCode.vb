@@ -218,6 +218,44 @@ Public Class CouponCode
                     CouponApplied = True
                     CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                     MsgBox("Applied")
+
+                End With
+            Else
+                CouponDefault()
+                With POS
+                    Dim GROSSSALES As Double = Double.Parse(.TextBoxGRANDTOTAL.Text)
+                    Dim TAX As Double = 1 + Val(S_Tax)
+                    Dim TOTALDISCOUNT As Double = DataGridViewCoupons.SelectedRows(0).Cells(3).Value / 100
+                    Dim TOTALAMOUNTDUE As Double = 0
+
+                    TOTALDISCOUNT = GROSSSALES * TOTALDISCOUNT
+                    TOTALAMOUNTDUE = Format(GROSSSALES - TOTALDISCOUNT, "0.00")
+
+                    Dim VATABLESALES As Double = Format(GROSSSALES / TAX, "0.00")
+                    Dim VAT12PERCENT As Double = Format(VATABLESALES * S_Tax, "0.00")
+
+                    .GROSSSALE = GROSSSALES
+                    .TOTALDISCOUNTEDAMOUNT = GROSSSALES
+                    .VATEXEMPTSALES = 0
+                    .LESSVAT = 0
+                    .TOTALDISCOUNT = TOTALDISCOUNT
+                    .VATABLESALES = VATABLESALES
+                    .VAT12PERCENT = VAT12PERCENT
+                    .TOTALAMOUNTDUE = TOTALAMOUNTDUE
+                    .TextBoxGRANDTOTAL.Text = TOTALAMOUNTDUE
+                    .TextBoxDISCOUNT.Text = TOTALDISCOUNT
+
+                    Dim ZERORATEDSALE As Double = GROSSSALES / TAX
+                    ZERORATEDSALE = Math.Round(ZERORATEDSALE, 2)
+                    Dim NetSales As Double = ZERORATEDSALE
+
+                    .ZERORATEDSALES = ZERORATEDSALE
+                    .ZERORATEDNETSALES = NetSales
+                    CouponDesc = ""
+                    CouponTotal = TOTALDISCOUNT
+                    CouponApplied = True
+                    CouponName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
+                    MsgBox("Applied")
                 End With
             End If
             With POS

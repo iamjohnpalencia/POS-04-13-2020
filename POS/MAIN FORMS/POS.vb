@@ -990,7 +990,6 @@ Public Class POS
     Dim INSERTTHISDATE
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
-
             With WaitFrm
                 INSERTTHISDATE = FullDate24HR()
                 SUPERAMOUNTDUE = Convert.ToDecimal(Double.Parse(TextBoxGRANDTOTAL.Text))
@@ -1006,8 +1005,12 @@ Public Class POS
                 If S_ZeroRated = "1" Then
                     VAT12PERCENT = 0
                     LESSVAT = 0
-                    If CouponApplied = False Then
+                    If CouponApplied = True Then
                         ZERORATEDSALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                        ZERORATEDNETSALES = ZERORATEDSALES
+                    Else
+                        ZERORATEDSALES = SUPERAMOUNTDUE
+                        VATABLESALES = ZERORATEDSALES
                         ZERORATEDNETSALES = ZERORATEDSALES
                     End If
                 End If
