@@ -391,14 +391,14 @@ Public Class POS
                     Dim discount As Double = Val(TextBoxDISCOUNT.Text / 100)
                     Dim discounttotal As Double = Val(Label76.Text) * discount
                     TextBoxSUBTOTAL.Text = Val(Label76.Text)
-                    If S_ZeroRated = "0" Then
-                        TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
-                        TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
-                    Else
-                        TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
-                        TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-                        TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
-                    End If
+                    'If S_ZeroRated = "0" Then
+                    '    TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
+                    '    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+                    'Else
+                    '    TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
+                    '    TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                    '    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+                    'End If
 
 
                     TextBoxSUBTOTAL.Text = Format(Val(TextBoxSUBTOTAL.Text), "##,##0.00")
@@ -442,12 +442,13 @@ Public Class POS
             End If
             Label76.Text = SumOfColumnsToDecimal(DataGridViewOrders, 3)
             TextBoxSUBTOTAL.Text = Label76.Text
-            If S_ZeroRated = "0" Then
-                TextBoxGRANDTOTAL.Text = Label76.Text
-            Else
-                TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-                TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
-            End If
+            TextBoxGRANDTOTAL.Text = Label76.Text
+            'If S_ZeroRated = "0" Then
+            '   
+            'Else
+            '    TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+            '    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+            'End If
 
         Catch ex As Exception
             MsgBox(ex.ToString)

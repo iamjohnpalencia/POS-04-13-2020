@@ -705,7 +705,7 @@ Public Class Reports
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonZread.Click
         Try
-            Dim msg = MessageBox.Show("Zread message not available", "Z-reading", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+            Dim msg = MessageBox.Show("Are you sure you want to generate Z-READ ? Press Yes to continue or No to cancel", "Z-reading", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 
             If msg = DialogResult.Yes Then
                 Dim ConnectionLocal As MySqlConnection = LocalhostConn()
