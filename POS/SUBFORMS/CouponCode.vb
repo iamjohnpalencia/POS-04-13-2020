@@ -142,7 +142,7 @@ Public Class CouponCode
                         CouponTotal = LESSDISCOUNT
                     End With
                 Else
-                    CouponDefault()
+                    'CouponDefault()
                     With POS.DataGridViewOrders
                         Dim AmountDueWaffle As Double = 0
                         Dim AmountDueDrinks As Double = 0
