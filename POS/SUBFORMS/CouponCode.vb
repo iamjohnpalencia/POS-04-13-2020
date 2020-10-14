@@ -31,9 +31,24 @@ Public Class CouponCode
             For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
                 If .DataGridViewOrders.Rows(i).Cells(11).Value > 0 Then
                     Dim priceadd = .DataGridViewOrders.Rows(i).Cells(11).Value * S_Upgrade_Price
-                    .DataGridViewOrders.Rows(i).Cells(3).Value = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value + priceadd
+                    If S_ZeroRated = "0" Then
+                        .DataGridViewOrders.Rows(i).Cells(3).Value = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value + priceadd
+                    Else
+                        Dim TotalPrice As Double = 0
+                        Dim Tax = 1 + Val(S_Tax)
+                        Dim Total = Math.Round(.DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value + priceadd / Tax, 2, MidpointRounding.AwayFromZero)
+                        .DataGridViewOrders.Rows(i).Cells(3).Value = Total
+                    End If
                 Else
-                    .DataGridViewOrders.Rows(i).Cells(3).Value = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value
+                    If S_ZeroRated = "0" Then
+                        .DataGridViewOrders.Rows(i).Cells(3).Value = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value
+                    Else
+                        Dim TotalPrice As Double = 0
+                        Dim Tax = 1 + Val(S_Tax)
+                        Dim Total = Math.Round(.DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value / Tax, 2, MidpointRounding.AwayFromZero)
+                        .DataGridViewOrders.Rows(i).Cells(3).Value = Total
+                    End If
+
                 End If
             Next
         End With
