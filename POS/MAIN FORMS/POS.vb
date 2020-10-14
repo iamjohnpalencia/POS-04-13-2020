@@ -739,12 +739,12 @@ Public Class POS
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonApplyCoupon.Click
         TextBoxDISCOUNT.Text = 0
-        If S_ZeroRated = "0" Then
-            TextBoxGRANDTOTAL.Text = Label76.Text
-        Else
-            TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-            TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
-        End If
+        'If S_ZeroRated = "0" Then
+        '    TextBoxGRANDTOTAL.Text = Label76.Text
+        'Else
+        '    TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+        '    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+        'End If
 
         Enabled = False
         'GetProductHighestValue()
