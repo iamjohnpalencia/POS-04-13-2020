@@ -167,13 +167,25 @@ Public Class POS
                     MsgBox("Select Product first!")
                 Else
                     If TextBoxQTY.Text <> 0 Then
+                        Dim TotalPrice As Double = 0
+                        Dim Upgrade As Double = 0
+                        If S_ZeroRated = "0" Then
+                            TotalPrice = 1 * Val(TextBoxPRICE.Text)
+                            Upgrade = Val(S_Upgrade_Price)
+                        Else
+                            Dim Tax = 1 + Val(S_Tax)
+                            Dim ZeroRated = Val(TextBoxPRICE.Text) / Tax
+                            TotalPrice = Math.Round(ZeroRated, 2, MidpointRounding.AwayFromZero)
+                            Upgrade = Math.Round(Val(S_Upgrade_Price) / Tax, 2, MidpointRounding.AwayFromZero)
+                        End If
+
                         If DataGridViewOrders.Rows.Count > 0 Then
                             DataGridViewOrders.SelectedRows(0).Cells(1).Value = Val(TextBoxQTY.Text)
                             If DataGridViewOrders.SelectedRows(0).Cells(11).Value > 0 Then
-                                Dim priceadd = DataGridViewOrders.SelectedRows(0).Cells(11).Value * S_Upgrade_Price
-                                DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * DataGridViewOrders.SelectedRows(0).Cells(2).Value + priceadd
+                                Dim priceadd = DataGridViewOrders.SelectedRows(0).Cells(11).Value * Upgrade
+                                DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * TotalPrice + priceadd
                             Else
-                                DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * DataGridViewOrders.SelectedRows(0).Cells(2).Value
+                                DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * TotalPrice
                             End If
                             Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
                             Dim test As Boolean = False

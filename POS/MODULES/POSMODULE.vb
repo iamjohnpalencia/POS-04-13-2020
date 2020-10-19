@@ -82,15 +82,17 @@ Module POSMODULE
     Public HASOTHERSSERVERPRODUCT As Boolean = False
     Public Sub preventdgvordersdup(ByVal price, ByVal name, ByVal ID, ByVal SKU, ByVal CAT, ByVal ORIGIN, ByVal INVID, ByVal addontype)
         Try
-
             With POS
                 Dim TotalPrice As Double = 0
+                Dim Upgrade As Double = 0
                 If S_ZeroRated = "0" Then
                     TotalPrice = 1 * Val(.TextBoxPRICE.Text)
+                    Upgrade = Val(S_Upgrade_Price)
                 Else
                     Dim Tax = 1 + Val(S_Tax)
                     Dim ZeroRated = Val(.TextBoxPRICE.Text) / Tax
                     TotalPrice = Math.Round(ZeroRated, 2, MidpointRounding.AwayFromZero)
+                    Upgrade = Math.Round(Val(S_Upgrade_Price) / Tax, 2, MidpointRounding.AwayFromZero)
                 End If
                 .TextBoxPRICE.Text = Val(price)
                 .TextBoxNAME.Text = name
@@ -254,7 +256,7 @@ Module POSMODULE
 
                                 DISABLESERVEROTHERSPRODUCT = True
                                 If POS.WaffleUpgrade = True Then
-                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(TotalPrice + Val(S_Upgrade_Price)), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, 1, ORIGIN, addontype)
+                                    .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, 1 * Val(TotalPrice + Upgrade), .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, 1, ORIGIN, addontype)
                                 Else
                                     .DataGridViewOrders.Rows.Add(name, 1, .TextBoxPRICE.Text, TotalPrice, .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, 0, ORIGIN, addontype)
                                 End If
@@ -316,7 +318,7 @@ Module POSMODULE
                             Else
                                 DISABLESERVEROTHERSPRODUCT = True
                                 If POS.WaffleUpgrade = True Then
-                                    Dim priceadd = Val(.TextBoxQTY.Text) * S_Upgrade_Price
+                                    Dim priceadd = Val(.TextBoxQTY.Text) * Upgrade
                                     .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * TotalPrice + priceadd, .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, Val(.TextBoxQTY.Text), ORIGIN, addontype)
                                 Else
                                     .DataGridViewOrders.Rows.Add(name, Val(.TextBoxQTY.Text), .TextBoxPRICE.Text, Val(.TextBoxQTY.Text) * TotalPrice, .TextBoxINC.Text, ID, SKU, CAT, ID, "WAFFLE", INVID, 0, ORIGIN, addontype)
