@@ -144,29 +144,18 @@ Public Class CouponCode
                 Else
                     'CouponDefault()
                     With POS.DataGridViewOrders
-                        Dim AmountDueWaffle As Double = 0
-                        Dim AmountDueDrinks As Double = 0
+
                         Dim SeniorPwdDisk = DataGridViewCoupons.SelectedRows(0).Cells(3).Value / 100
                         Dim Tax = 1 + Val(S_Tax)
-                        Dim GROSSSALES As Double = 0
-                        For i As Integer = 0 To .Rows.Count - 1 Step +1
-                            GROSSSALES += .Rows(i).Cells(3).Value
-                            If .Rows(i).Cells(9).Value.ToString = "WAFFLE" Then
-                                AmountDueWaffle += .Rows(i).Cells(3).Value
-                            Else
-                                AmountDueDrinks += .Rows(i).Cells(3).Value
-                            End If
-                        Next
-                        AmountDueWaffle = AmountDueWaffle - SeniorPWd
-                        AmountDueDrinks = AmountDueDrinks - SeniorPWdDrinks
+                        Dim GROSSSALES As Double = Double.Parse(POS.TextBoxGRANDTOTAL.Text)
 
-                        Dim TOTALPRODUCT As Double = AmountDueWaffle + AmountDueDrinks
+                        MsgBox(SeniorPWd + SeniorPWdDrinks)
                         Dim TotalCountedAmount As Double = SeniorPWd + SeniorPWdDrinks
                         Dim SENIOR20PERCENT As Double = TotalCountedAmount / Tax * SeniorPwdDisk
                         SENIOR20PERCENT = Math.Round(SENIOR20PERCENT, 2, MidpointRounding.AwayFromZero)
-                        Dim ZERORATEDSALE As Double = GROSSSALES / Tax
+                        Dim ZERORATEDSALE As Double = GROSSSALES - SENIOR20PERCENT
                         ZERORATEDSALE = Math.Round(ZERORATEDSALE, 2)
-                        Dim NetSales As Double = ZERORATEDSALE - SENIOR20PERCENT
+                        Dim NetSales As Double = ZERORATEDSALE
                         With POS
                             .GROSSSALE = GROSSSALES
                             .VATABLESALES = 0

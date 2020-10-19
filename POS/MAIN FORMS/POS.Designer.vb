@@ -942,12 +942,12 @@ Partial Class POS
         Me.DataGridViewOrders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column9, Me.Column12, Me.Column13, Me.Column16, Me.Column17, Me.Column19, Me.Column43, Me.Column20, Me.Column42, Me.Column45})
         Me.DataGridViewOrders.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewOrders.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridViewOrders.Location = New System.Drawing.Point(10, 64)
+        Me.DataGridViewOrders.Location = New System.Drawing.Point(10, 70)
         Me.DataGridViewOrders.Name = "DataGridViewOrders"
         Me.DataGridViewOrders.RowHeadersVisible = False
         Me.DataGridViewOrders.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DataGridViewOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewOrders.Size = New System.Drawing.Size(339, 302)
+        Me.DataGridViewOrders.Size = New System.Drawing.Size(339, 296)
         Me.DataGridViewOrders.TabIndex = 66
         '
         'Column1
@@ -1145,7 +1145,7 @@ Partial Class POS
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel9.Location = New System.Drawing.Point(10, 10)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(339, 54)
+        Me.Panel9.Size = New System.Drawing.Size(339, 60)
         Me.Panel9.TabIndex = 62
         '
         'Panel33

@@ -125,9 +125,9 @@ Module POSMODULE
                                 Else
                                     ThisIsMyInventoryID = .TextBoxINC.Text
                                     If hastextboxqty = False Then
-                                        .DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, 1, .TextBoxPRICE.Text, 1 * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString, .DataGridViewOrders.SelectedRows(0).Cells(9).Value, INVID, 0, ORIGIN, addontype)
+                                        .DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, 1, .TextBoxPRICE.Text, 1 * Val(TotalPrice), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString, .DataGridViewOrders.SelectedRows(0).Cells(9).Value, INVID, 0, ORIGIN, addontype)
                                     Else
-                                        .DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, .TextBoxQTY.Text, .TextBoxPRICE.Text, .TextBoxQTY.Text * Val(.TextBoxPRICE.Text), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString, .DataGridViewOrders.SelectedRows(0).Cells(9).Value, INVID, .TextBoxQTY.Text, ORIGIN, addontype)
+                                        .DataGridViewOrders.Rows.Insert(DatagridviewRowIndex + 1, name, .TextBoxQTY.Text, .TextBoxPRICE.Text, .TextBoxQTY.Text * Val(TotalPrice), .TextBoxINC.Text, ID, SKU, CAT, .DataGridViewOrders.SelectedRows(0).Cells(5).Value.ToString, .DataGridViewOrders.SelectedRows(0).Cells(9).Value, INVID, .TextBoxQTY.Text, ORIGIN, addontype)
                                     End If
                                 End If
                             Else

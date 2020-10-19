@@ -120,7 +120,6 @@ Public Class Expenses
     Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
         ImagePath = OpenFileDialog1.FileName
     End Sub
-
     Private Sub convertimage()
         Try
             Dim ImageToConvert As Bitmap = Bitmap.FromFile(ImagePath)
