@@ -151,9 +151,9 @@ Public Class CouponCode
                         Dim TotalCountedAmount As Double = SeniorPWd + SeniorPWdDrinks
                         Dim SENIOR20PERCENT As Double = TotalCountedAmount / Tax * SeniorPwdDisk
                         SENIOR20PERCENT = Math.Round(SENIOR20PERCENT, 2, MidpointRounding.AwayFromZero)
-                        Dim ZERORATEDSALE As Double = GROSSSALES - SENIOR20PERCENT
-                        ZERORATEDSALE = Math.Round(ZERORATEDSALE, 2)
-                        Dim NetSales As Double = ZERORATEDSALE
+                        'Dim ZERORATEDSALE As Double = GROSSSALES - SENIOR20PERCENT
+                        'ZERORATEDSALE = Math.Round(ZERORATEDSALE, 2)
+                        'Dim NetSales As Double = ZERORATEDSALE
                         With POS
                             .GROSSSALE = GROSSSALES
                             .VATABLESALES = 0
@@ -162,11 +162,10 @@ Public Class CouponCode
                             .TOTALDISCOUNTEDAMOUNT = TotalCountedAmount
                             .VATEXEMPTSALES = 0
                             .TOTALDISCOUNT = SENIOR20PERCENT
-                            MsgBox(ZERORATEDSALE)
-                            MsgBox(NetSales)
-                            .ZERORATEDSALES = ZERORATEDSALE
-                            .ZERORATEDNETSALES = NetSales
-                            .TextBoxGRANDTOTAL.Text = NetSales
+
+                            .ZERORATEDSALES = .Label76.Text
+                            .ZERORATEDNETSALES = .Label76.Text - SENIOR20PERCENT
+                            .TextBoxGRANDTOTAL.Text = .Label76.Text - SENIOR20PERCENT
                             .TextBoxDISCOUNT.Text = SENIOR20PERCENT
                         End With
                         SeniorGCDiscount = True
