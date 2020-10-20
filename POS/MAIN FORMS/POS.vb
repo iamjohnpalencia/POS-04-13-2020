@@ -488,13 +488,16 @@ Public Class POS
         End Try
     End Sub
     Private Sub ButtonCDISC_Click(sender As Object, e As EventArgs) Handles ButtonCDISC.Click
-        TextBoxSUBTOTAL.Text = SumOfColumnsToDecimal(DataGridViewOrders, 3)
-        If S_ZeroRated = "0" Then
-            TextBoxGRANDTOTAL.Text = Label76.Text
-        Else
-            TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-            TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
-        End If
+        CouponApplied = False
+        Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
+        TextBoxSUBTOTAL.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
+        TextBoxGRANDTOTAL.Text = Label76.Text
+        'If S_ZeroRated = "0" Then
+        '    TextBoxGRANDTOTAL.Text = Label76.Text
+        'Else
+        '    TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+        '    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+        'End If
         TextBoxDISCOUNT.Text = 0
         TOTALDISCOUNT = 0
         GROSSSALE = 0
@@ -751,7 +754,11 @@ Public Class POS
     Dim ACTIVE As Integer = 1
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonApplyCoupon.Click
+        CouponApplied = False
         TextBoxDISCOUNT.Text = 0
+        Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
+        TextBoxSUBTOTAL.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
+        TextBoxGRANDTOTAL.Text = Label76.Text
         'If S_ZeroRated = "0" Then
         '    TextBoxGRANDTOTAL.Text = Label76.Text
         'Else
