@@ -148,8 +148,6 @@ Public Class CouponCode
                         Dim SeniorPwdDisk = DataGridViewCoupons.SelectedRows(0).Cells(3).Value / 100
                         Dim Tax = 1 + Val(S_Tax)
                         Dim GROSSSALES As Double = Double.Parse(POS.TextBoxGRANDTOTAL.Text)
-
-                        MsgBox(SeniorPWd + SeniorPWdDrinks)
                         Dim TotalCountedAmount As Double = SeniorPWd + SeniorPWdDrinks
                         Dim SENIOR20PERCENT As Double = TotalCountedAmount / Tax * SeniorPwdDisk
                         SENIOR20PERCENT = Math.Round(SENIOR20PERCENT, 2, MidpointRounding.AwayFromZero)
@@ -164,6 +162,8 @@ Public Class CouponCode
                             .TOTALDISCOUNTEDAMOUNT = TotalCountedAmount
                             .VATEXEMPTSALES = 0
                             .TOTALDISCOUNT = SENIOR20PERCENT
+                            MsgBox(ZERORATEDSALE)
+                            MsgBox(NetSales)
                             .ZERORATEDSALES = ZERORATEDSALE
                             .ZERORATEDNETSALES = NetSales
                             .TextBoxGRANDTOTAL.Text = NetSales

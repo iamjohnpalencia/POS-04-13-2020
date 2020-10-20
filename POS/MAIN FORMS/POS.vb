@@ -210,6 +210,7 @@ Public Class POS
                                     End If
                                 End If
                             Next
+                            TextBoxGRANDTOTAL.Text = Format(Val(Label76.Text), "##,##0.00")
                         Else
                             MsgBox("Select item first", vbInformation)
                         End If
@@ -1019,8 +1020,8 @@ Public Class POS
                     VAT12PERCENT = 0
                     LESSVAT = 0
                     If CouponApplied = True Then
-                        ZERORATEDSALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-                        ZERORATEDNETSALES = ZERORATEDSALES
+                        'ZERORATEDSALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                        'ZERORATEDNETSALES = ZERORATEDSALES
                     Else
                         ZERORATEDSALES = SUPERAMOUNTDUE
                         VATABLESALES = ZERORATEDSALES
