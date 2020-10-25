@@ -431,4 +431,22 @@ Module publicfunctions
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+
+    Public Function TwoDecimalPlaces(ToRound)
+        Try
+            ToRound = Math.Round(ToRound, 2, MidpointRounding.AwayFromZero)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+        Return ToRound
+    End Function
+    Public Sub Compute()
+        With POS
+            .Label76.Text = SumOfColumnsToDecimal(.DataGridViewOrders, 3)
+            .TextBoxSUBTOTAL.Text = .Label76.Text
+
+            .TextBoxGRANDTOTAL.Text = Format(TwoDecimalPlaces(Val(.Label76.Text) - Val(.TextBoxDISCOUNT.Text)), "##,##0.00")
+        End With
+    End Sub
 End Module

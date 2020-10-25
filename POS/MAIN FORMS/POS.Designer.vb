@@ -93,20 +93,6 @@ Partial Class POS
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel11 = New System.Windows.Forms.Panel()
         Me.DataGridViewOrders = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column43 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column42 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column45 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel27 = New System.Windows.Forms.Panel()
         Me.Panel30 = New System.Windows.Forms.Panel()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -186,6 +172,20 @@ Partial Class POS
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column43 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column42 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column45 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel8.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel34.SuspendLayout()
@@ -529,55 +529,55 @@ Partial Class POS
         '
         'TextBoxFormulaID
         '
-        Me.TextBoxFormulaID.Location = New System.Drawing.Point(80, 198)
+        Me.TextBoxFormulaID.Location = New System.Drawing.Point(99, 227)
         Me.TextBoxFormulaID.Name = "TextBoxFormulaID"
         Me.TextBoxFormulaID.ReadOnly = True
-        Me.TextBoxFormulaID.Size = New System.Drawing.Size(82, 23)
+        Me.TextBoxFormulaID.Size = New System.Drawing.Size(236, 23)
         Me.TextBoxFormulaID.TabIndex = 57
         Me.TextBoxFormulaID.Visible = False
         '
         'TextBoxPRICE
         '
-        Me.TextBoxPRICE.Location = New System.Drawing.Point(80, 227)
+        Me.TextBoxPRICE.Location = New System.Drawing.Point(99, 256)
         Me.TextBoxPRICE.Name = "TextBoxPRICE"
         Me.TextBoxPRICE.ReadOnly = True
-        Me.TextBoxPRICE.Size = New System.Drawing.Size(82, 23)
+        Me.TextBoxPRICE.Size = New System.Drawing.Size(236, 23)
         Me.TextBoxPRICE.TabIndex = 12
         Me.TextBoxPRICE.Visible = False
         '
         'TextBoxNAME
         '
-        Me.TextBoxNAME.Location = New System.Drawing.Point(80, 256)
+        Me.TextBoxNAME.Location = New System.Drawing.Point(99, 285)
         Me.TextBoxNAME.Name = "TextBoxNAME"
         Me.TextBoxNAME.ReadOnly = True
-        Me.TextBoxNAME.Size = New System.Drawing.Size(82, 23)
+        Me.TextBoxNAME.Size = New System.Drawing.Size(236, 23)
         Me.TextBoxNAME.TabIndex = 13
         Me.TextBoxNAME.Visible = False
         '
         'TextBoxINC
         '
-        Me.TextBoxINC.Location = New System.Drawing.Point(80, 172)
+        Me.TextBoxINC.Location = New System.Drawing.Point(99, 201)
         Me.TextBoxINC.Name = "TextBoxINC"
         Me.TextBoxINC.ReadOnly = True
-        Me.TextBoxINC.Size = New System.Drawing.Size(82, 23)
+        Me.TextBoxINC.Size = New System.Drawing.Size(236, 23)
         Me.TextBoxINC.TabIndex = 67
         Me.TextBoxINC.Visible = False
         '
         'TextBoxMAXID
         '
-        Me.TextBoxMAXID.Location = New System.Drawing.Point(80, 172)
+        Me.TextBoxMAXID.Location = New System.Drawing.Point(99, 201)
         Me.TextBoxMAXID.Name = "TextBoxMAXID"
         Me.TextBoxMAXID.ReadOnly = True
-        Me.TextBoxMAXID.Size = New System.Drawing.Size(82, 23)
+        Me.TextBoxMAXID.Size = New System.Drawing.Size(236, 23)
         Me.TextBoxMAXID.TabIndex = 17
         Me.TextBoxMAXID.Visible = False
         '
         'TextBoxPressQTY
         '
-        Me.TextBoxPressQTY.Location = New System.Drawing.Point(80, 172)
+        Me.TextBoxPressQTY.Location = New System.Drawing.Point(99, 201)
         Me.TextBoxPressQTY.Name = "TextBoxPressQTY"
         Me.TextBoxPressQTY.ReadOnly = True
-        Me.TextBoxPressQTY.Size = New System.Drawing.Size(82, 23)
+        Me.TextBoxPressQTY.Size = New System.Drawing.Size(236, 23)
         Me.TextBoxPressQTY.TabIndex = 66
         Me.TextBoxPressQTY.Visible = False
         '
@@ -590,11 +590,11 @@ Partial Class POS
         Me.DataGridViewInv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewInv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewInv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column10, Me.Column11, Me.Column14, Me.Column15, Me.Column18, Me.Origin})
-        Me.DataGridViewInv.Location = New System.Drawing.Point(274, 129)
+        Me.DataGridViewInv.Location = New System.Drawing.Point(610, 227)
         Me.DataGridViewInv.Name = "DataGridViewInv"
         Me.DataGridViewInv.ReadOnly = True
         Me.DataGridViewInv.RowHeadersVisible = False
-        Me.DataGridViewInv.Size = New System.Drawing.Size(162, 92)
+        Me.DataGridViewInv.Size = New System.Drawing.Size(162, 107)
         Me.DataGridViewInv.TabIndex = 65
         Me.DataGridViewInv.Visible = False
         '
@@ -743,9 +743,9 @@ Partial Class POS
         Me.TextBoxGRANDTOTAL.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.TextBoxGRANDTOTAL.Location = New System.Drawing.Point(210, 41)
         Me.TextBoxGRANDTOTAL.Name = "TextBoxGRANDTOTAL"
-        Me.TextBoxGRANDTOTAL.Size = New System.Drawing.Size(25, 25)
+        Me.TextBoxGRANDTOTAL.Size = New System.Drawing.Size(58, 25)
         Me.TextBoxGRANDTOTAL.TabIndex = 79
-        Me.TextBoxGRANDTOTAL.Text = "0"
+        Me.TextBoxGRANDTOTAL.Text = "0.00"
         '
         'TextBoxDISCOUNT
         '
@@ -754,9 +754,9 @@ Partial Class POS
         Me.TextBoxDISCOUNT.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(146, Byte), Integer), CType(CType(143, Byte), Integer))
         Me.TextBoxDISCOUNT.Location = New System.Drawing.Point(212, 5)
         Me.TextBoxDISCOUNT.Name = "TextBoxDISCOUNT"
-        Me.TextBoxDISCOUNT.Size = New System.Drawing.Size(19, 19)
+        Me.TextBoxDISCOUNT.Size = New System.Drawing.Size(44, 19)
         Me.TextBoxDISCOUNT.TabIndex = 59
-        Me.TextBoxDISCOUNT.Text = "0"
+        Me.TextBoxDISCOUNT.Text = "0.00"
         '
         'Label10
         '
@@ -798,9 +798,9 @@ Partial Class POS
         Me.TextBoxSUBTOTAL.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(146, Byte), Integer), CType(CType(143, Byte), Integer))
         Me.TextBoxSUBTOTAL.Location = New System.Drawing.Point(212, 24)
         Me.TextBoxSUBTOTAL.Name = "TextBoxSUBTOTAL"
-        Me.TextBoxSUBTOTAL.Size = New System.Drawing.Size(19, 19)
+        Me.TextBoxSUBTOTAL.Size = New System.Drawing.Size(44, 19)
         Me.TextBoxSUBTOTAL.TabIndex = 58
-        Me.TextBoxSUBTOTAL.Text = "0"
+        Me.TextBoxSUBTOTAL.Text = "0.00"
         '
         'ButtonPayMent
         '
@@ -950,96 +950,6 @@ Partial Class POS
         Me.DataGridViewOrders.Size = New System.Drawing.Size(339, 296)
         Me.DataGridViewOrders.TabIndex = 66
         '
-        'Column1
-        '
-        Me.Column1.FillWeight = 160.0!
-        Me.Column1.HeaderText = "Name"
-        Me.Column1.Name = "Column1"
-        '
-        'Column2
-        '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Column2.FillWeight = 65.65144!
-        Me.Column2.HeaderText = "Qty"
-        Me.Column2.Name = "Column2"
-        '
-        'Column3
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column3.DefaultCellStyle = DataGridViewCellStyle3
-        Me.Column3.FillWeight = 65.65144!
-        Me.Column3.HeaderText = "Price"
-        Me.Column3.Name = "Column3"
-        '
-        'Column4
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle4
-        Me.Column4.FillWeight = 65.65144!
-        Me.Column4.HeaderText = "Total"
-        Me.Column4.Name = "Column4"
-        '
-        'Column9
-        '
-        Me.Column9.HeaderText = "Column9"
-        Me.Column9.Name = "Column9"
-        Me.Column9.Visible = False
-        '
-        'Column12
-        '
-        Me.Column12.HeaderText = "ColumnPRID"
-        Me.Column12.Name = "Column12"
-        Me.Column12.Visible = False
-        '
-        'Column13
-        '
-        Me.Column13.HeaderText = "ColumnSKU"
-        Me.Column13.Name = "Column13"
-        Me.Column13.Visible = False
-        '
-        'Column16
-        '
-        Me.Column16.HeaderText = "ColumnCAT"
-        Me.Column16.Name = "Column16"
-        Me.Column16.Visible = False
-        '
-        'Column17
-        '
-        Me.Column17.HeaderText = "ColumnCATOF"
-        Me.Column17.Name = "Column17"
-        Me.Column17.Visible = False
-        '
-        'Column19
-        '
-        Me.Column19.HeaderText = "ColumnSumID"
-        Me.Column19.Name = "Column19"
-        Me.Column19.Visible = False
-        '
-        'Column43
-        '
-        Me.Column43.HeaderText = "ColumnInvID"
-        Me.Column43.Name = "Column43"
-        Me.Column43.Visible = False
-        '
-        'Column20
-        '
-        Me.Column20.HeaderText = "Upgrade"
-        Me.Column20.Name = "Column20"
-        Me.Column20.Visible = False
-        '
-        'Column42
-        '
-        Me.Column42.HeaderText = "Origin"
-        Me.Column42.Name = "Column42"
-        Me.Column42.Visible = False
-        '
-        'Column45
-        '
-        Me.Column45.HeaderText = "addontype"
-        Me.Column45.Name = "Column45"
-        Me.Column45.Visible = False
-        '
         'Panel27
         '
         Me.Panel27.BackColor = System.Drawing.Color.SlateGray
@@ -1066,7 +976,7 @@ Partial Class POS
         Me.Label8.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label8.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.White
-        Me.Label8.Location = New System.Drawing.Point(132, 0)
+        Me.Label8.Location = New System.Drawing.Point(109, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(18, 19)
         Me.Label8.TabIndex = 72
@@ -1078,11 +988,11 @@ Partial Class POS
         Me.Label76.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label76.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label76.ForeColor = System.Drawing.Color.White
-        Me.Label76.Location = New System.Drawing.Point(150, 0)
+        Me.Label76.Location = New System.Drawing.Point(127, 0)
         Me.Label76.Name = "Label76"
-        Me.Label76.Size = New System.Drawing.Size(18, 19)
+        Me.Label76.Size = New System.Drawing.Size(41, 19)
         Me.Label76.TabIndex = 58
-        Me.Label76.Text = "0"
+        Me.Label76.Text = "0.00"
         '
         'Panel28
         '
@@ -1566,16 +1476,16 @@ Partial Class POS
         Me.Panel13.Controls.Add(Me.DataGridView3)
         Me.Panel13.Controls.Add(Me.TextBoxPRICE)
         Me.Panel13.Controls.Add(Me.DataGridView2)
-        Me.Panel13.Controls.Add(Me.TextBoxFormulaID)
-        Me.Panel13.Controls.Add(Me.TextBoxNAME)
         Me.Panel13.Controls.Add(Me.DataGridView1)
-        Me.Panel13.Controls.Add(Me.TextBoxINC)
         Me.Panel13.Controls.Add(Me.Panel17)
-        Me.Panel13.Controls.Add(Me.TextBoxMAXID)
+        Me.Panel13.Controls.Add(Me.TextBoxFormulaID)
         Me.Panel13.Controls.Add(Me.Panel18)
-        Me.Panel13.Controls.Add(Me.TextBoxPressQTY)
+        Me.Panel13.Controls.Add(Me.TextBoxINC)
+        Me.Panel13.Controls.Add(Me.TextBoxNAME)
         Me.Panel13.Controls.Add(Me.Panel15)
+        Me.Panel13.Controls.Add(Me.TextBoxPressQTY)
         Me.Panel13.Controls.Add(Me.Panel16)
+        Me.Panel13.Controls.Add(Me.TextBoxMAXID)
         Me.Panel13.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel13.Font = New System.Drawing.Font("Century Gothic", 9.75!)
         Me.Panel13.Location = New System.Drawing.Point(10, 116)
@@ -1772,7 +1682,7 @@ Partial Class POS
         Me.DataGridView2.AllowUserToResizeColumns = False
         Me.DataGridView2.AllowUserToResizeRows = False
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(274, 227)
+        Me.DataGridView2.Location = New System.Drawing.Point(610, 227)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.ReadOnly = True
         Me.DataGridView2.RowHeadersVisible = False
@@ -1837,6 +1747,96 @@ Partial Class POS
         '
         'BackgroundWorker3
         '
+        '
+        'Column1
+        '
+        Me.Column1.FillWeight = 160.0!
+        Me.Column1.HeaderText = "Name"
+        Me.Column1.Name = "Column1"
+        '
+        'Column2
+        '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Column2.FillWeight = 65.65144!
+        Me.Column2.HeaderText = "Qty"
+        Me.Column2.Name = "Column2"
+        '
+        'Column3
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column3.DefaultCellStyle = DataGridViewCellStyle3
+        Me.Column3.FillWeight = 65.65144!
+        Me.Column3.HeaderText = "Price"
+        Me.Column3.Name = "Column3"
+        '
+        'Column4
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Column4.FillWeight = 65.65144!
+        Me.Column4.HeaderText = "Total"
+        Me.Column4.Name = "Column4"
+        '
+        'Column9
+        '
+        Me.Column9.HeaderText = "Column9"
+        Me.Column9.Name = "Column9"
+        Me.Column9.Visible = False
+        '
+        'Column12
+        '
+        Me.Column12.HeaderText = "Product ID"
+        Me.Column12.Name = "Column12"
+        Me.Column12.Visible = False
+        '
+        'Column13
+        '
+        Me.Column13.HeaderText = "SKU"
+        Me.Column13.Name = "Column13"
+        Me.Column13.Visible = False
+        '
+        'Column16
+        '
+        Me.Column16.HeaderText = "ColumnCAT"
+        Me.Column16.Name = "Column16"
+        Me.Column16.Visible = False
+        '
+        'Column17
+        '
+        Me.Column17.HeaderText = "ColumnCATOF"
+        Me.Column17.Name = "Column17"
+        Me.Column17.Visible = False
+        '
+        'Column19
+        '
+        Me.Column19.HeaderText = "ColumnSumID"
+        Me.Column19.Name = "Column19"
+        Me.Column19.Visible = False
+        '
+        'Column43
+        '
+        Me.Column43.HeaderText = "ColumnInvID"
+        Me.Column43.Name = "Column43"
+        Me.Column43.Visible = False
+        '
+        'Column20
+        '
+        Me.Column20.HeaderText = "Upgrade"
+        Me.Column20.Name = "Column20"
+        Me.Column20.Visible = False
+        '
+        'Column42
+        '
+        Me.Column42.HeaderText = "Origin"
+        Me.Column42.Name = "Column42"
+        Me.Column42.Visible = False
+        '
+        'Column45
+        '
+        Me.Column45.HeaderText = "addontype"
+        Me.Column45.Name = "Column45"
+        Me.Column45.Visible = False
         '
         'POS
         '

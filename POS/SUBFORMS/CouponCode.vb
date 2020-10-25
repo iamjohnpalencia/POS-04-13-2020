@@ -85,8 +85,7 @@ Public Class CouponCode
                 '  MsgBox("Coupon is " & Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value)
                 couponbundle3()
             End If
-
-
+            Compute()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -144,16 +143,12 @@ Public Class CouponCode
                 Else
                     'CouponDefault()
                     With POS.DataGridViewOrders
-
                         Dim SeniorPwdDisk = DataGridViewCoupons.SelectedRows(0).Cells(3).Value / 100
                         Dim Tax = 1 + Val(S_Tax)
                         Dim GROSSSALES As Double = Double.Parse(POS.TextBoxGRANDTOTAL.Text)
                         Dim TotalCountedAmount As Double = SeniorPWd + SeniorPWdDrinks
                         Dim SENIOR20PERCENT As Double = TotalCountedAmount / Tax * SeniorPwdDisk
                         SENIOR20PERCENT = Math.Round(SENIOR20PERCENT, 2, MidpointRounding.AwayFromZero)
-                        'Dim ZERORATEDSALE As Double = GROSSSALES - SENIOR20PERCENT
-                        'ZERORATEDSALE = Math.Round(ZERORATEDSALE, 2)
-                        'Dim NetSales As Double = ZERORATEDSALE
                         With POS
                             .GROSSSALE = GROSSSALES
                             .VATABLESALES = 0
@@ -162,7 +157,6 @@ Public Class CouponCode
                             .TOTALDISCOUNTEDAMOUNT = TotalCountedAmount
                             .VATEXEMPTSALES = 0
                             .TOTALDISCOUNT = SENIOR20PERCENT
-
                             .ZERORATEDSALES = .Label76.Text
                             .ZERORATEDNETSALES = .Label76.Text - SENIOR20PERCENT
                             .TextBoxGRANDTOTAL.Text = Format(.Label76.Text - SENIOR20PERCENT, "##,##0.00")

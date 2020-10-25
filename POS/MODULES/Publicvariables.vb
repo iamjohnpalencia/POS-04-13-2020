@@ -35,7 +35,7 @@ Module publicVariables
     Public payment As Boolean = False
     Public posandpendingenter As Boolean = False
     Public productprice As Integer
-    Public deleteitem As Boolean = False
+    Public Deleteitem As Boolean = False
 
     Public qtyisgreaterthanstock As Boolean = False
     Public hastextboxqty As Boolean = False
@@ -56,7 +56,6 @@ Module publicVariables
     'POS INFORMATION
     Public ClientCrewID As String
     Public ClientRole As String
-
     Public ClientGuid As String
     Public ClientStoreID As String
     Public ClientBrand As String
@@ -134,4 +133,8 @@ Module publicVariables
     Public SENIORDETAILSBOOL As Boolean = False
     Public SeniorDetailsID As String
     Public SeniorDetailsName As String
+
+    Public ProductTotalPrice As Double = 0
+    Public HASOTHERSLOCALPRODUCT As Boolean = False
+    Public HASOTHERSSERVERPRODUCT As Boolean = False
 End Module

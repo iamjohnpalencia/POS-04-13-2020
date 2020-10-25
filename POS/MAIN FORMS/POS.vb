@@ -162,66 +162,66 @@ Public Class POS
 
     Private Sub Button38_Click(sender As Object, e As EventArgs) Handles ButtonEnter.Click
         If payment = False Then
-            Try
-                If TextBoxPRICE.Text = "" And TextBoxNAME.Text = "" Then
-                    MsgBox("Select Product first!")
-                Else
-                    If TextBoxQTY.Text <> 0 Then
-                        Dim TotalPrice As Double = 0
-                        Dim Upgrade As Double = 0
-                        If S_ZeroRated = "0" Then
-                            TotalPrice = 1 * Val(TextBoxPRICE.Text)
-                            Upgrade = Val(S_Upgrade_Price)
-                        Else
-                            Dim Tax = 1 + Val(S_Tax)
-                            Dim ZeroRated = Val(TextBoxPRICE.Text) / Tax
-                            TotalPrice = Math.Round(ZeroRated, 2, MidpointRounding.AwayFromZero)
-                            Upgrade = Math.Round(Val(S_Upgrade_Price) / Tax, 2, MidpointRounding.AwayFromZero)
-                        End If
+            'Try
+            '    If TextBoxPRICE.Text = "" And TextBoxNAME.Text = "" Then
+            '        MsgBox("Select Product first!")
+            '    Else
+            '        If TextBoxQTY.Text <> 0 Then
+            '            Dim TotalPrice As Double = 0
+            '            Dim Upgrade As Double = 0
+            '            If S_ZeroRated = "0" Then
+            '                TotalPrice = 1 * Val(TextBoxPRICE.Text)
+            '                Upgrade = Val(S_Upgrade_Price)
+            '            Else
+            '                Dim Tax = 1 + Val(S_Tax)
+            '                Dim ZeroRated = Val(TextBoxPRICE.Text) / Tax
+            '                TotalPrice = Math.Round(ZeroRated, 2, MidpointRounding.AwayFromZero)
+            '                Upgrade = Math.Round(Val(S_Upgrade_Price) / Tax, 2, MidpointRounding.AwayFromZero)
+            '            End If
 
-                        If DataGridViewOrders.Rows.Count > 0 Then
-                            DataGridViewOrders.SelectedRows(0).Cells(1).Value = Val(TextBoxQTY.Text)
-                            If DataGridViewOrders.SelectedRows(0).Cells(11).Value > 0 Then
-                                Dim priceadd = DataGridViewOrders.SelectedRows(0).Cells(11).Value * Upgrade
-                                DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * TotalPrice + priceadd
-                            Else
-                                DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * TotalPrice
-                            End If
-                            Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
-                            Dim test As Boolean = False
-                            For Each row In DataGridViewInv.Rows
-                                If TextBoxNAME.Text = row.Cells("Column10").Value Then
-                                    test = True
-                                    Exit For
-                                End If
-                            Next
-                            For i As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
-                                If DataGridViewOrders.SelectedRows(0).Cells(7).Value <> "Add-Ons" Then
-                                    If DataGridViewInv.Rows(i).Cells(4).Value.ToString() = DataGridViewOrders.SelectedRows(0).Cells(0).Value Then
-                                        DataGridViewInv.Rows(i).Cells(0).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * DataGridViewInv.Rows(i).Cells(5).Value.ToString()
-                                        DataGridViewInv.Rows(i).Cells(2).Value = TextBoxQTY.Text
-                                    End If
-                                Else
-                                    If DataGridViewOrders.SelectedRows(0).Cells(8).Value = DataGridViewInv.Rows(i).Cells(8).Value Then
-                                        If DataGridViewInv.Rows(i).Cells(4).Value.ToString = DataGridViewOrders.SelectedRows(0).Cells(0).Value.ToString Then
-                                            DataGridViewInv.Rows(i).Cells(0).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * DataGridViewInv.Rows(i).Cells(5).Value.ToString()
-                                            DataGridViewInv.Rows(i).Cells(2).Value = TextBoxQTY.Text
-                                        End If
-                                    End If
-                                End If
-                            Next
-                            TextBoxGRANDTOTAL.Text = Format(Val(Label76.Text), "##,##0.00")
-                        Else
-                            MsgBox("Select item first", vbInformation)
-                        End If
-                    End If
-                    TextBoxQTY.Text = 0
-                End If
+            '            If DataGridViewOrders.Rows.Count > 0 Then
+            '                DataGridViewOrders.SelectedRows(0).Cells(1).Value = Val(TextBoxQTY.Text)
+            '                If DataGridViewOrders.SelectedRows(0).Cells(11).Value > 0 Then
+            '                    Dim priceadd = DataGridViewOrders.SelectedRows(0).Cells(11).Value * Upgrade
+            '                    DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * TotalPrice + priceadd
+            '                Else
+            '                    DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * TotalPrice
+            '                End If
+            '                Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
+            '                Dim test As Boolean = False
+            '                For Each row In DataGridViewInv.Rows
+            '                    If TextBoxNAME.Text = row.Cells("Column10").Value Then
+            '                        test = True
+            '                        Exit For
+            '                    End If
+            '                Next
+            '                For i As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
+            '                    If DataGridViewOrders.SelectedRows(0).Cells(7).Value <> "Add-Ons" Then
+            '                        If DataGridViewInv.Rows(i).Cells(4).Value.ToString() = DataGridViewOrders.SelectedRows(0).Cells(0).Value Then
+            '                            DataGridViewInv.Rows(i).Cells(0).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * DataGridViewInv.Rows(i).Cells(5).Value.ToString()
+            '                            DataGridViewInv.Rows(i).Cells(2).Value = TextBoxQTY.Text
+            '                        End If
+            '                    Else
+            '                        If DataGridViewOrders.SelectedRows(0).Cells(8).Value = DataGridViewInv.Rows(i).Cells(8).Value Then
+            '                            If DataGridViewInv.Rows(i).Cells(4).Value.ToString = DataGridViewOrders.SelectedRows(0).Cells(0).Value.ToString Then
+            '                                DataGridViewInv.Rows(i).Cells(0).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * DataGridViewInv.Rows(i).Cells(5).Value.ToString()
+            '                                DataGridViewInv.Rows(i).Cells(2).Value = TextBoxQTY.Text
+            '                            End If
+            '                        End If
+            '                    End If
+            '                Next
+            '                TextBoxGRANDTOTAL.Text = Format(Val(Label76.Text), "##,##0.00")
+            '            Else
+            '                MsgBox("Select item first", vbInformation)
+            '            End If
+            '        End If
+            '        TextBoxQTY.Text = 0
+            '    End If
 
-            Catch ex As Exception
-                MsgBox(ex.ToString)
-                SendErrorReport(ex.ToString)
-            End Try
+            'Catch ex As Exception
+            '    MsgBox(ex.ToString)
+            '    SendErrorReport(ex.ToString)
+            'End Try
         End If
     End Sub
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles ButtonPendingOrders.Click
@@ -243,32 +243,31 @@ Public Class POS
         End If
     End Sub
     Private Sub ButtonPay_Click(sender As Object, e As EventArgs) Handles ButtonPayMent.Click
-        If ButtonPayMent.Text = "Checkout" Then
-            If Shift = "" Then
-                MessageBox.Show("Input cashier balance first", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Else
-                If S_Zreading <> Format(Now(), "yyyy-MM-dd") Then
-                    MessageBox.Show("Z-read first", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Try
+            If ButtonPayMent.Text = "Checkout" Then
+                If Shift = "" Then
+                    MessageBox.Show("Input cashier balance first", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Else
-                    Enabled = False
-                    PaymentForm.Show()
-                    Application.DoEvents()
-                    PaymentForm.TextBoxMONEY.Focus()
-                    PaymentForm.TextBoxTOTALPAY.Text = TextBoxGRANDTOTAL.Text
-                    'If S_ZeroRated = "0" Then
-
-                    'Else
-                    '    PaymentForm.TextBoxTOTALPAY.Text = Math.Round(Val(TextBoxGRANDTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-                    'End If
-
-                    PaymentForm.Focus()
+                    If S_Zreading <> Format(Now(), "yyyy-MM-dd") Then
+                        MessageBox.Show("Z-read first", "Z-Reading", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        Enabled = False
+                        PaymentForm.Show()
+                        Application.DoEvents()
+                        PaymentForm.TextBoxMONEY.Focus()
+                        PaymentForm.TextBoxTOTALPAY.Text = TextBoxGRANDTOTAL.Text
+                        PaymentForm.Focus()
+                    End If
                 End If
+            Else
+                BackgroundWorker3.WorkerReportsProgress = True
+                BackgroundWorker3.WorkerSupportsCancellation = True
+                BackgroundWorker3.RunWorkerAsync()
             End If
-        Else
-            BackgroundWorker3.WorkerReportsProgress = True
-            BackgroundWorker3.WorkerSupportsCancellation = True
-            BackgroundWorker3.RunWorkerAsync()
-        End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub ButtonWaffleUpgrade_Click(sender As Object, e As EventArgs) Handles ButtonWaffleUpgrade.Click
         Try
@@ -395,42 +394,27 @@ Public Class POS
                     End If
                 Next
                 datas = ""
-                deleteitem = True
+                Deleteitem = True
                 Dim dr As DataGridViewRow
                 For Each dr In DataGridViewOrders.SelectedRows
                     Dim sum As String = DataGridViewOrders.SelectedRows(0).Cells(3).Value.ToString
                     DataGridViewOrders.Rows.Remove(dr)
                     Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
-                    Dim discount As Double = Val(TextBoxDISCOUNT.Text / 100)
-                    Dim discounttotal As Double = Val(Label76.Text) * discount
-                    TextBoxSUBTOTAL.Text = Val(Label76.Text)
-                    'If S_ZeroRated = "0" Then
-                    '    TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
-                    '    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
-                    'Else
-                    '    TextBoxGRANDTOTAL.Text = TextBoxSUBTOTAL.Text - discounttotal
-                    '    TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-                    '    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
-                    'End If
-
-
-                    TextBoxSUBTOTAL.Text = Format(Val(TextBoxSUBTOTAL.Text), "##,##0.00")
-
+                    TextBoxSUBTOTAL.Text = Format(Val(Label76.Text), "##,##0.00")
+                    TextBoxGRANDTOTAL.Text = Format(Val(Label76.Text), "##,##0.00")
+                    TextBoxDISCOUNT.Text = Format(0, "##,##0.00")
                 Next
             Else
                 TextBoxQTY.Text = 0
                 MessageBox.Show("Add item first", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
             End If
             If DataGridViewOrders.Rows.Count > 0 Then
                 ButtonPayMent.Enabled = True
                 ButtonPendingOrders.Enabled = False
                 Buttonholdoder.Enabled = True
             Else
-
                 HASOTHERSLOCALPRODUCT = False
                 HASOTHERSSERVERPRODUCT = False
-
                 DISABLESERVEROTHERSPRODUCT = False
                 Panel3.Enabled = True
                 ButtonWaffleUpgrade.Enabled = True
@@ -453,15 +437,6 @@ Public Class POS
             Else
                 ButtonApplyCoupon.Enabled = False
             End If
-            Label76.Text = SumOfColumnsToDecimal(DataGridViewOrders, 3)
-            TextBoxSUBTOTAL.Text = Label76.Text
-            TextBoxGRANDTOTAL.Text = Label76.Text
-            'If S_ZeroRated = "0" Then
-            '   
-            'Else
-            '    TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-            '    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
-            'End If
 
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -488,27 +463,38 @@ Public Class POS
         End Try
     End Sub
     Private Sub ButtonCDISC_Click(sender As Object, e As EventArgs) Handles ButtonCDISC.Click
-        CouponApplied = False
-        Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
-        TextBoxSUBTOTAL.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
-        TextBoxGRANDTOTAL.Text = Label76.Text
-        'If S_ZeroRated = "0" Then
-        '    TextBoxGRANDTOTAL.Text = Label76.Text
-        'Else
-        '    TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-        '    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
-        'End If
-        TextBoxDISCOUNT.Text = 0
-        TOTALDISCOUNT = 0
-        GROSSSALE = 0
-        VATEXEMPTSALES = 0
-        LESSVAT = 0
-        TOTALDISCOUNTEDAMOUNT = 0
-        TOTALAMOUNTDUE = 0
-        VATABLESALES = 0
-        VAT12PERCENT = 0
-        ZERORATEDSALES = 0
-        CouponApplied = False
+        Try
+            TextBoxDISCOUNT.Text = "0.00"
+            CouponApplied = False
+            CouponDesc = ""
+            CouponTotal = 0
+            CouponName = ""
+            Compute()
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        '
+        'Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
+        'TextBoxSUBTOTAL.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
+        'TextBoxGRANDTOTAL.Text = Label76.Text
+        ''If S_ZeroRated = "0" Then
+        ''    TextBoxGRANDTOTAL.Text = Label76.Text
+        ''Else
+        ''    TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+        ''    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
+        ''End If
+        'TextBoxDISCOUNT.Text = 0
+        'TOTALDISCOUNT = 0
+        'GROSSSALE = 0
+        'VATEXEMPTSALES = 0
+        'LESSVAT = 0
+        'TOTALDISCOUNTEDAMOUNT = 0
+        'TOTALAMOUNTDUE = 0
+        'VATABLESALES = 0
+        'VAT12PERCENT = 0
+        'ZERORATEDSALES = 0
+        'CouponApplied = False
     End Sub
     Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles ButtonTransactionMode.Click
         If ButtonTransactionMode.Text = "Transaction Type" Then
@@ -755,19 +741,13 @@ Public Class POS
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonApplyCoupon.Click
         CouponApplied = False
-        TextBoxDISCOUNT.Text = 0
+        Enabled = False
+
+        TextBoxDISCOUNT.Text = "0.00"
         Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
         TextBoxSUBTOTAL.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
         TextBoxGRANDTOTAL.Text = Label76.Text
-        'If S_ZeroRated = "0" Then
-        '    TextBoxGRANDTOTAL.Text = Label76.Text
-        'Else
-        '    TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-        '    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
-        'End If
 
-        Enabled = False
-        'GetProductHighestValue()
         GetHighest()
         CouponCode.Show()
         CouponCode.ButtonSubmit.Enabled = True
@@ -1017,24 +997,25 @@ Public Class POS
                 If TRANSACTIONMODE = "Representation Expenses" Then
                     ACTIVE = 3
                 End If
-                If Val(TextBoxDISCOUNT.Text) = 0 Then
-                    VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-                    VATEXEMPTSALES = 0.00
-                    VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
-                    GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
-                End If
-                If S_ZeroRated = "1" Then
-                    VAT12PERCENT = 0
-                    LESSVAT = 0
-                    If CouponApplied = True Then
-                        'ZERORATEDSALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-                        'ZERORATEDNETSALES = ZERORATEDSALES
-                    Else
-                        ZERORATEDSALES = SUPERAMOUNTDUE
-                        VATABLESALES = ZERORATEDSALES
-                        ZERORATEDNETSALES = ZERORATEDSALES
-                    End If
-                End If
+
+                'If Val(TextBoxDISCOUNT.Text) = 0 Then
+                '    VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                '    VATEXEMPTSALES = 0.00
+                '    VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
+                '    GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
+                'End If
+                'If S_ZeroRated = "1" Then
+                '    VAT12PERCENT = 0
+                '    LESSVAT = 0
+                '    If CouponApplied = True Then
+                '        'ZERORATEDSALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                '        'ZERORATEDNETSALES = ZERORATEDSALES
+                '    Else
+                '        ZERORATEDSALES = SUPERAMOUNTDUE
+                '        VATABLESALES = ZERORATEDSALES
+                '        ZERORATEDNETSALES = ZERORATEDSALES
+                '    End If
+                'End If
                 sql = "SELECT si_number FROM loc_daily_transaction ORDER BY transaction_id DESC limit 1"
                 cmd = New MySqlCommand(sql, LocalhostConn)
                 da = New MySqlDataAdapter(cmd)
@@ -1056,54 +1037,54 @@ Public Class POS
                     BackgroundWorker1.ReportProgress(i)
                     If i = 0 Then
                         .Label1.Text = "Transaction is processing. Please wait."
-                        thread = New Thread(AddressOf InsertFMStock)
-                        thread.Start()
-                        THREADLIST.Add(thread)
-                        For Each t In THREADLIST
-                            t.Join()
-                        Next
-                        thread = New Thread(AddressOf UpdateInventory)
-                        thread.Start()
-                        THREADLIST.Add(thread)
-                        For Each t In THREADLIST
-                            t.Join()
-                        Next
-                        thread = New Thread(AddressOf InsertDailyTransaction)
-                        thread.Start()
-                        THREADLIST.Add(thread)
-                        For Each t In THREADLIST
-                            t.Join()
-                        Next
-                        thread = New Thread(AddressOf InsertDailyDetails)
-                        thread.Start()
-                        THREADLIST.Add(thread)
-                        For Each t In THREADLIST
-                            t.Join()
-                        Next
-                        If modeoftransaction = True Then
-                            thread = New Thread(AddressOf InsertModeofTransaction)
-                            thread.Start()
-                            THREADLIST.Add(thread)
-                            For Each t In THREADLIST
-                                t.Join()
-                            Next
-                        End If
-                        If SENIORDETAILSBOOL = True Then
-                            thread = New Thread(AddressOf InsertSeniorDetails)
-                            thread.Start()
-                            THREADLIST.Add(thread)
-                            For Each t In THREADLIST
-                                t.Join()
-                            Next
-                        End If
-                        If CouponApplied = True Then
-                            thread = New Thread(AddressOf InsertCouponData)
-                            thread.Start()
-                            THREADLIST.Add(thread)
-                            For Each t In THREADLIST
-                                t.Join()
-                            Next
-                        End If
+                        'thread = New Thread(AddressOf InsertFMStock)
+                        'thread.Start()
+                        'THREADLIST.Add(thread)
+                        'For Each t In THREADLIST
+                        '    t.Join()
+                        'Next
+                        'thread = New Thread(AddressOf UpdateInventory)
+                        'thread.Start()
+                        'THREADLIST.Add(thread)
+                        'For Each t In THREADLIST
+                        '    t.Join()
+                        'Next
+                        'thread = New Thread(AddressOf InsertDailyTransaction)
+                        'thread.Start()
+                        'THREADLIST.Add(thread)
+                        'For Each t In THREADLIST
+                        '    t.Join()
+                        'Next
+                        'thread = New Thread(AddressOf InsertDailyDetails)
+                        'thread.Start()
+                        'THREADLIST.Add(thread)
+                        'For Each t In THREADLIST
+                        '    t.Join()
+                        'Next
+                        'If modeoftransaction = True Then
+                        '    thread = New Thread(AddressOf InsertModeofTransaction)
+                        '    thread.Start()
+                        '    THREADLIST.Add(thread)
+                        '    For Each t In THREADLIST
+                        '        t.Join()
+                        '    Next
+                        'End If
+                        'If SENIORDETAILSBOOL = True Then
+                        '    thread = New Thread(AddressOf InsertSeniorDetails)
+                        '    thread.Start()
+                        '    THREADLIST.Add(thread)
+                        '    For Each t In THREADLIST
+                        '        t.Join()
+                        '    Next
+                        'End If
+                        'If CouponApplied = True Then
+                        '    thread = New Thread(AddressOf InsertCouponData)
+                        '    thread.Start()
+                        '    THREADLIST.Add(thread)
+                        '    For Each t In THREADLIST
+                        '        t.Join()
+                        '    Next
+                        'End If
                     End If
                     Thread.Sleep(10)
                 Next
