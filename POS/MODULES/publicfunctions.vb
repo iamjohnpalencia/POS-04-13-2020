@@ -445,8 +445,8 @@ Module publicfunctions
         With POS
             .Label76.Text = SumOfColumnsToDecimal(.DataGridViewOrders, 3)
             .TextBoxSUBTOTAL.Text = .Label76.Text
-
-            .TextBoxGRANDTOTAL.Text = Format(TwoDecimalPlaces(Val(.Label76.Text) - Val(.TextBoxDISCOUNT.Text)), "##,##0.00")
+            Dim Total = Double.Parse(.Label76.Text) - Double.Parse(.TextBoxDISCOUNT.Text)
+            .TextBoxGRANDTOTAL.Text = Format(TwoDecimalPlaces(Total), "###,###,##0.00")
         End With
     End Sub
 End Module
