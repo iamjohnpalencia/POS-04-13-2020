@@ -220,12 +220,12 @@ Public Class Reports
     Public Sub reportssales(ByVal searchdate As Boolean)
         Try
             table = "`loc_daily_transaction_details`"
-            fields = "`product_sku`, `product_name`, `quantity`, `price`, `total`, `created_at`"
+            fields = "`product_sku`, `product_name`, sum(`quantity`), `price`, sum(`total`), `created_at`"
             If searchdate = False Then
-                where = " zreading = CURRENT_DATE()  AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                where = " zreading = CURRENT_DATE()  AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' GROUP BY `product_name`"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewSales, errormessage:="", fields:=fields, successmessage:="", where:=where)
             Else
-                where = " zreading >= '" & Format(DateTimePicker3.Value, "yyyy-MM-dd") & "' AND zreading <= '" & Format(DateTimePicker4.Value, "yyyy-MM-dd") & "' AND active = 1  AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
+                where = " zreading >= '" & Format(DateTimePicker3.Value, "yyyy-MM-dd") & "' AND zreading <= '" & Format(DateTimePicker4.Value, "yyyy-MM-dd") & "' AND active = 1  AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'  GROUP BY `product_name`"
                 GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewSales, errormessage:="", fields:=fields, successmessage:="", where:=where)
             End If
             With DataGridViewSales
@@ -1066,7 +1066,7 @@ Public Class Reports
             B = 0
             ColumnSpacing = 0
         Else
-            MsgBox("Create deposit slip report first.")
+            MsgBox("Select returned product first.")
         End If
     End Sub
 End Class

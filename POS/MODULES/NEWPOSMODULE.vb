@@ -393,15 +393,20 @@ Module NEWPOSMODULE
                                                 .WaffleUpgrade = False
                                                 .ButtonWaffleUpgrade.Text = "Waffle Upgrade"
                                             End If
-                                            .DataGridViewOrders.Rows(i).Cells(11).Value += 1
+                                            If .DataGridViewOrders.Rows(i).Cells(9).Value = "WAFFLE" Then
+                                                .DataGridViewOrders.Rows(i).Cells(11).Value += 1
+                                            End If
                                             Dim TotalUpgrade As Double = .DataGridViewOrders.Rows(i).Cells(11).Value * Val(S_Upgrade_Price)
                                             .DataGridViewOrders.Rows(i).Cells(1).Value += 1
                                             Dim PriceXQuantity As Double = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value
                                             TotalProductPrice = PriceXQuantity + TotalUpgrade
                                             .DataGridViewOrders.Rows(i).Cells(3).Value = TwoDecimalPlaces(TotalProductPrice)
                                         Else
+                                            Dim TotalUpgrade As Double = .DataGridViewOrders.Rows(i).Cells(11).Value * Val(S_Upgrade_Price)
                                             .DataGridViewOrders.Rows(i).Cells(1).Value += 1
+                                            Dim PriceXQuantity As Double = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value
                                             TotalProductPrice = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value
+                                            TotalProductPrice = PriceXQuantity + TotalUpgrade
                                             .DataGridViewOrders.Rows(i).Cells(3).Value = TwoDecimalPlaces(TotalProductPrice)
                                         End If
                                     End If
@@ -440,8 +445,10 @@ Module NEWPOSMODULE
                                             TotalProductPrice = PriceXQuantity + TotalUpgrade
                                             .DataGridViewOrders.Rows(i).Cells(3).Value = TwoDecimalPlaces(TotalProductPrice / Tax)
                                         Else
+                                            Dim TotalUpgrade As Double = .DataGridViewOrders.Rows(i).Cells(11).Value * Val(S_Upgrade_Price)
                                             .DataGridViewOrders.Rows(i).Cells(1).Value += 1
-                                            TotalProductPrice = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value
+                                            Dim PriceXQuantity As Double = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value
+                                            TotalProductPrice = PriceXQuantity + TotalUpgrade
                                             .DataGridViewOrders.Rows(i).Cells(3).Value = TwoDecimalPlaces(TotalProductPrice / Tax)
                                         End If
                                     End If

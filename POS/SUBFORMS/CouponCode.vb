@@ -1,17 +1,55 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports System.Threading
 Public Class CouponCode
+    Dim ThreadList As List(Of Thread) = New List(Of Thread)
+    Dim Thread As Thread
+
     Private Sub CouponCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            Dim LoadCouponTable = AsDatatable("tbcoupon WHERE active = 1", "*", DataGridViewCoupons)
-            For Each row As DataRow In LoadCouponTable.Rows
-                DataGridViewCoupons.Rows.Add(row("ID"), row("Couponname_"), row("Desc_"), row("Discountvalue_"), row("Referencevalue_"), row("Type"), row("Bundlebase_"), row("BBValue_"), row("Bundlepromo_"), row("BPValue_"), row("Effectivedate"), row("Expirydate"))
-            Next
-            If LoadCouponTable.Rows.Count > 0 Then
-                Dim arg = New DataGridViewCellEventArgs(0, 0)
-                DataGridViewCoupons_CellClick(sender, arg)
-            End If
+            CheckForIllegalCrossThreadCalls = False
+            BackgroundWorker1.WorkerReportsProgress = True
+            BackgroundWorker1.WorkerSupportsCancellation = True
+            BackgroundWorker1.RunWorkerAsync()
         Catch ex As Exception
             MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+        Try
+            Thread = New Thread(AddressOf LoadCoupons)
+            Thread.Start()
+            ThreadList.Add(Thread)
+            For Each t In ThreadList
+                t.Join()
+                If (BackgroundWorker1.CancellationPending) Then
+                    ' Indicate that the task was canceled.
+                    e.Cancel = True
+                    Exit For
+                End If
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub LoadCoupons(sender As Object)
+        Try
+            Try
+                Dim LoadCouponTable = AsDatatable("tbcoupon WHERE active = 1", "*", DataGridViewCoupons)
+                For Each row As DataRow In LoadCouponTable.Rows
+                    DataGridViewCoupons.Rows.Add(row("ID"), row("Couponname_"), row("Desc_"), row("Discountvalue_"), row("Referencevalue_"), row("Type"), row("Bundlebase_"), row("BBValue_"), row("Bundlepromo_"), row("BPValue_"), row("Effectivedate"), row("Expirydate"))
+                Next
+                If LoadCouponTable.Rows.Count > 0 Then
+                    Dim arg = New DataGridViewCellEventArgs(0, 0)
+                    DataGridViewCoupons_CellClick(sender, arg)
+                End If
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+            End Try
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub CouponCode_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -808,4 +846,6 @@ Public Class CouponCode
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+
+
 End Class

@@ -161,68 +161,114 @@ Public Class POS
     End Sub
 
     Private Sub Button38_Click(sender As Object, e As EventArgs) Handles ButtonEnter.Click
-        If payment = False Then
-            'Try
-            '    If TextBoxPRICE.Text = "" And TextBoxNAME.Text = "" Then
-            '        MsgBox("Select Product first!")
-            '    Else
-            '        If TextBoxQTY.Text <> 0 Then
-            '            Dim TotalPrice As Double = 0
-            '            Dim Upgrade As Double = 0
-            '            If S_ZeroRated = "0" Then
-            '                TotalPrice = 1 * Val(TextBoxPRICE.Text)
-            '                Upgrade = Val(S_Upgrade_Price)
-            '            Else
-            '                Dim Tax = 1 + Val(S_Tax)
-            '                Dim ZeroRated = Val(TextBoxPRICE.Text) / Tax
-            '                TotalPrice = Math.Round(ZeroRated, 2, MidpointRounding.AwayFromZero)
-            '                Upgrade = Math.Round(Val(S_Upgrade_Price) / Tax, 2, MidpointRounding.AwayFromZero)
-            '            End If
 
-            '            If DataGridViewOrders.Rows.Count > 0 Then
-            '                DataGridViewOrders.SelectedRows(0).Cells(1).Value = Val(TextBoxQTY.Text)
-            '                If DataGridViewOrders.SelectedRows(0).Cells(11).Value > 0 Then
-            '                    Dim priceadd = DataGridViewOrders.SelectedRows(0).Cells(11).Value * Upgrade
-            '                    DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * TotalPrice + priceadd
-            '                Else
-            '                    DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * TotalPrice
-            '                End If
-            '                Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
-            '                Dim test As Boolean = False
-            '                For Each row In DataGridViewInv.Rows
-            '                    If TextBoxNAME.Text = row.Cells("Column10").Value Then
-            '                        test = True
-            '                        Exit For
-            '                    End If
-            '                Next
-            '                For i As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
-            '                    If DataGridViewOrders.SelectedRows(0).Cells(7).Value <> "Add-Ons" Then
-            '                        If DataGridViewInv.Rows(i).Cells(4).Value.ToString() = DataGridViewOrders.SelectedRows(0).Cells(0).Value Then
-            '                            DataGridViewInv.Rows(i).Cells(0).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * DataGridViewInv.Rows(i).Cells(5).Value.ToString()
-            '                            DataGridViewInv.Rows(i).Cells(2).Value = TextBoxQTY.Text
-            '                        End If
-            '                    Else
-            '                        If DataGridViewOrders.SelectedRows(0).Cells(8).Value = DataGridViewInv.Rows(i).Cells(8).Value Then
-            '                            If DataGridViewInv.Rows(i).Cells(4).Value.ToString = DataGridViewOrders.SelectedRows(0).Cells(0).Value.ToString Then
-            '                                DataGridViewInv.Rows(i).Cells(0).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * DataGridViewInv.Rows(i).Cells(5).Value.ToString()
-            '                                DataGridViewInv.Rows(i).Cells(2).Value = TextBoxQTY.Text
-            '                            End If
-            '                        End If
-            '                    End If
-            '                Next
-            '                TextBoxGRANDTOTAL.Text = Format(Val(Label76.Text), "##,##0.00")
-            '            Else
-            '                MsgBox("Select item first", vbInformation)
-            '            End If
-            '        End If
-            '        TextBoxQTY.Text = 0
-            '    End If
+        Try
+            If payment = False Then
+                Dim Tax = 1 + Val(S_Tax)
+                Dim TotalProductPrice As Double = 0
+                Dim productprice = DataGridViewOrders.SelectedRows(0).Cells(2).Value
+                'Procedure: 1 Product Qty
+                If DataGridViewOrders.Rows.Count > 0 Then
+                    If S_ZeroRated = "0" Then
+                        'Price not / by 1.12
+                        If WaffleUpgrade Then
+                            'Price plus waffle upgrade price
+                            Dim TotalPrice As Integer = 0
+                            TotalPrice = Val(TextBoxQTY.Text) * Val(productprice)
+                            Dim TotalUpgrade As Integer = 0
+                            TotalUpgrade = Val(TextBoxQTY.Text) * Val(S_Upgrade_Price)
+                            TotalProductPrice = TwoDecimalPlaces(TotalPrice + TotalUpgrade)
+                            DataGridViewOrders.SelectedRows(0).Cells(11).Value = TextBoxQTY.Text
+                        Else
+                            Dim TotalPrice As Integer = 0
+                            TotalPrice = Val(TextBoxQTY.Text) * Val(productprice)
+                            TotalProductPrice = TwoDecimalPlaces(TotalPrice)
+                        End If
+                    Else
+                        If WaffleUpgrade Then
+                            Dim TotalPrice As Integer = 0
+                            TotalPrice = Val(TextBoxQTY.Text) * Val(productprice)
+                            Dim TotalUgrade As Integer = 0
+                            TotalUgrade = Val(TextBoxQTY.Text) * Val(S_Upgrade_Price)
+                            Dim WaffleAddPriceTotal = TotalPrice + TotalUgrade
+                            TotalProductPrice = TwoDecimalPlaces(WaffleAddPriceTotal / Tax)
+                            DataGridViewOrders.SelectedRows(0).Cells(11).Value = TextBoxQTY.Text
+                        Else
+                            Dim TotalPrice As Integer = 0
+                            TotalPrice = Val(TextBoxQTY.Text) * Val(productprice)
+                            TotalProductPrice = TwoDecimalPlaces(TotalPrice / Tax)
+                        End If
+                        DataGridViewOrders.SelectedRows(0).Cells(1).Value = TextBoxQTY.Text
+                        DataGridViewOrders.SelectedRows(0).Cells(3).Value = TotalProductPrice
+                    End If
+                    TextBoxQTY.Text = 0
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+        'Try
+        '    If TextBoxPRICE.Text = "" And TextBoxNAME.Text = "" Then
+        '        MsgBox("Select Product first!")
+        '    Else
+        '        If TextBoxQTY.Text <> 0 Then
+        '            Dim TotalPrice As Double = 0
+        '            Dim Upgrade As Double = 0
+        '            If S_ZeroRated = "0" Then
+        '                TotalPrice = 1 * Val(TextBoxPRICE.Text)
+        '                Upgrade = Val(S_Upgrade_Price)
+        '            Else
+        '                Dim Tax = 1 + Val(S_Tax)
+        '                Dim ZeroRated = Val(TextBoxPRICE.Text) / Tax
+        '                TotalPrice = Math.Round(ZeroRated, 2, MidpointRounding.AwayFromZero)
+        '                Upgrade = Math.Round(Val(S_Upgrade_Price) / Tax, 2, MidpointRounding.AwayFromZero)
+        '            End If
 
-            'Catch ex As Exception
-            '    MsgBox(ex.ToString)
-            '    SendErrorReport(ex.ToString)
-            'End Try
-        End If
+        '            If DataGridViewOrders.Rows.Count > 0 Then
+        '                DataGridViewOrders.SelectedRows(0).Cells(1).Value = Val(TextBoxQTY.Text)
+        '                If DataGridViewOrders.SelectedRows(0).Cells(11).Value > 0 Then
+        '                    Dim priceadd = DataGridViewOrders.SelectedRows(0).Cells(11).Value * Upgrade
+        '                    DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * TotalPrice + priceadd
+        '                Else
+        '                    DataGridViewOrders.SelectedRows(0).Cells(3).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * TotalPrice
+        '                End If
+        '                Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
+        '                Dim test As Boolean = False
+        '                For Each row In DataGridViewInv.Rows
+        '                    If TextBoxNAME.Text = row.Cells("Column10").Value Then
+        '                        test = True
+        '                        Exit For
+        '                    End If
+        '                Next
+        '                For i As Integer = 0 To DataGridViewInv.Rows.Count - 1 Step +1
+        '                    If DataGridViewOrders.SelectedRows(0).Cells(7).Value <> "Add-Ons" Then
+        '                        If DataGridViewInv.Rows(i).Cells(4).Value.ToString() = DataGridViewOrders.SelectedRows(0).Cells(0).Value Then
+        '                            DataGridViewInv.Rows(i).Cells(0).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * DataGridViewInv.Rows(i).Cells(5).Value.ToString()
+        '                            DataGridViewInv.Rows(i).Cells(2).Value = TextBoxQTY.Text
+        '                        End If
+        '                    Else
+        '                        If DataGridViewOrders.SelectedRows(0).Cells(8).Value = DataGridViewInv.Rows(i).Cells(8).Value Then
+        '                            If DataGridViewInv.Rows(i).Cells(4).Value.ToString = DataGridViewOrders.SelectedRows(0).Cells(0).Value.ToString Then
+        '                                DataGridViewInv.Rows(i).Cells(0).Value = DataGridViewOrders.SelectedRows(0).Cells(1).Value * DataGridViewInv.Rows(i).Cells(5).Value.ToString()
+        '                                DataGridViewInv.Rows(i).Cells(2).Value = TextBoxQTY.Text
+        '                            End If
+        '                        End If
+        '                    End If
+        '                Next
+        '                TextBoxGRANDTOTAL.Text = Format(Val(Label76.Text), "##,##0.00")
+        '            Else
+        '                MsgBox("Select item first", vbInformation)
+        '            End If
+        '        End If
+        '        TextBoxQTY.Text = 0
+        '    End If
+
+        'Catch ex As Exception
+        '    MsgBox(ex.ToString)
+        '    SendErrorReport(ex.ToString)
+        'End Try
+
     End Sub
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles ButtonPendingOrders.Click
         Dim newMDIchild As New PendingOrders()
@@ -997,7 +1043,23 @@ Public Class POS
                 If TRANSACTIONMODE = "Representation Expenses" Then
                     ACTIVE = 3
                 End If
-
+                GROSSSALE = Format(Val(TextBoxSUBTOTAL.Text), "###,###,##0.00")
+                If S_ZeroRated = "0" Then
+                    VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                    VATEXEMPTSALES = 0.00
+                    VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
+                    GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
+                Else
+                    If CouponApplied Then
+                        VAT12PERCENT = 0
+                        LESSVAT = 0
+                        VATABLESALES = 0
+                    Else
+                        ZERORATEDSALES = SUPERAMOUNTDUE
+                        VATABLESALES = ZERORATEDSALES
+                        ZERORATEDNETSALES = ZERORATEDSALES
+                    End If
+                End If
                 'If Val(TextBoxDISCOUNT.Text) = 0 Then
                 '    VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
                 '    VATEXEMPTSALES = 0.00
@@ -1159,8 +1221,8 @@ Public Class POS
             Buttonholdoder.Enabled = False
             ButtonPendingOrders.Enabled = True
             payment = False
-            Label76.Text = 0
-            TextBoxDISCOUNT.Text = 0
+
+
             TRANSACTIONMODE = "Walk-In"
             CouponApplied = False
             CouponName = ""
@@ -1184,6 +1246,10 @@ Public Class POS
             SENIORDETAILSBOOL = False
             SeniorDetailsID = ""
             SeniorDetailsName = ""
+            Label76.Text = "0.00"
+            TextBoxDISCOUNT.Text = "0.00"
+            TextBoxSUBTOTAL.Text = "0.00"
+            TextBoxGRANDTOTAL.Text = "0.00"
         Else
             MsgBox("Select Transaction First!")
         End If

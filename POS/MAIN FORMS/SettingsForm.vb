@@ -8,36 +8,50 @@ Public Class SettingsForm
     Dim Coupons As Boolean = False
     Dim Updates As Boolean = False
     Private Sub SettingsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TabControl1.TabPages(0).Text = "General Settings"
-        TabControl1.TabPages(1).Text = "Partners Transaction"
-        TabControl1.TabPages(2).Text = "Formula"
-        TabControl1.TabPages(3).Text = "Item Refund"
-        TabControl1.TabPages(4).Text = "Coupon Settings"
-        TabControl1.TabPages(5).Text = "Updates"
-        TabControl2.TabPages(0).Text = "Connection Settings"
-        TabControl2.TabPages(1).Text = "Database Settings"
-        TabControl2.TabPages(2).Text = "Additional Settings"
+        Try
+            TabControl1.TabPages(0).Text = "General Settings"
+            TabControl1.TabPages(1).Text = "Partners Transaction"
+            TabControl1.TabPages(2).Text = "Formula"
+            TabControl1.TabPages(3).Text = "Item Refund"
+            TabControl1.TabPages(4).Text = "Coupon Settings"
+            TabControl1.TabPages(5).Text = "Updates"
+            TabControl2.TabPages(0).Text = "Connection Settings"
+            TabControl2.TabPages(1).Text = "Database Settings"
+            TabControl2.TabPages(2).Text = "Additional Settings"
 
-        TabControl4.TabPages(0).Text = "Create Coupon"
-        TabControl4.TabPages(1).Text = "Coupon List"
+            TabControl4.TabPages(0).Text = "Create Coupon"
+            TabControl4.TabPages(1).Text = "Coupon List"
 
-        TabControl5.TabPages(0).Text = "Available Coupon"
-        TabControl5.TabPages(1).Text = "Pending (For admin approval)"
-        LoadConn()
-        LoadCloudConn()
-        LoadAdditionalSettings()
-        LoadDevInfo()
-        LoadAutoBackup()
-        If ClientRole = "Crew" Then
-            ButtonPartnersPrio.Visible = False
-            ButtonAddBank.Visible = False
-            ButtonDeactivateBank.Visible = False
-            ButtonEditBank.Visible = False
-            ButtonPTActivate.Visible = False
-            ButtonChangeFormula.Visible = False
-            'ButtonSaveCoupon.Visible = False
-            'ButtonResetCoupon.Visible = False
-        End If
+            TabControl5.TabPages(0).Text = "Available Coupon"
+            TabControl5.TabPages(1).Text = "Pending (For admin approval)"
+            LoadConn()
+            LoadCloudConn()
+            LoadAdditionalSettings()
+            LoadDevInfo()
+            LoadAutoBackup()
+            If ClientRole = "Crew" Then
+                ButtonPartnersPrio.Visible = False
+                ButtonAddBank.Visible = False
+                ButtonDeactivateBank.Visible = False
+                ButtonEditBank.Visible = False
+                ButtonPTActivate.Visible = False
+                ButtonChangeFormula.Visible = False
+                ButtonDatabaseReset.Visible = False
+                ButtonMaintenance.Visible = False
+                ButtonOptimizeDB.Visible = False
+                ButtonImport.Visible = False
+                ButtonExport.Visible = False
+                Button1.Visible = False
+                Button2.Visible = False
+                ButtonCHelp.Visible = False
+                ButtonSaveCoupon.Visible = False
+                'ButtonSaveCoupon.Visible = False
+                'ButtonResetCoupon.Visible = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub SettingsForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         POS.Enabled = True
@@ -64,7 +78,6 @@ Public Class SettingsForm
             End If
         ElseIf TabControl1.SelectedIndex = 4 Then
             If Coupons = False Then
-                'loaddatagrid1()
                 ShowAllCoupons()
                 ShowAllCouponsPending()
                 FillComboboxSearch()
@@ -1274,7 +1287,6 @@ Public Class SettingsForm
                 Process.Start(Application.StartupPath & "\Update\Update.exe")
                 Application.Exit()
             Else
-                MsgBox("Complete")
                 My.Settings.Save()
             End If
             PictureBox1.Visible = False
