@@ -24,6 +24,19 @@ Public Class ManageProducts
     Public Sub LoadProductList()
         Try
             GLOBAL_SELECT_ALL_FUNCTION("loc_admin_products WHERE `product_category` <> 'Others' AND product_status = 1 ORDER BY `product_category` ASC ", "`product_id`, `server_product_id`, `product_sku`, `product_name`, `product_barcode`, `product_category`, `product_price`, `product_desc`,`product_status`, `origin`, `date_modified`", DataGridViewProductList)
+            With DataGridViewProductList
+                .Columns(0).Visible = False
+                .Columns(1).Visible = False
+                .Columns(4).Visible = False
+                .Columns(8).Visible = False
+                .Columns(9).Visible = False
+                .Columns(2).HeaderText = "Code"
+                .Columns(3).HeaderText = "Product Name"
+                .Columns(5).HeaderText = "Category"
+                .Columns(6).HeaderText = "Price"
+                .Columns(7).HeaderText = "Description"
+                .Columns(10).HeaderText = "Date Modified"
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -56,6 +69,19 @@ Public Class ManageProducts
     Public Sub LoadOthersApprove()
         Try
             GLOBAL_SELECT_ALL_FUNCTION("loc_admin_products WHERE `product_category` = 'Others' AND product_status = 1 ORDER BY `product_category` ASC ", "`product_id`, `server_product_id`, `product_sku`, `product_name`, `product_barcode`, `product_category`, `product_price`, `product_desc`,`product_status`, `origin`, `date_modified`", DataGridViewOthersApproved)
+            With DataGridViewOthersApproved
+                .Columns(0).Visible = False
+                .Columns(1).Visible = False
+                .Columns(4).Visible = False
+                .Columns(8).Visible = False
+                .Columns(9).Visible = False
+                .Columns(2).HeaderText = "Code"
+                .Columns(3).HeaderText = "Product Name"
+                .Columns(5).HeaderText = "Category"
+                .Columns(6).HeaderText = "Price"
+                .Columns(7).HeaderText = "Description"
+                .Columns(10).HeaderText = "Date Modified"
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -64,6 +90,19 @@ Public Class ManageProducts
     Public Sub LoadOthersPending()
         Try
             GLOBAL_SELECT_ALL_FUNCTION("loc_admin_products WHERE `product_category` = 'Others' AND product_status = 0 ORDER BY `product_category` ASC ", "`product_id`, `server_product_id`, `product_sku`, `product_name`, `product_barcode`, `product_category`, `product_price`, `product_desc`,`product_status`, `origin`, `date_modified`", DataGridViewOthersPending)
+            With DataGridViewOthersPending
+                .Columns(0).Visible = False
+                .Columns(1).Visible = False
+                .Columns(4).Visible = False
+                .Columns(8).Visible = False
+                .Columns(9).Visible = False
+                .Columns(2).HeaderText = "Code"
+                .Columns(3).HeaderText = "Product Name"
+                .Columns(5).HeaderText = "Category"
+                .Columns(6).HeaderText = "Price"
+                .Columns(7).HeaderText = "Description"
+                .Columns(10).HeaderText = "Date Modified"
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -72,6 +111,17 @@ Public Class ManageProducts
     Public Sub LoadPriceChange()
         Try
             GLOBAL_SELECT_ALL_FUNCTION("loc_price_request_change", "*", DataGridViewPriceRequest)
+            With DataGridViewPriceRequest
+                .Columns(0).Visible = False
+                .Columns(1).Visible = False
+                .Columns(4).Visible = False
+                .Columns(5).Visible = False
+                .Columns(6).Visible = False
+                .Columns(7).Visible = False
+                .Columns(8).Visible = False
+                .Columns(2).HeaderText = "Price Request"
+                .Columns(3).HeaderText = "Date Requested"
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
