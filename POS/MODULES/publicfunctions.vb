@@ -312,7 +312,7 @@ Module publicfunctions
             For i As Integer = 0 To .Rows.Count() - 1 Step +1
                 sum = sum + .Rows(i).Cells(celltocompute).Value
             Next
-            Return Format(sum, "##,##0.00")
+            Return Format(sum, "###,###,##0.00")
         End With
     End Function
     Public Function SumOfColumnsToInt(ByVal datagrid As DataGridView, ByVal celltocompute As Integer)

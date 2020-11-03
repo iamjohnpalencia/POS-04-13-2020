@@ -197,7 +197,7 @@ Public Class CouponCode
                             .TOTALDISCOUNT = SENIOR20PERCENT
                             .ZERORATEDSALES = .Label76.Text
                             .ZERORATEDNETSALES = .Label76.Text - SENIOR20PERCENT
-                            .TextBoxGRANDTOTAL.Text = Format(.Label76.Text - SENIOR20PERCENT, "##,##0.00")
+                            .TextBoxGRANDTOTAL.Text = Format(.Label76.Text - SENIOR20PERCENT, "###,###,##0.00")
                             .TextBoxDISCOUNT.Text = SENIOR20PERCENT
                         End With
                         SeniorGCDiscount = True
@@ -278,11 +278,11 @@ Public Class CouponCode
                     .VAT12PERCENT = 0
                     .TOTALAMOUNTDUE = TOTALAMOUNTDUE
                     .TextBoxGRANDTOTAL.Text = TOTALAMOUNTDUE
-                    .TextBoxDISCOUNT.Text = Format(TOTALDISCOUNT, "##,##0.00")
+                    .TextBoxDISCOUNT.Text = Format(TOTALDISCOUNT, "###,###,##0.00")
 
                     .ZERORATEDSALES = .Label76.Text
                     .ZERORATEDNETSALES = .Label76.Text - TOTALDISCOUNT
-                    .TextBoxGRANDTOTAL.Text = Format(.Label76.Text - TOTALDISCOUNT, "##,##0.00")
+                    .TextBoxGRANDTOTAL.Text = Format(.Label76.Text - TOTALDISCOUNT, "###,###,##0.00")
 
                     CouponDesc = ""
                     CouponTotal = TOTALDISCOUNT

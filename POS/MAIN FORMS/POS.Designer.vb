@@ -366,7 +366,7 @@ Partial Class POS
         Me.Panel32.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel32.Location = New System.Drawing.Point(203, 0)
         Me.Panel32.Name = "Panel32"
-        Me.Panel32.Size = New System.Drawing.Size(200, 34)
+        Me.Panel32.Size = New System.Drawing.Size(437, 34)
         Me.Panel32.TabIndex = 156
         '
         'Label13
@@ -1805,51 +1805,61 @@ Partial Class POS
         '
         Me.Column9.HeaderText = "Column9"
         Me.Column9.Name = "Column9"
+        Me.Column9.Visible = False
         '
         'Column12
         '
         Me.Column12.HeaderText = "Product ID"
         Me.Column12.Name = "Column12"
+        Me.Column12.Visible = False
         '
         'Column13
         '
         Me.Column13.HeaderText = "SKU"
         Me.Column13.Name = "Column13"
+        Me.Column13.Visible = False
         '
         'Column16
         '
         Me.Column16.HeaderText = "ColumnCAT"
         Me.Column16.Name = "Column16"
+        Me.Column16.Visible = False
         '
         'Column17
         '
         Me.Column17.HeaderText = "ColumnCATOF"
         Me.Column17.Name = "Column17"
+        Me.Column17.Visible = False
         '
         'Column19
         '
         Me.Column19.HeaderText = "ColumnSumID"
         Me.Column19.Name = "Column19"
+        Me.Column19.Visible = False
         '
         'Column43
         '
         Me.Column43.HeaderText = "ColumnInvID"
         Me.Column43.Name = "Column43"
+        Me.Column43.Visible = False
         '
         'Column20
         '
         Me.Column20.HeaderText = "Upgrade"
         Me.Column20.Name = "Column20"
+        Me.Column20.Visible = False
         '
         'Column42
         '
         Me.Column42.HeaderText = "Origin"
         Me.Column42.Name = "Column42"
+        Me.Column42.Visible = False
         '
         'Column45
         '
         Me.Column45.HeaderText = "addontype"
         Me.Column45.Name = "Column45"
+        Me.Column45.Visible = False
         '
         'POS
         '

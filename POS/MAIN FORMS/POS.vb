@@ -446,9 +446,9 @@ Public Class POS
                     Dim sum As String = DataGridViewOrders.SelectedRows(0).Cells(3).Value.ToString
                     DataGridViewOrders.Rows.Remove(dr)
                     Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
-                    TextBoxSUBTOTAL.Text = Format(Val(Label76.Text), "##,##0.00")
-                    TextBoxGRANDTOTAL.Text = Format(Val(Label76.Text), "##,##0.00")
-                    TextBoxDISCOUNT.Text = Format(0, "##,##0.00")
+                    TextBoxSUBTOTAL.Text = Format(Val(Label76.Text), "###,###,##0.00")
+                    TextBoxGRANDTOTAL.Text = Format(Val(Label76.Text), "###,###,##0.00")
+                    TextBoxDISCOUNT.Text = Format(0, "###,###,##0.00")
                 Next
             Else
                 TextBoxQTY.Text = 0
@@ -520,27 +520,7 @@ Public Class POS
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-        '
-        'Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
-        'TextBoxSUBTOTAL.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
-        'TextBoxGRANDTOTAL.Text = Label76.Text
-        ''If S_ZeroRated = "0" Then
-        ''    TextBoxGRANDTOTAL.Text = Label76.Text
-        ''Else
-        ''    TextBoxGRANDTOTAL.Text = Math.Round(Val(TextBoxSUBTOTAL.Text) / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-        ''    TextBoxGRANDTOTAL.Text = Format(Val(TextBoxGRANDTOTAL.Text), "##,##0.00")
-        ''End If
-        'TextBoxDISCOUNT.Text = 0
-        'TOTALDISCOUNT = 0
-        'GROSSSALE = 0
-        'VATEXEMPTSALES = 0
-        'LESSVAT = 0
-        'TOTALDISCOUNTEDAMOUNT = 0
-        'TOTALAMOUNTDUE = 0
-        'VATABLESALES = 0
-        'VAT12PERCENT = 0
-        'ZERORATEDSALES = 0
-        'CouponApplied = False
+
     End Sub
     Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles ButtonTransactionMode.Click
         If ButtonTransactionMode.Text = "Transaction Type" Then
@@ -1270,7 +1250,7 @@ Public Class POS
                 Dim abc As Integer = 0
                 For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
                     Dim rect1st As RectangleF = New RectangleF(10.0F, 115 + abc, 173.0F, 100.0F)
-                    Dim price = Format(.DataGridViewOrders.Rows(i).Cells(3).Value, "##,##0.00")
+                    Dim price = Format(.DataGridViewOrders.Rows(i).Cells(3).Value, "###,###,##0.00")
 
                     If DataGridViewOrders.Rows(i).Cells(7).Value.ToString = "Add-Ons" Then
                         If DataGridViewOrders.Rows(i).Cells(13).Value.ToString = "Classic" Then
@@ -1296,14 +1276,14 @@ Public Class POS
                     SimpleTextDisplay(sender, e, CouponName & "(" & DISCOUNTTYPE & ")", font, 0, a)
                     SimpleTextDisplay(sender, e, CouponDesc, font, 0, a + 10)
                     a += 40 + CouponLine
-                    RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & Format(CouponTotal, "##,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & Format(CouponTotal, "###,###,##0.00"), font, 0, 0)
                 Else
                     a += 120
                 End If
                 Dim Qty = SumOfColumnsToInt(.DataGridViewOrders, 1)
                 Dim NETSALES As Double = 0
                 If S_ZeroRated = "0" Then
-                    NETSALES = Format(SUPERAMOUNTDUE, "##,##0.00")
+                    NETSALES = Format(SUPERAMOUNTDUE, "###,###,##0.00")
                 Else
                     NETSALES = ZERORATEDNETSALES
                 End If
@@ -1317,12 +1297,12 @@ Public Class POS
                     RightToLeftDisplay(sender, e, a + 15, "CASH:", "P" & cash, font1, 0, 0)
                     RightToLeftDisplay(sender, e, a + 25, "CHANGE:", "P" & change, font1, 0, 0)
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 23)
-                    RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & Format(VATABLESALES, "##,##0.00"), font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & Format(VATEXEMPTSALES, "##,##0.00"), font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 72, "     Zero Rated Sales", "    " & Format(ZERORATEDSALES, "##,##0.00"), font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & Format(VAT12PERCENT, "##,##0.00"), font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 92, "     Less Vat", "    " & Format(LESSVAT, "##,##0.00"), font, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 102, "     Total", "    " & Format(NETSALES, "##,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 52, "     Vatable", "    " & Format(VATABLESALES, "###,###,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & Format(VATEXEMPTSALES, "###,###,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 72, "     Zero Rated Sales", "    " & Format(ZERORATEDSALES, "###,###,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 82, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & Format(VAT12PERCENT, "###,###,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 92, "     Less Vat", "    " & Format(LESSVAT, "###,###,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 102, "     Total", "    " & Format(NETSALES, "###,###,##0.00"), font, 0, 0)
                     a += 4
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 92)
                     a += 1
@@ -1344,13 +1324,13 @@ Public Class POS
                     Dim aNumber As Double = TEXTBOXMONEYVALUE
                     Dim cash = String.Format("{0:n2}", aNumber)
 
-                    RightToLeftDisplay(sender, e, a, "SUB TOTAL:", "P" & Format(Double.Parse(Label76.Text), "##,##0.00"), font1, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 10, "DISCOUNT:", Format(Double.Parse(TextBoxDISCOUNT.Text), "##,##0.00") & "-", font1, 0, 0)
-                    RightToLeftDisplay(sender, e, a + 20, "AMOUNT DUE:", "P" & Format(Double.Parse(TextBoxGRANDTOTAL.Text), "##,##0.00"), font2, 0, 0)
+                    RightToLeftDisplay(sender, e, a, "SUB TOTAL:", "P" & Format(Double.Parse(Label76.Text), "###,###,##0.00"), font1, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 10, "DISCOUNT:", Format(Double.Parse(TextBoxDISCOUNT.Text), "###,###,##0.00") & "-", font1, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 20, "AMOUNT DUE:", "P" & Format(Double.Parse(TextBoxGRANDTOTAL.Text), "###,###,##0.00"), font2, 0, 0)
                     RightToLeftDisplay(sender, e, a + 30, "CASH:", "P" & cash, font1, 0, 0)
                     RightToLeftDisplay(sender, e, a + 40, "CHANGE:", "P" & change, font1, 0, 0)
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 37)
-                    RightToLeftDisplay(sender, e, a + 65, "     Vatable", "    " & Format(VATABLESALES, "##,##0.00"), font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 65, "     Vatable", "    " & Format(VATABLESALES, "###,###,##0.00"), font, 0, 0)
                     If DISCOUNTTYPE = "Percentage(w/o vat)" Then
                         RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & Format(VATEXEMPTSALES, "0.00"), font, 0, 0)
                     Else

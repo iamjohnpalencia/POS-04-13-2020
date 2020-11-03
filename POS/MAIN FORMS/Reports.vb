@@ -414,7 +414,7 @@ Public Class Reports
     End Sub
     Private Sub pdoc_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles printdoc.PrintPage
         Try
-            Dim totalDisplay = Format(DataGridViewDaily.SelectedRows(0).Cells(8).Value, "##,##0.00")
+            Dim totalDisplay = Format(DataGridViewDaily.SelectedRows(0).Cells(8).Value, "###,###,##0.00")
             a = 0
             Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
             Dim font2 As New Font("Tahoma", 7, FontStyle.Bold)
@@ -433,7 +433,7 @@ Public Class Reports
             End Try
             For i As Integer = 0 To DataGridViewTransactionDetails.Rows.Count - 1 Step +1
                 Dim rect1st As RectangleF = New RectangleF(10.0F, 115 + abc, 173.0F, 100.0F)
-                Dim price = Format(DataGridViewTransactionDetails.Rows(i).Cells(3).Value, "##,##0.00")
+                Dim price = Format(DataGridViewTransactionDetails.Rows(i).Cells(3).Value, "###,###,##0.00")
 
                 If DataGridViewTransactionDetails.Rows(i).Cells(4).Value.ToString = "Add-Ons" Then
                     If DataGridViewTransactionDetails.Rows(i).Cells(6).Value.ToString = "Classic" Then
@@ -548,7 +548,7 @@ Public Class Reports
         GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
     End Sub
     Private Function NUMBERFORMAT(formatthis)
-        Return Format(formatthis, "##,##0.00")
+        Return Format(formatthis, "###,###,##0.00")
     End Function
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdocXread.PrintPage
         Try
