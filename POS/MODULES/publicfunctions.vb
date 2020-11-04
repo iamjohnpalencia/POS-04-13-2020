@@ -330,9 +330,12 @@ Module publicfunctions
     End Function
     Public Sub Numeric(ByVal sender As Object, ByVal e As KeyPressEventArgs)
         If e.KeyChar <> ControlChars.Back Then
-            e.Handled = Not (Char.IsDigit(e.KeyChar))
+            e.Handled = Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = ".")
         End If
     End Sub
+    Public Function NUMBERFORMAT(formatthis)
+        Return Format(formatthis, "###,###,##0.00")
+    End Function
     Dim ReturnRowIndex
     Public Function getCurrentCellButton_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         With POS

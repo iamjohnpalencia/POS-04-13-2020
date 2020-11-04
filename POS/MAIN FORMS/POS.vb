@@ -1023,13 +1023,13 @@ Public Class POS
                 If TRANSACTIONMODE = "Representation Expenses" Then
                     ACTIVE = 3
                 End If
-                GROSSSALE = Format(Val(TextBoxSUBTOTAL.Text), "###,###,##0.00")
                 If S_ZeroRated = "0" Then
                     VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
                     VATEXEMPTSALES = 0.00
                     VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
                     GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
                 Else
+                    GROSSSALE = Format(Val(SUPERAMOUNTDUE), "###,###,##0.00")
                     If CouponApplied Then
                         VAT12PERCENT = 0
                         LESSVAT = 0
@@ -1040,24 +1040,6 @@ Public Class POS
                         ZERORATEDNETSALES = ZERORATEDSALES
                     End If
                 End If
-                'If Val(TextBoxDISCOUNT.Text) = 0 Then
-                '    VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-                '    VATEXEMPTSALES = 0.00
-                '    VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
-                '    GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
-                'End If
-                'If S_ZeroRated = "1" Then
-                '    VAT12PERCENT = 0
-                '    LESSVAT = 0
-                '    If CouponApplied = True Then
-                '        'ZERORATEDSALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-                '        'ZERORATEDNETSALES = ZERORATEDSALES
-                '    Else
-                '        ZERORATEDSALES = SUPERAMOUNTDUE
-                '        VATABLESALES = ZERORATEDSALES
-                '        ZERORATEDNETSALES = ZERORATEDSALES
-                '    End If
-                'End If
                 sql = "SELECT si_number FROM loc_daily_transaction ORDER BY transaction_id DESC limit 1"
                 cmd = New MySqlCommand(sql, LocalhostConn)
                 da = New MySqlDataAdapter(cmd)

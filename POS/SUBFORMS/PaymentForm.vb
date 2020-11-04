@@ -44,13 +44,11 @@
     End Sub
     Private Sub TextBoxMONEY_TextChanged(sender As Object, e As EventArgs) Handles TextBoxMONEY.TextChanged
         Try
-            TextBoxCHANGE.Text = Val(TextBoxMONEY.Text) - Double.Parse(TextBoxTOTALPAY.Text)
             If TextBoxMONEY.Text = "" Then
                 TextBoxCHANGE.Text = 0
             End If
+            TextBoxCHANGE.Text = NUMBERFORMAT(Double.Parse(TextBoxMONEY.Text) - Double.Parse(TextBoxTOTALPAY.Text))
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Public Sub buttonpressedenter(ByVal btntext As String)

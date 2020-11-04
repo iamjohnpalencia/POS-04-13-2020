@@ -547,12 +547,11 @@ Public Class Reports
         SystemLogType = "X-READ"
         GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
     End Sub
-    Private Function NUMBERFORMAT(formatthis)
-        Return Format(formatthis, "###,###,##0.00")
-    End Function
+
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdocXread.PrintPage
         Try
             Dim ZreadDateFormat = S_Zreading
+            Console.Write(ZreadDateFormat)
             Dim font As New Font("tahoma", 6)
             Dim font2 As New Font("tahoma", 6, FontStyle.Bold)
             Dim brandfont As New Font("tahoma", 8, FontStyle.Bold)
