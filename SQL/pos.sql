@@ -728,7 +728,8 @@ CREATE TABLE `loc_settings` (
   `S_Waffle_Bag` text NOT NULL,
   `S_Packets` text NOT NULL,
   `S_Update_Version` text NOT NULL,
-  `P_Footer_Info` text NOT NULL
+  `P_Footer_Info` text NOT NULL,
+  `S_logo` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

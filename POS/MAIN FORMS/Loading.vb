@@ -99,6 +99,10 @@ Public Class Loading
                             thread = New Thread(AddressOf RunScript)
                             thread.Start()
                             threadList.Add(thread)
+
+                            For Each t In threadList
+                                t.Join()
+                            Next
                         End If
                     Else
                         IfInternetIsAvailable = False
@@ -427,6 +431,7 @@ Public Class Loading
                 da.Fill(dt)
                 For Each row As DataRow In dt.Rows
                     Dim query = "" & row("script_command") & ""
+                    Console.Write(query)
                     cmd = New MySqlCommand(query, ConnectionLocal)
                     cmd.ExecuteNonQuery()
                     query = "INSERT INTO loc_script_runner (script_command, active) VALUES ('" & row("script_id") & "', " & row("active") & ")"
@@ -441,6 +446,7 @@ Public Class Loading
                 da.Fill(dt)
                 For Each row As DataRow In dt.Rows
                     Dim query = "" & row("script_command") & ""
+
                     cmd = New MySqlCommand(query, ConnectionLocal)
                     cmd.ExecuteNonQuery()
                     query = "INSERT INTO loc_script_runner (script_command, active) VALUES ('" & row("script_id") & "', " & row("active") & ")"
@@ -449,6 +455,7 @@ Public Class Loading
                 Next
             End If
         Catch ex As Exception
+
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
