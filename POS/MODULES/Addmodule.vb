@@ -5,8 +5,9 @@ Module Addmodule
             If ClientCrewID = "" Then
                 ClientCrewID = 0
             End If
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
             Dim Query As String = "INSERT INTO `loc_system_logs`(`log_type`,`crew_id`,`log_description`, `log_store`, `guid`, `loc_systemlog_id`, `synced`, `zreading`, `log_date_time`) VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9)"
-            Dim Command As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+            Dim Command As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
             Command.Parameters.Add("@1", MySqlDbType.VarChar).Value = logtype
             Command.Parameters.Add("@2", MySqlDbType.VarChar).Value = ClientCrewID
             Command.Parameters.Add("@3", MySqlDbType.Text).Value = logdesc
@@ -17,6 +18,7 @@ Module Addmodule
             Command.Parameters.Add("@8", MySqlDbType.VarChar).Value = S_Zreading
             Command.Parameters.Add("@9", MySqlDbType.Text).Value = FullDate24HR()
             Command.ExecuteNonQuery()
+            ConnectionLocal.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -44,7 +46,7 @@ Module Addmodule
         If ConnectionLocal.State = ConnectionState.Open Then
             Try
                 Dim Query As String = "INSERT INTO `loc_send_bug_report`(`bug_desc`, `crew_id`, `guid`, `store_id`, `date_created`, `synced`) VALUES (@1,@2,@3,@4,@5,@6)"
-                Dim Command As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+                Dim Command As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
                 Command.Parameters.Add("@1", MySqlDbType.Text).Value = MSG
                 Command.Parameters.Add("@2", MySqlDbType.Text).Value = ClientCrewID
                 Command.Parameters.Add("@3", MySqlDbType.Text).Value = ClientGuid
@@ -52,6 +54,7 @@ Module Addmodule
                 Command.Parameters.Add("@5", MySqlDbType.Text).Value = FullDate24HR()
                 Command.Parameters.Add("@6", MySqlDbType.Text).Value = "Unsynced"
                 Command.ExecuteNonQuery()
+                ConnectionLocal.Close()
             Catch ex As Exception
                 MsgBox(ex.ToString)
             End Try
