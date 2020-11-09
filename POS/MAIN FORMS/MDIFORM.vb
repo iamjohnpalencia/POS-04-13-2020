@@ -2,6 +2,8 @@
     Private m_ChildFormNumber As Integer
     Private Sub MDIFORM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+            PictureBox1.Image = Base64ToImage(S_Logo)
+            PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
             Dim newMDIchild As New Leaderboards()
             If Application.OpenForms().OfType(Of Leaderboards).Any Then
                 Leaderboards.TopMost = True

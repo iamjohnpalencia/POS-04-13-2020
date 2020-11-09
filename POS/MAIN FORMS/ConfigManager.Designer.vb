@@ -201,14 +201,18 @@ Partial Class ConfigManager
         Me.Label15 = New System.Windows.Forms.Label()
         Me.TextBoxFrancPass = New System.Windows.Forms.TextBox()
         Me.TextBoxFrancUser = New System.Windows.Forms.TextBox()
+        Me.TableLayoutPanel12 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.DataGridViewOutlets = New System.Windows.Forms.DataGridView()
-        Me.Panel17 = New System.Windows.Forms.Panel()
         Me.ButtonSelectOutlet = New System.Windows.Forms.Button()
+        Me.GroupBox22 = New System.Windows.Forms.GroupBox()
+        Me.PictureBoxLogo = New System.Windows.Forms.PictureBox()
+        Me.RichTextBoxLogo = New System.Windows.Forms.RichTextBox()
+        Me.ButtonBrowseLogo = New System.Windows.Forms.Button()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.TabPage7 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel10 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox14 = New System.Windows.Forms.GroupBox()
         Me.Panel27 = New System.Windows.Forms.Panel()
@@ -319,6 +323,8 @@ Partial Class ConfigManager
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel22 = New System.Windows.Forms.Panel()
         Me.BackgroundWorker6 = New System.ComponentModel.BackgroundWorker()
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -368,12 +374,14 @@ Partial Class ConfigManager
         Me.Panel39.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.Panel14.SuspendLayout()
+        Me.TableLayoutPanel12.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.Panel16.SuspendLayout()
         CType(Me.DataGridViewOutlets, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel17.SuspendLayout()
+        Me.GroupBox22.SuspendLayout()
+        CType(Me.PictureBoxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel13.SuspendLayout()
-        Me.TabPage6.SuspendLayout()
+        Me.TabPage7.SuspendLayout()
         Me.TableLayoutPanel10.SuspendLayout()
         Me.GroupBox14.SuspendLayout()
         Me.Panel27.SuspendLayout()
@@ -2011,7 +2019,7 @@ Partial Class ConfigManager
         'TabControl3
         '
         Me.TabControl3.Controls.Add(Me.TabPage5)
-        Me.TabControl3.Controls.Add(Me.TabPage6)
+        Me.TabControl3.Controls.Add(Me.TabPage7)
         Me.TabControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl3.Location = New System.Drawing.Point(3, 3)
         Me.TabControl3.Name = "TabControl3"
@@ -2037,7 +2045,7 @@ Partial Class ConfigManager
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel7, 0, 0)
-        Me.TableLayoutPanel4.Controls.Add(Me.GroupBox9, 1, 0)
+        Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel12, 1, 0)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 52)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
@@ -2486,13 +2494,27 @@ Partial Class ConfigManager
         Me.TextBoxFrancUser.Size = New System.Drawing.Size(311, 23)
         Me.TextBoxFrancUser.TabIndex = 0
         '
+        'TableLayoutPanel12
+        '
+        Me.TableLayoutPanel12.ColumnCount = 1
+        Me.TableLayoutPanel12.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel12.Controls.Add(Me.GroupBox9, 0, 0)
+        Me.TableLayoutPanel12.Controls.Add(Me.GroupBox22, 0, 1)
+        Me.TableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel12.Location = New System.Drawing.Point(508, 3)
+        Me.TableLayoutPanel12.Name = "TableLayoutPanel12"
+        Me.TableLayoutPanel12.RowCount = 2
+        Me.TableLayoutPanel12.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel12.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel12.Size = New System.Drawing.Size(499, 483)
+        Me.TableLayoutPanel12.TabIndex = 36
+        '
         'GroupBox9
         '
         Me.GroupBox9.Controls.Add(Me.Panel16)
-        Me.GroupBox9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox9.Location = New System.Drawing.Point(508, 3)
+        Me.GroupBox9.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(499, 483)
+        Me.GroupBox9.Size = New System.Drawing.Size(493, 235)
         Me.GroupBox9.TabIndex = 36
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "Select Outlet"
@@ -2501,12 +2523,12 @@ Partial Class ConfigManager
         '
         Me.Panel16.AutoScroll = True
         Me.Panel16.Controls.Add(Me.DataGridViewOutlets)
-        Me.Panel16.Controls.Add(Me.Panel17)
+        Me.Panel16.Controls.Add(Me.ButtonSelectOutlet)
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
         Me.Panel16.Location = New System.Drawing.Point(3, 23)
         Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(493, 457)
+        Me.Panel16.Size = New System.Drawing.Size(487, 209)
         Me.Panel16.TabIndex = 1
         '
         'DataGridViewOutlets
@@ -2517,6 +2539,7 @@ Partial Class ConfigManager
         Me.DataGridViewOutlets.AllowUserToResizeRows = False
         Me.DataGridViewOutlets.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewOutlets.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewOutlets.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridViewOutlets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewOutlets.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewOutlets.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
@@ -2525,33 +2548,68 @@ Partial Class ConfigManager
         Me.DataGridViewOutlets.ReadOnly = True
         Me.DataGridViewOutlets.RowHeadersVisible = False
         Me.DataGridViewOutlets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewOutlets.Size = New System.Drawing.Size(493, 427)
+        Me.DataGridViewOutlets.Size = New System.Drawing.Size(487, 179)
         Me.DataGridViewOutlets.TabIndex = 242
-        '
-        'Panel17
-        '
-        Me.Panel17.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
-        Me.Panel17.Controls.Add(Me.ButtonSelectOutlet)
-        Me.Panel17.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel17.Location = New System.Drawing.Point(0, 427)
-        Me.Panel17.Name = "Panel17"
-        Me.Panel17.Size = New System.Drawing.Size(493, 30)
-        Me.Panel17.TabIndex = 241
         '
         'ButtonSelectOutlet
         '
         Me.ButtonSelectOutlet.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.ButtonSelectOutlet.Dock = System.Windows.Forms.DockStyle.Right
+        Me.ButtonSelectOutlet.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ButtonSelectOutlet.FlatAppearance.BorderSize = 0
         Me.ButtonSelectOutlet.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonSelectOutlet.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonSelectOutlet.ForeColor = System.Drawing.Color.White
-        Me.ButtonSelectOutlet.Location = New System.Drawing.Point(297, 0)
+        Me.ButtonSelectOutlet.Location = New System.Drawing.Point(0, 179)
         Me.ButtonSelectOutlet.Name = "ButtonSelectOutlet"
-        Me.ButtonSelectOutlet.Size = New System.Drawing.Size(196, 30)
+        Me.ButtonSelectOutlet.Size = New System.Drawing.Size(487, 30)
         Me.ButtonSelectOutlet.TabIndex = 212
         Me.ButtonSelectOutlet.Text = "Select Outlet"
         Me.ButtonSelectOutlet.UseVisualStyleBackColor = False
+        '
+        'GroupBox22
+        '
+        Me.GroupBox22.Controls.Add(Me.PictureBoxLogo)
+        Me.GroupBox22.Controls.Add(Me.RichTextBoxLogo)
+        Me.GroupBox22.Controls.Add(Me.ButtonBrowseLogo)
+        Me.GroupBox22.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox22.Location = New System.Drawing.Point(3, 244)
+        Me.GroupBox22.Name = "GroupBox22"
+        Me.GroupBox22.Size = New System.Drawing.Size(493, 236)
+        Me.GroupBox22.TabIndex = 41
+        Me.GroupBox22.TabStop = False
+        Me.GroupBox22.Text = "Outlet Logo"
+        '
+        'PictureBoxLogo
+        '
+        Me.PictureBoxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBoxLogo.Location = New System.Drawing.Point(146, 25)
+        Me.PictureBoxLogo.Name = "PictureBoxLogo"
+        Me.PictureBoxLogo.Size = New System.Drawing.Size(200, 167)
+        Me.PictureBoxLogo.TabIndex = 38
+        Me.PictureBoxLogo.TabStop = False
+        '
+        'RichTextBoxLogo
+        '
+        Me.RichTextBoxLogo.Location = New System.Drawing.Point(177, 43)
+        Me.RichTextBoxLogo.Name = "RichTextBoxLogo"
+        Me.RichTextBoxLogo.ReadOnly = True
+        Me.RichTextBoxLogo.Size = New System.Drawing.Size(87, 74)
+        Me.RichTextBoxLogo.TabIndex = 275
+        Me.RichTextBoxLogo.Text = ""
+        '
+        'ButtonBrowseLogo
+        '
+        Me.ButtonBrowseLogo.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.ButtonBrowseLogo.FlatAppearance.BorderSize = 0
+        Me.ButtonBrowseLogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonBrowseLogo.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonBrowseLogo.ForeColor = System.Drawing.Color.White
+        Me.ButtonBrowseLogo.Location = New System.Drawing.Point(146, 198)
+        Me.ButtonBrowseLogo.Name = "ButtonBrowseLogo"
+        Me.ButtonBrowseLogo.Size = New System.Drawing.Size(200, 23)
+        Me.ButtonBrowseLogo.TabIndex = 40
+        Me.ButtonBrowseLogo.Text = "Browse"
+        Me.ButtonBrowseLogo.UseVisualStyleBackColor = False
         '
         'Panel13
         '
@@ -2574,17 +2632,17 @@ Partial Class ConfigManager
         Me.Label14.TabIndex = 4
         Me.Label14.Text = "Setup Franchisee's Store"
         '
-        'TabPage6
+        'TabPage7
         '
-        Me.TabPage6.Controls.Add(Me.TableLayoutPanel10)
-        Me.TabPage6.Controls.Add(Me.Panel19)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 28)
-        Me.TabPage6.Name = "TabPage6"
-        Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(1016, 544)
-        Me.TabPage6.TabIndex = 1
-        Me.TabPage6.Text = "TabPage6"
-        Me.TabPage6.UseVisualStyleBackColor = True
+        Me.TabPage7.Controls.Add(Me.TableLayoutPanel10)
+        Me.TabPage7.Controls.Add(Me.Panel19)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage7.Name = "TabPage7"
+        Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage7.Size = New System.Drawing.Size(1016, 544)
+        Me.TabPage7.TabIndex = 2
+        Me.TabPage7.Text = "TabPage7"
+        Me.TabPage7.UseVisualStyleBackColor = True
         '
         'TableLayoutPanel10
         '
@@ -3144,7 +3202,7 @@ Partial Class ConfigManager
         Me.Panel19.Location = New System.Drawing.Point(3, 3)
         Me.Panel19.Name = "Panel19"
         Me.Panel19.Size = New System.Drawing.Size(1010, 49)
-        Me.Panel19.TabIndex = 35
+        Me.Panel19.TabIndex = 36
         '
         'Label21
         '
@@ -3378,6 +3436,10 @@ Partial Class ConfigManager
         Me.Panel22.Size = New System.Drawing.Size(1298, 10)
         Me.Panel22.TabIndex = 216
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
         'ConfigManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3455,13 +3517,15 @@ Partial Class ConfigManager
         Me.GroupBox6.ResumeLayout(False)
         Me.Panel14.ResumeLayout(False)
         Me.Panel14.PerformLayout()
+        Me.TableLayoutPanel12.ResumeLayout(False)
         Me.GroupBox9.ResumeLayout(False)
         Me.Panel16.ResumeLayout(False)
         CType(Me.DataGridViewOutlets, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel17.ResumeLayout(False)
+        Me.GroupBox22.ResumeLayout(False)
+        CType(Me.PictureBoxLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel13.ResumeLayout(False)
         Me.Panel13.PerformLayout()
-        Me.TabPage6.ResumeLayout(False)
+        Me.TabPage7.ResumeLayout(False)
         Me.TableLayoutPanel10.ResumeLayout(False)
         Me.GroupBox14.ResumeLayout(False)
         Me.Panel27.ResumeLayout(False)
@@ -3648,7 +3712,6 @@ Partial Class ConfigManager
     Friend WithEvents Column15 As DataGridViewTextBoxColumn
     Friend WithEvents Column16 As DataGridViewTextBoxColumn
     Friend WithEvents Column17 As DataGridViewTextBoxColumn
-    Friend WithEvents Panel17 As Panel
     Friend WithEvents ButtonSelectOutlet As Button
     Friend WithEvents GroupBox10 As GroupBox
     Friend WithEvents ButtonSaveAddSettings As Button
@@ -3689,9 +3752,6 @@ Partial Class ConfigManager
     Friend WithEvents TextBoxDevname As TextBox
     Friend WithEvents TableLayoutPanel8 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel9 As TableLayoutPanel
-    Friend WithEvents TabPage6 As TabPage
-    Friend WithEvents Panel19 As Panel
-    Friend WithEvents Label21 As Label
     Friend WithEvents GroupBox12 As GroupBox
     Friend WithEvents TextBoxProdKey As TextBox
     Friend WithEvents ButtonActivate As Button
@@ -3791,4 +3851,14 @@ Partial Class ConfigManager
     Friend WithEvents Label27 As Label
     Friend WithEvents TextBoxSugarPackets As TextBox
     Friend WithEvents TextBoxWaffleBag As TextBox
+    Friend WithEvents TabPage7 As TabPage
+    Friend WithEvents Panel19 As Panel
+    Friend WithEvents Label21 As Label
+    Friend WithEvents ButtonBrowseLogo As Button
+    Friend WithEvents PictureBoxLogo As PictureBox
+    Friend WithEvents GroupBox22 As GroupBox
+    Friend WithEvents ColorDialog1 As ColorDialog
+    Friend WithEvents RichTextBoxLogo As RichTextBox
+    Friend WithEvents TableLayoutPanel12 As TableLayoutPanel
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
 End Class

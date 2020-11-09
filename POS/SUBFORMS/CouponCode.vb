@@ -568,8 +568,7 @@ Public Class CouponCode
                                     Dim VAT12PERCENT As Double = 0
                                     If S_ZeroRated = "1" Then
                                         GetDiscount = Math.Round(POS.DataGridViewOrders.Rows(i).Cells(2).Value / TAX, 2, MidpointRounding.AwayFromZero)
-
-                                        TotalZeroRatedPrice = GetDiscount * DataGridViewCoupons.SelectedRows(i).Cells(7).Value
+                                        TotalZeroRatedPrice = GetDiscount * DataGridViewCoupons.SelectedRows(0).Cells(7).Value
                                         .ZERORATEDSALES = .Label76.Text
                                         .ZERORATEDNETSALES = TOTALAMOUNTDUE
                                         .TextBoxGRANDTOTAL.Text = Format(Val(.TextBoxGRANDTOTAL.Text) - TotalZeroRatedPrice, "0.00")

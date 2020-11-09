@@ -3,6 +3,7 @@ Imports System.Threading
 Imports System.IO
 Imports System.Text
 Imports System.Globalization
+Imports System.Drawing.Imaging
 'Requirements
 'my.settings.validlocalconn/cloudconn = 1
 'franchiseeacc = true/ accountexist = true
@@ -568,11 +569,24 @@ Public Class ConfigManager
             Dim CloudCmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
             Dim CloudDa As MySqlDataAdapter = New MySqlDataAdapter(CloudCmd)
             CloudDa.Fill(CloudDT)
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
         Return CloudDT
     End Function
+    Private Sub GetLogo(BrandName)
+        Try
+            Dim Logo
+            Dim sql = "SELECT brand_logo FROM admin_brand WHERE brand_name = '" & BrandName & "' "
+            Dim CloudCmd As MySqlCommand = New MySqlCommand(sql, TestCloudConnection)
+            Logo = CloudCmd.ExecuteScalar()
+            RichTextBoxLogo.Text = Logo
+            PictureBoxLogo.BackgroundImage = Base64ToImage(Logo)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 
     Public Sub CreateConn(path As String)
         Try
@@ -775,6 +789,7 @@ Public Class ConfigManager
                     DataGridViewOutletDetails.Rows.Add(DataGridViewOutlets.SelectedRows(0).Cells(0).Value.ToString, TextBoxBrandname.Text, DataGridViewOutlets.SelectedRows(0).Cells(2).Value.ToString, UserGUID, TextBoxLocation.Text, TextBoxPostalCode.Text, TextBoxAddress.Text, DataGridViewOutlets.SelectedRows(0).Cells(7).Value.ToString, TextBoxMun.Text, TextBoxProv.Text, TextBoxTIN.Text, TextBoxTEL.Text, TextBoxMIN.Text, TextBoxMSN.Text, TextBoxPTUN.Text)
                     FranchiseeStoreValidation = True
                 End With
+                GetLogo(TextBoxBrandname.Text)
             Else
                 FranchiseeStoreValidation = False
             End If
@@ -1154,13 +1169,19 @@ Public Class ConfigManager
                     For Each t In threadListActivation
                         t.Join()
                     Next
+                    ThreadActivation = New Thread(AddressOf SaveLogo)
+                    ThreadActivation.Start()
+                    threadListActivation.Add(ThreadActivation)
+                    For Each t In threadListActivation
+                        t.Join()
+                    Next
                 End If
             Next
             For Each t In threadListActivation
                 t.Join()
             Next
         Catch ex As Exception
-
+            MsgBox(ex.ToString)
         End Try
     End Sub
     Private Sub BackgroundWorkerACTIVATION_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorkerACTIVATION.ProgressChanged
@@ -1284,7 +1305,15 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
-
+    Private Sub SaveLogo()
+        Try
+            Dim sql = "UPDATE loc_settings SET S_logo = '" & RichTextBoxLogo.Text & "' WHERE settings_id = 1"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection)
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            MsgBox("Contact Administrator Error Code: 3.0")
+        End Try
+    End Sub
     Private Sub InsertLocalMasterList()
         Try
             TextBox1.Text += FullDate24HR() & " :    Inserting masterlist data." & vbNewLine
@@ -1999,7 +2028,53 @@ Public Class ConfigManager
             MsgBox(ex.ToString)
         End Try
     End Sub
-
+    Dim ImagePath As String
+    Private Sub ButtonBrowseLogo_Click(sender As Object, e As EventArgs) Handles ButtonBrowseLogo.Click
+        Try
+            With OpenFileDialog1
+                .Filter = ("Images | *.png; *.bmp; *.jpg; *.jpeg; *.gif; *.ico;")
+                .FilterIndex = 4
+            End With
+            OpenFileDialog1.FileName = ""
+            If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
+                If My.Computer.FileSystem.FileExists(ImagePath) Then
+                    convertimage()
+                End If
+                PictureBoxLogo.Image = Image.FromFile(OpenFileDialog1.FileName)
+                PictureBoxLogo.SizeMode = PictureBoxSizeMode.StretchImage
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
+        ImagePath = OpenFileDialog1.FileName
+    End Sub
+    Dim encodeType As ImageFormat = ImageFormat.Jpeg
+    Dim decodingstring As String = String.Empty
+    Private Sub convertimage()
+        Try
+            RichTextBoxLogo.Clear()
+            Dim ImageToConvert As Bitmap = Bitmap.FromFile(ImagePath)
+            ImageToConvert.MakeTransparent()
+            Dim encoding As String = String.Empty
+            If ImagePath.ToLower.EndsWith(".jpg") Then
+                encodeType = ImageFormat.Jpeg
+            ElseIf ImagePath.ToLower.EndsWith(".png") Then
+                encodeType = ImageFormat.Png
+            ElseIf ImagePath.ToLower.EndsWith(".gif") Then
+                encodeType = ImageFormat.Gif
+            ElseIf ImagePath.ToLower.EndsWith(".bmp") Then
+                encodeType = ImageFormat.Bmp
+            End If
+            decodingstring = encoding
+            RichTextBoxLogo.Text = ImageToBase64(ImageToConvert, encodeType)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
 #Region "Test Insert"
     'Private Sub button734_click(sender As Object, e As EventArgs) Handles Button4.Click
     '    InsertToProducts()

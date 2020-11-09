@@ -90,6 +90,8 @@ Module publicVariables
     Public S_Upgrade_Price As String
     Public S_Backup_Interval As String
     Public S_Backup_Date As String
+    Public S_Logo As String
+    Public S_Icon As String
     '=============================================================================================================
     'btn click refresh
     Public btnperformclick As Boolean = False

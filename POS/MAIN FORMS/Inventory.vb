@@ -338,12 +338,13 @@ Public Class Inventory
     Private Sub ButtonENTRYADDSTOCK_Click(sender As Object, e As EventArgs) Handles ButtonENTRYADDSTOCK.Click
         Try
             If Val(TextBoxEQuantity.Text) > 0 Then
+                Dim ConnectionLocal As MySqlConnection = LocalhostConn()
                 Dim Primary As Double = Double.Parse(TextBoxEQuantity.Text) * Double.Parse(TextBoxEFPrimaryVal.Text)
                 Dim Secondary As Double = Double.Parse(TextBoxEQuantity.Text) * Double.Parse(TextBoxEFSecondVal.Text)
                 Dim NoOfServings As Double = Double.Parse(TextBoxEQuantity.Text) * Double.Parse(TextBoxENoServings.Text)
 
                 Dim SQL = "SELECT `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `formula_id` FROM  `loc_pos_inventory` WHERE `inventory_id` = " & TextBox1.Text
-                Dim SQLCmd As MySqlCommand = New MySqlCommand(SQL, LocalhostConn)
+                Dim SQLCmd As MySqlCommand = New MySqlCommand(SQL, ConnectionLocal)
                 Dim SQlDa As MySqlDataAdapter = New MySqlDataAdapter(SQLCmd)
                 Dim InvDT As DataTable = New DataTable
                 SQlDa.Fill(InvDT)
@@ -370,11 +371,13 @@ Public Class Inventory
                 Dim table = "loc_pos_inventory"
                 Dim fields = "`stock_primary`=" & TotalPrimary & ",`stock_secondary`= " & TotalSecondary & " , `stock_no_of_servings`= " & TotalNoOfServings & ", `date_modified` = '" & FullDate24HR() & "'"
                 Dim where = ""
+
                 If formula_id = 0 Then
                     where = "server_inventory_id = " & TextBox1.Text
                 Else
                     where = "formula_id = " & TextBox1.Text
                 End If
+
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
                 loadstockentry()
                 loadpanelstockadjustment()
@@ -389,11 +392,6 @@ Public Class Inventory
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
-            MsgBox("Error 2.0.1" & vbNewLine & "Please let us know whether you are still facing the problem.")
-            messageboxappearance = False
-            SystemLogType = "ERROR"
-            SystemLogDesc = "Error 2.0 UPDATE OF CUSTOM PRODUCT: " & ex.ToString
-            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
         End Try
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

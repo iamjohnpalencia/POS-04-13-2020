@@ -25,13 +25,14 @@ Module Addmodule
     Dim result As Integer
     Public Sub GLOBAL_INSERT_FUNCTION(ByVal table As String, ByVal fields As String, ByVal values As String)
         Try
-            If LocalhostConn.State <> ConnectionState.Open Then
-                LocalhostConn.Open()
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            If ConnectionLocal.State <> ConnectionState.Open Then
+                ConnectionLocal = LocalhostConn()
             End If
             Dim Query As String = "INSERT INTO " + table + fields + " VALUES " + values
             Dim cmd As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
             cmd.ExecuteNonQuery()
-            LocalhostConn.close
+            LocalhostConn.Close()
             cmd.Dispose()
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -39,7 +40,8 @@ Module Addmodule
         End Try
     End Sub
     Public Sub SendErrorReport(MSG)
-        If LocalhostConn.State = ConnectionState.Open Then
+        Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+        If ConnectionLocal.State = ConnectionState.Open Then
             Try
                 Dim Query As String = "INSERT INTO `loc_send_bug_report`(`bug_desc`, `crew_id`, `guid`, `store_id`, `date_created`, `synced`) VALUES (@1,@2,@3,@4,@5,@6)"
                 Dim Command As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
