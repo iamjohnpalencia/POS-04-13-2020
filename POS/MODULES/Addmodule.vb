@@ -5,18 +5,18 @@ Module Addmodule
             If ClientCrewID = "" Then
                 ClientCrewID = 0
             End If
-            table = "loc_system_logs"
-            fields = "(`log_type`,`crew_id`,`log_description`, `log_store`, `guid`, `loc_systemlog_id`, `synced`, `zreading`, `log_date_time`)"
-            value = "('" & logtype & "'
-                , '" & ClientCrewID & "'
-                , '" & logdesc & "'
-                , '" & ClientStoreID & "'
-                , '" & ClientGuid & "'
-                , '" & Format(Now, ("yyyyMMdd-HHmmss")) & "'
-                , 'Unsynced'
-                , '" & S_Zreading & "'
-                , '" & FullDate24HR() & "')"
-            GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
+            Dim Query As String = "INSERT INTO `loc_system_logs`(`log_type`,`crew_id`,`log_description`, `log_store`, `guid`, `loc_systemlog_id`, `synced`, `zreading`, `log_date_time`) VALUES (@1,@2,@3,@4,@5,@6,@7,@8,@9)"
+            Dim Command As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+            Command.Parameters.Add("@1", MySqlDbType.VarChar).Value = logtype
+            Command.Parameters.Add("@2", MySqlDbType.VarChar).Value = ClientCrewID
+            Command.Parameters.Add("@3", MySqlDbType.Text).Value = logdesc
+            Command.Parameters.Add("@4", MySqlDbType.VarChar).Value = ClientStoreID
+            Command.Parameters.Add("@5", MySqlDbType.VarChar).Value = ClientGuid
+            Command.Parameters.Add("@6", MySqlDbType.VarChar).Value = Format(Now, ("yyyyMMdd-HHmmss"))
+            Command.Parameters.Add("@7", MySqlDbType.VarChar).Value = "Unsynced"
+            Command.Parameters.Add("@8", MySqlDbType.VarChar).Value = S_Zreading
+            Command.Parameters.Add("@9", MySqlDbType.Text).Value = FullDate24HR()
+            Command.ExecuteNonQuery()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)

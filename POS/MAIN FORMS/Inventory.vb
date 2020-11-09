@@ -337,8 +337,8 @@ Public Class Inventory
 
     Private Sub ButtonENTRYADDSTOCK_Click(sender As Object, e As EventArgs) Handles ButtonENTRYADDSTOCK.Click
         Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
             If Val(TextBoxEQuantity.Text) > 0 Then
-                Dim ConnectionLocal As MySqlConnection = LocalhostConn()
                 Dim Primary As Double = Double.Parse(TextBoxEQuantity.Text) * Double.Parse(TextBoxEFPrimaryVal.Text)
                 Dim Secondary As Double = Double.Parse(TextBoxEQuantity.Text) * Double.Parse(TextBoxEFSecondVal.Text)
                 Dim NoOfServings As Double = Double.Parse(TextBoxEQuantity.Text) * Double.Parse(TextBoxENoServings.Text)
@@ -378,6 +378,7 @@ Public Class Inventory
                     where = "formula_id = " & TextBox1.Text
                 End If
 
+
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
                 loadstockentry()
                 loadpanelstockadjustment()
@@ -389,6 +390,7 @@ Public Class Inventory
             End If
             MDIFORM.LabelTotalAvailStock.Text = roundsum("stock_primary", "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", "P")
             MDIFORM.LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
+            ConnectionLocal.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
