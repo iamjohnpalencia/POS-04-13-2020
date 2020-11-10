@@ -3032,6 +3032,7 @@ Partial Class SettingsForm
         Me.TextBoxCloudServer.Size = New System.Drawing.Size(302, 23)
         Me.TextBoxCloudServer.TabIndex = 0
         Me.TextBoxCloudServer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TextBoxCloudServer.UseSystemPasswordChar = True
         '
         'Label10
         '
