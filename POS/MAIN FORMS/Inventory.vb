@@ -697,10 +697,13 @@ Public Class Inventory
     End Sub
     Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles Button7.Click
         Try
-            Dim sql = "UPDATE loc_pos_inventory SET stock_primary = 0, stock_secondary = 0,  stock_no_of_servings = 0"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
-            cmd.ExecuteNonQuery()
-            loadinventory()
+            Dim msg = MessageBox.Show("Are you sure you want to reset the inventory ? Press Yes to continue or No to cancel", "NOTICE", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+            If msg = DialogResult.Yes Then
+                Dim sql = "UPDATE loc_pos_inventory SET stock_primary = 0, stock_secondary = 0,  stock_no_of_servings = 0"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                cmd.ExecuteNonQuery()
+                loadinventory()
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)

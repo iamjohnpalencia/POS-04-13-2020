@@ -892,13 +892,20 @@ Public Class Reports
         End Try
     End Sub
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Dim sql = "TRUNCATE `loc_daily_transaction` ; TRUNCATE `loc_daily_transaction_details` "
-        Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
-        cmd.ExecuteNonQuery()
-        reportsdailytransaction(False)
-        DataGridViewTransactionDetails.DataSource = Nothing
+        Try
+            Dim msg = MessageBox.Show("Are you sure you want to reset the sales ? Press Yes to continue or No to cancel", "NOTICE", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+            If msg = DialogResult.Yes Then
+                Dim sql = "TRUNCATE `loc_daily_transaction` ; TRUNCATE `loc_daily_transaction_details` "
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                cmd.ExecuteNonQuery()
+                reportsdailytransaction(False)
+                DataGridViewTransactionDetails.DataSource = Nothing
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
-
     Dim loopb = 0
     Dim loopa = 0
     Dim PrintSalesDatatable As DataTable
