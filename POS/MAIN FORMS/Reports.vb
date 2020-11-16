@@ -90,7 +90,6 @@ Public Class Reports
                 .Columns(1).HeaderText = "Description"
                 .Columns(2).HeaderText = "Date and Time"
             End With
-            '"loc_system_logs WHERE log_type <> 'STOCK TRANSFER'  GROUP BY log_date_time DESC LIMIT 10"
             Dim AsDt = AsDatatable(table & where, "`log_type`, `log_description`, `log_date_time`", DataGridViewSysLog)
             Dim Desc As String = ""
             Dim Type As String = ""
@@ -168,51 +167,18 @@ Public Class Reports
             Dim fields = "`transaction_number`, `grosssales`, `totaldiscount`, `amounttendered`, `change`, `amountdue`, `vatablesales`, `vatexemptsales`, `zeroratedsales`, `vatpercentage`, `lessvat`, `transaction_type`, `discount_type`, `totaldiscountedamount`, `si_number`, `crew_id`, `created_at`"
             Dim DailyTable
             If searchdate = False Then
-                where = " WHERE zreading = CURRENT_DATE() AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
-                'GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDaily, errormessage:="", fields:=fields, successmessage:="", where:=where)
+                where = " WHERE zreading = CURRENT_DATE() AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ORDER BY `created_at` DESC"
                 DailyTable = AsDatatable(table & where, fields, DataGridViewDaily)
                 For Each row As DataRow In DailyTable.rows
                     DataGridViewDaily.Rows.Add(row("transaction_number"), row("grosssales"), row("totaldiscount"), row("amounttendered"), row("change"), row("amountdue"), row("vatablesales"), row("vatexemptsales"), row("zeroratedsales"), row("vatpercentage"), row("lessvat"), row("transaction_type"), row("discount_type"), row("totaldiscountedamount"), row("si_number"), row("crew_id"), row("created_at"))
                 Next
             Else
-                where = " WHERE zreading >= '" & Format(DateTimePicker1.Value, "yyyy-MM-dd") & "' and zreading <= '" & Format(DateTimePicker2.Value, "yyyy-MM-dd") & "' AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "'"
-                'GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewDaily, errormessage:="", fields:=fields, successmessage:="", where:=where)
+                where = " WHERE zreading >= '" & Format(DateTimePicker1.Value, "yyyy-MM-dd") & "' and zreading <= '" & Format(DateTimePicker2.Value, "yyyy-MM-dd") & "' AND active IN(1,3) AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ORDER BY `created_at` DESC"
                 DailyTable = AsDatatable(table & where, fields, DataGridViewDaily)
                 For Each row As DataRow In DailyTable.rows
                     DataGridViewDaily.Rows.Add(row("transaction_number"), row("grosssales"), row("totaldiscount"), row("amounttendered"), row("change"), row("amountdue"), row("vatablesales"), row("vatexemptsales"), row("zeroratedsales"), row("vatpercentage"), row("lessvat"), row("transaction_type"), row("discount_type"), row("totaldiscountedamount"), row("si_number"), row("crew_id"), row("created_at"))
                 Next
-
             End If
-            With DataGridViewDaily
-                '.Columns(6).Visible = False
-                '.Columns(7).Visible = False
-                '.Columns(8).Visible = False
-                '.Columns(9).Visible = False
-                '.Columns(10).Visible = False
-                '.Columns(12).Visible = False
-                '.Columns(13).Visible = False
-                '.Columns(14).Visible = False
-                '.Columns(15).Visible = False
-                '    .Columns(0).Visible = False
-                '    .Columns(1).HeaderCell.Value = "Date and Time"
-                '    .Columns(2).HeaderCell.Value = "Ref. #"
-                '    .Columns(2).Width = 100
-                '    .Columns(3).HeaderCell.Value = "Crew"
-                '    .Columns(4).HeaderCell.Value = "Cash"
-                '    .Columns(5).HeaderCell.Value = "Change"
-                '    .Columns(6).Visible = False
-                '    .Columns(7).HeaderCell.Value = "Discount"
-                '    .Columns(8).HeaderCell.Value = "Amt. due"
-                '    .Columns(9).HeaderCell.Value = "Vat Exempt"
-                '    .Columns(10).HeaderCell.Value = "TRN. Type"
-                '    .Columns(11).Visible = False
-                '    .Columns(12).Visible = False
-                '    .Columns.Item(4).DefaultCellStyle.Format = "n2"
-                '    .Columns.Item(5).DefaultCellStyle.Format = "n2"
-                '    For Each row As DataRow In dt.Rows
-                '        row("crew_id") = GLOBAL_SELECT_FUNCTION_RETURN(table:="loc_users", fields:="full_name", returnvalrow:="full_name", values:="uniq_id ='" & row("crew_id") & "'")
-                '    Next
-            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
