@@ -894,7 +894,7 @@ Public Class Reports
         Try
             Dim msg = MessageBox.Show("Are you sure you want to reset the sales ? Press Yes to continue or No to cancel", "NOTICE", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
             If msg = DialogResult.Yes Then
-                Dim sql = "TRUNCATE `loc_daily_transaction` ; TRUNCATE `loc_daily_transaction_details` "
+                Dim sql = "TRUNCATE `loc_daily_transaction`; TRUNCATE `loc_daily_transaction_details`;"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                 cmd.ExecuteNonQuery()
                 reportsdailytransaction(False)
@@ -1018,7 +1018,6 @@ Public Class Reports
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
         If DataGridViewReturns.Rows.Count > 0 Then
             Dim B As Integer = 0

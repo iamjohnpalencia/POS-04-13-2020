@@ -126,6 +126,18 @@
     <Compile Include="MAIN FORMS\ConfigManager.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MAIN FORMS\ChooseLayout.Designer.vb">
+      <DependentUpon>ChooseLayout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\ChooseLayout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\Grocery.Designer.vb">
+      <DependentUpon>Grocery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\Grocery.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MAIN FORMS\Partners.Designer.vb">
       <DependentUpon>Partners.vb</DependentUpon>
     </Compile>
@@ -232,6 +244,12 @@
       <DependentUpon>Message.vb</DependentUpon>
     </Compile>
     <Compile Include="SUBFORMS\Message.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\ResetForm.Designer.vb">
+      <DependentUpon>ResetForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\ResetForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SUBFORMS\ResetPassword.Designer.vb">
@@ -395,6 +413,9 @@
     <EmbeddedResource Include="MAIN FORMS\ConfigManager.resx">
       <DependentUpon>ConfigManager.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\ChooseLayout.resx">
+      <DependentUpon>ChooseLayout.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MAIN FORMS\Partners.resx">
       <DependentUpon>Partners.vb</DependentUpon>
     </EmbeddedResource>
@@ -445,6 +466,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\Message.resx">
       <DependentUpon>Message.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\ResetForm.resx">
+      <DependentUpon>ResetForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\ResetPassword.resx">
       <DependentUpon>ResetPassword.vb</DependentUpon>

@@ -143,7 +143,7 @@ Public Class Loading
     Private Sub LoadSettings()
         Try
             If LocalConnectionIsOnOrValid = True Then
-                Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix , S_Upgrade_Price_Add , S_BackupInterval, S_BackupDate , S_Update_Version , P_Footer_Info , S_logo FROM loc_settings WHERE settings_id = 1"
+                Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix , S_Upgrade_Price_Add , S_BackupInterval, S_BackupDate , S_Update_Version , P_Footer_Info , S_logo , S_Layout FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
@@ -167,6 +167,7 @@ Public Class Loading
                                             S_Backup_Interval = row("S_BackupInterval")
                                             S_Backup_Date = row("S_BackupDate")
                                             S_Logo = row("S_logo")
+                                            S_Layout = row("S_Layout")
                                             My.Settings.Footer = row("P_Footer_Info")
                                             My.Settings.Version = row("S_Update_Version")
                                             My.Settings.Save()
@@ -227,7 +228,12 @@ Public Class Loading
                             BackgroundWorker2.WorkerReportsProgress = True
                             BackgroundWorker2.RunWorkerAsync()
                         Else
-                            GetLocalPosData()
+                            If S_Layout = "" Then
+                                ChooseLayout.Show()
+                                Close()
+                            Else
+                                GetLocalPosData()
+                            End If
                         End If
                     Else
                         'MsgBox("No internet connection")
@@ -324,7 +330,12 @@ Public Class Loading
         Try
             Dim msg As Integer = MessageBox.Show("No internet connection found, Would you like to continue ?", "No internet connection", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
             If msg = DialogResult.Yes Then
-                GetLocalPosData()
+                If S_Layout = "" Then
+                    ChooseLayout.Show()
+                    Close()
+                Else
+                    GetLocalPosData()
+                End If
             ElseIf msg = DialogResult.No Then
                 Application.Exit()
             End If
@@ -397,7 +408,12 @@ Public Class Loading
         Label2.Text = e.ProgressPercentage
     End Sub
     Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
-        GetLocalPosData()
+        If S_Layout = "" Then
+            ChooseLayout.Show()
+            Close()
+        Else
+            GetLocalPosData()
+        End If
         Dispose()
         Login.Show()
         Login.txtusername.Focus()

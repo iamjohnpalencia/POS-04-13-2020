@@ -81,8 +81,14 @@ Module RetrieveModule
                         SystemLogDesc = "User Login: " & username & " : " & ClientRole
                         GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
                         Shift = ""
-                        Login.Close()
-                        POS.Show()
+                        If S_Layout = "POS" Then
+                            Login.Close()
+                            POS.Show()
+                        ElseIf S_Layout = "GROCERY" Then
+                            Login.Close()
+                            Grocery.Show()
+                        End If
+
                     ElseIf Login.txtusername.Text = username And cipherText = password And userlevel = "Head Crew" And ClientStoreID = storeid And active = 1 And franguid = ClientGuid Then
                         MessageBox.Show("Welcome " + fullname + "!", "Login Successfully(" & ClientRole & ")", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Login.txtusername.Text = ""
@@ -93,8 +99,13 @@ Module RetrieveModule
                         SystemLogDesc = "User Login: " & username & " : " & ClientRole
                         GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
                         Shift = ""
-                        Login.Close()
-                        POS.Show()
+                        If S_Layout = "POS" Then
+                            Login.Close()
+                            POS.Show()
+                        ElseIf S_Layout = "GROCERY" Then
+                            Login.Close()
+                            Grocery.Show()
+                        End If
                     Else
                         MessageBox.Show("Incorrect username or password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         SystemLogType = "ERROR"

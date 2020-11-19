@@ -4,6 +4,7 @@
         Try
             PictureBox1.Image = Base64ToImage(S_Logo)
             PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+
             Dim newMDIchild As New Leaderboards()
             If Application.OpenForms().OfType(Of Leaderboards).Any Then
                 Leaderboards.TopMost = True
@@ -15,13 +16,9 @@
                 newMDIchild.ShowIcon = False
                 newMDIchild.Show()
             End If
-            LabelFOOTER.Text = My.Settings.Footer
-            LabelTotalProdLine.Text = count(table:="loc_admin_products WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tocount:="product_id")
-            LabelTotalProdLine.Text = Val(LabelTotalProdLine.Text) + count(table:="loc_admin_products WHERE product_category <> 'Others'", tocount:="product_id")
-            'sum(table:="loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tototal:="stock_primary")
-            LabelTotalAvailStock.Text = roundsum("stock_primary", "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", "P")
-            LabelTotalSales.Text = sum(table:="loc_daily_transaction_details WHERE zreading = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
-            LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
+
+            LoadMDIFORM()
+
             If ClientRole = "Crew" Then
                 Button8.Visible = False
                 Button5.Visible = False
@@ -31,6 +28,18 @@
                 Button1.Location = New Point(20, 408)
                 Button4.Location = New Point(20, 452)
             End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Public Sub LoadMDIFORM()
+        Try
+            LabelFOOTER.Text = My.Settings.Footer
+            LabelTotalProdLine.Text = count(table:="loc_admin_products WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", tocount:="product_id")
+            LabelTotalProdLine.Text = Val(LabelTotalProdLine.Text) + count(table:="loc_admin_products WHERE product_category <> 'Others'", tocount:="product_id")
+            LabelTotalAvailStock.Text = roundsum("stock_primary", "loc_pos_inventory WHERE store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'", "P")
+            LabelTotalSales.Text = sum(table:="loc_daily_transaction_details WHERE zreading = '" & Format(Now(), "yyyy-MM-dd") & "' AND active = 1 AND store_id = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ", tototal:="total")
+            LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -188,6 +197,29 @@
                 btncolor(changecolor:=Button4)
                 btndefaut(defaultcolor:=Button4)
                 formclose(closeform:=About)
+                newMDIchild.MdiParent = Me
+                newMDIchild.ShowIcon = False
+                newMDIchild.Show()
+            End If
+            If SyncIsOnProcess = False Then
+                SynctoCloud.Close()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles ButtonReset.Click
+        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
+            SynctoCloud.TopMost = False
+        End If
+        Try
+            Dim newMDIchild As New ResetForm()
+            If Application.OpenForms().OfType(Of ResetForm).Any Then
+            Else
+                btncolor(changecolor:=ButtonReset)
+                btndefaut(defaultcolor:=ButtonReset)
+                formclose(closeform:=ResetForm)
                 newMDIchild.MdiParent = Me
                 newMDIchild.ShowIcon = False
                 newMDIchild.Show()

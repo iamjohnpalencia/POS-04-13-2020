@@ -1534,7 +1534,7 @@ Public Class ConfigManager
         file.WriteLine(TextBox1.Text)
         file.Close()
         Close()
-        Loading.Show()
+        ChooseLayout.Show()
     End Sub
     Public Sub GetCategories()
         Try

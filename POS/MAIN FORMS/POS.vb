@@ -1959,6 +1959,7 @@ Public Class POS
                             If CustomProdctsAppBool = True Then
                                 MsgBox("Products Approved")
                             End If
+                            LoadCategory()
                             For Each btn As Button In Panel3.Controls.OfType(Of Button)()
                                 If btn.Text = "Simply Perfect" Then
                                     btn.PerformClick()
