@@ -246,12 +246,6 @@
     <Compile Include="SUBFORMS\Message.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SUBFORMS\ResetForm.Designer.vb">
-      <DependentUpon>ResetForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SUBFORMS\ResetForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="SUBFORMS\ResetPassword.Designer.vb">
       <DependentUpon>ResetPassword.vb</DependentUpon>
     </Compile>
@@ -466,9 +460,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\Message.resx">
       <DependentUpon>Message.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SUBFORMS\ResetForm.resx">
-      <DependentUpon>ResetForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\ResetPassword.resx">
       <DependentUpon>ResetPassword.vb</DependentUpon>

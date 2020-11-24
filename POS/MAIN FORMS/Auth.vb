@@ -47,22 +47,48 @@ Public Class Auth
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Private Function IfUserExist(uniqID) As Boolean
+        Dim ReturnBool As Boolean = False
+        Try
+            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+            Dim sql = "SELECT uniq_id FROM loc_users WHERE uniq_id = '" & uniqID & "'"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
+            Using reader As MySqlDataReader = cmd.ExecuteReader
+                If reader.HasRows Then
+                    ReturnBool = True
+                Else
+                    ReturnBool = False
+                End If
+            End Using
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+        If ReturnBool Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
     Private Sub SyncToLocalUsers()
         UserCount = 0
         Try
             With DataGridViewRESULT
-                sql = "SELECT `user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `active`, `guid`, `store_id`, `uniq_id` , `created_at`, `updated_at` , `pwd` FROM `loc_users` WHERE guid = '" & ClientGuid & "' AND store_id = '" & ClientStoreID & "' AND synced = 'Unsynced' AND active = 1"
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, ServerCloudCon())
+                Dim ConnectionServer As MySqlConnection = ServerCloudCon()
+                Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+                sql = "SELECT `user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `active`, `guid`, `store_id`, `uniq_id` , `created_at`, `updated_at` , `pwd` FROM `loc_users` WHERE guid IN ('" & ClientGuid & "','Admin') AND store_id IN ('" & ClientStoreID & "','0') AND synced IN ('Unsynced','N/A') AND active = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionServer)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim DataTableServer As DataTable = New DataTable
                 da.Fill(DataTableServer)
                 .DataSource = DataTableServer
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    Account += "Username: " & .Rows(i).Cells(2).Value.ToString & vbNewLine & "Password: " & .Rows(i).Cells(14).Value.ToString & vbNewLine & vbNewLine
-                    UserCount = UserCount + 1
-                    table = "triggers_loc_users"
-                    fields = "(`user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `active`, `guid`, `store_id`, `uniq_id`, `synced`)"
-                    value = "(
+                    If IfUserExist(.Rows(i).Cells(11).Value.ToString) = False Then
+                        Account += "Username: " & .Rows(i).Cells(2).Value.ToString & vbNewLine & "Password: " & .Rows(i).Cells(14).Value.ToString & vbNewLine & vbNewLine
+                        UserCount = UserCount + 1
+                        table = "triggers_loc_users"
+                        fields = "(`user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `active`, `guid`, `store_id`, `uniq_id`, `synced`)"
+                        value = "(
                          '" & .Rows(i).Cells(0).Value.ToString & "'   
                          ,'" & .Rows(i).Cells(1).Value.ToString & "'    
                          ,'" & .Rows(i).Cells(2).Value.ToString & "'                 
@@ -75,14 +101,17 @@ Public Class Auth
                          ,'" & .Rows(i).Cells(9).Value.ToString & "'    
                          ,'" & .Rows(i).Cells(10).Value.ToString & "'   
                          ,'" & .Rows(i).Cells(11).Value.ToString & "'       
-                         ,'Unsynced')"
-                    GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
-                    sql = "UPDATE loc_users SET synced = 'Synced' WHERE uniq_id = '" & .Rows(i).Cells(11).Value.ToString & "'"
-                    cmd = New MySqlCommand(sql, ServerCloudCon())
-                    cmd.ExecuteNonQuery()
-                    sql = "UPDATE loc_users SET `full_name` = '" & .Rows(i).Cells(1).Value.ToString & "'  , `username` = '" & .Rows(i).Cells(2).Value.ToString & "' , `password` = '" & .Rows(i).Cells(3).Value.ToString & "'  , `contact_number` = '" & .Rows(i).Cells(4).Value.ToString & "'  WHERE uniq_id = '" & .Rows(i).Cells(11).Value.ToString & "' "
-                    cmd = New MySqlCommand(sql, LocalhostConn())
-                    cmd.ExecuteNonQuery()
+                         ,'Synced')"
+                        GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
+                        If .Rows(i).Cells(6).Value.ToString <> "Admin" Then
+                            sql = "UPDATE loc_users SET synced = 'Synced' WHERE uniq_id = '" & .Rows(i).Cells(11).Value.ToString & "'"
+                            cmd = New MySqlCommand(sql, ConnectionServer)
+                            cmd.ExecuteNonQuery()
+                        End If
+                        sql = "UPDATE loc_users SET `full_name` = '" & .Rows(i).Cells(1).Value.ToString & "'  , `username` = '" & .Rows(i).Cells(2).Value.ToString & "' , `password` = '" & .Rows(i).Cells(3).Value.ToString & "'  , `contact_number` = '" & .Rows(i).Cells(4).Value.ToString & "'  WHERE uniq_id = '" & .Rows(i).Cells(11).Value.ToString & "' "
+                        cmd = New MySqlCommand(sql, ConnectionLocal)
+                        cmd.ExecuteNonQuery()
+                    End If
                 Next
             End With
         Catch ex As Exception

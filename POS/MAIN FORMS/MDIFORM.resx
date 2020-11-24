@@ -121,22 +121,6 @@
     <value>122, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ButtonReset.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAJlSURBVFhHvdfLy01RGMfxk0uSS1IuE/cyETKQgXKJN7lkRubGpjI0kSgh5PKXKJcJCpN3giSS
-        AULJLbfcvt+tfXrOOnvvzn7P3udXn3rfc9lr7bX2etY6nRqZhQO4gvt4i5/4jne4i8vYh9loLAtxAV/w
-        d0B+9hKWYcKZhqP4jKJGBuHoHIfXqpUFuIOii+oTHuIGrsIpqeroOJYiZiXm/f+zN6vwAulFPuI0NmMy
-        0kzCBpzCB6Tff43VMGP4CqepJ9552vgvnEVhb0syB3b2N+K1XuEgbNz/r6Mb5ykddu96FyaabXiPeM3o
-        KbrxgYtv2vgaDBuvUdYJX8/iUosPkcM+zJ2nOYzYcM5VksV1Ht9wzpvKduRznvJGswoXi4xDX+eBq8om
-        lDUu283Ka3zRp7epHEJVfXDFZbU9vug6bzqO6Do4HbthHfDvRejcQ964Fa6oyLQad7K8A5bXkecH8g70
-        VKZRJXbAzaXtrMdjPIOrZORTcA15e5b+vodwCtqK+8035O3dRt8y3IK2shGxrRPoK0Rn0FYuIra1F52Z
-        iKXYaZiPpjMXsR13whnIkm5G59B00qk+iW48CcWa7UlmD5rKTvxBfn234SXoSdGBZC2GjedEpzVe+wj6
-        4hJxWcQP2olhRsLvpqchl33pUi86lDod51HnwXT38ztx2PUc2Q5YlbJjucPoSWkriu5gKqwhLuP4tOde
-        YgUGinebTkdkA49wE+4fD1B18LiFxagVn4ljiJtVXR7HfLiHKu/L4a/eomEt42j4C8nTdmOxYu6H5dSf
-        4m/g6NixJ3CYnf8dmI4B0un8A6wqTpq8g4b6AAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="Button4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6

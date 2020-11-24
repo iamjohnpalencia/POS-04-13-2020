@@ -14,7 +14,9 @@ Public Class SettingsForm
             TabControl1.TabPages(2).Text = "Formula"
             TabControl1.TabPages(3).Text = "Item Refund"
             TabControl1.TabPages(4).Text = "Coupon Settings"
-            TabControl1.TabPages(5).Text = "Updates"
+            TabControl1.TabPages(5).Text = "Reset"
+            TabControl1.TabPages(6).Text = "Updates"
+
             TabControl2.TabPages(0).Text = "Connection Settings"
             TabControl2.TabPages(1).Text = "Database Settings"
             TabControl2.TabPages(2).Text = "Additional Settings"
@@ -29,6 +31,9 @@ Public Class SettingsForm
             LoadAdditionalSettings()
             LoadDevInfo()
             LoadAutoBackup()
+            If ClientRole <> "Admin" Then
+                TabControl1.TabPages.Remove(TabControl1.TabPages(5))
+            End If
             If ClientRole = "Crew" Then
                 ButtonPartnersPrio.Visible = False
                 ButtonAddBank.Visible = False
@@ -45,8 +50,6 @@ Public Class SettingsForm
                 Button2.Visible = False
                 ButtonCHelp.Visible = False
                 ButtonSaveCoupon.Visible = False
-                'ButtonSaveCoupon.Visible = False
-                'ButtonResetCoupon.Visible = False
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -2081,4 +2084,106 @@ Public Class SettingsForm
     Private Sub TextBoxCRefVal_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxCRefVal.KeyPress, TextBoxCDVal.KeyPress, TextBoxCBundVal.KeyPress, TextBoxCBP.KeyPress
         Numeric(sender, e)
     End Sub
+#Region "Reset"
+    Dim Query As String = ""
+    Private Sub TruncateTable(ToTruncate)
+        Try
+            Query += "TRUNCATE TABLE " & ToTruncate & " ;"
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Try
+            Query = ""
+            If CheckBoxCategories.Checked Then
+                TruncateTable("loc_admin_category")
+            End If
+            If CheckBoxProducts.Checked Then
+                TruncateTable("loc_admin_products")
+                TruncateTable("triggers_loc_admin_products")
+            End If
+            If CheckBoxCouponData.Checked Then
+                TruncateTable("loc_coupon_data")
+            End If
+            If CheckBoxSales.Checked Then
+                TruncateTable("loc_daily_transaction")
+                TruncateTable("loc_daily_transaction_details")
+                TruncateTable("loc_senior_details")
+                TruncateTable("loc_transaction_mode_details")
+            End If
+            If CheckBoxDeposits.Checked Then
+                TruncateTable("loc_deposit")
+            End If
+            If CheckBoxExpenses.Checked Then
+                TruncateTable("loc_expense_details")
+                TruncateTable("loc_expense_list")
+            End If
+            If CheckBoxFMStocks.Checked Then
+                TruncateTable("loc_fm_stock")
+            End If
+            If CheckBoxMessage.Checked Then
+                TruncateTable("loc_inbox_messages")
+            End If
+            If CheckBoxInvTempData.Checked Then
+                TruncateTable("loc_inv_temp_data")
+            End If
+            If CheckBoxPartners.Checked Then
+                TruncateTable("loc_partners_transaction")
+            End If
+            If CheckBoxPendingOrders.Checked Then
+                TruncateTable("loc_pending_orders")
+            End If
+            If CheckBoxInventory.Checked Then
+                TruncateTable("loc_pos_inventory")
+            End If
+            If CheckBoxPriceReq.Checked Then
+                TruncateTable("loc_price_request_change")
+            End If
+            If CheckBoxFormula.Checked Then
+                TruncateTable("loc_product_formula")
+            End If
+            If CheckBoxReturns.Checked Then
+                TruncateTable("loc_refund_return_details")
+            End If
+            If CheckBoxErrorLogs.Checked Then
+                TruncateTable("loc_send_bug_report")
+            End If
+            If CheckBoxStockAdjCat.Checked Then
+                TruncateTable("loc_stockadjustment_cat")
+            End If
+            If CheckBoxSystemLogs.Checked Then
+                TruncateTable("loc_system_logs")
+            End If
+            If CheckBoxTransferInventory.Checked Then
+                TruncateTable("loc_transfer_data")
+            End If
+            If CheckBoxUsers.Checked Then
+                TruncateTable("loc_users")
+                TruncateTable("triggers_loc_users")
+            End If
+            If CheckBoxZreadInventory.Checked Then
+                TruncateTable("loc_zread_inventory")
+            End If
+            If CheckBoxCoupons.Checked Then
+                TruncateTable("tbcoupon")
+            End If
+            Dim msg = MessageBox.Show("Are you sure you want to truncate all selected table(s)?", "NOTICE", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If msg = DialogResult.Yes Then
+                Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+                Dim cmd As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
+                Dim res = cmd.ExecuteNonQuery()
+                If res = 1 Then
+                    MsgBox("Complete")
+                Else
+                    MsgBox("Error found")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+#End Region
 End Class

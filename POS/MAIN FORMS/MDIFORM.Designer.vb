@@ -85,7 +85,6 @@ Partial Class MDIFORM
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
-        Me.ButtonReset = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel5.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,7 +107,6 @@ Partial Class MDIFORM
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.Controls.Add(Me.ButtonReset)
         Me.Panel1.Controls.Add(Me.Button4)
         Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.Button12)
@@ -856,26 +854,6 @@ Partial Class MDIFORM
         Me.MenuStrip.Text = "MenuStrip"
         Me.MenuStrip.Visible = False
         '
-        'ButtonReset
-        '
-        Me.ButtonReset.BackColor = System.Drawing.Color.White
-        Me.ButtonReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ButtonReset.Dock = System.Windows.Forms.DockStyle.Top
-        Me.ButtonReset.FlatAppearance.BorderSize = 0
-        Me.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonReset.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonReset.ForeColor = System.Drawing.Color.Black
-        Me.ButtonReset.Image = CType(resources.GetObject("ButtonReset.Image"), System.Drawing.Image)
-        Me.ButtonReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ButtonReset.Location = New System.Drawing.Point(20, 610)
-        Me.ButtonReset.Name = "ButtonReset"
-        Me.ButtonReset.Size = New System.Drawing.Size(226, 40)
-        Me.ButtonReset.TabIndex = 193
-        Me.ButtonReset.Text = "     Reset "
-        Me.ButtonReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ButtonReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.ButtonReset.UseVisualStyleBackColor = False
-        '
         'MDIFORM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -987,5 +965,4 @@ Partial Class MDIFORM
     Friend WithEvents Panel9 As Panel
     Friend WithEvents LabelFOOTER As Label
     Friend WithEvents Button9 As Button
-    Friend WithEvents ButtonReset As Button
 End Class

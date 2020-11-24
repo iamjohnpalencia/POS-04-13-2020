@@ -23,105 +23,125 @@ Module RetrieveModule
     Dim critical_item
     Dim product
     Dim cipherText As String
-
-    'FUNCTION FOR LOGGING-IN POS CLIENT/ CREW / POS ==================================================================================== 
     Public Sub retrieveLoginDetails()
-        If Login.txtusername.Text = "" Then
-            MessageBox.Show("Input username first", "Login Form", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Login.txtusername.Focus()
-        ElseIf Login.txtpassword.Text = "" Then
-            MessageBox.Show("Input password first", "Login Form", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Login.txtpassword.Focus()
-        Else
-            Try
-                cipherText = ConvertPassword(SourceString:=Login.txtpassword.Text)
-                sql = "SELECT * FROM loc_users WHERE username = @Username AND password = @Password AND guid = '" & ClientGuid & "' AND store_id = @StoreID AND active = 1;"
-                cmd = New MySqlCommand(sql, LocalhostConn())
-                With cmd
-                    .Parameters.Clear()
-                    .Parameters.AddWithValue("@Username", Login.txtusername.Text)
-                    .Parameters.AddWithValue("@UserID", Login.txtusername.Text)
-                    .Parameters.AddWithValue("@Password", cipherText)
-                    .Parameters.AddWithValue("@StoreID", ClientStoreID)
-                    Dim reader As MySqlDataReader
-                    reader = .ExecuteReader()
-                    While reader.Read()
-                        user_id = reader("uniq_id")
-                    End While
-                    reader.Close()
-                End With
-                da = New MySqlDataAdapter
-                dt = New DataTable
-                da.SelectCommand = cmd
-                da.Fill(dt)
-            Catch ex As MySqlException
-                MsgBox(ex.ToString)
-                SendErrorReport(ex.ToString)
-            Finally
-                da.Dispose()
-                If dt.Rows.Count > 0 Then
-                    Dim crew_id, username, password, fullname, userlevel, active, storeid, franguid, role As String
-                    crew_id = dt.Rows(0).Item(0)
-                    role = dt.Rows(0).Item(1)
-                    username = dt.Rows(0).Item(3)
-                    password = dt.Rows(0).Item(4)
-                    userlevel = dt.Rows(0).Item(7)
-                    fullname = dt.Rows(0).Item(2)
-                    active = dt.Rows(0).Item(11)
-                    franguid = dt.Rows(0).Item(12)
-                    storeid = dt.Rows(0).Item(13)
-                    ClientRole = role
-                    If Login.txtusername.Text = username And cipherText = password And userlevel = "Crew" And ClientStoreID = storeid And active = 1 And franguid = ClientGuid Then
-                        MessageBox.Show("Welcome " + fullname + "!", "Login Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        Login.txtusername.Text = ""
-                        Login.txtpassword.Text = ""
-                        ClientCrewID = user_id
-                        messageboxappearance = True
-                        SystemLogType = "LOGIN"
-                        SystemLogDesc = "User Login: " & username & " : " & ClientRole
-                        GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-                        Shift = ""
-                        If S_Layout = "POS" Then
-                            Login.Close()
-                            POS.Show()
-                        ElseIf S_Layout = "GROCERY" Then
-                            Login.Close()
-                            Grocery.Show()
-                        End If
+        Try
+            If Login.txtusername.Text = "" Then
+                MessageBox.Show("Input username first", "Login Form", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Login.txtusername.Focus()
+            ElseIf Login.txtpassword.Text = "" Then
+                MessageBox.Show("Input password first", "Login Form", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Login.txtpassword.Focus()
+            Else
+                Try
+                    cipherText = ConvertPassword(SourceString:=Login.txtpassword.Text)
+                    sql = "SELECT * FROM loc_users WHERE username = @Username AND password = @Password AND guid = '" & ClientGuid & "' AND store_id = @StoreID AND active = 1;"
+                    cmd = New MySqlCommand(sql, LocalhostConn())
+                    With cmd
+                        .Parameters.Clear()
+                        .Parameters.AddWithValue("@Username", Login.txtusername.Text)
+                        .Parameters.AddWithValue("@UserID", Login.txtusername.Text)
+                        .Parameters.AddWithValue("@Password", cipherText)
+                        .Parameters.AddWithValue("@StoreID", ClientStoreID)
+                        Dim reader As MySqlDataReader
+                        reader = .ExecuteReader()
+                        While reader.Read()
+                            user_id = reader("uniq_id")
+                        End While
+                        reader.Close()
+                    End With
+                    da = New MySqlDataAdapter
+                    dt = New DataTable
+                    da.SelectCommand = cmd
+                    da.Fill(dt)
+                Catch ex As MySqlException
+                    MsgBox(ex.ToString)
+                    SendErrorReport(ex.ToString)
+                Finally
+                    da.Dispose()
+                    If dt.Rows.Count > 0 Then
+                        Dim crew_id, username, password, fullname, userlevel, active, storeid, franguid, role As String
+                        crew_id = dt.Rows(0).Item(0)
+                        role = dt.Rows(0).Item(1)
+                        username = dt.Rows(0).Item(3)
+                        password = dt.Rows(0).Item(4)
+                        userlevel = dt.Rows(0).Item(7)
+                        fullname = dt.Rows(0).Item(2)
+                        active = dt.Rows(0).Item(11)
+                        franguid = dt.Rows(0).Item(12)
+                        storeid = dt.Rows(0).Item(13)
+                        ClientRole = role
+                        If Login.txtusername.Text = username And cipherText = password And userlevel = "Crew" And ClientStoreID = storeid And active = 1 And franguid = ClientGuid Then
+                            MessageBox.Show("Welcome " + fullname + "!", "Login Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            Login.txtusername.Text = ""
+                            Login.txtpassword.Text = ""
+                            ClientCrewID = user_id
+                            messageboxappearance = True
+                            SystemLogType = "LOGIN"
+                            SystemLogDesc = "User Login: " & username & " : " & ClientRole
+                            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+                            Shift = ""
+                            If S_Layout = "POS" Then
+                                Login.Close()
+                                POS.Show()
+                            ElseIf S_Layout = "GROCERY" Then
+                                Login.Close()
+                                Grocery.Show()
+                            End If
 
-                    ElseIf Login.txtusername.Text = username And cipherText = password And userlevel = "Head Crew" And ClientStoreID = storeid And active = 1 And franguid = ClientGuid Then
-                        MessageBox.Show("Welcome " + fullname + "!", "Login Successfully(" & ClientRole & ")", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        Login.txtusername.Text = ""
-                        Login.txtpassword.Text = ""
-                        ClientCrewID = user_id
-                        messageboxappearance = True
-                        SystemLogType = "LOGIN"
-                        SystemLogDesc = "User Login: " & username & " : " & ClientRole
-                        GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-                        Shift = ""
-                        If S_Layout = "POS" Then
-                            Login.Close()
-                            POS.Show()
-                        ElseIf S_Layout = "GROCERY" Then
-                            Login.Close()
-                            Grocery.Show()
+                        ElseIf Login.txtusername.Text = username And cipherText = password And userlevel = "Head Crew" And ClientStoreID = storeid And active = 1 And franguid = ClientGuid Then
+                            MessageBox.Show("Welcome " + fullname + "!", "Login Successfully(" & ClientRole & ")", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            Login.txtusername.Text = ""
+                            Login.txtpassword.Text = ""
+                            ClientCrewID = user_id
+                            messageboxappearance = True
+                            SystemLogType = "LOGIN"
+                            SystemLogDesc = "User Login: " & username & " : " & ClientRole
+                            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+                            Shift = ""
+                            If S_Layout = "POS" Then
+                                Login.Close()
+                                POS.Show()
+                            ElseIf S_Layout = "GROCERY" Then
+                                Login.Close()
+                                Grocery.Show()
+                            End If
+                        ElseIf Login.txtusername.Text = username And cipherText = password And userlevel = "Admin" And ClientStoreID = storeid And active = 1 And franguid = ClientGuid Then
+                            MessageBox.Show("Welcome " + fullname + "!", "Login Successfully(" & ClientRole & ")", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            Login.txtusername.Text = ""
+                            Login.txtpassword.Text = ""
+                            ClientCrewID = user_id
+                            messageboxappearance = True
+                            SystemLogType = "LOGIN"
+                            SystemLogDesc = "User Login: " & username & " : " & ClientRole
+                            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+                            Shift = ""
+                            If S_Layout = "POS" Then
+                                Login.Close()
+                                POS.Show()
+                            ElseIf S_Layout = "GROCERY" Then
+                                Login.Close()
+                                Grocery.Show()
+                            End If
+                        Else
+                            MessageBox.Show("Incorrect username or password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            SystemLogType = "ERROR"
+                            SystemLogDesc = "FAILED TO LOGIN: Username: " & Login.txtusername.Text & " Password: " & Login.txtpassword.Text
+                            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
                         End If
                     Else
                         MessageBox.Show("Incorrect username or password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Login.txtusername.Focus()
+                        messageboxappearance = True
                         SystemLogType = "ERROR"
-                        SystemLogDesc = "FAILED TO LOGIN: Username: " & Login.txtusername.Text & " Password: " & Login.txtpassword.Text
+                        SystemLogDesc = "FAILED TO LOGIN: Username and password input " & Login.txtusername.Text & " " & Login.txtpassword.Text
                         GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
                     End If
-                Else
-                    MessageBox.Show("Incorrect username or password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Login.txtusername.Focus()
-                    messageboxappearance = True
-                    SystemLogType = "ERROR"
-                    SystemLogDesc = "FAILED TO LOGIN: Username and password input " & Login.txtusername.Text & " " & Login.txtpassword.Text
-                    GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-                End If
-            End Try
-        End If
+                End Try
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Public Function CheckUserName(Username) As Boolean
         Dim ReturnUsername As Boolean = False

@@ -209,29 +209,6 @@
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles ButtonReset.Click
-        If Application.OpenForms().OfType(Of SynctoCloud).Any Then
-            SynctoCloud.TopMost = False
-        End If
-        Try
-            Dim newMDIchild As New ResetForm()
-            If Application.OpenForms().OfType(Of ResetForm).Any Then
-            Else
-                btncolor(changecolor:=ButtonReset)
-                btndefaut(defaultcolor:=ButtonReset)
-                formclose(closeform:=ResetForm)
-                newMDIchild.MdiParent = Me
-                newMDIchild.ShowIcon = False
-                newMDIchild.Show()
-            End If
-            If SyncIsOnProcess = False Then
-                SynctoCloud.Close()
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
         If Application.OpenForms().OfType(Of SynctoCloud).Any Then

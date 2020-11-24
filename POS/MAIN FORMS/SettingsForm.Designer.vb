@@ -348,6 +348,30 @@ Partial Class SettingsForm
         Me.TextBoxDevAdd = New System.Windows.Forms.TextBox()
         Me.TextBoxDevname = New System.Windows.Forms.TextBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage16 = New System.Windows.Forms.TabPage()
+        Me.CheckBoxCategories = New System.Windows.Forms.CheckBox()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.CheckBoxCoupons = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxProducts = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxZreadInventory = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxCouponData = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxUsers = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxSales = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxTransferInventory = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxDeposits = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxSystemLogs = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxExpenses = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxStockAdjCat = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxFMStocks = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxErrorLogs = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxMessage = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxReturns = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxInvTempData = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxFormula = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxPartners = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxPriceReq = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxPendingOrders = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxInventory = New System.Windows.Forms.CheckBox()
         Me.TabPage6.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -435,6 +459,7 @@ Partial Class SettingsForm
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.TabControl1.SuspendLayout()
+        Me.TabPage16.SuspendLayout()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -450,15 +475,29 @@ Partial Class SettingsForm
         '
         'TabPage6
         '
-        Me.TabPage6.Controls.Add(Me.PictureBox1)
-        Me.TabPage6.Controls.Add(Me.Label47)
-        Me.TabPage6.Controls.Add(Me.PictureBox2)
-        Me.TabPage6.Controls.Add(Me.Panel29)
-        Me.TabPage6.Controls.Add(Me.DataGridView5)
-        Me.TabPage6.Controls.Add(Me.DataGridView4)
-        Me.TabPage6.Controls.Add(Me.DataGridView3)
-        Me.TabPage6.Controls.Add(Me.DataGridView2)
-        Me.TabPage6.Controls.Add(Me.DataGridView1)
+        Me.TabPage6.Controls.Add(Me.CheckBoxCategories)
+        Me.TabPage6.Controls.Add(Me.Button5)
+        Me.TabPage6.Controls.Add(Me.CheckBoxCoupons)
+        Me.TabPage6.Controls.Add(Me.CheckBoxProducts)
+        Me.TabPage6.Controls.Add(Me.CheckBoxZreadInventory)
+        Me.TabPage6.Controls.Add(Me.CheckBoxCouponData)
+        Me.TabPage6.Controls.Add(Me.CheckBoxUsers)
+        Me.TabPage6.Controls.Add(Me.CheckBoxSales)
+        Me.TabPage6.Controls.Add(Me.CheckBoxTransferInventory)
+        Me.TabPage6.Controls.Add(Me.CheckBoxDeposits)
+        Me.TabPage6.Controls.Add(Me.CheckBoxSystemLogs)
+        Me.TabPage6.Controls.Add(Me.CheckBoxExpenses)
+        Me.TabPage6.Controls.Add(Me.CheckBoxStockAdjCat)
+        Me.TabPage6.Controls.Add(Me.CheckBoxFMStocks)
+        Me.TabPage6.Controls.Add(Me.CheckBoxErrorLogs)
+        Me.TabPage6.Controls.Add(Me.CheckBoxMessage)
+        Me.TabPage6.Controls.Add(Me.CheckBoxReturns)
+        Me.TabPage6.Controls.Add(Me.CheckBoxInvTempData)
+        Me.TabPage6.Controls.Add(Me.CheckBoxFormula)
+        Me.TabPage6.Controls.Add(Me.CheckBoxPartners)
+        Me.TabPage6.Controls.Add(Me.CheckBoxPriceReq)
+        Me.TabPage6.Controls.Add(Me.CheckBoxPendingOrders)
+        Me.TabPage6.Controls.Add(Me.CheckBoxInventory)
         Me.TabPage6.Location = New System.Drawing.Point(4, 28)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
@@ -470,7 +509,7 @@ Partial Class SettingsForm
         'PictureBox1
         '
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(299, 225)
+        Me.PictureBox1.Location = New System.Drawing.Point(301, 244)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(66, 58)
         Me.PictureBox1.TabIndex = 80
@@ -481,7 +520,7 @@ Partial Class SettingsForm
         '
         Me.Label47.AutoSize = True
         Me.Label47.Font = New System.Drawing.Font("Tahoma", 27.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label47.Location = New System.Drawing.Point(337, 105)
+        Me.Label47.Location = New System.Drawing.Point(339, 124)
         Me.Label47.Name = "Label47"
         Me.Label47.Size = New System.Drawing.Size(412, 45)
         Me.Label47.TabIndex = 78
@@ -491,7 +530,7 @@ Partial Class SettingsForm
         '
         Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox2.Location = New System.Drawing.Point(264, 128)
+        Me.PictureBox2.Location = New System.Drawing.Point(266, 147)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(137, 136)
         Me.PictureBox2.TabIndex = 81
@@ -504,7 +543,7 @@ Partial Class SettingsForm
         Me.Panel29.Controls.Add(Me.Panel27)
         Me.Panel29.Controls.Add(Me.ProgressBar1)
         Me.Panel29.Controls.Add(Me.Panel26)
-        Me.Panel29.Location = New System.Drawing.Point(412, 153)
+        Me.Panel29.Location = New System.Drawing.Point(414, 172)
         Me.Panel29.Name = "Panel29"
         Me.Panel29.Size = New System.Drawing.Size(337, 144)
         Me.Panel29.TabIndex = 77
@@ -608,7 +647,7 @@ Partial Class SettingsForm
         Me.DataGridView5.AllowUserToResizeRows = False
         Me.DataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView5.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1})
-        Me.DataGridView5.Location = New System.Drawing.Point(412, 338)
+        Me.DataGridView5.Location = New System.Drawing.Point(410, 341)
         Me.DataGridView5.Name = "DataGridView5"
         Me.DataGridView5.ReadOnly = True
         Me.DataGridView5.Size = New System.Drawing.Size(209, 137)
@@ -629,7 +668,7 @@ Partial Class SettingsForm
         Me.DataGridView4.AllowUserToResizeRows = False
         Me.DataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView4.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column32, Me.Column33, Me.Column34, Me.Column35, Me.Column36, Me.Column37, Me.Column38, Me.Column39, Me.Column40, Me.Column41, Me.Column44})
-        Me.DataGridView4.Location = New System.Drawing.Point(829, 338)
+        Me.DataGridView4.Location = New System.Drawing.Point(827, 341)
         Me.DataGridView4.Name = "DataGridView4"
         Me.DataGridView4.ReadOnly = True
         Me.DataGridView4.RowHeadersVisible = False
@@ -711,7 +750,7 @@ Partial Class SettingsForm
         Me.DataGridView3.AllowUserToResizeRows = False
         Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.Column21, Me.Column22, Me.Column23, Me.Column24, Me.Column25, Me.Column26, Me.Column27, Me.Column28, Me.Column29, Me.Column30, Me.Column31})
-        Me.DataGridView3.Location = New System.Drawing.Point(627, 338)
+        Me.DataGridView3.Location = New System.Drawing.Point(625, 341)
         Me.DataGridView3.Name = "DataGridView3"
         Me.DataGridView3.ReadOnly = True
         Me.DataGridView3.RowHeadersVisible = False
@@ -804,7 +843,7 @@ Partial Class SettingsForm
         Me.DataGridView2.AllowUserToResizeColumns = False
         Me.DataGridView2.AllowUserToResizeRows = False
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(210, 338)
+        Me.DataGridView2.Location = New System.Drawing.Point(208, 341)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.ReadOnly = True
         Me.DataGridView2.RowHeadersVisible = False
@@ -820,7 +859,7 @@ Partial Class SettingsForm
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn20})
-        Me.DataGridView1.Location = New System.Drawing.Point(8, 338)
+        Me.DataGridView1.Location = New System.Drawing.Point(6, 341)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersVisible = False
@@ -3134,10 +3173,10 @@ Partial Class SettingsForm
         'TabPage12
         '
         Me.TabPage12.Controls.Add(Me.Panel10)
-        Me.TabPage12.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage12.Location = New System.Drawing.Point(4, 28)
         Me.TabPage12.Name = "TabPage12"
         Me.TabPage12.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage12.Size = New System.Drawing.Size(1017, 449)
+        Me.TabPage12.Size = New System.Drawing.Size(1017, 443)
         Me.TabPage12.TabIndex = 1
         Me.TabPage12.Text = "TabPage12"
         Me.TabPage12.UseVisualStyleBackColor = True
@@ -3148,7 +3187,7 @@ Partial Class SettingsForm
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel10.Location = New System.Drawing.Point(3, 3)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(1011, 443)
+        Me.Panel10.Size = New System.Drawing.Size(1011, 437)
         Me.Panel10.TabIndex = 0
         '
         'TableLayoutPanel2
@@ -3165,7 +3204,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1011, 443)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1011, 437)
         Me.TableLayoutPanel2.TabIndex = 10
         '
         'GroupBox6
@@ -3175,7 +3214,7 @@ Partial Class SettingsForm
         Me.GroupBox6.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox6.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(1005, 141)
+        Me.GroupBox6.Size = New System.Drawing.Size(1005, 139)
         Me.GroupBox6.TabIndex = 4
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "System Database Option"
@@ -3192,7 +3231,7 @@ Partial Class SettingsForm
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel8.Location = New System.Drawing.Point(3, 22)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(999, 116)
+        Me.Panel8.Size = New System.Drawing.Size(999, 114)
         Me.Panel8.TabIndex = 0
         '
         'ButtonOptimizeDB
@@ -3266,9 +3305,9 @@ Partial Class SettingsForm
         Me.GroupBox2.Controls.Add(Me.Panel7)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 150)
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 148)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(1005, 141)
+        Me.GroupBox2.Size = New System.Drawing.Size(1005, 139)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Manual System Backup"
@@ -3282,7 +3321,7 @@ Partial Class SettingsForm
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel7.Location = New System.Drawing.Point(3, 22)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(999, 116)
+        Me.Panel7.Size = New System.Drawing.Size(999, 114)
         Me.Panel7.TabIndex = 0
         '
         'TextBoxLocalRestorePath
@@ -3332,9 +3371,9 @@ Partial Class SettingsForm
         Me.GroupBox1.Controls.Add(Me.Panel6)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 297)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 293)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1005, 143)
+        Me.GroupBox1.Size = New System.Drawing.Size(1005, 141)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Schedule Automatic System Backup"
@@ -3346,7 +3385,7 @@ Partial Class SettingsForm
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel6.Location = New System.Drawing.Point(3, 22)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(999, 118)
+        Me.Panel6.Size = New System.Drawing.Size(999, 116)
         Me.Panel6.TabIndex = 0
         '
         'Label60
@@ -3421,10 +3460,10 @@ Partial Class SettingsForm
         'TabPage15
         '
         Me.TabPage15.Controls.Add(Me.TableLayoutPanel9)
-        Me.TabPage15.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage15.Location = New System.Drawing.Point(4, 28)
         Me.TabPage15.Name = "TabPage15"
         Me.TabPage15.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage15.Size = New System.Drawing.Size(1017, 449)
+        Me.TabPage15.Size = New System.Drawing.Size(1017, 443)
         Me.TabPage15.TabIndex = 2
         Me.TabPage15.Text = "TabPage15"
         Me.TabPage15.UseVisualStyleBackColor = True
@@ -3442,7 +3481,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel9.RowCount = 1
         Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel9.Size = New System.Drawing.Size(1011, 443)
+        Me.TableLayoutPanel9.Size = New System.Drawing.Size(1011, 437)
         Me.TableLayoutPanel9.TabIndex = 282
         '
         'GroupBox12
@@ -3461,7 +3500,7 @@ Partial Class SettingsForm
         Me.GroupBox12.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox12.Location = New System.Drawing.Point(508, 3)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(500, 437)
+        Me.GroupBox12.Size = New System.Drawing.Size(500, 431)
         Me.GroupBox12.TabIndex = 296
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "Additional Settings"
@@ -3601,7 +3640,7 @@ Partial Class SettingsForm
         Me.GroupBox11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox11.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(499, 437)
+        Me.GroupBox11.Size = New System.Drawing.Size(499, 431)
         Me.GroupBox11.TabIndex = 295
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "Developer Information"
@@ -3790,6 +3829,7 @@ Partial Class SettingsForm
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Controls.Add(Me.TabPage6)
+        Me.TabControl1.Controls.Add(Me.TabPage16)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
@@ -3797,6 +3837,280 @@ Partial Class SettingsForm
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(1039, 513)
         Me.TabControl1.TabIndex = 0
+        '
+        'TabPage16
+        '
+        Me.TabPage16.Controls.Add(Me.DataGridView5)
+        Me.TabPage16.Controls.Add(Me.PictureBox1)
+        Me.TabPage16.Controls.Add(Me.Label47)
+        Me.TabPage16.Controls.Add(Me.DataGridView4)
+        Me.TabPage16.Controls.Add(Me.Panel29)
+        Me.TabPage16.Controls.Add(Me.DataGridView1)
+        Me.TabPage16.Controls.Add(Me.DataGridView3)
+        Me.TabPage16.Controls.Add(Me.PictureBox2)
+        Me.TabPage16.Controls.Add(Me.DataGridView2)
+        Me.TabPage16.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage16.Name = "TabPage16"
+        Me.TabPage16.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage16.Size = New System.Drawing.Size(1031, 481)
+        Me.TabPage16.TabIndex = 6
+        Me.TabPage16.Text = "TabPage16"
+        Me.TabPage16.UseVisualStyleBackColor = True
+        '
+        'CheckBoxCategories
+        '
+        Me.CheckBoxCategories.AutoSize = True
+        Me.CheckBoxCategories.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxCategories.Location = New System.Drawing.Point(230, 82)
+        Me.CheckBoxCategories.Name = "CheckBoxCategories"
+        Me.CheckBoxCategories.Size = New System.Drawing.Size(95, 22)
+        Me.CheckBoxCategories.TabIndex = 24
+        Me.CheckBoxCategories.Text = "Categories"
+        Me.CheckBoxCategories.UseVisualStyleBackColor = True
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
+        Me.Button5.FlatAppearance.BorderSize = 0
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.ForeColor = System.Drawing.Color.White
+        Me.Button5.Location = New System.Drawing.Point(399, 394)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(207, 44)
+        Me.Button5.TabIndex = 23
+        Me.Button5.Text = "RESET"
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'CheckBoxCoupons
+        '
+        Me.CheckBoxCoupons.AutoSize = True
+        Me.CheckBoxCoupons.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxCoupons.Location = New System.Drawing.Point(611, 341)
+        Me.CheckBoxCoupons.Name = "CheckBoxCoupons"
+        Me.CheckBoxCoupons.Size = New System.Drawing.Size(83, 22)
+        Me.CheckBoxCoupons.TabIndex = 45
+        Me.CheckBoxCoupons.Text = "Coupons"
+        Me.CheckBoxCoupons.UseVisualStyleBackColor = True
+        '
+        'CheckBoxProducts
+        '
+        Me.CheckBoxProducts.AutoSize = True
+        Me.CheckBoxProducts.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxProducts.Location = New System.Drawing.Point(230, 108)
+        Me.CheckBoxProducts.Name = "CheckBoxProducts"
+        Me.CheckBoxProducts.Size = New System.Drawing.Size(147, 22)
+        Me.CheckBoxProducts.TabIndex = 25
+        Me.CheckBoxProducts.Text = "Products/ Triggers"
+        Me.CheckBoxProducts.UseVisualStyleBackColor = True
+        '
+        'CheckBoxZreadInventory
+        '
+        Me.CheckBoxZreadInventory.AutoSize = True
+        Me.CheckBoxZreadInventory.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxZreadInventory.Location = New System.Drawing.Point(611, 316)
+        Me.CheckBoxZreadInventory.Name = "CheckBoxZreadInventory"
+        Me.CheckBoxZreadInventory.Size = New System.Drawing.Size(129, 22)
+        Me.CheckBoxZreadInventory.TabIndex = 44
+        Me.CheckBoxZreadInventory.Text = "Zread inventory"
+        Me.CheckBoxZreadInventory.UseVisualStyleBackColor = True
+        '
+        'CheckBoxCouponData
+        '
+        Me.CheckBoxCouponData.AutoSize = True
+        Me.CheckBoxCouponData.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxCouponData.Location = New System.Drawing.Point(230, 134)
+        Me.CheckBoxCouponData.Name = "CheckBoxCouponData"
+        Me.CheckBoxCouponData.Size = New System.Drawing.Size(110, 22)
+        Me.CheckBoxCouponData.TabIndex = 26
+        Me.CheckBoxCouponData.Text = "Coupon data"
+        Me.CheckBoxCouponData.UseVisualStyleBackColor = True
+        '
+        'CheckBoxUsers
+        '
+        Me.CheckBoxUsers.AutoSize = True
+        Me.CheckBoxUsers.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxUsers.Location = New System.Drawing.Point(611, 290)
+        Me.CheckBoxUsers.Name = "CheckBoxUsers"
+        Me.CheckBoxUsers.Size = New System.Drawing.Size(128, 22)
+        Me.CheckBoxUsers.TabIndex = 43
+        Me.CheckBoxUsers.Text = "Users/ Triggers"
+        Me.CheckBoxUsers.UseVisualStyleBackColor = True
+        '
+        'CheckBoxSales
+        '
+        Me.CheckBoxSales.AutoSize = True
+        Me.CheckBoxSales.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxSales.Location = New System.Drawing.Point(230, 160)
+        Me.CheckBoxSales.Name = "CheckBoxSales"
+        Me.CheckBoxSales.Size = New System.Drawing.Size(372, 22)
+        Me.CheckBoxSales.TabIndex = 27
+        Me.CheckBoxSales.Text = "Sales  /Senior citizen  data/ Transaction mode details"
+        Me.CheckBoxSales.UseVisualStyleBackColor = True
+        '
+        'CheckBoxTransferInventory
+        '
+        Me.CheckBoxTransferInventory.AutoSize = True
+        Me.CheckBoxTransferInventory.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxTransferInventory.Location = New System.Drawing.Point(611, 264)
+        Me.CheckBoxTransferInventory.Name = "CheckBoxTransferInventory"
+        Me.CheckBoxTransferInventory.Size = New System.Drawing.Size(182, 22)
+        Me.CheckBoxTransferInventory.TabIndex = 42
+        Me.CheckBoxTransferInventory.Text = "Transfer inventory data"
+        Me.CheckBoxTransferInventory.UseVisualStyleBackColor = True
+        '
+        'CheckBoxDeposits
+        '
+        Me.CheckBoxDeposits.AutoSize = True
+        Me.CheckBoxDeposits.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxDeposits.Location = New System.Drawing.Point(230, 186)
+        Me.CheckBoxDeposits.Name = "CheckBoxDeposits"
+        Me.CheckBoxDeposits.Size = New System.Drawing.Size(116, 22)
+        Me.CheckBoxDeposits.TabIndex = 28
+        Me.CheckBoxDeposits.Text = "Deposits data"
+        Me.CheckBoxDeposits.UseVisualStyleBackColor = True
+        '
+        'CheckBoxSystemLogs
+        '
+        Me.CheckBoxSystemLogs.AutoSize = True
+        Me.CheckBoxSystemLogs.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxSystemLogs.Location = New System.Drawing.Point(611, 238)
+        Me.CheckBoxSystemLogs.Name = "CheckBoxSystemLogs"
+        Me.CheckBoxSystemLogs.Size = New System.Drawing.Size(106, 22)
+        Me.CheckBoxSystemLogs.TabIndex = 41
+        Me.CheckBoxSystemLogs.Text = "System logs"
+        Me.CheckBoxSystemLogs.UseVisualStyleBackColor = True
+        '
+        'CheckBoxExpenses
+        '
+        Me.CheckBoxExpenses.AutoSize = True
+        Me.CheckBoxExpenses.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxExpenses.Location = New System.Drawing.Point(230, 212)
+        Me.CheckBoxExpenses.Name = "CheckBoxExpenses"
+        Me.CheckBoxExpenses.Size = New System.Drawing.Size(89, 22)
+        Me.CheckBoxExpenses.TabIndex = 29
+        Me.CheckBoxExpenses.Text = "Expenses"
+        Me.CheckBoxExpenses.UseVisualStyleBackColor = True
+        '
+        'CheckBoxStockAdjCat
+        '
+        Me.CheckBoxStockAdjCat.AutoSize = True
+        Me.CheckBoxStockAdjCat.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxStockAdjCat.Location = New System.Drawing.Point(611, 212)
+        Me.CheckBoxStockAdjCat.Name = "CheckBoxStockAdjCat"
+        Me.CheckBoxStockAdjCat.Size = New System.Drawing.Size(212, 22)
+        Me.CheckBoxStockAdjCat.TabIndex = 40
+        Me.CheckBoxStockAdjCat.Text = "Stock adjustment categories"
+        Me.CheckBoxStockAdjCat.UseVisualStyleBackColor = True
+        '
+        'CheckBoxFMStocks
+        '
+        Me.CheckBoxFMStocks.AutoSize = True
+        Me.CheckBoxFMStocks.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxFMStocks.Location = New System.Drawing.Point(230, 238)
+        Me.CheckBoxFMStocks.Name = "CheckBoxFMStocks"
+        Me.CheckBoxFMStocks.Size = New System.Drawing.Size(153, 22)
+        Me.CheckBoxFMStocks.TabIndex = 30
+        Me.CheckBoxFMStocks.Text = "Fast moving stocks"
+        Me.CheckBoxFMStocks.UseVisualStyleBackColor = True
+        '
+        'CheckBoxErrorLogs
+        '
+        Me.CheckBoxErrorLogs.AutoSize = True
+        Me.CheckBoxErrorLogs.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxErrorLogs.Location = New System.Drawing.Point(611, 186)
+        Me.CheckBoxErrorLogs.Name = "CheckBoxErrorLogs"
+        Me.CheckBoxErrorLogs.Size = New System.Drawing.Size(88, 22)
+        Me.CheckBoxErrorLogs.TabIndex = 39
+        Me.CheckBoxErrorLogs.Text = "Error logs"
+        Me.CheckBoxErrorLogs.UseVisualStyleBackColor = True
+        '
+        'CheckBoxMessage
+        '
+        Me.CheckBoxMessage.AutoSize = True
+        Me.CheckBoxMessage.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxMessage.Location = New System.Drawing.Point(230, 264)
+        Me.CheckBoxMessage.Name = "CheckBoxMessage"
+        Me.CheckBoxMessage.Size = New System.Drawing.Size(85, 22)
+        Me.CheckBoxMessage.TabIndex = 31
+        Me.CheckBoxMessage.Text = "Message"
+        Me.CheckBoxMessage.UseVisualStyleBackColor = True
+        '
+        'CheckBoxReturns
+        '
+        Me.CheckBoxReturns.AutoSize = True
+        Me.CheckBoxReturns.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxReturns.Location = New System.Drawing.Point(611, 160)
+        Me.CheckBoxReturns.Name = "CheckBoxReturns"
+        Me.CheckBoxReturns.Size = New System.Drawing.Size(77, 22)
+        Me.CheckBoxReturns.TabIndex = 38
+        Me.CheckBoxReturns.Text = "Returns"
+        Me.CheckBoxReturns.UseVisualStyleBackColor = True
+        '
+        'CheckBoxInvTempData
+        '
+        Me.CheckBoxInvTempData.AutoSize = True
+        Me.CheckBoxInvTempData.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxInvTempData.Location = New System.Drawing.Point(230, 290)
+        Me.CheckBoxInvTempData.Name = "CheckBoxInvTempData"
+        Me.CheckBoxInvTempData.Size = New System.Drawing.Size(164, 22)
+        Me.CheckBoxInvTempData.TabIndex = 32
+        Me.CheckBoxInvTempData.Text = "Inventory temp data"
+        Me.CheckBoxInvTempData.UseVisualStyleBackColor = True
+        '
+        'CheckBoxFormula
+        '
+        Me.CheckBoxFormula.AutoSize = True
+        Me.CheckBoxFormula.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxFormula.Location = New System.Drawing.Point(611, 134)
+        Me.CheckBoxFormula.Name = "CheckBoxFormula"
+        Me.CheckBoxFormula.Size = New System.Drawing.Size(79, 22)
+        Me.CheckBoxFormula.TabIndex = 37
+        Me.CheckBoxFormula.Text = "Formula"
+        Me.CheckBoxFormula.UseVisualStyleBackColor = True
+        '
+        'CheckBoxPartners
+        '
+        Me.CheckBoxPartners.AutoSize = True
+        Me.CheckBoxPartners.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxPartners.Location = New System.Drawing.Point(230, 316)
+        Me.CheckBoxPartners.Name = "CheckBoxPartners"
+        Me.CheckBoxPartners.Size = New System.Drawing.Size(178, 22)
+        Me.CheckBoxPartners.TabIndex = 33
+        Me.CheckBoxPartners.Text = "Partners transaction list"
+        Me.CheckBoxPartners.UseVisualStyleBackColor = True
+        '
+        'CheckBoxPriceReq
+        '
+        Me.CheckBoxPriceReq.AutoSize = True
+        Me.CheckBoxPriceReq.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxPriceReq.Location = New System.Drawing.Point(611, 108)
+        Me.CheckBoxPriceReq.Name = "CheckBoxPriceReq"
+        Me.CheckBoxPriceReq.Size = New System.Drawing.Size(145, 22)
+        Me.CheckBoxPriceReq.TabIndex = 36
+        Me.CheckBoxPriceReq.Text = "Price request data"
+        Me.CheckBoxPriceReq.UseVisualStyleBackColor = True
+        '
+        'CheckBoxPendingOrders
+        '
+        Me.CheckBoxPendingOrders.AutoSize = True
+        Me.CheckBoxPendingOrders.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxPendingOrders.Location = New System.Drawing.Point(230, 342)
+        Me.CheckBoxPendingOrders.Name = "CheckBoxPendingOrders"
+        Me.CheckBoxPendingOrders.Size = New System.Drawing.Size(123, 22)
+        Me.CheckBoxPendingOrders.TabIndex = 34
+        Me.CheckBoxPendingOrders.Text = "Pending orders"
+        Me.CheckBoxPendingOrders.UseVisualStyleBackColor = True
+        '
+        'CheckBoxInventory
+        '
+        Me.CheckBoxInventory.AutoSize = True
+        Me.CheckBoxInventory.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxInventory.Location = New System.Drawing.Point(611, 82)
+        Me.CheckBoxInventory.Name = "CheckBoxInventory"
+        Me.CheckBoxInventory.Size = New System.Drawing.Size(91, 22)
+        Me.CheckBoxInventory.TabIndex = 35
+        Me.CheckBoxInventory.Text = "Inventory"
+        Me.CheckBoxInventory.UseVisualStyleBackColor = True
         '
         'SettingsForm
         '
@@ -3917,6 +4231,8 @@ Partial Class SettingsForm
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox11.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
+        Me.TabPage16.ResumeLayout(False)
+        Me.TabPage16.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4223,4 +4539,28 @@ Partial Class SettingsForm
     Friend WithEvents Panel29 As Panel
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents TabPage16 As TabPage
+    Friend WithEvents CheckBoxCategories As CheckBox
+    Friend WithEvents Button5 As Button
+    Friend WithEvents CheckBoxCoupons As CheckBox
+    Friend WithEvents CheckBoxProducts As CheckBox
+    Friend WithEvents CheckBoxZreadInventory As CheckBox
+    Friend WithEvents CheckBoxCouponData As CheckBox
+    Friend WithEvents CheckBoxUsers As CheckBox
+    Friend WithEvents CheckBoxSales As CheckBox
+    Friend WithEvents CheckBoxTransferInventory As CheckBox
+    Friend WithEvents CheckBoxDeposits As CheckBox
+    Friend WithEvents CheckBoxSystemLogs As CheckBox
+    Friend WithEvents CheckBoxExpenses As CheckBox
+    Friend WithEvents CheckBoxStockAdjCat As CheckBox
+    Friend WithEvents CheckBoxFMStocks As CheckBox
+    Friend WithEvents CheckBoxErrorLogs As CheckBox
+    Friend WithEvents CheckBoxMessage As CheckBox
+    Friend WithEvents CheckBoxReturns As CheckBox
+    Friend WithEvents CheckBoxInvTempData As CheckBox
+    Friend WithEvents CheckBoxFormula As CheckBox
+    Friend WithEvents CheckBoxPartners As CheckBox
+    Friend WithEvents CheckBoxPriceReq As CheckBox
+    Friend WithEvents CheckBoxPendingOrders As CheckBox
+    Friend WithEvents CheckBoxInventory As CheckBox
 End Class
