@@ -2,7 +2,6 @@
 Imports MySql.Data.MySqlClient
 
 Public Class Login
-
     Private Sub Login_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
         LabelFOOTER.Text = My.Settings.Footer
         CheckDatabaseBackup()

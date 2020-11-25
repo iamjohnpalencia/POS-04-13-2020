@@ -2174,11 +2174,13 @@ Public Class SettingsForm
                 Dim ConnectionLocal As MySqlConnection = LocalhostConn()
                 Dim cmd As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
                 Dim res = cmd.ExecuteNonQuery()
-                If res = 1 Then
-                    MsgBox("Complete")
-                Else
-                    MsgBox("Error found")
-                End If
+                MsgBox("Complete")
+                POS.LoadCategory()
+                For Each btn As Button In POS.Panel3.Controls.OfType(Of Button)()
+                    If btn.Text = "Simply Perfect" Then
+                        btn.PerformClick()
+                    End If
+                Next
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)

@@ -23,6 +23,8 @@ Module RetrieveModule
     Dim critical_item
     Dim product
     Dim cipherText As String
+
+
     Public Sub retrieveLoginDetails()
         Try
             If Login.txtusername.Text = "" Then
@@ -34,7 +36,7 @@ Module RetrieveModule
             Else
                 Try
                     cipherText = ConvertPassword(SourceString:=Login.txtpassword.Text)
-                    sql = "SELECT * FROM loc_users WHERE username = @Username AND password = @Password AND guid = '" & ClientGuid & "' AND store_id = @StoreID AND active = 1;"
+                    sql = "SELECT * FROM loc_users WHERE username = @Username AND password = @Password AND active = 1;"
                     cmd = New MySqlCommand(sql, LocalhostConn())
                     With cmd
                         .Parameters.Clear()
@@ -105,7 +107,7 @@ Module RetrieveModule
                                 Login.Close()
                                 Grocery.Show()
                             End If
-                        ElseIf Login.txtusername.Text = username And cipherText = password And userlevel = "Admin" And ClientStoreID = storeid And active = 1 And franguid = ClientGuid Then
+                        ElseIf Login.txtusername.Text = username And cipherText = password And userlevel = "Admin" Then
                             MessageBox.Show("Welcome " + fullname + "!", "Login Successfully(" & ClientRole & ")", MessageBoxButtons.OK, MessageBoxIcon.Information)
                             Login.txtusername.Text = ""
                             Login.txtpassword.Text = ""

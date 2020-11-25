@@ -63,7 +63,7 @@ Public Class POS
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub LoadCategory()
+    Public Sub LoadCategory()
         Try
             sql = "SELECT category_name FROM loc_admin_category WHERE status = 1"
             cmd = New MySqlCommand(sql, LocalhostConn())
