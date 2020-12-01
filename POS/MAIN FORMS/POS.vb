@@ -65,6 +65,7 @@ Public Class POS
     End Sub
     Public Sub LoadCategory()
         Try
+            Panel3.Controls.Clear()
             sql = "SELECT category_name FROM loc_admin_category WHERE status = 1"
             cmd = New MySqlCommand(sql, LocalhostConn())
             da = New MySqlDataAdapter(cmd)
