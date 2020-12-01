@@ -84,7 +84,7 @@ Public Class Loading
                     End If
                 End If
                 If i = 50 Then
-                    If CheckForInternetConnection() = True Then
+                    If CheckForInternetConnection() Then
                         IfInternetIsAvailable = True
                         Label1.Text = "Connecting to cloud server..."
                         If ValidDatabaseLocalConnection Then

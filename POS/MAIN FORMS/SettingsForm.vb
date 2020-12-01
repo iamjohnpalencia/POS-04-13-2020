@@ -1150,6 +1150,7 @@ Public Class SettingsForm
             Dim Con = TestDBConnection(TextBoxLocalServer.Text, TextBoxLocalUsername.Text, TextBoxLocalPassword.Text, TextBoxLocalDatabase.Text, TextBoxLocalPort.Text)
             If Con.State = ConnectionState.Open Then
                 MessageBox.Show("Connected Successfully", "Connected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Con.Close()
             Else
                 MessageBox.Show("Cannot connect to server", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
@@ -1165,6 +1166,7 @@ Public Class SettingsForm
                 Dim Con = TestDBConnection(TextBoxCloudServer.Text, TextBoxCloudUsername.Text, TextBoxCloudPassword.Text, TextBoxCloudDatabase.Text, TextBoxCloudPort.Text)
                 If Con.State = ConnectionState.Open Then
                     MessageBox.Show("Connected Successfully", "Connected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Con.Close()
                 Else
                     MessageBox.Show("Cannot connect to server", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If

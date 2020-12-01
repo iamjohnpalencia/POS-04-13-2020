@@ -410,6 +410,9 @@
     <EmbeddedResource Include="MAIN FORMS\ChooseLayout.resx">
       <DependentUpon>ChooseLayout.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\Grocery.resx">
+      <DependentUpon>Grocery.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MAIN FORMS\Partners.resx">
       <DependentUpon>Partners.vb</DependentUpon>
     </EmbeddedResource>
