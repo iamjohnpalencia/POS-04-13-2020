@@ -2013,7 +2013,7 @@ Public Class SynctoCloud
                 local.Close()
                 If WorkerCanceled = False Then
                     Dim t As New Task(New Action(Sub()
-                                                     LabelError.Text = "Synced Coupons"
+                                                     LabelError.Text = "Synced Error logs"
                                                      LabelErrorTime.Text = LabelTime.Text & " Seconds"
                                                  End Sub))
                     t.Start()
