@@ -2046,6 +2046,8 @@ Public Class SynctoCloud
             t1.Start()
 
             With DataGridViewINV
+                Dim DateSynced As String = ""
+                DateSynced = FullDate24HR()
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
                         Exit For
@@ -2064,7 +2066,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@8", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value
                     cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value
                     cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
-                    cmd.Parameters.Add("@11", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value.ToString()
+                    cmd.Parameters.Add("@11", MySqlDbType.Text).Value = DateSynced
 
                     cmd.ExecuteNonQuery()
                     'inventory_id,store_id,formula_id,product_ingredients,sku,stock_primary,stock_secondary,stock_no_of_servings,stock_status,critical_limit,guid,date_modified,crew_id,server_inventory_id
@@ -2074,7 +2076,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@3", MySqlDbType.Double).Value = .Rows(i).Cells(7).Value
                     cmd.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value
                     cmd.Parameters.Add("@5", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value
-                    cmd.Parameters.Add("@6", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value
+                    cmd.Parameters.Add("@6", MySqlDbType.Text).Value = DateSynced
                     cmd.ExecuteNonQuery()
 
                     LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
