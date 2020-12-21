@@ -2067,7 +2067,6 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@9", MySqlDbType.Int64).Value = .Rows(i).Cells(9).Value
                     cmd.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                     cmd.Parameters.Add("@11", MySqlDbType.Text).Value = DateSynced
-
                     cmd.ExecuteNonQuery()
                     'inventory_id,store_id,formula_id,product_ingredients,sku,stock_primary,stock_secondary,stock_no_of_servings,stock_status,critical_limit,guid,date_modified,crew_id,server_inventory_id
                     cmd = New MySqlCommand("UPDATE admin_pos_inventory SET `stock_primary` = @1, `stock_secondary`= @2, `stock_no_of_servings` = @3, `stock_status` = @4, `critical_limit`= @5, `date` = @6 WHERE loc_inventory_id = " & .Rows(i).Cells(0).Value & " AND guid = '" & ClientGuid & "' AND store_id = '" & ClientStoreID & "'", server)
