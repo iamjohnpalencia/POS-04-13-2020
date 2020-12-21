@@ -9,11 +9,6 @@
         Dim url As String = "https://www.facebook.com/FamousBelgianWafflesOFFICIAL/"
         Process.Start(url)
     End Sub
-    Private Sub PictureBox5_Click(sender As Object, e As EventArgs) Handles PictureBox5.Click
-
-    End Sub
-    Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
-    End Sub
 
     Private Sub Label2_Click(sender As Object, e As EventArgs)
         Dim url As String = "https://famousbelgianwaffles.com/"
