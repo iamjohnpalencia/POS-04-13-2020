@@ -51,7 +51,7 @@ Partial Class About
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(601, 35)
         Me.Label12.TabIndex = 107
-        Me.Label12.Text = "Innovention Food Asia Corporation"
+        Me.Label12.Text = "Innovention Food Resources Inc."
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label17
@@ -64,7 +64,7 @@ Partial Class About
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(595, 16)
         Me.Label17.TabIndex = 105
-        Me.Label17.Text = "© 2019 - Innovention Food Asia Corporation"
+        Me.Label17.Text = "© 2019 - Innovention Food Resources Inc." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Panel1
