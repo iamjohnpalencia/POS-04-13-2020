@@ -65,7 +65,7 @@ Public Class Message
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         Try
             If DataGridView1.Rows.Count > 0 Then
-                Label1.Text = "Message From: " & Me.DataGridView1.Item(2, Me.DataGridView1.CurrentRow.Index).Value.ToString & vbCrLf & "Subject: " & Me.DataGridView1.Item(3, Me.DataGridView1.CurrentRow.Index).Value.ToString & vbCrLf & "Date: " & Me.DataGridView1.Item(8, Me.DataGridView1.CurrentRow.Index).Value.ToString & vbCrLf & "Content: " & vbCrLf & vbCrLf & Me.DataGridView1.Item(4, Me.DataGridView1.CurrentRow.Index).Value.ToString
+                Label1.Text = "Message From: " & Me.DataGridView1.Item(2, Me.DataGridView1.CurrentRow.Index).Value.ToString & "(ADMIN)" & vbCrLf & "Subject: " & Me.DataGridView1.Item(3, Me.DataGridView1.CurrentRow.Index).Value.ToString & vbCrLf & "Date: " & Me.DataGridView1.Item(8, Me.DataGridView1.CurrentRow.Index).Value.ToString & vbCrLf & "Content: " & vbCrLf & vbCrLf & Me.DataGridView1.Item(4, Me.DataGridView1.CurrentRow.Index).Value.ToString
                 SeenMessage(DataGridView1.SelectedRows(0).Cells(0).Value)
                 DataGridView1.SelectedRows(0).Cells(10).Value = 1
                 ReadMessage()

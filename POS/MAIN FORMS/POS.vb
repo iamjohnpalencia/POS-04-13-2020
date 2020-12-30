@@ -2320,6 +2320,7 @@ Public Class POS
         DtMessage.Columns.Add("active")
         DtMessage.Columns.Add("created_at")
         DtMessage.Columns.Add("origin")
+
         Try
             Dim ConnectionLocal As MySqlConnection = LocalhostConn()
             Dim ConnectionCloud As MySqlConnection = ServerCloudCon()
@@ -2334,7 +2335,7 @@ Public Class POS
                     MessageIDS += LocMessageDatatable(i)(0).ToString & ","
                 Next
                 MessageIDS = MessageIDS.TrimEnd(CChar(","))
-                Query = "SELECT * FROM admin_message WHERE message_id NOT IN (" & MessageIDS & ") AND origin IN ('Server','Client') AND guid IN ('Server','" & ClientGuid & "') AND store_id IN ('0','" & ClientStoreID & "') "
+                Query = "SELECT * FROM admin_message WHERE message_id NOT IN (" & MessageIDS & ") AND guid = '" & ClientGuid & "' "
                 Command = New MySqlCommand(Query, ServerCloudCon)
                 da = New MySqlDataAdapter(Command)
                 Dim dt As DataTable = New DataTable
@@ -2343,33 +2344,35 @@ Public Class POS
                     Dim Mess As DataRow = DtMessage.NewRow
                     Mess("message_id") = dt(i)(0)
                     Mess("from") = dt(i)(1)
-                    Mess("subject") = dt(i)(2)
-                    Mess("content") = dt(i)(3)
-                    Mess("guid") = dt(i)(4)
-                    Mess("store_id") = dt(i)(5)
-                    Mess("active") = dt(i)(6)
-                    Mess("created_at") = dt(i)(7)
-                    Mess("origin") = dt(i)(8)
+                    Mess("subject") = dt(i)(5)
+                    Mess("content") = dt(i)(6)
+                    Mess("guid") = dt(i)(7)
+                    Mess("store_id") = ClientStoreID
+                    Mess("active") = 1
+                    Mess("created_at") = dt(i)(8)
+                    Mess("origin") = "Server"
                     DtMessage.Rows.Add(Mess)
                 Next
             Else
-                Query = "SELECT * FROM admin_message WHERE origin IN ('Server','Client') AND guid IN ('Server','" & ClientGuid & "') AND store_id IN ('0','" & ClientStoreID & "') "
+                Query = "SELECT * FROM admin_message WHERE guid = '" & ClientGuid & "' "
                 Command = New MySqlCommand(Query, ServerCloudCon)
                 da = New MySqlDataAdapter(Command)
                 Dim dt As DataTable = New DataTable
                 da.Fill(dt)
                 For i As Integer = 0 To dt.Rows.Count - 1 Step +1
                     Dim Mess As DataRow = DtMessage.NewRow
+
                     Mess("message_id") = dt(i)(0)
                     Mess("from") = dt(i)(1)
-                    Mess("subject") = dt(i)(2)
-                    Mess("content") = dt(i)(3)
-                    Mess("guid") = dt(i)(4)
-                    Mess("store_id") = dt(i)(5)
-                    Mess("active") = dt(i)(6)
-                    Mess("created_at") = dt(i)(7)
-                    Mess("origin") = dt(i)(8)
+                    Mess("subject") = dt(i)(5)
+                    Mess("content") = dt(i)(6)
+                    Mess("guid") = dt(i)(7)
+                    Mess("store_id") = ClientStoreID
+                    Mess("active") = 1
+                    Mess("created_at") = dt(i)(8)
+                    Mess("origin") = "Server"
                     DtMessage.Rows.Add(Mess)
+
                 Next
             End If
         Catch ex As Exception
