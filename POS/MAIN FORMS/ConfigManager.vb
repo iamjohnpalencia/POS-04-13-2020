@@ -713,6 +713,7 @@ Public Class ConfigManager
             BackgroundWorker4.RunWorkerAsync()
             TextboxEnableability(Panel14, False)
             ButtonEnableability(Panel14, True)
+            ChangeProgBarColor(ProgressBar3, ProgressBarColor.Green)
             LabelAccCheck.Text = "Complete!"
         Else
             ChangeProgBarColor(ProgressBar3, ProgressBarColor.Yellow)
