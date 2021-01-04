@@ -1,13 +1,10 @@
 ﻿Imports MySql.Data.MySqlClient
 Module serverlocalconn
-    Dim ConnStr As String
-    Dim ConnStr2 As String
     Public Function ServerCloudCon()
-        Dim servercloudconn As MySqlConnection
-        servercloudconn = New MySqlConnection
+        Dim servercloudconn As MySqlConnection = New MySqlConnection
         Try
-            sql = "SELECT `C_Server`, `C_Username`, `C_Password`, `C_Database`, `C_Port` FROM  loc_settings WHERE settings_id = 1"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
+            Dim sql = "SELECT `C_Server`, `C_Username`, `C_Password`, `C_Database`, `C_Port` FROM loc_settings WHERE settings_id = 1"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
@@ -22,6 +19,7 @@ Module serverlocalconn
                 ValidCloudConnection = True
             End If
         Catch ex As Exception
+            SendErrorReport(ex.ToString)
             ValidCloudConnection = False
         End Try
         Return servercloudconn

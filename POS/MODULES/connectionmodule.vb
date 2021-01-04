@@ -26,8 +26,7 @@ Module connectionModule
         Return localconn
     End Function
     Public Function LocalhostConn() As MySqlConnection
-        Dim localconnection As MySqlConnection
-        localconnection = New MySqlConnection
+        Dim localconnection As MySqlConnection = New MySqlConnection
         Try
             localconnection.ConnectionString = LocalConnectionString
             localconnection.Open()
