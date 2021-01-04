@@ -56,7 +56,7 @@ Module Addmodule
                 Command.ExecuteNonQuery()
                 ConnectionLocal.Close()
             Catch ex As Exception
-                MsgBox(ex.ToString)
+
             End Try
         Else
             MsgBox("Localhost connection is not valid.")
