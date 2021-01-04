@@ -61,6 +61,8 @@ Public Class Message
         If Messageboolean = False Then
             If Application.OpenForms().OfType(Of Message).Any Then
                 POS.Enabled = False
+            Else
+                POS.Enabled = True
             End If
             Messageboolean = False
         Else
