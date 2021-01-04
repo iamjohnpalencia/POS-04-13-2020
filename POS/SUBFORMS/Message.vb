@@ -60,6 +60,8 @@ Public Class Message
         If Messageboolean = False Then
             POS.Enabled = True
             Messageboolean = False
+        Else
+            Messageboolean = False
         End If
     End Sub
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
