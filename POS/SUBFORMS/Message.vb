@@ -59,7 +59,7 @@ Public Class Message
     End Sub
     Private Sub Message_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If Messageboolean = False Then
-            If Application.OpenForms().OfType(Of Message).Any Then
+            If Application.OpenForms().OfType(Of BegBalance).Any Then
                 POS.Enabled = False
             Else
                 POS.Enabled = True
