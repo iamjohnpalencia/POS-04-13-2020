@@ -4,16 +4,17 @@ Public Class Message
         Try
             If Messageboolean = False Then
                 POS.Enabled = False
-                GLOBAL_SELECT_ALL_FUNCTION("loc_message", "*", DataGridView1)
+                GLOBAL_SELECT_ALL_FUNCTION("loc_message ORDER BY message_id DESC", "*", DataGridView1)
                 Dim arg = New DataGridViewCellEventArgs(0, 0)
                 DataGridView1_CellClick(sender, arg)
                 ReadMessage()
+                TopMost = True
             Else
                 Me.MinimizeBox = True
                 Me.MaximizeBox = True
                 Me.WindowState = FormWindowState.Maximized
 
-                GLOBAL_SELECT_ALL_FUNCTION("loc_message", "*", DataGridView1)
+                GLOBAL_SELECT_ALL_FUNCTION("loc_message ORDER BY message_id DESC", "*", DataGridView1)
                 Dim arg = New DataGridViewCellEventArgs(0, 0)
                 DataGridView1_CellClick(sender, arg)
                 ReadMessage()
@@ -58,7 +59,11 @@ Public Class Message
     End Sub
     Private Sub Message_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If Messageboolean = False Then
-            POS.Enabled = True
+            If Application.OpenForms().OfType(Of Message).Any Then
+                POS.Enabled = False
+            Else
+                POS.Enabled = True
+            End If
             Messageboolean = False
         Else
             Messageboolean = False
