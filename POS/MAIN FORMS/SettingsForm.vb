@@ -34,6 +34,8 @@ Public Class SettingsForm
             LoadAdditionalSettings()
             LoadDevInfo()
             LoadAutoBackup()
+            LoadPrintOptions()
+
             If ClientRole <> "Admin" And ClientRole <> "Manager" Then
                 TabControl1.TabPages.Remove(TabControl1.TabPages(5))
                 AutoBackupBoolean = False
@@ -932,6 +934,58 @@ Public Class SettingsForm
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Private Sub LoadPrintOptions()
+        Try
+            If ValidLocalConnection = True Then
+                sql = "SELECT `printreceipt`, `reprintreceipt`, `printxzread` FROM loc_settings WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    If dt(0)(0) <> Nothing Then
+                        If dt(0)(0) = "YES" Then
+                            RadioButtonPrintReceiptYes.Checked = True
+                            RadioButtonPrintReceiptNo.Checked = False
+                            RadioButtonPrintReceiptNo.Enabled = False
+                        Else
+                            RadioButtonPrintReceiptNo.Checked = True
+                            RadioButtonPrintReceiptYes.Checked = False
+                            RadioButtonPrintReceiptYes.Enabled = False
+                        End If
+
+                    End If
+                    If dt(0)(1) <> Nothing Then
+                        If dt(0)(1) = "YES" Then
+                            RadioButtonRePrintReceiptYes.Checked = True
+                            RadioButtonRePrintReceiptNo.Checked = False
+                            RadioButtonRePrintReceiptNo.Enabled = False
+                        Else
+                            RadioButtonRePrintReceiptNo.Checked = True
+                            RadioButtonRePrintReceiptYes.Checked = False
+                            RadioButtonRePrintReceiptYes.Enabled = False
+                        End If
+
+                    End If
+                    If dt(0)(2) <> Nothing Then
+                        If dt(0)(2) = "YES" Then
+                            RadioButtonPrintXZReadYes.Checked = True
+                            RadioButtonPrintXZReadNo.Checked = False
+                            RadioButtonPrintXZReadNo.Enabled = False
+                        Else
+                            RadioButtonPrintXZReadNo.Checked = True
+                            RadioButtonPrintXZReadYes.Checked = False
+                            RadioButtonPrintXZReadYes.Enabled = False
+                        End If
+
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
     Private Sub LoadAdditionalSettings()
         Try
             If ValidLocalConnection = True Then
@@ -1175,13 +1229,16 @@ Public Class SettingsForm
                 If Con.State = ConnectionState.Open Then
                     MessageBox.Show("Connected Successfully", "Connected", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Con.Close()
+                    ValidCloudConnection = True
                 Else
                     MessageBox.Show("Cannot connect to server", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    ValidCloudConnection = False
                 End If
             Else
                 MessageBox.Show("No internet connection available", "No internet connection", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Catch ex As Exception
+            ValidCloudConnection = False
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
