@@ -345,6 +345,7 @@ CREATE TABLE `loc_pos_inventory` (
 DROP TABLE IF EXISTS `loc_price_request_change`;
 CREATE TABLE `loc_price_request_change` (
   `request_id` int(11) NOT NULL,
+  `store_name` text NOT NULL,
   `server_product_id` text NOT NULL,
   `request_price` text NOT NULL,
   `created_at` text NOT NULL,
@@ -465,7 +466,10 @@ CREATE TABLE `loc_settings` (
   `S_Update_Version` text NOT NULL,
   `P_Footer_Info` text NOT NULL,
   `S_logo` longtext NOT NULL,
-  `S_Layout` text NOT NULL
+  `S_Layout` text NOT NULL,
+  `printreceipt` text NOT NULL,
+  `reprintreceipt` text NOT NULL,
+  `printxzread` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 -- --------------------------------------------------------
 

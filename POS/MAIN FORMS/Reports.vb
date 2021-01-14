@@ -362,10 +362,13 @@ Public Class Reports
                     End If
                 Next
                 printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
-                PrintPreviewDialog1.Document = printdoc
-                PrintPreviewDialog1.ShowDialog()
+                If S_Reprint = "YES" Then
+                    printdoc.Print()
+                Else
+                    PrintPreviewDialog1.Document = printdoc
+                    PrintPreviewDialog1.ShowDialog()
+                End If
                 b = 0
-                ' printdoc.Print()
             Catch ex As Exception
                 MessageBox.Show("An error occurred while trying to load the " &
                     "document for Print Preview. Make sure you currently have " &
@@ -506,8 +509,13 @@ Public Class Reports
         ReadingOR = "X" & Format(Now, "yyddMMHHmmssyy")
 
         printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 1000)
-        PrintPreviewDialogXread.Document = printdocXread
-        PrintPreviewDialogXread.ShowDialog()
+
+        If S_Print_XZRead = "YES" Then
+            printdocXread.Print()
+        Else
+            PrintPreviewDialogXread.Document = printdocXread
+            PrintPreviewDialogXread.ShowDialog()
+        End If
 
         SystemLogDesc = "X Reading : " & FullDate24HR() & " Crew : " & returnfullname(ClientCrewID)
         SystemLogType = "X-READ"
@@ -684,8 +692,14 @@ Public Class Reports
                 XreadOrZread = "Z-READ"
                 ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
                 printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 1000)
-                PrintPreviewDialogXread.Document = printdocXread
-                PrintPreviewDialogXread.ShowDialog()
+
+                If S_Print_XZRead = "YES" Then
+                    printdocXread.Print()
+                Else
+                    PrintPreviewDialogXread.Document = printdocXread
+                    PrintPreviewDialogXread.ShowDialog()
+                End If
+
                 'Update Zread
 
                 S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
@@ -728,8 +742,14 @@ Public Class Reports
                     XreadOrZread = "Z-READ"
                     ReadingOR = "Z" & Format(Now, "yyddMMHHmmssyy")
                     printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 1000)
-                    PrintPreviewDialogXread.Document = printdocXread
-                    PrintPreviewDialogXread.ShowDialog()
+
+                    If S_Print_XZRead = "YES" Then
+                        printdocXread.Print()
+                    Else
+                        PrintPreviewDialogXread.Document = printdocXread
+                        PrintPreviewDialogXread.ShowDialog()
+                    End If
+
                     'Update Zread
                     S_Zreading = Format(Now, "yyyy-MM-dd")
                     sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"

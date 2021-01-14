@@ -1031,26 +1031,38 @@ Public Class ConfigManager
                         If BTNSaveCloudConn = True Then
                             If ConfirmAdditionalSettings = True Then
                                 If ConfirmDevInfoSettings = True Then
-                                    If AccountExist = True Then
-                                        If FranchiseeStoreValidation = True Then
-                                            If Not String.IsNullOrWhiteSpace(TextBoxProdKey.Text) Then
-                                                DataGridViewOutlets.Enabled = False
-                                                TextboxEnableability(GroupBox12, False)
-                                                ButtonEnableability(GroupBox12, False)
-                                                BackgroundWorkerACTIVATION.WorkerReportsProgress = True
-                                                BackgroundWorkerACTIVATION.WorkerSupportsCancellation = True
-                                                BackgroundWorkerACTIVATION.RunWorkerAsync()
+                                    If PrintOptionIsSet = True And PrintOption <> "" Then
+                                        If RePrintOptionIsSet = True And RePrintOption <> "" Then
+                                            If PrintXZRead = True And PrintXZReadOption <> "" Then
+                                                If AccountExist = True Then
+                                                    If FranchiseeStoreValidation = True Then
+                                                        If Not String.IsNullOrWhiteSpace(TextBoxProdKey.Text) Then
+                                                            DataGridViewOutlets.Enabled = False
+                                                            TextboxEnableability(GroupBox12, False)
+                                                            ButtonEnableability(GroupBox12, False)
+                                                            BackgroundWorkerACTIVATION.WorkerReportsProgress = True
+                                                            BackgroundWorkerACTIVATION.WorkerSupportsCancellation = True
+                                                            BackgroundWorkerACTIVATION.RunWorkerAsync()
+                                                        Else
+                                                            MsgBox("Please input serial key")
+                                                        End If
+                                                    Else
+                                                        MsgBox("Please select store in Account and Store settings tab")
+                                                    End If
+                                                Else
+                                                    MsgBox("Franchisee's Account must be valid first")
+                                                End If
                                             Else
-                                                MsgBox("Please input serial key")
+                                                MsgBox("Select x-zreading print option first")
                                             End If
                                         Else
-                                            MsgBox("Please select store in Account and Store settings tab")
+                                            MsgBox("Select reprint option first")
                                         End If
                                     Else
-                                        MsgBox("Franchisee's Account must be valid first")
+                                        MsgBox("Select print option first")
                                     End If
                                 Else
-                                    MsgBox("Please fill up all fields in Developer Information Settings")
+                                        MsgBox("Please fill up all fields in Developer Information Settings")
                                 End If
                             Else
                                 MsgBox("Please fill up all fields in Additional Settings")
@@ -2076,6 +2088,164 @@ Public Class ConfigManager
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Dim PrintOptionIsSet As Boolean = False
+    Dim PrintOption As String = ""
+    Private Sub RadioButtonPrintReceiptYes_Click(sender As Object, e As EventArgs) Handles RadioButtonPrintReceiptYes.Click, RadioButtonPrintReceiptNo.Click
+        Try
+            Dim table = "`loc_settings`"
+            If ValidLocalConnection Then
+                If RadioButtonPrintReceiptYes.Checked Then
+                    PrintOption = "YES"
+                    PrintOptionIsSet = True
+                ElseIf RadioButtonPrintReceiptNo.Checked Then
+                    PrintOption = "NO"
+                    PrintOptionIsSet = True
+                Else
+                    PrintOptionIsSet = False
+                    PrintOption = ""
+                End If
+                If PrintOptionIsSet Then
+                    Dim sql = "SELECT `printreceipt` FROM " & table & " WHERE `settings_id` = 1"
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                    Dim dt As DataTable = New DataTable
+                    da.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Dim fields = "`printreceipt` = '" & PrintOption & "' "
+                        sql = "UPDATE " & table & " SET " & fields & " WHERE `settings_id` = 1"
+                        cmd = New MySqlCommand(sql, TestLocalConnection())
+                        cmd.ExecuteNonQuery()
+                        MsgBox("Complete!")
+                    Else
+                        Dim fields = "`printreceipt`"
+                        Dim value = "'" & PrintOption & "'"
+                        sql = "INSERT INTO " & table & " (" & fields & ") VALUES (" & value & ")"
+                        cmd = New MySqlCommand(sql, TestLocalConnection)
+                        cmd.ExecuteNonQuery()
+                        MsgBox("Complete!")
+                    End If
+                Else
+                    MsgBox("Select option first")
+                    PrintOptionIsSet = False
+                    PrintOption = ""
+                End If
+            Else
+                MsgBox("Connection must be valid first")
+                PrintOptionIsSet = False
+                PrintOption = ""
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            PrintOptionIsSet = False
+            PrintOption = ""
+        End Try
+    End Sub
+    Dim RePrintOptionIsSet As Boolean = False
+    Dim RePrintOption As String = ""
+    Private Sub RadioButtonRePrintReceiptYes_Click(sender As Object, e As EventArgs) Handles RadioButtonRePrintReceiptYes.Click, RadioButtonRePrintReceiptNo.Click
+        Try
+            Dim table = "`loc_settings`"
+            If ValidLocalConnection Then
+                If RadioButtonRePrintReceiptYes.Checked Then
+                    RePrintOption = "YES"
+                    RePrintOptionIsSet = True
+                ElseIf RadioButtonRePrintReceiptNo.Checked Then
+                    RePrintOption = "NO"
+                    RePrintOptionIsSet = True
+                Else
+                    RePrintOption = ""
+                    RePrintOptionIsSet = False
+                End If
+                If RePrintOptionIsSet Then
+                    Dim sql = "Select `reprintreceipt` FROM " & table & " WHERE `settings_id` = 1"
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                    Dim dt As DataTable = New DataTable
+                    da.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Dim fields = "`reprintreceipt` = '" & RePrintOption & "' "
+                        sql = "UPDATE " & table & " SET " & fields & " WHERE `settings_id` = 1"
+                        cmd = New MySqlCommand(sql, TestLocalConnection())
+                        cmd.ExecuteNonQuery()
+                        MsgBox("Complete!")
+                    Else
+                        Dim fields = "`reprintreceipt`"
+                        Dim value = "'" & RePrintOption & "'"
+                        sql = "INSERT INTO " & table & " (" & fields & ") VALUES (" & value & ")"
+                        cmd = New MySqlCommand(sql, TestLocalConnection)
+                        cmd.ExecuteNonQuery()
+                        MsgBox("Complete!")
+                    End If
+                Else
+                    MsgBox("Select option first")
+                    RePrintOptionIsSet = False
+                    RePrintOption = ""
+                End If
+            Else
+                MsgBox("Connection must be valid first")
+                RePrintOption = ""
+                RePrintOptionIsSet = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            RePrintOption = ""
+            RePrintOptionIsSet = False
+        End Try
+    End Sub
+    Dim PrintXZRead As Boolean = False
+    Dim PrintXZReadOption As String = ""
+    Private Sub RadioButtonPrintXZReadYes_Click(sender As Object, e As EventArgs) Handles RadioButtonPrintXZReadYes.Click, RadioButtonPrintXZReadNo.Click
+        Try
+            Dim table = "`loc_settings`"
+            If ValidLocalConnection Then
+                If RadioButtonPrintXZReadYes.Checked Then
+                    PrintXZReadOption = "YES"
+                    PrintXZRead = True
+                ElseIf RadioButtonPrintXZReadNo.Checked Then
+                    PrintXZReadOption = "NO"
+                    PrintXZRead = True
+                Else
+                    PrintXZReadOption = ""
+                    PrintXZRead = False
+                End If
+                If PrintXZRead Then
+                    Dim sql = "Select `printxzread` FROM " & table & " WHERE `settings_id` = 1"
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                    Dim dt As DataTable = New DataTable
+                    da.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Dim fields = "`printxzread` = '" & PrintXZReadOption & "' "
+                        sql = "UPDATE " & table & " SET " & fields & " WHERE `settings_id` = 1"
+                        cmd = New MySqlCommand(sql, TestLocalConnection())
+                        cmd.ExecuteNonQuery()
+                        MsgBox("Complete!")
+                    Else
+                        Dim fields = "`printxzread`"
+                        Dim value = "'" & PrintXZReadOption & "'"
+                        sql = "INSERT INTO " & table & " (" & fields & ") VALUES (" & value & ")"
+                        cmd = New MySqlCommand(sql, TestLocalConnection)
+                        cmd.ExecuteNonQuery()
+                        MsgBox("Complete!")
+                    End If
+                Else
+                    MsgBox("Select option first")
+                    PrintXZRead = False
+                    PrintXZReadOption = ""
+                End If
+            Else
+                MsgBox("Connection must be valid first")
+                PrintXZReadOption = ""
+                PrintXZRead = False
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            PrintXZReadOption = ""
+            PrintXZRead = False
+        End Try
+    End Sub
+
 #Region "Test Insert"
     'Private Sub button734_click(sender As Object, e As EventArgs) Handles Button4.Click
     '    InsertToProducts()

@@ -7,6 +7,9 @@ Public Class SettingsForm
     Dim Returns As Boolean = False
     Dim Coupons As Boolean = False
     Dim Updates As Boolean = False
+
+    Dim AutoBackupBoolean As Boolean = False
+    Dim PrintOptionsBoolean As Boolean = False
     Private Sub SettingsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             TabControl1.TabPages(0).Text = "General Settings"
@@ -31,8 +34,13 @@ Public Class SettingsForm
             LoadAdditionalSettings()
             LoadDevInfo()
             LoadAutoBackup()
-            If ClientRole <> "Admin" Then
+            If ClientRole <> "Admin" And ClientRole <> "Manager" Then
                 TabControl1.TabPages.Remove(TabControl1.TabPages(5))
+                AutoBackupBoolean = False
+                PrintOptionsBoolean = False
+            Else
+                AutoBackupBoolean = True
+                PrintOptionsBoolean = True
             End If
             If ClientRole = "Crew" Then
                 ButtonPartnersPrio.Visible = False
@@ -2187,6 +2195,223 @@ Public Class SettingsForm
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Dim Autobackup As Boolean
+    Private Sub RadioButtonYearly_Click(sender As Object, e As EventArgs) Handles RadioButtonYearly.Click, RadioButtonWeekly.Click, RadioButtonMonthly.Click, RadioButtonDaily.Click
+        Try
+            If AutoBackupBoolean Then
+                If ValidLocalConnection Then
+                    Dim Conn = LocalhostConn()
+                    Dim Interval As Integer = 0
+                    Dim IntervalName As String = ""
+                    If RadioButtonDaily.Checked = True Then
+                        Interval = 1
+                        IntervalName = "Daily"
+                    ElseIf RadioButtonWeekly.Checked = True Then
+                        Interval = 2
+                        IntervalName = "Weekly"
+                    ElseIf RadioButtonMonthly.Checked = True Then
+                        Interval = 3
+                        IntervalName = "Monthly"
+                    ElseIf RadioButtonYearly.Checked = True Then
+                        Interval = 4
+                        IntervalName = "Yearly"
+                    End If
+                    Dim sql = "SELECT `S_BackupInterval` , `S_BackupDate` FROM loc_settings WHERE settings_id = 1"
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, Conn)
+                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                    Dim dt As DataTable = New DataTable
+                    da.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        sql = "UPDATE loc_settings SET `S_BackupInterval` = " & Interval & " , `S_BackupDate` = '" & Format(Now(), "yyyy-MM-dd") & "'"
+                        cmd = New MySqlCommand(sql, Conn)
+                        cmd.ExecuteNonQuery()
+                        Autobackup = True
+                    Else
+                        sql = "INSERT INTO loc_settings (`S_BackupInterval` , `S_BackupDate`) VALUES ('" & Interval & "','" & Format(Now(), "yyyy-MM-dd") & "')"
+                        cmd = New MySqlCommand(sql, Conn)
+                        cmd.ExecuteNonQuery()
+                        Autobackup = True
+                    End If
+                    MsgBox("Automatic system backup set to " & IntervalName & " backup")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub RadioButtonPrintReceiptYes_Click(sender As Object, e As EventArgs) Handles RadioButtonPrintReceiptYes.Click, RadioButtonPrintReceiptNo.Click
+        Dim PrintOptionIsSet As Boolean = False
+        Dim PrintOption As String = ""
+
+        Try
+
+            Dim table = "`loc_settings`"
+            Dim Conn = LocalhostConn()
+            If PrintOptionsBoolean Then
+                If ValidLocalConnection Then
+                    If RadioButtonPrintReceiptYes.Checked Then
+                        PrintOption = "YES"
+                        PrintOptionIsSet = True
+                    ElseIf RadioButtonPrintReceiptNo.Checked Then
+                        PrintOption = "NO"
+                        PrintOptionIsSet = True
+                    Else
+                        PrintOptionIsSet = False
+                        PrintOption = ""
+                    End If
+                    If PrintOptionIsSet Then
+                        Dim sql = "SELECT `printreceipt` FROM " & table & " WHERE `settings_id` = 1"
+                        Dim cmd As MySqlCommand = New MySqlCommand(sql, Conn)
+                        Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                        Dim dt As DataTable = New DataTable
+                        da.Fill(dt)
+                        If dt.Rows.Count > 0 Then
+                            Dim fields = "`printreceipt` = '" & PrintOption & "' "
+                            sql = "UPDATE " & table & " SET " & fields & " WHERE `settings_id` = 1"
+                            cmd = New MySqlCommand(sql, Conn)
+                            cmd.ExecuteNonQuery()
+                            MsgBox("Complete!")
+                        Else
+                            Dim fields = "`printreceipt`"
+                            Dim value = "'" & PrintOption & "'"
+                            sql = "INSERT INTO " & table & " (" & fields & ") VALUES (" & value & ")"
+                            cmd = New MySqlCommand(sql, Conn)
+                            cmd.ExecuteNonQuery()
+                            MsgBox("Complete!")
+                        End If
+                    Else
+                        MsgBox("Select option first")
+                        PrintOptionIsSet = False
+                        PrintOption = ""
+                    End If
+                Else
+                    MsgBox("Connection must be valid first")
+                    PrintOptionIsSet = False
+                    PrintOption = ""
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            PrintOptionIsSet = False
+            PrintOption = ""
+        End Try
+    End Sub
+
+    Private Sub RadioButtonRePrintReceiptYes_Click(sender As Object, e As EventArgs) Handles RadioButtonRePrintReceiptYes.Click, RadioButtonRePrintReceiptNo.Click
+        Dim RePrintOptionIsSet As Boolean = False
+        Dim RePrintOption As String = ""
+        Try
+            Dim table = "`loc_settings`"
+            Dim Conn = LocalhostConn()
+            If PrintOptionsBoolean Then
+                If ValidLocalConnection Then
+                    If RadioButtonRePrintReceiptYes.Checked Then
+                        RePrintOption = "YES"
+                        RePrintOptionIsSet = True
+                    ElseIf RadioButtonRePrintReceiptNo.Checked Then
+                        RePrintOption = "NO"
+                        RePrintOptionIsSet = True
+                    Else
+                        RePrintOption = ""
+                        RePrintOptionIsSet = False
+                    End If
+                    If RePrintOptionIsSet Then
+                        Dim sql = "Select `reprintreceipt` FROM " & table & " WHERE `settings_id` = 1"
+                        Dim cmd As MySqlCommand = New MySqlCommand(sql, Conn)
+                        Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                        Dim dt As DataTable = New DataTable
+                        da.Fill(dt)
+                        If dt.Rows.Count > 0 Then
+                            Dim fields = "`reprintreceipt` = '" & RePrintOption & "' "
+                            sql = "UPDATE " & table & " SET " & fields & " WHERE `settings_id` = 1"
+                            cmd = New MySqlCommand(sql, Conn)
+                            cmd.ExecuteNonQuery()
+                            MsgBox("Complete!")
+                        Else
+                            Dim fields = "`reprintreceipt`"
+                            Dim value = "'" & RePrintOption & "'"
+                            sql = "INSERT INTO " & table & " (" & fields & ") VALUES (" & value & ")"
+                            cmd = New MySqlCommand(sql, Conn)
+                            cmd.ExecuteNonQuery()
+                            MsgBox("Complete!")
+                        End If
+                    Else
+                        MsgBox("Select option first")
+                        RePrintOptionIsSet = False
+                        RePrintOption = ""
+                    End If
+                Else
+                    MsgBox("Connection must be valid first")
+                    RePrintOption = ""
+                    RePrintOptionIsSet = False
+                End If
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            RePrintOption = ""
+            RePrintOptionIsSet = False
+        End Try
+    End Sub
+
+    Private Sub RadioButtonPrintXZReadNo_Click(sender As Object, e As EventArgs) Handles RadioButtonPrintXZReadYes.Click, RadioButtonPrintXZReadNo.Click
+        Dim PrintXZRead As Boolean = False
+        Dim PrintXZReadOption As String = ""
+        Try
+
+            Dim table = "`loc_settings`"
+            Dim Conn = LocalhostConn()
+            If PrintOptionsBoolean Then
+                If ValidLocalConnection Then
+                    If RadioButtonPrintXZReadYes.Checked Then
+                        PrintXZReadOption = "YES"
+                        PrintXZRead = True
+                    ElseIf RadioButtonPrintXZReadNo.Checked Then
+                        PrintXZReadOption = "NO"
+                        PrintXZRead = True
+                    Else
+                        PrintXZReadOption = ""
+                        PrintXZRead = False
+                    End If
+                    If PrintXZRead Then
+                        Dim sql = "Select `printxzread` FROM " & table & " WHERE `settings_id` = 1"
+                        Dim cmd As MySqlCommand = New MySqlCommand(sql, Conn)
+                        Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                        Dim dt As DataTable = New DataTable
+                        da.Fill(dt)
+                        If dt.Rows.Count > 0 Then
+                            Dim fields = "`printxzread` = '" & PrintXZReadOption & "' "
+                            sql = "UPDATE " & table & " SET " & fields & " WHERE `settings_id` = 1"
+                            cmd = New MySqlCommand(sql, Conn)
+                            cmd.ExecuteNonQuery()
+                            MsgBox("Complete!")
+                        Else
+                            Dim fields = "`printxzread`"
+                            Dim value = "'" & PrintXZReadOption & "'"
+                            sql = "INSERT INTO " & table & " (" & fields & ") VALUES (" & value & ")"
+                            cmd = New MySqlCommand(sql, Conn)
+                            cmd.ExecuteNonQuery()
+                            MsgBox("Complete!")
+                        End If
+                    Else
+                        MsgBox("Select option first")
+                        PrintXZRead = False
+                        PrintXZReadOption = ""
+                    End If
+                Else
+                    MsgBox("Connection must be valid first")
+                    PrintXZReadOption = ""
+                    PrintXZRead = False
+                End If
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            PrintXZReadOption = ""
+            PrintXZRead = False
         End Try
     End Sub
 #End Region

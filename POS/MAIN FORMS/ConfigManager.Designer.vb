@@ -158,6 +158,19 @@ Partial Class ConfigManager
         Me.TextBoxBROWNIEPRICE = New System.Windows.Forms.TextBox()
         Me.TextBoxBROWNIEID = New System.Windows.Forms.TextBox()
         Me.TextBoxBATTERID = New System.Windows.Forms.TextBox()
+        Me.GroupBox23 = New System.Windows.Forms.GroupBox()
+        Me.Panel30 = New System.Windows.Forms.Panel()
+        Me.RadioButtonPrintXZReadNo = New System.Windows.Forms.RadioButton()
+        Me.RadioButtonPrintXZReadYes = New System.Windows.Forms.RadioButton()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Panel28 = New System.Windows.Forms.Panel()
+        Me.RadioButtonRePrintReceiptNo = New System.Windows.Forms.RadioButton()
+        Me.RadioButtonRePrintReceiptYes = New System.Windows.Forms.RadioButton()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Panel17 = New System.Windows.Forms.Panel()
+        Me.RadioButtonPrintReceiptNo = New System.Windows.Forms.RadioButton()
+        Me.RadioButtonPrintReceiptYes = New System.Windows.Forms.RadioButton()
+        Me.Label28 = New System.Windows.Forms.Label()
         Me.Panel11 = New System.Windows.Forms.Panel()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -363,6 +376,10 @@ Partial Class ConfigManager
         Me.TableLayoutPanel9.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox19.SuspendLayout()
+        Me.GroupBox23.SuspendLayout()
+        Me.Panel30.SuspendLayout()
+        Me.Panel28.SuspendLayout()
+        Me.Panel17.SuspendLayout()
         Me.Panel11.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabControl3.SuspendLayout()
@@ -1443,6 +1460,7 @@ Partial Class ConfigManager
         Me.TableLayoutPanel8.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel8.Controls.Add(Me.GroupBox11, 0, 0)
         Me.TableLayoutPanel8.Controls.Add(Me.TableLayoutPanel9, 1, 0)
+        Me.TableLayoutPanel8.Controls.Add(Me.GroupBox23, 2, 0)
         Me.TableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel8.Location = New System.Drawing.Point(3, 52)
         Me.TableLayoutPanel8.Name = "TableLayoutPanel8"
@@ -1983,6 +2001,154 @@ Partial Class ConfigManager
         Me.TextBoxBATTERID.ReadOnly = True
         Me.TextBoxBATTERID.Size = New System.Drawing.Size(118, 22)
         Me.TextBoxBATTERID.TabIndex = 255
+        '
+        'GroupBox23
+        '
+        Me.GroupBox23.Controls.Add(Me.Panel30)
+        Me.GroupBox23.Controls.Add(Me.Panel28)
+        Me.GroupBox23.Controls.Add(Me.Panel17)
+        Me.GroupBox23.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox23.Location = New System.Drawing.Point(675, 3)
+        Me.GroupBox23.Name = "GroupBox23"
+        Me.GroupBox23.Size = New System.Drawing.Size(332, 483)
+        Me.GroupBox23.TabIndex = 296
+        Me.GroupBox23.TabStop = False
+        Me.GroupBox23.Text = "Printing Receipt Options"
+        '
+        'Panel30
+        '
+        Me.Panel30.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel30.Controls.Add(Me.RadioButtonPrintXZReadNo)
+        Me.Panel30.Controls.Add(Me.RadioButtonPrintXZReadYes)
+        Me.Panel30.Controls.Add(Me.Label31)
+        Me.Panel30.Location = New System.Drawing.Point(6, 99)
+        Me.Panel30.Name = "Panel30"
+        Me.Panel30.Size = New System.Drawing.Size(320, 39)
+        Me.Panel30.TabIndex = 288
+        '
+        'RadioButtonPrintXZReadNo
+        '
+        Me.RadioButtonPrintXZReadNo.AutoSize = True
+        Me.RadioButtonPrintXZReadNo.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonPrintXZReadNo.Location = New System.Drawing.Point(259, 10)
+        Me.RadioButtonPrintXZReadNo.Name = "RadioButtonPrintXZReadNo"
+        Me.RadioButtonPrintXZReadNo.Size = New System.Drawing.Size(40, 18)
+        Me.RadioButtonPrintXZReadNo.TabIndex = 287
+        Me.RadioButtonPrintXZReadNo.TabStop = True
+        Me.RadioButtonPrintXZReadNo.Text = "No"
+        Me.RadioButtonPrintXZReadNo.UseVisualStyleBackColor = True
+        '
+        'RadioButtonPrintXZReadYes
+        '
+        Me.RadioButtonPrintXZReadYes.AutoSize = True
+        Me.RadioButtonPrintXZReadYes.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonPrintXZReadYes.Location = New System.Drawing.Point(208, 10)
+        Me.RadioButtonPrintXZReadYes.Name = "RadioButtonPrintXZReadYes"
+        Me.RadioButtonPrintXZReadYes.Size = New System.Drawing.Size(45, 18)
+        Me.RadioButtonPrintXZReadYes.TabIndex = 286
+        Me.RadioButtonPrintXZReadYes.TabStop = True
+        Me.RadioButtonPrintXZReadYes.Text = "Yes"
+        Me.RadioButtonPrintXZReadYes.UseVisualStyleBackColor = True
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label31.Location = New System.Drawing.Point(14, 10)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(179, 14)
+        Me.Label31.TabIndex = 284
+        Me.Label31.Text = "Directly print X-Z Read receipt :"
+        '
+        'Panel28
+        '
+        Me.Panel28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel28.Controls.Add(Me.RadioButtonRePrintReceiptNo)
+        Me.Panel28.Controls.Add(Me.RadioButtonRePrintReceiptYes)
+        Me.Panel28.Controls.Add(Me.Label30)
+        Me.Panel28.Location = New System.Drawing.Point(6, 61)
+        Me.Panel28.Name = "Panel28"
+        Me.Panel28.Size = New System.Drawing.Size(320, 39)
+        Me.Panel28.TabIndex = 287
+        '
+        'RadioButtonRePrintReceiptNo
+        '
+        Me.RadioButtonRePrintReceiptNo.AutoSize = True
+        Me.RadioButtonRePrintReceiptNo.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonRePrintReceiptNo.Location = New System.Drawing.Point(259, 10)
+        Me.RadioButtonRePrintReceiptNo.Name = "RadioButtonRePrintReceiptNo"
+        Me.RadioButtonRePrintReceiptNo.Size = New System.Drawing.Size(40, 18)
+        Me.RadioButtonRePrintReceiptNo.TabIndex = 287
+        Me.RadioButtonRePrintReceiptNo.TabStop = True
+        Me.RadioButtonRePrintReceiptNo.Text = "No"
+        Me.RadioButtonRePrintReceiptNo.UseVisualStyleBackColor = True
+        '
+        'RadioButtonRePrintReceiptYes
+        '
+        Me.RadioButtonRePrintReceiptYes.AutoSize = True
+        Me.RadioButtonRePrintReceiptYes.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonRePrintReceiptYes.Location = New System.Drawing.Point(208, 10)
+        Me.RadioButtonRePrintReceiptYes.Name = "RadioButtonRePrintReceiptYes"
+        Me.RadioButtonRePrintReceiptYes.Size = New System.Drawing.Size(45, 18)
+        Me.RadioButtonRePrintReceiptYes.TabIndex = 286
+        Me.RadioButtonRePrintReceiptYes.TabStop = True
+        Me.RadioButtonRePrintReceiptYes.Text = "Yes"
+        Me.RadioButtonRePrintReceiptYes.UseVisualStyleBackColor = True
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label30.Location = New System.Drawing.Point(14, 10)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(141, 14)
+        Me.Label30.TabIndex = 284
+        Me.Label30.Text = "Directly reprint receipt : "
+        '
+        'Panel17
+        '
+        Me.Panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel17.Controls.Add(Me.RadioButtonPrintReceiptNo)
+        Me.Panel17.Controls.Add(Me.RadioButtonPrintReceiptYes)
+        Me.Panel17.Controls.Add(Me.Label28)
+        Me.Panel17.Location = New System.Drawing.Point(6, 23)
+        Me.Panel17.Name = "Panel17"
+        Me.Panel17.Size = New System.Drawing.Size(320, 39)
+        Me.Panel17.TabIndex = 286
+        '
+        'RadioButtonPrintReceiptNo
+        '
+        Me.RadioButtonPrintReceiptNo.AutoSize = True
+        Me.RadioButtonPrintReceiptNo.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonPrintReceiptNo.Location = New System.Drawing.Point(259, 10)
+        Me.RadioButtonPrintReceiptNo.Name = "RadioButtonPrintReceiptNo"
+        Me.RadioButtonPrintReceiptNo.Size = New System.Drawing.Size(40, 18)
+        Me.RadioButtonPrintReceiptNo.TabIndex = 287
+        Me.RadioButtonPrintReceiptNo.TabStop = True
+        Me.RadioButtonPrintReceiptNo.Text = "No"
+        Me.RadioButtonPrintReceiptNo.UseVisualStyleBackColor = True
+        '
+        'RadioButtonPrintReceiptYes
+        '
+        Me.RadioButtonPrintReceiptYes.AutoSize = True
+        Me.RadioButtonPrintReceiptYes.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonPrintReceiptYes.Location = New System.Drawing.Point(208, 10)
+        Me.RadioButtonPrintReceiptYes.Name = "RadioButtonPrintReceiptYes"
+        Me.RadioButtonPrintReceiptYes.Size = New System.Drawing.Size(45, 18)
+        Me.RadioButtonPrintReceiptYes.TabIndex = 286
+        Me.RadioButtonPrintReceiptYes.TabStop = True
+        Me.RadioButtonPrintReceiptYes.Text = "Yes"
+        Me.RadioButtonPrintReceiptYes.UseVisualStyleBackColor = True
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label28.Location = New System.Drawing.Point(14, 10)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(130, 14)
+        Me.Label28.TabIndex = 284
+        Me.Label28.Text = "Directly print receipt : "
         '
         'Panel11
         '
@@ -3502,6 +3668,13 @@ Partial Class ConfigManager
         Me.GroupBox10.PerformLayout()
         Me.GroupBox19.ResumeLayout(False)
         Me.GroupBox19.PerformLayout()
+        Me.GroupBox23.ResumeLayout(False)
+        Me.Panel30.ResumeLayout(False)
+        Me.Panel30.PerformLayout()
+        Me.Panel28.ResumeLayout(False)
+        Me.Panel28.PerformLayout()
+        Me.Panel17.ResumeLayout(False)
+        Me.Panel17.PerformLayout()
         Me.Panel11.ResumeLayout(False)
         Me.Panel11.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
@@ -3861,4 +4034,17 @@ Partial Class ConfigManager
     Friend WithEvents RichTextBoxLogo As RichTextBox
     Friend WithEvents TableLayoutPanel12 As TableLayoutPanel
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents GroupBox23 As GroupBox
+    Friend WithEvents Panel30 As Panel
+    Friend WithEvents RadioButtonPrintXZReadNo As RadioButton
+    Friend WithEvents RadioButtonPrintXZReadYes As RadioButton
+    Friend WithEvents Label31 As Label
+    Friend WithEvents Panel28 As Panel
+    Friend WithEvents RadioButtonRePrintReceiptNo As RadioButton
+    Friend WithEvents RadioButtonRePrintReceiptYes As RadioButton
+    Friend WithEvents Label30 As Label
+    Friend WithEvents Panel17 As Panel
+    Friend WithEvents RadioButtonPrintReceiptNo As RadioButton
+    Friend WithEvents RadioButtonPrintReceiptYes As RadioButton
+    Friend WithEvents Label28 As Label
 End Class

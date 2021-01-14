@@ -1829,8 +1829,8 @@ Public Class SynctoCloud
                     If WorkerCanceled = True Then
                         Exit For
                     End If
-                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_price_request(`loc_request_id`, `server_product_id`, `request_price`, `created_at`, `active`, `store_id`, `crew_id`, `guid`)
-                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7)", server)
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_price_request(`loc_request_id`, `store_name`, `server_product_id`, `request_price`, `created_at`, `active`, `store_id`, `crew_id`, `guid`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)", server)
 
                     cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters.Add("@1", MySqlDbType.Text).Value = .Rows(i).Cells(1).Value.ToString()
@@ -1840,7 +1840,7 @@ Public Class SynctoCloud
                     cmd.Parameters.Add("@5", MySqlDbType.Text).Value = .Rows(i).Cells(5).Value.ToString()
                     cmd.Parameters.Add("@6", MySqlDbType.Text).Value = .Rows(i).Cells(6).Value.ToString()
                     cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
-
+                    cmd.Parameters.Add("@8", MySqlDbType.Text).Value = .Rows(i).Cells(8).Value.ToString()
                     '====================================================================
                     LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
                     LabelPRICEREQItem.Text = Val(LabelPRICEREQItem.Text) + 1

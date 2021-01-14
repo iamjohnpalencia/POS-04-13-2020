@@ -66,10 +66,11 @@ Public Class POS
     Public Sub LoadCategory()
         Try
             Panel3.Controls.Clear()
-            sql = "SELECT category_name FROM loc_admin_category WHERE status = 1"
-            cmd = New MySqlCommand(sql, LocalhostConn())
-            da = New MySqlDataAdapter(cmd)
-            dt = New DataTable()
+            Location_control = New Point(0, 0)
+            Dim sql = "SELECT category_name FROM loc_admin_category WHERE status = 1"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
+            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            Dim dt As DataTable = New DataTable()
             da.Fill(dt)
             With cmd
                 For Each row As DataRow In dt.Rows
@@ -1158,9 +1159,12 @@ Public Class POS
                     End If
                 Next
                 printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
-                PrintPreviewDialog1.Document = printdoc
-                'printdoc.Print()
-                PrintPreviewDialog1.ShowDialog()
+                If S_Print = "YES" Then
+                    printdoc.Print()
+                Else
+                    PrintPreviewDialog1.Document = printdoc
+                    PrintPreviewDialog1.ShowDialog()
+                End If
             Catch exp As Exception
                 MessageBox.Show("An error occurred while trying to load the " &
                     "document for Print Preview. Make sure you currently have " &
@@ -2247,10 +2251,10 @@ Public Class POS
             Dim ConnectionServer As MySqlConnection = ServerCloudCon()
             Dim CmdCheck As MySqlCommand
             For i As Integer = 0 To PriceChangeDatatabe.Rows.Count - 1 Step +1
-                Dim sql = "UPDATE loc_admin_products SET product_price = " & PriceChangeDatatabe(i)(3) & ", price_change = 1 WHERE server_product_id = " & PriceChangeDatatabe(i)(2) & ""
+                Dim sql = "UPDATE loc_admin_products SET product_price = " & PriceChangeDatatabe(i)(4) & ", price_change = 1 WHERE server_product_id = " & PriceChangeDatatabe(i)(3) & ""
                 CmdCheck = New MySqlCommand(sql, ConnectionLocal)
                 CmdCheck.ExecuteNonQuery()
-                Dim sql2 = "UPDATE loc_price_request_change SET active = " & PriceChangeDatatabe(i)(5) & " WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""
+                Dim sql2 = "UPDATE loc_price_request_change SET active = " & PriceChangeDatatabe(i)(6) & " WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""
                 CmdCheck = New MySqlCommand(sql2, ConnectionLocal)
                 CmdCheck.ExecuteNonQuery()
                 Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""

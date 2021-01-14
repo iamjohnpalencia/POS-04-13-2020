@@ -73,7 +73,6 @@ Partial Class POS
         Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Origin = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -188,6 +187,7 @@ Partial Class POS
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel8.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel34.SuspendLayout()
@@ -662,16 +662,6 @@ Partial Class POS
         '
         'BackgroundWorker1
         '
-        '
-        'Panel3
-        '
-        Me.Panel3.AutoScroll = True
-        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel3.Location = New System.Drawing.Point(10, 46)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1176, 70)
-        Me.Panel3.TabIndex = 39
         '
         'Panel14
         '
@@ -1861,6 +1851,16 @@ Partial Class POS
         'BackgroundWorker3
         '
         '
+        'Panel3
+        '
+        Me.Panel3.AutoScroll = True
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel3.Location = New System.Drawing.Point(10, 46)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(1176, 70)
+        Me.Panel3.TabIndex = 39
+        '
         'POS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1940,7 +1940,6 @@ Partial Class POS
     Private WithEvents ButtonLogout As Button
     Private WithEvents ButtonSettings As Button
     Private WithEvents ButtonExpense As Button
-    Public WithEvents Panel3 As Panel
     Friend WithEvents Buttonholdoder As Button
     Friend WithEvents Panel11 As Panel
     Friend WithEvents Panel10 As Panel
@@ -2085,4 +2084,5 @@ Partial Class POS
     Friend WithEvents Column20 As DataGridViewTextBoxColumn
     Friend WithEvents Column42 As DataGridViewTextBoxColumn
     Friend WithEvents Column45 As DataGridViewTextBoxColumn
+    Public WithEvents Panel3 As Panel
 End Class
