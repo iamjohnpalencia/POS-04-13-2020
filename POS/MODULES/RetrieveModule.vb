@@ -107,6 +107,24 @@ Module RetrieveModule
                                 Login.Close()
                                 Grocery.Show()
                             End If
+
+                        ElseIf Login.txtusername.Text = username And cipherText = password And userlevel = "Manager" And ClientStoreID = storeid And active = 1 And franguid = ClientGuid Then
+                            MessageBox.Show("Welcome " + fullname + "!", "Login Successfully(" & ClientRole & ")", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            Login.txtusername.Text = ""
+                            Login.txtpassword.Text = ""
+                            ClientCrewID = user_id
+                            messageboxappearance = True
+                            SystemLogType = "LOGIN"
+                            SystemLogDesc = "User Login: " & username & " : " & ClientRole
+                            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+                            Shift = ""
+                            If S_Layout = "POS" Then
+                                Login.Close()
+                                POS.Show()
+                            ElseIf S_Layout = "GROCERY" Then
+                                Login.Close()
+                                Grocery.Show()
+                            End If
                         ElseIf Login.txtusername.Text = username And cipherText = password And userlevel = "Admin" Then
                             MessageBox.Show("Welcome " + fullname + "!", "Login Successfully(" & ClientRole & ")", MessageBoxButtons.OK, MessageBoxIcon.Information)
                             Login.txtusername.Text = ""

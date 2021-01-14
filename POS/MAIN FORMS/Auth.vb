@@ -83,8 +83,9 @@ Public Class Auth
                 da.Fill(DataTableServer)
                 .DataSource = DataTableServer
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    '.Rows(i).Cells(14).Value.ToString & vbNewLine & vbNewLine
                     If IfUserExist(.Rows(i).Cells(11).Value.ToString) = False Then
-                        Account += "Username: " & .Rows(i).Cells(2).Value.ToString & vbNewLine & "Password: " & .Rows(i).Cells(14).Value.ToString & vbNewLine & vbNewLine
+                        Account += "Username: " & .Rows(i).Cells(2).Value.ToString & vbNewLine & "Password: **********"
                         UserCount = UserCount + 1
                         table = "triggers_loc_users"
                         fields = "(`user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `active`, `guid`, `store_id`, `uniq_id`, `synced`)"
