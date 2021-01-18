@@ -69,7 +69,7 @@ Module NEWPOSMODULE
     Private Sub GetFormulaid(ProductName As String, ProductOriginalPrice As Double)
         Try
             Dim ConnectionLocal As MySqlConnection = LocalhostConn()
-            Dim sql = "SELECT product_id, product_sku, formula_id, product_category, origin, server_inventory_id, addontype FROM `loc_admin_products` WHERE product_name = '" & ProductName & "'"
+            Dim sql = "SELECT product_id, product_sku, formula_id, product_category, origin, server_inventory_id, addontype FROM `loc_admin_products` WHERE product_sku = '" & ProductName & "'"
             Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
             Using readerObj As MySqlDataReader = cmd.ExecuteReader
                 While readerObj.Read

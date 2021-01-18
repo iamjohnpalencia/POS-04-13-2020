@@ -593,12 +593,13 @@ Partial Class POS
         Me.DataGridViewInv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewInv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewInv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column10, Me.Column11, Me.Column14, Me.Column15, Me.Column18, Me.Origin})
-        Me.DataGridViewInv.Location = New System.Drawing.Point(610, 227)
+        Me.DataGridViewInv.Location = New System.Drawing.Point(548, 314)
         Me.DataGridViewInv.Name = "DataGridViewInv"
         Me.DataGridViewInv.ReadOnly = True
         Me.DataGridViewInv.RowHeadersVisible = False
-        Me.DataGridViewInv.Size = New System.Drawing.Size(162, 106)
+        Me.DataGridViewInv.Size = New System.Drawing.Size(283, 153)
         Me.DataGridViewInv.TabIndex = 65
+        Me.DataGridViewInv.Visible = False
         '
         'Column5
         '

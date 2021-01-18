@@ -946,38 +946,55 @@ Public Class SettingsForm
                     If dt(0)(0) <> Nothing Then
                         If dt(0)(0) = "YES" Then
                             RadioButtonPrintReceiptYes.Checked = True
-                            RadioButtonPrintReceiptNo.Checked = False
-                            RadioButtonPrintReceiptNo.Enabled = False
+                            S_Print = "YES"
+                            If ClientRole <> "Admin" Then
+                                RadioButtonPrintReceiptNo.Checked = False
+                                RadioButtonPrintReceiptNo.Enabled = False
+                            End If
                         Else
                             RadioButtonPrintReceiptNo.Checked = True
-                            RadioButtonPrintReceiptYes.Checked = False
-                            RadioButtonPrintReceiptYes.Enabled = False
+                            S_Print = "NO"
+                            If ClientRole <> "Admin" Then
+                                RadioButtonPrintReceiptYes.Checked = False
+                                RadioButtonPrintReceiptYes.Enabled = False
+                            End If
                         End If
 
                     End If
                     If dt(0)(1) <> Nothing Then
                         If dt(0)(1) = "YES" Then
                             RadioButtonRePrintReceiptYes.Checked = True
-                            RadioButtonRePrintReceiptNo.Checked = False
-                            RadioButtonRePrintReceiptNo.Enabled = False
+                            S_Reprint = "YES"
+                            If ClientRole <> "Admin" Then
+                                RadioButtonRePrintReceiptNo.Checked = False
+                                RadioButtonRePrintReceiptNo.Enabled = False
+                            End If
                         Else
                             RadioButtonRePrintReceiptNo.Checked = True
-                            RadioButtonRePrintReceiptYes.Checked = False
-                            RadioButtonRePrintReceiptYes.Enabled = False
+                            S_Reprint = "NO"
+                            If ClientRole <> "Admin" Then
+                                RadioButtonRePrintReceiptYes.Checked = False
+                                RadioButtonRePrintReceiptYes.Enabled = False
+                            End If
                         End If
 
                     End If
                     If dt(0)(2) <> Nothing Then
                         If dt(0)(2) = "YES" Then
                             RadioButtonPrintXZReadYes.Checked = True
-                            RadioButtonPrintXZReadNo.Checked = False
-                            RadioButtonPrintXZReadNo.Enabled = False
+                            S_Print_XZRead = "YES"
+                            If ClientRole <> "Admin" Then
+                                RadioButtonPrintXZReadNo.Checked = False
+                                RadioButtonPrintXZReadNo.Enabled = False
+                            End If
                         Else
                             RadioButtonPrintXZReadNo.Checked = True
-                            RadioButtonPrintXZReadYes.Checked = False
-                            RadioButtonPrintXZReadYes.Enabled = False
+                            S_Print_XZRead = "NO"
+                            If ClientRole <> "Admin" Then
+                                RadioButtonPrintXZReadYes.Checked = False
+                                RadioButtonPrintXZReadYes.Enabled = False
+                            End If
                         End If
-
                     End If
                 End If
             End If
@@ -1078,27 +1095,35 @@ Public Class SettingsForm
                     If dt(0)(0).ToString = "1" Then
                         RadioButtonDaily.Checked = True
                         '=================================
-                        RadioButtonWeekly.Enabled = False
-                        RadioButtonMonthly.Enabled = False
-                        RadioButtonYearly.Enabled = False
+                        If ClientRole <> "Admin" Then
+                            RadioButtonWeekly.Enabled = False
+                            RadioButtonMonthly.Enabled = False
+                            RadioButtonYearly.Enabled = False
+                        End If
                     ElseIf dt(0)(0).ToString = "2" Then
                         RadioButtonWeekly.Checked = True
                         '=================================
-                        RadioButtonDaily.Enabled = False
-                        RadioButtonMonthly.Enabled = False
-                        RadioButtonYearly.Enabled = False
+                        If ClientRole <> "Admin" Then
+                            RadioButtonDaily.Enabled = False
+                            RadioButtonMonthly.Enabled = False
+                            RadioButtonYearly.Enabled = False
+                        End If
                     ElseIf dt(0)(0).ToString = "3" Then
-                        RadioButtonMonthly.Checked = True
+                            RadioButtonMonthly.Checked = True
                         '=================================
-                        RadioButtonDaily.Enabled = False
-                        RadioButtonWeekly.Enabled = False
-                        RadioButtonYearly.Enabled = False
+                        If ClientRole <> "Admin" Then
+                            RadioButtonDaily.Enabled = False
+                            RadioButtonWeekly.Enabled = False
+                            RadioButtonYearly.Enabled = False
+                        End If
                     ElseIf dt(0)(0).ToString = "4" Then
-                        RadioButtonYearly.Checked = True
+                            RadioButtonYearly.Checked = True
                         '=================================
-                        RadioButtonDaily.Enabled = False
-                        RadioButtonWeekly.Enabled = False
-                        RadioButtonMonthly.Enabled = False
+                        If ClientRole <> "Admin" Then
+                            RadioButtonDaily.Enabled = False
+                            RadioButtonWeekly.Enabled = False
+                            RadioButtonMonthly.Enabled = False
+                        End If
                     End If
                 End If
             End If
@@ -2102,10 +2127,10 @@ Public Class SettingsForm
             Dim ConnectionServer As MySqlConnection = ServerCloudCon()
             Dim CmdCheck As MySqlCommand
             For i As Integer = 0 To PriceChangeDatatabe.Rows.Count - 1 Step +1
-                Dim sql = "UPDATE loc_admin_products SET product_price = " & PriceChangeDatatabe(i)(3) & ", price_change = 1 WHERE server_product_id = " & PriceChangeDatatabe(i)(2) & ""
+                Dim sql = "UPDATE loc_admin_products SET product_price = " & PriceChangeDatatabe(i)(4) & ", price_change = 1 WHERE server_product_id = " & PriceChangeDatatabe(i)(3) & ""
                 CmdCheck = New MySqlCommand(sql, ConnectionLocal)
                 CmdCheck.ExecuteNonQuery()
-                Dim sql2 = "UPDATE loc_price_request_change SET active = " & PriceChangeDatatabe(i)(5) & " WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""
+                Dim sql2 = "UPDATE loc_price_request_change SET active = " & PriceChangeDatatabe(i)(6) & " WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""
                 CmdCheck = New MySqlCommand(sql2, ConnectionLocal)
                 CmdCheck.ExecuteNonQuery()
                 Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""

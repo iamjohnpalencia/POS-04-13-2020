@@ -253,9 +253,9 @@ Module RetrieveModule
             Dim da As MySqlDataAdapter
             Dim dt As DataTable
             If where = "Others" Then
-                cmd = New MySqlCommand("SELECT product_id, product_name, product_image, product_price, formula_id FROM loc_admin_products WHERE product_category ='" & where & "' AND product_status = 1 AND store_id = " & ClientStoreID, LocalhostConn())
+                cmd = New MySqlCommand("SELECT product_id, product_name, product_image, product_price, formula_id, product_sku FROM loc_admin_products WHERE product_category ='" & where & "' AND product_status = 1 AND store_id = " & ClientStoreID, LocalhostConn())
             Else
-                cmd = New MySqlCommand("SELECT product_id, product_name, product_image, product_price, formula_id FROM loc_admin_products WHERE product_category ='" & where & "' AND product_status = 1 ", LocalhostConn())
+                cmd = New MySqlCommand("SELECT product_id, product_name, product_image, product_price, formula_id, product_sku FROM loc_admin_products WHERE product_category ='" & where & "' AND product_status = 1 ", LocalhostConn())
             End If
             With POS
                 .PanelProducts.Controls.Clear()
@@ -265,7 +265,7 @@ Module RetrieveModule
                 For Each row As DataRow In dt.Rows
                     Count_control += 1
                     Dim new_Button_product As New Button
-                    Dim buttonname As String = row("product_name")
+                    Dim buttonname As String = row("product_sku")
                     Dim newlabel As New Label
                     productprice = row("product_price")
                     productID = row("product_id")
