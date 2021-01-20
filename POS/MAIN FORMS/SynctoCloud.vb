@@ -740,66 +740,153 @@ Public Class SynctoCloud
     Dim threadListzreadInventory As List(Of Thread) = New List(Of Thread)
     Dim thread1 As Thread
     Dim WorkerCanceled As Boolean = False
-
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorkerSYNCTOCLOUD.DoWork
         Try
             If CheckForInternetConnection() = True Then
                 'System Logs
                 If INVENTORYISSYNCING = False Then
-                    thread1 = New Thread(AddressOf insertsystemlogs1)
-                    thread1.Start()
-                    threadListLOCSYSLOG1.Add(thread1)
-                    'Transaction
-                    thread1 = New Thread(AddressOf insertlocaldailytransaction)
-                    thread1.Start()
-                    threadListLOCTRAN.Add(thread1)
-                    thread1 = New Thread(AddressOf inserttransactiondetails1)
-                    thread1.Start()
-                    threadListLOCTD1.Add(thread1)
-                    thread1 = New Thread(AddressOf insertzreadinventory)
-                    thread1.Start()
-                    threadListzreadInventory.Add(thread1)
-                    'Expenses
-                    thread1 = New Thread(AddressOf insertexpenses)
-                    thread1.Start()
-                    threadListLOCEXP.Add(thread1)
-                    thread1 = New Thread(AddressOf insertexpensedetails)
-                    thread1.Start()
-                    threadListLOCEXPD.Add(thread1)
-                    'New Users
-                    thread1 = New Thread(AddressOf insertlocalusers)
-                    thread1.Start()
-                    threadListLOCTUSER.Add(thread1)
-                    'Returns
-                    thread1 = New Thread(AddressOf insertrefretdetails)
-                    thread1.Start()
-                    threadListLOCREFRET.Add(thread1)
-                    'Custom Products
-                    thread1 = New Thread(AddressOf insertlocproducts)
-                    thread1.Start()
-                    threadListLOCPRODUCT.Add(thread1)
-                    'Mode of transaction details
-                    thread1 = New Thread(AddressOf insertlocmodeoftransaction)
-                    thread1.Start()
-                    threadListMODEOFTRANSACTION.Add(thread1)
-                    'Deposits
-                    thread1 = New Thread(AddressOf insertlocdeposit)
-                    thread1.Start()
-                    threadListLocDeposit.Add(thread1)
-                    'Price Request
-                    thread1 = New Thread(AddressOf insertpricerequest)
-                    thread1.Start()
-                    threadListPRICEREQUEST.Add(thread1)
-                    'Coupons
-                    thread1 = New Thread(AddressOf insertcoupon)
-                    thread1.Start()
-                    threadListCoupon.Add(thread1)
-                    'Errors
-                    thread1 = New Thread(AddressOf inserterrors)
-                    thread1.Start()
-                    threadListErrors.Add(thread1)
-
+                    For i = 0 To 100
+                        BackgroundWorkerSYNCTOCLOUD.ReportProgress(i)
+                        Thread.Sleep(50)
+                        If i = 0 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelSYS1.Text = "Syncing Systemlogs 1"
+                                                          End Sub))
+                            t1.Start()
+                            thread1 = New Thread(AddressOf insertsystemlogs1)
+                            thread1.Start()
+                            threadListLOCSYSLOG1.Add(thread1)
+                        End If
+                        If i = 5 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelDTransac.Text = "Syncing Daily Transaction"
+                                                          End Sub))
+                            t1.Start()
+                            thread1 = New Thread(AddressOf insertlocaldailytransaction)
+                            thread1.Start()
+                            threadListLOCTRAN.Add(thread1)
+                        End If
+                        If i = 10 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelDTransactD.Text = "Syncing Transaction Details"
+                                                          End Sub))
+                            t1.Start()
+                            thread1 = New Thread(AddressOf inserttransactiondetails1)
+                            thread1.Start()
+                            threadListLOCTD1.Add(thread1)
+                        End If
+                        If i = 15 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelZREADINV.Text = "Syncing Zread Inventory"
+                                                          End Sub))
+                            t1.Start()
+                            thread1 = New Thread(AddressOf insertzreadinventory)
+                            thread1.Start()
+                            threadListzreadInventory.Add(thread1)
+                        End If
+                        If i = 20 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelEXP.Text = "Syncing Expense List"
+                                                          End Sub))
+                            t1.Start()
+                            thread1 = New Thread(AddressOf insertexpenses)
+                            thread1.Start()
+                            threadListLOCEXP.Add(thread1)
+                        End If
+                        If i = 25 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelEXPD.Text = "Syncing Expense Details"
+                                                          End Sub))
+                            t1.Start()
+                            thread1 = New Thread(AddressOf insertexpensedetails)
+                            thread1.Start()
+                            threadListLOCEXPD.Add(thread1)
+                        End If
+                        If i = 30 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelACC.Text = "Syncing Accounts"
+                                                          End Sub))
+                            t1.Start()
+                            thread1 = New Thread(AddressOf insertlocalusers)
+                            thread1.Start()
+                            threadListLOCTUSER.Add(thread1)
+                        End If
+                        If i = 35 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelRET.Text = "Syncing Refund Details"
+                                                          End Sub))
+                            t1.Start()
+                            thread1 = New Thread(AddressOf insertrefretdetails)
+                            thread1.Start()
+                            threadListLOCREFRET.Add(thread1)
+                        End If
+                        If i = 40 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelCPROD.Text = "Syncing Local Products"
+                                                          End Sub))
+                            t1.Start()
+                            'Custom Products
+                            thread1 = New Thread(AddressOf insertlocproducts)
+                            thread1.Start()
+                            threadListLOCPRODUCT.Add(thread1)
+                        End If
+                        If i = 45 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelMODET.Text = "Syncing Mode of Transaction"
+                                                          End Sub))
+                            t1.Start()
+                            'Mode of transaction details
+                            thread1 = New Thread(AddressOf insertlocmodeoftransaction)
+                            thread1.Start()
+                            threadListMODEOFTRANSACTION.Add(thread1)
+                        End If
+                        If i = 50 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelDEPOSIT.Text = "Syncing Deposit Details"
+                                                          End Sub))
+                            t1.Start()
+                            'Deposits
+                            thread1 = New Thread(AddressOf insertlocdeposit)
+                            thread1.Start()
+                            threadListLocDeposit.Add(thread1)
+                        End If
+                        If i = 55 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelPRICEREQ.Text = "Syncing Price Request"
+                                                          End Sub))
+                            t1.Start()
+                            'Price Request
+                            thread1 = New Thread(AddressOf insertpricerequest)
+                            thread1.Start()
+                            threadListPRICEREQUEST.Add(thread1)
+                        End If
+                        If i = 60 Then
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelCoupon.Text = "Syncing Coupons"
+                                                          End Sub))
+                            t1.Start()
+                            'Coupons
+                            thread1 = New Thread(AddressOf insertcoupon)
+                            thread1.Start()
+                            threadListCoupon.Add(thread1)
+                        End If
+                        If i = 65 Then
+                            'Errors
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelError.Text = "Syncing Errors"
+                                                          End Sub))
+                            t1.Start()
+                            thread1 = New Thread(AddressOf inserterrors)
+                            thread1.Start()
+                            threadListErrors.Add(thread1)
+                        End If
+                    Next
                 Else
+                    Dim t1 As New Task(New Action(Sub()
+                                                      LabelINV.Text = "Syncing Inventory"
+                                                  End Sub))
+                    t1.Start()
+
                     thread1 = New Thread(AddressOf insertinventory)
                     thread1.Start()
                     threadListLOCINV.Add(thread1)
@@ -1043,11 +1130,6 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelDTransac.Text = "Syncing Daily Transaction"
-                                          End Sub))
-            t1.Start()
-
             With DataGridViewTRAN
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1128,11 +1210,6 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelDTransactD.Text = "Syncing Transaction Details"
-                                          End Sub))
-            t1.Start()
-
             With DataGridViewTRANDET
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1208,11 +1285,6 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelEXP.Text = "Syncing Expense List"
-                                          End Sub))
-            t1.Start()
-
             With DataGridViewEXP
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1285,11 +1357,6 @@ Public Class SynctoCloud
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
-
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelEXPD.Text = "Syncing Expense Details"
-                                          End Sub))
-            t1.Start()
 
             With DataGridViewEXPDET
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1376,10 +1443,6 @@ Public Class SynctoCloud
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelACC.Text = "Syncing Accounts"
-                                          End Sub))
-            t1.Start()
 
             With DataGridViewLocusers
                 messageboxappearance = False
@@ -1454,11 +1517,6 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelSYS1.Text = "Syncing Systemlogs 1"
-                                          End Sub))
-            t1.Start()
-
             With DataGridViewSYSLOG1
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1522,11 +1580,6 @@ Public Class SynctoCloud
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
-
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelRET.Text = "Syncing Refund Details"
-                                          End Sub))
-            t1.Start()
 
             With DataGridViewRetrefdetails
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1593,11 +1646,6 @@ Public Class SynctoCloud
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
-
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelCPROD.Text = "Syncing Local Products"
-                                          End Sub))
-            t1.Start()
 
             With DataGridViewCUSTOMPRODUCTS
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1673,11 +1721,6 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelMODET.Text = "Syncing Mode of Transaction"
-                                          End Sub))
-            t1.Start()
-
             With DataGridViewMODEOFTRANSACTION
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1745,11 +1788,6 @@ Public Class SynctoCloud
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
-
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelDEPOSIT.Text = "Syncing Deposit Details"
-                                          End Sub))
-            t1.Start()
 
             With DataGridViewDepositSlip
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1819,11 +1857,6 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelPRICEREQ.Text = "Syncing Price Request"
-                                          End Sub))
-            t1.Start()
-
             With DataGridViewPriceChangeRequest
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -1889,11 +1922,6 @@ Public Class SynctoCloud
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
-
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelCoupon.Text = "Syncing Coupons"
-                                          End Sub))
-            t1.Start()
 
             With DataGridViewCoupons
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
@@ -1970,11 +1998,6 @@ Public Class SynctoCloud
             local.ConnectionString = LocalConnectionString
             local.Open()
 
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelError.Text = "Syncing Errors"
-                                          End Sub))
-            t1.Start()
-
             With DataGridViewERRORS
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If WorkerCanceled = True Then
@@ -2039,11 +2062,6 @@ Public Class SynctoCloud
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
-
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelINV.Text = "Syncing Inventory"
-                                          End Sub))
-            t1.Start()
 
             With DataGridViewINV
                 Dim DateSynced As String = ""
@@ -2120,11 +2138,6 @@ Public Class SynctoCloud
             Dim local As MySqlConnection = New MySqlConnection
             local.ConnectionString = LocalConnectionString
             local.Open()
-
-            Dim t1 As New Task(New Action(Sub()
-                                              LabelZREADINV.Text = "Syncing Zread Inventory"
-                                          End Sub))
-            t1.Start()
 
             With DataGridViewZREADINVENTORY
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
