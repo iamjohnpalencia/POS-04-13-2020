@@ -1361,6 +1361,7 @@ Public Class SettingsForm
                         MsgBox("Product price changes approved")
                         PRICECHANGE = False
                     End If
+                    POS.LoadCategory()
                     For Each btn As Button In Panel3.Controls.OfType(Of Button)()
                         If btn.Text = "Simply Perfect" Then
                             btn.PerformClick()
