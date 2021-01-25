@@ -1056,15 +1056,23 @@ Public Class Reports
             Dim B As Integer = 0
             If CheckBoxPRINTALL.Checked = False Then
                 printdocReturns.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 320)
-                PrintPreviewDialogReturns.Document = printdocReturns
-                PrintPreviewDialogReturns.ShowDialog()
+                If S_Print_Returns = "YES" Then
+                    printdocReturns.Print()
+                Else
+                    PrintPreviewDialogReturns.Document = printdocReturns
+                    PrintPreviewDialogReturns.ShowDialog()
+                End If
             Else
                 For i As Integer = 0 To DataGridViewReturns.Rows.Count - 1 Step +1
                     B += 65
                 Next
                 printdocReturns.DefaultPageSettings.PaperSize = New PaperSize("Custom", 215, 320 + B)
-                PrintPreviewDialogReturns.Document = printdocReturns
-                PrintPreviewDialogReturns.ShowDialog()
+                If S_Print_Returns = "YES" Then
+                    printdocReturns.Print()
+                Else
+                    PrintPreviewDialogReturns.Document = printdocReturns
+                    PrintPreviewDialogReturns.ShowDialog()
+                End If
             End If
             B = 0
             ColumnSpacing = 0
