@@ -338,6 +338,10 @@ Partial Class ConfigManager
         Me.BackgroundWorker6 = New System.ComponentModel.BackgroundWorker()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.Panel31 = New System.Windows.Forms.Panel()
+        Me.RadioButtonPrintReturnsNo = New System.Windows.Forms.RadioButton()
+        Me.RadioButtonPrintReturnsYes = New System.Windows.Forms.RadioButton()
+        Me.Label29 = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -423,6 +427,7 @@ Partial Class ConfigManager
         CType(Me.DataGridViewOutletDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel12.SuspendLayout()
+        Me.Panel31.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
@@ -2004,6 +2009,7 @@ Partial Class ConfigManager
         '
         'GroupBox23
         '
+        Me.GroupBox23.Controls.Add(Me.Panel31)
         Me.GroupBox23.Controls.Add(Me.Panel30)
         Me.GroupBox23.Controls.Add(Me.Panel28)
         Me.GroupBox23.Controls.Add(Me.Panel17)
@@ -2021,7 +2027,7 @@ Partial Class ConfigManager
         Me.Panel30.Controls.Add(Me.RadioButtonPrintXZReadNo)
         Me.Panel30.Controls.Add(Me.RadioButtonPrintXZReadYes)
         Me.Panel30.Controls.Add(Me.Label31)
-        Me.Panel30.Location = New System.Drawing.Point(6, 99)
+        Me.Panel30.Location = New System.Drawing.Point(6, 137)
         Me.Panel30.Name = "Panel30"
         Me.Panel30.Size = New System.Drawing.Size(320, 39)
         Me.Panel30.TabIndex = 288
@@ -3606,6 +3612,51 @@ Partial Class ConfigManager
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'Panel31
+        '
+        Me.Panel31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel31.Controls.Add(Me.RadioButtonPrintReturnsNo)
+        Me.Panel31.Controls.Add(Me.RadioButtonPrintReturnsYes)
+        Me.Panel31.Controls.Add(Me.Label29)
+        Me.Panel31.Location = New System.Drawing.Point(6, 99)
+        Me.Panel31.Name = "Panel31"
+        Me.Panel31.Size = New System.Drawing.Size(320, 39)
+        Me.Panel31.TabIndex = 289
+        '
+        'RadioButtonPrintReturnsNo
+        '
+        Me.RadioButtonPrintReturnsNo.AutoSize = True
+        Me.RadioButtonPrintReturnsNo.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonPrintReturnsNo.Location = New System.Drawing.Point(259, 10)
+        Me.RadioButtonPrintReturnsNo.Name = "RadioButtonPrintReturnsNo"
+        Me.RadioButtonPrintReturnsNo.Size = New System.Drawing.Size(40, 18)
+        Me.RadioButtonPrintReturnsNo.TabIndex = 287
+        Me.RadioButtonPrintReturnsNo.TabStop = True
+        Me.RadioButtonPrintReturnsNo.Text = "No"
+        Me.RadioButtonPrintReturnsNo.UseVisualStyleBackColor = True
+        '
+        'RadioButtonPrintReturnsYes
+        '
+        Me.RadioButtonPrintReturnsYes.AutoSize = True
+        Me.RadioButtonPrintReturnsYes.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonPrintReturnsYes.Location = New System.Drawing.Point(208, 10)
+        Me.RadioButtonPrintReturnsYes.Name = "RadioButtonPrintReturnsYes"
+        Me.RadioButtonPrintReturnsYes.Size = New System.Drawing.Size(45, 18)
+        Me.RadioButtonPrintReturnsYes.TabIndex = 286
+        Me.RadioButtonPrintReturnsYes.TabStop = True
+        Me.RadioButtonPrintReturnsYes.Text = "Yes"
+        Me.RadioButtonPrintReturnsYes.UseVisualStyleBackColor = True
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label29.Location = New System.Drawing.Point(14, 10)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(151, 14)
+        Me.Label29.TabIndex = 284
+        Me.Label29.Text = "Directly Print item returns:"
+        '
         'ConfigManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3727,6 +3778,8 @@ Partial Class ConfigManager
         CType(Me.DataGridViewOutletDetails, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel12.ResumeLayout(False)
+        Me.Panel31.ResumeLayout(False)
+        Me.Panel31.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4047,4 +4100,8 @@ Partial Class ConfigManager
     Friend WithEvents RadioButtonPrintReceiptNo As RadioButton
     Friend WithEvents RadioButtonPrintReceiptYes As RadioButton
     Friend WithEvents Label28 As Label
+    Friend WithEvents Panel31 As Panel
+    Friend WithEvents RadioButtonPrintReturnsNo As RadioButton
+    Friend WithEvents RadioButtonPrintReturnsYes As RadioButton
+    Friend WithEvents Label29 As Label
 End Class

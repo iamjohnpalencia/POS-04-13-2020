@@ -392,8 +392,8 @@ Module publicfunctions
             Dim brand = ClientBrand.ToUpper
             CenterTextDisplay(sender, e, brand, brandfont, 10)
             CenterTextDisplay(sender, e, "VAT REG TIN " & ClientTin, font, 21)
-            CenterTextDisplay(sender, e, ClientAddress & ", Brgy." & ClientBrgy, font, 31)
-            CenterTextDisplay(sender, e, getmunicipality & ", " & getprovince, font, 41)
+            CenterTextDisplay(sender, e, ClientAddress, font, 31)
+            CenterTextDisplay(sender, e, ClientBrgy & ", " & getmunicipality & ", " & getprovince, font, 41)
             CenterTextDisplay(sender, e, "TEL. NO.: " & ClientTel, font, 51)
             SimpleTextDisplay(sender, e, "Name:", font, 0, 50)
             If SENIORDETAILSBOOL = True Then

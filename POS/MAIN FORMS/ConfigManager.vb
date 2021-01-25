@@ -249,6 +249,7 @@ Public Class ConfigManager
                             MsgBox("Saved!")
                         End If
                     End If
+                    LoadPrintOptions()
                     LoadDefaultSettingsAdd()
                     LoadDefaultSettingsDev()
                     TextboxEnableability(Panel9, False)
@@ -271,6 +272,50 @@ Public Class ConfigManager
         End Try
     End Sub
     Dim FooterInfo As String = ""
+    Private Sub LoadPrintOptions()
+        Try
+            If ValidLocalConnection Then
+                sql = "SELECT `printreceipt`, `reprintreceipt`, `printxzread`, `printreturns` FROM loc_settings WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+                Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                Dim dt As DataTable = New DataTable
+                da.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    If dt(0)(0) <> Nothing Then
+                        If dt(0)(0) = "YES" Then
+                            RadioButtonPrintReceiptYes.Checked = True
+                        Else
+                            RadioButtonPrintReceiptNo.Checked = True
+                        End If
+                    End If
+                    If dt(0)(1) <> Nothing Then
+                        If dt(0)(1) = "YES" Then
+                            RadioButtonRePrintReceiptYes.Checked = True
+                        Else
+                            RadioButtonRePrintReceiptNo.Checked = True
+                        End If
+                    End If
+                    If dt(0)(2) <> Nothing Then
+                        If dt(0)(2) = "YES" Then
+                            RadioButtonPrintXZReadYes.Checked = True
+                        Else
+                            RadioButtonPrintXZReadNo.Checked = True
+                        End If
+                    End If
+                    If dt(0)(3) <> Nothing Then
+                        If dt(0)(3) = "YES" Then
+                            RadioButtonPrintReturnsYes.Checked = True
+                        Else
+                            RadioButtonPrintReturnsNo.Checked = True
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
     Private Sub LoadDefaultSettingsAdd()
         Try
             If ValidCloudConnection = True And ValidLocalConnection = True Then
@@ -2245,7 +2290,59 @@ Public Class ConfigManager
             PrintXZRead = False
         End Try
     End Sub
+    Dim PrintReturns = ""
+    Dim PrintReturnsBool As Boolean = False
+    Private Sub RadioButtonPrintReturnsYes_Click(sender As Object, e As EventArgs) Handles RadioButtonPrintReturnsYes.Click, RadioButtonPrintReturnsNo.Click
+        Try
+            Dim table = "`loc_settings`"
+            If ValidLocalConnection Then
+                If RadioButtonPrintReturnsYes.Checked Then
+                    PrintReturns = "YES"
+                    PrintReturnsBool = True
+                ElseIf RadioButtonPrintReturnsNo.Checked Then
+                    PrintReturns = "NO"
+                    PrintReturnsBool = True
+                Else
+                    PrintReturns = ""
+                    PrintReturnsBool = False
+                End If
+                If PrintReturnsBool Then
+                    Dim sql = "Select `printreturns` FROM " & table & " WHERE `settings_id` = 1"
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, TestLocalConnection())
+                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                    Dim dt As DataTable = New DataTable
+                    da.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Dim fields = "`printreturns` = '" & PrintReturns & "' "
+                        sql = "UPDATE " & table & " SET " & fields & " WHERE `settings_id` = 1"
+                        cmd = New MySqlCommand(sql, TestLocalConnection())
+                        cmd.ExecuteNonQuery()
+                        MsgBox("Complete!")
+                    Else
+                        Dim fields = "`printreturns`"
+                        Dim value = "'" & PrintReturns & "'"
+                        sql = "INSERT INTO " & table & " (" & fields & ") VALUES (" & value & ")"
+                        cmd = New MySqlCommand(sql, TestLocalConnection)
+                        cmd.ExecuteNonQuery()
+                        MsgBox("Complete!")
+                    End If
+                Else
+                    MsgBox("Select option first")
+                    PrintReturnsBool = False
+                    PrintReturns = ""
+                End If
+            Else
+                MsgBox("Connection must be valid first")
+                PrintReturns = ""
+                PrintReturnsBool = False
+            End If
 
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            PrintReturns = ""
+            PrintReturnsBool = False
+        End Try
+    End Sub
 #Region "Test Insert"
     'Private Sub button734_click(sender As Object, e As EventArgs) Handles Button4.Click
     '    InsertToProducts()

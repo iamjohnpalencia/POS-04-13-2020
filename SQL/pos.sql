@@ -469,7 +469,8 @@ CREATE TABLE `loc_settings` (
   `S_Layout` text NOT NULL,
   `printreceipt` text NOT NULL,
   `reprintreceipt` text NOT NULL,
-  `printxzread` text NOT NULL
+  `printxzread` text NOT NULL,
+  `printreturns` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 -- --------------------------------------------------------
 

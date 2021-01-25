@@ -96,6 +96,7 @@ Module publicVariables
     Public S_Print As String
     Public S_Reprint As String
     Public S_Print_XZRead As String
+    Public S_Print_Returns As String
     '=============================================================================================================
     'btn click refresh
     Public btnperformclick As Boolean = False

@@ -385,6 +385,10 @@ Partial Class SettingsForm
         Me.Label63 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage16 = New System.Windows.Forms.TabPage()
+        Me.Panel33 = New System.Windows.Forms.Panel()
+        Me.RadioButtonPrintReturnsNo = New System.Windows.Forms.RadioButton()
+        Me.RadioButtonPrintReturnsYes = New System.Windows.Forms.RadioButton()
+        Me.Label67 = New System.Windows.Forms.Label()
         Me.TabPage6.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -477,6 +481,7 @@ Partial Class SettingsForm
         Me.Panel32.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage16.SuspendLayout()
+        Me.Panel33.SuspendLayout()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -4096,6 +4101,7 @@ Partial Class SettingsForm
         '
         'GroupBox13
         '
+        Me.GroupBox13.Controls.Add(Me.Panel33)
         Me.GroupBox13.Controls.Add(Me.Panel30)
         Me.GroupBox13.Controls.Add(Me.Panel31)
         Me.GroupBox13.Controls.Add(Me.Panel32)
@@ -4113,7 +4119,7 @@ Partial Class SettingsForm
         Me.Panel30.Controls.Add(Me.RadioButtonPrintXZReadNo)
         Me.Panel30.Controls.Add(Me.RadioButtonPrintXZReadYes)
         Me.Panel30.Controls.Add(Me.Label59)
-        Me.Panel30.Location = New System.Drawing.Point(7, 119)
+        Me.Panel30.Location = New System.Drawing.Point(7, 157)
         Me.Panel30.Name = "Panel30"
         Me.Panel30.Size = New System.Drawing.Size(320, 39)
         Me.Panel30.TabIndex = 291
@@ -4278,6 +4284,51 @@ Partial Class SettingsForm
         Me.TabPage16.Text = "TabPage16"
         Me.TabPage16.UseVisualStyleBackColor = True
         '
+        'Panel33
+        '
+        Me.Panel33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel33.Controls.Add(Me.RadioButtonPrintReturnsNo)
+        Me.Panel33.Controls.Add(Me.RadioButtonPrintReturnsYes)
+        Me.Panel33.Controls.Add(Me.Label67)
+        Me.Panel33.Location = New System.Drawing.Point(7, 119)
+        Me.Panel33.Name = "Panel33"
+        Me.Panel33.Size = New System.Drawing.Size(320, 39)
+        Me.Panel33.TabIndex = 292
+        '
+        'RadioButtonPrintReturnsNo
+        '
+        Me.RadioButtonPrintReturnsNo.AutoSize = True
+        Me.RadioButtonPrintReturnsNo.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonPrintReturnsNo.Location = New System.Drawing.Point(259, 10)
+        Me.RadioButtonPrintReturnsNo.Name = "RadioButtonPrintReturnsNo"
+        Me.RadioButtonPrintReturnsNo.Size = New System.Drawing.Size(40, 18)
+        Me.RadioButtonPrintReturnsNo.TabIndex = 287
+        Me.RadioButtonPrintReturnsNo.TabStop = True
+        Me.RadioButtonPrintReturnsNo.Text = "No"
+        Me.RadioButtonPrintReturnsNo.UseVisualStyleBackColor = True
+        '
+        'RadioButtonPrintReturnsYes
+        '
+        Me.RadioButtonPrintReturnsYes.AutoSize = True
+        Me.RadioButtonPrintReturnsYes.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonPrintReturnsYes.Location = New System.Drawing.Point(208, 10)
+        Me.RadioButtonPrintReturnsYes.Name = "RadioButtonPrintReturnsYes"
+        Me.RadioButtonPrintReturnsYes.Size = New System.Drawing.Size(45, 18)
+        Me.RadioButtonPrintReturnsYes.TabIndex = 286
+        Me.RadioButtonPrintReturnsYes.TabStop = True
+        Me.RadioButtonPrintReturnsYes.Text = "Yes"
+        Me.RadioButtonPrintReturnsYes.UseVisualStyleBackColor = True
+        '
+        'Label67
+        '
+        Me.Label67.AutoSize = True
+        Me.Label67.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label67.Location = New System.Drawing.Point(14, 10)
+        Me.Label67.Name = "Label67"
+        Me.Label67.Size = New System.Drawing.Size(151, 14)
+        Me.Label67.TabIndex = 284
+        Me.Label67.Text = "Directly Print item returns:"
+        '
         'SettingsForm
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -4406,6 +4457,8 @@ Partial Class SettingsForm
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage16.ResumeLayout(False)
         Me.TabPage16.PerformLayout()
+        Me.Panel33.ResumeLayout(False)
+        Me.Panel33.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4749,4 +4802,8 @@ Partial Class SettingsForm
     Friend WithEvents RadioButtonPrintReceiptNo As RadioButton
     Friend WithEvents RadioButtonPrintReceiptYes As RadioButton
     Friend WithEvents Label63 As Label
+    Friend WithEvents Panel33 As Panel
+    Friend WithEvents RadioButtonPrintReturnsNo As RadioButton
+    Friend WithEvents RadioButtonPrintReturnsYes As RadioButton
+    Friend WithEvents Label67 As Label
 End Class

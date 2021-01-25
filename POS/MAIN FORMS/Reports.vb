@@ -50,16 +50,19 @@ Public Class Reports
             reportsreturnsandrefunds(False)
             viewdeposit(False)
             FillDatagridZreadInv(False)
-            If ClientRole = "Head Crew" Then
-                Button6.Visible = True
+
+            If ClientRole = "Admin" Then
+                ButtonZreadAdmin.Visible = True
+                Button8.Visible = True
             Else
-                Button6.Visible = False
+                ButtonZreadAdmin.Visible = False
                 Button8.Visible = False
-                Button8.Enabled = False
             End If
+
+
             If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
                 ButtonZread.Enabled = False
-                Button6.Enabled = False
+                ButtonZreadAdmin.Enabled = False
             End If
             If DataGridViewDaily.Rows.Count > 0 Then
                 Dim arg = New DataGridViewCellEventArgs(0, 0)
@@ -70,7 +73,21 @@ Public Class Reports
                 'Dim arg = New DataGridViewCellEventArgs(0, 0)
                 'DataGridViewEXPENSES_CellClick(sender, arg)
             End If
-
+            With DataGridViewTransactionDetails
+                .Columns.Item(1).DefaultCellStyle.Format = "n2"
+                .Columns.Item(2).DefaultCellStyle.Format = "n2"
+                .Columns.Item(3).DefaultCellStyle.Format = "n2"
+                .RowHeadersVisible = False
+                .AllowUserToAddRows = False
+                .AllowUserToDeleteRows = False
+                .AllowUserToOrderColumns = False
+                .AllowUserToResizeColumns = False
+                .AllowUserToResizeRows = False
+                .Font = New Font("tahoma", 10)
+                .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+                .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+                .SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -256,24 +273,20 @@ Public Class Reports
     End Sub
     Public Sub viewtransactiondetails(ByVal transaction_number As String)
         Try
-            table = "`loc_daily_transaction_details`"
+            Dim DailyTable
+            table = "`loc_daily_transaction_details` WHERE transaction_number = '" & transaction_number & "'"
             fields = "`product_name`, `quantity`, `price`, `total`, `product_category`, `upgraded`, `addontype`"
-            GLOBAL_SELECT_ALL_FUNCTION_WHERE(table:=table, datagrid:=DataGridViewTransactionDetails, errormessage:="", fields:=fields, successmessage:="", where:=" transaction_number = '" & transaction_number & "'")
-            'With DataGridViewTransactionDetails
-            '    .Columns(0).HeaderCell.Value = "Product Name"
-            '    .Columns(1).HeaderCell.Value = "Quantity"
-            '    .Columns(2).HeaderCell.Value = "Price"
-            '    .Columns(3).HeaderCell.Value = "Total"
-            '    .Columns(4).Visible = False
-            '    .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
-            '    .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            '    .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
-            '    .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            '    .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopRight
-            '    .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            '    .Columns.Item(1).DefaultCellStyle.Format = "n2"
-            '    .Columns.Item(2).DefaultCellStyle.Format = "n2"
-            'End With
+            DailyTable = AsDatatable(table, fields, DataGridViewTransactionDetails)
+            For Each row As DataRow In DailyTable.rows
+                Dim Upgrade = ""
+                If row("upgraded") = 0 Then
+                    Upgrade = "NO"
+                Else
+                    Upgrade = "YES"
+                End If
+                DataGridViewTransactionDetails.Rows.Add(row("product_name"), row("quantity"), row("price"), row("total"), row("product_category"), Upgrade, row("addontype"))
+            Next
+
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -357,7 +370,7 @@ Public Class Reports
             Try
                 For i As Integer = 0 To DataGridViewTransactionDetails.Rows.Count - 1 Step +1
                     b += 10
-                    If DataGridViewTransactionDetails.Rows(i).Cells(5).Value > 0 Then
+                    If DataGridViewTransactionDetails.Rows(i).Cells(5).Value = "YES" Then
                         b += 10
                     End If
                 Next
@@ -412,7 +425,7 @@ Public Class Reports
                     End If
                 Else
                     RightToLeftDisplay(sender, e, abc + 115, DataGridViewTransactionDetails.Rows(i).Cells(1).Value & " " & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, font, 0, 0)
-                    If DataGridViewTransactionDetails.Rows(i).Cells(5).Value > 0 Then
+                    If DataGridViewTransactionDetails.Rows(i).Cells(5).Value = "YES" Then
                         abc += 10
                         a += 10
 
@@ -718,7 +731,7 @@ Public Class Reports
                 XZreadingInventory(S_Zreading)
                 If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
                     ButtonZread.Enabled = False
-                    Button6.Enabled = False
+                    ButtonZreadAdmin.Enabled = False
                 End If
                 Button7.PerformClick()
             End If
@@ -727,7 +740,7 @@ Public Class Reports
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles Button6.Click
+    Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles ButtonZreadAdmin.Click
         Try
             Dim result As Integer = MessageBox.Show("It seems like you have not generated Z-reading before ? Would you like to generate now ?", "Z-Reading", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
@@ -761,7 +774,7 @@ Public Class Reports
                     XZreadingInventory(S_Zreading)
                     If S_Zreading = Format(Now(), "yyyy-MM-dd") Then
                         ButtonZread.Enabled = False
-                        Button6.Enabled = False
+                        ButtonZreadAdmin.Enabled = False
                     End If
                     Button7.PerformClick()
                 Catch ex As Exception

@@ -21,9 +21,9 @@ Public Class UserSettings
     Public Sub Usersloadusers()
         Try
             If ClientRole = "Crew" Then
-                GLOBAL_SELECT_ALL_FUNCTION("loc_users WHERE user_id = " & ClientCrewID & " AND store_id= " & ClientStoreID & " AND guid='" & ClientGuid & "' AND active = 1 ", "*", DataGridViewUserSettings)
+                GLOBAL_SELECT_ALL_FUNCTION("loc_users WHERE user_level <> 'Admin' AND user_id = " & ClientCrewID & " AND store_id= " & ClientStoreID & " AND guid='" & ClientGuid & "' AND active = 1 ", "*", DataGridViewUserSettings)
             Else
-                GLOBAL_SELECT_ALL_FUNCTION("loc_users WHERE store_id= " & ClientStoreID & " AND guid='" & ClientGuid & "' AND active = 1 ", "*", DataGridViewUserSettings)
+                GLOBAL_SELECT_ALL_FUNCTION("loc_users WHERE user_level <> 'Admin' AND store_id= " & ClientStoreID & " AND guid='" & ClientGuid & "' AND active = 1 ", "*", DataGridViewUserSettings)
             End If
 
             With DataGridViewUserSettings

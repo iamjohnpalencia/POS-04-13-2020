@@ -319,7 +319,7 @@ Public Class Inventory
             loadpanelstockadjustment()
             LoadReasonCategories()
             LoadReasonCategoriesDeactivated()
-            PanelSTOCKADJUSTMENT.Location = New Point(ClientSize.Width / 2 - PanelSTOCKADJUSTMENT.Size.Width / 2, ClientSize.Height / 2 - PanelSTOCKADJUSTMENT.Size.Height / 2)
+            PanelSTOCKADJUSTMENT.Location = New Point(ClientSize.Width / 2 - PanelSTOCKADJUSTMENT.Size.Width / 2, ClientSize.Height / 3 - PanelSTOCKADJUSTMENT.Size.Height / 3)
             PanelSTOCKADJUSTMENT.Anchor = AnchorStyles.None
             PanelSTOCKADJUSTMENT.Visible = True
             countingredients()
@@ -385,6 +385,7 @@ Public Class Inventory
                 loadinventory()
                 loadstockadjustmentreport(False)
                 loadcriticalstocks()
+                Panel21.Visible = False
             Else
                 MsgBox("Quantity(Primary) must be greater than 0")
             End If
@@ -703,6 +704,9 @@ Public Class Inventory
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                 cmd.ExecuteNonQuery()
                 loadinventory()
+                SystemLogType = "INVENTORY RESET"
+                SystemLogDesc = "Reset by :" & returnfullname(ClientCrewID) & " : " & ClientRole
+                GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -768,5 +772,14 @@ Public Class Inventory
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        Panel21.Location = New Point(ClientSize.Width / 2 - Panel21.Size.Width / 2, ClientSize.Height / 3 - Panel21.Size.Height / 3)
+        Panel21.Visible = True
+    End Sub
+
+    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+        Panel21.Visible = False
     End Sub
 End Class

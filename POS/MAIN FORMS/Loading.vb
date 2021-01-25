@@ -59,7 +59,7 @@ Public Class Loading
                 BackgroundWorker1.ReportProgress(i)
                 Thread.Sleep(50)
                 If i = 10 Then
-                    If LocalhostConn.State = ConnectionState.Open Then
+                    If ValidLocalConnection Then
                         Label1.Text = "Getting information..."
                         IfConnectionIsConfigured = True
                         ValidDatabaseLocalConnection = True
@@ -95,7 +95,7 @@ Public Class Loading
                                 t.Join()
                             Next
                         End If
-                        If ValidCloudConnection = True Then
+                        If ValidCloudConnection Then
                             thread = New Thread(AddressOf RunScript)
                             thread.Start()
                             threadList.Add(thread)
@@ -110,8 +110,8 @@ Public Class Loading
                     End If
                 End If
                 If i = 65 Then
-                    If IfConnectionIsConfigured = True Then
-                        If CheckIfNeedToReset() = True Then
+                    If IfConnectionIsConfigured Then
+                        If CheckIfNeedToReset() Then
                             IfNeedsToReset = True
                         Else
                             IfNeedsToReset = False
@@ -143,7 +143,7 @@ Public Class Loading
     Private Sub LoadSettings()
         Try
             If LocalConnectionIsOnOrValid = True Then
-                Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix , S_Upgrade_Price_Add , S_BackupInterval, S_BackupDate , S_Update_Version , P_Footer_Info , S_logo , S_Layout , printreceipt , reprintreceipt , printxzread FROM loc_settings WHERE settings_id = 1"
+                Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix , S_Upgrade_Price_Add , S_BackupInterval, S_BackupDate , S_Update_Version , P_Footer_Info , S_logo , S_Layout , printreceipt , reprintreceipt , printxzread , printreturns FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
@@ -171,6 +171,7 @@ Public Class Loading
                                             S_Print = row("printreceipt")
                                             S_Reprint = row("reprintreceipt")
                                             S_Print_XZRead = row("printxzread")
+                                            S_Print_Returns = row("printreturns")
                                             My.Settings.Footer = row("P_Footer_Info")
                                             My.Settings.Version = row("S_Update_Version")
                                             My.Settings.Save()
@@ -220,12 +221,8 @@ Public Class Loading
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Try
             If IfConnectionIsConfigured = True Then
-                'MsgBox("Connection is open")
                 If RowsReturned = 1 Then
-                    'MsgBox("Activated")
                     If IfInternetIsAvailable = True Then
-                        'MsgBox("Has internet connection")
-                        'MsgBox(IfNeedsToReset)
                         If IfNeedsToReset = True Then
                             BackgroundWorker2.WorkerSupportsCancellation = True
                             BackgroundWorker2.WorkerReportsProgress = True
@@ -239,7 +236,6 @@ Public Class Loading
                             End If
                         End If
                     Else
-                        'MsgBox("No internet connection")
                         If IfNeedsToReset = True Then
                             BackgroundWorker2.WorkerSupportsCancellation = True
                             BackgroundWorker2.WorkerReportsProgress = True
@@ -249,11 +245,9 @@ Public Class Loading
                         End If
                     End If
                 Else
-                    'MsgBox("Not yet activated")
                     NotYetActivated()
                 End If
             Else
-                'MsgBox("Connecion is close")
                 ConnectionIsClose()
             End If
         Catch ex As Exception

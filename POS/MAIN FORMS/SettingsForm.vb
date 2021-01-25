@@ -937,7 +937,7 @@ Public Class SettingsForm
     Private Sub LoadPrintOptions()
         Try
             If ValidLocalConnection = True Then
-                sql = "SELECT `printreceipt`, `reprintreceipt`, `printxzread` FROM loc_settings WHERE settings_id = 1"
+                sql = "SELECT `printreceipt`, `reprintreceipt`, `printxzread`, `printreturns` FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
@@ -993,6 +993,23 @@ Public Class SettingsForm
                             If ClientRole <> "Admin" Then
                                 RadioButtonPrintXZReadYes.Checked = False
                                 RadioButtonPrintXZReadYes.Enabled = False
+                            End If
+                        End If
+                    End If
+                    If dt(0)(3) <> Nothing Then
+                        If dt(0)(3) = "YES" Then
+                            RadioButtonPrintReturnsYes.Checked = True
+                            S_Print_Returns = "YES"
+                            If ClientRole <> "Admin" Then
+                                RadioButtonPrintReturnsNo.Checked = False
+                                RadioButtonPrintReturnsNo.Enabled = False
+                            End If
+                        Else
+                            RadioButtonPrintReturnsNo.Checked = True
+                            S_Print_Returns = "NO"
+                            If ClientRole <> "Admin" Then
+                                RadioButtonPrintReturnsYes.Checked = False
+                                RadioButtonPrintReturnsYes.Enabled = False
                             End If
                         End If
                     End If
@@ -2365,6 +2382,7 @@ Public Class SettingsForm
                             cmd.ExecuteNonQuery()
                             MsgBox("Complete!")
                         End If
+                        S_Print = PrintOption
                     Else
                         MsgBox("Select option first")
                         PrintOptionIsSet = False
@@ -2421,6 +2439,7 @@ Public Class SettingsForm
                             cmd.ExecuteNonQuery()
                             MsgBox("Complete!")
                         End If
+                        S_Reprint = RePrintOption
                     Else
                         MsgBox("Select option first")
                         RePrintOptionIsSet = False
@@ -2479,6 +2498,7 @@ Public Class SettingsForm
                             cmd.ExecuteNonQuery()
                             MsgBox("Complete!")
                         End If
+                        S_Print_XZRead = PrintXZReadOption
                     Else
                         MsgBox("Select option first")
                         PrintXZRead = False
@@ -2495,6 +2515,62 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
             PrintXZReadOption = ""
             PrintXZRead = False
+        End Try
+    End Sub
+
+    Private Sub RadioButtonPrintReturnsNo_Click(sender As Object, e As EventArgs) Handles RadioButtonPrintReturnsYes.Click, RadioButtonPrintReturnsNo.Click
+        Dim PrintReturns = ""
+        Dim PrintReturnsBool As Boolean = False
+        Try
+            Dim table = "`loc_settings`"
+            Dim Conn = LocalhostConn()
+            If ValidLocalConnection Then
+                If RadioButtonPrintReturnsYes.Checked Then
+                    PrintReturns = "YES"
+                    PrintReturnsBool = True
+                ElseIf RadioButtonPrintReturnsNo.Checked Then
+                    PrintReturns = "NO"
+                    PrintReturnsBool = True
+                Else
+                    PrintReturns = ""
+                    PrintReturnsBool = False
+                End If
+                If PrintReturnsBool Then
+                    Dim sql = "Select `printreturns` FROM " & table & " WHERE `settings_id` = 1"
+                    Dim cmd As MySqlCommand = New MySqlCommand(sql, Conn)
+                    Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+                    Dim dt As DataTable = New DataTable
+                    da.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Dim fields = "`printreturns` = '" & PrintReturns & "' "
+                        sql = "UPDATE " & table & " SET " & fields & " WHERE `settings_id` = 1"
+                        cmd = New MySqlCommand(sql, Conn)
+                        cmd.ExecuteNonQuery()
+                        MsgBox("Complete!")
+                    Else
+                        Dim fields = "`printreturns`"
+                        Dim value = "'" & PrintReturns & "'"
+                        sql = "INSERT INTO " & table & " (" & fields & ") VALUES (" & value & ")"
+                        cmd = New MySqlCommand(sql, Conn)
+                        cmd.ExecuteNonQuery()
+                        MsgBox("Complete!")
+                    End If
+                    S_Print_Returns = PrintReturns
+                Else
+                    MsgBox("Select option first")
+                    PrintReturnsBool = False
+                    PrintReturns = ""
+                End If
+            Else
+                MsgBox("Connection must be valid first")
+                PrintReturns = ""
+                PrintReturnsBool = False
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            PrintReturns = ""
+            PrintReturnsBool = False
         End Try
     End Sub
 #End Region

@@ -58,7 +58,7 @@ Module NEWPOSMODULE
                     End If
                 End If
                 .TextBoxPRICE.Text = ProductPrice
-                .TextBoxNAME.Text = ProductName
+
             End With
             GetFormulaid(ProductName, ProductPrice)
         Catch ex As Exception
@@ -69,7 +69,7 @@ Module NEWPOSMODULE
     Private Sub GetFormulaid(ProductName As String, ProductOriginalPrice As Double)
         Try
             Dim ConnectionLocal As MySqlConnection = LocalhostConn()
-            Dim sql = "SELECT product_id, product_sku, formula_id, product_category, origin, server_inventory_id, addontype FROM `loc_admin_products` WHERE product_sku = '" & ProductName & "'"
+            Dim sql = "SELECT product_id, product_sku, formula_id, product_category, origin, server_inventory_id, addontype, product_name FROM `loc_admin_products` WHERE product_sku = '" & ProductName & "'"
             Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
             Using readerObj As MySqlDataReader = cmd.ExecuteReader
                 While readerObj.Read
@@ -80,7 +80,9 @@ Module NEWPOSMODULE
                     Dim origin = readerObj("origin").ToString
                     Dim inventoryid = readerObj("server_inventory_id").ToString
                     Dim addontype = readerObj("addontype").ToString
+                    Dim prodname = readerObj("product_name").ToString
                     With POS
+                        .TextBoxNAME.Text = prodname
                         If .WaffleUpgrade = True Then
                             'This if block will change Batter ID to Brownie ID
                             Dim formulaId As String = ""
@@ -102,7 +104,7 @@ Module NEWPOSMODULE
                             formula_id = formulaId.Substring(0, formulaId.Length - 1)
                         End If
                         .TextBoxFormulaID.Text = formula_id
-                        CheckCriticalLimit(ProductName, ProductOriginalPrice, formula_id, product_id, product_sku, product_category, origin, inventoryid, addontype)
+                        CheckCriticalLimit(prodname, ProductOriginalPrice, formula_id, product_id, product_sku, product_category, origin, inventoryid, addontype)
                     End With
                 End While
             End Using
