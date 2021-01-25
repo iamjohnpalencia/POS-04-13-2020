@@ -538,7 +538,6 @@ Public Class Reports
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdocXread.PrintPage
         Try
             Dim ZreadDateFormat = S_Zreading
-            Console.Write(ZreadDateFormat)
             Dim font As New Font("tahoma", 6)
             Dim font2 As New Font("tahoma", 6, FontStyle.Bold)
             Dim brandfont As New Font("tahoma", 8, FontStyle.Bold)
@@ -570,9 +569,9 @@ Public Class Reports
             '============================================================================================================================
             CenterTextDisplay(sender, e, "Opt by : Innovention Food Asia Co.", font, 21)
             '============================================================================================================================
-            CenterTextDisplay(sender, e, ClientAddress & ", Brgy. " & ClientBrgy, font, 31)
+            CenterTextDisplay(sender, e, ClientAddress, font, 31)
             '============================================================================================================================
-            CenterTextDisplay(sender, e, getmunicipality & ", " & getprovince, font, 41)
+            CenterTextDisplay(sender, e, ClientBrgy & ", " & getmunicipality & ", " & getprovince, font, 41)
             '============================================================================================================================
             CenterTextDisplay(sender, e, "VAT REG TIN : " & ClientTin, font, 51)
             '============================================================================================================================
@@ -665,7 +664,7 @@ Public Class Reports
             SimpleTextDisplay(sender, e, "SAVORY", font, 0, 735)
             SimpleTextDisplay(sender, e, "SIMPY PERFECT", font, 0, 745)
             SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 755)
-            SimpleTextDisplay(sender, e, "NET SALES", font, 0, 765)
+            'SimpleTextDisplay(sender, e, "NET SALES", font, 0, 765)
 
             Dim ADDONS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Add-Ons'")
             Dim BLENDS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Famous Blends'")

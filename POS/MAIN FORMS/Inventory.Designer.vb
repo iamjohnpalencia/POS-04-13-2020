@@ -80,6 +80,8 @@ Partial Class Inventory
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.PanelSTOCKADJUSTMENT = New System.Windows.Forms.Panel()
         Me.TabControl3 = New System.Windows.Forms.TabControl()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
@@ -143,6 +145,7 @@ Partial Class Inventory
         Me.Button11 = New System.Windows.Forms.Button()
         Me.Button14 = New System.Windows.Forms.Button()
         Me.DataGridViewStockAdjustment = New System.Windows.Forms.DataGridView()
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel11 = New System.Windows.Forms.Panel()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -150,8 +153,12 @@ Partial Class Inventory
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.DataGridViewSTOCKENTRY = New System.Windows.Forms.DataGridView()
+        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Panel21 = New System.Windows.Forms.Panel()
+        Me.Button10 = New System.Windows.Forms.Button()
         Me.ButtonENTRYADDSTOCK = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label20 = New System.Windows.Forms.Label()
@@ -172,6 +179,7 @@ Partial Class Inventory
         Me.TextBoxEPrimary = New System.Windows.Forms.TextBox()
         Me.ComboBoxDESC = New System.Windows.Forms.ComboBox()
         Me.Label23 = New System.Windows.Forms.Label()
+        Me.DataGridViewSTOCKENTRY = New System.Windows.Forms.DataGridView()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.ButtonSearchDailyTransaction = New System.Windows.Forms.Button()
         Me.DateTimePicker3 = New System.Windows.Forms.DateTimePicker()
@@ -184,14 +192,6 @@ Partial Class Inventory
         Me.Panel24 = New System.Windows.Forms.Panel()
         Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button10 = New System.Windows.Forms.Button()
-        Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
-        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -213,6 +213,8 @@ Partial Class Inventory
         CType(Me.DataGridViewFASTMOVING, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel7.SuspendLayout()
         Me.TabPage4.SuspendLayout()
+        Me.TableLayoutPanel5.SuspendLayout()
+        Me.GroupBox10.SuspendLayout()
         Me.PanelSTOCKADJUSTMENT.SuspendLayout()
         Me.TabControl3.SuspendLayout()
         Me.TabPage6.SuspendLayout()
@@ -239,19 +241,17 @@ Partial Class Inventory
         Me.GroupBox4.SuspendLayout()
         Me.Panel19.SuspendLayout()
         CType(Me.DataGridViewStockAdjustment, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox8.SuspendLayout()
         Me.Panel11.SuspendLayout()
         Me.TabPage5.SuspendLayout()
-        CType(Me.DataGridViewSTOCKENTRY, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel21.SuspendLayout()
-        Me.Panel16.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        Me.Panel24.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
-        Me.TableLayoutPanel5.SuspendLayout()
-        Me.GroupBox8.SuspendLayout()
-        Me.GroupBox10.SuspendLayout()
+        Me.Panel21.SuspendLayout()
+        CType(Me.DataGridViewSTOCKENTRY, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel16.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        Me.Panel24.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel6
@@ -393,10 +393,10 @@ Partial Class Inventory
         'TabPage11
         '
         Me.TabPage11.Controls.Add(Me.TabControl5)
-        Me.TabPage11.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage11.Location = New System.Drawing.Point(4, 22)
         Me.TabPage11.Name = "TabPage11"
         Me.TabPage11.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage11.Size = New System.Drawing.Size(1183, 583)
+        Me.TabPage11.Size = New System.Drawing.Size(1183, 589)
         Me.TabPage11.TabIndex = 1
         Me.TabPage11.Text = "TabPage11"
         Me.TabPage11.UseVisualStyleBackColor = True
@@ -409,7 +409,7 @@ Partial Class Inventory
         Me.TabControl5.Location = New System.Drawing.Point(3, 3)
         Me.TabControl5.Name = "TabControl5"
         Me.TabControl5.SelectedIndex = 0
-        Me.TabControl5.Size = New System.Drawing.Size(1177, 577)
+        Me.TabControl5.Size = New System.Drawing.Size(1177, 583)
         Me.TabControl5.TabIndex = 4
         '
         'TabPage12
@@ -419,7 +419,7 @@ Partial Class Inventory
         Me.TabPage12.Location = New System.Drawing.Point(4, 28)
         Me.TabPage12.Name = "TabPage12"
         Me.TabPage12.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage12.Size = New System.Drawing.Size(1169, 545)
+        Me.TabPage12.Size = New System.Drawing.Size(1169, 551)
         Me.TabPage12.TabIndex = 0
         Me.TabPage12.Text = "TabPage12"
         Me.TabPage12.UseVisualStyleBackColor = True
@@ -456,7 +456,7 @@ Partial Class Inventory
         Me.DataGridViewCustomInvApproved.EnableHeadersVisualStyles = False
         Me.DataGridViewCustomInvApproved.Location = New System.Drawing.Point(3, 40)
         Me.DataGridViewCustomInvApproved.Name = "DataGridViewCustomInvApproved"
-        Me.DataGridViewCustomInvApproved.Size = New System.Drawing.Size(1163, 502)
+        Me.DataGridViewCustomInvApproved.Size = New System.Drawing.Size(1163, 508)
         Me.DataGridViewCustomInvApproved.TabIndex = 3
         '
         'Panel3
@@ -669,6 +669,33 @@ Partial Class Inventory
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TabPage4"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'TableLayoutPanel5
+        '
+        Me.TableLayoutPanel5.ColumnCount = 1
+        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel5.Controls.Add(Me.GroupBox10, 0, 0)
+        Me.TableLayoutPanel5.Controls.Add(Me.GroupBox8, 0, 1)
+        Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel5.Location = New System.Drawing.Point(3, 40)
+        Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
+        Me.TableLayoutPanel5.RowCount = 2
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(1191, 578)
+        Me.TableLayoutPanel5.TabIndex = 8
+        '
+        'GroupBox10
+        '
+        Me.GroupBox10.Controls.Add(Me.PanelSTOCKADJUSTMENT)
+        Me.GroupBox10.Controls.Add(Me.DataGridViewStockAdjustment)
+        Me.GroupBox10.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox10.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox10.Name = "GroupBox10"
+        Me.GroupBox10.Size = New System.Drawing.Size(1185, 502)
+        Me.GroupBox10.TabIndex = 1
+        Me.GroupBox10.TabStop = False
+        Me.GroupBox10.Text = "Stock Adjustment"
         '
         'PanelSTOCKADJUSTMENT
         '
@@ -1077,12 +1104,12 @@ Partial Class Inventory
         'Button2
         '
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
-        Me.Button2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button2.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(0, 0)
+        Me.Button2.Location = New System.Drawing.Point(841, 0)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(156, 39)
         Me.Button2.TabIndex = 115
@@ -1092,12 +1119,12 @@ Partial Class Inventory
         'ButtonSave
         '
         Me.ButtonSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.ButtonSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.ButtonSave.Dock = System.Windows.Forms.DockStyle.Left
         Me.ButtonSave.FlatAppearance.BorderSize = 0
         Me.ButtonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonSave.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.ButtonSave.ForeColor = System.Drawing.Color.White
-        Me.ButtonSave.Location = New System.Drawing.Point(841, 0)
+        Me.ButtonSave.Location = New System.Drawing.Point(0, 0)
         Me.ButtonSave.Name = "ButtonSave"
         Me.ButtonSave.Size = New System.Drawing.Size(156, 39)
         Me.ButtonSave.TabIndex = 114
@@ -1286,12 +1313,12 @@ Partial Class Inventory
         '
         Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button5.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button5.Dock = System.Windows.Forms.DockStyle.Left
         Me.Button5.FlatAppearance.BorderSize = 0
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Button5.ForeColor = System.Drawing.Color.White
-        Me.Button5.Location = New System.Drawing.Point(515, 0)
+        Me.Button5.Location = New System.Drawing.Point(312, 0)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(156, 41)
         Me.Button5.TabIndex = 163
@@ -1302,12 +1329,12 @@ Partial Class Inventory
         '
         Me.ButtonDeleteProducts.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
         Me.ButtonDeleteProducts.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ButtonDeleteProducts.Dock = System.Windows.Forms.DockStyle.Right
+        Me.ButtonDeleteProducts.Dock = System.Windows.Forms.DockStyle.Left
         Me.ButtonDeleteProducts.FlatAppearance.BorderSize = 0
         Me.ButtonDeleteProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonDeleteProducts.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.ButtonDeleteProducts.ForeColor = System.Drawing.Color.White
-        Me.ButtonDeleteProducts.Location = New System.Drawing.Point(671, 0)
+        Me.ButtonDeleteProducts.Location = New System.Drawing.Point(156, 0)
         Me.ButtonDeleteProducts.Name = "ButtonDeleteProducts"
         Me.ButtonDeleteProducts.Size = New System.Drawing.Size(156, 41)
         Me.ButtonDeleteProducts.TabIndex = 164
@@ -1318,12 +1345,12 @@ Partial Class Inventory
         '
         Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button9.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button9.Dock = System.Windows.Forms.DockStyle.Left
         Me.Button9.FlatAppearance.BorderSize = 0
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button9.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Button9.ForeColor = System.Drawing.Color.White
-        Me.Button9.Location = New System.Drawing.Point(827, 0)
+        Me.Button9.Location = New System.Drawing.Point(0, 0)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(156, 41)
         Me.Button9.TabIndex = 165
@@ -1333,12 +1360,12 @@ Partial Class Inventory
         'Button4
         '
         Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
-        Me.Button4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button4.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(0, 0)
+        Me.Button4.Location = New System.Drawing.Point(827, 0)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(156, 41)
         Me.Button4.TabIndex = 115
@@ -1507,6 +1534,17 @@ Partial Class Inventory
         Me.DataGridViewStockAdjustment.Size = New System.Drawing.Size(1179, 476)
         Me.DataGridViewStockAdjustment.TabIndex = 5
         '
+        'GroupBox8
+        '
+        Me.GroupBox8.Controls.Add(Me.Button3)
+        Me.GroupBox8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox8.Location = New System.Drawing.Point(3, 511)
+        Me.GroupBox8.Name = "GroupBox8"
+        Me.GroupBox8.Size = New System.Drawing.Size(1185, 64)
+        Me.GroupBox8.TabIndex = 0
+        Me.GroupBox8.TabStop = False
+        Me.GroupBox8.Text = "Action"
+        '
         'Button3
         '
         Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
@@ -1589,41 +1627,58 @@ Partial Class Inventory
         Me.TabPage5.Text = "TabPage5"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
-        'DataGridViewSTOCKENTRY
+        'TableLayoutPanel3
         '
-        Me.DataGridViewSTOCKENTRY.AllowUserToAddRows = False
-        Me.DataGridViewSTOCKENTRY.AllowUserToDeleteRows = False
-        Me.DataGridViewSTOCKENTRY.AllowUserToResizeColumns = False
-        Me.DataGridViewSTOCKENTRY.AllowUserToResizeRows = False
-        DataGridViewCellStyle28.BackColor = System.Drawing.Color.White
-        Me.DataGridViewSTOCKENTRY.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle28
-        Me.DataGridViewSTOCKENTRY.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridViewSTOCKENTRY.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridViewSTOCKENTRY.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle29.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewSTOCKENTRY.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle29
-        Me.DataGridViewSTOCKENTRY.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle30.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle30.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewSTOCKENTRY.DefaultCellStyle = DataGridViewCellStyle30
-        Me.DataGridViewSTOCKENTRY.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewSTOCKENTRY.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridViewSTOCKENTRY.EnableHeadersVisualStyles = False
-        Me.DataGridViewSTOCKENTRY.Location = New System.Drawing.Point(3, 23)
-        Me.DataGridViewSTOCKENTRY.Name = "DataGridViewSTOCKENTRY"
-        Me.DataGridViewSTOCKENTRY.Size = New System.Drawing.Size(1179, 476)
-        Me.DataGridViewSTOCKENTRY.TabIndex = 6
+        Me.TableLayoutPanel3.ColumnCount = 1
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel3.Controls.Add(Me.GroupBox5, 0, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.GroupBox6, 0, 0)
+        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 40)
+        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+        Me.TableLayoutPanel3.RowCount = 2
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1191, 578)
+        Me.TableLayoutPanel3.TabIndex = 55
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.Button8)
+        Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox5.Location = New System.Drawing.Point(3, 511)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(1185, 64)
+        Me.GroupBox5.TabIndex = 7
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Action"
+        '
+        'Button8
+        '
+        Me.Button8.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.Button8.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button8.FlatAppearance.BorderSize = 0
+        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button8.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button8.ForeColor = System.Drawing.Color.White
+        Me.Button8.Location = New System.Drawing.Point(1048, 23)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(134, 38)
+        Me.Button8.TabIndex = 1
+        Me.Button8.Text = "Add Stock"
+        Me.Button8.UseVisualStyleBackColor = False
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.Panel21)
+        Me.GroupBox6.Controls.Add(Me.DataGridViewSTOCKENTRY)
+        Me.GroupBox6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox6.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(1185, 502)
+        Me.GroupBox6.TabIndex = 8
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Stock in (Receiving) Entry"
         '
         'Panel21
         '
@@ -1655,6 +1710,20 @@ Partial Class Inventory
         Me.Panel21.Size = New System.Drawing.Size(360, 320)
         Me.Panel21.TabIndex = 5
         Me.Panel21.Visible = False
+        '
+        'Button10
+        '
+        Me.Button10.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.Button10.FlatAppearance.BorderSize = 0
+        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button10.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Button10.ForeColor = System.Drawing.Color.White
+        Me.Button10.Location = New System.Drawing.Point(262, 284)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(81, 23)
+        Me.Button10.TabIndex = 54
+        Me.Button10.Text = "Cancel"
+        Me.Button10.UseVisualStyleBackColor = False
         '
         'ButtonENTRYADDSTOCK
         '
@@ -1851,6 +1920,42 @@ Partial Class Inventory
         Me.Label23.TabIndex = 19
         Me.Label23.Text = "Description:"
         '
+        'DataGridViewSTOCKENTRY
+        '
+        Me.DataGridViewSTOCKENTRY.AllowUserToAddRows = False
+        Me.DataGridViewSTOCKENTRY.AllowUserToDeleteRows = False
+        Me.DataGridViewSTOCKENTRY.AllowUserToResizeColumns = False
+        Me.DataGridViewSTOCKENTRY.AllowUserToResizeRows = False
+        DataGridViewCellStyle28.BackColor = System.Drawing.Color.White
+        Me.DataGridViewSTOCKENTRY.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle28
+        Me.DataGridViewSTOCKENTRY.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewSTOCKENTRY.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewSTOCKENTRY.BorderStyle = System.Windows.Forms.BorderStyle.None
+        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle29.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle29.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewSTOCKENTRY.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle29
+        Me.DataGridViewSTOCKENTRY.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle30.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle30.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewSTOCKENTRY.DefaultCellStyle = DataGridViewCellStyle30
+        Me.DataGridViewSTOCKENTRY.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewSTOCKENTRY.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridViewSTOCKENTRY.EnableHeadersVisualStyles = False
+        Me.DataGridViewSTOCKENTRY.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewSTOCKENTRY.Name = "DataGridViewSTOCKENTRY"
+        Me.DataGridViewSTOCKENTRY.Size = New System.Drawing.Size(1179, 476)
+        Me.DataGridViewSTOCKENTRY.TabIndex = 6
+        '
         'Panel16
         '
         Me.Panel16.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
@@ -1977,111 +2082,6 @@ Partial Class Inventory
         Me.Label2.TabIndex = 153
         Me.Label2.Text = "INVENTORY"
         '
-        'TableLayoutPanel3
-        '
-        Me.TableLayoutPanel3.ColumnCount = 1
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.GroupBox5, 0, 1)
-        Me.TableLayoutPanel3.Controls.Add(Me.GroupBox6, 0, 0)
-        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 40)
-        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-        Me.TableLayoutPanel3.RowCount = 2
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1191, 578)
-        Me.TableLayoutPanel3.TabIndex = 55
-        '
-        'GroupBox5
-        '
-        Me.GroupBox5.Controls.Add(Me.Button8)
-        Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox5.Location = New System.Drawing.Point(3, 511)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(1185, 64)
-        Me.GroupBox5.TabIndex = 7
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "Action"
-        '
-        'GroupBox6
-        '
-        Me.GroupBox6.Controls.Add(Me.Panel21)
-        Me.GroupBox6.Controls.Add(Me.DataGridViewSTOCKENTRY)
-        Me.GroupBox6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox6.Location = New System.Drawing.Point(3, 3)
-        Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(1185, 502)
-        Me.GroupBox6.TabIndex = 8
-        Me.GroupBox6.TabStop = False
-        Me.GroupBox6.Text = "Stock in (Receiving) Entry"
-        '
-        'Button8
-        '
-        Me.Button8.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
-        Me.Button8.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button8.FlatAppearance.BorderSize = 0
-        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button8.ForeColor = System.Drawing.Color.White
-        Me.Button8.Location = New System.Drawing.Point(1048, 23)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(134, 38)
-        Me.Button8.TabIndex = 1
-        Me.Button8.Text = "Add Stock"
-        Me.Button8.UseVisualStyleBackColor = False
-        '
-        'Button10
-        '
-        Me.Button10.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.Button10.FlatAppearance.BorderSize = 0
-        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.Button10.ForeColor = System.Drawing.Color.White
-        Me.Button10.Location = New System.Drawing.Point(262, 284)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(81, 23)
-        Me.Button10.TabIndex = 54
-        Me.Button10.Text = "Cancel"
-        Me.Button10.UseVisualStyleBackColor = False
-        '
-        'TableLayoutPanel5
-        '
-        Me.TableLayoutPanel5.ColumnCount = 1
-        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel5.Controls.Add(Me.GroupBox10, 0, 0)
-        Me.TableLayoutPanel5.Controls.Add(Me.GroupBox8, 0, 1)
-        Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel5.Location = New System.Drawing.Point(3, 40)
-        Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
-        Me.TableLayoutPanel5.RowCount = 2
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel5.Size = New System.Drawing.Size(1191, 578)
-        Me.TableLayoutPanel5.TabIndex = 8
-        '
-        'GroupBox8
-        '
-        Me.GroupBox8.Controls.Add(Me.Button3)
-        Me.GroupBox8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox8.Location = New System.Drawing.Point(3, 511)
-        Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(1185, 64)
-        Me.GroupBox8.TabIndex = 0
-        Me.GroupBox8.TabStop = False
-        Me.GroupBox8.Text = "Action"
-        '
-        'GroupBox10
-        '
-        Me.GroupBox10.Controls.Add(Me.PanelSTOCKADJUSTMENT)
-        Me.GroupBox10.Controls.Add(Me.DataGridViewStockAdjustment)
-        Me.GroupBox10.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox10.Location = New System.Drawing.Point(3, 3)
-        Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(1185, 502)
-        Me.GroupBox10.TabIndex = 1
-        Me.GroupBox10.TabStop = False
-        Me.GroupBox10.Text = "Stock Adjustment"
-        '
         'Inventory
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2113,6 +2113,8 @@ Partial Class Inventory
         CType(Me.DataGridViewFASTMOVING, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel7.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
+        Me.TableLayoutPanel5.ResumeLayout(False)
+        Me.GroupBox10.ResumeLayout(False)
         Me.PanelSTOCKADJUSTMENT.ResumeLayout(False)
         Me.TabControl3.ResumeLayout(False)
         Me.TabPage6.ResumeLayout(False)
@@ -2142,23 +2144,21 @@ Partial Class Inventory
         Me.GroupBox4.ResumeLayout(False)
         Me.Panel19.ResumeLayout(False)
         CType(Me.DataGridViewStockAdjustment, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox8.ResumeLayout(False)
         Me.Panel11.ResumeLayout(False)
         Me.Panel11.PerformLayout()
         Me.TabPage5.ResumeLayout(False)
-        CType(Me.DataGridViewSTOCKENTRY, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel3.ResumeLayout(False)
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox6.ResumeLayout(False)
         Me.Panel21.ResumeLayout(False)
         Me.Panel21.PerformLayout()
+        CType(Me.DataGridViewSTOCKENTRY, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel16.ResumeLayout(False)
         Me.Panel16.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel24.ResumeLayout(False)
-        Me.TableLayoutPanel3.ResumeLayout(False)
-        Me.GroupBox5.ResumeLayout(False)
-        Me.GroupBox6.ResumeLayout(False)
-        Me.TableLayoutPanel5.ResumeLayout(False)
-        Me.GroupBox8.ResumeLayout(False)
-        Me.GroupBox10.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
