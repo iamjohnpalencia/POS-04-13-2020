@@ -371,6 +371,10 @@ Partial Class SettingsForm
         Me.TextBoxDevAdd = New System.Windows.Forms.TextBox()
         Me.TextBoxDevname = New System.Windows.Forms.TextBox()
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
+        Me.Panel33 = New System.Windows.Forms.Panel()
+        Me.RadioButtonPrintReturnsNo = New System.Windows.Forms.RadioButton()
+        Me.RadioButtonPrintReturnsYes = New System.Windows.Forms.RadioButton()
+        Me.Label67 = New System.Windows.Forms.Label()
         Me.Panel30 = New System.Windows.Forms.Panel()
         Me.RadioButtonPrintXZReadNo = New System.Windows.Forms.RadioButton()
         Me.RadioButtonPrintXZReadYes = New System.Windows.Forms.RadioButton()
@@ -385,10 +389,22 @@ Partial Class SettingsForm
         Me.Label63 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage16 = New System.Windows.Forms.TabPage()
-        Me.Panel33 = New System.Windows.Forms.Panel()
-        Me.RadioButtonPrintReturnsNo = New System.Windows.Forms.RadioButton()
-        Me.RadioButtonPrintReturnsYes = New System.Windows.Forms.RadioButton()
-        Me.Label67 = New System.Windows.Forms.Label()
+        Me.DataGridView6 = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column47 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column48 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column49 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage6.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -476,12 +492,13 @@ Partial Class SettingsForm
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
+        Me.Panel33.SuspendLayout()
         Me.Panel30.SuspendLayout()
         Me.Panel31.SuspendLayout()
         Me.Panel32.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage16.SuspendLayout()
-        Me.Panel33.SuspendLayout()
+        CType(Me.DataGridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -3737,10 +3754,10 @@ Partial Class SettingsForm
         'TabPage15
         '
         Me.TabPage15.Controls.Add(Me.TableLayoutPanel9)
-        Me.TabPage15.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage15.Location = New System.Drawing.Point(4, 22)
         Me.TabPage15.Name = "TabPage15"
         Me.TabPage15.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage15.Size = New System.Drawing.Size(1017, 443)
+        Me.TabPage15.Size = New System.Drawing.Size(1017, 449)
         Me.TabPage15.TabIndex = 2
         Me.TabPage15.Text = "TabPage15"
         Me.TabPage15.UseVisualStyleBackColor = True
@@ -3759,7 +3776,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel9.Name = "TableLayoutPanel9"
         Me.TableLayoutPanel9.RowCount = 1
         Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel9.Size = New System.Drawing.Size(1011, 437)
+        Me.TableLayoutPanel9.Size = New System.Drawing.Size(1011, 443)
         Me.TableLayoutPanel9.TabIndex = 282
         '
         'GroupBox12
@@ -3778,7 +3795,7 @@ Partial Class SettingsForm
         Me.GroupBox12.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox12.Location = New System.Drawing.Point(340, 3)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(331, 431)
+        Me.GroupBox12.Size = New System.Drawing.Size(331, 437)
         Me.GroupBox12.TabIndex = 296
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "Additional Settings"
@@ -3918,7 +3935,7 @@ Partial Class SettingsForm
         Me.GroupBox11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox11.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(331, 431)
+        Me.GroupBox11.Size = New System.Drawing.Size(331, 437)
         Me.GroupBox11.TabIndex = 295
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "Developer Information"
@@ -4108,10 +4125,55 @@ Partial Class SettingsForm
         Me.GroupBox13.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox13.Location = New System.Drawing.Point(677, 3)
         Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Size = New System.Drawing.Size(331, 431)
+        Me.GroupBox13.Size = New System.Drawing.Size(331, 437)
         Me.GroupBox13.TabIndex = 297
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "Printing Receipt Options"
+        '
+        'Panel33
+        '
+        Me.Panel33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel33.Controls.Add(Me.RadioButtonPrintReturnsNo)
+        Me.Panel33.Controls.Add(Me.RadioButtonPrintReturnsYes)
+        Me.Panel33.Controls.Add(Me.Label67)
+        Me.Panel33.Location = New System.Drawing.Point(7, 119)
+        Me.Panel33.Name = "Panel33"
+        Me.Panel33.Size = New System.Drawing.Size(320, 39)
+        Me.Panel33.TabIndex = 292
+        '
+        'RadioButtonPrintReturnsNo
+        '
+        Me.RadioButtonPrintReturnsNo.AutoSize = True
+        Me.RadioButtonPrintReturnsNo.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonPrintReturnsNo.Location = New System.Drawing.Point(259, 10)
+        Me.RadioButtonPrintReturnsNo.Name = "RadioButtonPrintReturnsNo"
+        Me.RadioButtonPrintReturnsNo.Size = New System.Drawing.Size(40, 18)
+        Me.RadioButtonPrintReturnsNo.TabIndex = 287
+        Me.RadioButtonPrintReturnsNo.TabStop = True
+        Me.RadioButtonPrintReturnsNo.Text = "No"
+        Me.RadioButtonPrintReturnsNo.UseVisualStyleBackColor = True
+        '
+        'RadioButtonPrintReturnsYes
+        '
+        Me.RadioButtonPrintReturnsYes.AutoSize = True
+        Me.RadioButtonPrintReturnsYes.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonPrintReturnsYes.Location = New System.Drawing.Point(208, 10)
+        Me.RadioButtonPrintReturnsYes.Name = "RadioButtonPrintReturnsYes"
+        Me.RadioButtonPrintReturnsYes.Size = New System.Drawing.Size(45, 18)
+        Me.RadioButtonPrintReturnsYes.TabIndex = 286
+        Me.RadioButtonPrintReturnsYes.TabStop = True
+        Me.RadioButtonPrintReturnsYes.Text = "Yes"
+        Me.RadioButtonPrintReturnsYes.UseVisualStyleBackColor = True
+        '
+        'Label67
+        '
+        Me.Label67.AutoSize = True
+        Me.Label67.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label67.Location = New System.Drawing.Point(14, 10)
+        Me.Label67.Name = "Label67"
+        Me.Label67.Size = New System.Drawing.Size(151, 14)
+        Me.Label67.TabIndex = 284
+        Me.Label67.Text = "Directly Print item returns:"
         '
         'Panel30
         '
@@ -4267,6 +4329,7 @@ Partial Class SettingsForm
         '
         'TabPage16
         '
+        Me.TabPage16.Controls.Add(Me.DataGridView6)
         Me.TabPage16.Controls.Add(Me.DataGridView5)
         Me.TabPage16.Controls.Add(Me.PictureBox1)
         Me.TabPage16.Controls.Add(Me.Label47)
@@ -4284,50 +4347,111 @@ Partial Class SettingsForm
         Me.TabPage16.Text = "TabPage16"
         Me.TabPage16.UseVisualStyleBackColor = True
         '
-        'Panel33
+        'DataGridView6
         '
-        Me.Panel33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel33.Controls.Add(Me.RadioButtonPrintReturnsNo)
-        Me.Panel33.Controls.Add(Me.RadioButtonPrintReturnsYes)
-        Me.Panel33.Controls.Add(Me.Label67)
-        Me.Panel33.Location = New System.Drawing.Point(7, 119)
-        Me.Panel33.Name = "Panel33"
-        Me.Panel33.Size = New System.Drawing.Size(320, 39)
-        Me.Panel33.TabIndex = 292
+        Me.DataGridView6.AllowUserToAddRows = False
+        Me.DataGridView6.AllowUserToDeleteRows = False
+        Me.DataGridView6.AllowUserToResizeColumns = False
+        Me.DataGridView6.AllowUserToResizeRows = False
+        Me.DataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView6.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn21, Me.DataGridViewTextBoxColumn22, Me.DataGridViewTextBoxColumn23, Me.Column47, Me.Column48, Me.Column49})
+        Me.DataGridView6.Location = New System.Drawing.Point(112, 26)
+        Me.DataGridView6.Name = "DataGridView6"
+        Me.DataGridView6.ReadOnly = True
+        Me.DataGridView6.RowHeadersVisible = False
+        Me.DataGridView6.Size = New System.Drawing.Size(364, 95)
+        Me.DataGridView6.TabIndex = 82
+        Me.DataGridView6.Visible = False
         '
-        'RadioButtonPrintReturnsNo
+        'DataGridViewTextBoxColumn6
         '
-        Me.RadioButtonPrintReturnsNo.AutoSize = True
-        Me.RadioButtonPrintReturnsNo.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.RadioButtonPrintReturnsNo.Location = New System.Drawing.Point(259, 10)
-        Me.RadioButtonPrintReturnsNo.Name = "RadioButtonPrintReturnsNo"
-        Me.RadioButtonPrintReturnsNo.Size = New System.Drawing.Size(40, 18)
-        Me.RadioButtonPrintReturnsNo.TabIndex = 287
-        Me.RadioButtonPrintReturnsNo.TabStop = True
-        Me.RadioButtonPrintReturnsNo.Text = "No"
-        Me.RadioButtonPrintReturnsNo.UseVisualStyleBackColor = True
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Column32"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.ReadOnly = True
         '
-        'RadioButtonPrintReturnsYes
+        'DataGridViewTextBoxColumn7
         '
-        Me.RadioButtonPrintReturnsYes.AutoSize = True
-        Me.RadioButtonPrintReturnsYes.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.RadioButtonPrintReturnsYes.Location = New System.Drawing.Point(208, 10)
-        Me.RadioButtonPrintReturnsYes.Name = "RadioButtonPrintReturnsYes"
-        Me.RadioButtonPrintReturnsYes.Size = New System.Drawing.Size(45, 18)
-        Me.RadioButtonPrintReturnsYes.TabIndex = 286
-        Me.RadioButtonPrintReturnsYes.TabStop = True
-        Me.RadioButtonPrintReturnsYes.Text = "Yes"
-        Me.RadioButtonPrintReturnsYes.UseVisualStyleBackColor = True
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Column33"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.ReadOnly = True
         '
-        'Label67
+        'DataGridViewTextBoxColumn8
         '
-        Me.Label67.AutoSize = True
-        Me.Label67.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label67.Location = New System.Drawing.Point(14, 10)
-        Me.Label67.Name = "Label67"
-        Me.Label67.Size = New System.Drawing.Size(151, 14)
-        Me.Label67.TabIndex = 284
-        Me.Label67.Text = "Directly Print item returns:"
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Column34"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.HeaderText = "Column35"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        Me.DataGridViewTextBoxColumn9.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn10
+        '
+        Me.DataGridViewTextBoxColumn10.HeaderText = "Column36"
+        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        Me.DataGridViewTextBoxColumn10.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn11
+        '
+        Me.DataGridViewTextBoxColumn11.HeaderText = "Column37"
+        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
+        Me.DataGridViewTextBoxColumn11.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.HeaderText = "Column38"
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
+        Me.DataGridViewTextBoxColumn12.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn13
+        '
+        Me.DataGridViewTextBoxColumn13.HeaderText = "Column39"
+        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
+        Me.DataGridViewTextBoxColumn13.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn14
+        '
+        Me.DataGridViewTextBoxColumn14.HeaderText = "Column40"
+        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
+        Me.DataGridViewTextBoxColumn14.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn21
+        '
+        Me.DataGridViewTextBoxColumn21.HeaderText = "Column41"
+        Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
+        Me.DataGridViewTextBoxColumn21.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn22
+        '
+        Me.DataGridViewTextBoxColumn22.HeaderText = "Column44"
+        Me.DataGridViewTextBoxColumn22.Name = "DataGridViewTextBoxColumn22"
+        Me.DataGridViewTextBoxColumn22.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn23
+        '
+        Me.DataGridViewTextBoxColumn23.HeaderText = "Column46"
+        Me.DataGridViewTextBoxColumn23.Name = "DataGridViewTextBoxColumn23"
+        Me.DataGridViewTextBoxColumn23.ReadOnly = True
+        '
+        'Column47
+        '
+        Me.Column47.HeaderText = "Column47"
+        Me.Column47.Name = "Column47"
+        Me.Column47.ReadOnly = True
+        '
+        'Column48
+        '
+        Me.Column48.HeaderText = "Column48"
+        Me.Column48.Name = "Column48"
+        Me.Column48.ReadOnly = True
+        '
+        'Column49
+        '
+        Me.Column49.HeaderText = "Column49"
+        Me.Column49.Name = "Column49"
+        Me.Column49.ReadOnly = True
         '
         'SettingsForm
         '
@@ -4448,6 +4572,8 @@ Partial Class SettingsForm
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox11.PerformLayout()
         Me.GroupBox13.ResumeLayout(False)
+        Me.Panel33.ResumeLayout(False)
+        Me.Panel33.PerformLayout()
         Me.Panel30.ResumeLayout(False)
         Me.Panel30.PerformLayout()
         Me.Panel31.ResumeLayout(False)
@@ -4457,8 +4583,7 @@ Partial Class SettingsForm
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage16.ResumeLayout(False)
         Me.TabPage16.PerformLayout()
-        Me.Panel33.ResumeLayout(False)
-        Me.Panel33.PerformLayout()
+        CType(Me.DataGridView6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4806,4 +4931,20 @@ Partial Class SettingsForm
     Friend WithEvents RadioButtonPrintReturnsNo As RadioButton
     Friend WithEvents RadioButtonPrintReturnsYes As RadioButton
     Friend WithEvents Label67 As Label
+    Friend WithEvents DataGridView6 As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn12 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn21 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn22 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn23 As DataGridViewTextBoxColumn
+    Friend WithEvents Column47 As DataGridViewTextBoxColumn
+    Friend WithEvents Column48 As DataGridViewTextBoxColumn
+    Friend WithEvents Column49 As DataGridViewTextBoxColumn
 End Class

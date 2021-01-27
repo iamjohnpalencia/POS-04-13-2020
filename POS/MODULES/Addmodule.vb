@@ -15,7 +15,11 @@ Module Addmodule
             Command.Parameters.Add("@5", MySqlDbType.VarChar).Value = ClientGuid
             Command.Parameters.Add("@6", MySqlDbType.VarChar).Value = Format(Now, ("yyyyMMdd-HHmmss"))
             Command.Parameters.Add("@7", MySqlDbType.VarChar).Value = "Unsynced"
-            Command.Parameters.Add("@8", MySqlDbType.VarChar).Value = S_Zreading
+            If IsNothing(S_Zreading) Then
+                Command.Parameters.Add("@8", MySqlDbType.VarChar).Value = ""
+            Else
+                Command.Parameters.Add("@8", MySqlDbType.VarChar).Value = S_Zreading
+            End If
             Command.Parameters.Add("@9", MySqlDbType.Text).Value = FullDate24HR()
             Command.ExecuteNonQuery()
             ConnectionLocal.Close()

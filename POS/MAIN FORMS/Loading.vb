@@ -446,6 +446,7 @@ Public Class Loading
                     query = "INSERT INTO loc_script_runner (script_command, active) VALUES ('" & row("script_id") & "', " & row("active") & ")"
                     cmd = New MySqlCommand(query, ConnectionLocal)
                     cmd.ExecuteNonQuery()
+                    GLOBAL_SYSTEM_LOGS("ALTER", "Store ID: " & ClientStoreID & ", Script ID: " & row("script_id"))
                 Next
             Else
                 Dim sql = "SELECT * FROM admin_script_runner"
@@ -455,16 +456,15 @@ Public Class Loading
                 da.Fill(dt)
                 For Each row As DataRow In dt.Rows
                     Dim query = "" & row("script_command") & ""
-
                     cmd = New MySqlCommand(query, ConnectionLocal)
                     cmd.ExecuteNonQuery()
                     query = "INSERT INTO loc_script_runner (script_command, active) VALUES ('" & row("script_id") & "', " & row("active") & ")"
                     cmd = New MySqlCommand(query, ConnectionLocal)
                     cmd.ExecuteNonQuery()
+                    GLOBAL_SYSTEM_LOGS("ALTER", "Store ID: " & ClientStoreID & ", Script ID: " & row("script_id"))
                 Next
             End If
         Catch ex As Exception
-
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try

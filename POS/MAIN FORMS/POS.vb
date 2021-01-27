@@ -1422,6 +1422,88 @@ Public Class POS
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Private Function LoadCouponsLocal() As DataTable
+        Dim cmdlocal As MySqlCommand
+        Dim dalocal As MySqlDataAdapter
+        Dim dtlocal As DataTable = New DataTable
+        dtlocal.Columns.Add("date_created")
+        dtlocal.Columns.Add("ID")
+        Dim dtlocal1 As DataTable = New DataTable
+        Try
+            Dim sql = "SELECT date_created, ID FROM tbcoupon"
+            cmdlocal = New MySqlCommand(sql, LocalhostConn())
+            dalocal = New MySqlDataAdapter(cmdlocal)
+            dalocal.Fill(dtlocal1)
+            For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
+                Dim Coup As DataRow = dtlocal.NewRow
+                Coup("date_created") = dtlocal1(i)(0).ToString
+                Coup("ID") = dtlocal1(i)(1)
+                dtlocal.Rows.Add(Coup)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+        Return dtlocal
+    End Function
+    Private Sub Function5()
+        Try
+            Dim Query = "SELECT * FROM tbcoupon"
+            Dim CmdCheck As MySqlCommand = New MySqlCommand(Query, LocalhostConn)
+            Dim DaCheck As MySqlDataAdapter = New MySqlDataAdapter(CmdCheck)
+            Dim DtCheck As DataTable = New DataTable
+            DaCheck.Fill(DtCheck)
+            Dim cmdserver As MySqlCommand
+            Dim daserver As MySqlDataAdapter
+            Dim dtserver As DataTable
+            If DtCheck.Rows.Count < 1 Then
+                Dim sql = "SELECT `ID`,`Couponname_`,`Desc_`,`Discountvalue_`,`Referencevalue_`,`Type`,`Bundlebase_`,`BBValue_`,`Bundlepromo_`,`BPValue_`,`Effectivedate`,`Expirydate`,`date_created` FROM admin_coupon"
+                cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                daserver = New MySqlDataAdapter(cmdserver)
+                dtserver = New DataTable
+                daserver.Fill(dtserver)
+                For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                    DataGridView5.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11), dtserver(i)(12))
+                Next
+            Else
+                Dim Ids As String = ""
+                If ValidCloudConnection = True Then
+                    For i As Integer = 0 To LoadCouponsLocal.Rows.Count - 1 Step +1
+                        If Ids = "" Then
+                            Ids = "" & LoadCouponsLocal(i)(1) & ""
+                        Else
+                            Ids += "," & LoadCouponsLocal(i)(1) & ""
+                        End If
+                    Next
+                    Dim sql = "SELECT `ID`,`Couponname_`,`Desc_`,`Discountvalue_`,`Referencevalue_`,`Type`,`Bundlebase_`,`BBValue_`,`Bundlepromo_`,`BPValue_`,`Effectivedate`,`Expirydate`,`date_created` FROM admin_coupon WHERE ID IN (" & Ids & ")"
+                    cmdserver = New MySqlCommand(sql, ServerCloudCon())
+                    daserver = New MySqlDataAdapter(cmdserver)
+                    dtserver = New DataTable
+                    daserver.Fill(dtserver)
+                    For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                        If LoadCouponsLocal(i)(0).ToString <> dtserver(i)(12).ToString Then
+                            DataGridView5.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11), dtserver(i)(12))
+                        End If
+                    Next
+                    Dim sql2 = "SELECT `ID`,`Couponname_`,`Desc_`,`Discountvalue_`,`Referencevalue_`,`Type`,`Bundlebase_`,`BBValue_`,`Bundlepromo_`,`BPValue_`,`Effectivedate`,`Expirydate`,`date_created` FROM admin_coupon WHERE ID NOT IN (" & Ids & ")"
+                    cmdserver = New MySqlCommand(sql2, ServerCloudCon())
+                    daserver = New MySqlDataAdapter(cmdserver)
+                    dtserver = New DataTable
+                    daserver.Fill(dtserver)
+                    For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
+                        If LoadCouponsLocal(i)(0) <> dtserver(i)(12) Then
+                            DataGridView5.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5), dtserver(i)(6), dtserver(i)(7), dtserver(i)(8), dtserver(i)(9), dtserver(i)(10), dtserver(i)(11), dtserver(i)(12))
+                        End If
+                    Next
+                End If
+            End If
+        Catch ex As Exception
+            BackgroundWorker2.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+            'If table doesnt have data
+        End Try
+    End Sub
     Private Function LoadCategoryLocal() As DataTable
         Dim cmdlocal As MySqlCommand
         Dim dalocal As MySqlDataAdapter
@@ -1483,7 +1565,6 @@ Public Class POS
                     For i As Integer = 0 To dtserver.Rows.Count - 1 Step +1
                         If LoadCategoryLocal(i)(0).ToString <> dtserver(i)(3).ToString Then
                             DataGridView1.Rows.Add(dtserver(i)(0), dtserver(i)(1), dtserver(i)(2), dtserver(i)(3).ToString, dtserver(i)(4), dtserver(i)(5))
-
                         End If
                     Next
                     Dim sql2 = "SELECT `category_id`, `category_name`, `brand_name`, `updated_at`, `origin`, `status` FROM admin_category WHERE category_id NOT IN (" & Ids & ")"
@@ -1906,6 +1987,9 @@ Public Class POS
                             thread = New Thread(AddressOf Function4)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
+                            thread = New Thread(AddressOf Function5)
+                            thread.Start()
+                            THREADLISTUPDATE.Add(thread)
                             thread = New Thread(AddressOf CouponApproval)
                             thread.Start()
                             THREADLISTUPDATE.Add(thread)
@@ -1944,12 +2028,13 @@ Public Class POS
                     Button3.Enabled = True
                     UPDATEPRODUCTONLY = False
                     POSISUPDATING = False
-                    If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Or PriceChangeDatatabe.Rows.Count > 0 Or CouponDatatable.Rows.Count > 0 Or CustomProductsApproval.Rows.Count Then
+                    If DataGridView1.Rows.Count > 0 Or DataGridView2.Rows.Count > 0 Or DataGridView3.Rows.Count > 0 Or DataGridView4.Rows.Count > 0 Or PriceChangeDatatabe.Rows.Count > 0 Or CouponDatatable.Rows.Count > 0 Or CustomProductsApproval.Rows.Count Or DataGridView5.Rows.Count > 0 Then
                         Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                         If updatemessage = DialogResult.Yes Then
                             InstallUpdatesFormula()
                             InstallUpdatesInventory()
                             InstallUpdatesCategory()
+                            InstallUpdatesCoupons()
                             InstallUpdatesProducts()
                             InstallUpdatesPriceChange()
                             InstallCoupons()
@@ -2030,7 +2115,7 @@ Public Class POS
                     cmdlocal = New MySqlCommand(sql, Connection)
                     Dim result As Integer = cmdlocal.ExecuteScalar
                     If result = 0 Then
-                        Dim sqlinsert = "INSERT INTO `loc_admin_category`(`category_name`, `brand_name`, `updated_at`, `origin`, `status`) VALUES (@0,@1,@2,@3,@4)"
+                        Dim sqlinsert = "INSERT INTO `loc_admin_category`(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`, `active`, `store_id`, `crew_id`, `guid`, `origin`, `synced`, `date_created`) VALUES (@0,@1,@2,@3,@4)"
                         cmdlocal = New MySqlCommand(sqlinsert, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
@@ -2046,6 +2131,67 @@ Public Class POS
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
                         cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
                         cmdlocal.Parameters.Add("@4", MySqlDbType.Int64).Value = .Rows(i).Cells(5).Value.ToString()
+                        cmdlocal.ExecuteNonQuery()
+                    End If
+                Next
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub InstallUpdatesCoupons()
+        Try
+            Dim Connection As MySqlConnection = LocalhostConn()
+            Dim cmdlocal As MySqlCommand
+            With DataGridView5
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    Dim sql = "SELECT ID FROM tbcoupon WHERE ID = " & .Rows(i).Cells(0).Value
+                    cmdlocal = New MySqlCommand(sql, Connection)
+                    Dim result As Integer = cmdlocal.ExecuteScalar
+                    If result = 0 Then
+                        Dim sqlinsert = "INSERT INTO `tbcoupon`(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`, `active`, `store_id`, `crew_id`, `guid`, `origin`, `synced`, `date_created`) VALUES (@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17)"
+                        cmdlocal = New MySqlCommand(sqlinsert, Connection)
+                        cmdlocal.Parameters.Add("@0", MySqlDbType.Text).Value = .Rows(i).Cells(1).Value.ToString()
+                        cmdlocal.Parameters.Add("@1", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString()
+                        cmdlocal.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(3).Value.ToString()
+                        cmdlocal.Parameters.Add("@3", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
+                        cmdlocal.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(5).Value.ToString()
+                        cmdlocal.Parameters.Add("@5", MySqlDbType.Text).Value = .Rows(i).Cells(6).Value.ToString()
+                        cmdlocal.Parameters.Add("@6", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
+                        cmdlocal.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(8).Value.ToString()
+                        cmdlocal.Parameters.Add("@8", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString()
+                        cmdlocal.Parameters.Add("@9", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value.ToString()
+                        cmdlocal.Parameters.Add("@11", MySqlDbType.Text).Value = "1"
+                        cmdlocal.Parameters.Add("@12", MySqlDbType.Text).Value = ClientStoreID
+                        cmdlocal.Parameters.Add("@13", MySqlDbType.Text).Value = ClientCrewID
+                        cmdlocal.Parameters.Add("@14", MySqlDbType.Text).Value = ClientGuid
+                        cmdlocal.Parameters.Add("@15", MySqlDbType.Text).Value = "Server"
+                        cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = "Synced"
+                        cmdlocal.Parameters.Add("@17", MySqlDbType.Text).Value = .Rows(i).Cells(12).Value.ToString()
+                        cmdlocal.ExecuteNonQuery()
+                    Else
+                        Dim sqlupdate = "UPDATE `tbcoupon` SET `Couponname_` = @0, `Desc_` = @1, `Discountvalue_` = @2, `Referencevalue_` = @3, `Type` = @4, `Bundlebase_` = @5, `BBValue_` = @6, `Bundlepromo_` = @7, `BPValue_` = @8, `Effectivedate` = @9, `Expirydate` = @10, `active` = @11, `store_id` = @12, `crew_id` = @13, `guid` = @14, `origin` = @15, `synced` = @16, `date_created` = @17 WHERE ID = " & .Rows(i).Cells(0).Value
+                        cmdlocal = New MySqlCommand(sqlupdate, Connection)
+                        cmdlocal.Parameters.Add("@0", MySqlDbType.Text).Value = .Rows(i).Cells(1).Value.ToString()
+                        cmdlocal.Parameters.Add("@1", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString()
+                        cmdlocal.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(3).Value.ToString()
+                        cmdlocal.Parameters.Add("@3", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
+                        cmdlocal.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(5).Value.ToString()
+                        cmdlocal.Parameters.Add("@5", MySqlDbType.Text).Value = .Rows(i).Cells(6).Value.ToString()
+                        cmdlocal.Parameters.Add("@6", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString()
+                        cmdlocal.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(8).Value.ToString()
+                        cmdlocal.Parameters.Add("@8", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString()
+                        cmdlocal.Parameters.Add("@9", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString()
+                        cmdlocal.Parameters.Add("@10", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value.ToString()
+                        cmdlocal.Parameters.Add("@11", MySqlDbType.Text).Value = "1"
+                        cmdlocal.Parameters.Add("@12", MySqlDbType.Text).Value = ClientStoreID
+                        cmdlocal.Parameters.Add("@13", MySqlDbType.Text).Value = ClientCrewID
+                        cmdlocal.Parameters.Add("@14", MySqlDbType.Text).Value = ClientGuid
+                        cmdlocal.Parameters.Add("@15", MySqlDbType.Text).Value = "Server"
+                        cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = "Synced"
+                        cmdlocal.Parameters.Add("@17", MySqlDbType.Text).Value = .Rows(i).Cells(12).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
                     End If
                 Next
@@ -2086,6 +2232,7 @@ Public Class POS
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
                         cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
+                        GLOBAL_SYSTEM_LOGS("INSERT FORMULA", "Store ID: " & ClientStoreID & ", Formula ID: " & .Rows(i).Cells(0).Value.ToString())
                     Else
                         Dim sqlupdate = "UPDATE `loc_product_formula` SET `server_formula_id`= @0,`product_ingredients`= @1,`primary_unit`= @2,`primary_value`= @3,`secondary_unit`= @4,`secondary_value`=@5,`serving_unit`=@6,`serving_value`=@7,`no_servings`=@8,`status`=@9,`date_modified`=@10,`unit_cost`=@11,`origin`=@12,`store_id`=@13,`guid`=@14,`crew_id`=@15,`server_date_modified`=@16 WHERE server_formula_id =  " & .Rows(i).Cells(0).Value
                         cmdlocal = New MySqlCommand(sqlupdate, Connection)
@@ -2107,6 +2254,7 @@ Public Class POS
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
                         cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
+                        GLOBAL_SYSTEM_LOGS("UPDATE FORMULA", "Store ID: " & ClientStoreID & ", Formula ID: " & .Rows(i).Cells(0).Value.ToString())
                     End If
                 Next
             End With
@@ -2146,17 +2294,14 @@ Public Class POS
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.ExecuteNonQuery()
+                        GLOBAL_SYSTEM_LOGS("INSERT INVENTORY", "Store ID: " & ClientStoreID & ", Inventory ID: " & .Rows(i).Cells(0).Value.ToString())
                     Else
-                        ',`stock_primary`=@4,`stock_secondary`=@5,`stock_no_of_servings`=@6
                         Dim sqlUpdate = "UPDATE `loc_pos_inventory` SET `server_inventory_id`= @0,`formula_id`=@1,`product_ingredients`=@2,`sku`=@3,`stock_status`=@7,`critical_limit`=@8,`date_modified`=@9,`server_date_modified`=@10,`store_id`=@11,`crew_id`=@12,`guid`=@13,`synced`=@14,`main_inventory_id`=@15,`origin`=@16 WHERE `server_inventory_id`= " & .Rows(i).Cells(0).Value
                         cmdlocal = New MySqlCommand(sqlUpdate, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.Int64).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
                         cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
-                        'cmdlocal.Parameters.Add("@4", MySqlDbType.Decimal).Value = .Rows(i).Cells(4).Value.ToString()
-                        'cmdlocal.Parameters.Add("@5", MySqlDbType.Decimal).Value = .Rows(i).Cells(5).Value.ToString()
-                        'cmdlocal.Parameters.Add("@6", MySqlDbType.Decimal).Value = .Rows(i).Cells(6).Value.ToString()
                         cmdlocal.Parameters.Add("@7", MySqlDbType.Int64).Value = .Rows(i).Cells(7).Value.ToString()
                         cmdlocal.Parameters.Add("@8", MySqlDbType.Int64).Value = .Rows(i).Cells(8).Value.ToString()
                         cmdlocal.Parameters.Add("@9", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString()
@@ -2167,8 +2312,8 @@ Public Class POS
                         cmdlocal.Parameters.Add("@14", MySqlDbType.VarChar).Value = "Synced"
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value.ToString()
-
                         cmdlocal.ExecuteNonQuery()
+                        GLOBAL_SYSTEM_LOGS("UPDATE INVENTORY", "Store ID: " & ClientStoreID & ", Inventory ID: " & .Rows(i).Cells(0).Value.ToString())
                     End If
                 Next
             End With
@@ -2203,22 +2348,19 @@ Public Class POS
                         cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.Parameters.Add("@12", MySqlDbType.Text).Value = .Rows(i).Cells(12).Value.ToString()
-
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientGuid
                         cmdlocal.Parameters.Add("@14", MySqlDbType.Int64).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
                         cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = "Synced"
                         cmdlocal.Parameters.Add("@17", MySqlDbType.Text).Value = .Rows(i).Cells(13).Value.ToString()
-
                         cmdlocal.ExecuteNonQuery()
+                        GLOBAL_SYSTEM_LOGS("INSERT PRODUCTS", "Store ID: " & ClientStoreID & ", Product ID: " & .Rows(i).Cells(0).Value.ToString())
                     Else
-                        ',`formula_id`=@3
                         Dim sqlupdate = "UPDATE `loc_admin_products` SET `server_product_id`=@0,`product_sku`=@1,`product_name`=@2,`product_barcode`=@4,`product_category`=@5,`product_price`=@6,`product_desc`=@7,`product_image`=@8,`product_status`=@9,`origin`=@10,`date_modified`=@11,`server_inventory_id`=@12,`guid`=@13,`store_id`=@14,`crew_id`=@15,`synced`=@16,`addontype`=@17 WHERE server_product_id =  " & .Rows(i).Cells(0).Value
                         cmdlocal = New MySqlCommand(sqlupdate, Connection)
                         cmdlocal.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value.ToString()
                         cmdlocal.Parameters.Add("@1", MySqlDbType.VarChar).Value = .Rows(i).Cells(1).Value.ToString()
                         cmdlocal.Parameters.Add("@2", MySqlDbType.VarChar).Value = .Rows(i).Cells(2).Value.ToString()
-                        'cmdlocal.Parameters.Add("@3", MySqlDbType.VarChar).Value = .Rows(i).Cells(3).Value.ToString()
                         cmdlocal.Parameters.Add("@4", MySqlDbType.VarChar).Value = .Rows(i).Cells(4).Value.ToString()
                         cmdlocal.Parameters.Add("@5", MySqlDbType.VarChar).Value = .Rows(i).Cells(5).Value.ToString()
                         cmdlocal.Parameters.Add("@6", MySqlDbType.Int64).Value = .Rows(i).Cells(6).Value.ToString()
@@ -2228,15 +2370,13 @@ Public Class POS
                         cmdlocal.Parameters.Add("@10", MySqlDbType.VarChar).Value = .Rows(i).Cells(10).Value.ToString()
                         cmdlocal.Parameters.Add("@11", MySqlDbType.VarChar).Value = .Rows(i).Cells(11).Value.ToString()
                         cmdlocal.Parameters.Add("@12", MySqlDbType.Text).Value = .Rows(i).Cells(12).Value.ToString()
-
                         cmdlocal.Parameters.Add("@13", MySqlDbType.VarChar).Value = ClientGuid
                         cmdlocal.Parameters.Add("@14", MySqlDbType.Int64).Value = ClientStoreID
                         cmdlocal.Parameters.Add("@15", MySqlDbType.VarChar).Value = "0"
                         cmdlocal.Parameters.Add("@16", MySqlDbType.VarChar).Value = "Synced"
-
                         cmdlocal.Parameters.Add("@17", MySqlDbType.Text).Value = .Rows(i).Cells(13).Value.ToString()
-
                         cmdlocal.ExecuteNonQuery()
+                        GLOBAL_SYSTEM_LOGS("UPDATE PRODUCTS", "Store ID: " & ClientStoreID & ", Product ID: " & .Rows(i).Cells(0).Value.ToString())
                     End If
                 Next
             End With
@@ -2260,6 +2400,7 @@ Public Class POS
                 Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""
                 CmdCheck = New MySqlCommand(sq3, ConnectionServer)
                 CmdCheck.ExecuteNonQuery()
+                GLOBAL_SYSTEM_LOGS("UPDATE PRICE CHANGE", "Store ID: " & ClientStoreID & ", Product ID: " & PriceChangeDatatabe(i)(3))
             Next
             ConnectionLocal.Close()
             ConnectionServer.Close()
@@ -2280,6 +2421,7 @@ Public Class POS
                 Dim sql2 = "UPDATE admin_custom_coupon SET synced = 'Synced' WHERE ID = " & CouponDatatable(i)(0) & ""
                 CmdCheck = New MySqlCommand(sql2, ConnectionServer)
                 CmdCheck.ExecuteNonQuery()
+                GLOBAL_SYSTEM_LOGS("UPDATE CUSTOM COUPON", "Store ID: " & ClientStoreID & ", Coupon ID: " & CouponDatatable(i)(0))
             Next
             ConnectionLocal.Close()
             ConnectionServer.Close()
@@ -2300,6 +2442,7 @@ Public Class POS
                 Dim sql2 = "UPDATE loc_product_list SET synced = 'Synced' WHERE loc_product_id = " & CustomProductsApproval(i)(0) & ""
                 CmdCheck = New MySqlCommand(sql2, ConnectionServer)
                 CmdCheck.ExecuteNonQuery()
+                GLOBAL_SYSTEM_LOGS("UPDATE CUSTOM PRODUCTS", "Store ID: " & ClientStoreID & ", Product ID: " & CouponDatatable(i)(0))
             Next
             ConnectionLocal.Close()
             ConnectionServer.Close()
