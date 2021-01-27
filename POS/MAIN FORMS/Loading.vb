@@ -419,10 +419,6 @@ Public Class Loading
     Private Sub FillScript()
         Try
             GLOBAL_SELECT_ALL_FUNCTION("loc_script_runner", "script_id", DataGridViewScript)
-            'Dim ScriptTable = AsDatatable("loc_script_runner", "script_id", DataGridViewScript)
-            'For Each row As DataRow In ScriptTable.Rows
-            '    DataGridViewScript.Rows.Add(row("script_id"))
-            'Next
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
