@@ -1147,13 +1147,10 @@ Public Class POS
         Enabled = True
         WaitFrm.Close()
         PaymentForm.Close()
-
         If DataGridViewOrders.Rows.Count > 0 Then
             Try
                 For i As Integer = 0 To DataGridViewOrders.Rows.Count - 1 Step +1
                     b += 10
-                    'printdoc.PrinterSettings = printdoc.PrinterSettings
-
                     If DataGridViewOrders.Rows(i).Cells(11).Value > 0 Then
                         b += 10
                     End If

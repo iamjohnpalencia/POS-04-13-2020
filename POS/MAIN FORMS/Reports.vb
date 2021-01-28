@@ -552,7 +552,7 @@ Public Class Reports
             Dim TotalGuest = count("transaction_id", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' ")
             Dim TotalQuantity = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND active = 1")
             Dim SrDiscount = sum("totaldiscount", "loc_daily_transaction WHERE discount_type = 'Percentage' AND zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
-            Dim totalExpenses = sum("amount", "loc_expense_details WHERE zreading = '" & ZreadDateFormat & "'")
+            Dim totalExpenses = sum("total_amount", "loc_expense_list WHERE zreading = '" & ZreadDateFormat & "'")
             Dim VatExempt = sum("vatexemptsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
             Dim zeroratedsales = sum("zeroratedsales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND active = 1")
             Dim vatablesales = sum("vatablesales", "loc_daily_transaction WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab') AND active = 1")
@@ -563,6 +563,8 @@ Public Class Reports
             Dim NetSales = sum("amountdue", "loc_daily_transaction WHERE active = 1 AND zreading = '" & ZreadDateFormat & "' AND transaction_type IN ('Walk-in','Grab')")
             Dim CashInDrawer = DailySales + BeginningBalance - totalExpenses
             Dim CashTotal = CashInDrawer
+            Dim TotalNewGrandTotal = CashInDrawer + OLDgrandtotal
+
 
             CenterTextDisplay(sender, e, ClientBrand.ToUpper, brandfont, 10)
             '============================================================================================================================
@@ -649,9 +651,9 @@ Public Class Reports
             RightToLeftDisplay(sender, e, 620, "BEGINNING OR NO.", begORNm, font, 20, 0)
             RightToLeftDisplay(sender, e, 630, "END OR NO.", EndORNumber, font, 20, 0)
             '============================================================================================================================
-            RightToLeftDisplay(sender, e, 645, "CURRENT TOTAL SALES", NUMBERFORMAT(NetSales), font, 20, 0)
+            RightToLeftDisplay(sender, e, 645, "CURRENT TOTAL SALES", NUMBERFORMAT(CashTotal), font, 20, 0)
             RightToLeftDisplay(sender, e, 655, "OLD GRAND TOTAL", NUMBERFORMAT(OLDgrandtotal), font, 20, 0)
-            RightToLeftDisplay(sender, e, 665, "NEW GRAND TOTAL", NUMBERFORMAT(NEWgrandtotal), font, 20, 0)
+            RightToLeftDisplay(sender, e, 665, "NEW GRAND TOTAL", NUMBERFORMAT(TotalNewGrandTotal), font, 20, 0)
 
             SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 665)
             SimpleTextDisplay(sender, e, "SALES BY CLASS", font2, 0, 675)

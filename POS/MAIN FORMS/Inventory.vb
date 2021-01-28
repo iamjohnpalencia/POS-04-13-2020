@@ -775,7 +775,7 @@ Public Class Inventory
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Panel21.Location = New Point(ClientSize.Width / 2 - Panel21.Size.Width / 2, ClientSize.Height / 3 - Panel21.Size.Height / 3)
+        Panel21.Location = New Point(ClientSize.Width / 2 - Panel21.Size.Width / 2, ClientSize.Height / 4 - Panel21.Size.Height / 3)
         Panel21.Visible = True
     End Sub
 
