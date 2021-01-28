@@ -1268,6 +1268,8 @@ Public Class POS
                     a += 120
                 End If
                 Dim Qty = SumOfColumnsToInt(.DataGridViewOrders, 1)
+
+
                 Dim NETSALES As Double = 0
                 If S_ZeroRated = "0" Then
                     NETSALES = Format(SUPERAMOUNTDUE, "###,###,##0.00")

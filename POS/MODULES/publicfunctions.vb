@@ -316,17 +316,16 @@ Module publicfunctions
         End With
     End Function
     Public Function SumOfColumnsToInt(ByVal datagrid As DataGridView, ByVal celltocompute As Integer)
+        Dim Sum = 0
         Try
-            With datagrid
-                total = (From row As DataGridViewRow In .Rows
-                         Where row.Cells(celltocompute).FormattedValue.ToString() <> String.Empty
-                         Select Convert.ToInt32(row.Cells(celltocompute).FormattedValue)).Sum.ToString()
-            End With
+            For index As Integer = 0 To datagrid.RowCount - 1
+                Sum += Convert.ToInt32(datagrid.Rows(index).Cells(celltocompute).Value)
+            Next
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
-        Return total
+        Return Sum
     End Function
     Public Sub Numeric(ByVal sender As Object, ByVal e As KeyPressEventArgs)
         If e.KeyChar <> ControlChars.Back Then

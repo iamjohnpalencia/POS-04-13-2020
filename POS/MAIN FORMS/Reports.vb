@@ -74,7 +74,6 @@ Public Class Reports
                 'DataGridViewEXPENSES_CellClick(sender, arg)
             End If
             With DataGridViewTransactionDetails
-                .Columns.Item(1).DefaultCellStyle.Format = "n2"
                 .Columns.Item(2).DefaultCellStyle.Format = "n2"
                 .Columns.Item(3).DefaultCellStyle.Format = "n2"
                 .RowHeadersVisible = False
