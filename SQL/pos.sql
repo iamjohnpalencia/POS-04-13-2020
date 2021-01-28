@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 11:33 AM
+-- Generation Time: Jan 28, 2021 at 03:07 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -23,6 +23,12 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `pos` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `pos`;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_masterlist`
+--
+
 DROP TABLE IF EXISTS `admin_masterlist`;
 CREATE TABLE `admin_masterlist` (
   `masterlist_id` int(11) NOT NULL,
@@ -37,6 +43,15 @@ CREATE TABLE `admin_masterlist` (
   `client_store_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `admin_masterlist`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_outlets`
+--
 
 DROP TABLE IF EXISTS `admin_outlets`;
 CREATE TABLE `admin_outlets` (
@@ -62,6 +77,16 @@ CREATE TABLE `admin_outlets` (
   `PTUN` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `admin_outlets`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_admin_category`
+--
 
 DROP TABLE IF EXISTS `loc_admin_category`;
 CREATE TABLE `loc_admin_category` (
@@ -72,6 +97,18 @@ CREATE TABLE `loc_admin_category` (
   `origin` varchar(50) NOT NULL,
   `status` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_admin_category`
+--
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_admin_products`
+--
 
 DROP TABLE IF EXISTS `loc_admin_products`;
 CREATE TABLE `loc_admin_products` (
@@ -97,6 +134,15 @@ CREATE TABLE `loc_admin_products` (
   `addontype` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_admin_products`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_coupon_data`
+--
 
 DROP TABLE IF EXISTS `loc_coupon_data`;
 CREATE TABLE `loc_coupon_data` (
@@ -108,6 +154,12 @@ CREATE TABLE `loc_coupon_data` (
   `coupon_line` text NOT NULL,
   `coupon_total` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_daily_transaction`
+--
 
 DROP TABLE IF EXISTS `loc_daily_transaction`;
 CREATE TABLE `loc_daily_transaction` (
@@ -137,6 +189,16 @@ CREATE TABLE `loc_daily_transaction` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_daily_transaction`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_daily_transaction_details`
+--
+
 DROP TABLE IF EXISTS `loc_daily_transaction_details`;
 CREATE TABLE `loc_daily_transaction_details` (
   `details_id` int(11) NOT NULL,
@@ -161,6 +223,17 @@ CREATE TABLE `loc_daily_transaction_details` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_daily_transaction_details`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_deposit`
+--
+
 DROP TABLE IF EXISTS `loc_deposit`;
 CREATE TABLE `loc_deposit` (
   `dep_id` int(11) NOT NULL,
@@ -175,6 +248,12 @@ CREATE TABLE `loc_deposit` (
   `created_at` text NOT NULL,
   `synced` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_expense_details`
+--
 
 DROP TABLE IF EXISTS `loc_expense_details`;
 CREATE TABLE `loc_expense_details` (
@@ -195,6 +274,12 @@ CREATE TABLE `loc_expense_details` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_expense_list`
+--
+
 DROP TABLE IF EXISTS `loc_expense_list`;
 CREATE TABLE `loc_expense_list` (
   `expense_id` int(11) NOT NULL,
@@ -211,6 +296,12 @@ CREATE TABLE `loc_expense_list` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_fm_stock`
+--
+
 DROP TABLE IF EXISTS `loc_fm_stock`;
 CREATE TABLE `loc_fm_stock` (
   `fm_id` int(11) NOT NULL,
@@ -223,6 +314,18 @@ CREATE TABLE `loc_fm_stock` (
   `created_at` text NOT NULL,
   `status` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_fm_stock`
+--
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_hold_inventory`
+--
 
 DROP TABLE IF EXISTS `loc_hold_inventory`;
 CREATE TABLE `loc_hold_inventory` (
@@ -240,6 +343,12 @@ CREATE TABLE `loc_hold_inventory` (
   `origin` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_inbox_messages`
+--
+
 DROP TABLE IF EXISTS `loc_inbox_messages`;
 CREATE TABLE `loc_inbox_messages` (
   `inbox_id` int(11) NOT NULL,
@@ -250,6 +359,12 @@ CREATE TABLE `loc_inbox_messages` (
   `origin` varchar(20) NOT NULL,
   `active` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_inv_temp_data`
+--
 
 DROP TABLE IF EXISTS `loc_inv_temp_data`;
 CREATE TABLE `loc_inv_temp_data` (
@@ -267,6 +382,18 @@ CREATE TABLE `loc_inv_temp_data` (
   `created_at` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_inv_temp_data`
+--
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_message`
+--
+
 DROP TABLE IF EXISTS `loc_message`;
 CREATE TABLE `loc_message` (
   `message_id` int(11) NOT NULL,
@@ -282,6 +409,17 @@ CREATE TABLE `loc_message` (
   `seen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `loc_message`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_partners_transaction`
+--
+
 DROP TABLE IF EXISTS `loc_partners_transaction`;
 CREATE TABLE `loc_partners_transaction` (
   `id` int(11) NOT NULL,
@@ -294,6 +432,17 @@ CREATE TABLE `loc_partners_transaction` (
   `active` int(2) NOT NULL,
   `synced` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_partners_transaction`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_pending_orders`
+--
 
 DROP TABLE IF EXISTS `loc_pending_orders`;
 CREATE TABLE `loc_pending_orders` (
@@ -319,6 +468,12 @@ CREATE TABLE `loc_pending_orders` (
   `addontype` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_pos_inventory`
+--
+
 DROP TABLE IF EXISTS `loc_pos_inventory`;
 CREATE TABLE `loc_pos_inventory` (
   `inventory_id` int(11) NOT NULL,
@@ -341,6 +496,17 @@ CREATE TABLE `loc_pos_inventory` (
   `origin` text NOT NULL,
   `zreading` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_pos_inventory`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_price_request_change`
+--
 
 DROP TABLE IF EXISTS `loc_price_request_change`;
 CREATE TABLE `loc_price_request_change` (
@@ -384,6 +550,16 @@ CREATE TABLE `loc_product_formula` (
   `server_date_modified` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_product_formula`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_refund_return_details`
+--
 
 DROP TABLE IF EXISTS `loc_refund_return_details`;
 CREATE TABLE `loc_refund_return_details` (
@@ -399,6 +575,16 @@ CREATE TABLE `loc_refund_return_details` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_refund_return_details`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_script_runner`
+--
 
 DROP TABLE IF EXISTS `loc_script_runner`;
 CREATE TABLE `loc_script_runner` (
@@ -407,6 +593,16 @@ CREATE TABLE `loc_script_runner` (
   `active` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `loc_script_runner`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_send_bug_report`
+--
 
 DROP TABLE IF EXISTS `loc_send_bug_report`;
 CREATE TABLE `loc_send_bug_report` (
@@ -418,6 +614,15 @@ CREATE TABLE `loc_send_bug_report` (
   `date_created` text NOT NULL,
   `synced` text NOT NULL DEFAULT 'Unsynced'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `loc_send_bug_report`
+--
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_senior_details`
+--
 
 DROP TABLE IF EXISTS `loc_senior_details`;
 CREATE TABLE `loc_senior_details` (
@@ -432,6 +637,12 @@ CREATE TABLE `loc_senior_details` (
   `date_created` text NOT NULL,
   `synced` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_settings`
+--
 
 DROP TABLE IF EXISTS `loc_settings`;
 CREATE TABLE `loc_settings` (
@@ -470,8 +681,15 @@ CREATE TABLE `loc_settings` (
   `printreceipt` text NOT NULL,
   `reprintreceipt` text NOT NULL,
   `printxzread` text NOT NULL,
-  `printreturns` text NOT NULL
+  `printreturns` text NOT NULL,
+  `S_DateModified` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loc_settings`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -486,6 +704,11 @@ CREATE TABLE `loc_stockadjustment_cat` (
   `active` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_system_logs`
+--
 
 DROP TABLE IF EXISTS `loc_system_logs`;
 CREATE TABLE `loc_system_logs` (
@@ -501,6 +724,16 @@ CREATE TABLE `loc_system_logs` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_system_logs`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_transaction_mode_details`
+--
 
 DROP TABLE IF EXISTS `loc_transaction_mode_details`;
 CREATE TABLE `loc_transaction_mode_details` (
@@ -517,7 +750,11 @@ CREATE TABLE `loc_transaction_mode_details` (
   `synced` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `loc_transfer_data`
+--
 
 DROP TABLE IF EXISTS `loc_transfer_data`;
 CREATE TABLE `loc_transfer_data` (
@@ -556,7 +793,15 @@ CREATE TABLE `loc_users` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_users`
+--
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loc_zread_inventory`
+--
 
 DROP TABLE IF EXISTS `loc_zread_inventory`;
 CREATE TABLE `loc_zread_inventory` (
@@ -580,6 +825,15 @@ CREATE TABLE `loc_zread_inventory` (
   `zreading` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `loc_zread_inventory`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbcoupon`
+--
 
 DROP TABLE IF EXISTS `tbcoupon`;
 CREATE TABLE `tbcoupon` (
@@ -600,13 +854,19 @@ CREATE TABLE `tbcoupon` (
   `crew_id` text NOT NULL,
   `guid` text NOT NULL,
   `origin` text NOT NULL,
-  `synced` text NOT NULL
+  `synced` text NOT NULL,
+  `date_created` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbcoupon`
 --
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `triggers_loc_admin_products`
+--
 
 DROP TABLE IF EXISTS `triggers_loc_admin_products`;
 CREATE TABLE `triggers_loc_admin_products` (
@@ -629,7 +889,9 @@ CREATE TABLE `triggers_loc_admin_products` (
   `synced` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
+--
+-- Triggers `triggers_loc_admin_products`
+--
 DROP TRIGGER IF EXISTS `Copy_To_Loc_admin_products`;
 DELIMITER $$
 CREATE TRIGGER `Copy_To_Loc_admin_products` AFTER INSERT ON `triggers_loc_admin_products` FOR EACH ROW INSERT INTO loc_admin_products(`product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_category`, `product_price`, `product_desc`, `product_image`, `product_status`, `origin`, `date_modified`, `guid`, `ip_address`, `store_id`, `crew_id`, `synced`)
@@ -641,6 +903,11 @@ SELECT `product_sku`, `product_name`, `formula_id`, `product_barcode`, `product_
 $$
 DELIMITER ;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `triggers_loc_users`
+--
 
 DROP TABLE IF EXISTS `triggers_loc_users`;
 CREATE TABLE `triggers_loc_users` (
@@ -662,7 +929,14 @@ CREATE TABLE `triggers_loc_users` (
   `synced` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `triggers_loc_users`
+--
 
+
+--
+-- Triggers `triggers_loc_users`
+--
 DROP TRIGGER IF EXISTS `Copy_To_Loc_Users`;
 DELIMITER $$
 CREATE TRIGGER `Copy_To_Loc_Users` AFTER INSERT ON `triggers_loc_users` FOR EACH ROW INSERT INTO loc_users(`user_level`, `full_name`, `username`, `password`, `contact_number`, `email`, `position`, `gender`, `created_at`, `updated_at`, `active`, `guid`, `store_id`, `uniq_id`)
