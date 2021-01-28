@@ -307,25 +307,32 @@ Module publicfunctions
     End Sub
     Dim total
     Public Function SumOfColumnsToDecimal(ByVal datagrid As DataGridView, ByVal celltocompute As Integer)
-        With datagrid
-            Dim sum As Decimal
-            For i As Integer = 0 To .Rows.Count() - 1 Step +1
-                sum = sum + .Rows(i).Cells(celltocompute).Value
-            Next
-            Return Format(sum, "###,###,##0.00")
-        End With
-    End Function
-    Public Function SumOfColumnsToInt(ByVal datagrid As DataGridView, ByVal celltocompute As Integer)
-        Dim Sum = 0
+        Dim SumTotal As Decimal
         Try
-            For index As Integer = 0 To datagrid.RowCount - 1
-                Sum += Convert.ToInt32(datagrid.Rows(index).Cells(celltocompute).Value)
-            Next
+            With datagrid
+                For i As Integer = 0 To .Rows.Count() - 1 Step +1
+                    SumTotal = SumTotal + .Rows(i).Cells(celltocompute).Value
+                Next
+            End With
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
-        Return Sum
+        Return Format(SumTotal, "###,###,##0.00")
+    End Function
+    Public Function SumOfColumnsToInt(ByVal datagrid As DataGridView, ByVal celltocompute As Integer)
+        Dim SumTotal As Integer
+        Try
+            With datagrid
+                For i As Integer = 0 To .Rows.Count() - 1 Step +1
+                    SumTotal += .Rows(i).Cells(celltocompute).Value
+                Next
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+        Return SumTotal
     End Function
     Public Sub Numeric(ByVal sender As Object, ByVal e As KeyPressEventArgs)
         If e.KeyChar <> ControlChars.Back Then
