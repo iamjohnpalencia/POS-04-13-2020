@@ -85,7 +85,6 @@ Partial Class Inventory
         Me.PanelSTOCKADJUSTMENT = New System.Windows.Forms.Panel()
         Me.TabControl3 = New System.Windows.Forms.TabControl()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
-        Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewPanelStockAdjustment = New System.Windows.Forms.DataGridView()
         Me.Panel17 = New System.Windows.Forms.Panel()
@@ -115,8 +114,6 @@ Partial Class Inventory
         Me.TextBoxIPrimaryUnit = New System.Windows.Forms.TextBox()
         Me.TextBoxISecondaryTotal = New System.Windows.Forms.TextBox()
         Me.TextBoxIPrimaryVal = New System.Windows.Forms.TextBox()
-        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
-        Me.Panel12 = New System.Windows.Forms.Panel()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.ButtonSave = New System.Windows.Forms.Button()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
@@ -192,6 +189,7 @@ Partial Class Inventory
         Me.Panel24 = New System.Windows.Forms.Panel()
         Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -218,13 +216,10 @@ Partial Class Inventory
         Me.PanelSTOCKADJUSTMENT.SuspendLayout()
         Me.TabControl3.SuspendLayout()
         Me.TabPage6.SuspendLayout()
-        Me.TableLayoutPanel4.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         CType(Me.DataGridViewPanelStockAdjustment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel17.SuspendLayout()
         Me.Panel23.SuspendLayout()
-        Me.GroupBox9.SuspendLayout()
-        Me.Panel12.SuspendLayout()
         Me.TabPage8.SuspendLayout()
         Me.TabControl4.SuspendLayout()
         Me.TabPage9.SuspendLayout()
@@ -252,6 +247,7 @@ Partial Class Inventory
         Me.Panel16.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel24.SuspendLayout()
+        Me.GroupBox11.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel6
@@ -264,7 +260,7 @@ Partial Class Inventory
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel6.Location = New System.Drawing.Point(0, 42)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(1245, 673)
+        Me.Panel6.Size = New System.Drawing.Size(1245, 684)
         Me.Panel6.TabIndex = 16
         '
         'TabControl1
@@ -279,7 +275,7 @@ Partial Class Inventory
         Me.TabControl1.Location = New System.Drawing.Point(20, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1205, 653)
+        Me.TabControl1.Size = New System.Drawing.Size(1205, 664)
         Me.TabControl1.TabIndex = 23
         '
         'TabPage1
@@ -288,7 +284,7 @@ Partial Class Inventory
         Me.TabPage1.Location = New System.Drawing.Point(4, 28)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1197, 621)
+        Me.TabPage1.Size = New System.Drawing.Size(1197, 479)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -301,7 +297,7 @@ Partial Class Inventory
         Me.TabControl2.Location = New System.Drawing.Point(3, 3)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(1191, 615)
+        Me.TabControl2.Size = New System.Drawing.Size(1191, 473)
         Me.TabControl2.TabIndex = 3
         '
         'TabPage7
@@ -311,7 +307,7 @@ Partial Class Inventory
         Me.TabPage7.Location = New System.Drawing.Point(4, 28)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(1183, 583)
+        Me.TabPage7.Size = New System.Drawing.Size(1183, 441)
         Me.TabPage7.TabIndex = 0
         Me.TabPage7.Text = "TabPage7"
         Me.TabPage7.UseVisualStyleBackColor = True
@@ -348,7 +344,7 @@ Partial Class Inventory
         Me.DataGridViewINVVIEW.EnableHeadersVisualStyles = False
         Me.DataGridViewINVVIEW.Location = New System.Drawing.Point(3, 40)
         Me.DataGridViewINVVIEW.Name = "DataGridViewINVVIEW"
-        Me.DataGridViewINVVIEW.Size = New System.Drawing.Size(1177, 540)
+        Me.DataGridViewINVVIEW.Size = New System.Drawing.Size(1177, 398)
         Me.DataGridViewINVVIEW.TabIndex = 0
         '
         'Panel2
@@ -476,7 +472,7 @@ Partial Class Inventory
         Me.TabPage13.Location = New System.Drawing.Point(4, 22)
         Me.TabPage13.Name = "TabPage13"
         Me.TabPage13.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage13.Size = New System.Drawing.Size(1169, 551)
+        Me.TabPage13.Size = New System.Drawing.Size(1169, 557)
         Me.TabPage13.TabIndex = 1
         Me.TabPage13.Text = "TabPage13"
         Me.TabPage13.UseVisualStyleBackColor = True
@@ -513,7 +509,7 @@ Partial Class Inventory
         Me.DataGridViewCustomDisapp.EnableHeadersVisualStyles = False
         Me.DataGridViewCustomDisapp.Location = New System.Drawing.Point(3, 40)
         Me.DataGridViewCustomDisapp.Name = "DataGridViewCustomDisapp"
-        Me.DataGridViewCustomDisapp.Size = New System.Drawing.Size(1163, 508)
+        Me.DataGridViewCustomDisapp.Size = New System.Drawing.Size(1163, 514)
         Me.DataGridViewCustomDisapp.TabIndex = 4
         '
         'Panel18
@@ -665,7 +661,7 @@ Partial Class Inventory
         Me.TabPage4.Location = New System.Drawing.Point(4, 28)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(1197, 621)
+        Me.TabPage4.Size = New System.Drawing.Size(1197, 632)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TabPage4"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -682,7 +678,7 @@ Partial Class Inventory
         Me.TableLayoutPanel5.RowCount = 2
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel5.Size = New System.Drawing.Size(1191, 578)
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(1191, 589)
         Me.TableLayoutPanel5.TabIndex = 8
         '
         'GroupBox10
@@ -692,7 +688,7 @@ Partial Class Inventory
         Me.GroupBox10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox10.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(1185, 502)
+        Me.GroupBox10.Size = New System.Drawing.Size(1185, 513)
         Me.GroupBox10.TabIndex = 1
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "Stock Adjustment"
@@ -704,7 +700,7 @@ Partial Class Inventory
         Me.PanelSTOCKADJUSTMENT.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PanelSTOCKADJUSTMENT.Location = New System.Drawing.Point(78, 26)
         Me.PanelSTOCKADJUSTMENT.Name = "PanelSTOCKADJUSTMENT"
-        Me.PanelSTOCKADJUSTMENT.Size = New System.Drawing.Size(1025, 476)
+        Me.PanelSTOCKADJUSTMENT.Size = New System.Drawing.Size(1025, 336)
         Me.PanelSTOCKADJUSTMENT.TabIndex = 6
         Me.PanelSTOCKADJUSTMENT.Visible = False
         '
@@ -712,39 +708,23 @@ Partial Class Inventory
         '
         Me.TabControl3.Controls.Add(Me.TabPage6)
         Me.TabControl3.Controls.Add(Me.TabPage8)
-        Me.TabControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl3.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl3.Location = New System.Drawing.Point(0, 0)
         Me.TabControl3.Name = "TabControl3"
         Me.TabControl3.SelectedIndex = 0
-        Me.TabControl3.Size = New System.Drawing.Size(1023, 474)
+        Me.TabControl3.Size = New System.Drawing.Size(1023, 332)
         Me.TabControl3.TabIndex = 120
         '
         'TabPage6
         '
-        Me.TabPage6.Controls.Add(Me.TableLayoutPanel4)
+        Me.TabPage6.Controls.Add(Me.GroupBox7)
         Me.TabPage6.Location = New System.Drawing.Point(4, 28)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(1015, 442)
+        Me.TabPage6.Size = New System.Drawing.Size(1015, 300)
         Me.TabPage6.TabIndex = 0
         Me.TabPage6.Text = "TabPage6"
         Me.TabPage6.UseVisualStyleBackColor = True
-        '
-        'TableLayoutPanel4
-        '
-        Me.TableLayoutPanel4.ColumnCount = 1
-        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel4.Controls.Add(Me.GroupBox7, 0, 0)
-        Me.TableLayoutPanel4.Controls.Add(Me.GroupBox9, 0, 1)
-        Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 3)
-        Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
-        Me.TableLayoutPanel4.RowCount = 2
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(1009, 436)
-        Me.TableLayoutPanel4.TabIndex = 120
         '
         'GroupBox7
         '
@@ -755,7 +735,7 @@ Partial Class Inventory
         Me.GroupBox7.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox7.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(1003, 360)
+        Me.GroupBox7.Size = New System.Drawing.Size(1009, 294)
         Me.GroupBox7.TabIndex = 164
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "Stock List"
@@ -792,16 +772,16 @@ Partial Class Inventory
         Me.DataGridViewPanelStockAdjustment.EnableHeadersVisualStyles = False
         Me.DataGridViewPanelStockAdjustment.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewPanelStockAdjustment.Name = "DataGridViewPanelStockAdjustment"
-        Me.DataGridViewPanelStockAdjustment.Size = New System.Drawing.Size(632, 305)
+        Me.DataGridViewPanelStockAdjustment.Size = New System.Drawing.Size(357, 239)
         Me.DataGridViewPanelStockAdjustment.TabIndex = 116
         '
         'Panel17
         '
         Me.Panel17.Controls.Add(Me.Label7)
         Me.Panel17.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel17.Location = New System.Drawing.Point(3, 327)
+        Me.Panel17.Location = New System.Drawing.Point(3, 261)
         Me.Panel17.Name = "Panel17"
-        Me.Panel17.Size = New System.Drawing.Size(632, 30)
+        Me.Panel17.Size = New System.Drawing.Size(357, 30)
         Me.Panel17.TabIndex = 120
         '
         'Label7
@@ -817,6 +797,7 @@ Partial Class Inventory
         'Panel23
         '
         Me.Panel23.AutoScroll = True
+        Me.Panel23.Controls.Add(Me.GroupBox11)
         Me.Panel23.Controls.Add(Me.Label12)
         Me.Panel23.Controls.Add(Me.Label11)
         Me.Panel23.Controls.Add(Me.ComboBoxtransfer)
@@ -843,16 +824,16 @@ Partial Class Inventory
         Me.Panel23.Controls.Add(Me.TextBoxIPrimaryVal)
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Right
         Me.Panel23.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!)
-        Me.Panel23.Location = New System.Drawing.Point(635, 22)
+        Me.Panel23.Location = New System.Drawing.Point(360, 22)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(365, 335)
+        Me.Panel23.Size = New System.Drawing.Size(646, 269)
         Me.Panel23.TabIndex = 119
         '
         'Label12
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(187, 282)
+        Me.Label12.Location = New System.Drawing.Point(480, 94)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(157, 16)
         Me.Label12.TabIndex = 36
@@ -862,7 +843,7 @@ Partial Class Inventory
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(187, 238)
+        Me.Label11.Location = New System.Drawing.Point(480, 50)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(115, 16)
         Me.Label11.TabIndex = 35
@@ -874,9 +855,9 @@ Partial Class Inventory
         Me.ComboBoxtransfer.Enabled = False
         Me.ComboBoxtransfer.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxtransfer.FormattingEnabled = True
-        Me.ComboBoxtransfer.Location = New System.Drawing.Point(186, 300)
+        Me.ComboBoxtransfer.Location = New System.Drawing.Point(483, 111)
         Me.ComboBoxtransfer.Name = "ComboBoxtransfer"
-        Me.ComboBoxtransfer.Size = New System.Drawing.Size(160, 24)
+        Me.ComboBoxtransfer.Size = New System.Drawing.Size(138, 24)
         Me.ComboBoxtransfer.TabIndex = 34
         '
         'ComboBoxDeduction
@@ -885,16 +866,16 @@ Partial Class Inventory
         Me.ComboBoxDeduction.Enabled = False
         Me.ComboBoxDeduction.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxDeduction.FormattingEnabled = True
-        Me.ComboBoxDeduction.Location = New System.Drawing.Point(186, 256)
+        Me.ComboBoxDeduction.Location = New System.Drawing.Point(483, 69)
         Me.ComboBoxDeduction.Name = "ComboBoxDeduction"
-        Me.ComboBoxDeduction.Size = New System.Drawing.Size(160, 24)
+        Me.ComboBoxDeduction.Size = New System.Drawing.Size(138, 24)
         Me.ComboBoxDeduction.TabIndex = 33
         '
         'Label10
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(18, 238)
+        Me.Label10.Location = New System.Drawing.Point(320, 50)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(50, 16)
         Me.Label10.TabIndex = 32
@@ -904,7 +885,7 @@ Partial Class Inventory
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(187, 193)
+        Me.Label4.Location = New System.Drawing.Point(480, 6)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(43, 16)
         Me.Label4.TabIndex = 31
@@ -916,15 +897,15 @@ Partial Class Inventory
         Me.ComboBoxAction.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxAction.FormattingEnabled = True
         Me.ComboBoxAction.Items.AddRange(New Object() {"ADD", "TRANSFER", "DEDUCT"})
-        Me.ComboBoxAction.Location = New System.Drawing.Point(186, 212)
+        Me.ComboBoxAction.Location = New System.Drawing.Point(483, 23)
         Me.ComboBoxAction.Name = "ComboBoxAction"
-        Me.ComboBoxAction.Size = New System.Drawing.Size(160, 24)
+        Me.ComboBoxAction.Size = New System.Drawing.Size(138, 24)
         Me.ComboBoxAction.TabIndex = 30
         '
         'TextBoxIReason
         '
         Me.TextBoxIReason.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxIReason.Location = New System.Drawing.Point(21, 256)
+        Me.TextBoxIReason.Location = New System.Drawing.Point(320, 68)
         Me.TextBoxIReason.Multiline = True
         Me.TextBoxIReason.Name = "TextBoxIReason"
         Me.TextBoxIReason.Size = New System.Drawing.Size(160, 67)
@@ -934,7 +915,7 @@ Partial Class Inventory
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(18, 193)
+        Me.Label13.Location = New System.Drawing.Point(320, 6)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(109, 16)
         Me.Label13.TabIndex = 28
@@ -943,7 +924,7 @@ Partial Class Inventory
         'TextBoxIPQuantity
         '
         Me.TextBoxIPQuantity.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxIPQuantity.Location = New System.Drawing.Point(21, 212)
+        Me.TextBoxIPQuantity.Location = New System.Drawing.Point(320, 24)
         Me.TextBoxIPQuantity.Name = "TextBoxIPQuantity"
         Me.TextBoxIPQuantity.Size = New System.Drawing.Size(160, 23)
         Me.TextBoxIPQuantity.TabIndex = 27
@@ -952,7 +933,7 @@ Partial Class Inventory
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(18, 149)
+        Me.Label9.Location = New System.Drawing.Point(7, 138)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(105, 16)
         Me.Label9.TabIndex = 26
@@ -962,7 +943,7 @@ Partial Class Inventory
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(18, 105)
+        Me.Label8.Location = New System.Drawing.Point(7, 94)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(87, 16)
         Me.Label8.TabIndex = 25
@@ -972,7 +953,7 @@ Partial Class Inventory
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(187, 105)
+        Me.Label5.Location = New System.Drawing.Point(154, 94)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(77, 16)
         Me.Label5.TabIndex = 24
@@ -982,7 +963,7 @@ Partial Class Inventory
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(18, 61)
+        Me.Label3.Location = New System.Drawing.Point(7, 50)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(101, 16)
         Me.Label3.TabIndex = 14
@@ -992,7 +973,7 @@ Partial Class Inventory
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(18, 17)
+        Me.Label1.Location = New System.Drawing.Point(7, 6)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(85, 16)
         Me.Label1.TabIndex = 13
@@ -1001,25 +982,25 @@ Partial Class Inventory
         'TextBoxFnoofservings
         '
         Me.TextBoxFnoofservings.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxFnoofservings.Location = New System.Drawing.Point(21, 167)
+        Me.TextBoxFnoofservings.Location = New System.Drawing.Point(10, 156)
         Me.TextBoxFnoofservings.Name = "TextBoxFnoofservings"
         Me.TextBoxFnoofservings.ReadOnly = True
-        Me.TextBoxFnoofservings.Size = New System.Drawing.Size(326, 23)
+        Me.TextBoxFnoofservings.Size = New System.Drawing.Size(303, 23)
         Me.TextBoxFnoofservings.TabIndex = 7
         '
         'TextBox8
         '
         Me.TextBox8.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox8.Location = New System.Drawing.Point(21, 123)
+        Me.TextBox8.Location = New System.Drawing.Point(10, 112)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.ReadOnly = True
-        Me.TextBox8.Size = New System.Drawing.Size(160, 23)
+        Me.TextBox8.Size = New System.Drawing.Size(137, 23)
         Me.TextBox8.TabIndex = 6
         '
         'TextBox7
         '
         Me.TextBox7.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox7.Location = New System.Drawing.Point(187, 123)
+        Me.TextBox7.Location = New System.Drawing.Point(154, 112)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
         Me.TextBox7.Size = New System.Drawing.Size(160, 23)
@@ -1028,7 +1009,7 @@ Partial Class Inventory
         'TextBoxFSecondary
         '
         Me.TextBoxFSecondary.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxFSecondary.Location = New System.Drawing.Point(186, 79)
+        Me.TextBoxFSecondary.Location = New System.Drawing.Point(153, 68)
         Me.TextBoxFSecondary.Name = "TextBoxFSecondary"
         Me.TextBoxFSecondary.ReadOnly = True
         Me.TextBoxFSecondary.Size = New System.Drawing.Size(77, 23)
@@ -1037,7 +1018,7 @@ Partial Class Inventory
         'TextBoxFSecondaryUnit
         '
         Me.TextBoxFSecondaryUnit.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxFSecondaryUnit.Location = New System.Drawing.Point(270, 79)
+        Me.TextBoxFSecondaryUnit.Location = New System.Drawing.Point(237, 68)
         Me.TextBoxFSecondaryUnit.Name = "TextBoxFSecondaryUnit"
         Me.TextBoxFSecondaryUnit.ReadOnly = True
         Me.TextBoxFSecondaryUnit.Size = New System.Drawing.Size(77, 23)
@@ -1046,7 +1027,7 @@ Partial Class Inventory
         'TextBoxFPrimaryVal
         '
         Me.TextBoxFPrimaryVal.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxFPrimaryVal.Location = New System.Drawing.Point(186, 35)
+        Me.TextBoxFPrimaryVal.Location = New System.Drawing.Point(153, 24)
         Me.TextBoxFPrimaryVal.Name = "TextBoxFPrimaryVal"
         Me.TextBoxFPrimaryVal.ReadOnly = True
         Me.TextBoxFPrimaryVal.Size = New System.Drawing.Size(77, 23)
@@ -1055,7 +1036,7 @@ Partial Class Inventory
         'TextBoxIPrimaryUnit
         '
         Me.TextBoxIPrimaryUnit.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxIPrimaryUnit.Location = New System.Drawing.Point(270, 35)
+        Me.TextBoxIPrimaryUnit.Location = New System.Drawing.Point(237, 24)
         Me.TextBoxIPrimaryUnit.Name = "TextBoxIPrimaryUnit"
         Me.TextBoxIPrimaryUnit.ReadOnly = True
         Me.TextBoxIPrimaryUnit.Size = New System.Drawing.Size(77, 23)
@@ -1064,42 +1045,20 @@ Partial Class Inventory
         'TextBoxISecondaryTotal
         '
         Me.TextBoxISecondaryTotal.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxISecondaryTotal.Location = New System.Drawing.Point(21, 79)
+        Me.TextBoxISecondaryTotal.Location = New System.Drawing.Point(10, 68)
         Me.TextBoxISecondaryTotal.Name = "TextBoxISecondaryTotal"
         Me.TextBoxISecondaryTotal.ReadOnly = True
-        Me.TextBoxISecondaryTotal.Size = New System.Drawing.Size(160, 23)
+        Me.TextBoxISecondaryTotal.Size = New System.Drawing.Size(137, 23)
         Me.TextBoxISecondaryTotal.TabIndex = 1
         '
         'TextBoxIPrimaryVal
         '
         Me.TextBoxIPrimaryVal.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxIPrimaryVal.Location = New System.Drawing.Point(21, 35)
+        Me.TextBoxIPrimaryVal.Location = New System.Drawing.Point(10, 24)
         Me.TextBoxIPrimaryVal.Name = "TextBoxIPrimaryVal"
         Me.TextBoxIPrimaryVal.ReadOnly = True
-        Me.TextBoxIPrimaryVal.Size = New System.Drawing.Size(160, 23)
+        Me.TextBoxIPrimaryVal.Size = New System.Drawing.Size(137, 23)
         Me.TextBoxIPrimaryVal.TabIndex = 0
-        '
-        'GroupBox9
-        '
-        Me.GroupBox9.Controls.Add(Me.Panel12)
-        Me.GroupBox9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox9.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox9.Location = New System.Drawing.Point(3, 369)
-        Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(1003, 64)
-        Me.GroupBox9.TabIndex = 166
-        Me.GroupBox9.TabStop = False
-        Me.GroupBox9.Text = "Action"
-        '
-        'Panel12
-        '
-        Me.Panel12.Controls.Add(Me.Button2)
-        Me.Panel12.Controls.Add(Me.ButtonSave)
-        Me.Panel12.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel12.Location = New System.Drawing.Point(3, 22)
-        Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(997, 39)
-        Me.Panel12.TabIndex = 6
         '
         'Button2
         '
@@ -1109,7 +1068,7 @@ Partial Class Inventory
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(841, 0)
+        Me.Button2.Location = New System.Drawing.Point(487, 18)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(156, 39)
         Me.Button2.TabIndex = 115
@@ -1124,7 +1083,7 @@ Partial Class Inventory
         Me.ButtonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonSave.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.ButtonSave.ForeColor = System.Drawing.Color.White
-        Me.ButtonSave.Location = New System.Drawing.Point(0, 0)
+        Me.ButtonSave.Location = New System.Drawing.Point(3, 18)
         Me.ButtonSave.Name = "ButtonSave"
         Me.ButtonSave.Size = New System.Drawing.Size(156, 39)
         Me.ButtonSave.TabIndex = 114
@@ -1137,7 +1096,7 @@ Partial Class Inventory
         Me.TabPage8.Location = New System.Drawing.Point(4, 28)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage8.Size = New System.Drawing.Size(1015, 442)
+        Me.TabPage8.Size = New System.Drawing.Size(1015, 300)
         Me.TabPage8.TabIndex = 1
         Me.TabPage8.Text = "TabPage8"
         Me.TabPage8.UseVisualStyleBackColor = True
@@ -1150,7 +1109,7 @@ Partial Class Inventory
         Me.TabControl4.Location = New System.Drawing.Point(3, 3)
         Me.TabControl4.Name = "TabControl4"
         Me.TabControl4.SelectedIndex = 0
-        Me.TabControl4.Size = New System.Drawing.Size(1009, 436)
+        Me.TabControl4.Size = New System.Drawing.Size(1009, 294)
         Me.TabControl4.TabIndex = 122
         '
         'TabPage9
@@ -1159,7 +1118,7 @@ Partial Class Inventory
         Me.TabPage9.Location = New System.Drawing.Point(4, 28)
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage9.Size = New System.Drawing.Size(1001, 404)
+        Me.TabPage9.Size = New System.Drawing.Size(1001, 262)
         Me.TabPage9.TabIndex = 0
         Me.TabPage9.Text = "TabPage9"
         Me.TabPage9.UseVisualStyleBackColor = True
@@ -1176,7 +1135,7 @@ Partial Class Inventory
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(995, 398)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(995, 256)
         Me.TableLayoutPanel1.TabIndex = 121
         '
         'GroupBox1
@@ -1187,7 +1146,7 @@ Partial Class Inventory
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(989, 322)
+        Me.GroupBox1.Size = New System.Drawing.Size(989, 180)
         Me.GroupBox1.TabIndex = 164
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Reason (Categories/Active)"
@@ -1199,7 +1158,7 @@ Partial Class Inventory
         Me.PanelReasonCat.Controls.Add(Me.Button6)
         Me.PanelReasonCat.Controls.Add(Me.Label14)
         Me.PanelReasonCat.Controls.Add(Me.TextBoxReasonsCat)
-        Me.PanelReasonCat.Location = New System.Drawing.Point(257, 150)
+        Me.PanelReasonCat.Location = New System.Drawing.Point(257, 78)
         Me.PanelReasonCat.Name = "PanelReasonCat"
         Me.PanelReasonCat.Size = New System.Drawing.Size(460, 60)
         Me.PanelReasonCat.TabIndex = 117
@@ -1282,7 +1241,7 @@ Partial Class Inventory
         Me.DataGridViewReasonCategories.EnableHeadersVisualStyles = False
         Me.DataGridViewReasonCategories.Location = New System.Drawing.Point(3, 20)
         Me.DataGridViewReasonCategories.Name = "DataGridViewReasonCategories"
-        Me.DataGridViewReasonCategories.Size = New System.Drawing.Size(983, 299)
+        Me.DataGridViewReasonCategories.Size = New System.Drawing.Size(983, 157)
         Me.DataGridViewReasonCategories.TabIndex = 116
         '
         'GroupBox2
@@ -1290,7 +1249,7 @@ Partial Class Inventory
         Me.GroupBox2.Controls.Add(Me.Panel20)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 331)
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 189)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(989, 64)
         Me.GroupBox2.TabIndex = 166
@@ -1378,7 +1337,7 @@ Partial Class Inventory
         Me.TabPage10.Location = New System.Drawing.Point(4, 28)
         Me.TabPage10.Name = "TabPage10"
         Me.TabPage10.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage10.Size = New System.Drawing.Size(1001, 404)
+        Me.TabPage10.Size = New System.Drawing.Size(1001, 262)
         Me.TabPage10.TabIndex = 1
         Me.TabPage10.Text = "TabPage10"
         Me.TabPage10.UseVisualStyleBackColor = True
@@ -1395,7 +1354,7 @@ Partial Class Inventory
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(995, 398)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(995, 256)
         Me.TableLayoutPanel2.TabIndex = 122
         '
         'GroupBox3
@@ -1405,7 +1364,7 @@ Partial Class Inventory
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
         Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(989, 322)
+        Me.GroupBox3.Size = New System.Drawing.Size(989, 180)
         Me.GroupBox3.TabIndex = 164
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Reason (Categories/Deactivated)"
@@ -1442,7 +1401,7 @@ Partial Class Inventory
         Me.DataGridViewDeactivatedReasonCat.EnableHeadersVisualStyles = False
         Me.DataGridViewDeactivatedReasonCat.Location = New System.Drawing.Point(3, 20)
         Me.DataGridViewDeactivatedReasonCat.Name = "DataGridViewDeactivatedReasonCat"
-        Me.DataGridViewDeactivatedReasonCat.Size = New System.Drawing.Size(983, 299)
+        Me.DataGridViewDeactivatedReasonCat.Size = New System.Drawing.Size(983, 157)
         Me.DataGridViewDeactivatedReasonCat.TabIndex = 116
         '
         'GroupBox4
@@ -1450,7 +1409,7 @@ Partial Class Inventory
         Me.GroupBox4.Controls.Add(Me.Panel19)
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!)
-        Me.GroupBox4.Location = New System.Drawing.Point(3, 331)
+        Me.GroupBox4.Location = New System.Drawing.Point(3, 189)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(989, 64)
         Me.GroupBox4.TabIndex = 166
@@ -1531,14 +1490,14 @@ Partial Class Inventory
         Me.DataGridViewStockAdjustment.EnableHeadersVisualStyles = False
         Me.DataGridViewStockAdjustment.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewStockAdjustment.Name = "DataGridViewStockAdjustment"
-        Me.DataGridViewStockAdjustment.Size = New System.Drawing.Size(1179, 476)
+        Me.DataGridViewStockAdjustment.Size = New System.Drawing.Size(1179, 487)
         Me.DataGridViewStockAdjustment.TabIndex = 5
         '
         'GroupBox8
         '
         Me.GroupBox8.Controls.Add(Me.Button3)
         Me.GroupBox8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox8.Location = New System.Drawing.Point(3, 511)
+        Me.GroupBox8.Location = New System.Drawing.Point(3, 522)
         Me.GroupBox8.Name = "GroupBox8"
         Me.GroupBox8.Size = New System.Drawing.Size(1185, 64)
         Me.GroupBox8.TabIndex = 0
@@ -1622,7 +1581,7 @@ Partial Class Inventory
         Me.TabPage5.Location = New System.Drawing.Point(4, 28)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(1197, 621)
+        Me.TabPage5.Size = New System.Drawing.Size(1197, 632)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "TabPage5"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -1639,14 +1598,14 @@ Partial Class Inventory
         Me.TableLayoutPanel3.RowCount = 2
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1191, 578)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1191, 589)
         Me.TableLayoutPanel3.TabIndex = 55
         '
         'GroupBox5
         '
         Me.GroupBox5.Controls.Add(Me.Button8)
         Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox5.Location = New System.Drawing.Point(3, 511)
+        Me.GroupBox5.Location = New System.Drawing.Point(3, 522)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(1185, 64)
         Me.GroupBox5.TabIndex = 7
@@ -1675,7 +1634,7 @@ Partial Class Inventory
         Me.GroupBox6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox6.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(1185, 502)
+        Me.GroupBox6.Size = New System.Drawing.Size(1185, 513)
         Me.GroupBox6.TabIndex = 8
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Stock in (Receiving) Entry"
@@ -1707,7 +1666,7 @@ Partial Class Inventory
         Me.Panel21.Controls.Add(Me.Label23)
         Me.Panel21.Location = New System.Drawing.Point(433, 86)
         Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(360, 320)
+        Me.Panel21.Size = New System.Drawing.Size(360, 312)
         Me.Panel21.TabIndex = 5
         Me.Panel21.Visible = False
         '
@@ -1718,7 +1677,7 @@ Partial Class Inventory
         Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button10.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.Button10.ForeColor = System.Drawing.Color.White
-        Me.Button10.Location = New System.Drawing.Point(262, 284)
+        Me.Button10.Location = New System.Drawing.Point(262, 277)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(81, 23)
         Me.Button10.TabIndex = 54
@@ -1732,7 +1691,7 @@ Partial Class Inventory
         Me.ButtonENTRYADDSTOCK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonENTRYADDSTOCK.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.ButtonENTRYADDSTOCK.ForeColor = System.Drawing.Color.White
-        Me.ButtonENTRYADDSTOCK.Location = New System.Drawing.Point(17, 284)
+        Me.ButtonENTRYADDSTOCK.Location = New System.Drawing.Point(17, 277)
         Me.ButtonENTRYADDSTOCK.Name = "ButtonENTRYADDSTOCK"
         Me.ButtonENTRYADDSTOCK.Size = New System.Drawing.Size(239, 23)
         Me.ButtonENTRYADDSTOCK.TabIndex = 27
@@ -1742,7 +1701,7 @@ Partial Class Inventory
         'TextBox1
         '
         Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(34, 285)
+        Me.TextBox1.Location = New System.Drawing.Point(34, 278)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.Size = New System.Drawing.Size(192, 22)
@@ -1752,7 +1711,7 @@ Partial Class Inventory
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.Label20.Location = New System.Drawing.Point(14, 236)
+        Me.Label20.Location = New System.Drawing.Point(14, 229)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(109, 16)
         Me.Label20.TabIndex = 52
@@ -1761,7 +1720,7 @@ Partial Class Inventory
         'TextBoxEQuantity
         '
         Me.TextBoxEQuantity.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.TextBoxEQuantity.Location = New System.Drawing.Point(17, 255)
+        Me.TextBoxEQuantity.Location = New System.Drawing.Point(17, 248)
         Me.TextBoxEQuantity.Name = "TextBoxEQuantity"
         Me.TextBoxEQuantity.Size = New System.Drawing.Size(326, 23)
         Me.TextBoxEQuantity.TabIndex = 51
@@ -1770,7 +1729,7 @@ Partial Class Inventory
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.Label21.Location = New System.Drawing.Point(14, 191)
+        Me.Label21.Location = New System.Drawing.Point(14, 184)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(105, 16)
         Me.Label21.TabIndex = 50
@@ -1780,7 +1739,7 @@ Partial Class Inventory
         '
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.Label22.Location = New System.Drawing.Point(14, 146)
+        Me.Label22.Location = New System.Drawing.Point(14, 139)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(87, 16)
         Me.Label22.TabIndex = 49
@@ -1790,7 +1749,7 @@ Partial Class Inventory
         '
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.Label24.Location = New System.Drawing.Point(179, 149)
+        Me.Label24.Location = New System.Drawing.Point(179, 142)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(77, 16)
         Me.Label24.TabIndex = 48
@@ -1800,7 +1759,7 @@ Partial Class Inventory
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.Label25.Location = New System.Drawing.Point(14, 102)
+        Me.Label25.Location = New System.Drawing.Point(14, 95)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(101, 16)
         Me.Label25.TabIndex = 47
@@ -1810,7 +1769,7 @@ Partial Class Inventory
         '
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.Label26.Location = New System.Drawing.Point(14, 58)
+        Me.Label26.Location = New System.Drawing.Point(14, 51)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(85, 16)
         Me.Label26.TabIndex = 46
@@ -1819,7 +1778,7 @@ Partial Class Inventory
         'TextBoxENoServings
         '
         Me.TextBoxENoServings.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.TextBoxENoServings.Location = New System.Drawing.Point(17, 210)
+        Me.TextBoxENoServings.Location = New System.Drawing.Point(17, 203)
         Me.TextBoxENoServings.Name = "TextBoxENoServings"
         Me.TextBoxENoServings.ReadOnly = True
         Me.TextBoxENoServings.Size = New System.Drawing.Size(326, 23)
@@ -1828,7 +1787,7 @@ Partial Class Inventory
         'TextBoxEServingVal
         '
         Me.TextBoxEServingVal.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.TextBoxEServingVal.Location = New System.Drawing.Point(17, 165)
+        Me.TextBoxEServingVal.Location = New System.Drawing.Point(17, 158)
         Me.TextBoxEServingVal.Name = "TextBoxEServingVal"
         Me.TextBoxEServingVal.ReadOnly = True
         Me.TextBoxEServingVal.Size = New System.Drawing.Size(160, 23)
@@ -1837,7 +1796,7 @@ Partial Class Inventory
         'TextBoxEServingValue
         '
         Me.TextBoxEServingValue.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.TextBoxEServingValue.Location = New System.Drawing.Point(182, 165)
+        Me.TextBoxEServingValue.Location = New System.Drawing.Point(182, 158)
         Me.TextBoxEServingValue.Name = "TextBoxEServingValue"
         Me.TextBoxEServingValue.ReadOnly = True
         Me.TextBoxEServingValue.Size = New System.Drawing.Size(160, 23)
@@ -1846,7 +1805,7 @@ Partial Class Inventory
         'TextBoxEFSecondVal
         '
         Me.TextBoxEFSecondVal.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.TextBoxEFSecondVal.Location = New System.Drawing.Point(182, 120)
+        Me.TextBoxEFSecondVal.Location = New System.Drawing.Point(182, 113)
         Me.TextBoxEFSecondVal.Name = "TextBoxEFSecondVal"
         Me.TextBoxEFSecondVal.ReadOnly = True
         Me.TextBoxEFSecondVal.Size = New System.Drawing.Size(77, 23)
@@ -1855,7 +1814,7 @@ Partial Class Inventory
         'TextBoxEFSUnit
         '
         Me.TextBoxEFSUnit.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.TextBoxEFSUnit.Location = New System.Drawing.Point(266, 120)
+        Me.TextBoxEFSUnit.Location = New System.Drawing.Point(266, 113)
         Me.TextBoxEFSUnit.Name = "TextBoxEFSUnit"
         Me.TextBoxEFSUnit.ReadOnly = True
         Me.TextBoxEFSUnit.Size = New System.Drawing.Size(77, 23)
@@ -1864,7 +1823,7 @@ Partial Class Inventory
         'TextBoxEFPrimaryVal
         '
         Me.TextBoxEFPrimaryVal.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.TextBoxEFPrimaryVal.Location = New System.Drawing.Point(182, 76)
+        Me.TextBoxEFPrimaryVal.Location = New System.Drawing.Point(182, 69)
         Me.TextBoxEFPrimaryVal.Name = "TextBoxEFPrimaryVal"
         Me.TextBoxEFPrimaryVal.ReadOnly = True
         Me.TextBoxEFPrimaryVal.Size = New System.Drawing.Size(77, 23)
@@ -1873,7 +1832,7 @@ Partial Class Inventory
         'TextBoxEFPUnit
         '
         Me.TextBoxEFPUnit.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.TextBoxEFPUnit.Location = New System.Drawing.Point(266, 76)
+        Me.TextBoxEFPUnit.Location = New System.Drawing.Point(266, 69)
         Me.TextBoxEFPUnit.Name = "TextBoxEFPUnit"
         Me.TextBoxEFPUnit.ReadOnly = True
         Me.TextBoxEFPUnit.Size = New System.Drawing.Size(77, 23)
@@ -1882,7 +1841,7 @@ Partial Class Inventory
         'TextBoxESecondary
         '
         Me.TextBoxESecondary.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.TextBoxESecondary.Location = New System.Drawing.Point(17, 120)
+        Me.TextBoxESecondary.Location = New System.Drawing.Point(17, 113)
         Me.TextBoxESecondary.Name = "TextBoxESecondary"
         Me.TextBoxESecondary.ReadOnly = True
         Me.TextBoxESecondary.Size = New System.Drawing.Size(160, 23)
@@ -1891,7 +1850,7 @@ Partial Class Inventory
         'TextBoxEPrimary
         '
         Me.TextBoxEPrimary.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.TextBoxEPrimary.Location = New System.Drawing.Point(17, 76)
+        Me.TextBoxEPrimary.Location = New System.Drawing.Point(17, 69)
         Me.TextBoxEPrimary.Name = "TextBoxEPrimary"
         Me.TextBoxEPrimary.ReadOnly = True
         Me.TextBoxEPrimary.Size = New System.Drawing.Size(160, 23)
@@ -1905,7 +1864,7 @@ Partial Class Inventory
         Me.ComboBoxDESC.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.ComboBoxDESC.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ComboBoxDESC.FormattingEnabled = True
-        Me.ComboBoxDESC.Location = New System.Drawing.Point(17, 31)
+        Me.ComboBoxDESC.Location = New System.Drawing.Point(17, 24)
         Me.ComboBoxDESC.Name = "ComboBoxDESC"
         Me.ComboBoxDESC.Size = New System.Drawing.Size(326, 24)
         Me.ComboBoxDESC.TabIndex = 32
@@ -1914,7 +1873,7 @@ Partial Class Inventory
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.Label23.Location = New System.Drawing.Point(14, 13)
+        Me.Label23.Location = New System.Drawing.Point(14, 6)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(76, 16)
         Me.Label23.TabIndex = 19
@@ -1953,7 +1912,7 @@ Partial Class Inventory
         Me.DataGridViewSTOCKENTRY.EnableHeadersVisualStyles = False
         Me.DataGridViewSTOCKENTRY.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewSTOCKENTRY.Name = "DataGridViewSTOCKENTRY"
-        Me.DataGridViewSTOCKENTRY.Size = New System.Drawing.Size(1179, 476)
+        Me.DataGridViewSTOCKENTRY.Size = New System.Drawing.Size(1179, 487)
         Me.DataGridViewSTOCKENTRY.TabIndex = 6
         '
         'Panel16
@@ -2017,7 +1976,7 @@ Partial Class Inventory
         Me.Panel15.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel15.Location = New System.Drawing.Point(0, 0)
         Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(20, 653)
+        Me.Panel15.Size = New System.Drawing.Size(20, 664)
         Me.Panel15.TabIndex = 21
         '
         'Panel14
@@ -2026,14 +1985,14 @@ Partial Class Inventory
         Me.Panel14.Dock = System.Windows.Forms.DockStyle.Right
         Me.Panel14.Location = New System.Drawing.Point(1225, 0)
         Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(20, 653)
+        Me.Panel14.Size = New System.Drawing.Size(20, 664)
         Me.Panel14.TabIndex = 20
         '
         'Panel13
         '
         Me.Panel13.BackColor = System.Drawing.Color.White
         Me.Panel13.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel13.Location = New System.Drawing.Point(0, 653)
+        Me.Panel13.Location = New System.Drawing.Point(0, 664)
         Me.Panel13.Name = "Panel13"
         Me.Panel13.Size = New System.Drawing.Size(1245, 20)
         Me.Panel13.TabIndex = 19
@@ -2082,10 +2041,22 @@ Partial Class Inventory
         Me.Label2.TabIndex = 153
         Me.Label2.Text = "INVENTORY"
         '
+        'GroupBox11
+        '
+        Me.GroupBox11.Controls.Add(Me.Button2)
+        Me.GroupBox11.Controls.Add(Me.ButtonSave)
+        Me.GroupBox11.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupBox11.Location = New System.Drawing.Point(0, 209)
+        Me.GroupBox11.Name = "GroupBox11"
+        Me.GroupBox11.Size = New System.Drawing.Size(646, 60)
+        Me.GroupBox11.TabIndex = 37
+        Me.GroupBox11.TabStop = False
+        Me.GroupBox11.Text = "Action"
+        '
         'Inventory
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1245, 715)
+        Me.ClientSize = New System.Drawing.Size(1245, 726)
         Me.Controls.Add(Me.Panel6)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -2118,15 +2089,12 @@ Partial Class Inventory
         Me.PanelSTOCKADJUSTMENT.ResumeLayout(False)
         Me.TabControl3.ResumeLayout(False)
         Me.TabPage6.ResumeLayout(False)
-        Me.TableLayoutPanel4.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
         CType(Me.DataGridViewPanelStockAdjustment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel17.ResumeLayout(False)
         Me.Panel17.PerformLayout()
         Me.Panel23.ResumeLayout(False)
         Me.Panel23.PerformLayout()
-        Me.GroupBox9.ResumeLayout(False)
-        Me.Panel12.ResumeLayout(False)
         Me.TabPage8.ResumeLayout(False)
         Me.TabControl4.ResumeLayout(False)
         Me.TabPage9.ResumeLayout(False)
@@ -2159,6 +2127,7 @@ Partial Class Inventory
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel24.ResumeLayout(False)
+        Me.GroupBox11.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -2209,11 +2178,8 @@ Partial Class Inventory
     Friend WithEvents TabControl3 As TabControl
     Friend WithEvents TabPage6 As TabPage
     Friend WithEvents TabPage8 As TabPage
-    Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
     Friend WithEvents GroupBox7 As GroupBox
     Friend WithEvents Panel17 As Panel
-    Friend WithEvents GroupBox9 As GroupBox
-    Friend WithEvents Panel12 As Panel
     Friend WithEvents TextBoxFnoofservings As TextBox
     Friend WithEvents TextBox8 As TextBox
     Friend WithEvents TextBox7 As TextBox
@@ -2301,4 +2267,5 @@ Partial Class Inventory
     Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
     Friend WithEvents GroupBox10 As GroupBox
     Friend WithEvents GroupBox8 As GroupBox
+    Friend WithEvents GroupBox11 As GroupBox
 End Class

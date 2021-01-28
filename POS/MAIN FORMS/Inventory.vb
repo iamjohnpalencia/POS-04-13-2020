@@ -633,9 +633,18 @@ Public Class Inventory
         End Try
     End Sub
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
-        TextBoxReasonsCat.Text = DataGridViewReasonCategories.SelectedRows(0).Cells(1).Value
-        AddOrUpdate = True
-        PanelReasonCat.Visible = True
+        Try
+            If DataGridViewReasonCategories.Rows.Count > 0 Then
+                TextBoxReasonsCat.Text = DataGridViewReasonCategories.SelectedRows(0).Cells(1).Value
+                AddOrUpdate = True
+                PanelReasonCat.Visible = True
+            Else
+                MsgBox("Select category first")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         PanelSTOCKADJUSTMENT.Visible = False
