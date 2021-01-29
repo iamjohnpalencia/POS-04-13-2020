@@ -319,7 +319,7 @@ Public Class Inventory
             loadpanelstockadjustment()
             LoadReasonCategories()
             LoadReasonCategoriesDeactivated()
-            PanelSTOCKADJUSTMENT.Location = New Point(ClientSize.Width / 2 - PanelSTOCKADJUSTMENT.Size.Width / 2, ClientSize.Height / 3 - PanelSTOCKADJUSTMENT.Size.Height / 3)
+            PanelSTOCKADJUSTMENT.Location = New Point(ClientSize.Width / 2 - PanelSTOCKADJUSTMENT.Size.Width / 2, ClientSize.Height / 5 - PanelSTOCKADJUSTMENT.Size.Height / 5)
             PanelSTOCKADJUSTMENT.Anchor = AnchorStyles.None
             PanelSTOCKADJUSTMENT.Visible = True
             countingredients()
@@ -724,9 +724,10 @@ Public Class Inventory
     End Sub
     Private WithEvents printdoc As PrintDocument = New PrintDocument
     Private PrintPreviewDialog1 As New PrintPreviewDialog
-    Dim b = 0
-    Dim a = 0
+
     Private Sub ButtonPrintCurInv_Click(sender As Object, e As EventArgs) Handles ButtonPrintCurInv.Click
+        Dim b = 0
+        Dim a = 0
         Try
             a = 100
             b = 0
@@ -750,7 +751,8 @@ Public Class Inventory
         Try
             Dim font As New Font("Tahoma", 5)
             Dim font1 As New Font("Tahoma", 5, FontStyle.Bold)
-
+            Dim b = 0
+            Dim a = 107
             ReceiptHeader(sender, e)
             SimpleTextDisplay(sender, e, "INGREDIENTS", font1, 0, a)
             SimpleTextDisplay(sender, e, "PRIMARY", font1, 70, a)
@@ -784,7 +786,7 @@ Public Class Inventory
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Panel21.Location = New Point(ClientSize.Width / 2 - Panel21.Size.Width / 2, ClientSize.Height / 4 - Panel21.Size.Height / 3)
+        Panel21.Location = New Point(ClientSize.Width / 2 - Panel21.Size.Width / 2, ClientSize.Height / 4 - Panel21.Size.Height / 4)
         Panel21.Visible = True
     End Sub
 
