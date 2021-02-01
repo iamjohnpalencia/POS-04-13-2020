@@ -1592,8 +1592,8 @@ Partial Class POS
         '
         Me.Panel13.BackColor = System.Drawing.Color.White
         Me.Panel13.Controls.Add(Me.PanelProducts)
-        Me.Panel13.Controls.Add(Me.DataGridView5)
         Me.Panel13.Controls.Add(Me.DataGridViewInv)
+        Me.Panel13.Controls.Add(Me.DataGridView5)
         Me.Panel13.Controls.Add(Me.DataGridView4)
         Me.Panel13.Controls.Add(Me.DataGridView3)
         Me.Panel13.Controls.Add(Me.TextBoxPRICE)

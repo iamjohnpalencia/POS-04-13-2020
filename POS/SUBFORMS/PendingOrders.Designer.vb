@@ -24,9 +24,9 @@ Partial Class PendingOrders
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PendingOrders))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ButtonKeyboard = New System.Windows.Forms.Button()
         Me.ButtonExit = New System.Windows.Forms.Button()
@@ -63,7 +63,7 @@ Partial Class PendingOrders
         Me.Panel1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(617, 244)
+        Me.Panel1.Size = New System.Drawing.Size(440, 231)
         Me.Panel1.TabIndex = 0
         '
         'ButtonKeyboard
@@ -73,9 +73,9 @@ Partial Class PendingOrders
         Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
         Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonKeyboard.Location = New System.Drawing.Point(551, 204)
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(369, 194)
         Me.ButtonKeyboard.Name = "ButtonKeyboard"
-        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 23)
         Me.ButtonKeyboard.TabIndex = 231
         Me.ButtonKeyboard.UseVisualStyleBackColor = False
         '
@@ -84,26 +84,27 @@ Partial Class PendingOrders
         Me.ButtonExit.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
         Me.ButtonExit.FlatAppearance.BorderSize = 0
         Me.ButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonExit.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.ButtonExit.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.ButtonExit.ForeColor = System.Drawing.Color.White
-        Me.ButtonExit.Location = New System.Drawing.Point(441, 204)
+        Me.ButtonExit.Location = New System.Drawing.Point(255, 194)
         Me.ButtonExit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ButtonExit.Name = "ButtonExit"
-        Me.ButtonExit.Size = New System.Drawing.Size(106, 35)
+        Me.ButtonExit.Size = New System.Drawing.Size(107, 23)
         Me.ButtonExit.TabIndex = 147
         Me.ButtonExit.Text = "Cancel"
         Me.ButtonExit.UseVisualStyleBackColor = False
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 18.0!)
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(185, 2)
+        Me.Label2.Location = New System.Drawing.Point(0, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(211, 35)
+        Me.Label2.Size = New System.Drawing.Size(438, 35)
         Me.Label2.TabIndex = 153
-        Me.Label2.Text = "Pending Orders"
+        Me.Label2.Text = "PENDING ORDERS"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'DataGridView1
         '
@@ -111,34 +112,35 @@ Partial Class PendingOrders
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AllowUserToResizeColumns = False
         Me.DataGridView1.AllowUserToResizeRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
-        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle10.BackColor = System.Drawing.Color.White
+        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8})
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle12
         Me.DataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridView1.EnableHeadersVisualStyles = False
-        Me.DataGridView1.Location = New System.Drawing.Point(3, 77)
+        Me.DataGridView1.Location = New System.Drawing.Point(11, 67)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(609, 121)
+        Me.DataGridView1.Size = New System.Drawing.Size(419, 121)
         Me.DataGridView1.TabIndex = 150
         '
         'Column1
@@ -187,11 +189,11 @@ Partial Class PendingOrders
         Me.ButtonSelectCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonSelectCustomer.FlatAppearance.BorderSize = 0
         Me.ButtonSelectCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonSelectCustomer.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.ButtonSelectCustomer.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.ButtonSelectCustomer.ForeColor = System.Drawing.Color.White
-        Me.ButtonSelectCustomer.Location = New System.Drawing.Point(3, 204)
+        Me.ButtonSelectCustomer.Location = New System.Drawing.Point(11, 194)
         Me.ButtonSelectCustomer.Name = "ButtonSelectCustomer"
-        Me.ButtonSelectCustomer.Size = New System.Drawing.Size(434, 35)
+        Me.ButtonSelectCustomer.Size = New System.Drawing.Size(237, 23)
         Me.ButtonSelectCustomer.TabIndex = 149
         Me.ButtonSelectCustomer.Text = "Select Customer"
         Me.ButtonSelectCustomer.UseVisualStyleBackColor = False
@@ -200,7 +202,7 @@ Partial Class PendingOrders
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(15, 45)
+        Me.Label1.Location = New System.Drawing.Point(11, 38)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(163, 18)
         Me.Label1.TabIndex = 90
@@ -209,18 +211,19 @@ Partial Class PendingOrders
         'ComboBoxCustomerName
         '
         Me.ComboBoxCustomerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxCustomerName.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ComboBoxCustomerName.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ComboBoxCustomerName.FormattingEnabled = True
-        Me.ComboBoxCustomerName.Location = New System.Drawing.Point(184, 45)
+        Me.ComboBoxCustomerName.Location = New System.Drawing.Point(180, 35)
         Me.ComboBoxCustomerName.Name = "ComboBoxCustomerName"
-        Me.ComboBoxCustomerName.Size = New System.Drawing.Size(428, 26)
+        Me.ComboBoxCustomerName.Size = New System.Drawing.Size(252, 26)
         Me.ComboBoxCustomerName.TabIndex = 91
         '
         'PendingOrders
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(617, 244)
+        Me.ClientSize = New System.Drawing.Size(440, 231)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "PendingOrders"
