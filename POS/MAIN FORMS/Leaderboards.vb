@@ -82,10 +82,8 @@ Public Class Leaderboards
             Next
             With DataGridViewRecentSales
                 .Columns(0).HeaderCell.Value = "Transaction Type"
-                .Columns(0).Width = 150
                 .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
                 .Columns(1).HeaderCell.Value = "Date Created"
-                .Columns(1).Width = 150
                 .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft
                 .Columns(2).HeaderCell.Value = "Crew"
                 .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopLeft

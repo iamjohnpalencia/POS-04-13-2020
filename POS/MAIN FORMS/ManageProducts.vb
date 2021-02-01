@@ -2,7 +2,6 @@
 Imports MySql.Data.MySqlClient
 Imports System.Drawing.Imaging
 Public Class ManageProducts
-
     Private Shared _instance As ManageProducts
     Public ReadOnly Property Instance As ManageProducts
         Get
@@ -13,10 +12,18 @@ Public Class ManageProducts
         _instance = Me
         Try
             TabControl1.TabPages(0).Text = "Product List"
-            TabControl1.TabPages(1).Text = "Custom Products(Approved)"
-            TabControl1.TabPages(2).Text = "Custom Products(Pending)"
-            TabControl1.TabPages(3).Text = "Product Price Change"
+            TabControl1.TabPages(1).Text = "Custom Products"
+            TabControl1.TabPages(2).Text = "Product Price Change"
+
+            TabControl2.TabPages(0).Text = "Custom Products(Approved)"
+            TabControl2.TabPages(1).Text = "Custom Products(Pending)"
+
+            TabControl3.TabPages(0).Text = "Product Price Change(Pending)"
+            TabControl3.TabPages(1).Text = "Product Price Change(Approved)"
+
             LoadProductList()
+            LoadPriceChange()
+            LoadPriceChangeApprove()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -54,6 +61,8 @@ Public Class ManageProducts
                         .Product = DataGridViewProductList.SelectedRows(0).Cells(3).Value
                         .Show()
                         MDIFORM.Button5.Focus()
+                        .Focus()
+                        .TextBoxPriceTo.Focus()
                     End With
                 Else
                     MsgBox("This feature is for server product only")
@@ -110,18 +119,31 @@ Public Class ManageProducts
     End Sub
     Public Sub LoadPriceChange()
         Try
-            GLOBAL_SELECT_ALL_FUNCTION("loc_price_request_change", "*", DataGridViewPriceRequest)
-            With DataGridViewPriceRequest
-                .Columns(0).Visible = False
-                .Columns(1).Visible = False
-                .Columns(4).Visible = False
-                .Columns(5).Visible = False
-                .Columns(6).Visible = False
-                .Columns(7).Visible = False
-                .Columns(8).Visible = False
-                .Columns(2).HeaderText = "Price Request"
-                .Columns(3).HeaderText = "Date Requested"
-            End With
+            Dim ConnLocal = LocalhostConn()
+            Dim PriceChange = AsDatatable("loc_price_request_change WHERE active = 1", "request_id, server_product_id, request_price, created_at, synced", DataGridViewPriceRequest)
+            For Each row As DataRow In PriceChange.Rows
+                Dim query = "SELECT product_name FROM loc_admin_products WHERE product_id = " & row("server_product_id")
+                Dim cmd As MySqlCommand = New MySqlCommand(query, ConnLocal)
+                Dim ProductName = cmd.ExecuteScalar
+                DataGridViewPriceRequest.Rows.Add(row("request_id"), row("server_product_id"), ProductName, row("request_price"), row("created_at"), row("synced"))
+            Next
+            ConnLocal.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Public Sub LoadPriceChangeApprove()
+        Try
+            Dim ConnLocal = LocalhostConn()
+            Dim PriceChange = AsDatatable("loc_price_request_change WHERE active = 2", "request_id, server_product_id, request_price, created_at, synced", DataGridViewPriceChangeApproved)
+            For Each row As DataRow In PriceChange.Rows
+                Dim query = "SELECT product_name FROM loc_admin_products WHERE product_id = " & row("server_product_id")
+                Dim cmd As MySqlCommand = New MySqlCommand(query, ConnLocal)
+                Dim ProductName = cmd.ExecuteScalar
+                DataGridViewPriceChangeApproved.Rows.Add(row("request_id"), row("server_product_id"), ProductName, row("request_price"), row("created_at"), row("synced"))
+            Next
+            ConnLocal.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -266,7 +288,7 @@ Public Class ManageProducts
                             Dim productid = .SelectedRows(0).Cells(0).Value.ToString
                             Dim ProductFormulaID = returnselect("formula_id", "loc_admin_products WHERE product_id = " & productid)
 
-                            Dim sql = "UPDATE loc_admin_products SET product_status = 2 WHERE product_id = " & productID
+                            Dim sql = "UPDATE loc_admin_products SET product_status = 2 WHERE product_id = " & productid
                             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                             cmd.ExecuteNonQuery()
 
@@ -296,6 +318,34 @@ Public Class ManageProducts
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
         Try
             ShowKeyboard()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles Button5.Click
+        Try
+            If DataGridViewPriceRequest.SelectedRows.Count < 1 Then
+                MsgBox("Select request first")
+            ElseIf DataGridViewPriceRequest.SelectedRows.Count > 1 Then
+                MsgBox("Select one request only")
+            Else
+                Dim msg = MessageBox.Show("Are you sure you want to delete this request?", "NOTICE", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If msg = DialogResult.Yes Then
+                    Dim query = "DELETE FROM `loc_price_request_change` WHERE request_id = " & DataGridViewPriceRequest.SelectedRows(0).Cells(0).Value
+                    Dim cmd As MySqlCommand = New MySqlCommand(query, LocalhostConn)
+                    Dim res = cmd.ExecuteNonQuery()
+                    If res = 1 Then
+                        GLOBAL_SYSTEM_LOGS("PRICE REQUEST DELETE", "Deleted by: " & returnfullname(ClientCrewID) & ", Date: " & FullDate24HR())
+                        LoadPriceChange()
+                        MsgBox("Complete")
+                    Else
+                        GLOBAL_SYSTEM_LOGS("ERROR PRICE REQUEST DELETE", "Deleted by: " & returnfullname(ClientCrewID) & ", Date: " & FullDate24HR())
+                        LoadPriceChange()
+                        MsgBox("Error")
+                    End If
+                End If
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)

@@ -1079,23 +1079,27 @@ Public Class ConfigManager
                                     If PrintOptionIsSet = True And PrintOption <> "" Then
                                         If RePrintOptionIsSet = True And RePrintOption <> "" Then
                                             If PrintXZRead = True And PrintXZReadOption <> "" Then
-                                                If AccountExist = True Then
-                                                    If FranchiseeStoreValidation = True Then
-                                                        If Not String.IsNullOrWhiteSpace(TextBoxProdKey.Text) Then
-                                                            DataGridViewOutlets.Enabled = False
-                                                            TextboxEnableability(GroupBox12, False)
-                                                            ButtonEnableability(GroupBox12, False)
-                                                            BackgroundWorkerACTIVATION.WorkerReportsProgress = True
-                                                            BackgroundWorkerACTIVATION.WorkerSupportsCancellation = True
-                                                            BackgroundWorkerACTIVATION.RunWorkerAsync()
+                                                If PrintReturnsBool = True And PrintReturns <> "" Then
+                                                    If AccountExist = True Then
+                                                        If FranchiseeStoreValidation = True Then
+                                                            If Not String.IsNullOrWhiteSpace(TextBoxProdKey.Text) Then
+                                                                DataGridViewOutlets.Enabled = False
+                                                                TextboxEnableability(GroupBox12, False)
+                                                                ButtonEnableability(GroupBox12, False)
+                                                                BackgroundWorkerACTIVATION.WorkerReportsProgress = True
+                                                                BackgroundWorkerACTIVATION.WorkerSupportsCancellation = True
+                                                                BackgroundWorkerACTIVATION.RunWorkerAsync()
+                                                            Else
+                                                                MsgBox("Please input serial key")
+                                                            End If
                                                         Else
-                                                            MsgBox("Please input serial key")
+                                                            MsgBox("Please select store in Account and Store settings tab")
                                                         End If
                                                     Else
-                                                        MsgBox("Please select store in Account and Store settings tab")
+                                                        MsgBox("Franchisee's Account must be valid first")
                                                     End If
                                                 Else
-                                                    MsgBox("Franchisee's Account must be valid first")
+                                                    MsgBox("Select item returns print option first")
                                                 End If
                                             Else
                                                 MsgBox("Select x-zreading print option first")
@@ -1676,7 +1680,7 @@ Public Class ConfigManager
             fields = "*"
             Dim DatatableCoupons = GLOBAL_SELECT_ALL_FUNCTION_CLOUD(table, fields, DataGridViewCoupons)
             For Each row As DataRow In DatatableCoupons.Rows
-                DataGridViewCoupons.Rows.Add(row("Couponname_"), row("Desc_"), row("Discountvalue_"), row("Referencevalue_"), row("Type"), row("Bundlebase_"), row("BBValue_"), row("Bundlepromo_"), row("BPValue_"), row("Effectivedate"), row("Expirydate"))
+                DataGridViewCoupons.Rows.Add(row("Couponname_"), row("Desc_"), row("Discountvalue_"), row("Referencevalue_"), row("Type"), row("Bundlebase_"), row("BBValue_"), row("Bundlepromo_"), row("BPValue_"), row("Effectivedate"), row("Expirydate"), row("date_created"))
             Next
             TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of coupons data)" & vbNewLine
         Catch ex As Exception
@@ -1852,8 +1856,8 @@ Public Class ConfigManager
             With DataGridViewCoupons
                 Dim cmdlocal As MySqlCommand
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
-                    cmdlocal = New MySqlCommand("INSERT INTO tbcoupon(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`, `store_id`, `crew_id`, `guid`, `origin`, `synced`, `active`)
-                                             VALUES (@0, @1, @2, @3, @4 ,@5 ,@6 ,@7 ,@8 ,@9 ,@10 ,@11 ,@12 ,@13, @14, @15, @16)", TestLocalConnection())
+                    cmdlocal = New MySqlCommand("INSERT INTO tbcoupon(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`, `date_created`, `store_id`, `crew_id`, `guid`, `origin`, `synced`, `active`)
+                                             VALUES (@0, @1, @2, @3, @4 ,@5 ,@6 ,@7 ,@8 ,@9 ,@10 ,@11 ,@12 ,@13, @14, @15, @16, @17)", TestLocalConnection())
                     cmdlocal.Parameters.Add("@0", MySqlDbType.Text).Value = .Rows(i).Cells(0).Value.ToString()
                     cmdlocal.Parameters.Add("@1", MySqlDbType.Text).Value = .Rows(i).Cells(1).Value.ToString()
                     cmdlocal.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString
@@ -1865,12 +1869,14 @@ Public Class ConfigManager
                     cmdlocal.Parameters.Add("@8", MySqlDbType.Text).Value = .Rows(i).Cells(8).Value.ToString
                     cmdlocal.Parameters.Add("@9", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString
                     cmdlocal.Parameters.Add("@10", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString
-                    cmdlocal.Parameters.Add("@11", MySqlDbType.Text).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
-                    cmdlocal.Parameters.Add("@12", MySqlDbType.Text).Value = ""
-                    cmdlocal.Parameters.Add("@13", MySqlDbType.Text).Value = UserGUID
-                    cmdlocal.Parameters.Add("@14", MySqlDbType.Text).Value = "Server"
-                    cmdlocal.Parameters.Add("@15", MySqlDbType.Text).Value = "Synced"
-                    cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = 1
+                    cmdlocal.Parameters.Add("@11", MySqlDbType.Text).Value = .Rows(i).Cells(11).Value.ToString
+                    cmdlocal.Parameters.Add("@12", MySqlDbType.Text).Value = DataGridViewOutlets.SelectedRows(0).Cells(0).Value
+                    cmdlocal.Parameters.Add("@13", MySqlDbType.Text).Value = ""
+                    cmdlocal.Parameters.Add("@14", MySqlDbType.Text).Value = UserGUID
+                    cmdlocal.Parameters.Add("@15", MySqlDbType.Text).Value = "Server"
+                    cmdlocal.Parameters.Add("@16", MySqlDbType.Text).Value = "Synced"
+                    cmdlocal.Parameters.Add("@17", MySqlDbType.Text).Value = 1
+
                     cmdlocal.ExecuteNonQuery()
                 Next
             End With

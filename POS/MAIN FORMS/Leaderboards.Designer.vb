@@ -74,7 +74,6 @@ Partial Class Leaderboards
         Me.Panel9 = New System.Windows.Forms.Panel()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel10 = New System.Windows.Forms.Panel()
-        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.DataGridViewRecentSales = New System.Windows.Forms.DataGridView()
@@ -117,7 +116,6 @@ Partial Class Leaderboards
         Me.GroupBox3.SuspendLayout()
         Me.Panel9.SuspendLayout()
         Me.Panel10.SuspendLayout()
-        Me.TableLayoutPanel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridViewRecentSales, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -455,26 +453,12 @@ Partial Class Leaderboards
         '
         'Panel10
         '
-        Me.Panel10.Controls.Add(Me.TableLayoutPanel2)
+        Me.Panel10.Controls.Add(Me.TabControl1)
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel10.Location = New System.Drawing.Point(20, 580)
         Me.Panel10.Name = "Panel10"
         Me.Panel10.Size = New System.Drawing.Size(1131, 266)
         Me.Panel10.TabIndex = 96
-        '
-        'TableLayoutPanel2
-        '
-        Me.TableLayoutPanel2.ColumnCount = 2
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
-        Me.TableLayoutPanel2.Controls.Add(Me.TabControl1, 0, 0)
-        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
-        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
-        Me.TableLayoutPanel2.RowCount = 1
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1131, 266)
-        Me.TableLayoutPanel2.TabIndex = 0
         '
         'TabControl1
         '
@@ -483,10 +467,10 @@ Partial Class Leaderboards
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Location = New System.Drawing.Point(3, 3)
+        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(672, 260)
+        Me.TabControl1.Size = New System.Drawing.Size(1131, 266)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
@@ -495,7 +479,7 @@ Partial Class Leaderboards
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(664, 231)
+        Me.TabPage1.Size = New System.Drawing.Size(1123, 237)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -533,7 +517,7 @@ Partial Class Leaderboards
         Me.DataGridViewRecentSales.EnableHeadersVisualStyles = False
         Me.DataGridViewRecentSales.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewRecentSales.Name = "DataGridViewRecentSales"
-        Me.DataGridViewRecentSales.Size = New System.Drawing.Size(658, 225)
+        Me.DataGridViewRecentSales.Size = New System.Drawing.Size(1117, 231)
         Me.DataGridViewRecentSales.TabIndex = 5
         '
         'Column7
@@ -808,7 +792,6 @@ Partial Class Leaderboards
         Me.Panel9.ResumeLayout(False)
         Me.Panel9.PerformLayout()
         Me.Panel10.ResumeLayout(False)
-        Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         CType(Me.DataGridViewRecentSales, System.ComponentModel.ISupportInitialize).EndInit()
@@ -842,7 +825,6 @@ Partial Class Leaderboards
     Friend WithEvents Panel9 As Panel
     Friend WithEvents Label4 As Label
     Friend WithEvents Panel10 As Panel
-    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage

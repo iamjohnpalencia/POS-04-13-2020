@@ -7,7 +7,7 @@ Public Class ChangePrice
         Try
             Me.TopMost = True
             TextBoxPriceFrom.Text = PriceFrom
-            LabelProductName.Text = Product
+            Me.Text = Product
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -73,16 +73,12 @@ Public Class ChangePrice
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) 
         Close()
     End Sub
 
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
-        Try
-            ShowKeyboard()
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
-        End Try
+        ShowKeyboard()
+        TextBoxPriceTo.Focus()
     End Sub
 End Class

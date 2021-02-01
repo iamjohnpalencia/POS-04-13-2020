@@ -35,6 +35,9 @@ Partial Class ManageProducts
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.ButtonKeyboard = New System.Windows.Forms.Button()
@@ -80,12 +83,45 @@ Partial Class ManageProducts
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.DataGridViewPriceRequest = New System.Windows.Forms.DataGridView()
         Me.Panel15 = New System.Windows.Forms.Panel()
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.TabControl2 = New System.Windows.Forms.TabControl()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TabControl3 = New System.Windows.Forms.TabControl()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.DataGridViewPriceChangeApproved = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel6.SuspendLayout()
@@ -111,8 +147,21 @@ Partial Class ManageProducts
         Me.GroupBox4.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.Panel5.SuspendLayout()
-        Me.TabPage4.SuspendLayout()
         CType(Me.DataGridViewPriceRequest, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControl2.SuspendLayout()
+        Me.TabPage5.SuspendLayout()
+        Me.TabPage6.SuspendLayout()
+        Me.Panel9.SuspendLayout()
+        Me.TabControl3.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
+        Me.TabPage7.SuspendLayout()
+        Me.TableLayoutPanel3.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
+        Me.TableLayoutPanel4.SuspendLayout()
+        Me.Panel10.SuspendLayout()
+        Me.GroupBox7.SuspendLayout()
+        CType(Me.DataGridViewPriceChangeApproved, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -207,7 +256,6 @@ Partial Class ManageProducts
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(20, 0)
@@ -314,7 +362,7 @@ Partial Class ManageProducts
         '
         'ButtonPriceChange
         '
-        Me.ButtonPriceChange.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.ButtonPriceChange.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonPriceChange.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonPriceChange.Dock = System.Windows.Forms.DockStyle.Right
         Me.ButtonPriceChange.FlatAppearance.BorderSize = 0
@@ -376,8 +424,7 @@ Partial Class ManageProducts
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.TableLayoutPanel1)
-        Me.TabPage2.Controls.Add(Me.Panel3)
+        Me.TabPage2.Controls.Add(Me.TabControl2)
         Me.TabPage2.Location = New System.Drawing.Point(4, 28)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -398,7 +445,7 @@ Partial Class ManageProducts
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1102, 428)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1088, 390)
         Me.TableLayoutPanel1.TabIndex = 167
         '
         'GroupBox1
@@ -408,7 +455,7 @@ Partial Class ManageProducts
         Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1096, 352)
+        Me.GroupBox1.Size = New System.Drawing.Size(1082, 314)
         Me.GroupBox1.TabIndex = 164
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Cutom Product List(Approved)"
@@ -446,7 +493,7 @@ Partial Class ManageProducts
         Me.DataGridViewOthersApproved.EnableHeadersVisualStyles = False
         Me.DataGridViewOthersApproved.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewOthersApproved.Name = "DataGridViewOthersApproved"
-        Me.DataGridViewOthersApproved.Size = New System.Drawing.Size(1090, 327)
+        Me.DataGridViewOthersApproved.Size = New System.Drawing.Size(1076, 289)
         Me.DataGridViewOthersApproved.TabIndex = 6
         '
         'GroupBox2
@@ -454,9 +501,9 @@ Partial Class ManageProducts
         Me.GroupBox2.Controls.Add(Me.Panel7)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 361)
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 323)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(1096, 64)
+        Me.GroupBox2.Size = New System.Drawing.Size(1082, 64)
         Me.GroupBox2.TabIndex = 166
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Action"
@@ -468,7 +515,7 @@ Partial Class ManageProducts
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel7.Location = New System.Drawing.Point(3, 22)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(1090, 39)
+        Me.Panel7.Size = New System.Drawing.Size(1076, 39)
         Me.Panel7.TabIndex = 6
         '
         'ButtonEditApprovedProducts
@@ -480,7 +527,7 @@ Partial Class ManageProducts
         Me.ButtonEditApprovedProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonEditApprovedProducts.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonEditApprovedProducts.ForeColor = System.Drawing.Color.White
-        Me.ButtonEditApprovedProducts.Location = New System.Drawing.Point(822, 0)
+        Me.ButtonEditApprovedProducts.Location = New System.Drawing.Point(808, 0)
         Me.ButtonEditApprovedProducts.Name = "ButtonEditApprovedProducts"
         Me.ButtonEditApprovedProducts.Size = New System.Drawing.Size(134, 39)
         Me.ButtonEditApprovedProducts.TabIndex = 165
@@ -496,7 +543,7 @@ Partial Class ManageProducts
         Me.ButtonDeactivateApprovedProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonDeactivateApprovedProduct.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonDeactivateApprovedProduct.ForeColor = System.Drawing.Color.White
-        Me.ButtonDeactivateApprovedProduct.Location = New System.Drawing.Point(956, 0)
+        Me.ButtonDeactivateApprovedProduct.Location = New System.Drawing.Point(942, 0)
         Me.ButtonDeactivateApprovedProduct.Name = "ButtonDeactivateApprovedProduct"
         Me.ButtonDeactivateApprovedProduct.Size = New System.Drawing.Size(134, 39)
         Me.ButtonDeactivateApprovedProduct.TabIndex = 164
@@ -513,7 +560,7 @@ Partial Class ManageProducts
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(3, 3)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1102, 37)
+        Me.Panel3.Size = New System.Drawing.Size(1088, 37)
         Me.Panel3.TabIndex = 7
         '
         'TextBox1
@@ -551,8 +598,7 @@ Partial Class ManageProducts
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.TableLayoutPanel2)
-        Me.TabPage3.Controls.Add(Me.Panel5)
+        Me.TabPage3.Controls.Add(Me.TabControl3)
         Me.TabPage3.Location = New System.Drawing.Point(4, 28)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
@@ -573,7 +619,7 @@ Partial Class ManageProducts
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1102, 428)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1088, 390)
         Me.TableLayoutPanel2.TabIndex = 167
         '
         'GroupBox3
@@ -583,7 +629,7 @@ Partial Class ManageProducts
         Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(1096, 352)
+        Me.GroupBox3.Size = New System.Drawing.Size(1082, 314)
         Me.GroupBox3.TabIndex = 164
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Cutom Product List(Pending)"
@@ -621,7 +667,7 @@ Partial Class ManageProducts
         Me.DataGridViewOthersPending.EnableHeadersVisualStyles = False
         Me.DataGridViewOthersPending.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewOthersPending.Name = "DataGridViewOthersPending"
-        Me.DataGridViewOthersPending.Size = New System.Drawing.Size(1090, 327)
+        Me.DataGridViewOthersPending.Size = New System.Drawing.Size(1076, 289)
         Me.DataGridViewOthersPending.TabIndex = 6
         '
         'GroupBox4
@@ -629,9 +675,9 @@ Partial Class ManageProducts
         Me.GroupBox4.Controls.Add(Me.Panel8)
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox4.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(3, 361)
+        Me.GroupBox4.Location = New System.Drawing.Point(3, 323)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(1096, 64)
+        Me.GroupBox4.Size = New System.Drawing.Size(1082, 64)
         Me.GroupBox4.TabIndex = 166
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Action"
@@ -644,7 +690,7 @@ Partial Class ManageProducts
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel8.Location = New System.Drawing.Point(3, 22)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(1090, 39)
+        Me.Panel8.Size = New System.Drawing.Size(1076, 39)
         Me.Panel8.TabIndex = 6
         '
         'ButtonAddCustomProduct
@@ -656,7 +702,7 @@ Partial Class ManageProducts
         Me.ButtonAddCustomProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonAddCustomProduct.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonAddCustomProduct.ForeColor = System.Drawing.Color.White
-        Me.ButtonAddCustomProduct.Location = New System.Drawing.Point(688, 0)
+        Me.ButtonAddCustomProduct.Location = New System.Drawing.Point(674, 0)
         Me.ButtonAddCustomProduct.Name = "ButtonAddCustomProduct"
         Me.ButtonAddCustomProduct.Size = New System.Drawing.Size(134, 39)
         Me.ButtonAddCustomProduct.TabIndex = 166
@@ -665,14 +711,14 @@ Partial Class ManageProducts
         '
         'ButtonEditCustomProduct
         '
-        Me.ButtonEditCustomProduct.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.ButtonEditCustomProduct.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonEditCustomProduct.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonEditCustomProduct.Dock = System.Windows.Forms.DockStyle.Right
         Me.ButtonEditCustomProduct.FlatAppearance.BorderSize = 0
         Me.ButtonEditCustomProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonEditCustomProduct.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonEditCustomProduct.ForeColor = System.Drawing.Color.White
-        Me.ButtonEditCustomProduct.Location = New System.Drawing.Point(822, 0)
+        Me.ButtonEditCustomProduct.Location = New System.Drawing.Point(808, 0)
         Me.ButtonEditCustomProduct.Name = "ButtonEditCustomProduct"
         Me.ButtonEditCustomProduct.Size = New System.Drawing.Size(134, 39)
         Me.ButtonEditCustomProduct.TabIndex = 168
@@ -688,7 +734,7 @@ Partial Class ManageProducts
         Me.ButtonDeletePending.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonDeletePending.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonDeletePending.ForeColor = System.Drawing.Color.White
-        Me.ButtonDeletePending.Location = New System.Drawing.Point(956, 0)
+        Me.ButtonDeletePending.Location = New System.Drawing.Point(942, 0)
         Me.ButtonDeletePending.Name = "ButtonDeletePending"
         Me.ButtonDeletePending.Size = New System.Drawing.Size(134, 39)
         Me.ButtonDeletePending.TabIndex = 167
@@ -705,7 +751,7 @@ Partial Class ManageProducts
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel5.Location = New System.Drawing.Point(3, 3)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(1102, 37)
+        Me.Panel5.Size = New System.Drawing.Size(1088, 37)
         Me.Panel5.TabIndex = 7
         '
         'TextBox2
@@ -741,17 +787,6 @@ Partial Class ManageProducts
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Search Product (By Name):"
         '
-        'TabPage4
-        '
-        Me.TabPage4.Controls.Add(Me.DataGridViewPriceRequest)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 28)
-        Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(1108, 471)
-        Me.TabPage4.TabIndex = 3
-        Me.TabPage4.Text = "TabPage4"
-        Me.TabPage4.UseVisualStyleBackColor = True
-        '
         'DataGridViewPriceRequest
         '
         Me.DataGridViewPriceRequest.AllowUserToAddRows = False
@@ -772,6 +807,7 @@ Partial Class ManageProducts
         DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewPriceRequest.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridViewPriceRequest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewPriceRequest.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column6, Me.Column1, Me.Column5, Me.Column2, Me.Column3, Me.Column4})
         DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle12.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -783,9 +819,9 @@ Partial Class ManageProducts
         Me.DataGridViewPriceRequest.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewPriceRequest.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewPriceRequest.EnableHeadersVisualStyles = False
-        Me.DataGridViewPriceRequest.Location = New System.Drawing.Point(3, 3)
+        Me.DataGridViewPriceRequest.Location = New System.Drawing.Point(3, 23)
         Me.DataGridViewPriceRequest.Name = "DataGridViewPriceRequest"
-        Me.DataGridViewPriceRequest.Size = New System.Drawing.Size(1102, 465)
+        Me.DataGridViewPriceRequest.Size = New System.Drawing.Size(1076, 288)
         Me.DataGridViewPriceRequest.TabIndex = 7
         '
         'Panel15
@@ -818,6 +854,356 @@ Partial Class ManageProducts
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'TabControl2
+        '
+        Me.TabControl2.Controls.Add(Me.TabPage5)
+        Me.TabControl2.Controls.Add(Me.TabPage6)
+        Me.TabControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl2.Location = New System.Drawing.Point(3, 3)
+        Me.TabControl2.Name = "TabControl2"
+        Me.TabControl2.SelectedIndex = 0
+        Me.TabControl2.Size = New System.Drawing.Size(1102, 465)
+        Me.TabControl2.TabIndex = 0
+        '
+        'TabPage5
+        '
+        Me.TabPage5.Controls.Add(Me.TableLayoutPanel1)
+        Me.TabPage5.Controls.Add(Me.Panel3)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage5.Size = New System.Drawing.Size(1094, 433)
+        Me.TabPage5.TabIndex = 0
+        Me.TabPage5.Text = "TabPage5"
+        Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'TabPage6
+        '
+        Me.TabPage6.Controls.Add(Me.TableLayoutPanel2)
+        Me.TabPage6.Controls.Add(Me.Panel5)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage6.Name = "TabPage6"
+        Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage6.Size = New System.Drawing.Size(1094, 433)
+        Me.TabPage6.TabIndex = 1
+        Me.TabPage6.Text = "TabPage6"
+        Me.TabPage6.UseVisualStyleBackColor = True
+        '
+        'Panel9
+        '
+        Me.Panel9.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel9.Controls.Add(Me.TextBox3)
+        Me.Panel9.Controls.Add(Me.Button3)
+        Me.Panel9.Controls.Add(Me.Label5)
+        Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel9.Location = New System.Drawing.Point(3, 3)
+        Me.Panel9.Name = "Panel9"
+        Me.Panel9.Size = New System.Drawing.Size(1088, 37)
+        Me.Panel9.TabIndex = 8
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.TextBox3.Location = New System.Drawing.Point(175, 7)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(313, 22)
+        Me.TextBox3.TabIndex = 8
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.ForeColor = System.Drawing.Color.White
+        Me.Button3.Location = New System.Drawing.Point(494, 7)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(84, 23)
+        Me.Button3.TabIndex = 7
+        Me.Button3.Text = "Search"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(12, 10)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(157, 14)
+        Me.Label5.TabIndex = 6
+        Me.Label5.Text = "Search Product (By Name):"
+        '
+        'TabControl3
+        '
+        Me.TabControl3.Controls.Add(Me.TabPage4)
+        Me.TabControl3.Controls.Add(Me.TabPage7)
+        Me.TabControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl3.Location = New System.Drawing.Point(3, 3)
+        Me.TabControl3.Name = "TabControl3"
+        Me.TabControl3.SelectedIndex = 0
+        Me.TabControl3.Size = New System.Drawing.Size(1102, 465)
+        Me.TabControl3.TabIndex = 0
+        '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.TableLayoutPanel3)
+        Me.TabPage4.Controls.Add(Me.Panel9)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(1094, 433)
+        Me.TabPage4.TabIndex = 0
+        Me.TabPage4.Text = "TabPage4"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'TabPage7
+        '
+        Me.TabPage7.Controls.Add(Me.TableLayoutPanel4)
+        Me.TabPage7.Controls.Add(Me.Panel10)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage7.Name = "TabPage7"
+        Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage7.Size = New System.Drawing.Size(1094, 433)
+        Me.TabPage7.TabIndex = 1
+        Me.TabPage7.Text = "TabPage7"
+        Me.TabPage7.UseVisualStyleBackColor = True
+        '
+        'TableLayoutPanel3
+        '
+        Me.TableLayoutPanel3.ColumnCount = 1
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel3.Controls.Add(Me.GroupBox6, 0, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.GroupBox5, 0, 0)
+        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 40)
+        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+        Me.TableLayoutPanel3.RowCount = 2
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1088, 390)
+        Me.TableLayoutPanel3.TabIndex = 9
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.DataGridViewPriceRequest)
+        Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox5.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(1082, 314)
+        Me.GroupBox5.TabIndex = 232
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Price change(Pending)"
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.Button5)
+        Me.GroupBox6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox6.Location = New System.Drawing.Point(3, 323)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(1082, 64)
+        Me.GroupBox6.TabIndex = 233
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Action"
+        '
+        'TableLayoutPanel4
+        '
+        Me.TableLayoutPanel4.ColumnCount = 1
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel4.Controls.Add(Me.GroupBox8, 0, 1)
+        Me.TableLayoutPanel4.Controls.Add(Me.GroupBox7, 0, 0)
+        Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 40)
+        Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
+        Me.TableLayoutPanel4.RowCount = 2
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(1088, 390)
+        Me.TableLayoutPanel4.TabIndex = 0
+        '
+        'Panel10
+        '
+        Me.Panel10.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel10.Controls.Add(Me.TextBox4)
+        Me.Panel10.Controls.Add(Me.Button4)
+        Me.Panel10.Controls.Add(Me.Label6)
+        Me.Panel10.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel10.Location = New System.Drawing.Point(3, 3)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.Size = New System.Drawing.Size(1088, 37)
+        Me.Panel10.TabIndex = 9
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.TextBox4.Location = New System.Drawing.Point(175, 7)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(313, 22)
+        Me.TextBox4.TabIndex = 8
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button4.ForeColor = System.Drawing.Color.White
+        Me.Button4.Location = New System.Drawing.Point(494, 7)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(84, 23)
+        Me.Button4.TabIndex = 7
+        Me.Button4.Text = "Search"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(12, 10)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(157, 14)
+        Me.Label6.TabIndex = 6
+        Me.Label6.Text = "Search Product (By Name):"
+        '
+        'GroupBox7
+        '
+        Me.GroupBox7.Controls.Add(Me.DataGridViewPriceChangeApproved)
+        Me.GroupBox7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox7.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(1082, 314)
+        Me.GroupBox7.TabIndex = 232
+        Me.GroupBox7.TabStop = False
+        Me.GroupBox7.Text = "Price change(Approved)"
+        '
+        'GroupBox8
+        '
+        Me.GroupBox8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox8.Location = New System.Drawing.Point(3, 323)
+        Me.GroupBox8.Name = "GroupBox8"
+        Me.GroupBox8.Size = New System.Drawing.Size(1082, 64)
+        Me.GroupBox8.TabIndex = 233
+        Me.GroupBox8.TabStop = False
+        Me.GroupBox8.Text = "Action"
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
+        Me.Button5.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button5.FlatAppearance.BorderSize = 0
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.ForeColor = System.Drawing.Color.White
+        Me.Button5.Location = New System.Drawing.Point(948, 23)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(131, 38)
+        Me.Button5.TabIndex = 0
+        Me.Button5.Text = "Cancel request"
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'DataGridViewPriceChangeApproved
+        '
+        Me.DataGridViewPriceChangeApproved.AllowUserToAddRows = False
+        Me.DataGridViewPriceChangeApproved.AllowUserToDeleteRows = False
+        Me.DataGridViewPriceChangeApproved.AllowUserToResizeColumns = False
+        Me.DataGridViewPriceChangeApproved.AllowUserToResizeRows = False
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.White
+        Me.DataGridViewPriceChangeApproved.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
+        Me.DataGridViewPriceChangeApproved.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewPriceChangeApproved.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewPriceChangeApproved.BorderStyle = System.Windows.Forms.BorderStyle.None
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewPriceChangeApproved.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
+        Me.DataGridViewPriceChangeApproved.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewPriceChangeApproved.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6})
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewPriceChangeApproved.DefaultCellStyle = DataGridViewCellStyle15
+        Me.DataGridViewPriceChangeApproved.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewPriceChangeApproved.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridViewPriceChangeApproved.EnableHeadersVisualStyles = False
+        Me.DataGridViewPriceChangeApproved.Location = New System.Drawing.Point(3, 23)
+        Me.DataGridViewPriceChangeApproved.Name = "DataGridViewPriceChangeApproved"
+        Me.DataGridViewPriceChangeApproved.Size = New System.Drawing.Size(1076, 288)
+        Me.DataGridViewPriceChangeApproved.TabIndex = 8
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Request ID"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.Visible = False
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Product ID"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.Visible = False
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Product Name"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Price Change"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Date Created"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Synced"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Request ID"
+        Me.Column6.Name = "Column6"
+        Me.Column6.Visible = False
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Product ID"
+        Me.Column1.Name = "Column1"
+        Me.Column1.Visible = False
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Product Name"
+        Me.Column5.Name = "Column5"
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Price Change"
+        Me.Column2.Name = "Column2"
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Date Created"
+        Me.Column3.Name = "Column3"
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Synced"
+        Me.Column4.Name = "Column4"
         '
         'ManageProducts
         '
@@ -858,8 +1244,23 @@ Partial Class ManageProducts
         Me.Panel8.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         Me.Panel5.PerformLayout()
-        Me.TabPage4.ResumeLayout(False)
         CType(Me.DataGridViewPriceRequest, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControl2.ResumeLayout(False)
+        Me.TabPage5.ResumeLayout(False)
+        Me.TabPage6.ResumeLayout(False)
+        Me.Panel9.ResumeLayout(False)
+        Me.Panel9.PerformLayout()
+        Me.TabControl3.ResumeLayout(False)
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabPage7.ResumeLayout(False)
+        Me.TableLayoutPanel3.ResumeLayout(False)
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox6.ResumeLayout(False)
+        Me.TableLayoutPanel4.ResumeLayout(False)
+        Me.Panel10.ResumeLayout(False)
+        Me.Panel10.PerformLayout()
+        Me.GroupBox7.ResumeLayout(False)
+        CType(Me.DataGridViewPriceChangeApproved, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -880,7 +1281,6 @@ Partial Class ManageProducts
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents TabPage4 As TabPage
     Friend WithEvents Panel4 As Panel
     Friend WithEvents ButtonSearchProductList As Button
     Friend WithEvents Label3 As Label
@@ -916,4 +1316,38 @@ Partial Class ManageProducts
     Friend WithEvents ButtonEditApprovedProducts As Button
     Friend WithEvents ButtonEditCustomProduct As Button
     Friend WithEvents ButtonDeletePending As Button
+    Friend WithEvents TabControl2 As TabControl
+    Friend WithEvents TabPage5 As TabPage
+    Friend WithEvents TabPage6 As TabPage
+    Friend WithEvents TabControl3 As TabControl
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
+    Friend WithEvents Panel9 As Panel
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Label5 As Label
+    Friend WithEvents TabPage7 As TabPage
+    Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
+    Friend WithEvents GroupBox8 As GroupBox
+    Friend WithEvents GroupBox7 As GroupBox
+    Friend WithEvents Panel10 As Panel
+    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Button5 As Button
+    Friend WithEvents DataGridViewPriceChangeApproved As DataGridView
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
 End Class

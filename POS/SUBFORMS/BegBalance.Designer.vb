@@ -49,28 +49,36 @@ Partial Class BegBalance
         Me.Label12 = New System.Windows.Forms.Label()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.ButtonKeyboard = New System.Windows.Forms.Button()
-        Me.Panel1.SuspendLayout()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'TextBox1
         '
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(20, 128)
+        Me.TextBox1.Location = New System.Drawing.Point(11, 93)
         Me.TextBox1.MaxLength = 10
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(148, 23)
+        Me.TextBox1.Size = New System.Drawing.Size(148, 16)
         Me.TextBox1.TabIndex = 0
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(19, 109)
+        Me.Label1.Location = New System.Drawing.Point(8, 74)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(36, 16)
         Me.Label1.TabIndex = 1
@@ -80,7 +88,7 @@ Partial Class BegBalance
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(169, 109)
+        Me.Label2.Location = New System.Drawing.Point(158, 74)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(29, 16)
         Me.Label2.TabIndex = 2
@@ -90,7 +98,7 @@ Partial Class BegBalance
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(19, 154)
+        Me.Label3.Location = New System.Drawing.Point(8, 119)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(29, 16)
         Me.Label3.TabIndex = 3
@@ -100,7 +108,7 @@ Partial Class BegBalance
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(169, 155)
+        Me.Label4.Location = New System.Drawing.Point(158, 120)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(29, 16)
         Me.Label4.TabIndex = 4
@@ -110,7 +118,7 @@ Partial Class BegBalance
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(17, 200)
+        Me.Label5.Location = New System.Drawing.Point(6, 165)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(22, 16)
         Me.Label5.TabIndex = 5
@@ -120,7 +128,7 @@ Partial Class BegBalance
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(169, 200)
+        Me.Label6.Location = New System.Drawing.Point(158, 165)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(22, 16)
         Me.Label6.TabIndex = 6
@@ -130,7 +138,7 @@ Partial Class BegBalance
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(19, 245)
+        Me.Label7.Location = New System.Drawing.Point(8, 210)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(22, 16)
         Me.Label7.TabIndex = 7
@@ -140,7 +148,7 @@ Partial Class BegBalance
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(169, 245)
+        Me.Label8.Location = New System.Drawing.Point(158, 210)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(15, 16)
         Me.Label8.TabIndex = 8
@@ -150,7 +158,7 @@ Partial Class BegBalance
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(19, 290)
+        Me.Label9.Location = New System.Drawing.Point(8, 255)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(15, 16)
         Me.Label9.TabIndex = 9
@@ -160,7 +168,7 @@ Partial Class BegBalance
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(169, 290)
+        Me.Label10.Location = New System.Drawing.Point(158, 255)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(26, 16)
         Me.Label10.TabIndex = 10
@@ -168,83 +176,92 @@ Partial Class BegBalance
         '
         'TextBox2
         '
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox2.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(172, 128)
+        Me.TextBox2.Location = New System.Drawing.Point(163, 93)
         Me.TextBox2.MaxLength = 10
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(148, 23)
+        Me.TextBox2.Size = New System.Drawing.Size(148, 16)
         Me.TextBox2.TabIndex = 13
         '
         'TextBox3
         '
+        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox3.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(20, 174)
+        Me.TextBox3.Location = New System.Drawing.Point(11, 138)
         Me.TextBox3.MaxLength = 10
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(148, 23)
+        Me.TextBox3.Size = New System.Drawing.Size(148, 16)
         Me.TextBox3.TabIndex = 14
         '
         'TextBox4
         '
+        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox4.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(172, 174)
+        Me.TextBox4.Location = New System.Drawing.Point(163, 138)
         Me.TextBox4.MaxLength = 10
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(148, 23)
+        Me.TextBox4.Size = New System.Drawing.Size(148, 16)
         Me.TextBox4.TabIndex = 15
         '
         'TextBox5
         '
+        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox5.Location = New System.Drawing.Point(20, 219)
+        Me.TextBox5.Location = New System.Drawing.Point(11, 183)
         Me.TextBox5.MaxLength = 10
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(148, 23)
+        Me.TextBox5.Size = New System.Drawing.Size(148, 16)
         Me.TextBox5.TabIndex = 16
         '
         'TextBox6
         '
+        Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox6.Location = New System.Drawing.Point(172, 219)
+        Me.TextBox6.Location = New System.Drawing.Point(163, 183)
         Me.TextBox6.MaxLength = 10
         Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(148, 23)
+        Me.TextBox6.Size = New System.Drawing.Size(148, 16)
         Me.TextBox6.TabIndex = 17
         '
         'TextBox7
         '
+        Me.TextBox7.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox7.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox7.Location = New System.Drawing.Point(20, 264)
+        Me.TextBox7.Location = New System.Drawing.Point(11, 228)
         Me.TextBox7.MaxLength = 10
         Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(148, 23)
+        Me.TextBox7.Size = New System.Drawing.Size(148, 16)
         Me.TextBox7.TabIndex = 18
         '
         'TextBox8
         '
+        Me.TextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox8.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox8.Location = New System.Drawing.Point(172, 264)
+        Me.TextBox8.Location = New System.Drawing.Point(163, 228)
         Me.TextBox8.MaxLength = 10
         Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(148, 23)
+        Me.TextBox8.Size = New System.Drawing.Size(148, 16)
         Me.TextBox8.TabIndex = 19
         '
         'TextBox9
         '
+        Me.TextBox9.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox9.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox9.Location = New System.Drawing.Point(20, 309)
+        Me.TextBox9.Location = New System.Drawing.Point(11, 273)
         Me.TextBox9.MaxLength = 10
         Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(148, 23)
+        Me.TextBox9.Size = New System.Drawing.Size(148, 16)
         Me.TextBox9.TabIndex = 20
         '
         'TextBox10
         '
+        Me.TextBox10.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox10.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox10.Location = New System.Drawing.Point(172, 309)
+        Me.TextBox10.Location = New System.Drawing.Point(163, 273)
         Me.TextBox10.MaxLength = 10
         Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(148, 23)
+        Me.TextBox10.Size = New System.Drawing.Size(148, 16)
         Me.TextBox10.TabIndex = 21
         '
         'Button1
@@ -254,9 +271,9 @@ Partial Class BegBalance
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(20, 357)
+        Me.Button1.Location = New System.Drawing.Point(9, 323)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(237, 35)
+        Me.Button1.Size = New System.Drawing.Size(237, 23)
         Me.Button1.TabIndex = 24
         Me.Button1.Text = "SUBMIT"
         Me.Button1.UseVisualStyleBackColor = False
@@ -264,8 +281,8 @@ Partial Class BegBalance
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(17, 335)
+        Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(6, 301)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(115, 16)
         Me.Label11.TabIndex = 233
@@ -274,8 +291,8 @@ Partial Class BegBalance
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(146, 335)
+        Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(135, 301)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(16, 16)
         Me.Label12.TabIndex = 234
@@ -287,7 +304,7 @@ Partial Class BegBalance
         Me.ComboBox1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"First Shift", "Second Shift", "Third Shift", "Fourth Shift"})
-        Me.ComboBox1.Location = New System.Drawing.Point(20, 82)
+        Me.ComboBox1.Location = New System.Drawing.Point(9, 47)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(300, 24)
         Me.ComboBox1.TabIndex = 235
@@ -296,68 +313,11 @@ Partial Class BegBalance
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(19, 63)
+        Me.Label13.Location = New System.Drawing.Point(8, 28)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(34, 16)
         Me.Label13.TabIndex = 236
         Me.Label13.Text = "Shift"
-        '
-        'Panel1
-        '
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.ButtonKeyboard)
-        Me.Panel1.Controls.Add(Me.Label15)
-        Me.Panel1.Controls.Add(Me.Label14)
-        Me.Panel1.Controls.Add(Me.ComboBox1)
-        Me.Panel1.Controls.Add(Me.Label13)
-        Me.Panel1.Controls.Add(Me.TextBox1)
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Controls.Add(Me.Label12)
-        Me.Panel1.Controls.Add(Me.Label2)
-        Me.Panel1.Controls.Add(Me.Label11)
-        Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.Label4)
-        Me.Panel1.Controls.Add(Me.Button1)
-        Me.Panel1.Controls.Add(Me.Label5)
-        Me.Panel1.Controls.Add(Me.TextBox10)
-        Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Controls.Add(Me.TextBox9)
-        Me.Panel1.Controls.Add(Me.Label7)
-        Me.Panel1.Controls.Add(Me.TextBox8)
-        Me.Panel1.Controls.Add(Me.Label8)
-        Me.Panel1.Controls.Add(Me.TextBox7)
-        Me.Panel1.Controls.Add(Me.Label9)
-        Me.Panel1.Controls.Add(Me.TextBox6)
-        Me.Panel1.Controls.Add(Me.Label10)
-        Me.Panel1.Controls.Add(Me.TextBox5)
-        Me.Panel1.Controls.Add(Me.TextBox2)
-        Me.Panel1.Controls.Add(Me.TextBox4)
-        Me.Panel1.Controls.Add(Me.TextBox3)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(345, 412)
-        Me.Panel1.TabIndex = 237
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(34, 44)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(271, 19)
-        Me.Label15.TabIndex = 238
-        Me.Label15.Text = "*Enter the amount of cash in this till."
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Tahoma", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(-5, -4)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(355, 42)
-        Me.Label14.TabIndex = 237
-        Me.Label14.Text = "BEGINNING BALANCE"
         '
         'ButtonKeyboard
         '
@@ -366,28 +326,165 @@ Partial Class BegBalance
         Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
         Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonKeyboard.Location = New System.Drawing.Point(259, 357)
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(248, 323)
         Me.ButtonKeyboard.Name = "ButtonKeyboard"
-        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
+        Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 23)
         Me.ButtonKeyboard.TabIndex = 239
         Me.ButtonKeyboard.UseVisualStyleBackColor = False
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Location = New System.Drawing.Point(22, 9)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(271, 19)
+        Me.Label15.TabIndex = 238
+        Me.Label15.Text = "*Enter the amount of cash in this till."
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(8, 97)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(151, 13)
+        Me.Label14.TabIndex = 240
+        Me.Label14.Text = "________________________"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(160, 97)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(151, 13)
+        Me.Label16.TabIndex = 241
+        Me.Label16.Text = "________________________"
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(8, 142)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(151, 13)
+        Me.Label17.TabIndex = 242
+        Me.Label17.Text = "________________________"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(160, 142)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(151, 13)
+        Me.Label18.TabIndex = 243
+        Me.Label18.Text = "________________________"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(8, 187)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(151, 13)
+        Me.Label19.TabIndex = 244
+        Me.Label19.Text = "________________________"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(160, 187)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(151, 13)
+        Me.Label20.TabIndex = 245
+        Me.Label20.Text = "________________________"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(8, 232)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(151, 13)
+        Me.Label21.TabIndex = 246
+        Me.Label21.Text = "________________________"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(160, 232)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(151, 13)
+        Me.Label22.TabIndex = 247
+        Me.Label22.Text = "________________________"
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(8, 277)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(151, 13)
+        Me.Label23.TabIndex = 248
+        Me.Label23.Text = "________________________"
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(160, 277)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(151, 13)
+        Me.Label24.TabIndex = 249
+        Me.Label24.Text = "________________________"
         '
         'BegBalance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(345, 412)
-        Me.Controls.Add(Me.Panel1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.ClientSize = New System.Drawing.Size(320, 354)
+        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.TextBox5)
+        Me.Controls.Add(Me.TextBox6)
+        Me.Controls.Add(Me.TextBox7)
+        Me.Controls.Add(Me.TextBox8)
+        Me.Controls.Add(Me.TextBox9)
+        Me.Controls.Add(Me.TextBox10)
+        Me.Controls.Add(Me.Label24)
+        Me.Controls.Add(Me.Label23)
+        Me.Controls.Add(Me.Label22)
+        Me.Controls.Add(Me.Label21)
+        Me.Controls.Add(Me.Label20)
+        Me.Controls.Add(Me.Label19)
+        Me.Controls.Add(Me.Label18)
+        Me.Controls.Add(Me.Label17)
+        Me.Controls.Add(Me.Label16)
+        Me.Controls.Add(Me.ButtonKeyboard)
+        Me.Controls.Add(Me.Label15)
+        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.Label12)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.Label14)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "BegBalance"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "BegBalance"
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
+        Me.Text = "BEGINNING BALANCE"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -416,9 +513,17 @@ Partial Class BegBalance
     Friend WithEvents Label12 As Label
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Label13 As Label
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label
     Friend WithEvents ButtonKeyboard As Button
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label23 As Label
+    Friend WithEvents Label24 As Label
 End Class

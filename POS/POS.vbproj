@@ -239,6 +239,18 @@
     <Compile Include="SUBFORMS\Message.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SUBFORMS\NewStockEntry.Designer.vb">
+      <DependentUpon>NewStockEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\NewStockEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\PanelReasonCat.Designer.vb">
+      <DependentUpon>PanelReasonCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\PanelReasonCat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SUBFORMS\ResetPassword.Designer.vb">
       <DependentUpon>ResetPassword.vb</DependentUpon>
     </Compile>
@@ -255,6 +267,12 @@
       <DependentUpon>SeniorDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="SUBFORMS\SeniorDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\StockAdjustment.Designer.vb">
+      <DependentUpon>StockAdjustment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\StockAdjustment.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SUBFORMS\TakeOut.Designer.vb">
@@ -454,6 +472,12 @@
     <EmbeddedResource Include="SUBFORMS\Message.resx">
       <DependentUpon>Message.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\NewStockEntry.resx">
+      <DependentUpon>NewStockEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\PanelReasonCat.resx">
+      <DependentUpon>PanelReasonCat.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\ResetPassword.resx">
       <DependentUpon>ResetPassword.vb</DependentUpon>
     </EmbeddedResource>
@@ -462,6 +486,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\SeniorDetails.resx">
       <DependentUpon>SeniorDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\StockAdjustment.resx">
+      <DependentUpon>StockAdjustment.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\TakeOut.resx">
       <DependentUpon>TakeOut.vb</DependentUpon>

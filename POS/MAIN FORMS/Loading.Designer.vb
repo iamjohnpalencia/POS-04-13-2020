@@ -34,8 +34,8 @@ Partial Class Loading
         Me.LabelFOOTER = New System.Windows.Forms.Label()
         Me.LabelVersion = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.DataGridViewScript = New System.Windows.Forms.DataGridView()
+        Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.Panel1.SuspendLayout()
         Me.Panel24.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,11 +156,6 @@ Partial Class Loading
         Me.PictureBox1.TabIndex = 24
         Me.PictureBox1.TabStop = False
         '
-        'BackgroundWorker2
-        '
-        Me.BackgroundWorker2.WorkerReportsProgress = True
-        Me.BackgroundWorker2.WorkerSupportsCancellation = True
-        '
         'DataGridViewScript
         '
         Me.DataGridViewScript.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -168,6 +163,11 @@ Partial Class Loading
         Me.DataGridViewScript.Name = "DataGridViewScript"
         Me.DataGridViewScript.Size = New System.Drawing.Size(121, 48)
         Me.DataGridViewScript.TabIndex = 28
+        '
+        'BackgroundWorker2
+        '
+        Me.BackgroundWorker2.WorkerReportsProgress = True
+        Me.BackgroundWorker2.WorkerSupportsCancellation = True
         '
         'Loading
         '

@@ -87,10 +87,10 @@ Public Class POS
                         .FlatStyle = FlatStyle.Flat
                         .FlatAppearance.BorderSize = 0
                         .Location = New Point(Location_control.X, Location_control.Y)
-                        .Width = 130
+                        .Width = 120
                         .Height = 53
                         .Cursor = Cursors.Hand
-                        Location_control.X += .Height + 75
+                        Location_control.X += .Height + 65
                         AddHandler .Click, AddressOf new_Button_click
                     End With
                     Panel3.Controls.Add(new_Button)
@@ -2393,7 +2393,7 @@ Public Class POS
                 Dim sql = "UPDATE loc_admin_products SET product_price = " & PriceChangeDatatabe(i)(4) & ", price_change = 1 WHERE server_product_id = " & PriceChangeDatatabe(i)(3) & ""
                 CmdCheck = New MySqlCommand(sql, ConnectionLocal)
                 CmdCheck.ExecuteNonQuery()
-                Dim sql2 = "UPDATE loc_price_request_change SET active = " & PriceChangeDatatabe(i)(6) & " WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""
+                Dim sql2 = "UPDATE loc_price_request_change SET active = 2 WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""
                 CmdCheck = New MySqlCommand(sql2, ConnectionLocal)
                 CmdCheck.ExecuteNonQuery()
                 Dim sq3 = "UPDATE admin_price_request SET synced = 'Synced' WHERE request_id = " & PriceChangeDatatabe(i)(0) & ""

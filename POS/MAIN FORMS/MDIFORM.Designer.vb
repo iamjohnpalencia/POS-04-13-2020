@@ -126,7 +126,7 @@ Partial Class MDIFORM
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(246, 706)
+        Me.Panel1.Size = New System.Drawing.Size(246, 733)
         Me.Panel1.TabIndex = 9
         '
         'Button4
@@ -358,7 +358,7 @@ Partial Class MDIFORM
         Me.Button7.ForeColor = System.Drawing.Color.Black
         Me.Button7.Image = CType(resources.GetObject("Button7.Image"), System.Drawing.Image)
         Me.Button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button7.Location = New System.Drawing.Point(20, 662)
+        Me.Button7.Location = New System.Drawing.Point(20, 689)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(226, 44)
         Me.Button7.TabIndex = 181
@@ -392,7 +392,7 @@ Partial Class MDIFORM
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel7.Location = New System.Drawing.Point(10, 0)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(10, 706)
+        Me.Panel7.Size = New System.Drawing.Size(10, 733)
         Me.Panel7.TabIndex = 182
         '
         'Panel24
@@ -410,7 +410,7 @@ Partial Class MDIFORM
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel6.Location = New System.Drawing.Point(0, 0)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(10, 706)
+        Me.Panel6.Size = New System.Drawing.Size(10, 733)
         Me.Panel6.TabIndex = 70
         '
         'Panel2
@@ -421,7 +421,7 @@ Partial Class MDIFORM
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(246, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(782, 30)
+        Me.Panel2.Size = New System.Drawing.Size(1120, 30)
         Me.Panel2.TabIndex = 14
         '
         'Panel23
@@ -430,7 +430,7 @@ Partial Class MDIFORM
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel23.Location = New System.Drawing.Point(0, 10)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(782, 10)
+        Me.Panel23.Size = New System.Drawing.Size(1120, 10)
         Me.Panel23.TabIndex = 187
         '
         'Panel22
@@ -439,7 +439,7 @@ Partial Class MDIFORM
         Me.Panel22.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel22.Location = New System.Drawing.Point(0, 0)
         Me.Panel22.Name = "Panel22"
-        Me.Panel22.Size = New System.Drawing.Size(782, 10)
+        Me.Panel22.Size = New System.Drawing.Size(1120, 10)
         Me.Panel22.TabIndex = 185
         '
         'Panel20
@@ -447,9 +447,9 @@ Partial Class MDIFORM
         Me.Panel20.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel20.Controls.Add(Me.Panel8)
         Me.Panel20.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel20.Location = New System.Drawing.Point(0, 706)
+        Me.Panel20.Location = New System.Drawing.Point(0, 733)
         Me.Panel20.Name = "Panel20"
-        Me.Panel20.Size = New System.Drawing.Size(1028, 10)
+        Me.Panel20.Size = New System.Drawing.Size(1366, 10)
         Me.Panel20.TabIndex = 66
         '
         'Panel8
@@ -466,16 +466,16 @@ Partial Class MDIFORM
         Me.Panel13.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Panel13.Controls.Add(Me.Panel14)
         Me.Panel13.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel13.Location = New System.Drawing.Point(0, 716)
+        Me.Panel13.Location = New System.Drawing.Point(0, 743)
         Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(1028, 25)
+        Me.Panel13.Size = New System.Drawing.Size(1366, 25)
         Me.Panel13.TabIndex = 65
         '
         'Panel14
         '
         Me.Panel14.Controls.Add(Me.LabelFOOTER)
         Me.Panel14.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel14.Location = New System.Drawing.Point(697, 0)
+        Me.Panel14.Location = New System.Drawing.Point(1035, 0)
         Me.Panel14.Name = "Panel14"
         Me.Panel14.Size = New System.Drawing.Size(331, 25)
         Me.Panel14.TabIndex = 0
@@ -499,7 +499,7 @@ Partial Class MDIFORM
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(246, 30)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(782, 92)
+        Me.Panel3.Size = New System.Drawing.Size(1120, 92)
         Me.Panel3.TabIndex = 16
         '
         'TableLayoutPanel1
@@ -518,7 +518,7 @@ Partial Class MDIFORM
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(782, 92)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1120, 92)
         Me.TableLayoutPanel1.TabIndex = 1
         '
         'Panel10
@@ -529,9 +529,9 @@ Partial Class MDIFORM
         Me.Panel10.Controls.Add(Me.Panel31)
         Me.Panel10.Controls.Add(Me.Panel11)
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel10.Location = New System.Drawing.Point(588, 3)
+        Me.Panel10.Location = New System.Drawing.Point(843, 3)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(191, 86)
+        Me.Panel10.Size = New System.Drawing.Size(274, 86)
         Me.Panel10.TabIndex = 82
         '
         'LabelTotalCrititems
@@ -567,7 +567,7 @@ Partial Class MDIFORM
         Me.Panel31.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel31.Location = New System.Drawing.Point(69, 0)
         Me.Panel31.Name = "Panel31"
-        Me.Panel31.Size = New System.Drawing.Size(122, 24)
+        Me.Panel31.Size = New System.Drawing.Size(205, 24)
         Me.Panel31.TabIndex = 17
         '
         'Panel11
@@ -591,7 +591,7 @@ Partial Class MDIFORM
         Me.Panel15.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel15.Location = New System.Drawing.Point(3, 3)
         Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(189, 86)
+        Me.Panel15.Size = New System.Drawing.Size(274, 86)
         Me.Panel15.TabIndex = 79
         '
         'LabelTotalProdLine
@@ -627,7 +627,7 @@ Partial Class MDIFORM
         Me.Panel28.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel28.Location = New System.Drawing.Point(69, 0)
         Me.Panel28.Name = "Panel28"
-        Me.Panel28.Size = New System.Drawing.Size(120, 24)
+        Me.Panel28.Size = New System.Drawing.Size(205, 24)
         Me.Panel28.TabIndex = 16
         '
         'Panel9
@@ -650,9 +650,9 @@ Partial Class MDIFORM
         Me.Panel17.Controls.Add(Me.Panel30)
         Me.Panel17.Controls.Add(Me.Panel18)
         Me.Panel17.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel17.Location = New System.Drawing.Point(393, 3)
+        Me.Panel17.Location = New System.Drawing.Point(563, 3)
         Me.Panel17.Name = "Panel17"
-        Me.Panel17.Size = New System.Drawing.Size(189, 86)
+        Me.Panel17.Size = New System.Drawing.Size(274, 86)
         Me.Panel17.TabIndex = 81
         '
         'Panel32
@@ -662,7 +662,7 @@ Partial Class MDIFORM
         Me.Panel32.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel32.Location = New System.Drawing.Point(69, 42)
         Me.Panel32.Name = "Panel32"
-        Me.Panel32.Size = New System.Drawing.Size(120, 24)
+        Me.Panel32.Size = New System.Drawing.Size(205, 24)
         Me.Panel32.TabIndex = 78
         '
         'LabelTotalSales
@@ -712,7 +712,7 @@ Partial Class MDIFORM
         Me.Panel30.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel30.Location = New System.Drawing.Point(69, 0)
         Me.Panel30.Name = "Panel30"
-        Me.Panel30.Size = New System.Drawing.Size(120, 24)
+        Me.Panel30.Size = New System.Drawing.Size(205, 24)
         Me.Panel30.TabIndex = 77
         '
         'Panel18
@@ -735,9 +735,9 @@ Partial Class MDIFORM
         Me.Panel16.Controls.Add(Me.Panel29)
         Me.Panel16.Controls.Add(Me.Panel19)
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel16.Location = New System.Drawing.Point(198, 3)
+        Me.Panel16.Location = New System.Drawing.Point(283, 3)
         Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(189, 86)
+        Me.Panel16.Size = New System.Drawing.Size(274, 86)
         Me.Panel16.TabIndex = 80
         '
         'LabelTotalAvailStock
@@ -773,7 +773,7 @@ Partial Class MDIFORM
         Me.Panel29.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel29.Location = New System.Drawing.Point(69, 0)
         Me.Panel29.Name = "Panel29"
-        Me.Panel29.Size = New System.Drawing.Size(120, 24)
+        Me.Panel29.Size = New System.Drawing.Size(205, 24)
         Me.Panel29.TabIndex = 77
         '
         'Panel19
@@ -796,7 +796,7 @@ Partial Class MDIFORM
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel4.Location = New System.Drawing.Point(246, 122)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(782, 14)
+        Me.Panel4.Size = New System.Drawing.Size(1120, 14)
         Me.Panel4.TabIndex = 68
         '
         'Panel26
@@ -805,7 +805,7 @@ Partial Class MDIFORM
         Me.Panel26.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel26.Location = New System.Drawing.Point(0, 10)
         Me.Panel26.Name = "Panel26"
-        Me.Panel26.Size = New System.Drawing.Size(782, 10)
+        Me.Panel26.Size = New System.Drawing.Size(1120, 10)
         Me.Panel26.TabIndex = 189
         '
         'Panel25
@@ -814,7 +814,7 @@ Partial Class MDIFORM
         Me.Panel25.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel25.Location = New System.Drawing.Point(0, 0)
         Me.Panel25.Name = "Panel25"
-        Me.Panel25.Size = New System.Drawing.Size(782, 10)
+        Me.Panel25.Size = New System.Drawing.Size(1120, 10)
         Me.Panel25.TabIndex = 188
         '
         'OpenFileDialog2
@@ -860,7 +860,7 @@ Partial Class MDIFORM
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1028, 741)
+        Me.ClientSize = New System.Drawing.Size(1366, 768)
         Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.MenuStrip)
@@ -877,7 +877,6 @@ Partial Class MDIFORM
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "MDIFORM"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel1.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

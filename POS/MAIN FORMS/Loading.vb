@@ -366,6 +366,7 @@ Public Class Loading
             cmd.Dispose()
             Dispose()
             Login.Show()
+            Login.Focus()
             Login.txtusername.Focus()
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -413,6 +414,7 @@ Public Class Loading
         End If
         Dispose()
         Login.Show()
+        Login.Focus()
         Login.txtusername.Focus()
     End Sub
 #Region "Script Runner"

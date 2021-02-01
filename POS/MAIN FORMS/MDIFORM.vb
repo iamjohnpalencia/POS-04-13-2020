@@ -69,20 +69,21 @@
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Public newMDIchildInventory As Inventory
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         If Application.OpenForms().OfType(Of SynctoCloud).Any Then
             SynctoCloud.TopMost = False
         End If
         Try
-            Dim newMDIchild As New Inventory()
+            newMDIchildInventory = New Inventory
             If Application.OpenForms().OfType(Of Inventory).Any Then
             Else
                 btncolor(changecolor:=Button6)
                 btndefaut(defaultcolor:=Button6)
                 formclose(closeform:=Inventory)
-                newMDIchild.MdiParent = Me
-                newMDIchild.ShowIcon = False
-                newMDIchild.Show()
+                newMDIchildInventory.MdiParent = Me
+                newMDIchildInventory.ShowIcon = False
+                newMDIchildInventory.Show()
             End If
             If SyncIsOnProcess = False Then
                 SynctoCloud.Close()
