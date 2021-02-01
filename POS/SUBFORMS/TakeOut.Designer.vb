@@ -264,11 +264,11 @@ Partial Class TakeOut
         Me.ButtonTakeOut.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonTakeOut.FlatAppearance.BorderSize = 0
         Me.ButtonTakeOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonTakeOut.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonTakeOut.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.ButtonTakeOut.ForeColor = System.Drawing.Color.White
         Me.ButtonTakeOut.Location = New System.Drawing.Point(12, 246)
         Me.ButtonTakeOut.Name = "ButtonTakeOut"
-        Me.ButtonTakeOut.Size = New System.Drawing.Size(241, 39)
+        Me.ButtonTakeOut.Size = New System.Drawing.Size(237, 23)
         Me.ButtonTakeOut.TabIndex = 128
         Me.ButtonTakeOut.Text = "Take Out"
         Me.ButtonTakeOut.UseVisualStyleBackColor = False
@@ -276,7 +276,8 @@ Partial Class TakeOut
         'TakeOut
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(265, 297)
+        Me.BackColor = System.Drawing.Color.White
+        Me.ClientSize = New System.Drawing.Size(265, 277)
         Me.Controls.Add(Me.ButtonTakeOut)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.ButtonNo00)

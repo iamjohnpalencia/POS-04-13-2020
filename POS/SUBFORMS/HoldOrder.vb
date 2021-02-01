@@ -10,7 +10,6 @@ Public Class HoldOrder
             MsgBox("Input customer name first")
             TextBoxCustomerName.Clear()
         Else
-
             sql = "SELECT * FROM loc_pending_orders WHERE customer_name = '" & TextBoxCustomerName.Text & "'"
             cmd = New MySqlCommand(sql, LocalhostConn())
             RowsReturned = cmd.ExecuteScalar
@@ -104,8 +103,5 @@ Public Class HoldOrder
         If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
             e.Handled = True
         End If
-    End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Me.Close()
     End Sub
 End Class

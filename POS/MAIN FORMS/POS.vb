@@ -29,6 +29,7 @@ Public Class POS
     End Property
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _instance = Me
+        ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
         LabelFOOTER.Text = My.Settings.Footer
         Try
             If Application.OpenForms().OfType(Of SynctoCloud).Any Then
@@ -37,7 +38,7 @@ Public Class POS
             LabelStorename.Text = ClientStorename
             Label11.Focus()
             Timer1.Start()
-            Label76.Text = 0
+
             'listviewproductsshow(where:="Simply Perfect")
             selectmax(whatform:=1)
             DataGridViewOrders.Font = New Font("Tahoma", 11.25)

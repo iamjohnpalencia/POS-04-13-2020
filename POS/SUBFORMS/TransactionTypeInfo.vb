@@ -7,10 +7,7 @@
             TextBoxMARKUP.Text = "N/A"
         End If
     End Sub
-    Private Sub ButtonESC_Click(sender As Object, e As EventArgs) Handles ButtonESC.Click
 
-        Me.Close()
-    End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If String.IsNullOrWhiteSpace(TextBoxFULLNAME.Text) Or String.IsNullOrWhiteSpace(TextBoxREFERENCE.Text) Then
             MsgBox("Please fill out all fields.", vbInformation)
@@ -35,5 +32,9 @@
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
+    End Sub
+
+    Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
+        ShowKeyboard()
     End Sub
 End Class

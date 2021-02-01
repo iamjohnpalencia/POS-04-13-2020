@@ -135,7 +135,7 @@ Module publicVariables
     Public ValidDatabaseLocalConnection As Boolean = False
 
     Public DISABLESERVEROTHERSPRODUCT As Boolean = False
-    Public DisallowedCharacters As String = "'~`{}^¨|°¬+[]^¨\/,;=?<>" & """"
+    Public DisallowedCharacters As String = "!@#$%'~`{}^¨|°¬+[]^¨\/,;=?<>*&()_-+=" & """"
 
     Public SENIORDETAILSBOOL As Boolean = False
     Public SeniorDetailsID As String

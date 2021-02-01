@@ -23,7 +23,6 @@ Partial Class TransactionType
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ButtonOthers = New System.Windows.Forms.Button()
         Me.ButtonFoodP = New System.Windows.Forms.Button()
         Me.ButtonRepEx = New System.Windows.Forms.Button()
@@ -33,57 +32,34 @@ Partial Class TransactionType
         Me.ButtonGrab = New System.Windows.Forms.Button()
         Me.ButtonRegistered = New System.Windows.Forms.Button()
         Me.ButtonWalkIn = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.ButtonCancel = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.ButtonOthers)
-        Me.Panel1.Controls.Add(Me.ButtonFoodP)
-        Me.Panel1.Controls.Add(Me.ButtonRepEx)
-        Me.Panel1.Controls.Add(Me.ButtonPayMaya)
-        Me.Panel1.Controls.Add(Me.Buttonlalafood)
-        Me.Panel1.Controls.Add(Me.ButtonGcash)
-        Me.Panel1.Controls.Add(Me.ButtonGrab)
-        Me.Panel1.Controls.Add(Me.ButtonRegistered)
-        Me.Panel1.Controls.Add(Me.ButtonWalkIn)
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Controls.Add(Me.ButtonCancel)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(434, 273)
-        Me.Panel1.TabIndex = 0
         '
         'ButtonOthers
         '
-        Me.ButtonOthers.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonOthers.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonOthers.FlatAppearance.BorderSize = 0
         Me.ButtonOthers.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonOthers.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonOthers.ForeColor = System.Drawing.Color.White
-        Me.ButtonOthers.Location = New System.Drawing.Point(7, 225)
+        Me.ButtonOthers.Location = New System.Drawing.Point(3, 171)
         Me.ButtonOthers.Name = "ButtonOthers"
-        Me.ButtonOthers.Size = New System.Drawing.Size(207, 41)
+        Me.ButtonOthers.Size = New System.Drawing.Size(180, 40)
         Me.ButtonOthers.TabIndex = 109
         Me.ButtonOthers.Text = "Others"
         Me.ButtonOthers.UseVisualStyleBackColor = False
         '
         'ButtonFoodP
         '
-        Me.ButtonFoodP.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonFoodP.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonFoodP.FlatAppearance.BorderSize = 0
         Me.ButtonFoodP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonFoodP.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonFoodP.ForeColor = System.Drawing.Color.White
-        Me.ButtonFoodP.Location = New System.Drawing.Point(218, 180)
+        Me.ButtonFoodP.Location = New System.Drawing.Point(185, 129)
         Me.ButtonFoodP.Name = "ButtonFoodP"
-        Me.ButtonFoodP.Size = New System.Drawing.Size(207, 41)
+        Me.ButtonFoodP.Size = New System.Drawing.Size(180, 40)
         Me.ButtonFoodP.TabIndex = 108
         Me.ButtonFoodP.Text = "Food Panda"
         Me.ButtonFoodP.UseVisualStyleBackColor = False
@@ -95,23 +71,23 @@ Partial Class TransactionType
         Me.ButtonRepEx.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonRepEx.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonRepEx.ForeColor = System.Drawing.Color.White
-        Me.ButtonRepEx.Location = New System.Drawing.Point(7, 180)
+        Me.ButtonRepEx.Location = New System.Drawing.Point(3, 129)
         Me.ButtonRepEx.Name = "ButtonRepEx"
-        Me.ButtonRepEx.Size = New System.Drawing.Size(207, 41)
+        Me.ButtonRepEx.Size = New System.Drawing.Size(180, 40)
         Me.ButtonRepEx.TabIndex = 107
         Me.ButtonRepEx.Text = "Rep. Expenses"
         Me.ButtonRepEx.UseVisualStyleBackColor = False
         '
         'ButtonPayMaya
         '
-        Me.ButtonPayMaya.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonPayMaya.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonPayMaya.FlatAppearance.BorderSize = 0
         Me.ButtonPayMaya.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonPayMaya.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonPayMaya.ForeColor = System.Drawing.Color.White
-        Me.ButtonPayMaya.Location = New System.Drawing.Point(7, 135)
+        Me.ButtonPayMaya.Location = New System.Drawing.Point(3, 87)
         Me.ButtonPayMaya.Name = "ButtonPayMaya"
-        Me.ButtonPayMaya.Size = New System.Drawing.Size(207, 41)
+        Me.ButtonPayMaya.Size = New System.Drawing.Size(180, 40)
         Me.ButtonPayMaya.TabIndex = 106
         Me.ButtonPayMaya.Text = "Paymaya"
         Me.ButtonPayMaya.UseVisualStyleBackColor = False
@@ -123,9 +99,9 @@ Partial Class TransactionType
         Me.Buttonlalafood.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Buttonlalafood.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Buttonlalafood.ForeColor = System.Drawing.Color.White
-        Me.Buttonlalafood.Location = New System.Drawing.Point(218, 135)
+        Me.Buttonlalafood.Location = New System.Drawing.Point(185, 87)
         Me.Buttonlalafood.Name = "Buttonlalafood"
-        Me.Buttonlalafood.Size = New System.Drawing.Size(207, 41)
+        Me.Buttonlalafood.Size = New System.Drawing.Size(180, 40)
         Me.Buttonlalafood.TabIndex = 105
         Me.Buttonlalafood.Text = "Lalafood"
         Me.Buttonlalafood.UseVisualStyleBackColor = False
@@ -137,23 +113,23 @@ Partial Class TransactionType
         Me.ButtonGcash.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonGcash.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonGcash.ForeColor = System.Drawing.Color.White
-        Me.ButtonGcash.Location = New System.Drawing.Point(7, 90)
+        Me.ButtonGcash.Location = New System.Drawing.Point(3, 45)
         Me.ButtonGcash.Name = "ButtonGcash"
-        Me.ButtonGcash.Size = New System.Drawing.Size(207, 41)
+        Me.ButtonGcash.Size = New System.Drawing.Size(180, 40)
         Me.ButtonGcash.TabIndex = 104
         Me.ButtonGcash.Text = "GCash"
         Me.ButtonGcash.UseVisualStyleBackColor = False
         '
         'ButtonGrab
         '
-        Me.ButtonGrab.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonGrab.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonGrab.FlatAppearance.BorderSize = 0
         Me.ButtonGrab.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonGrab.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonGrab.ForeColor = System.Drawing.Color.White
-        Me.ButtonGrab.Location = New System.Drawing.Point(218, 90)
+        Me.ButtonGrab.Location = New System.Drawing.Point(185, 45)
         Me.ButtonGrab.Name = "ButtonGrab"
-        Me.ButtonGrab.Size = New System.Drawing.Size(207, 41)
+        Me.ButtonGrab.Size = New System.Drawing.Size(180, 40)
         Me.ButtonGrab.TabIndex = 103
         Me.ButtonGrab.Text = "Grab"
         Me.ButtonGrab.UseVisualStyleBackColor = False
@@ -165,36 +141,26 @@ Partial Class TransactionType
         Me.ButtonRegistered.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonRegistered.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonRegistered.ForeColor = System.Drawing.Color.White
-        Me.ButtonRegistered.Location = New System.Drawing.Point(218, 45)
+        Me.ButtonRegistered.Location = New System.Drawing.Point(185, 3)
         Me.ButtonRegistered.Name = "ButtonRegistered"
-        Me.ButtonRegistered.Size = New System.Drawing.Size(207, 41)
+        Me.ButtonRegistered.Size = New System.Drawing.Size(180, 40)
         Me.ButtonRegistered.TabIndex = 102
         Me.ButtonRegistered.Text = "Registered"
         Me.ButtonRegistered.UseVisualStyleBackColor = False
         '
         'ButtonWalkIn
         '
-        Me.ButtonWalkIn.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.ButtonWalkIn.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonWalkIn.FlatAppearance.BorderSize = 0
         Me.ButtonWalkIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonWalkIn.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonWalkIn.ForeColor = System.Drawing.Color.White
-        Me.ButtonWalkIn.Location = New System.Drawing.Point(7, 45)
+        Me.ButtonWalkIn.Location = New System.Drawing.Point(3, 3)
         Me.ButtonWalkIn.Name = "ButtonWalkIn"
-        Me.ButtonWalkIn.Size = New System.Drawing.Size(207, 41)
+        Me.ButtonWalkIn.Size = New System.Drawing.Size(180, 40)
         Me.ButtonWalkIn.TabIndex = 101
         Me.ButtonWalkIn.Text = "Walk-In"
         Me.ButtonWalkIn.UseVisualStyleBackColor = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(22, 7)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(384, 35)
-        Me.Label1.TabIndex = 100
-        Me.Label1.Text = "SELECT TRANSACTION TYPE"
         '
         'ButtonCancel
         '
@@ -203,9 +169,9 @@ Partial Class TransactionType
         Me.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonCancel.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonCancel.ForeColor = System.Drawing.Color.White
-        Me.ButtonCancel.Location = New System.Drawing.Point(218, 225)
+        Me.ButtonCancel.Location = New System.Drawing.Point(185, 171)
         Me.ButtonCancel.Name = "ButtonCancel"
-        Me.ButtonCancel.Size = New System.Drawing.Size(207, 41)
+        Me.ButtonCancel.Size = New System.Drawing.Size(180, 40)
         Me.ButtonCancel.TabIndex = 99
         Me.ButtonCancel.Text = "Cancel"
         Me.ButtonCancel.UseVisualStyleBackColor = False
@@ -214,22 +180,31 @@ Partial Class TransactionType
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(434, 273)
-        Me.Controls.Add(Me.Panel1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.BackColor = System.Drawing.Color.White
+        Me.ClientSize = New System.Drawing.Size(368, 214)
+        Me.Controls.Add(Me.ButtonOthers)
+        Me.Controls.Add(Me.ButtonFoodP)
+        Me.Controls.Add(Me.ButtonWalkIn)
+        Me.Controls.Add(Me.ButtonRepEx)
+        Me.Controls.Add(Me.ButtonCancel)
+        Me.Controls.Add(Me.ButtonPayMaya)
+        Me.Controls.Add(Me.ButtonRegistered)
+        Me.Controls.Add(Me.Buttonlalafood)
+        Me.Controls.Add(Me.ButtonGrab)
+        Me.Controls.Add(Me.ButtonGcash)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "TransactionType"
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "TransactionType"
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
+        Me.Text = "SELECT TRANSACTION TYPE"
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents ButtonCancel As Button
     Friend WithEvents ButtonWalkIn As Button
-    Friend WithEvents Label1 As Label
     Friend WithEvents ButtonRepEx As Button
     Friend WithEvents ButtonPayMaya As Button
     Friend WithEvents Buttonlalafood As Button

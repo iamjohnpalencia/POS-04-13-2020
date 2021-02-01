@@ -23,10 +23,14 @@
         Me.Close()
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles ButtonGcash.Click
-        modeoftransaction = True
-        TransactionType(ButtonGcash)
-        ButtonCancel.Enabled = False
-        TransactionTypeInfo.Show()
+        If POS.DataGridViewOrders.Rows.Count > 0 Then
+            modeoftransaction = True
+            TransactionType(ButtonGcash)
+            ButtonCancel.Enabled = False
+            TransactionTypeInfo.Show()
+        Else
+            MsgBox("Order first")
+        End If
     End Sub
     Private Sub ButtonGrab_Click(sender As Object, e As EventArgs) Handles ButtonGrab.Click
         modeoftransaction = False

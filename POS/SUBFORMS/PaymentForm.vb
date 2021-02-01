@@ -31,8 +31,8 @@
                     .BackgroundWorker1.WorkerSupportsCancellation = True
                     .BackgroundWorker1.WorkerReportsProgress = True
                     .BackgroundWorker1.RunWorkerAsync()
-                    .Label9.Text = TextBoxMONEY.Text
-                    .Label13.Text = TextBoxCHANGE.Text
+                    .Label9.Text = Format(Val(TextBoxMONEY.Text), "###,###,##0.00")
+                    .Label13.Text = Format(Val(TextBoxCHANGE.Text), "###,###,##0.00")
                     Close()
                     WaitFrm.Show()
                 End If

@@ -36,7 +36,13 @@ Public Class Loading
         End Try
     End Sub
     Private Sub Load2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Loadme()
+        Try
+            ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
+            Loadme()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Dim threadList As List(Of Thread) = New List(Of Thread)
 

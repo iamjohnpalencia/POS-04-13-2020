@@ -42,7 +42,6 @@ Partial Class POS
         Me.LabelCheckingUpdates = New System.Windows.Forms.Label()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel32 = New System.Windows.Forms.Panel()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -117,7 +116,6 @@ Partial Class POS
         Me.Panel31 = New System.Windows.Forms.Panel()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.Panel33 = New System.Windows.Forms.Panel()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -204,11 +202,12 @@ Partial Class POS
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel8.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel34.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        Me.Panel32.SuspendLayout()
         Me.Panel22.SuspendLayout()
         CType(Me.DataGridViewInv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel14.SuspendLayout()
@@ -223,7 +222,6 @@ Partial Class POS
         Me.Panel28.SuspendLayout()
         Me.Panel31.SuspendLayout()
         Me.Panel9.SuspendLayout()
-        Me.Panel33.SuspendLayout()
         Me.Panel10.SuspendLayout()
         Me.Panel13.SuspendLayout()
         CType(Me.DataGridView5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -231,6 +229,8 @@ Partial Class POS
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel2.SuspendLayout()
+        Me.TableLayoutPanel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel7
@@ -294,9 +294,9 @@ Partial Class POS
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(361, 6)
+        Me.ProgressBar1.Location = New System.Drawing.Point(361, 8)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(214, 18)
+        Me.ProgressBar1.Size = New System.Drawing.Size(312, 15)
         Me.ProgressBar1.TabIndex = 17
         Me.ProgressBar1.Visible = False
         '
@@ -364,7 +364,7 @@ Partial Class POS
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.Panel32)
+        Me.Panel1.Controls.Add(Me.TableLayoutPanel3)
         Me.Panel1.Controls.Add(Me.LabelStorename)
         Me.Panel1.Controls.Add(Me.Label11)
         Me.Panel1.Controls.Add(Me.Panel22)
@@ -374,67 +374,57 @@ Partial Class POS
         Me.Panel1.Size = New System.Drawing.Size(1366, 36)
         Me.Panel1.TabIndex = 0
         '
-        'Panel32
-        '
-        Me.Panel32.Controls.Add(Me.Label13)
-        Me.Panel32.Controls.Add(Me.Label5)
-        Me.Panel32.Controls.Add(Me.Label9)
-        Me.Panel32.Controls.Add(Me.Label14)
-        Me.Panel32.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel32.Location = New System.Drawing.Point(203, 0)
-        Me.Panel32.Name = "Panel32"
-        Me.Panel32.Size = New System.Drawing.Size(437, 34)
-        Me.Panel32.TabIndex = 156
-        '
         'Label13
         '
         Me.Label13.AutoSize = True
+        Me.Label13.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label13.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.White
-        Me.Label13.Location = New System.Drawing.Point(146, 16)
+        Me.Label13.Location = New System.Drawing.Point(370, 17)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(18, 18)
+        Me.Label13.Size = New System.Drawing.Size(18, 17)
         Me.Label13.TabIndex = 159
         Me.Label13.Text = "0"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
         Me.Label5.Location = New System.Drawing.Point(3, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(119, 18)
+        Me.Label5.Size = New System.Drawing.Size(123, 17)
         Me.Label5.TabIndex = 156
-        Me.Label5.Text = "Previous Cash:"
+        Me.Label5.Text = "PREVIOUS CASH:"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
+        Me.Label9.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.White
-        Me.Label9.Location = New System.Drawing.Point(146, 0)
+        Me.Label9.Location = New System.Drawing.Point(370, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(18, 18)
+        Me.Label9.Size = New System.Drawing.Size(18, 17)
         Me.Label9.TabIndex = 157
         Me.Label9.Text = "0"
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.Black
-        Me.Label14.Location = New System.Drawing.Point(3, 16)
+        Me.Label14.Location = New System.Drawing.Point(3, 17)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(138, 18)
+        Me.Label14.Size = New System.Drawing.Size(143, 17)
         Me.Label14.TabIndex = 158
-        Me.Label14.Text = "Previous Change:"
+        Me.Label14.Text = "PREVIOUS CHANGE:"
         '
         'LabelStorename
         '
         Me.LabelStorename.AutoSize = True
         Me.LabelStorename.Dock = System.Windows.Forms.DockStyle.Left
-        Me.LabelStorename.Font = New System.Drawing.Font("Tahoma", 20.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelStorename.Font = New System.Drawing.Font("Tahoma", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelStorename.ForeColor = System.Drawing.Color.Black
         Me.LabelStorename.Location = New System.Drawing.Point(0, 0)
         Me.LabelStorename.Name = "LabelStorename"
@@ -473,7 +463,7 @@ Partial Class POS
         Me.ButtonExpense.Cursor = System.Windows.Forms.Cursors.Hand
         Me.ButtonExpense.FlatAppearance.BorderSize = 0
         Me.ButtonExpense.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonExpense.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonExpense.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonExpense.ForeColor = System.Drawing.Color.White
         Me.ButtonExpense.Location = New System.Drawing.Point(204, 0)
         Me.ButtonExpense.Name = "ButtonExpense"
@@ -489,7 +479,7 @@ Partial Class POS
         Me.ButtonSettings.Cursor = System.Windows.Forms.Cursors.Hand
         Me.ButtonSettings.FlatAppearance.BorderSize = 0
         Me.ButtonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonSettings.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonSettings.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonSettings.ForeColor = System.Drawing.Color.White
         Me.ButtonSettings.Location = New System.Drawing.Point(305, 0)
         Me.ButtonSettings.Name = "ButtonSettings"
@@ -505,7 +495,7 @@ Partial Class POS
         Me.ButtonLogout.Cursor = System.Windows.Forms.Cursors.Hand
         Me.ButtonLogout.FlatAppearance.BorderSize = 0
         Me.ButtonLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonLogout.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonLogout.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonLogout.ForeColor = System.Drawing.Color.White
         Me.ButtonLogout.Location = New System.Drawing.Point(406, 0)
         Me.ButtonLogout.Name = "ButtonLogout"
@@ -521,7 +511,7 @@ Partial Class POS
         Me.ButtonPromo.Cursor = System.Windows.Forms.Cursors.Hand
         Me.ButtonPromo.FlatAppearance.BorderSize = 0
         Me.ButtonPromo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonPromo.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonPromo.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonPromo.ForeColor = System.Drawing.Color.White
         Me.ButtonPromo.Location = New System.Drawing.Point(103, 0)
         Me.ButtonPromo.Name = "ButtonPromo"
@@ -537,7 +527,7 @@ Partial Class POS
         Me.ButtonMenu.Cursor = System.Windows.Forms.Cursors.Hand
         Me.ButtonMenu.FlatAppearance.BorderSize = 0
         Me.ButtonMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonMenu.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonMenu.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonMenu.ForeColor = System.Drawing.Color.White
         Me.ButtonMenu.Location = New System.Drawing.Point(2, 0)
         Me.ButtonMenu.Name = "ButtonMenu"
@@ -739,9 +729,9 @@ Partial Class POS
         'Label10
         '
         Me.Label10.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Label10.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold)
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(176, 0)
+        Me.Label10.Location = New System.Drawing.Point(191, 0)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(20, 22)
         Me.Label10.TabIndex = 77
@@ -751,18 +741,18 @@ Partial Class POS
         '
         Me.TextBoxGRANDTOTAL.AutoSize = True
         Me.TextBoxGRANDTOTAL.Dock = System.Windows.Forms.DockStyle.Right
-        Me.TextBoxGRANDTOTAL.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxGRANDTOTAL.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold)
         Me.TextBoxGRANDTOTAL.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.TextBoxGRANDTOTAL.Location = New System.Drawing.Point(196, 0)
+        Me.TextBoxGRANDTOTAL.Location = New System.Drawing.Point(211, 0)
         Me.TextBoxGRANDTOTAL.Name = "TextBoxGRANDTOTAL"
-        Me.TextBoxGRANDTOTAL.Size = New System.Drawing.Size(58, 25)
+        Me.TextBoxGRANDTOTAL.Size = New System.Drawing.Size(43, 18)
         Me.TextBoxGRANDTOTAL.TabIndex = 79
         Me.TextBoxGRANDTOTAL.Text = "0.00"
         '
         'Label73
         '
         Me.Label73.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label73.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label73.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label73.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(146, Byte), Integer), CType(CType(143, Byte), Integer))
         Me.Label73.Location = New System.Drawing.Point(3, 0)
         Me.Label73.Name = "Label73"
@@ -773,7 +763,7 @@ Partial Class POS
         'TextBoxDISCOUNT
         '
         Me.TextBoxDISCOUNT.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBoxDISCOUNT.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxDISCOUNT.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxDISCOUNT.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(146, Byte), Integer), CType(CType(143, Byte), Integer))
         Me.TextBoxDISCOUNT.Location = New System.Drawing.Point(176, 0)
         Me.TextBoxDISCOUNT.Name = "TextBoxDISCOUNT"
@@ -785,7 +775,7 @@ Partial Class POS
         'TextBoxSUBTOTAL
         '
         Me.TextBoxSUBTOTAL.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBoxSUBTOTAL.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxSUBTOTAL.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxSUBTOTAL.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(146, Byte), Integer), CType(CType(143, Byte), Integer))
         Me.TextBoxSUBTOTAL.Location = New System.Drawing.Point(176, 21)
         Me.TextBoxSUBTOTAL.Name = "TextBoxSUBTOTAL"
@@ -797,7 +787,7 @@ Partial Class POS
         'Label6
         '
         Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label6.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(136, Byte), Integer), CType(CType(146, Byte), Integer), CType(CType(143, Byte), Integer))
         Me.Label6.Location = New System.Drawing.Point(3, 21)
         Me.Label6.Name = "Label6"
@@ -808,7 +798,7 @@ Partial Class POS
         'Label71
         '
         Me.Label71.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label71.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label71.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold)
         Me.Label71.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.Label71.Location = New System.Drawing.Point(3, 42)
         Me.Label71.Name = "Label71"
@@ -822,7 +812,7 @@ Partial Class POS
         Me.ButtonWaffleUpgrade.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonWaffleUpgrade.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonWaffleUpgrade.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonWaffleUpgrade.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonWaffleUpgrade.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonWaffleUpgrade.ForeColor = System.Drawing.Color.White
         Me.ButtonWaffleUpgrade.Location = New System.Drawing.Point(293, 11)
         Me.ButtonWaffleUpgrade.Name = "ButtonWaffleUpgrade"
@@ -838,7 +828,7 @@ Partial Class POS
         Me.ButtonPayMent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonPayMent.Enabled = False
         Me.ButtonPayMent.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonPayMent.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonPayMent.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonPayMent.ForeColor = System.Drawing.Color.White
         Me.ButtonPayMent.Location = New System.Drawing.Point(8, 11)
         Me.ButtonPayMent.Name = "ButtonPayMent"
@@ -853,7 +843,7 @@ Partial Class POS
         Me.ButtonTransactionMode.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.ButtonTransactionMode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonTransactionMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonTransactionMode.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonTransactionMode.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonTransactionMode.ForeColor = System.Drawing.Color.White
         Me.ButtonTransactionMode.Location = New System.Drawing.Point(147, 11)
         Me.ButtonTransactionMode.Name = "ButtonTransactionMode"
@@ -867,15 +857,16 @@ Partial Class POS
         Me.Button1.AutoSize = True
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(226, -1)
+        Me.Button1.Location = New System.Drawing.Point(227, 3)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(113, 33)
+        Me.Button1.Size = New System.Drawing.Size(109, 26)
         Me.Button1.TabIndex = 63
-        Me.Button1.Text = "Take-out"
+        Me.Button1.Text = "TAKE-OUT"
         Me.Button1.UseVisualStyleBackColor = False
         '
         'Buttonholdoder
@@ -883,16 +874,17 @@ Partial Class POS
         Me.Buttonholdoder.AutoSize = True
         Me.Buttonholdoder.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Buttonholdoder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Buttonholdoder.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Buttonholdoder.Enabled = False
         Me.Buttonholdoder.FlatAppearance.BorderSize = 0
         Me.Buttonholdoder.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Buttonholdoder.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Buttonholdoder.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Buttonholdoder.ForeColor = System.Drawing.Color.White
-        Me.Buttonholdoder.Location = New System.Drawing.Point(113, -1)
+        Me.Buttonholdoder.Location = New System.Drawing.Point(115, 3)
         Me.Buttonholdoder.Name = "Buttonholdoder"
-        Me.Buttonholdoder.Size = New System.Drawing.Size(113, 33)
+        Me.Buttonholdoder.Size = New System.Drawing.Size(106, 26)
         Me.Buttonholdoder.TabIndex = 60
-        Me.Buttonholdoder.Text = "Hold"
+        Me.Buttonholdoder.Text = "HOLD ORDER"
         Me.Buttonholdoder.UseVisualStyleBackColor = False
         '
         'ButtonPendingOrders
@@ -900,15 +892,16 @@ Partial Class POS
         Me.ButtonPendingOrders.AutoSize = True
         Me.ButtonPendingOrders.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonPendingOrders.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonPendingOrders.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ButtonPendingOrders.FlatAppearance.BorderSize = 0
         Me.ButtonPendingOrders.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonPendingOrders.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonPendingOrders.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonPendingOrders.ForeColor = System.Drawing.Color.White
-        Me.ButtonPendingOrders.Location = New System.Drawing.Point(0, 0)
+        Me.ButtonPendingOrders.Location = New System.Drawing.Point(3, 3)
         Me.ButtonPendingOrders.Name = "ButtonPendingOrders"
-        Me.ButtonPendingOrders.Size = New System.Drawing.Size(113, 33)
+        Me.ButtonPendingOrders.Size = New System.Drawing.Size(106, 26)
         Me.ButtonPendingOrders.TabIndex = 61
-        Me.ButtonPendingOrders.Text = "Pending"
+        Me.ButtonPendingOrders.Text = "PENDING"
         Me.ButtonPendingOrders.UseVisualStyleBackColor = False
         '
         'ButtonApplyCoupon
@@ -919,7 +912,7 @@ Partial Class POS
         Me.ButtonApplyCoupon.Enabled = False
         Me.ButtonApplyCoupon.FlatAppearance.BorderSize = 0
         Me.ButtonApplyCoupon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonApplyCoupon.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonApplyCoupon.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonApplyCoupon.ForeColor = System.Drawing.Color.White
         Me.ButtonApplyCoupon.Location = New System.Drawing.Point(0, 21)
         Me.ButtonApplyCoupon.Name = "ButtonApplyCoupon"
@@ -1073,7 +1066,7 @@ Partial Class POS
         '
         'Panel27
         '
-        Me.Panel27.BackColor = System.Drawing.Color.SlateGray
+        Me.Panel27.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.Panel27.Controls.Add(Me.Panel30)
         Me.Panel27.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel27.Location = New System.Drawing.Point(10, 350)
@@ -1095,11 +1088,11 @@ Partial Class POS
         '
         Me.Label8.AutoSize = True
         Me.Label8.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Label8.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.Label8.ForeColor = System.Drawing.Color.White
-        Me.Label8.Location = New System.Drawing.Point(109, 0)
+        Me.Label8.Location = New System.Drawing.Point(115, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(18, 19)
+        Me.Label8.Size = New System.Drawing.Size(16, 18)
         Me.Label8.TabIndex = 72
         Me.Label8.Text = "₱"
         '
@@ -1107,11 +1100,11 @@ Partial Class POS
         '
         Me.Label76.AutoSize = True
         Me.Label76.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Label76.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label76.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.Label76.ForeColor = System.Drawing.Color.White
-        Me.Label76.Location = New System.Drawing.Point(127, 0)
+        Me.Label76.Location = New System.Drawing.Point(131, 0)
         Me.Label76.Name = "Label76"
-        Me.Label76.Size = New System.Drawing.Size(41, 19)
+        Me.Label76.Size = New System.Drawing.Size(37, 18)
         Me.Label76.TabIndex = 58
         Me.Label76.Text = "0.00"
         '
@@ -1135,7 +1128,7 @@ Partial Class POS
         Me.ButtonCDISC.Dock = System.Windows.Forms.DockStyle.Right
         Me.ButtonCDISC.FlatAppearance.BorderSize = 0
         Me.ButtonCDISC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonCDISC.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonCDISC.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonCDISC.ForeColor = System.Drawing.Color.White
         Me.ButtonCDISC.Location = New System.Drawing.Point(230, 21)
         Me.ButtonCDISC.Name = "ButtonCDISC"
@@ -1157,18 +1150,18 @@ Partial Class POS
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.Label7.ForeColor = System.Drawing.Color.White
         Me.Label7.Location = New System.Drawing.Point(3, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(145, 19)
+        Me.Label7.Size = New System.Drawing.Size(134, 18)
         Me.Label7.TabIndex = 74
         Me.Label7.Text = "PROMO / COUPON"
         '
         'Panel9
         '
-        Me.Panel9.BackColor = System.Drawing.Color.SlateGray
-        Me.Panel9.Controls.Add(Me.Panel33)
+        Me.Panel9.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.Panel9.Controls.Add(Me.TableLayoutPanel2)
         Me.Panel9.Controls.Add(Me.Label4)
         Me.Panel9.Controls.Add(Me.Label3)
         Me.Panel9.Controls.Add(Me.Label2)
@@ -1178,17 +1171,6 @@ Partial Class POS
         Me.Panel9.Name = "Panel9"
         Me.Panel9.Size = New System.Drawing.Size(339, 60)
         Me.Panel9.TabIndex = 62
-        '
-        'Panel33
-        '
-        Me.Panel33.Controls.Add(Me.Button1)
-        Me.Panel33.Controls.Add(Me.ButtonPendingOrders)
-        Me.Panel33.Controls.Add(Me.Buttonholdoder)
-        Me.Panel33.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel33.Location = New System.Drawing.Point(0, 0)
-        Me.Panel33.Name = "Panel33"
-        Me.Panel33.Size = New System.Drawing.Size(339, 30)
-        Me.Panel33.TabIndex = 65
         '
         'Label4
         '
@@ -1230,9 +1212,9 @@ Partial Class POS
         Me.Label1.ForeColor = System.Drawing.Color.White
         Me.Label1.Location = New System.Drawing.Point(-1, 35)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(50, 19)
+        Me.Label1.Size = New System.Drawing.Size(109, 19)
         Me.Label1.TabIndex = 68
-        Me.Label1.Text = "Name"
+        Me.Label1.Text = "Product Name"
         '
         'Panel10
         '
@@ -1275,7 +1257,7 @@ Partial Class POS
         Me.ButtonCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonCancel.FlatAppearance.BorderSize = 0
         Me.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonCancel.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonCancel.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonCancel.ForeColor = System.Drawing.Color.White
         Me.ButtonCancel.Location = New System.Drawing.Point(5, 203)
         Me.ButtonCancel.Name = "ButtonCancel"
@@ -1290,7 +1272,7 @@ Partial Class POS
         Me.ButtonClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonClear.FlatAppearance.BorderSize = 0
         Me.ButtonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonClear.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonClear.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonClear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonClear.Location = New System.Drawing.Point(254, 41)
         Me.ButtonClear.Name = "ButtonClear"
@@ -1305,7 +1287,7 @@ Partial Class POS
         Me.Buttondot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Buttondot.FlatAppearance.BorderSize = 0
         Me.Buttondot.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Buttondot.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Buttondot.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.Buttondot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.Buttondot.Location = New System.Drawing.Point(254, 95)
         Me.Buttondot.Name = "Buttondot"
@@ -1316,11 +1298,11 @@ Partial Class POS
         '
         'ButtonEnter
         '
-        Me.ButtonEnter.BackColor = System.Drawing.Color.SlateGray
+        Me.ButtonEnter.BackColor = System.Drawing.Color.FromArgb(CType(CType(221, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(46, Byte), Integer))
         Me.ButtonEnter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonEnter.FlatAppearance.BorderSize = 0
         Me.ButtonEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonEnter.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonEnter.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonEnter.ForeColor = System.Drawing.Color.White
         Me.ButtonEnter.Location = New System.Drawing.Point(254, 149)
         Me.ButtonEnter.Name = "ButtonEnter"
@@ -1335,7 +1317,7 @@ Partial Class POS
         Me.ButtonNo00.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonNo00.FlatAppearance.BorderSize = 0
         Me.ButtonNo00.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonNo00.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonNo00.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonNo00.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonNo00.Location = New System.Drawing.Point(171, 203)
         Me.ButtonNo00.Name = "ButtonNo00"
@@ -1350,7 +1332,7 @@ Partial Class POS
         Me.ButtonNo0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonNo0.FlatAppearance.BorderSize = 0
         Me.ButtonNo0.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonNo0.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonNo0.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonNo0.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonNo0.Location = New System.Drawing.Point(88, 203)
         Me.ButtonNo0.Name = "ButtonNo0"
@@ -1365,7 +1347,7 @@ Partial Class POS
         Me.ButtonNo2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonNo2.FlatAppearance.BorderSize = 0
         Me.ButtonNo2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonNo2.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonNo2.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonNo2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonNo2.Location = New System.Drawing.Point(88, 149)
         Me.ButtonNo2.Name = "ButtonNo2"
@@ -1380,7 +1362,7 @@ Partial Class POS
         Me.ButtonNo1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonNo1.FlatAppearance.BorderSize = 0
         Me.ButtonNo1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonNo1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonNo1.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonNo1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonNo1.Location = New System.Drawing.Point(5, 149)
         Me.ButtonNo1.Name = "ButtonNo1"
@@ -1395,7 +1377,7 @@ Partial Class POS
         Me.ButtonNo5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonNo5.FlatAppearance.BorderSize = 0
         Me.ButtonNo5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonNo5.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonNo5.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonNo5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonNo5.Location = New System.Drawing.Point(88, 95)
         Me.ButtonNo5.Name = "ButtonNo5"
@@ -1410,7 +1392,7 @@ Partial Class POS
         Me.ButtonNo4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonNo4.FlatAppearance.BorderSize = 0
         Me.ButtonNo4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonNo4.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonNo4.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonNo4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonNo4.Location = New System.Drawing.Point(5, 95)
         Me.ButtonNo4.Name = "ButtonNo4"
@@ -1425,7 +1407,7 @@ Partial Class POS
         Me.ButtonNo8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonNo8.FlatAppearance.BorderSize = 0
         Me.ButtonNo8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonNo8.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonNo8.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonNo8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonNo8.Location = New System.Drawing.Point(88, 41)
         Me.ButtonNo8.Name = "ButtonNo8"
@@ -1440,7 +1422,7 @@ Partial Class POS
         Me.ButtonNo7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonNo7.FlatAppearance.BorderSize = 0
         Me.ButtonNo7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonNo7.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonNo7.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonNo7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonNo7.Location = New System.Drawing.Point(5, 41)
         Me.ButtonNo7.Name = "ButtonNo7"
@@ -1471,7 +1453,7 @@ Partial Class POS
         Me.ButtonNo3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonNo3.FlatAppearance.BorderSize = 0
         Me.ButtonNo3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonNo3.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonNo3.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonNo3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonNo3.Location = New System.Drawing.Point(171, 149)
         Me.ButtonNo3.Name = "ButtonNo3"
@@ -1486,7 +1468,7 @@ Partial Class POS
         Me.ButtonNo9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonNo9.FlatAppearance.BorderSize = 0
         Me.ButtonNo9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonNo9.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonNo9.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonNo9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonNo9.Location = New System.Drawing.Point(171, 41)
         Me.ButtonNo9.Name = "ButtonNo9"
@@ -1501,7 +1483,7 @@ Partial Class POS
         Me.ButtonNo6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ButtonNo6.FlatAppearance.BorderSize = 0
         Me.ButtonNo6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonNo6.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonNo6.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.ButtonNo6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
         Me.ButtonNo6.Location = New System.Drawing.Point(171, 95)
         Me.ButtonNo6.Name = "ButtonNo6"
@@ -1986,6 +1968,42 @@ Partial Class POS
         Me.Panel3.Size = New System.Drawing.Size(977, 70)
         Me.Panel3.TabIndex = 39
         '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.TableLayoutPanel2.ColumnCount = 3
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanel2.Controls.Add(Me.Button1, 2, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.ButtonPendingOrders, 0, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Buttonholdoder, 1, 0)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 1
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(339, 32)
+        Me.TableLayoutPanel2.TabIndex = 72
+        '
+        'TableLayoutPanel3
+        '
+        Me.TableLayoutPanel3.ColumnCount = 2
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+        Me.TableLayoutPanel3.Controls.Add(Me.Label13, 1, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label5, 0, 0)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label9, 1, 0)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label14, 0, 1)
+        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(203, 0)
+        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+        Me.TableLayoutPanel3.RowCount = 2
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(391, 34)
+        Me.TableLayoutPanel3.TabIndex = 0
+        '
         'POS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2016,8 +2034,6 @@ Partial Class POS
         Me.Panel34.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        Me.Panel32.ResumeLayout(False)
-        Me.Panel32.PerformLayout()
         Me.Panel22.ResumeLayout(False)
         CType(Me.DataGridViewInv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel14.ResumeLayout(False)
@@ -2037,8 +2053,6 @@ Partial Class POS
         Me.Panel31.PerformLayout()
         Me.Panel9.ResumeLayout(False)
         Me.Panel9.PerformLayout()
-        Me.Panel33.ResumeLayout(False)
-        Me.Panel33.PerformLayout()
         Me.Panel10.ResumeLayout(False)
         Me.Panel10.PerformLayout()
         Me.Panel13.ResumeLayout(False)
@@ -2048,6 +2062,10 @@ Partial Class POS
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel2.PerformLayout()
+        Me.TableLayoutPanel3.ResumeLayout(False)
+        Me.TableLayoutPanel3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2135,10 +2153,8 @@ Partial Class POS
     Friend WithEvents Label9 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Button1 As Button
-    Friend WithEvents Panel32 As Panel
     Friend WithEvents Panel24 As Panel
     Friend WithEvents LabelFOOTER As Label
-    Friend WithEvents Panel33 As Panel
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
     Friend WithEvents DataGridView4 As DataGridView
     Friend WithEvents DataGridView3 As DataGridView
@@ -2226,4 +2242,6 @@ Partial Class POS
     Friend WithEvents Column47 As DataGridViewTextBoxColumn
     Friend WithEvents Column48 As DataGridViewTextBoxColumn
     Friend WithEvents Column49 As DataGridViewTextBoxColumn
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
 End Class
