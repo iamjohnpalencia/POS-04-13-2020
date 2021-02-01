@@ -658,6 +658,10 @@ Public Class SynctoCloud
         End Try
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles ButtonSYNCDATA.Click
+        SyncData()
+    End Sub
+
+    Private Sub SyncData()
         Try
             If ButtonSYNCDATA.Text = "SYNC" Then
                 If ValidCloudConnection = True Then
@@ -688,6 +692,10 @@ Public Class SynctoCloud
         End Try
     End Sub
     Private Sub ButtonSYNCINVENTORY_Click(sender As Object, e As EventArgs) Handles ButtonSYNCINVENTORY.Click
+        SyncInventory()
+    End Sub
+
+    Private Sub SyncInventory()
         Try
             ButtonSYNCDATA.Enabled = False
             If ButtonSYNCINVENTORY.Text = "SYNC INVENTORY" Then
@@ -2188,6 +2196,33 @@ Public Class SynctoCloud
         Catch ex As Exception
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+        Try
+            If Button2.Text = "Start" Then
+                RadioButton1.Enabled = False
+                RadioButton2.Enabled = False
+                If RadioButton1.Checked = True Then
+                    ButtonSYNCDATA.PerformClick()
+                ElseIf RadioButton2.Checked = True Then
+                    ButtonSYNCINVENTORY.PerformClick()
+                End If
+                Button2.Text = "Cancel Sync"
+            Else
+                If RadioButton1.Checked = True Then
+                    ButtonSYNCDATA.PerformClick()
+                ElseIf RadioButton2.Checked = True Then
+                    ButtonSYNCINVENTORY.PerformClick()
+                End If
+                RadioButton1.Enabled = True
+                RadioButton2.Enabled = True
+                Button2.Text = "Start"
+            End If
+        Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
         End Try
