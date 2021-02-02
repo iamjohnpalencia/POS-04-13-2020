@@ -59,8 +59,8 @@ Public Class Addexpense
                             , '" & ClientGuid & "'
                             , '" & ClientStoreID & "'
                             , " & 1 & "
-                            , 'Unsynced'
-                            , '" & S_Zreading & "')"
+                            , '" & S_Zreading & "'
+                            , 'Unsynced')"
                     successmessage = "Success"
                     errormessage = "error addexpenses(loc_expense_details)"
                     GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
