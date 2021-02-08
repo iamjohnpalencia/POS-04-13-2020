@@ -426,6 +426,7 @@ Module publicfunctions
             da.Fill(dt)
             Dim brandfont As New Font("Tahoma", 7, FontStyle.Bold)
             Dim font As New Font("Tahoma", 6)
+            Dim font1 As New Font("Tahoma", 5, FontStyle.Bold)
             CenterTextDisplay(sender, e, dt(0)(0).ToUpper, brandfont, a + 195)
             CenterTextDisplay(sender, e, "VAT REG TIN : " & dt(0)(2).ToString, font, a + 205)
             CenterTextDisplay(sender, e, dt(0)(1), font, a + 215)
@@ -435,6 +436,9 @@ Module publicfunctions
             CenterTextDisplay(sender, e, "PERMIT TO OPERATE : " & dt(0)(6), font, a + 255)
             CenterTextDisplay(sender, e, "DATE ISSUED : " & dt(0)(7), font, a + 265)
             CenterTextDisplay(sender, e, "VALID UNTIL : " & dt(0)(8), font, a + 275)
+            CenterTextDisplay(sender, e, "THIS INVOICE/RECEIPT SHALL BE ", font1, a + 285)
+            CenterTextDisplay(sender, e, "VALID FOR FIVE(5) YEARS FROM THE DATE ", font1, a + 295)
+            CenterTextDisplay(sender, e, "OF THE PERMIT TO USE", font1, a + 305)
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)

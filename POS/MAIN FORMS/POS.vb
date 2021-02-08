@@ -1064,53 +1064,55 @@ Public Class POS
                     BackgroundWorker1.ReportProgress(i)
                     If i = 0 Then
                         .Label1.Text = "Transaction is processing. Please wait."
-                        thread = New Thread(AddressOf InsertFMStock)
-                        thread.Start()
-                        THREADLIST.Add(thread)
-                        For Each t In THREADLIST
-                            t.Join()
-                        Next
-                        thread = New Thread(AddressOf UpdateInventory)
-                        thread.Start()
-                        THREADLIST.Add(thread)
-                        For Each t In THREADLIST
-                            t.Join()
-                        Next
-                        thread = New Thread(AddressOf InsertDailyTransaction)
-                        thread.Start()
-                        THREADLIST.Add(thread)
-                        For Each t In THREADLIST
-                            t.Join()
-                        Next
-                        thread = New Thread(AddressOf InsertDailyDetails)
-                        thread.Start()
-                        THREADLIST.Add(thread)
-                        For Each t In THREADLIST
-                            t.Join()
-                        Next
-                        If modeoftransaction = True Then
-                            thread = New Thread(AddressOf InsertModeofTransaction)
+                        If S_TrainingMode = False Then
+                            thread = New Thread(AddressOf InsertFMStock)
                             thread.Start()
                             THREADLIST.Add(thread)
                             For Each t In THREADLIST
                                 t.Join()
                             Next
-                        End If
-                        If SENIORDETAILSBOOL = True Then
-                            thread = New Thread(AddressOf InsertSeniorDetails)
+                            thread = New Thread(AddressOf UpdateInventory)
                             thread.Start()
                             THREADLIST.Add(thread)
                             For Each t In THREADLIST
                                 t.Join()
                             Next
-                        End If
-                        If CouponApplied = True Then
-                            thread = New Thread(AddressOf InsertCouponData)
+                            thread = New Thread(AddressOf InsertDailyTransaction)
                             thread.Start()
                             THREADLIST.Add(thread)
                             For Each t In THREADLIST
                                 t.Join()
                             Next
+                            thread = New Thread(AddressOf InsertDailyDetails)
+                            thread.Start()
+                            THREADLIST.Add(thread)
+                            For Each t In THREADLIST
+                                t.Join()
+                            Next
+                            If modeoftransaction = True Then
+                                thread = New Thread(AddressOf InsertModeofTransaction)
+                                thread.Start()
+                                THREADLIST.Add(thread)
+                                For Each t In THREADLIST
+                                    t.Join()
+                                Next
+                            End If
+                            If SENIORDETAILSBOOL = True Then
+                                thread = New Thread(AddressOf InsertSeniorDetails)
+                                thread.Start()
+                                THREADLIST.Add(thread)
+                                For Each t In THREADLIST
+                                    t.Join()
+                                Next
+                            End If
+                            If CouponApplied = True Then
+                                thread = New Thread(AddressOf InsertCouponData)
+                                thread.Start()
+                                THREADLIST.Add(thread)
+                                For Each t In THREADLIST
+                                    t.Join()
+                                Next
+                            End If
                         End If
                     End If
                     Thread.Sleep(10)
@@ -1225,7 +1227,6 @@ Public Class POS
         Try
             With Me
                 a = 0
-                ' Microsoft Sans Serif, 8.25pt
                 Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
                 Dim font2 As New Font("Tahoma", 7, FontStyle.Bold)
                 Dim font As New Font("Tahoma", 6)
@@ -1267,7 +1268,6 @@ Public Class POS
                 End If
                 Dim Qty = SumOfColumnsToInt(.DataGridViewOrders, 1)
 
-
                 Dim NETSALES As Double = 0
                 If S_ZeroRated = "0" Then
                     NETSALES = Format(SUPERAMOUNTDUE, "###,###,##0.00")
@@ -1301,16 +1301,18 @@ Public Class POS
                     SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 110, a + 140)
                     SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 140)
                     SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 150)
-                    SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 160)
+                    If S_TrainingMode Then
+                        SimpleTextDisplay(sender, e, "THIS IS NOT AN OFFICIAL RECEIPT", font, 0, a + 160)
+                    Else
+                        SimpleTextDisplay(sender, e, "THIS SERVES AS AN OFFICIAL RECEIPT", font, 0, a + 160)
+                    End If
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 174)
                     ReceiptFooter(sender, e, a + 12)
-
                 Else
                     Dim aNumber1 As Double = TEXTBOXCHANGEVALUE
                     Dim change = String.Format("{0:n2}", aNumber1)
                     Dim aNumber As Double = TEXTBOXMONEYVALUE
                     Dim cash = String.Format("{0:n2}", aNumber)
-
                     RightToLeftDisplay(sender, e, a, "SUB TOTAL:", "P" & Format(Double.Parse(Label76.Text), "###,###,##0.00"), font1, 0, 0)
                     RightToLeftDisplay(sender, e, a + 10, "DISCOUNT:", Format(Double.Parse(TextBoxDISCOUNT.Text), "###,###,##0.00") & "-", font1, 0, 0)
                     RightToLeftDisplay(sender, e, a + 20, "AMOUNT DUE:", "P" & Format(Double.Parse(TextBoxGRANDTOTAL.Text), "###,###,##0.00"), font2, 0, 0)
@@ -1348,7 +1350,11 @@ Public Class POS
                     SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 120, a + 150)
                     SimpleTextDisplay(sender, e, "Ref. #: " & TextBoxMAXID.Text, font, 0, a + 150)
                     SimpleTextDisplay(sender, e, "SI No: " & SiNumberToString, font, 0, a + 160)
-                    SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 170)
+                    If S_TrainingMode Then
+                        SimpleTextDisplay(sender, e, "THIS IS NOT AN OFFICIAL RECEIPT", font, 0, a + 170)
+                    Else
+                        SimpleTextDisplay(sender, e, "THIS SERVES AS AN OFFICIAL RECEIPT", font, 0, a + 170)
+                    End If
                     a += 6
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 180)
                     a += 16

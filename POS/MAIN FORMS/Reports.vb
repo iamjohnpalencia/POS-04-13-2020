@@ -7,13 +7,15 @@ Public Class Reports
     Private WithEvents printdocInventory As PrintDocument = New PrintDocument
     Private WithEvents printdocReturns As PrintDocument = New PrintDocument
     Private WithEvents printsales As PrintDocument = New PrintDocument
-
+    Private WithEvents printtransactiontype As PrintDocument = New PrintDocument
 
     Private PrintPreviewDialog1 As New PrintPreviewDialog
     Private PrintPreviewDialogXread As New PrintPreviewDialog
     Private PrintPreviewDialogInventory As New PrintPreviewDialog
     Private PrintPreviewDialogReturns As New PrintPreviewDialog
     Private previewsales As New PrintPreviewDialog
+    Private previewtransactiontype As New PrintPreviewDialog
+
 
     Dim buttons As DataGridViewButtonColumn = New DataGridViewButtonColumn()
     Dim user_id As String
@@ -40,7 +42,7 @@ Public Class Reports
             TabControl1.TabPages(5).Text = "Item Return"
             TabControl1.TabPages(6).Text = "Deposit Slip"
             TabControl1.TabPages(7).Text = "Z/X Reading"
-
+            ComboBoxTransactionType.SelectedIndex = 0
             reportsdailytransaction(False)
             reportssystemlogs(False)
             reportssales(False)
@@ -323,7 +325,7 @@ Public Class Reports
     End Sub
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles ButtonSearchDailyTransaction.Click
         reportsdailytransaction(True)
-        DataGridViewTransactionDetails.DataSource = Nothing
+        DataGridViewTransactionDetails.Rows.Clear()
     End Sub
     Private Sub ButtonSearchSystemLogs_Click(sender As Object, e As EventArgs) Handles ButtonSearchSystemLogs.Click
         reportssystemlogs(True)
@@ -363,35 +365,124 @@ Public Class Reports
         End Try
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        If DataGridViewTransactionDetails.Rows.Count > 0 Then
-
-            total = SumOfColumnsToDecimal(DataGridViewTransactionDetails, 3)
-            Try
-                For i As Integer = 0 To DataGridViewTransactionDetails.Rows.Count - 1 Step +1
-                    b += 10
-                    If DataGridViewTransactionDetails.Rows(i).Cells(5).Value = "YES" Then
+        If ComboBoxTransactionType.Text = "All" Then
+            If DataGridViewTransactionDetails.Rows.Count > 0 Then
+                total = SumOfColumnsToDecimal(DataGridViewTransactionDetails, 3)
+                Try
+                    For i As Integer = 0 To DataGridViewTransactionDetails.Rows.Count - 1 Step +1
                         b += 10
+                        If DataGridViewTransactionDetails.Rows(i).Cells(5).Value = "YES" Then
+                            b += 10
+                        End If
+                    Next
+                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
+                    If S_Reprint = "YES" Then
+                        printdoc.Print()
+                    Else
+                        PrintPreviewDialog1.Document = printdoc
+                        PrintPreviewDialog1.ShowDialog()
+                    End If
+                    b = 0
+                Catch ex As Exception
+                    MessageBox.Show("An error occurred while trying to load the " &
+                        "document for Print Preview. Make sure you currently have " &
+                        "access to a printer. A printer must be localconnected and " &
+                        "accessible for Print Preview to work.", Me.Text,
+                         MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    SendErrorReport(ex.ToString)
+                End Try
+            Else
+                MsgBox("Select Transaction First!")
+            End If
+        Else
+            printtransactiontype.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 300)
+            If S_Reprint = "YES" Then
+                printtransactiontype.Print()
+            Else
+                previewtransactiontype.Document = printtransactiontype
+                previewtransactiontype.ShowDialog()
+            End If
+        End If
+    End Sub
+
+    Private Sub pdoctransactiontype_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles printtransactiontype.PrintPage
+        Try
+            ReceiptHeader(sender, e)
+            Dim WalkinTotal As Decimal = 0
+            Dim Registered As Decimal = 0
+            Dim GCash As Decimal = 0
+            Dim Grab As Decimal = 0
+            Dim Paymaya As Decimal = 0
+            Dim Lalafood As Decimal = 0
+            Dim RepExpense As Decimal = 0
+            Dim FoodPanda As Decimal = 0
+            Dim Others As Decimal = 0
+
+            Dim WalkinTotalqty As Integer = 0
+            Dim Registeredqty As Integer = 0
+            Dim GCashqty As Integer = 0
+            Dim Grabqty As Integer = 0
+            Dim Paymayaqty As Integer = 0
+            Dim Lalafoodqty As Integer = 0
+            Dim RepExpenseqty As Integer = 0
+            Dim FoodPandaqty As Integer = 0
+            Dim Othersqty As Integer = 0
+
+            With DataGridViewDaily
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If .Rows(i).Cells(11).Value = "Walk-In" Then
+                        WalkinTotal += .Rows(i).Cells(1).Value
+                        WalkinTotalqty += 1
+                    ElseIf .Rows(i).Cells(11).Value = "Registered" Then
+                        Registered += .Rows(i).Cells(1).Value
+                        Registeredqty += 1
+                    ElseIf .Rows(i).Cells(11).Value = "GCash" Then
+                        GCash += .Rows(i).Cells(1).Value
+                        GCashqty += 1
+                    ElseIf .Rows(i).Cells(11).Value = "Grab" Then
+                        Grab += .Rows(i).Cells(1).Value
+                        Grabqty += 1
+                    ElseIf .Rows(i).Cells(11).Value = "Paymaya" Then
+                        Paymaya += .Rows(i).Cells(1).Value
+                        Paymayaqty += 1
+                    ElseIf .Rows(i).Cells(11).Value = "Lalafood" Then
+                        Lalafood += .Rows(i).Cells(1).Value
+                        Lalafoodqty += 1
+                    ElseIf .Rows(i).Cells(11).Value = "Representation Expenses" Then
+                        RepExpense += .Rows(i).Cells(1).Value
+                        RepExpenseqty += 1
+                    ElseIf .Rows(i).Cells(11).Value = "Food Panda" Then
+                        FoodPanda += .Rows(i).Cells(1).Value
+                        FoodPandaqty += 1
+                    ElseIf .Rows(i).Cells(11).Value = "Others" Then
+                        Others += .Rows(i).Cells(1).Value
+                        Othersqty += 1
                     End If
                 Next
-                printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
-                If S_Reprint = "YES" Then
-                    printdoc.Print()
-                Else
-                    PrintPreviewDialog1.Document = printdoc
-                    PrintPreviewDialog1.ShowDialog()
-                End If
-                b = 0
-            Catch ex As Exception
-                MessageBox.Show("An error occurred while trying to load the " &
-                    "document for Print Preview. Make sure you currently have " &
-                    "access to a printer. A printer must be localconnected and " &
-                    "accessible for Print Preview to work.", Me.Text,
-                     MessageBoxButtons.OK, MessageBoxIcon.Error)
-                SendErrorReport(ex.ToString)
-            End Try
-        Else
-            MsgBox("Select Transaction First!")
-        End If
+            End With
+
+            Dim font As New Font("Tahoma", 6)
+            Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
+            RightToLeftDisplay(sender, e, 120, "LIST OF TRANSACTION TYPES:", "", font1, 0, 0)
+
+            RightToLeftDisplay(sender, e, 140, "Type/Count:", ":" & "Total", font, 0, 0)
+
+            RightToLeftDisplay(sender, e, 160, "Walk-In(" & WalkinTotalqty & ")", NUMBERFORMAT(WalkinTotal), font, 0, 0)
+            RightToLeftDisplay(sender, e, 170, "Registered(" & Registeredqty & ")", NUMBERFORMAT(Registered), font, 0, 0)
+            RightToLeftDisplay(sender, e, 180, "GCash(" & GCashqty & ")", NUMBERFORMAT(GCash), font, 0, 0)
+            RightToLeftDisplay(sender, e, 190, "Grab(" & Grabqty & ")", NUMBERFORMAT(Grab), font, 0, 0)
+            RightToLeftDisplay(sender, e, 200, "Paymaya(" & Paymayaqty & ")", NUMBERFORMAT(Paymaya), font, 0, 0)
+            RightToLeftDisplay(sender, e, 210, "Lalafood(" & Lalafoodqty & ")", NUMBERFORMAT(Lalafood), font, 0, 0)
+            RightToLeftDisplay(sender, e, 220, "Rep. Expenses(" & RepExpenseqty & ")", NUMBERFORMAT(RepExpense), font, 0, 0)
+            RightToLeftDisplay(sender, e, 230, "Food Panda(" & FoodPandaqty & ")", NUMBERFORMAT(FoodPanda), font, 0, 0)
+            RightToLeftDisplay(sender, e, 240, "Others(" & Othersqty & ")", NUMBERFORMAT(Others), font, 0, 0)
+
+            CenterTextDisplay(sender, e, "From: " & Format(DateTimePicker1.Value, "yyyy-MM-dd") & " - To: " & Format(DateTimePicker2.Value, "yyyy-MM-dd"), font, 260)
+
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Private Sub pdoc_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles printdoc.PrintPage
         Try

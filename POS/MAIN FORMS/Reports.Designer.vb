@@ -74,7 +74,9 @@ Partial Class Reports
         Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Button8 = New System.Windows.Forms.Button()
+        Me.ComboBoxTransactionType = New System.Windows.Forms.ComboBox()
         Me.ButtonSearchDailyTransaction = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
@@ -82,6 +84,13 @@ Partial Class Reports
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Panel10 = New System.Windows.Forms.Panel()
         Me.DataGridViewTransactionDetails = New System.Windows.Forms.DataGridView()
+        Me.Column21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel11 = New System.Windows.Forms.Panel()
         Me.Panel28 = New System.Windows.Forms.Panel()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -175,18 +184,12 @@ Partial Class Reports
         Me.pdoc = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.Column21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.DataGridViewDaily, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
+        Me.Panel23.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel10.SuspendLayout()
         CType(Me.DataGridViewTransactionDetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -411,7 +414,8 @@ Partial Class Reports
         '
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel4.Controls.Add(Me.Button8)
+        Me.Panel4.Controls.Add(Me.Panel23)
+        Me.Panel4.Controls.Add(Me.ComboBoxTransactionType)
         Me.Panel4.Controls.Add(Me.ButtonSearchDailyTransaction)
         Me.Panel4.Controls.Add(Me.Label3)
         Me.Panel4.Controls.Add(Me.DateTimePicker1)
@@ -422,14 +426,35 @@ Partial Class Reports
         Me.Panel4.Size = New System.Drawing.Size(1117, 37)
         Me.Panel4.TabIndex = 5
         '
+        'Panel23
+        '
+        Me.Panel23.Controls.Add(Me.Button8)
+        Me.Panel23.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel23.Location = New System.Drawing.Point(964, 0)
+        Me.Panel23.Name = "Panel23"
+        Me.Panel23.Size = New System.Drawing.Size(151, 35)
+        Me.Panel23.TabIndex = 187
+        '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(801, 3)
+        Me.Button8.Location = New System.Drawing.Point(3, 3)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(138, 29)
+        Me.Button8.Size = New System.Drawing.Size(145, 29)
         Me.Button8.TabIndex = 8
         Me.Button8.Text = "Reset Sales"
         Me.Button8.UseVisualStyleBackColor = True
+        '
+        'ComboBoxTransactionType
+        '
+        Me.ComboBoxTransactionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxTransactionType.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBoxTransactionType.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBoxTransactionType.FormattingEnabled = True
+        Me.ComboBoxTransactionType.Items.AddRange(New Object() {"All", "Transaction type"})
+        Me.ComboBoxTransactionType.Location = New System.Drawing.Point(711, 7)
+        Me.ComboBoxTransactionType.Name = "ComboBoxTransactionType"
+        Me.ComboBoxTransactionType.Size = New System.Drawing.Size(105, 22)
+        Me.ComboBoxTransactionType.TabIndex = 187
         '
         'ButtonSearchDailyTransaction
         '
@@ -439,7 +464,7 @@ Partial Class Reports
         Me.ButtonSearchDailyTransaction.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonSearchDailyTransaction.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonSearchDailyTransaction.ForeColor = System.Drawing.Color.White
-        Me.ButtonSearchDailyTransaction.Location = New System.Drawing.Point(711, 7)
+        Me.ButtonSearchDailyTransaction.Location = New System.Drawing.Point(822, 7)
         Me.ButtonSearchDailyTransaction.Name = "ButtonSearchDailyTransaction"
         Me.ButtonSearchDailyTransaction.Size = New System.Drawing.Size(84, 23)
         Me.ButtonSearchDailyTransaction.TabIndex = 7
@@ -526,6 +551,41 @@ Partial Class Reports
         Me.DataGridViewTransactionDetails.Name = "DataGridViewTransactionDetails"
         Me.DataGridViewTransactionDetails.Size = New System.Drawing.Size(1117, 225)
         Me.DataGridViewTransactionDetails.TabIndex = 3
+        '
+        'Column21
+        '
+        Me.Column21.HeaderText = "Product Name"
+        Me.Column21.Name = "Column21"
+        '
+        'Column22
+        '
+        Me.Column22.HeaderText = "Quantity"
+        Me.Column22.Name = "Column22"
+        '
+        'Column23
+        '
+        Me.Column23.HeaderText = "Price"
+        Me.Column23.Name = "Column23"
+        '
+        'Column24
+        '
+        Me.Column24.HeaderText = "Total"
+        Me.Column24.Name = "Column24"
+        '
+        'Column25
+        '
+        Me.Column25.HeaderText = "Category"
+        Me.Column25.Name = "Column25"
+        '
+        'Column26
+        '
+        Me.Column26.HeaderText = "Waffle Upgrade"
+        Me.Column26.Name = "Column26"
+        '
+        'Column27
+        '
+        Me.Column27.HeaderText = "Add-Ons type"
+        Me.Column27.Name = "Column27"
         '
         'Panel11
         '
@@ -1708,41 +1768,6 @@ Partial Class Reports
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Column21
-        '
-        Me.Column21.HeaderText = "Product Name"
-        Me.Column21.Name = "Column21"
-        '
-        'Column22
-        '
-        Me.Column22.HeaderText = "Quantity"
-        Me.Column22.Name = "Column22"
-        '
-        'Column23
-        '
-        Me.Column23.HeaderText = "Price"
-        Me.Column23.Name = "Column23"
-        '
-        'Column24
-        '
-        Me.Column24.HeaderText = "Total"
-        Me.Column24.Name = "Column24"
-        '
-        'Column25
-        '
-        Me.Column25.HeaderText = "Category"
-        Me.Column25.Name = "Column25"
-        '
-        'Column26
-        '
-        Me.Column26.HeaderText = "Waffle Upgrade"
-        Me.Column26.Name = "Column26"
-        '
-        'Column27
-        '
-        Me.Column27.HeaderText = "Add-Ons type"
-        Me.Column27.Name = "Column27"
-        '
         'Reports
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1760,6 +1785,7 @@ Partial Class Reports
         CType(Me.DataGridViewDaily, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
+        Me.Panel23.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         Me.Panel10.ResumeLayout(False)
         CType(Me.DataGridViewTransactionDetails, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1948,4 +1974,6 @@ Partial Class Reports
     Friend WithEvents Column25 As DataGridViewTextBoxColumn
     Friend WithEvents Column26 As DataGridViewTextBoxColumn
     Friend WithEvents Column27 As DataGridViewTextBoxColumn
+    Friend WithEvents ComboBoxTransactionType As ComboBox
+    Friend WithEvents Panel23 As Panel
 End Class

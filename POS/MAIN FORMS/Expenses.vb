@@ -161,7 +161,7 @@ Public Class Expenses
         ShowKeyboard()
     End Sub
 
-    Private Sub TextBoxQTY_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxQTY.KeyPress, TextBoxPRICE.KeyPress
+    Private Sub TextBoxQTY_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxQTY.KeyPress, TextBoxPRICE.KeyPress, TextBoxTOTAL.KeyPress
         Try
             Numeric(sender, e)
         Catch ex As Exception
@@ -170,5 +170,13 @@ Public Class Expenses
         End Try
     End Sub
 
-
+    Private Sub TextBoxITEMINF_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxITEMINF.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 End Class

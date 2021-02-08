@@ -357,4 +357,15 @@ Public Class StockAdjustment
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+
+    Private Sub TextBoxIReason_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxIReason.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
 End Class

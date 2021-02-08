@@ -35,6 +35,7 @@ Public Class SettingsForm
             LoadDevInfo()
             LoadAutoBackup()
             LoadPrintOptions()
+            LoadTrainingMode()
 
             If ClientRole <> "Admin" And ClientRole <> "Manager" Then
                 TabControl1.TabPages.Remove(TabControl1.TabPages(5))
@@ -291,6 +292,22 @@ Public Class SettingsForm
 #Region "Returns"
     Private Sub rowindex()
         LabelITEMRET.Text = DataGridViewITEMRETURN1.CurrentCell.RowIndex
+    End Sub
+    Private Sub LoadTrainingMode()
+        Try
+            If ClientRole <> "Admin" Then
+                RadioButtonTrainingOFF.Enabled = False
+                RadioButtonTraningON.Enabled = False
+            End If
+            If S_TrainingMode Then
+                RadioButtonTraningON.Checked = True
+            Else
+                RadioButtonTrainingOFF.Checked = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub loaditemreturn(justload As Boolean)
         Try
@@ -1287,7 +1304,7 @@ Public Class SettingsForm
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-    Private Sub TextBoxCName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxSearchTranNumber.KeyPress, TextBoxIRREASON.KeyPress
+    Private Sub TextBoxCName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxSearchTranNumber.KeyPress, TextBoxIRREASON.KeyPress, TextBoxCName.KeyPress, TextBoxCDesc.KeyPress, TextBoxCBV.KeyPress, TextBoxCBBP.KeyPress
         Try
             If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
                 e.Handled = True
@@ -2727,6 +2744,21 @@ Public Class SettingsForm
             MsgBox(ex.ToString)
             PrintReturns = ""
             PrintReturnsBool = False
+        End Try
+    End Sub
+
+    Private Sub RadioButtonTrainingOFF_Click(sender As Object, e As EventArgs) Handles RadioButtonTraningON.Click, RadioButtonTrainingOFF.Click
+        Try
+            If RadioButtonTraningON.Checked Then
+                S_TrainingMode = True
+                MessageBox.Show("Training mode is ON", "NOTICE", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ElseIf RadioButtonTrainingOFF.Checked Then
+                S_TrainingMode = False
+                MessageBox.Show("Training mode is OFF", "NOTICE", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
         End Try
     End Sub
 #End Region

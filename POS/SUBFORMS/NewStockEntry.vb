@@ -130,4 +130,13 @@ Public Class NewStockEntry
     Private Sub NewStockEntry_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         MDIFORM.newMDIchildInventory.Enabled = True
     End Sub
+
+    Private Sub TextBoxEQuantity_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxEQuantity.KeyPress
+        Try
+            Numeric(sender, e)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
 End Class

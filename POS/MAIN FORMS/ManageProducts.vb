@@ -351,5 +351,16 @@ Public Class ManageProducts
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+
+    Private Sub TextBoxSearchProductList_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxSearchProductList.KeyPress, TextBox1.KeyPress, TextBox2.KeyPress, TextBox3.KeyPress, TextBox4.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
 End Class
 

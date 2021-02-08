@@ -42,6 +42,7 @@ Partial Class POS
         Me.LabelCheckingUpdates = New System.Windows.Forms.Label()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -116,6 +117,7 @@ Partial Class POS
         Me.Panel31 = New System.Windows.Forms.Panel()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -202,12 +204,11 @@ Partial Class POS
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel8.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel34.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.TableLayoutPanel3.SuspendLayout()
         Me.Panel22.SuspendLayout()
         CType(Me.DataGridViewInv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel14.SuspendLayout()
@@ -222,6 +223,7 @@ Partial Class POS
         Me.Panel28.SuspendLayout()
         Me.Panel31.SuspendLayout()
         Me.Panel9.SuspendLayout()
+        Me.TableLayoutPanel2.SuspendLayout()
         Me.Panel10.SuspendLayout()
         Me.Panel13.SuspendLayout()
         CType(Me.DataGridView5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -229,8 +231,6 @@ Partial Class POS
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TableLayoutPanel2.SuspendLayout()
-        Me.TableLayoutPanel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel7
@@ -373,6 +373,24 @@ Partial Class POS
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1366, 36)
         Me.Panel1.TabIndex = 0
+        '
+        'TableLayoutPanel3
+        '
+        Me.TableLayoutPanel3.ColumnCount = 2
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+        Me.TableLayoutPanel3.Controls.Add(Me.Label13, 1, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label5, 0, 0)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label9, 1, 0)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label14, 0, 1)
+        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(203, 0)
+        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+        Me.TableLayoutPanel3.RowCount = 2
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(391, 34)
+        Me.TableLayoutPanel3.TabIndex = 0
         '
         'Label13
         '
@@ -862,9 +880,9 @@ Partial Class POS
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(227, 3)
+        Me.Button1.Location = New System.Drawing.Point(229, 3)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(109, 26)
+        Me.Button1.Size = New System.Drawing.Size(107, 26)
         Me.Button1.TabIndex = 63
         Me.Button1.Text = "TAKE-OUT"
         Me.Button1.UseVisualStyleBackColor = False
@@ -880,9 +898,9 @@ Partial Class POS
         Me.Buttonholdoder.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Buttonholdoder.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Buttonholdoder.ForeColor = System.Drawing.Color.White
-        Me.Buttonholdoder.Location = New System.Drawing.Point(115, 3)
+        Me.Buttonholdoder.Location = New System.Drawing.Point(116, 3)
         Me.Buttonholdoder.Name = "Buttonholdoder"
-        Me.Buttonholdoder.Size = New System.Drawing.Size(106, 26)
+        Me.Buttonholdoder.Size = New System.Drawing.Size(107, 26)
         Me.Buttonholdoder.TabIndex = 60
         Me.Buttonholdoder.Text = "HOLD ORDER"
         Me.Buttonholdoder.UseVisualStyleBackColor = False
@@ -899,7 +917,7 @@ Partial Class POS
         Me.ButtonPendingOrders.ForeColor = System.Drawing.Color.White
         Me.ButtonPendingOrders.Location = New System.Drawing.Point(3, 3)
         Me.ButtonPendingOrders.Name = "ButtonPendingOrders"
-        Me.ButtonPendingOrders.Size = New System.Drawing.Size(106, 26)
+        Me.ButtonPendingOrders.Size = New System.Drawing.Size(107, 26)
         Me.ButtonPendingOrders.TabIndex = 61
         Me.ButtonPendingOrders.Text = "PENDING"
         Me.ButtonPendingOrders.UseVisualStyleBackColor = False
@@ -1171,6 +1189,24 @@ Partial Class POS
         Me.Panel9.Name = "Panel9"
         Me.Panel9.Size = New System.Drawing.Size(339, 60)
         Me.Panel9.TabIndex = 62
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.TableLayoutPanel2.ColumnCount = 3
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanel2.Controls.Add(Me.Button1, 2, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.ButtonPendingOrders, 0, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Buttonholdoder, 1, 0)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 1
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(339, 32)
+        Me.TableLayoutPanel2.TabIndex = 72
         '
         'Label4
         '
@@ -1968,42 +2004,6 @@ Partial Class POS
         Me.Panel3.Size = New System.Drawing.Size(977, 70)
         Me.Panel3.TabIndex = 39
         '
-        'TableLayoutPanel2
-        '
-        Me.TableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.TableLayoutPanel2.ColumnCount = 3
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel2.Controls.Add(Me.Button1, 2, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.ButtonPendingOrders, 0, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.Buttonholdoder, 1, 0)
-        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
-        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
-        Me.TableLayoutPanel2.RowCount = 1
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(339, 32)
-        Me.TableLayoutPanel2.TabIndex = 72
-        '
-        'TableLayoutPanel3
-        '
-        Me.TableLayoutPanel3.ColumnCount = 2
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.Label13, 1, 1)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label5, 0, 0)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label9, 1, 0)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label14, 0, 1)
-        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(203, 0)
-        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-        Me.TableLayoutPanel3.RowCount = 2
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(391, 34)
-        Me.TableLayoutPanel3.TabIndex = 0
-        '
         'POS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2034,6 +2034,8 @@ Partial Class POS
         Me.Panel34.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.TableLayoutPanel3.ResumeLayout(False)
+        Me.TableLayoutPanel3.PerformLayout()
         Me.Panel22.ResumeLayout(False)
         CType(Me.DataGridViewInv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel14.ResumeLayout(False)
@@ -2053,6 +2055,8 @@ Partial Class POS
         Me.Panel31.PerformLayout()
         Me.Panel9.ResumeLayout(False)
         Me.Panel9.PerformLayout()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel2.PerformLayout()
         Me.Panel10.ResumeLayout(False)
         Me.Panel10.PerformLayout()
         Me.Panel13.ResumeLayout(False)
@@ -2062,10 +2066,6 @@ Partial Class POS
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TableLayoutPanel2.ResumeLayout(False)
-        Me.TableLayoutPanel2.PerformLayout()
-        Me.TableLayoutPanel3.ResumeLayout(False)
-        Me.TableLayoutPanel3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

@@ -97,6 +97,8 @@ Module publicVariables
     Public S_Reprint As String
     Public S_Print_XZRead As String
     Public S_Print_Returns As String
+    'Training MOde
+    Public S_TrainingMode As Boolean = False
     '=============================================================================================================
     'btn click refresh
     Public btnperformclick As Boolean = False
