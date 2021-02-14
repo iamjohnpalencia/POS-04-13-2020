@@ -409,6 +409,10 @@ Partial Class SettingsForm
         Me.Column47 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column48 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column49 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TableLayoutPanel13 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GroupBox18 = New System.Windows.Forms.GroupBox()
+        Me.RadioButtonInvResetOff = New System.Windows.Forms.RadioButton()
+        Me.RadioButtonInvResetOn = New System.Windows.Forms.RadioButton()
         Me.TabPage6.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -505,6 +509,8 @@ Partial Class SettingsForm
         Me.TabControl1.SuspendLayout()
         Me.TabPage16.SuspendLayout()
         CType(Me.DataGridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel13.SuspendLayout()
+        Me.GroupBox18.SuspendLayout()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -3473,10 +3479,10 @@ Partial Class SettingsForm
         'TabPage12
         '
         Me.TabPage12.Controls.Add(Me.Panel10)
-        Me.TabPage12.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage12.Location = New System.Drawing.Point(4, 28)
         Me.TabPage12.Name = "TabPage12"
         Me.TabPage12.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage12.Size = New System.Drawing.Size(1017, 449)
+        Me.TabPage12.Size = New System.Drawing.Size(1017, 443)
         Me.TabPage12.TabIndex = 1
         Me.TabPage12.Text = "TabPage12"
         Me.TabPage12.UseVisualStyleBackColor = True
@@ -3487,7 +3493,7 @@ Partial Class SettingsForm
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel10.Location = New System.Drawing.Point(3, 3)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(1011, 443)
+        Me.Panel10.Size = New System.Drawing.Size(1011, 437)
         Me.Panel10.TabIndex = 0
         '
         'TableLayoutPanel2
@@ -3504,7 +3510,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1011, 443)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1011, 437)
         Me.TableLayoutPanel2.TabIndex = 10
         '
         'GroupBox6
@@ -3514,7 +3520,7 @@ Partial Class SettingsForm
         Me.GroupBox6.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox6.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(1005, 141)
+        Me.GroupBox6.Size = New System.Drawing.Size(1005, 139)
         Me.GroupBox6.TabIndex = 4
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "System Database Option"
@@ -3531,7 +3537,7 @@ Partial Class SettingsForm
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel8.Location = New System.Drawing.Point(3, 22)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(999, 116)
+        Me.Panel8.Size = New System.Drawing.Size(999, 114)
         Me.Panel8.TabIndex = 0
         '
         'ButtonOptimizeDB
@@ -3605,9 +3611,9 @@ Partial Class SettingsForm
         Me.GroupBox2.Controls.Add(Me.Panel7)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 150)
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 148)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(1005, 141)
+        Me.GroupBox2.Size = New System.Drawing.Size(1005, 139)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Manual System Backup"
@@ -3621,7 +3627,7 @@ Partial Class SettingsForm
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel7.Location = New System.Drawing.Point(3, 22)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(999, 116)
+        Me.Panel7.Size = New System.Drawing.Size(999, 114)
         Me.Panel7.TabIndex = 0
         '
         'TextBoxLocalRestorePath
@@ -3671,9 +3677,9 @@ Partial Class SettingsForm
         Me.GroupBox1.Controls.Add(Me.Panel6)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 297)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 293)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1005, 143)
+        Me.GroupBox1.Size = New System.Drawing.Size(1005, 141)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Schedule Automatic System Backup"
@@ -3685,7 +3691,7 @@ Partial Class SettingsForm
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel6.Location = New System.Drawing.Point(3, 22)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(999, 118)
+        Me.Panel6.Size = New System.Drawing.Size(999, 116)
         Me.Panel6.TabIndex = 0
         '
         'Label60
@@ -4188,7 +4194,7 @@ Partial Class SettingsForm
         Me.TableLayoutPanel3.ColumnCount = 1
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel3.Controls.Add(Me.GroupBox12, 0, 0)
-        Me.TableLayoutPanel3.Controls.Add(Me.GroupBox17, 0, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.TableLayoutPanel13, 0, 1)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(340, 3)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
@@ -4336,9 +4342,9 @@ Partial Class SettingsForm
         Me.GroupBox17.Controls.Add(Me.RadioButtonTrainingOFF)
         Me.GroupBox17.Controls.Add(Me.RadioButtonTraningON)
         Me.GroupBox17.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox17.Location = New System.Drawing.Point(3, 218)
+        Me.GroupBox17.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(325, 210)
+        Me.GroupBox17.Size = New System.Drawing.Size(319, 99)
         Me.GroupBox17.TabIndex = 297
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "Training /No sales transaction mode"
@@ -4510,6 +4516,57 @@ Partial Class SettingsForm
         Me.Column49.Name = "Column49"
         Me.Column49.ReadOnly = True
         '
+        'TableLayoutPanel13
+        '
+        Me.TableLayoutPanel13.ColumnCount = 1
+        Me.TableLayoutPanel13.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel13.Controls.Add(Me.GroupBox17, 0, 0)
+        Me.TableLayoutPanel13.Controls.Add(Me.GroupBox18, 0, 1)
+        Me.TableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel13.Location = New System.Drawing.Point(3, 218)
+        Me.TableLayoutPanel13.Name = "TableLayoutPanel13"
+        Me.TableLayoutPanel13.RowCount = 2
+        Me.TableLayoutPanel13.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel13.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel13.Size = New System.Drawing.Size(325, 210)
+        Me.TableLayoutPanel13.TabIndex = 297
+        '
+        'GroupBox18
+        '
+        Me.GroupBox18.Controls.Add(Me.RadioButtonInvResetOff)
+        Me.GroupBox18.Controls.Add(Me.RadioButtonInvResetOn)
+        Me.GroupBox18.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox18.Location = New System.Drawing.Point(3, 108)
+        Me.GroupBox18.Name = "GroupBox18"
+        Me.GroupBox18.Size = New System.Drawing.Size(319, 99)
+        Me.GroupBox18.TabIndex = 298
+        Me.GroupBox18.TabStop = False
+        Me.GroupBox18.Text = "Automatic Inventory Reset(Monthly)"
+        '
+        'RadioButtonInvResetOff
+        '
+        Me.RadioButtonInvResetOff.AutoSize = True
+        Me.RadioButtonInvResetOff.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButtonInvResetOff.Location = New System.Drawing.Point(158, 39)
+        Me.RadioButtonInvResetOff.Name = "RadioButtonInvResetOff"
+        Me.RadioButtonInvResetOff.Size = New System.Drawing.Size(43, 20)
+        Me.RadioButtonInvResetOff.TabIndex = 291
+        Me.RadioButtonInvResetOff.TabStop = True
+        Me.RadioButtonInvResetOff.Text = "Off"
+        Me.RadioButtonInvResetOff.UseVisualStyleBackColor = True
+        '
+        'RadioButtonInvResetOn
+        '
+        Me.RadioButtonInvResetOn.AutoSize = True
+        Me.RadioButtonInvResetOn.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButtonInvResetOn.Location = New System.Drawing.Point(110, 39)
+        Me.RadioButtonInvResetOn.Name = "RadioButtonInvResetOn"
+        Me.RadioButtonInvResetOn.Size = New System.Drawing.Size(42, 20)
+        Me.RadioButtonInvResetOn.TabIndex = 290
+        Me.RadioButtonInvResetOn.TabStop = True
+        Me.RadioButtonInvResetOn.Text = "On"
+        Me.RadioButtonInvResetOn.UseVisualStyleBackColor = True
+        '
         'SettingsForm
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -4644,6 +4701,9 @@ Partial Class SettingsForm
         Me.TabPage16.ResumeLayout(False)
         Me.TabPage16.PerformLayout()
         CType(Me.DataGridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel13.ResumeLayout(False)
+        Me.GroupBox18.ResumeLayout(False)
+        Me.GroupBox18.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -5011,4 +5071,8 @@ Partial Class SettingsForm
     Friend WithEvents GroupBox17 As GroupBox
     Friend WithEvents RadioButtonTrainingOFF As RadioButton
     Friend WithEvents RadioButtonTraningON As RadioButton
+    Friend WithEvents TableLayoutPanel13 As TableLayoutPanel
+    Friend WithEvents GroupBox18 As GroupBox
+    Friend WithEvents RadioButtonInvResetOff As RadioButton
+    Friend WithEvents RadioButtonInvResetOn As RadioButton
 End Class

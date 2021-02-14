@@ -22,10 +22,6 @@ Partial Class TakeOut
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CheckBoxWaffleBag = New System.Windows.Forms.CheckBox()
-        Me.CheckBoxSugarSyrup = New System.Windows.Forms.CheckBox()
-        Me.TextBoxWaffleBag = New System.Windows.Forms.TextBox()
-        Me.TextBoxSugarSyrup = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.ButtonNo00 = New System.Windows.Forms.Button()
         Me.ButtonNo0 = New System.Windows.Forms.Button()
@@ -39,45 +35,9 @@ Partial Class TakeOut
         Me.ButtonNo9 = New System.Windows.Forms.Button()
         Me.ButtonNo7 = New System.Windows.Forms.Button()
         Me.ButtonTakeOut = New System.Windows.Forms.Button()
+        Me.ComboBoxTakeout = New System.Windows.Forms.ComboBox()
+        Me.TextBoxQuantity = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
-        '
-        'CheckBoxWaffleBag
-        '
-        Me.CheckBoxWaffleBag.AutoSize = True
-        Me.CheckBoxWaffleBag.Location = New System.Drawing.Point(12, 8)
-        Me.CheckBoxWaffleBag.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.CheckBoxWaffleBag.Name = "CheckBoxWaffleBag"
-        Me.CheckBoxWaffleBag.Size = New System.Drawing.Size(89, 20)
-        Me.CheckBoxWaffleBag.TabIndex = 0
-        Me.CheckBoxWaffleBag.Text = "Waffle Bag"
-        Me.CheckBoxWaffleBag.UseVisualStyleBackColor = True
-        '
-        'CheckBoxSugarSyrup
-        '
-        Me.CheckBoxSugarSyrup.AutoSize = True
-        Me.CheckBoxSugarSyrup.Location = New System.Drawing.Point(136, 8)
-        Me.CheckBoxSugarSyrup.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.CheckBoxSugarSyrup.Name = "CheckBoxSugarSyrup"
-        Me.CheckBoxSugarSyrup.Size = New System.Drawing.Size(98, 20)
-        Me.CheckBoxSugarSyrup.TabIndex = 1
-        Me.CheckBoxSugarSyrup.Text = "Sugar Syrup"
-        Me.CheckBoxSugarSyrup.UseVisualStyleBackColor = True
-        '
-        'TextBoxWaffleBag
-        '
-        Me.TextBoxWaffleBag.Location = New System.Drawing.Point(12, 36)
-        Me.TextBoxWaffleBag.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TextBoxWaffleBag.Name = "TextBoxWaffleBag"
-        Me.TextBoxWaffleBag.Size = New System.Drawing.Size(116, 23)
-        Me.TextBoxWaffleBag.TabIndex = 2
-        '
-        'TextBoxSugarSyrup
-        '
-        Me.TextBoxSugarSyrup.Location = New System.Drawing.Point(136, 36)
-        Me.TextBoxSugarSyrup.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TextBoxSugarSyrup.Name = "TextBoxSugarSyrup"
-        Me.TextBoxSugarSyrup.Size = New System.Drawing.Size(116, 23)
-        Me.TextBoxSugarSyrup.TabIndex = 3
         '
         'Button2
         '
@@ -87,7 +47,7 @@ Partial Class TakeOut
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.Button2.Location = New System.Drawing.Point(176, 201)
+        Me.Button2.Location = New System.Drawing.Point(174, 206)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(76, 39)
         Me.Button2.TabIndex = 127
@@ -102,7 +62,7 @@ Partial Class TakeOut
         Me.ButtonNo00.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo00.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonNo00.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo00.Location = New System.Drawing.Point(12, 201)
+        Me.ButtonNo00.Location = New System.Drawing.Point(10, 206)
         Me.ButtonNo00.Name = "ButtonNo00"
         Me.ButtonNo00.Size = New System.Drawing.Size(76, 39)
         Me.ButtonNo00.TabIndex = 122
@@ -117,7 +77,7 @@ Partial Class TakeOut
         Me.ButtonNo0.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo0.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonNo0.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo0.Location = New System.Drawing.Point(94, 201)
+        Me.ButtonNo0.Location = New System.Drawing.Point(92, 206)
         Me.ButtonNo0.Name = "ButtonNo0"
         Me.ButtonNo0.Size = New System.Drawing.Size(76, 39)
         Me.ButtonNo0.TabIndex = 121
@@ -132,7 +92,7 @@ Partial Class TakeOut
         Me.ButtonNo3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo3.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonNo3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo3.Location = New System.Drawing.Point(176, 156)
+        Me.ButtonNo3.Location = New System.Drawing.Point(174, 161)
         Me.ButtonNo3.Name = "ButtonNo3"
         Me.ButtonNo3.Size = New System.Drawing.Size(76, 39)
         Me.ButtonNo3.TabIndex = 120
@@ -147,7 +107,7 @@ Partial Class TakeOut
         Me.ButtonNo2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo2.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonNo2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo2.Location = New System.Drawing.Point(94, 156)
+        Me.ButtonNo2.Location = New System.Drawing.Point(92, 161)
         Me.ButtonNo2.Name = "ButtonNo2"
         Me.ButtonNo2.Size = New System.Drawing.Size(76, 39)
         Me.ButtonNo2.TabIndex = 119
@@ -162,7 +122,7 @@ Partial Class TakeOut
         Me.ButtonNo1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo1.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonNo1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo1.Location = New System.Drawing.Point(12, 156)
+        Me.ButtonNo1.Location = New System.Drawing.Point(10, 161)
         Me.ButtonNo1.Name = "ButtonNo1"
         Me.ButtonNo1.Size = New System.Drawing.Size(76, 39)
         Me.ButtonNo1.TabIndex = 118
@@ -177,7 +137,7 @@ Partial Class TakeOut
         Me.ButtonNo5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo5.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonNo5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo5.Location = New System.Drawing.Point(94, 111)
+        Me.ButtonNo5.Location = New System.Drawing.Point(92, 116)
         Me.ButtonNo5.Name = "ButtonNo5"
         Me.ButtonNo5.Size = New System.Drawing.Size(76, 39)
         Me.ButtonNo5.TabIndex = 116
@@ -192,7 +152,7 @@ Partial Class TakeOut
         Me.ButtonNo6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo6.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonNo6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo6.Location = New System.Drawing.Point(176, 111)
+        Me.ButtonNo6.Location = New System.Drawing.Point(174, 116)
         Me.ButtonNo6.Name = "ButtonNo6"
         Me.ButtonNo6.Size = New System.Drawing.Size(76, 39)
         Me.ButtonNo6.TabIndex = 114
@@ -207,7 +167,7 @@ Partial Class TakeOut
         Me.ButtonNo4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo4.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonNo4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo4.Location = New System.Drawing.Point(12, 111)
+        Me.ButtonNo4.Location = New System.Drawing.Point(10, 116)
         Me.ButtonNo4.Name = "ButtonNo4"
         Me.ButtonNo4.Size = New System.Drawing.Size(76, 39)
         Me.ButtonNo4.TabIndex = 115
@@ -222,7 +182,7 @@ Partial Class TakeOut
         Me.ButtonNo8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo8.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonNo8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo8.Location = New System.Drawing.Point(94, 66)
+        Me.ButtonNo8.Location = New System.Drawing.Point(92, 71)
         Me.ButtonNo8.Name = "ButtonNo8"
         Me.ButtonNo8.Size = New System.Drawing.Size(76, 39)
         Me.ButtonNo8.TabIndex = 113
@@ -237,7 +197,7 @@ Partial Class TakeOut
         Me.ButtonNo9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo9.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonNo9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo9.Location = New System.Drawing.Point(176, 66)
+        Me.ButtonNo9.Location = New System.Drawing.Point(174, 71)
         Me.ButtonNo9.Name = "ButtonNo9"
         Me.ButtonNo9.Size = New System.Drawing.Size(76, 39)
         Me.ButtonNo9.TabIndex = 117
@@ -252,7 +212,7 @@ Partial Class TakeOut
         Me.ButtonNo7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonNo7.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.ButtonNo7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.ButtonNo7.Location = New System.Drawing.Point(12, 66)
+        Me.ButtonNo7.Location = New System.Drawing.Point(10, 71)
         Me.ButtonNo7.Name = "ButtonNo7"
         Me.ButtonNo7.Size = New System.Drawing.Size(76, 39)
         Me.ButtonNo7.TabIndex = 112
@@ -266,18 +226,36 @@ Partial Class TakeOut
         Me.ButtonTakeOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonTakeOut.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.ButtonTakeOut.ForeColor = System.Drawing.Color.White
-        Me.ButtonTakeOut.Location = New System.Drawing.Point(12, 246)
+        Me.ButtonTakeOut.Location = New System.Drawing.Point(10, 251)
         Me.ButtonTakeOut.Name = "ButtonTakeOut"
-        Me.ButtonTakeOut.Size = New System.Drawing.Size(237, 23)
+        Me.ButtonTakeOut.Size = New System.Drawing.Size(240, 23)
         Me.ButtonTakeOut.TabIndex = 128
         Me.ButtonTakeOut.Text = "Take Out"
         Me.ButtonTakeOut.UseVisualStyleBackColor = False
+        '
+        'ComboBoxTakeout
+        '
+        Me.ComboBoxTakeout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxTakeout.FormattingEnabled = True
+        Me.ComboBoxTakeout.Location = New System.Drawing.Point(12, 12)
+        Me.ComboBoxTakeout.Name = "ComboBoxTakeout"
+        Me.ComboBoxTakeout.Size = New System.Drawing.Size(238, 24)
+        Me.ComboBoxTakeout.TabIndex = 129
+        '
+        'TextBoxQuantity
+        '
+        Me.TextBoxQuantity.Location = New System.Drawing.Point(11, 42)
+        Me.TextBoxQuantity.Name = "TextBoxQuantity"
+        Me.TextBoxQuantity.Size = New System.Drawing.Size(239, 23)
+        Me.TextBoxQuantity.TabIndex = 130
         '
         'TakeOut
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(265, 277)
+        Me.ClientSize = New System.Drawing.Size(260, 285)
+        Me.Controls.Add(Me.TextBoxQuantity)
+        Me.Controls.Add(Me.ComboBoxTakeout)
         Me.Controls.Add(Me.ButtonTakeOut)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.ButtonNo00)
@@ -291,10 +269,6 @@ Partial Class TakeOut
         Me.Controls.Add(Me.ButtonNo8)
         Me.Controls.Add(Me.ButtonNo9)
         Me.Controls.Add(Me.ButtonNo7)
-        Me.Controls.Add(Me.TextBoxSugarSyrup)
-        Me.Controls.Add(Me.TextBoxWaffleBag)
-        Me.Controls.Add(Me.CheckBoxSugarSyrup)
-        Me.Controls.Add(Me.CheckBoxWaffleBag)
         Me.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -307,11 +281,6 @@ Partial Class TakeOut
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents CheckBoxWaffleBag As CheckBox
-    Friend WithEvents CheckBoxSugarSyrup As CheckBox
-    Friend WithEvents TextBoxWaffleBag As TextBox
-    Friend WithEvents TextBoxSugarSyrup As TextBox
     Friend WithEvents Button2 As Button
     Friend WithEvents ButtonNo00 As Button
     Friend WithEvents ButtonNo0 As Button
@@ -325,4 +294,6 @@ Partial Class TakeOut
     Friend WithEvents ButtonNo9 As Button
     Friend WithEvents ButtonNo7 As Button
     Friend WithEvents ButtonTakeOut As Button
+    Friend WithEvents ComboBoxTakeout As ComboBox
+    Friend WithEvents TextBoxQuantity As TextBox
 End Class

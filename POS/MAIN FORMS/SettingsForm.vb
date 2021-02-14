@@ -298,6 +298,8 @@ Public Class SettingsForm
             If ClientRole <> "Admin" Then
                 RadioButtonTrainingOFF.Enabled = False
                 RadioButtonTraningON.Enabled = False
+                RadioButtonInvResetOff.Enabled = False
+                RadioButtonInvResetOn.Enabled = False
             End If
             If S_TrainingMode Then
                 RadioButtonTraningON.Checked = True
@@ -1042,7 +1044,7 @@ Public Class SettingsForm
     Private Sub LoadAdditionalSettings()
         Try
             If ValidLocalConnection = True Then
-                sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated FROM loc_settings WHERE settings_id = 1"
+                sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated  FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
@@ -1066,6 +1068,12 @@ Public Class SettingsForm
                         ElseIf dt(0)(4) = 1 Then
                             RadioButtonYES.Checked = True
                         End If
+                    End If
+
+                    If AutoInventoryReset Then
+                        RadioButtonInvResetOn.Checked = True
+                    Else
+                        RadioButtonInvResetOff.Checked = True
                     End If
                 End If
                 My.Settings.Save()
@@ -2755,6 +2763,28 @@ Public Class SettingsForm
             ElseIf RadioButtonTrainingOFF.Checked Then
                 S_TrainingMode = False
                 MessageBox.Show("Training mode is OFF", "NOTICE", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub RadioButtonInvResetOff_Click(sender As Object, e As EventArgs) Handles RadioButtonInvResetOn.Click, RadioButtonInvResetOff.Click
+        Try
+            If RadioButtonInvResetOn.Checked Then
+                AutoInventoryReset = True
+                Dim ConnectionLocal = LocalhostConn()
+                Dim Sql = "UPDATE loc_settings SET autoresetinv = 1 WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
+                Dim res = cmd.ExecuteNonQuery
+                MessageBox.Show("Monthly inventory reset is on", "NOTICE", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ElseIf RadioButtonInvResetOff.Checked Then
+                AutoInventoryReset = False
+                Dim ConnectionLocal = LocalhostConn()
+                Dim Sql = "UPDATE loc_settings SET autoresetinv = 0 WHERE settings_id = 1"
+                Dim cmd As MySqlCommand = New MySqlCommand(Sql, ConnectionLocal)
+                Dim res = cmd.ExecuteNonQuery
+                MessageBox.Show("Monthly inventory reset is off", "NOTICE", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)

@@ -104,6 +104,9 @@ Module publicVariables
     Public btnperformclick As Boolean = False
     '=============================================================================================================
     'add module
+    'Auto Reset
+    Public AutoInventoryReset As Boolean = False
+
     Public messageboxappearance As Boolean = False
     Public table As String
     Public fields As String

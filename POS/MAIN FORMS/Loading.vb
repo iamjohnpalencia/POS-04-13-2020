@@ -9,7 +9,7 @@ Public Class Loading
     Dim thread As Thread
     Dim IfItsIstDayOfTheMonth As Boolean
     Dim IfInternetIsAvailable As Boolean
-    Dim IfNeedsToReset As Boolean
+    Dim IfNeedsToReset As Boolean = False
     Declare Auto Function SendMessage Lib "user32.dll" (ByVal hWnd As IntPtr, ByVal msg As Integer, ByVal wParam As Integer, ByVal lParam As Integer) As Integer
     Enum ProgressBarColor
         Green = &H1
@@ -116,19 +116,21 @@ Public Class Loading
                     End If
                 End If
                 If i = 65 Then
-                    If IfConnectionIsConfigured Then
-                        If CheckIfNeedToReset() Then
-                            IfNeedsToReset = True
-                        Else
-                            IfNeedsToReset = False
-                        End If
-                    End If
-                End If
-                If i = 80 Then
                     If ValidDatabaseLocalConnection Then
                         thread = New Thread(AddressOf LoadSettings)
                         thread.Start()
                         threadList.Add(thread)
+                    End If
+                End If
+                If i = 80 Then
+                    If IfConnectionIsConfigured Then
+                        If AutoInventoryReset Then
+                            If CheckIfNeedToReset() Then
+                                IfNeedsToReset = True
+                            Else
+                                IfNeedsToReset = False
+                            End If
+                        End If
                     End If
                 End If
                 If i = 95 Then
@@ -149,7 +151,7 @@ Public Class Loading
     Private Sub LoadSettings()
         Try
             If LocalConnectionIsOnOrValid = True Then
-                Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix , S_Upgrade_Price_Add , S_BackupInterval, S_BackupDate , S_Update_Version , P_Footer_Info , S_logo , S_Layout , printreceipt , reprintreceipt , printxzread , printreturns FROM loc_settings WHERE settings_id = 1"
+                Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix , S_Upgrade_Price_Add , S_BackupInterval, S_BackupDate , S_Update_Version , P_Footer_Info , S_logo , S_Layout , printreceipt , reprintreceipt , printxzread , printreturns, autoresetinv FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
@@ -183,6 +185,13 @@ Public Class Loading
                                             My.Settings.Save()
                                             LabelVersion.Text = row("S_Update_Version")
                                             LabelFOOTER.Text = row("P_Footer_Info")
+                                            If row("autoresetinv") = "" Then
+                                                AutoInventoryReset = False
+                                            ElseIf row("autoresetinv") = "0" Then
+                                                AutoInventoryReset = False
+                                            ElseIf row("autoresetinv") = "1" Then
+                                                AutoInventoryReset = False
+                                            End If
                                         End If
                                     End If
                                 End If
