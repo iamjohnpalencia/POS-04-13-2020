@@ -513,17 +513,20 @@ Public Class POS
     End Sub
     Private Sub ButtonCDISC_Click(sender As Object, e As EventArgs) Handles ButtonCDISC.Click
         Try
+            LESSVAT = 0
             TextBoxDISCOUNT.Text = "0.00"
             CouponApplied = False
             CouponDesc = ""
             CouponTotal = 0
             CouponName = ""
+            TOTALDISCOUNT = 0
+            LESSVAT = 0
+            DISCOUNTTYPE = "N/A"
+            TOTALDISCOUNT = 0
             Compute()
-
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-
     End Sub
     Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles ButtonTransactionMode.Click
         If ButtonTransactionMode.Text = "Transaction Type" Then
@@ -769,17 +772,23 @@ Public Class POS
     Dim ACTIVE As Integer = 1
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonApplyCoupon.Click
-        CouponApplied = False
-        Enabled = False
-
-        TextBoxDISCOUNT.Text = "0.00"
-        Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
-        TextBoxSUBTOTAL.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
-        TextBoxGRANDTOTAL.Text = Label76.Text
-
-        GetHighest()
-        CouponCode.Show()
-        CouponCode.ButtonSubmit.Enabled = True
+        Try
+            MessageBox.Show("Apply coupon after taking all customer orders", "NOTICE", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ButtonCDISC.PerformClick()
+            'LESSVAT = 0
+            'CouponApplied = False
+            'Enabled = False
+            'TextBoxDISCOUNT.Text = "0.00"
+            'Label76.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
+            'TextBoxSUBTOTAL.Text = SumOfColumnsToDecimal(datagrid:=DataGridViewOrders, celltocompute:=3)
+            'TextBoxGRANDTOTAL.Text = Label76.Text
+            GetHighest()
+            CouponCode.Show()
+            CouponCode.ButtonSubmit.Enabled = True
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
     Private Sub GetHighest()
         Try
