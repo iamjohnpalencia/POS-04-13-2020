@@ -794,14 +794,16 @@ Public Class POS
         Try
             Dim HighestWafflesPrice As Double = 0
             Dim HighestDrinksPrice As Double = 0
+
             With DataGridViewOrders
                 For i As Integer = 0 To .Rows.Count - 1 Step +1
                     If .Rows(i).Cells(9).Value.ToString = "WAFFLE" Then
-                        If HighestWafflesPrice < .Rows(i).Cells(2).Value Then
-                            If .Rows(i).Cells(11).Value > 0 Then
-                                Dim addprice = .Rows(i).Cells(11).Value * S_Upgrade_Price
-                                HighestWafflesPrice = .Rows(i).Cells(2).Value + addprice
-                            Else
+                        If .Rows(i).Cells(11).Value > 0 Then
+                            If HighestWafflesPrice < .Rows(i).Cells(2).Value + S_Upgrade_Price Then
+                                HighestWafflesPrice = .Rows(i).Cells(2).Value + S_Upgrade_Price
+                            End If
+                        Else
+                            If HighestWafflesPrice < .Rows(i).Cells(2).Value Then
                                 HighestWafflesPrice = .Rows(i).Cells(2).Value
                             End If
                         End If
