@@ -32,6 +32,7 @@ Public Class Registration
                         If CheckContactNumber(TextBoxCN.Text) = False Then
                             Dim cipherText As String = ConvertPassword(SourceString:=TextBoxP.Text)
                             Try
+
                                 messageboxappearance = True
                                 If RadioButtonMALE.Checked = True Then
                                     gender = "Male"
@@ -64,7 +65,7 @@ Public Class Registration
                             GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
                             ClearTextBox(Me)
                             selectmax(whatform:=3)
-                            MessageBox.Show("Success fully registered", "Registration", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            MessageBox.Show("Success fully registered" & vbNewLine & "Username: " & TextBoxUN.Text & vbNewLine & "Password: " & TextBoxP.Text, "Registration", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Else
                             MsgBox("Contact number exist")
                         End If

@@ -12,7 +12,7 @@ Module Updatemodule
             If LocalhostConn.State <> ConnectionState.Open Then
                 LocalhostConn.Open()
             End If
-            sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
+            Dim sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             cmd.ExecuteNonQuery()
         Catch ex As Exception

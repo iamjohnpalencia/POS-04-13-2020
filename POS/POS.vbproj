@@ -157,6 +157,12 @@
     <Compile Include="SUBFORMS\AddEditProducts.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SUBFORMS\AddUser.Designer.vb">
+      <DependentUpon>AddUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\AddUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SUBFORMS\AdminConfirmation.Designer.vb">
       <DependentUpon>AdminConfirmation.vb</DependentUpon>
     </Compile>
@@ -432,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\AddEditProducts.resx">
       <DependentUpon>AddEditProducts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\AddUser.resx">
+      <DependentUpon>AddUser.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\AdminConfirmation.resx">
       <DependentUpon>AdminConfirmation.vb</DependentUpon>

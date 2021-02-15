@@ -116,20 +116,22 @@
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Public newMDIchildUser As UserSettings
     Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles Button8.Click
         If Application.OpenForms().OfType(Of SynctoCloud).Any Then
             SynctoCloud.TopMost = False
         End If
         Try
-            Dim newMDIchild As New UserSettings()
+
             If Application.OpenForms().OfType(Of UserSettings).Any Then
             Else
+                newMDIchildUser = New UserSettings
                 btncolor(changecolor:=Button8)
                 btndefaut(defaultcolor:=Button8)
                 formclose(closeform:=UserSettings)
-                newMDIchild.MdiParent = Me
-                newMDIchild.ShowIcon = False
-                newMDIchild.Show()
+                newMDIchildUser.MdiParent = Me
+                newMDIchildUser.ShowIcon = False
+                newMDIchildUser.Show()
             End If
             If SyncIsOnProcess = False Then
                 SynctoCloud.Close()

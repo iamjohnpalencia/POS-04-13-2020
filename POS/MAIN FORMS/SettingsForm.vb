@@ -22,7 +22,7 @@ Public Class SettingsForm
 
             TabControl2.TabPages(0).Text = "Connection Settings"
             TabControl2.TabPages(1).Text = "Database Settings"
-            TabControl2.TabPages(2).Text = "Additional Settings"
+            TabControl1.TabPages(7).Text = "Other Settings"
 
             TabControl4.TabPages(0).Text = "Create Coupon"
             TabControl4.TabPages(1).Text = "Coupon List"

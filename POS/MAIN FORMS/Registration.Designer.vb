@@ -71,7 +71,7 @@ Partial Class Registration
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(317, 551)
+        Me.Panel1.Size = New System.Drawing.Size(318, 551)
         Me.Panel1.TabIndex = 0
         '
         'Panel8
@@ -108,7 +108,7 @@ Partial Class Registration
         Me.Panel8.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.Panel8.Location = New System.Drawing.Point(0, 0)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(315, 519)
+        Me.Panel8.Size = New System.Drawing.Size(316, 519)
         Me.Panel8.TabIndex = 72
         '
         'ButtonKeyboard
@@ -128,7 +128,7 @@ Partial Class Registration
         '
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(58, 19)
+        Me.PictureBox1.Location = New System.Drawing.Point(64, 19)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(188, 96)
         Me.PictureBox1.TabIndex = 239
@@ -418,7 +418,7 @@ Partial Class Registration
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel4.Location = New System.Drawing.Point(0, 519)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(315, 10)
+        Me.Panel4.Size = New System.Drawing.Size(316, 10)
         Me.Panel4.TabIndex = 74
         '
         'Panel3
@@ -428,7 +428,7 @@ Partial Class Registration
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel3.Location = New System.Drawing.Point(0, 529)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(315, 20)
+        Me.Panel3.Size = New System.Drawing.Size(316, 20)
         Me.Panel3.TabIndex = 73
         '
         'LabelFOOTER
@@ -436,7 +436,7 @@ Partial Class Registration
         Me.LabelFOOTER.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelFOOTER.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelFOOTER.ForeColor = System.Drawing.Color.White
-        Me.LabelFOOTER.Location = New System.Drawing.Point(64, 0)
+        Me.LabelFOOTER.Location = New System.Drawing.Point(65, 0)
         Me.LabelFOOTER.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelFOOTER.Name = "LabelFOOTER"
         Me.LabelFOOTER.Size = New System.Drawing.Size(251, 20)
@@ -451,7 +451,7 @@ Partial Class Registration
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(317, 551)
+        Me.ClientSize = New System.Drawing.Size(318, 551)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
