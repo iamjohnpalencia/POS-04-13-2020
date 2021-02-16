@@ -463,7 +463,7 @@ Public Class Reports
 
             Dim font As New Font("Tahoma", 6)
             Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
-            RightToLeftDisplay(sender, e, 120, "LIST OF TRANSACTION TYPES:", "", font1, 0, 0)
+            RightToLeftDisplay(sender, e, 120, "LIST OF TRANSACTION TYPE:", "", font1, 0, 0)
             RightToLeftDisplay(sender, e, 140, "Type/Count:", ":" & "Total", font, 0, 0)
 
             With ComboBoxTransactionType

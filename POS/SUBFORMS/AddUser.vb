@@ -203,4 +203,24 @@ Public Class AddUser
     Private Sub AddUser_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         MDIFORM.newMDIchildUser.Enabled = True
     End Sub
+
+    Private Sub TextBoxFULLNAME_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxUSERNAME.KeyPress, TextBoxPASS.KeyPress, TextBoxFULLNAME.KeyPress, TextBoxEMAIL.KeyPress, TextBoxCONPASS.KeyPress
+        Try
+            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
+                e.Handled = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub TextBoxCONTACT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxCONTACT.KeyPress
+        Try
+            Numeric(sender, e)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
 End Class
