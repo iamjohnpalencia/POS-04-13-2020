@@ -187,6 +187,8 @@ Public Class POS
                             TotalPrice = Val(TextBoxQTY.Text) * Val(productprice)
                             TotalProductPrice = TwoDecimalPlaces(TotalPrice)
                         End If
+                        DataGridViewOrders.SelectedRows(0).Cells(1).Value = TextBoxQTY.Text
+                        DataGridViewOrders.SelectedRows(0).Cells(3).Value = TotalProductPrice
                     Else
                         If WaffleUpgrade Then
                             Dim TotalPrice As Integer = 0

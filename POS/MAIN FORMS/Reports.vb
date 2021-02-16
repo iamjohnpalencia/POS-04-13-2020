@@ -395,7 +395,7 @@ Public Class Reports
                 MsgBox("Select Transaction First!")
             End If
         Else
-            printtransactiontype.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 300)
+            printtransactiontype.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 200)
             If S_Reprint = "YES" Then
                 printtransactiontype.Print()
             Else
@@ -465,16 +465,30 @@ Public Class Reports
             Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
             RightToLeftDisplay(sender, e, 120, "LIST OF TRANSACTION TYPES:", "", font1, 0, 0)
             RightToLeftDisplay(sender, e, 140, "Type/Count:", ":" & "Total", font, 0, 0)
-            RightToLeftDisplay(sender, e, 160, "Walk-In(" & WalkinTotalqty & ")", NUMBERFORMAT(WalkinTotal), font, 0, 0)
-            RightToLeftDisplay(sender, e, 170, "Registered(" & Registeredqty & ")", NUMBERFORMAT(Registered), font, 0, 0)
-            RightToLeftDisplay(sender, e, 180, "GCash(" & GCashqty & ")", NUMBERFORMAT(GCash), font, 0, 0)
-            RightToLeftDisplay(sender, e, 190, "Grab(" & Grabqty & ")", NUMBERFORMAT(Grab), font, 0, 0)
-            RightToLeftDisplay(sender, e, 200, "Paymaya(" & Paymayaqty & ")", NUMBERFORMAT(Paymaya), font, 0, 0)
-            RightToLeftDisplay(sender, e, 210, "Lalafood(" & Lalafoodqty & ")", NUMBERFORMAT(Lalafood), font, 0, 0)
-            RightToLeftDisplay(sender, e, 220, "Rep. Expenses(" & RepExpenseqty & ")", NUMBERFORMAT(RepExpense), font, 0, 0)
-            RightToLeftDisplay(sender, e, 230, "Food Panda(" & FoodPandaqty & ")", NUMBERFORMAT(FoodPanda), font, 0, 0)
-            RightToLeftDisplay(sender, e, 240, "Others(" & Othersqty & ")", NUMBERFORMAT(Others), font, 0, 0)
-            CenterTextDisplay(sender, e, "From: " & Format(DateTimePicker1.Value, "yyyy-MM-dd") & " - To: " & Format(DateTimePicker2.Value, "yyyy-MM-dd"), font, 260)
+
+            With ComboBoxTransactionType
+                If .Text = "Walk-In" Then
+                    RightToLeftDisplay(sender, e, 160, "Walk-In(" & WalkinTotalqty & ")", NUMBERFORMAT(WalkinTotal), font, 0, 0)
+                ElseIf .Text = "Registered" Then
+                    RightToLeftDisplay(sender, e, 160, "Registered(" & Registeredqty & ")", NUMBERFORMAT(Registered), font, 0, 0)
+                ElseIf .Text = "GCash" Then
+                    RightToLeftDisplay(sender, e, 160, "GCash(" & GCashqty & ")", NUMBERFORMAT(GCash), font, 0, 0)
+                ElseIf .Text = "Grab" Then
+                    RightToLeftDisplay(sender, e, 160, "Grab(" & Grabqty & ")", NUMBERFORMAT(Grab), font, 0, 0)
+                ElseIf .Text = "Paymaya" Then
+                    RightToLeftDisplay(sender, e, 160, "Paymaya(" & Paymayaqty & ")", NUMBERFORMAT(Paymaya), font, 0, 0)
+                ElseIf .Text = "Lalafood" Then
+                    RightToLeftDisplay(sender, e, 160, "Lalafood(" & Lalafoodqty & ")", NUMBERFORMAT(Lalafood), font, 0, 0)
+                ElseIf .Text = "Representation Expenses" Then
+                    RightToLeftDisplay(sender, e, 160, "Rep. Expenses(" & RepExpenseqty & ")", NUMBERFORMAT(RepExpense), font, 0, 0)
+                ElseIf .Text = "Food Panda" Then
+                    RightToLeftDisplay(sender, e, 160, "Food Panda(" & FoodPandaqty & ")", NUMBERFORMAT(FoodPanda), font, 0, 0)
+                ElseIf .Text = "Others" Then
+                    RightToLeftDisplay(sender, e, 160, "Others(" & Othersqty & ")", NUMBERFORMAT(Others), font, 0, 0)
+                End If
+            End With
+
+            CenterTextDisplay(sender, e, "From: " & Format(DateTimePicker1.Value, "yyyy-MM-dd") & " - To: " & Format(DateTimePicker2.Value, "yyyy-MM-dd"), font, 180)
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -741,18 +755,6 @@ Public Class Reports
             RightToLeftDisplay(sender, e, 655, "OLD GRAND TOTAL", NUMBERFORMAT(OLDgrandtotal), font, 20, 0)
             RightToLeftDisplay(sender, e, 665, "NEW GRAND TOTAL", NUMBERFORMAT(TotalNewGrandTotal), font, 20, 0)
 
-            SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 665)
-            SimpleTextDisplay(sender, e, "SALES BY CLASS", font2, 0, 675)
-            SimpleTextDisplay(sender, e, "ADD ONS", font, 0, 685)
-            SimpleTextDisplay(sender, e, "FAMOUS BLENDS", font, 0, 695)
-            SimpleTextDisplay(sender, e, "COMBO", font, 0, 705)
-            SimpleTextDisplay(sender, e, "PERFECT COMBINATION", font, 0, 715)
-            SimpleTextDisplay(sender, e, "PREMIUM LINE", font, 0, 725)
-            SimpleTextDisplay(sender, e, "SAVORY", font, 0, 735)
-            SimpleTextDisplay(sender, e, "SIMPY PERFECT", font, 0, 745)
-            SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 755)
-            'SimpleTextDisplay(sender, e, "NET SALES", font, 0, 765)
-
             Dim ADDONS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Add-Ons'")
             Dim BLENDS = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Famous Blends'")
             Dim COMBO = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Combo'")
@@ -761,14 +763,17 @@ Public Class Reports
             Dim SAVORY = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Savory'")
             Dim SIMPERF = sum("quantity", "loc_daily_transaction_details WHERE zreading = '" & ZreadDateFormat & "' AND transaction_type = 'Walk-in' AND product_category = 'Simply Perfect'")
 
-            RightDisplay(sender, e, 690 + 15, ADDONS, font, 20, 0)
-            RightDisplay(sender, e, 700 + 15, BLENDS, font, 20, 0)
-            RightDisplay(sender, e, 710 + 15, COMBO, font, 20, 0)
-            RightDisplay(sender, e, 720 + 15, PERFECTC, font, 20, 0)
-            RightDisplay(sender, e, 730 + 15, PREMIUM, font, 20, 0)
-            RightDisplay(sender, e, 740 + 15, SAVORY, font, 20, 0)
-            RightDisplay(sender, e, 750 + 15, SIMPERF, font, 20, 0)
+            SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 665)
+            SimpleTextDisplay(sender, e, "SALES BY CLASS", font2, 0, 675)
+            RightToLeftDisplay(sender, e, 685 + 20, "ADD ONS", ADDONS, font, 20, 0)
+            RightToLeftDisplay(sender, e, 695 + 20, "FAMOUS BLENDS", BLENDS, font, 20, 0)
+            RightToLeftDisplay(sender, e, 705 + 20, "COMBO", COMBO, font, 20, 0)
+            RightToLeftDisplay(sender, e, 715 + 20, "PERFECT COMBINATION", PERFECTC, font, 20, 0)
+            RightToLeftDisplay(sender, e, 725 + 20, "PREMIUM LINE", PREMIUM, font, 20, 0)
+            RightToLeftDisplay(sender, e, 735 + 20, "SAVORY", SAVORY, font, 20, 0)
+            RightToLeftDisplay(sender, e, 745 + 20, "SIMPY PERFECT", SIMPERF, font, 20, 0)
 
+            SimpleTextDisplay(sender, e, "----------------------------------------------------------------", font, 0, 755)
             CenterTextDisplay(sender, e, S_Zreading & " " & Format(Now(), "HH:mm:ss"), font, 810)
         Catch ex As Exception
             MsgBox(ex.ToString)
