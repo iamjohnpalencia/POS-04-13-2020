@@ -464,9 +464,7 @@ Public Class Reports
             Dim font As New Font("Tahoma", 6)
             Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
             RightToLeftDisplay(sender, e, 120, "LIST OF TRANSACTION TYPES:", "", font1, 0, 0)
-
             RightToLeftDisplay(sender, e, 140, "Type/Count:", ":" & "Total", font, 0, 0)
-
             RightToLeftDisplay(sender, e, 160, "Walk-In(" & WalkinTotalqty & ")", NUMBERFORMAT(WalkinTotal), font, 0, 0)
             RightToLeftDisplay(sender, e, 170, "Registered(" & Registeredqty & ")", NUMBERFORMAT(Registered), font, 0, 0)
             RightToLeftDisplay(sender, e, 180, "GCash(" & GCashqty & ")", NUMBERFORMAT(GCash), font, 0, 0)
@@ -476,10 +474,7 @@ Public Class Reports
             RightToLeftDisplay(sender, e, 220, "Rep. Expenses(" & RepExpenseqty & ")", NUMBERFORMAT(RepExpense), font, 0, 0)
             RightToLeftDisplay(sender, e, 230, "Food Panda(" & FoodPandaqty & ")", NUMBERFORMAT(FoodPanda), font, 0, 0)
             RightToLeftDisplay(sender, e, 240, "Others(" & Othersqty & ")", NUMBERFORMAT(Others), font, 0, 0)
-
             CenterTextDisplay(sender, e, "From: " & Format(DateTimePicker1.Value, "yyyy-MM-dd") & " - To: " & Format(DateTimePicker2.Value, "yyyy-MM-dd"), font, 260)
-
-
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
