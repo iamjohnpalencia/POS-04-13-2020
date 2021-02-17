@@ -39,20 +39,23 @@ Public Class Reports
             TabControl1.TabPages(2).Text = "Sales Report"
             TabControl1.TabPages(3).Text = "Expense Report"
             TabControl1.TabPages(4).Text = "Transaction Logs"
-            TabControl1.TabPages(5).Text = "Item Return"
-            TabControl1.TabPages(6).Text = "Deposit Slip"
-            TabControl1.TabPages(7).Text = "Z/X Reading"
+            TabControl1.TabPages(5).Text = "Crew Sales"
+            TabControl1.TabPages(6).Text = "Item Return"
+            TabControl1.TabPages(7).Text = "Deposit Slip"
+            TabControl1.TabPages(8).Text = "Z/X Reading"
             ComboBoxTransactionType.SelectedIndex = 0
+
             reportsdailytransaction(False)
             reportssystemlogs(False)
             reportssales(False)
             reportstransactionlogs(False)
             expensereports(False)
+            LoadUsers()
 
             reportsreturnsandrefunds(False)
             viewdeposit(False)
             FillDatagridZreadInv(False)
-
+            LoadCrewSales(False)
             If ClientRole = "Admin" Then
                 ButtonZreadAdmin.Visible = True
                 Button8.Visible = True
@@ -94,12 +97,50 @@ Public Class Reports
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+
+    Private Sub LoadCrewSales(bool As Boolean)
+        Try
+            DataGridViewCrewSales.Rows.Clear()
+            Dim query As String = ""
+            Dim Table As String = ""
+            Dim Fields As String = "dt.transaction_number, dt.grosssales, SUM(dtd.quantity) , dt.crew_id, dt.created_at"
+            If bool = False Then
+                Table = "loc_daily_transaction dt LEFT JOIN loc_daily_transaction_details dtd ON dt.transaction_number = dtd.transaction_number WHERE DATE_FORMAT(dt.created_at , '%y-%m-%d') = DATE_FORMAT(CURDATE(), '%y-%m-%d') AND dt.crew_id = '" & ClientCrewID & "' GROUP BY dt.created_at"
+            Else
+                Table = "loc_daily_transaction dt LEFT JOIN loc_daily_transaction_details dtd ON dt.transaction_number = dtd.transaction_number WHERE dt.zreading >= '" & Format(DateTimePicker5.Value, "yyyy-MM-dd") & "' AND dt.zreading <= '" & Format(DateTimePicker6.Value, "yyyy-MM-dd") & "' AND dt.crew_id = '" & ComboBoxUserIDS.Text & "' GROUP BY dt.created_at"
+            End If
+            Dim CrewSalesDt = AsDatatable(Table, Fields, DataGridViewCrewSales)
+            For Each row As DataRow In CrewSalesDt.Rows
+                DataGridViewCrewSales.Rows.Add(row("transaction_number"), row("grosssales"), row("SUM(dtd.quantity)"), row("crew_id"), row("created_at"))
+            Next
+
+            LabelCrewSalesQty.Text = SumOfColumnsToDecimal(DataGridViewCrewSales, 2)
+            LabelCrewSalesTotal.Text = SumOfColumnsToDecimal(DataGridViewCrewSales, 1)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub LoadUsers()
+        Try
+            Dim sql = "Select uniq_id FROM loc_users"
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Using reader As MySqlDataReader = cmd.ExecuteReader
+                While reader.Read
+                    ComboBoxUserIDS.Items.Add(reader("uniq_id"))
+                End While
+            End Using
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
     Public Sub reportssystemlogs(ByVal searchdate As Boolean)
         Try
             table = "`loc_system_logs`"
             fields = "`log_type`, `log_description`, `log_date_time`"
             If searchdate = False Then
-                where = " WHERE date(log_date_time) = CURRENT_DATE() AND log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ORDER BY log_date_time DESC"
+                where = " WHERE Date(log_date_time) = CURRENT_DATE() And log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' ORDER BY log_date_time DESC"
             Else
                 where = " WHERE log_type <> 'TRANSACTION' AND log_store = '" & ClientStoreID & "' AND guid = '" & ClientGuid & "' AND date(log_date_time) >= '" & Format(DateTimePicker9.Value, "yyyy-MM-dd") & "' AND date(log_date_time) <= '" & Format(DateTimePicker10.Value, "yyyy-MM-dd") & "' ORDER BY  log_date_time DESC"
             End If
@@ -1170,5 +1211,16 @@ Public Class Reports
         Else
             MsgBox("Select returned product first.")
         End If
+    End Sub
+    Private Sub ButtonSearchCrewSales_Click(sender As Object, e As EventArgs) Handles ButtonSearchCrewSales.Click
+        Try
+            If ComboBoxUserIDS.SelectedIndex = -1 Then
+                MsgBox("Select crew id first")
+            Else
+                LoadCrewSales(True)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 End Class

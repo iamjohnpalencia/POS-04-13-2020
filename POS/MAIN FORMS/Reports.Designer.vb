@@ -52,6 +52,9 @@ Partial Class Reports
         Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -112,7 +115,6 @@ Partial Class Reports
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.Panel9 = New System.Windows.Forms.Panel()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.Panel27 = New System.Windows.Forms.Panel()
         Me.ButtonPrintSales = New System.Windows.Forms.Button()
@@ -142,6 +144,17 @@ Partial Class Reports
         Me.DateTimePicker11 = New System.Windows.Forms.DateTimePicker()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
         Me.Panel29 = New System.Windows.Forms.Panel()
+        Me.DataGridViewCrewSales = New System.Windows.Forms.DataGridView()
+        Me.Panel24 = New System.Windows.Forms.Panel()
+        Me.ComboBoxUserIDS = New System.Windows.Forms.ComboBox()
+        Me.Panel25 = New System.Windows.Forms.Panel()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.DateTimePicker5 = New System.Windows.Forms.DateTimePicker()
+        Me.ButtonSearchCrewSales = New System.Windows.Forms.Button()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.DateTimePicker6 = New System.Windows.Forms.DateTimePicker()
+        Me.TabPage8 = New System.Windows.Forms.TabPage()
+        Me.Panel32 = New System.Windows.Forms.Panel()
         Me.DataGridViewReturns = New System.Windows.Forms.DataGridView()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.CheckBoxPRINTALL = New System.Windows.Forms.CheckBox()
@@ -151,16 +164,14 @@ Partial Class Reports
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.DateTimePicker14 = New System.Windows.Forms.DateTimePicker()
-        Me.TabPage8 = New System.Windows.Forms.TabPage()
-        Me.Panel32 = New System.Windows.Forms.Panel()
+        Me.TabPage9 = New System.Windows.Forms.TabPage()
         Me.DataGridViewDeposits = New System.Windows.Forms.DataGridView()
         Me.Panel34 = New System.Windows.Forms.Panel()
         Me.DateTimePicker15 = New System.Windows.Forms.DateTimePicker()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.DateTimePicker16 = New System.Windows.Forms.DateTimePicker()
-        Me.TabPage9 = New System.Windows.Forms.TabPage()
-        Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.DataGridViewZreadInvData = New System.Windows.Forms.DataGridView()
@@ -184,6 +195,16 @@ Partial Class Reports
         Me.pdoc = New System.Drawing.Printing.PrintDocument()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.Column28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column31 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column32 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.LabelCrewSalesQty = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.LabelCrewSalesTotal = New System.Windows.Forms.Label()
         Me.Panel6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -216,15 +237,18 @@ Partial Class Reports
         Me.Panel26.SuspendLayout()
         Me.TabPage7.SuspendLayout()
         Me.Panel29.SuspendLayout()
+        CType(Me.DataGridViewCrewSales, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel24.SuspendLayout()
+        Me.Panel25.SuspendLayout()
+        Me.TabPage8.SuspendLayout()
+        Me.Panel32.SuspendLayout()
         CType(Me.DataGridViewReturns, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel8.SuspendLayout()
         Me.Panel33.SuspendLayout()
-        Me.TabPage8.SuspendLayout()
-        Me.Panel32.SuspendLayout()
+        Me.TabPage9.SuspendLayout()
         CType(Me.DataGridViewDeposits, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel34.SuspendLayout()
-        Me.TabPage9.SuspendLayout()
-        Me.Panel12.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
         Me.TableLayoutPanel4.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         CType(Me.DataGridViewZreadInvData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -233,6 +257,7 @@ Partial Class Reports
         Me.GroupBox9.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.Panel12.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel6
@@ -258,6 +283,7 @@ Partial Class Reports
         Me.TabControl1.Controls.Add(Me.TabPage7)
         Me.TabControl1.Controls.Add(Me.TabPage8)
         Me.TabControl1.Controls.Add(Me.TabPage9)
+        Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(20, 0)
@@ -289,6 +315,7 @@ Partial Class Reports
         Me.DataGridViewDaily.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridViewDaily.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewDaily.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewDaily.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -413,7 +440,6 @@ Partial Class Reports
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel4.Controls.Add(Me.Panel23)
         Me.Panel4.Controls.Add(Me.ComboBoxTransactionType)
         Me.Panel4.Controls.Add(Me.ButtonSearchDailyTransaction)
@@ -430,9 +456,9 @@ Partial Class Reports
         '
         Me.Panel23.Controls.Add(Me.Button8)
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel23.Location = New System.Drawing.Point(964, 0)
+        Me.Panel23.Location = New System.Drawing.Point(966, 0)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(151, 35)
+        Me.Panel23.Size = New System.Drawing.Size(151, 37)
         Me.Panel23.TabIndex = 187
         '
         'Button8
@@ -466,7 +492,7 @@ Partial Class Reports
         Me.ButtonSearchDailyTransaction.ForeColor = System.Drawing.Color.White
         Me.ButtonSearchDailyTransaction.Location = New System.Drawing.Point(822, 7)
         Me.ButtonSearchDailyTransaction.Name = "ButtonSearchDailyTransaction"
-        Me.ButtonSearchDailyTransaction.Size = New System.Drawing.Size(84, 23)
+        Me.ButtonSearchDailyTransaction.Size = New System.Drawing.Size(84, 22)
         Me.ButtonSearchDailyTransaction.TabIndex = 7
         Me.ButtonSearchDailyTransaction.Text = "Search"
         Me.ButtonSearchDailyTransaction.UseVisualStyleBackColor = False
@@ -526,6 +552,7 @@ Partial Class Reports
         Me.DataGridViewTransactionDetails.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridViewTransactionDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewTransactionDetails.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewTransactionDetails.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
         DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -590,7 +617,6 @@ Partial Class Reports
         'Panel11
         '
         Me.Panel11.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel11.Controls.Add(Me.Panel28)
         Me.Panel11.Controls.Add(Me.Label5)
         Me.Panel11.Dock = System.Windows.Forms.DockStyle.Top
@@ -603,9 +629,9 @@ Partial Class Reports
         '
         Me.Panel28.Controls.Add(Me.Button2)
         Me.Panel28.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel28.Location = New System.Drawing.Point(961, 0)
+        Me.Panel28.Location = New System.Drawing.Point(963, 0)
         Me.Panel28.Name = "Panel28"
-        Me.Panel28.Size = New System.Drawing.Size(154, 35)
+        Me.Panel28.Size = New System.Drawing.Size(154, 37)
         Me.Panel28.TabIndex = 8
         '
         'Button2
@@ -653,6 +679,7 @@ Partial Class Reports
         Me.DataGridViewSysLog.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
         Me.DataGridViewSysLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewSysLog.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewSysLog.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
         DataGridViewCellStyle8.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -698,7 +725,6 @@ Partial Class Reports
         'Panel7
         '
         Me.Panel7.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel7.Controls.Add(Me.ButtonSearchSystemLogs)
         Me.Panel7.Controls.Add(Me.Label12)
         Me.Panel7.Controls.Add(Me.DateTimePicker9)
@@ -719,7 +745,7 @@ Partial Class Reports
         Me.ButtonSearchSystemLogs.ForeColor = System.Drawing.Color.White
         Me.ButtonSearchSystemLogs.Location = New System.Drawing.Point(711, 7)
         Me.ButtonSearchSystemLogs.Name = "ButtonSearchSystemLogs"
-        Me.ButtonSearchSystemLogs.Size = New System.Drawing.Size(84, 23)
+        Me.ButtonSearchSystemLogs.Size = New System.Drawing.Size(84, 22)
         Me.ButtonSearchSystemLogs.TabIndex = 12
         Me.ButtonSearchSystemLogs.Text = "Search"
         Me.ButtonSearchSystemLogs.UseVisualStyleBackColor = False
@@ -773,6 +799,7 @@ Partial Class Reports
         Me.DataGridViewSales.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
         Me.DataGridViewSales.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewSales.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewSales.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
         DataGridViewCellStyle11.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -795,21 +822,20 @@ Partial Class Reports
         Me.DataGridViewSales.EnableHeadersVisualStyles = False
         Me.DataGridViewSales.Location = New System.Drawing.Point(3, 40)
         Me.DataGridViewSales.Name = "DataGridViewSales"
-        Me.DataGridViewSales.Size = New System.Drawing.Size(1117, 383)
+        Me.DataGridViewSales.Size = New System.Drawing.Size(1117, 396)
         Me.DataGridViewSales.TabIndex = 7
         '
         'Panel2
         '
-        Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Panel2.Controls.Add(Me.Label9)
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Controls.Add(Me.Label8)
         Me.Panel2.Controls.Add(Me.Label10)
-        Me.Panel2.Controls.Add(Me.Panel9)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(3, 423)
+        Me.Panel2.Location = New System.Drawing.Point(3, 436)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1117, 46)
+        Me.Panel2.Size = New System.Drawing.Size(1117, 33)
         Me.Panel2.TabIndex = 20
         '
         'Label9
@@ -817,7 +843,7 @@ Partial Class Reports
         Me.Label9.AutoSize = True
         Me.Label9.Dock = System.Windows.Forms.DockStyle.Left
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 18.0!)
-        Me.Label9.Location = New System.Drawing.Point(223, 10)
+        Me.Label9.Location = New System.Drawing.Point(214, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(26, 29)
         Me.Label9.TabIndex = 23
@@ -828,47 +854,37 @@ Partial Class Reports
         Me.Label2.AutoSize = True
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Left
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 18.0!)
-        Me.Label2.Location = New System.Drawing.Point(0, 10)
+        Me.Label2.Location = New System.Drawing.Point(0, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(223, 29)
+        Me.Label2.Size = New System.Drawing.Size(214, 29)
         Me.Label2.TabIndex = 21
-        Me.Label2.Text = "Total Quantity Sale:"
+        Me.Label2.Text = "TOTAL QUANTITY:"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label8.Font = New System.Drawing.Font("Tahoma", 18.0!)
-        Me.Label8.Location = New System.Drawing.Point(954, 10)
+        Me.Label8.Location = New System.Drawing.Point(926, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(137, 29)
+        Me.Label8.Size = New System.Drawing.Size(165, 29)
         Me.Label8.TabIndex = 22
-        Me.Label8.Text = "Total Sales:"
+        Me.Label8.Text = "TOTAL SALES:"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
         Me.Label10.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label10.Font = New System.Drawing.Font("Tahoma", 18.0!)
-        Me.Label10.Location = New System.Drawing.Point(1091, 10)
+        Me.Label10.Location = New System.Drawing.Point(1091, 0)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(26, 29)
         Me.Label10.TabIndex = 24
         Me.Label10.Text = "0"
         '
-        'Panel9
-        '
-        Me.Panel9.BackColor = System.Drawing.Color.White
-        Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel9.Location = New System.Drawing.Point(0, 0)
-        Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(1117, 10)
-        Me.Panel9.TabIndex = 25
-        '
         'Panel16
         '
         Me.Panel16.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel16.Controls.Add(Me.Panel27)
         Me.Panel16.Controls.Add(Me.ButtonSearchTotalDailySales)
         Me.Panel16.Controls.Add(Me.DateTimePicker3)
@@ -884,9 +900,9 @@ Partial Class Reports
         '
         Me.Panel27.Controls.Add(Me.ButtonPrintSales)
         Me.Panel27.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel27.Location = New System.Drawing.Point(970, 0)
+        Me.Panel27.Location = New System.Drawing.Point(972, 0)
         Me.Panel27.Name = "Panel27"
-        Me.Panel27.Size = New System.Drawing.Size(145, 35)
+        Me.Panel27.Size = New System.Drawing.Size(145, 37)
         Me.Panel27.TabIndex = 14
         '
         'ButtonPrintSales
@@ -908,7 +924,7 @@ Partial Class Reports
         Me.ButtonSearchTotalDailySales.ForeColor = System.Drawing.Color.White
         Me.ButtonSearchTotalDailySales.Location = New System.Drawing.Point(711, 7)
         Me.ButtonSearchTotalDailySales.Name = "ButtonSearchTotalDailySales"
-        Me.ButtonSearchTotalDailySales.Size = New System.Drawing.Size(84, 23)
+        Me.ButtonSearchTotalDailySales.Size = New System.Drawing.Size(84, 22)
         Me.ButtonSearchTotalDailySales.TabIndex = 13
         Me.ButtonSearchTotalDailySales.Text = "Search"
         Me.ButtonSearchTotalDailySales.UseVisualStyleBackColor = False
@@ -971,6 +987,7 @@ Partial Class Reports
         Me.DataGridViewEXPENSES.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
         Me.DataGridViewEXPENSES.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewEXPENSES.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewEXPENSES.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
         DataGridViewCellStyle14.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -999,7 +1016,6 @@ Partial Class Reports
         'Panel22
         '
         Me.Panel22.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel22.Controls.Add(Me.ButtonSearchExpenses)
         Me.Panel22.Controls.Add(Me.Label7)
         Me.Panel22.Controls.Add(Me.DateTimePicker8)
@@ -1020,7 +1036,7 @@ Partial Class Reports
         Me.ButtonSearchExpenses.ForeColor = System.Drawing.Color.White
         Me.ButtonSearchExpenses.Location = New System.Drawing.Point(711, 7)
         Me.ButtonSearchExpenses.Name = "ButtonSearchExpenses"
-        Me.ButtonSearchExpenses.Size = New System.Drawing.Size(84, 23)
+        Me.ButtonSearchExpenses.Size = New System.Drawing.Size(84, 22)
         Me.ButtonSearchExpenses.TabIndex = 14
         Me.ButtonSearchExpenses.Text = "Search"
         Me.ButtonSearchExpenses.UseVisualStyleBackColor = False
@@ -1080,6 +1096,7 @@ Partial Class Reports
         Me.DataGridViewEXPENSEDET.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle16
         Me.DataGridViewEXPENSEDET.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewEXPENSEDET.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewEXPENSEDET.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
         DataGridViewCellStyle17.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1108,7 +1125,6 @@ Partial Class Reports
         'Panel21
         '
         Me.Panel21.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel21.Controls.Add(Me.Label4)
         Me.Panel21.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel21.Location = New System.Drawing.Point(0, 0)
@@ -1148,6 +1164,7 @@ Partial Class Reports
         Me.DataGridViewTRANSACTIONLOGS.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle19
         Me.DataGridViewTRANSACTIONLOGS.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewTRANSACTIONLOGS.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewTRANSACTIONLOGS.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
         DataGridViewCellStyle20.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1177,7 +1194,6 @@ Partial Class Reports
         'Panel26
         '
         Me.Panel26.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel26.Controls.Add(Me.DateTimePicker12)
         Me.Panel26.Controls.Add(Me.Button1)
         Me.Panel26.Controls.Add(Me.Label13)
@@ -1206,7 +1222,7 @@ Partial Class Reports
         Me.Button1.ForeColor = System.Drawing.Color.White
         Me.Button1.Location = New System.Drawing.Point(711, 7)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(84, 23)
+        Me.Button1.Size = New System.Drawing.Size(84, 22)
         Me.Button1.TabIndex = 16
         Me.Button1.Text = "Search"
         Me.Button1.UseVisualStyleBackColor = False
@@ -1232,7 +1248,6 @@ Partial Class Reports
         'TabPage7
         '
         Me.TabPage7.Controls.Add(Me.Panel29)
-        Me.TabPage7.Controls.Add(Me.Panel8)
         Me.TabPage7.Location = New System.Drawing.Point(4, 28)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
@@ -1243,23 +1258,26 @@ Partial Class Reports
         '
         'Panel29
         '
-        Me.Panel29.Controls.Add(Me.DataGridViewReturns)
+        Me.Panel29.Controls.Add(Me.DataGridViewCrewSales)
+        Me.Panel29.Controls.Add(Me.Panel12)
+        Me.Panel29.Controls.Add(Me.Panel24)
         Me.Panel29.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel29.Location = New System.Drawing.Point(3, 40)
+        Me.Panel29.Location = New System.Drawing.Point(3, 3)
         Me.Panel29.Name = "Panel29"
-        Me.Panel29.Size = New System.Drawing.Size(1117, 429)
+        Me.Panel29.Size = New System.Drawing.Size(1117, 466)
         Me.Panel29.TabIndex = 7
         '
-        'DataGridViewReturns
+        'DataGridViewCrewSales
         '
-        Me.DataGridViewReturns.AllowUserToAddRows = False
-        Me.DataGridViewReturns.AllowUserToDeleteRows = False
-        Me.DataGridViewReturns.AllowUserToResizeColumns = False
-        Me.DataGridViewReturns.AllowUserToResizeRows = False
+        Me.DataGridViewCrewSales.AllowUserToAddRows = False
+        Me.DataGridViewCrewSales.AllowUserToDeleteRows = False
+        Me.DataGridViewCrewSales.AllowUserToResizeColumns = False
+        Me.DataGridViewCrewSales.AllowUserToResizeRows = False
         DataGridViewCellStyle22.BackColor = System.Drawing.Color.White
-        Me.DataGridViewReturns.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle22
-        Me.DataGridViewReturns.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridViewReturns.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewCrewSales.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle22
+        Me.DataGridViewCrewSales.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewCrewSales.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewCrewSales.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
         DataGridViewCellStyle23.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1267,8 +1285,9 @@ Partial Class Reports
         DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewReturns.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle23
-        Me.DataGridViewReturns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewCrewSales.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle23
+        Me.DataGridViewCrewSales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewCrewSales.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column28, Me.Column29, Me.Column30, Me.Column31, Me.Column32})
         DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle24.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle24.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1276,11 +1295,157 @@ Partial Class Reports
         DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
         DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewReturns.DefaultCellStyle = DataGridViewCellStyle24
+        Me.DataGridViewCrewSales.DefaultCellStyle = DataGridViewCellStyle24
+        Me.DataGridViewCrewSales.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewCrewSales.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridViewCrewSales.EnableHeadersVisualStyles = False
+        Me.DataGridViewCrewSales.Location = New System.Drawing.Point(0, 37)
+        Me.DataGridViewCrewSales.Name = "DataGridViewCrewSales"
+        Me.DataGridViewCrewSales.Size = New System.Drawing.Size(1117, 396)
+        Me.DataGridViewCrewSales.TabIndex = 8
+        '
+        'Panel24
+        '
+        Me.Panel24.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Panel24.Controls.Add(Me.ComboBoxUserIDS)
+        Me.Panel24.Controls.Add(Me.Panel25)
+        Me.Panel24.Controls.Add(Me.DateTimePicker5)
+        Me.Panel24.Controls.Add(Me.ButtonSearchCrewSales)
+        Me.Panel24.Controls.Add(Me.Label11)
+        Me.Panel24.Controls.Add(Me.DateTimePicker6)
+        Me.Panel24.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel24.Location = New System.Drawing.Point(0, 0)
+        Me.Panel24.Name = "Panel24"
+        Me.Panel24.Size = New System.Drawing.Size(1117, 37)
+        Me.Panel24.TabIndex = 7
+        '
+        'ComboBoxUserIDS
+        '
+        Me.ComboBoxUserIDS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxUserIDS.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBoxUserIDS.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBoxUserIDS.FormattingEnabled = True
+        Me.ComboBoxUserIDS.Location = New System.Drawing.Point(711, 7)
+        Me.ComboBoxUserIDS.Name = "ComboBoxUserIDS"
+        Me.ComboBoxUserIDS.Size = New System.Drawing.Size(105, 22)
+        Me.ComboBoxUserIDS.TabIndex = 20
+        '
+        'Panel25
+        '
+        Me.Panel25.Controls.Add(Me.Button6)
+        Me.Panel25.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel25.Location = New System.Drawing.Point(964, 0)
+        Me.Panel25.Name = "Panel25"
+        Me.Panel25.Size = New System.Drawing.Size(153, 37)
+        Me.Panel25.TabIndex = 19
+        '
+        'Button6
+        '
+        Me.Button6.BackColor = System.Drawing.SystemColors.Control
+        Me.Button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button6.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.Button6.ForeColor = System.Drawing.Color.Black
+        Me.Button6.Location = New System.Drawing.Point(2, 3)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(148, 29)
+        Me.Button6.TabIndex = 17
+        Me.Button6.Text = "Print"
+        Me.Button6.UseVisualStyleBackColor = False
+        '
+        'DateTimePicker5
+        '
+        Me.DateTimePicker5.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.DateTimePicker5.Location = New System.Drawing.Point(179, 7)
+        Me.DateTimePicker5.Name = "DateTimePicker5"
+        Me.DateTimePicker5.Size = New System.Drawing.Size(260, 22)
+        Me.DateTimePicker5.TabIndex = 8
+        '
+        'ButtonSearchCrewSales
+        '
+        Me.ButtonSearchCrewSales.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.ButtonSearchCrewSales.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ButtonSearchCrewSales.FlatAppearance.BorderSize = 0
+        Me.ButtonSearchCrewSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSearchCrewSales.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.ButtonSearchCrewSales.ForeColor = System.Drawing.Color.White
+        Me.ButtonSearchCrewSales.Location = New System.Drawing.Point(822, 7)
+        Me.ButtonSearchCrewSales.Name = "ButtonSearchCrewSales"
+        Me.ButtonSearchCrewSales.Size = New System.Drawing.Size(84, 22)
+        Me.ButtonSearchCrewSales.TabIndex = 16
+        Me.ButtonSearchCrewSales.Text = "Search"
+        Me.ButtonSearchCrewSales.UseVisualStyleBackColor = False
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Label11.Location = New System.Drawing.Point(12, 10)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(148, 14)
+        Me.Label11.TabIndex = 10
+        Me.Label11.Text = "Filter By Date (From - To)"
+        '
+        'DateTimePicker6
+        '
+        Me.DateTimePicker6.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.DateTimePicker6.Location = New System.Drawing.Point(445, 7)
+        Me.DateTimePicker6.Name = "DateTimePicker6"
+        Me.DateTimePicker6.Size = New System.Drawing.Size(260, 22)
+        Me.DateTimePicker6.TabIndex = 9
+        '
+        'TabPage8
+        '
+        Me.TabPage8.Controls.Add(Me.Panel32)
+        Me.TabPage8.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage8.Name = "TabPage8"
+        Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage8.Size = New System.Drawing.Size(1123, 472)
+        Me.TabPage8.TabIndex = 8
+        Me.TabPage8.Text = "TabPage8"
+        Me.TabPage8.UseVisualStyleBackColor = True
+        '
+        'Panel32
+        '
+        Me.Panel32.Controls.Add(Me.DataGridViewReturns)
+        Me.Panel32.Controls.Add(Me.Panel8)
+        Me.Panel32.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel32.Location = New System.Drawing.Point(3, 3)
+        Me.Panel32.Name = "Panel32"
+        Me.Panel32.Size = New System.Drawing.Size(1117, 466)
+        Me.Panel32.TabIndex = 0
+        '
+        'DataGridViewReturns
+        '
+        Me.DataGridViewReturns.AllowUserToAddRows = False
+        Me.DataGridViewReturns.AllowUserToDeleteRows = False
+        Me.DataGridViewReturns.AllowUserToResizeColumns = False
+        Me.DataGridViewReturns.AllowUserToResizeRows = False
+        DataGridViewCellStyle25.BackColor = System.Drawing.Color.White
+        Me.DataGridViewReturns.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle25
+        Me.DataGridViewReturns.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridViewReturns.BackgroundColor = System.Drawing.Color.White
+        Me.DataGridViewReturns.BorderStyle = System.Windows.Forms.BorderStyle.None
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle26.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle26.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewReturns.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle26
+        Me.DataGridViewReturns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle27.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle27.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewReturns.DefaultCellStyle = DataGridViewCellStyle27
         Me.DataGridViewReturns.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewReturns.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewReturns.EnableHeadersVisualStyles = False
-        Me.DataGridViewReturns.Location = New System.Drawing.Point(0, 0)
+        Me.DataGridViewReturns.Location = New System.Drawing.Point(0, 37)
         Me.DataGridViewReturns.Name = "DataGridViewReturns"
         Me.DataGridViewReturns.Size = New System.Drawing.Size(1117, 429)
         Me.DataGridViewReturns.TabIndex = 8
@@ -1288,7 +1453,6 @@ Partial Class Reports
         'Panel8
         '
         Me.Panel8.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel8.Controls.Add(Me.CheckBoxPRINTALL)
         Me.Panel8.Controls.Add(Me.Panel33)
         Me.Panel8.Controls.Add(Me.DateTimePicker13)
@@ -1296,7 +1460,7 @@ Partial Class Reports
         Me.Panel8.Controls.Add(Me.Label16)
         Me.Panel8.Controls.Add(Me.DateTimePicker14)
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel8.Location = New System.Drawing.Point(3, 3)
+        Me.Panel8.Location = New System.Drawing.Point(0, 0)
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(1117, 37)
         Me.Panel8.TabIndex = 6
@@ -1305,9 +1469,9 @@ Partial Class Reports
         '
         Me.CheckBoxPRINTALL.AutoSize = True
         Me.CheckBoxPRINTALL.Dock = System.Windows.Forms.DockStyle.Right
-        Me.CheckBoxPRINTALL.Location = New System.Drawing.Point(877, 0)
+        Me.CheckBoxPRINTALL.Location = New System.Drawing.Point(879, 0)
         Me.CheckBoxPRINTALL.Name = "CheckBoxPRINTALL"
-        Me.CheckBoxPRINTALL.Size = New System.Drawing.Size(85, 35)
+        Me.CheckBoxPRINTALL.Size = New System.Drawing.Size(85, 37)
         Me.CheckBoxPRINTALL.TabIndex = 18
         Me.CheckBoxPRINTALL.Text = "Print All"
         Me.CheckBoxPRINTALL.UseVisualStyleBackColor = True
@@ -1316,9 +1480,9 @@ Partial Class Reports
         '
         Me.Panel33.Controls.Add(Me.Button9)
         Me.Panel33.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel33.Location = New System.Drawing.Point(962, 0)
+        Me.Panel33.Location = New System.Drawing.Point(964, 0)
         Me.Panel33.Name = "Panel33"
-        Me.Panel33.Size = New System.Drawing.Size(153, 35)
+        Me.Panel33.Size = New System.Drawing.Size(153, 37)
         Me.Panel33.TabIndex = 19
         '
         'Button9
@@ -1352,7 +1516,7 @@ Partial Class Reports
         Me.Button3.ForeColor = System.Drawing.Color.White
         Me.Button3.Location = New System.Drawing.Point(711, 7)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(84, 23)
+        Me.Button3.Size = New System.Drawing.Size(84, 22)
         Me.Button3.TabIndex = 16
         Me.Button3.Text = "Search"
         Me.Button3.UseVisualStyleBackColor = False
@@ -1375,26 +1539,17 @@ Partial Class Reports
         Me.DateTimePicker14.Size = New System.Drawing.Size(260, 22)
         Me.DateTimePicker14.TabIndex = 9
         '
-        'TabPage8
+        'TabPage9
         '
-        Me.TabPage8.Controls.Add(Me.Panel32)
-        Me.TabPage8.Location = New System.Drawing.Point(4, 28)
-        Me.TabPage8.Name = "TabPage8"
-        Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage8.Size = New System.Drawing.Size(1123, 472)
-        Me.TabPage8.TabIndex = 8
-        Me.TabPage8.Text = "TabPage8"
-        Me.TabPage8.UseVisualStyleBackColor = True
-        '
-        'Panel32
-        '
-        Me.Panel32.Controls.Add(Me.DataGridViewDeposits)
-        Me.Panel32.Controls.Add(Me.Panel34)
-        Me.Panel32.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel32.Location = New System.Drawing.Point(3, 3)
-        Me.Panel32.Name = "Panel32"
-        Me.Panel32.Size = New System.Drawing.Size(1117, 466)
-        Me.Panel32.TabIndex = 0
+        Me.TabPage9.Controls.Add(Me.DataGridViewDeposits)
+        Me.TabPage9.Controls.Add(Me.Panel34)
+        Me.TabPage9.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage9.Name = "TabPage9"
+        Me.TabPage9.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage9.Size = New System.Drawing.Size(1123, 472)
+        Me.TabPage9.TabIndex = 9
+        Me.TabPage9.Text = "TabPage9"
+        Me.TabPage9.UseVisualStyleBackColor = True
         '
         'DataGridViewDeposits
         '
@@ -1402,31 +1557,32 @@ Partial Class Reports
         Me.DataGridViewDeposits.AllowUserToDeleteRows = False
         Me.DataGridViewDeposits.AllowUserToResizeColumns = False
         Me.DataGridViewDeposits.AllowUserToResizeRows = False
-        DataGridViewCellStyle25.BackColor = System.Drawing.Color.White
-        Me.DataGridViewDeposits.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle25
+        DataGridViewCellStyle28.BackColor = System.Drawing.Color.White
+        Me.DataGridViewDeposits.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle28
         Me.DataGridViewDeposits.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewDeposits.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle26.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle26.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewDeposits.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle26
+        Me.DataGridViewDeposits.BorderStyle = System.Windows.Forms.BorderStyle.None
+        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle29.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle29.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewDeposits.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle29
         Me.DataGridViewDeposits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle27.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle27.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewDeposits.DefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle30.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle30.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewDeposits.DefaultCellStyle = DataGridViewCellStyle30
         Me.DataGridViewDeposits.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewDeposits.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewDeposits.EnableHeadersVisualStyles = False
-        Me.DataGridViewDeposits.Location = New System.Drawing.Point(0, 37)
+        Me.DataGridViewDeposits.Location = New System.Drawing.Point(3, 40)
         Me.DataGridViewDeposits.Name = "DataGridViewDeposits"
         Me.DataGridViewDeposits.Size = New System.Drawing.Size(1117, 429)
         Me.DataGridViewDeposits.TabIndex = 10
@@ -1434,13 +1590,12 @@ Partial Class Reports
         'Panel34
         '
         Me.Panel34.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Panel34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel34.Controls.Add(Me.DateTimePicker15)
         Me.Panel34.Controls.Add(Me.Button4)
         Me.Panel34.Controls.Add(Me.Label18)
         Me.Panel34.Controls.Add(Me.DateTimePicker16)
         Me.Panel34.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel34.Location = New System.Drawing.Point(0, 0)
+        Me.Panel34.Location = New System.Drawing.Point(3, 3)
         Me.Panel34.Name = "Panel34"
         Me.Panel34.Size = New System.Drawing.Size(1117, 37)
         Me.Panel34.TabIndex = 7
@@ -1463,7 +1618,7 @@ Partial Class Reports
         Me.Button4.ForeColor = System.Drawing.Color.White
         Me.Button4.Location = New System.Drawing.Point(711, 7)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(84, 23)
+        Me.Button4.Size = New System.Drawing.Size(84, 22)
         Me.Button4.TabIndex = 16
         Me.Button4.Text = "Search"
         Me.Button4.UseVisualStyleBackColor = False
@@ -1486,26 +1641,16 @@ Partial Class Reports
         Me.DateTimePicker16.Size = New System.Drawing.Size(260, 22)
         Me.DateTimePicker16.TabIndex = 9
         '
-        'TabPage9
+        'TabPage1
         '
-        Me.TabPage9.Controls.Add(Me.Panel12)
-        Me.TabPage9.Location = New System.Drawing.Point(4, 28)
-        Me.TabPage9.Name = "TabPage9"
-        Me.TabPage9.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage9.Size = New System.Drawing.Size(1123, 472)
-        Me.TabPage9.TabIndex = 9
-        Me.TabPage9.Text = "TabPage9"
-        Me.TabPage9.UseVisualStyleBackColor = True
-        '
-        'Panel12
-        '
-        Me.Panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel12.Controls.Add(Me.TableLayoutPanel4)
-        Me.Panel12.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel12.Location = New System.Drawing.Point(3, 3)
-        Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(1117, 466)
-        Me.Panel12.TabIndex = 0
+        Me.TabPage1.Controls.Add(Me.TableLayoutPanel4)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(1123, 472)
+        Me.TabPage1.TabIndex = 10
+        Me.TabPage1.Text = "TabPage1"
+        Me.TabPage1.UseVisualStyleBackColor = True
         '
         'TableLayoutPanel4
         '
@@ -1514,12 +1659,12 @@ Partial Class Reports
         Me.TableLayoutPanel4.Controls.Add(Me.GroupBox7, 0, 0)
         Me.TableLayoutPanel4.Controls.Add(Me.GroupBox9, 0, 1)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
         Me.TableLayoutPanel4.RowCount = 2
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(1115, 464)
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(1117, 466)
         Me.TableLayoutPanel4.TabIndex = 8
         '
         'GroupBox7
@@ -1530,7 +1675,7 @@ Partial Class Reports
         Me.GroupBox7.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox7.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(1109, 388)
+        Me.GroupBox7.Size = New System.Drawing.Size(1111, 390)
         Me.GroupBox7.TabIndex = 164
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "Inventory(Zreading)"
@@ -1541,34 +1686,34 @@ Partial Class Reports
         Me.DataGridViewZreadInvData.AllowUserToDeleteRows = False
         Me.DataGridViewZreadInvData.AllowUserToResizeColumns = False
         Me.DataGridViewZreadInvData.AllowUserToResizeRows = False
-        DataGridViewCellStyle28.BackColor = System.Drawing.Color.White
-        Me.DataGridViewZreadInvData.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle31.BackColor = System.Drawing.Color.White
+        Me.DataGridViewZreadInvData.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle31
         Me.DataGridViewZreadInvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridViewZreadInvData.BackgroundColor = System.Drawing.Color.White
         Me.DataGridViewZreadInvData.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle29.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewZreadInvData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+        DataGridViewCellStyle32.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle32.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewZreadInvData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle32
         Me.DataGridViewZreadInvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle30.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle30.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
-        DataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewZreadInvData.DefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle33.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle33.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(209, Byte), Integer))
+        DataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewZreadInvData.DefaultCellStyle = DataGridViewCellStyle33
         Me.DataGridViewZreadInvData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewZreadInvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridViewZreadInvData.EnableHeadersVisualStyles = False
         Me.DataGridViewZreadInvData.Location = New System.Drawing.Point(3, 57)
         Me.DataGridViewZreadInvData.Name = "DataGridViewZreadInvData"
-        Me.DataGridViewZreadInvData.Size = New System.Drawing.Size(1103, 328)
+        Me.DataGridViewZreadInvData.Size = New System.Drawing.Size(1105, 330)
         Me.DataGridViewZreadInvData.TabIndex = 7
         '
         'Panel20
@@ -1581,7 +1726,7 @@ Partial Class Reports
         Me.Panel20.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel20.Location = New System.Drawing.Point(3, 22)
         Me.Panel20.Name = "Panel20"
-        Me.Panel20.Size = New System.Drawing.Size(1103, 35)
+        Me.Panel20.Size = New System.Drawing.Size(1105, 35)
         Me.Panel20.TabIndex = 4
         '
         'Label19
@@ -1614,7 +1759,7 @@ Partial Class Reports
         Me.Button7.ForeColor = System.Drawing.Color.White
         Me.Button7.Location = New System.Drawing.Point(308, 6)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(84, 23)
+        Me.Button7.Size = New System.Drawing.Size(84, 22)
         Me.Button7.TabIndex = 17
         Me.Button7.Text = "Search"
         Me.Button7.UseVisualStyleBackColor = False
@@ -1632,9 +1777,9 @@ Partial Class Reports
         Me.GroupBox9.Controls.Add(Me.Panel3)
         Me.GroupBox9.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox9.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox9.Location = New System.Drawing.Point(3, 397)
+        Me.GroupBox9.Location = New System.Drawing.Point(3, 399)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(1109, 64)
+        Me.GroupBox9.Size = New System.Drawing.Size(1111, 64)
         Me.GroupBox9.TabIndex = 166
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "Action"
@@ -1647,7 +1792,7 @@ Partial Class Reports
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(3, 22)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1103, 39)
+        Me.Panel3.Size = New System.Drawing.Size(1105, 39)
         Me.Panel3.TabIndex = 6
         '
         'Button5
@@ -1673,7 +1818,7 @@ Partial Class Reports
         Me.ButtonZread.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonZread.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonZread.ForeColor = System.Drawing.Color.White
-        Me.ButtonZread.Location = New System.Drawing.Point(765, 0)
+        Me.ButtonZread.Location = New System.Drawing.Point(767, 0)
         Me.ButtonZread.Name = "ButtonZread"
         Me.ButtonZread.Size = New System.Drawing.Size(134, 39)
         Me.ButtonZread.TabIndex = 1
@@ -1688,7 +1833,7 @@ Partial Class Reports
         Me.ButtonZreadAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonZreadAdmin.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonZreadAdmin.ForeColor = System.Drawing.Color.White
-        Me.ButtonZreadAdmin.Location = New System.Drawing.Point(899, 0)
+        Me.ButtonZreadAdmin.Location = New System.Drawing.Point(901, 0)
         Me.ButtonZreadAdmin.Name = "ButtonZreadAdmin"
         Me.ButtonZreadAdmin.Size = New System.Drawing.Size(204, 39)
         Me.ButtonZreadAdmin.TabIndex = 2
@@ -1768,6 +1913,92 @@ Partial Class Reports
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'Column28
+        '
+        Me.Column28.HeaderText = "Transaction Number "
+        Me.Column28.Name = "Column28"
+        '
+        'Column29
+        '
+        Me.Column29.HeaderText = "Grosssales"
+        Me.Column29.Name = "Column29"
+        '
+        'Column30
+        '
+        Me.Column30.HeaderText = "Quantity"
+        Me.Column30.Name = "Column30"
+        '
+        'Column31
+        '
+        Me.Column31.HeaderText = "Crew ID"
+        Me.Column31.Name = "Column31"
+        '
+        'Column32
+        '
+        Me.Column32.HeaderText = "Created At"
+        Me.Column32.Name = "Column32"
+        '
+        'Panel12
+        '
+        Me.Panel12.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Panel12.Controls.Add(Me.Label17)
+        Me.Panel12.Controls.Add(Me.LabelCrewSalesTotal)
+        Me.Panel12.Controls.Add(Me.LabelCrewSalesQty)
+        Me.Panel12.Controls.Add(Me.Label15)
+        Me.Panel12.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel12.Location = New System.Drawing.Point(0, 433)
+        Me.Panel12.Name = "Panel12"
+        Me.Panel12.Size = New System.Drawing.Size(1117, 33)
+        Me.Panel12.TabIndex = 9
+        '
+        'LabelCrewSalesQty
+        '
+        Me.LabelCrewSalesQty.AutoSize = True
+        Me.LabelCrewSalesQty.Dock = System.Windows.Forms.DockStyle.Left
+        Me.LabelCrewSalesQty.Font = New System.Drawing.Font("Tahoma", 18.0!)
+        Me.LabelCrewSalesQty.ForeColor = System.Drawing.Color.Black
+        Me.LabelCrewSalesQty.Location = New System.Drawing.Point(214, 0)
+        Me.LabelCrewSalesQty.Name = "LabelCrewSalesQty"
+        Me.LabelCrewSalesQty.Size = New System.Drawing.Size(26, 29)
+        Me.LabelCrewSalesQty.TabIndex = 25
+        Me.LabelCrewSalesQty.Text = "0"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label15.Font = New System.Drawing.Font("Tahoma", 18.0!)
+        Me.Label15.ForeColor = System.Drawing.Color.Black
+        Me.Label15.Location = New System.Drawing.Point(0, 0)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(214, 29)
+        Me.Label15.TabIndex = 24
+        Me.Label15.Text = "TOTAL QUANTITY:"
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Label17.Font = New System.Drawing.Font("Tahoma", 18.0!)
+        Me.Label17.ForeColor = System.Drawing.Color.Black
+        Me.Label17.Location = New System.Drawing.Point(926, 0)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(165, 29)
+        Me.Label17.TabIndex = 26
+        Me.Label17.Text = "TOTAL SALES:"
+        '
+        'LabelCrewSalesTotal
+        '
+        Me.LabelCrewSalesTotal.AutoSize = True
+        Me.LabelCrewSalesTotal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelCrewSalesTotal.Font = New System.Drawing.Font("Tahoma", 18.0!)
+        Me.LabelCrewSalesTotal.ForeColor = System.Drawing.Color.Black
+        Me.LabelCrewSalesTotal.Location = New System.Drawing.Point(1091, 0)
+        Me.LabelCrewSalesTotal.Name = "LabelCrewSalesTotal"
+        Me.LabelCrewSalesTotal.Size = New System.Drawing.Size(26, 29)
+        Me.LabelCrewSalesTotal.TabIndex = 27
+        Me.LabelCrewSalesTotal.Text = "0"
+        '
         'Reports
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1819,17 +2050,21 @@ Partial Class Reports
         Me.Panel26.PerformLayout()
         Me.TabPage7.ResumeLayout(False)
         Me.Panel29.ResumeLayout(False)
+        CType(Me.DataGridViewCrewSales, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel24.ResumeLayout(False)
+        Me.Panel24.PerformLayout()
+        Me.Panel25.ResumeLayout(False)
+        Me.TabPage8.ResumeLayout(False)
+        Me.Panel32.ResumeLayout(False)
         CType(Me.DataGridViewReturns, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel8.ResumeLayout(False)
         Me.Panel8.PerformLayout()
         Me.Panel33.ResumeLayout(False)
-        Me.TabPage8.ResumeLayout(False)
-        Me.Panel32.ResumeLayout(False)
+        Me.TabPage9.ResumeLayout(False)
         CType(Me.DataGridViewDeposits, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel34.ResumeLayout(False)
         Me.Panel34.PerformLayout()
-        Me.TabPage9.ResumeLayout(False)
-        Me.Panel12.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
         Me.TableLayoutPanel4.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
         CType(Me.DataGridViewZreadInvData, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1840,6 +2075,8 @@ Partial Class Reports
         Me.Panel3.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.Panel12.ResumeLayout(False)
+        Me.Panel12.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1892,7 +2129,6 @@ Partial Class Reports
     Friend WithEvents Label2 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents Panel9 As Panel
     Friend WithEvents TabPage6 As TabPage
     Friend WithEvents DataGridViewTRANSACTIONLOGS As DataGridView
     Friend WithEvents Panel26 As Panel
@@ -1926,7 +2162,6 @@ Partial Class Reports
     Friend WithEvents DateTimePicker16 As DateTimePicker
     Friend WithEvents DataGridViewDeposits As DataGridView
     Friend WithEvents TabPage9 As TabPage
-    Friend WithEvents Panel12 As Panel
     Friend WithEvents Button5 As Button
     Friend WithEvents ButtonZread As Button
     Friend WithEvents ButtonZreadAdmin As Button
@@ -1976,4 +2211,24 @@ Partial Class Reports
     Friend WithEvents Column27 As DataGridViewTextBoxColumn
     Friend WithEvents ComboBoxTransactionType As ComboBox
     Friend WithEvents Panel23 As Panel
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents DataGridViewCrewSales As DataGridView
+    Friend WithEvents Panel24 As Panel
+    Friend WithEvents ComboBoxUserIDS As ComboBox
+    Friend WithEvents Panel25 As Panel
+    Friend WithEvents Button6 As Button
+    Friend WithEvents DateTimePicker5 As DateTimePicker
+    Friend WithEvents ButtonSearchCrewSales As Button
+    Friend WithEvents Label11 As Label
+    Friend WithEvents DateTimePicker6 As DateTimePicker
+    Friend WithEvents Column28 As DataGridViewTextBoxColumn
+    Friend WithEvents Column29 As DataGridViewTextBoxColumn
+    Friend WithEvents Column30 As DataGridViewTextBoxColumn
+    Friend WithEvents Column31 As DataGridViewTextBoxColumn
+    Friend WithEvents Column32 As DataGridViewTextBoxColumn
+    Friend WithEvents Panel12 As Panel
+    Friend WithEvents Label17 As Label
+    Friend WithEvents LabelCrewSalesTotal As Label
+    Friend WithEvents LabelCrewSalesQty As Label
+    Friend WithEvents Label15 As Label
 End Class
