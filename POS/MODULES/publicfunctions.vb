@@ -468,16 +468,30 @@ Module publicfunctions
             .TextBoxGRANDTOTAL.Text = Format(TwoDecimalPlaces(Total), "###,###,##0.00")
         End With
     End Sub
-
-    Public Sub LedDisplay(TextToDisplay As String)
+    Public Sub LedDisplayTotal()
         Try
-            'Displays Price Amount in the pole display
+
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Public Sub LedDisplay(TextToDisplay As String, TotalOrChange As Boolean)
+        Try
             Dim ComPort As String = My.Settings.SpPort
             Dim BaudRate As Integer = My.Settings.SpBaudrate
+
             Dim sp As New System.IO.Ports.SerialPort(ComPort, BaudRate, IO.Ports.Parity.None And IO.Ports.StopBits.One)
             sp.Open()
             sp.Write(Convert.ToString(ChrW(12)))
-            sp.WriteLine(Chr(27) + Chr(81) + Chr(65) + TextToDisplay + Chr(13))
+            If TotalOrChange Then
+                'Displays Price Amount AND word TOTAL in the pole display
+                sp.WriteLine(Chr(27) + Chr(81) + Chr(65) + TextToDisplay + Chr(13) + Chr(27) + Chr(115) + ”2”)
+            Else
+                'Displays Price Amount AND word CHANGE in the pole display
+                sp.WriteLine(Chr(27) + Chr(81) + Chr(65) + TextToDisplay + Chr(13) + Chr(27) + Chr(115) + ”4”)
+            End If
+            ' sp.WriteLine(Chr(27) + Chr(115) + ”2”)
             sp.Close()
             sp.Dispose()
             sp = Nothing

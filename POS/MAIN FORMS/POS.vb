@@ -488,10 +488,6 @@ Public Class POS
             Else
                 ButtonApplyCoupon.Enabled = False
             End If
-
-            If My.Settings.LedDisplayTrue Then
-                LedDisplay(Label76.Text)
-            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -2543,6 +2539,17 @@ Public Class POS
                     DtMessage.Rows.Add(Mess)
 
                 Next
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub TextBoxGRANDTOTAL_TextChanged(sender As Object, e As EventArgs) Handles TextBoxGRANDTOTAL.TextChanged
+        Try
+            If My.Settings.LedDisplayTrue Then
+                LedDisplay(TextBoxGRANDTOTAL.Text, True)
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
