@@ -5,7 +5,8 @@
     End Sub
     Private Sub PaymentForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TopMost = True
-
+        TextBoxMONEY.Text = "0"
+        TextBoxDiscType.Text = POS.DISCOUNTTYPE
         TextBoxTransactionType.Text = TRANSACTIONMODE
         TextBoxMONEY.Focus()
         TextBoxMONEY.Focus()
@@ -47,8 +48,8 @@
     End Sub
     Private Sub TextBoxMONEY_TextChanged(sender As Object, e As EventArgs) Handles TextBoxMONEY.TextChanged
         Try
-            If TextBoxMONEY.Text = "" Then
-                TextBoxCHANGE.Text = 0
+            If Val(TextBoxMONEY.Text) = 0 Then
+                TextBoxCHANGE.Text = "0"
             End If
             TextBoxCHANGE.Text = NUMBERFORMAT(Double.Parse(TextBoxMONEY.Text) - Double.Parse(TextBoxTOTALPAY.Text))
         Catch ex As Exception

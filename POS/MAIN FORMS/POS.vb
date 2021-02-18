@@ -1038,23 +1038,28 @@ Public Class POS
                 If TRANSACTIONMODE = "Representation Expenses" Then
                     ACTIVE = 3
                 End If
-                If S_ZeroRated = "0" Then
+
+                If CouponApplied = False Then
                     VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-                    VATEXEMPTSALES = 0.00
-                    VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
-                    GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
-                Else
-                    GROSSSALE = Format(Val(SUPERAMOUNTDUE), "###,###,##0.00")
-                    If CouponApplied Then
-                        VAT12PERCENT = 0
-                        LESSVAT = 0
-                        VATABLESALES = 0
-                    Else
-                        ZERORATEDSALES = SUPERAMOUNTDUE
-                        VATABLESALES = ZERORATEDSALES
-                        ZERORATEDNETSALES = ZERORATEDSALES
-                    End If
+                    LESSVAT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
                 End If
+                'If S_ZeroRated = "0" Then
+                '    VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                '    VATEXEMPTSALES = 0.00
+                '    VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
+                '    GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
+                'Else
+                '    GROSSSALE = Format(Val(SUPERAMOUNTDUE), "###,###,##0.00")
+                '    'If CouponApplied Then
+                '    '    VAT12PERCENT = 0
+                '    '    LESSVAT = 0
+                '    '    VATABLESALES = 0
+                '    'Else
+                '    '    ZERORATEDSALES = SUPERAMOUNTDUE
+                '    '    VATABLESALES = ZERORATEDSALES
+                '    '    ZERORATEDNETSALES = ZERORATEDSALES
+                '    'End If
+                'End If
                 sql = "SELECT si_number FROM loc_daily_transaction ORDER BY transaction_id DESC limit 1"
                 cmd = New MySqlCommand(sql, LocalhostConn)
                 da = New MySqlDataAdapter(cmd)
@@ -1170,7 +1175,12 @@ Public Class POS
                         b += 10
                     End If
                 Next
-                printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
+                If CouponApplied Then
+                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 520 + b)
+                Else
+                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
+                End If
+
                 If S_Print = "YES" Then
                     printdoc.Print()
                 Else
@@ -1352,6 +1362,8 @@ Public Class POS
                             RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & Format(LESSVAT, "0.00"), font, 0, 0)
                         End If
                     End If
+                    RightToLeftDisplay(sender, e, a + 115, "     Total", "    " & Format(NETSALES, "###,###,##0.00"), font, 0, 0)
+                    a += 5
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 101)
                     a += 4
                     SimpleTextDisplay(sender, e, "Transaction Type: " & Trim(TRANSACTIONMODE), font, 0, a + 110)

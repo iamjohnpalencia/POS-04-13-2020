@@ -416,7 +416,13 @@ Public Class Reports
                             b += 10
                         End If
                     Next
-                    printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
+
+                    If DataGridViewDaily.SelectedRows(0).Cells(2).Value < 1 Then
+                        printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 500 + b)
+                    Else
+                        printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 520 + b)
+                    End If
+
                     If S_Reprint = "YES" Then
                         printdoc.Print()
                     Else
@@ -601,7 +607,8 @@ Public Class Reports
                     SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 110, a + 140)
                     SimpleTextDisplay(sender, e, "Ref. #: " & .SelectedRows(0).Cells(0).Value.ToString, font, 0, a + 140)
                     SimpleTextDisplay(sender, e, "SI No: " & SINUMBERSTRING, font, 0, a + 150)
-                    SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 160)
+                    SimpleTextDisplay(sender, e, "THIS SERVES AS AN OFFICIAL RECEIPT", font, 0, a + 160)
+
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 174)
                     ReceiptFooter(sender, e, a + 12)
                 Else
@@ -634,6 +641,8 @@ Public Class Reports
                     RightToLeftDisplay(sender, e, a + 85, "     Zero Rated Sales", "    " & .SelectedRows(0).Cells(8).Value.ToString, font, 0, 0)
                     RightToLeftDisplay(sender, e, a + 95, "     VAT" & "(" & Val(S_Tax) * 100 & "%)", "    " & .SelectedRows(0).Cells(9).Value.ToString, font, 0, 0)
                     RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & .SelectedRows(0).Cells(10).Value.ToString, font, 0, 0)
+                    RightToLeftDisplay(sender, e, a + 115, "     Total", "    " & .SelectedRows(0).Cells(5).Value.ToString, font, 0, 0)
+                    a += 5
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 101)
                     a += 4
                     SimpleTextDisplay(sender, e, "Transaction Type: " & .SelectedRows(0).Cells(11).Value.ToString, font, 0, a + 110)
@@ -644,7 +653,7 @@ Public Class Reports
                     SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 120, a + 150)
                     SimpleTextDisplay(sender, e, "Ref. #: " & .SelectedRows(0).Cells(0).Value.ToString, font, 0, a + 150)
                     SimpleTextDisplay(sender, e, "SI No: " & SINUMBERSTRING, font, 0, a + 160)
-                    SimpleTextDisplay(sender, e, "This serves as your Sales Invoice", font, 0, a + 170)
+                    SimpleTextDisplay(sender, e, "THIS SERVES AS AN OFFICIAL RECEIPT", font, 0, a + 170)
                     a += 6
                     SimpleTextDisplay(sender, e, "*************************************", font, 0, a + 180)
                     a += 16
