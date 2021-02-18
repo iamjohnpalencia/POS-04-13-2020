@@ -1730,7 +1730,7 @@ Public Class POS
             End If
         Catch ex As Exception
             BackgroundWorker2.CancelAsync()
-            MsgBox(ex.ToString)
+            MessageBox.Show("Data table timeout click ok to exit", "Connection Time out", MessageBoxButtons.OK, MessageBoxIcon.Error)
             SendErrorReport(ex.ToString)
         End Try
     End Sub
