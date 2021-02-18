@@ -113,6 +113,42 @@ Namespace My
                 Me("Footer") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property SpPort() As String
+            Get
+                Return CType(Me("SpPort"),String)
+            End Get
+            Set
+                Me("SpPort") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property SpBaudrate() As Integer
+            Get
+                Return CType(Me("SpBaudrate"),Integer)
+            End Get
+            Set
+                Me("SpBaudrate") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property LedDisplayTrue() As Boolean
+            Get
+                Return CType(Me("LedDisplayTrue"),Boolean)
+            End Get
+            Set
+                Me("LedDisplayTrue") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

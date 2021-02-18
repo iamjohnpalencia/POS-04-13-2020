@@ -33,6 +33,9 @@
                     .BackgroundWorker1.RunWorkerAsync()
                     .Label9.Text = Format(Val(TextBoxMONEY.Text), "###,###,##0.00")
                     .Label13.Text = Format(Val(TextBoxCHANGE.Text), "###,###,##0.00")
+                    If My.Settings.LedDisplayTrue Then
+                        LedDisplay(TextBoxCHANGE.Text)
+                    End If
                     Close()
                     WaitFrm.Show()
                 End If

@@ -36,12 +36,14 @@ Public Class SettingsForm
             LoadAutoBackup()
             LoadPrintOptions()
             LoadTrainingMode()
-
+            LoadLedDisplaySettings()
             If ClientRole <> "Admin" And ClientRole <> "Manager" Then
                 TabControl1.TabPages.Remove(TabControl1.TabPages(5))
                 AutoBackupBoolean = False
                 PrintOptionsBoolean = False
+                GroupBox19.Enabled = False
             Else
+                GroupBox19.Enabled = True
                 AutoBackupBoolean = True
                 PrintOptionsBoolean = True
             End If
@@ -61,6 +63,17 @@ Public Class SettingsForm
                 Button2.Visible = False
                 ButtonCHelp.Visible = False
                 ButtonSaveCoupon.Visible = False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub LoadLedDisplaySettings()
+        Try
+            GetPorts(ComboBoxComPort)
+            If My.Settings.LedDisplayTrue Then
+                TextBoxBaudRate.Text = My.Settings.SpBaudrate
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -2785,6 +2798,50 @@ Public Class SettingsForm
                 Dim cmd As MySqlCommand = New MySqlCommand(Sql, ConnectionLocal)
                 Dim res = cmd.ExecuteNonQuery
                 MessageBox.Show("Monthly inventory reset is off", "NOTICE", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub ButtonApplyLedSettings_Click(sender As Object, e As EventArgs) Handles ButtonApplyLedSettings.Click
+        Try
+            If My.Settings.LedDisplayTrue Then
+                My.Settings.SpPort = ComboBoxComPort.Text
+                My.Settings.SpBaudrate = Val(TextBoxBaudRate.Text)
+                My.Settings.Save()
+                MsgBox("Success!")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub ButtonRefreshPort_Click(sender As Object, e As EventArgs) Handles ButtonRefreshPort.Click
+        Try
+            GetPorts(ComboBoxComPort)
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonTestDisplay.Click
+        Try
+            If ComboBoxComPort.SelectedIndex <> -1 And ComboBoxComPort.Text <> "" Then
+                If Val(TextBoxBaudRate.Text) > 0 Then
+                    If TextBoxTest.Text <> "" Then
+                        LedConfig(TextBoxTest.Text, ComboBoxComPort.Text, Val(TextBoxBaudRate.Text))
+                    Else
+                        MsgBox("Input sample text display first")
+                    End If
+                Else
+                    MsgBox("Input baudrate first.")
+                End If
+            Else
+                MsgBox("Select available Serial Port first.")
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)

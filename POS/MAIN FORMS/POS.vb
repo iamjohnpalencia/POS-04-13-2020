@@ -489,6 +489,9 @@ Public Class POS
                 ButtonApplyCoupon.Enabled = False
             End If
 
+            If My.Settings.LedDisplayTrue Then
+                LedDisplay(Label76.Text)
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try

@@ -15,6 +15,12 @@ Module publicfunctions
     Dim timeformat
     Declare Function Wow64DisableWow64FsRedirection Lib "kernel32" (ByRef oldvalue As Long) As Boolean
     Private osk As String = "C:\Windows\System32\osk.exe"
+
+    Dim sp As New System.IO.Ports.SerialPort("COM2", 2400, IO.Ports.Parity.None And IO.Ports.StopBits.One)
+    Public Declare Function com_init Lib "api_com.dll" (ByVal com As Integer, ByVal baud As Integer) As Boolean
+    Public Declare Function com_send Lib "api_com.dll" (ByVal buf As String, ByVal lens As Long) As Boolean
+    Public Declare Function com_rest Lib "api_com.dll" () As Boolean
+
     Public Sub ShowKeyboard()
         Try
             Wow64DisableWow64FsRedirection(0)
@@ -461,5 +467,62 @@ Module publicfunctions
             Dim Total = Double.Parse(.Label76.Text) - Double.Parse(.TextBoxDISCOUNT.Text)
             .TextBoxGRANDTOTAL.Text = Format(TwoDecimalPlaces(Total), "###,###,##0.00")
         End With
+    End Sub
+
+    Public Sub LedDisplay(TextToDisplay As String)
+        Try
+            'Displays Price Amount in the pole display
+            Dim ComPort As String = My.Settings.SpPort
+            Dim BaudRate As Integer = My.Settings.SpBaudrate
+            Dim sp As New System.IO.Ports.SerialPort(ComPort, BaudRate, IO.Ports.Parity.None And IO.Ports.StopBits.One)
+            sp.Open()
+            sp.Write(Convert.ToString(ChrW(12)))
+            sp.WriteLine(Chr(27) + Chr(81) + Chr(65) + TextToDisplay + Chr(13))
+            sp.Close()
+            sp.Dispose()
+            sp = Nothing
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+
+    Public Sub LedConfig(TextToDisplay As String, ComPort As String, BaudRate As Integer)
+        Try
+            'Displays Price Amount in the pole display
+            Dim sp As New System.IO.Ports.SerialPort(ComPort, BaudRate, IO.Ports.Parity.None And IO.Ports.StopBits.One)
+            sp.Open()
+            sp.Write(Convert.ToString(ChrW(12)))
+            sp.WriteLine(Chr(27) + Chr(81) + Chr(65) + TextToDisplay + Chr(13))
+            sp.Close()
+            sp.Dispose()
+            sp = Nothing
+            Dim msg = MessageBox.Show("Does sample text displays on LED panel?", "LED DISPLAY CONFIGURATION", MessageBoxButtons.YesNo)
+            If msg = DialogResult.Yes Then
+                My.Settings.LedDisplayTrue = True
+                My.Settings.Save()
+            Else
+                My.Settings.LedDisplayTrue = False
+                My.Settings.Save()
+            End If
+        Catch ex As Exception
+            My.Settings.LedDisplayTrue = False
+            My.Settings.Save()
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+
+
+    Public Sub GetPorts(ToFill)
+        Try
+            ToFill.items.clear
+            For Each sp As String In My.Computer.Ports.SerialPortNames
+                ToFill.Items.Add(sp)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            SendErrorReport(ex.ToString)
+        End Try
     End Sub
 End Module
