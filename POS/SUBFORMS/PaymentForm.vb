@@ -27,6 +27,9 @@
                     TextBoxCHANGE.Clear()
                     messageboxappearance = False
                 Else
+                    If TextBoxMONEY.Text = "" Then
+                        TextBoxMONEY.Text = 0
+                    End If
                     TEXTBOXMONEYVALUE = TextBoxMONEY.Text
                     TEXTBOXCHANGEVALUE = TextBoxCHANGE.Text
                     .BackgroundWorker1.WorkerSupportsCancellation = True
