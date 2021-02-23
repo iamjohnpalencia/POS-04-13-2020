@@ -202,9 +202,7 @@ Public Class AddEditProducts
         End Try
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Close()
-    End Sub
+
 
     Private Sub AddEditProducts_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
@@ -228,7 +226,6 @@ Public Class AddEditProducts
             If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
                 If My.Computer.FileSystem.FileExists(ImagePath) Then
                     Button1.Enabled = False
-                    Button2.Enabled = False
                     ButtonKeyboard.Enabled = False
                     BackgroundWorker1.WorkerSupportsCancellation = True
                     BackgroundWorker1.WorkerReportsProgress = True
@@ -278,7 +275,6 @@ Public Class AddEditProducts
                 Label1.Text = "Task Cancelled!"
             Else
                 Button1.Enabled = True
-                Button2.Enabled = True
                 ButtonKeyboard.Enabled = True
                 ToolStripStatusLabel1.Text = "Successfully Uploaded!"
             End If

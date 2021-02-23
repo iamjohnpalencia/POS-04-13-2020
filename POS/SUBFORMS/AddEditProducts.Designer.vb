@@ -35,7 +35,6 @@ Partial Class AddEditProducts
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.ButtonKeyboard = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -53,7 +52,7 @@ Partial Class AddEditProducts
         '
         'TextBoxProductCode
         '
-        Me.TextBoxProductCode.Location = New System.Drawing.Point(15, 28)
+        Me.TextBoxProductCode.Location = New System.Drawing.Point(10, 23)
         Me.TextBoxProductCode.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxProductCode.Name = "TextBoxProductCode"
         Me.TextBoxProductCode.Size = New System.Drawing.Size(232, 23)
@@ -63,7 +62,7 @@ Partial Class AddEditProducts
         '
         Me.PictureBoxProductImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.PictureBoxProductImage.Image = CType(resources.GetObject("PictureBoxProductImage.Image"), System.Drawing.Image)
-        Me.PictureBoxProductImage.Location = New System.Drawing.Point(253, 28)
+        Me.PictureBoxProductImage.Location = New System.Drawing.Point(248, 23)
         Me.PictureBoxProductImage.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PictureBoxProductImage.Name = "PictureBoxProductImage"
         Me.PictureBoxProductImage.Size = New System.Drawing.Size(202, 169)
@@ -73,7 +72,7 @@ Partial Class AddEditProducts
         '
         'TextBoxProductName
         '
-        Me.TextBoxProductName.Location = New System.Drawing.Point(15, 75)
+        Me.TextBoxProductName.Location = New System.Drawing.Point(10, 70)
         Me.TextBoxProductName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxProductName.Name = "TextBoxProductName"
         Me.TextBoxProductName.Size = New System.Drawing.Size(232, 23)
@@ -81,7 +80,7 @@ Partial Class AddEditProducts
         '
         'TextBoxBarcode
         '
-        Me.TextBoxBarcode.Location = New System.Drawing.Point(15, 122)
+        Me.TextBoxBarcode.Location = New System.Drawing.Point(10, 117)
         Me.TextBoxBarcode.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxBarcode.Name = "TextBoxBarcode"
         Me.TextBoxBarcode.Size = New System.Drawing.Size(232, 23)
@@ -89,7 +88,7 @@ Partial Class AddEditProducts
         '
         'TextBoxPrice
         '
-        Me.TextBoxPrice.Location = New System.Drawing.Point(15, 169)
+        Me.TextBoxPrice.Location = New System.Drawing.Point(10, 164)
         Me.TextBoxPrice.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxPrice.Name = "TextBoxPrice"
         Me.TextBoxPrice.Size = New System.Drawing.Size(232, 23)
@@ -97,7 +96,7 @@ Partial Class AddEditProducts
         '
         'TextBoxDescription
         '
-        Me.TextBoxDescription.Location = New System.Drawing.Point(15, 216)
+        Me.TextBoxDescription.Location = New System.Drawing.Point(10, 211)
         Me.TextBoxDescription.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxDescription.Name = "TextBoxDescription"
         Me.TextBoxDescription.Size = New System.Drawing.Size(232, 23)
@@ -106,7 +105,7 @@ Partial Class AddEditProducts
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 8)
+        Me.Label1.Location = New System.Drawing.Point(7, 3)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(89, 16)
         Me.Label1.TabIndex = 7
@@ -115,7 +114,7 @@ Partial Class AddEditProducts
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 55)
+        Me.Label2.Location = New System.Drawing.Point(7, 50)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(93, 16)
         Me.Label2.TabIndex = 8
@@ -124,7 +123,7 @@ Partial Class AddEditProducts
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 102)
+        Me.Label3.Location = New System.Drawing.Point(7, 97)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(106, 16)
         Me.Label3.TabIndex = 9
@@ -133,7 +132,7 @@ Partial Class AddEditProducts
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 149)
+        Me.Label4.Location = New System.Drawing.Point(7, 144)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(88, 16)
         Me.Label4.TabIndex = 10
@@ -142,7 +141,7 @@ Partial Class AddEditProducts
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 196)
+        Me.Label5.Location = New System.Drawing.Point(7, 191)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(123, 16)
         Me.Label5.TabIndex = 11
@@ -155,34 +154,21 @@ Partial Class AddEditProducts
         Me.ButtonKeyboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ButtonKeyboard.FlatAppearance.BorderSize = 0
         Me.ButtonKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonKeyboard.Location = New System.Drawing.Point(394, 293)
+        Me.ButtonKeyboard.Location = New System.Drawing.Point(389, 246)
         Me.ButtonKeyboard.Name = "ButtonKeyboard"
         Me.ButtonKeyboard.Size = New System.Drawing.Size(61, 35)
         Me.ButtonKeyboard.TabIndex = 234
         Me.ButtonKeyboard.UseVisualStyleBackColor = False
         '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(74, Byte), Integer))
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(253, 293)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(135, 35)
-        Me.Button2.TabIndex = 233
-        Me.Button2.Text = "Cancel"
-        Me.Button2.UseVisualStyleBackColor = False
-        '
         'Button1
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(54, Byte), Integer))
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(15, 293)
+        Me.Button1.Location = New System.Drawing.Point(248, 246)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(232, 35)
+        Me.Button1.Size = New System.Drawing.Size(135, 35)
         Me.Button1.TabIndex = 232
         Me.Button1.Text = "Submit"
         Me.Button1.UseVisualStyleBackColor = False
@@ -193,7 +179,7 @@ Partial Class AddEditProducts
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(253, 204)
+        Me.Button3.Location = New System.Drawing.Point(248, 199)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(202, 35)
         Me.Button3.TabIndex = 235
@@ -203,7 +189,7 @@ Partial Class AddEditProducts
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(250, 8)
+        Me.Label6.Location = New System.Drawing.Point(245, 3)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(96, 16)
         Me.Label6.TabIndex = 236
@@ -211,7 +197,7 @@ Partial Class AddEditProducts
         '
         'TextBoxbase64
         '
-        Me.TextBoxbase64.Location = New System.Drawing.Point(15, 335)
+        Me.TextBoxbase64.Location = New System.Drawing.Point(15, 308)
         Me.TextBoxbase64.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxbase64.Name = "TextBoxbase64"
         Me.TextBoxbase64.ReadOnly = True
@@ -229,9 +215,9 @@ Partial Class AddEditProducts
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 335)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 292)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(466, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(457, 22)
         Me.StatusStrip1.TabIndex = 238
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -250,7 +236,7 @@ Partial Class AddEditProducts
         '
         'TextBoxCriticalLimit
         '
-        Me.TextBoxCriticalLimit.Location = New System.Drawing.Point(15, 263)
+        Me.TextBoxCriticalLimit.Location = New System.Drawing.Point(10, 258)
         Me.TextBoxCriticalLimit.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBoxCriticalLimit.Name = "TextBoxCriticalLimit"
         Me.TextBoxCriticalLimit.Size = New System.Drawing.Size(232, 23)
@@ -259,7 +245,7 @@ Partial Class AddEditProducts
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(12, 243)
+        Me.Label7.Location = New System.Drawing.Point(7, 238)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(106, 16)
         Me.Label7.TabIndex = 240
@@ -270,8 +256,7 @@ Partial Class AddEditProducts
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(466, 357)
-        Me.ControlBox = False
+        Me.ClientSize = New System.Drawing.Size(457, 314)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.TextBoxCriticalLimit)
         Me.Controls.Add(Me.StatusStrip1)
@@ -279,7 +264,6 @@ Partial Class AddEditProducts
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.ButtonKeyboard)
-        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
@@ -293,9 +277,13 @@ Partial Class AddEditProducts
         Me.Controls.Add(Me.PictureBoxProductImage)
         Me.Controls.Add(Me.TextBoxProductCode)
         Me.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AddEditProducts"
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         CType(Me.PictureBoxProductImage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
@@ -317,7 +305,6 @@ Partial Class AddEditProducts
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents ButtonKeyboard As Button
-    Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Label6 As Label

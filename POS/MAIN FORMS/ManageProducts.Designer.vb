@@ -623,10 +623,10 @@ Partial Class ManageProducts
         '
         Me.TabPage6.Controls.Add(Me.TableLayoutPanel2)
         Me.TabPage6.Controls.Add(Me.Panel5)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 28)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(1094, 439)
+        Me.TabPage6.Size = New System.Drawing.Size(1094, 433)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "TabPage6"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -643,7 +643,7 @@ Partial Class ManageProducts
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1088, 396)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1088, 390)
         Me.TableLayoutPanel2.TabIndex = 167
         '
         'GroupBox3
@@ -653,7 +653,7 @@ Partial Class ManageProducts
         Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(1082, 320)
+        Me.GroupBox3.Size = New System.Drawing.Size(1082, 314)
         Me.GroupBox3.TabIndex = 164
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Cutom Product List(Pending)"
@@ -691,7 +691,7 @@ Partial Class ManageProducts
         Me.DataGridViewOthersPending.EnableHeadersVisualStyles = False
         Me.DataGridViewOthersPending.Location = New System.Drawing.Point(3, 22)
         Me.DataGridViewOthersPending.Name = "DataGridViewOthersPending"
-        Me.DataGridViewOthersPending.Size = New System.Drawing.Size(1076, 295)
+        Me.DataGridViewOthersPending.Size = New System.Drawing.Size(1076, 289)
         Me.DataGridViewOthersPending.TabIndex = 6
         '
         'GroupBox4
@@ -699,7 +699,7 @@ Partial Class ManageProducts
         Me.GroupBox4.Controls.Add(Me.Panel8)
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox4.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(3, 329)
+        Me.GroupBox4.Location = New System.Drawing.Point(3, 323)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(1082, 64)
         Me.GroupBox4.TabIndex = 166

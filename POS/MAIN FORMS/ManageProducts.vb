@@ -152,9 +152,13 @@ Public Class ManageProducts
 
     Private Sub ManageProducts_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
-            Dim newMDIchild As New ChangePrice()
+
             If Application.OpenForms().OfType(Of ChangePrice).Any Then
                 ChangePrice.Close()
+            End If
+
+            If Application.OpenForms().OfType(Of AddEditProducts).Any Then
+                AddEditProducts.Close()
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
