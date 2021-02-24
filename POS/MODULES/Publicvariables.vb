@@ -52,6 +52,7 @@ Module publicVariables
     Public CouponDesc As String
     Public CouponLine As Integer = 10
     Public CouponTotal As Decimal
+    Public SeniorGCDiscount As Boolean = False
     '=============================================================================================================
     'POS INFORMATION
     Public ClientCrewID As String

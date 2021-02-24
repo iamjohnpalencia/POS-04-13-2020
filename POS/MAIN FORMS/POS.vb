@@ -20,7 +20,7 @@ Public Class POS
     Dim thread As Thread
 
     Public WaffleUpgrade As Boolean = False
-    Public SeniorGC As Boolean = False
+
     Private Shared _instance As POS
     Public ReadOnly Property Instance As POS
         Get
@@ -1281,7 +1281,11 @@ Public Class POS
                 Next
                 If CouponApplied = True Then
                     a += 100
-                    SimpleTextDisplay(sender, e, CouponName & "(" & DISCOUNTTYPE & ")", font, 0, a)
+                    If SeniorGCDiscount Then
+                        SimpleTextDisplay(sender, e, CouponName, font, 0, a)
+                    Else
+                        SimpleTextDisplay(sender, e, CouponName & "(" & DISCOUNTTYPE & ")", font, 0, a)
+                    End If
                     SimpleTextDisplay(sender, e, CouponDesc, font, 0, a + 10)
                     a += 40 + CouponLine
                     RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & Format(CouponTotal, "###,###,##0.00"), font, 0, 0)
@@ -1345,7 +1349,7 @@ Public Class POS
                     If DISCOUNTTYPE = "Percentage(w/o vat)" Then
                         RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & Format(VATEXEMPTSALES, "0.00"), font, 0, 0)
                     Else
-                        If SeniorGC = False Then
+                        If SeniorGCDiscount = False Then
                             RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & "0.00", font, 0, 0)
                         Else
                             RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & Format(VATEXEMPTSALES, "0.00"), font, 0, 0)
@@ -1356,7 +1360,7 @@ Public Class POS
                     If DISCOUNTTYPE = "Percentage(w/o vat)" Then
                         RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & Format(LESSVAT, "0.00"), font, 0, 0)
                     Else
-                        If SeniorGC = False Then
+                        If SeniorGCDiscount = False Then
                             RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & "0.00", font, 0, 0)
                         Else
                             RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & Format(LESSVAT, "0.00"), font, 0, 0)
