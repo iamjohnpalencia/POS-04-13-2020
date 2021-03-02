@@ -1039,28 +1039,34 @@ Public Class POS
                     ACTIVE = 3
                 End If
 
-                If CouponApplied = False Then
-                    VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-                    LESSVAT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
+                If S_ZeroRated = "0" Then
+                    If CouponApplied = False Then
+                        VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                        LESSVAT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
+                    End If
+                    'VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                    'VATEXEMPTSALES = 0.00
+                    'VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
+                    'GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
+                Else
+                    If CouponApplied = False Then
+                        Dim VatClone = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
+                        LESSVAT = Math.Round(SUPERAMOUNTDUE - VatClone, 2, MidpointRounding.AwayFromZero)
+                        GROSSSALE = Format(Val(SUPERAMOUNTDUE), "###,###,##0.00")
+                        ZERORATEDNETSALES = GROSSSALE
+                        ZERORATEDSALES = GROSSSALE
+                    End If
+                    'If CouponApplied Then
+                    '    VAT12PERCENT = 0
+                    '    LESSVAT = 0
+                    '    VATABLESALES = 0
+                    'Else
+                    '    ZERORATEDSALES = SUPERAMOUNTDUE
+                    '    VATABLESALES = ZERORATEDSALES
+                    '    ZERORATEDNETSALES = ZERORATEDSALES
+                    'End If
                 End If
-                'If S_ZeroRated = "0" Then
-                '    VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
-                '    VATEXEMPTSALES = 0.00
-                '    VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
-                '    GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
-                'Else
-                '    GROSSSALE = Format(Val(SUPERAMOUNTDUE), "###,###,##0.00")
-                '    'If CouponApplied Then
-                '    '    VAT12PERCENT = 0
-                '    '    LESSVAT = 0
-                '    '    VATABLESALES = 0
-                '    'Else
-                '    '    ZERORATEDSALES = SUPERAMOUNTDUE
-                '    '    VATABLESALES = ZERORATEDSALES
-                '    '    ZERORATEDNETSALES = ZERORATEDSALES
-                '    'End If
-                'End If
-                sql = "SELECT si_number FROM loc_daily_transaction ORDER BY transaction_id DESC limit 1"
+                    sql = "SELECT si_number FROM loc_daily_transaction ORDER BY transaction_id DESC limit 1"
                 cmd = New MySqlCommand(sql, LocalhostConn)
                 da = New MySqlDataAdapter(cmd)
                 dt = New DataTable

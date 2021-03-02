@@ -306,7 +306,6 @@ Public Class CouponCode
             SendErrorReport(ex.ToString)
         End Try
     End Sub
-
     Private Sub couponfix1()
         Try
             Dim GROSSSALES As Double = Double.Parse(POS.TextBoxGRANDTOTAL.Text)
