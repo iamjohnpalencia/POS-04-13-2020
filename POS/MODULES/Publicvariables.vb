@@ -98,6 +98,8 @@ Module publicVariables
     Public S_Reprint As String
     Public S_Print_XZRead As String
     Public S_Print_Returns As String
+    Public S_Waffle_Bag As Integer
+    Public S_Packets As Integer
     'Training MOde
     Public S_TrainingMode As Boolean = False
     '=============================================================================================================

@@ -389,8 +389,10 @@ Public Class Reports
     End Sub
     Private Sub DataGridViewEXPENSES_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewEXPENSES.CellClick
         Try
-            Dim datagridid = DataGridViewEXPENSES.SelectedRows(0).Cells(2).Value.ToString()
-            viewexpensesdetails(datagridid)
+            If DataGridViewEXPENSES.Rows.Count > 0 Then
+                Dim datagridid = DataGridViewEXPENSES.SelectedRows(0).Cells(2).Value.ToString()
+                viewexpensesdetails(datagridid)
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -399,7 +401,9 @@ Public Class Reports
     Private Sub DataGridViewDaily_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewDaily.CellClick
         Try
             'transaction_number = (Val(TextBoxCustomerID.Text))
-            viewtransactiondetails(transaction_number:=DataGridViewDaily.SelectedRows(0).Cells(0).Value)
+            If DataGridViewDaily.Rows.Count > 0 Then
+                viewtransactiondetails(transaction_number:=DataGridViewDaily.SelectedRows(0).Cells(0).Value)
+            End If
         Catch ex As Exception
             MsgBox(ex.ToString)
             SendErrorReport(ex.ToString)
@@ -1073,6 +1077,7 @@ Public Class Reports
                 cmd.ExecuteNonQuery()
                 reportsdailytransaction(False)
                 DataGridViewTransactionDetails.DataSource = Nothing
+                DataGridViewTransactionDetails.Rows.Clear()
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)

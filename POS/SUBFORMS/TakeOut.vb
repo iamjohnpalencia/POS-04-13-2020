@@ -23,7 +23,7 @@ Public Class TakeOut
             Dim SSecondary As Double = 0
             Dim SNServing As Double = 0
 
-            If ComboBoxTakeout.Text = "Sugar Syrup" Then
+            If ComboBoxTakeout.Text = "Sugar Packets" Then
                 Dim message = MessageBox.Show("Do you want to add Extra Sugar Syrup?", "Extra Sugar", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 If message = DialogResult.Yes Then
                     Try
@@ -64,7 +64,7 @@ Public Class TakeOut
                         SendErrorReport(ex.ToString)
                     End Try
                 End If
-            ElseIf ComboBoxTakeout.Text = "Waffle bag" Then
+            ElseIf ComboBoxTakeout.Text = "Extra Packaging" Then
                 Dim message = MessageBox.Show("Do you want to add Extra packaging?", "Extra packaging", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 If message = DialogResult.Yes Then
                     Try
@@ -133,14 +133,14 @@ Public Class TakeOut
         End Try
     End Sub
     Private Sub ButtonTakeOut_Click(sender As Object, e As EventArgs) Handles ButtonTakeOut.Click
-        If ComboBoxTakeout.Text = "Waffle bag" Then
+        If ComboBoxTakeout.Text = "Extra Packaging" Then
             If Val(TextBoxQuantity.Text) > 0 Then
                 DInventory()
                 Close()
             Else
                 MessageBox.Show("Input quantity first", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
-        ElseIf ComboBoxTakeout.Text = "Sugar syrup" Then
+        ElseIf ComboBoxTakeout.Text = "Sugar Packets" Then
             If Val(TextBoxQuantity.Text) > 0 Then
                 DInventory()
                 Close()
@@ -231,23 +231,22 @@ Public Class TakeOut
         End If
     End Sub
     Private Sub TakeOut_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LoadSettings()
+        Try
+            LoadSettings()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
     Dim WaffleBagID
     Dim SugarPackets
     Private Sub LoadSettings()
         Try
             Dim LocalCon As MySqlConnection = LocalhostConn()
-            Dim sql = "SELECT S_Waffle_Bag, S_Packets FROM loc_settings WHERE settings_id = 1"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalCon)
-            Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
-            Dim dt As DataTable = New DataTable
-            da.Fill(dt)
-            WaffleBagID = dt(0)(0)
-            SugarPackets = dt(0)(1)
-
-            For i As Integer = 0 To dt.Rows.Count Step +1
-                sql = "SELECT product_ingredients FROM loc_product_formula WHERE formula_id = " & dt(i)(0)
+            Dim ArrayOfIDS() As Integer = {S_Waffle_Bag, S_Packets}
+            WaffleBagID = S_Waffle_Bag
+            SugarPackets = S_Packets
+            For Each value As Integer In ArrayOfIDS
+                sql = "SELECT product_ingredients FROM loc_product_formula WHERE formula_id = " & value
                 cmd = New MySqlCommand(sql, LocalCon)
                 Dim res = cmd.ExecuteScalar()
                 ComboBoxTakeout.Items.Add(res)

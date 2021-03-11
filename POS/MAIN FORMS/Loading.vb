@@ -151,7 +151,7 @@ Public Class Loading
     Private Sub LoadSettings()
         Try
             If LocalConnectionIsOnOrValid = True Then
-                Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix , S_Upgrade_Price_Add , S_BackupInterval, S_BackupDate , S_Update_Version , P_Footer_Info , S_logo , S_Layout , printreceipt , reprintreceipt , printxzread , printreturns, autoresetinv FROM loc_settings WHERE settings_id = 1"
+                Dim sql = "SELECT A_Export_Path, A_Tax, A_SIFormat, A_Terminal_No, A_ZeroRated, S_Zreading, S_Batter, S_Brownie_Mix , S_Upgrade_Price_Add , S_BackupInterval, S_BackupDate , S_Update_Version , P_Footer_Info , S_logo , S_Layout , printreceipt , reprintreceipt , printxzread , printreturns, autoresetinv, S_Waffle_Bag, S_Packets FROM loc_settings WHERE settings_id = 1"
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
                 Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                 Dim dt As DataTable = New DataTable
@@ -192,6 +192,8 @@ Public Class Loading
                                             ElseIf row("autoresetinv") = "1" Then
                                                 AutoInventoryReset = False
                                             End If
+                                            S_Waffle_Bag = row("S_Waffle_Bag")
+                                            S_Packets = row("S_Packets")
                                         End If
                                     End If
                                 End If

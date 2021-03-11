@@ -1038,7 +1038,7 @@ Public Class POS
                 If TRANSACTIONMODE = "Representation Expenses" Then
                     ACTIVE = 3
                 End If
-
+                GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
                 If S_ZeroRated = "0" Then
                     If CouponApplied = False Then
                         VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
@@ -1047,7 +1047,7 @@ Public Class POS
                     'VATABLESALES = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
                     'VATEXEMPTSALES = 0.00
                     'VAT12PERCENT = Math.Round(SUPERAMOUNTDUE - VATABLESALES, 2, MidpointRounding.AwayFromZero)
-                    'GROSSSALE = Math.Round(SUPERAMOUNTDUE, 2, MidpointRounding.AwayFromZero)
+
                 Else
                     If CouponApplied = False Then
                         Dim VatClone = Math.Round(SUPERAMOUNTDUE / Val(1 + S_Tax), 2, MidpointRounding.AwayFromZero)
